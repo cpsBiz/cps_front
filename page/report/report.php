@@ -103,7 +103,7 @@ header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS');
                                 <label for="searchType1">일별</label>
                                 <input type="radio" name="searchType" id="searchType2" value="MONTH">
                                 <label for="searchType2">월별</label>
-                                <input type="radio" name="searchType" id="searchType3" value="MEMBER">
+                                <input type="radio" name="searchType" id="searchType3" value="MERCHANT">
                                 <label for="searchType3">광고주</label>
                                 <input type="radio" name="searchType" id="searchType4" value="CAMPAIGN">
                                 <label for="searchType4">캠페인</label>
@@ -122,9 +122,9 @@ header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS');
                                 <p>영역</p>
                                 <input type="radio" name="os" id="os1" value="" checked>
                                 <label for="os1">전체</label>
-                                <input type="radio" name="os" id="os2" value="PC">
+                                <input type="radio" name="os" id="os2" value="P">
                                 <label for="os2">PC</label>
-                                <input type="radio" name="os" id="os3" value="MOBILE">
+                                <input type="radio" name="os" id="os3" value="M">
                                 <label for="os3">모바일</label>
                             </div>
                             <div class="radioBox">
@@ -147,7 +147,7 @@ header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS');
                                 <p>선택</p>
                                 <input type="radio" name="keywordType" id="keywordType1" value="" checked>
                                 <label for="keywordType1">전체</label>
-                                <input type="radio" name="keywordType" id="keywordType2" value="MEMBER">
+                                <input type="radio" name="keywordType" id="keywordType2" value="MERCHANT">
                                 <label for="keywordType2">광고주</label>
                                 <input type="radio" name="keywordType" id="keywordType3" value="CAMPAIGN">
                                 <label for="keywordType3">캠페인</label>
