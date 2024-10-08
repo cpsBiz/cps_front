@@ -1,0 +1,2165 @@
+@charset 'utf-8';
+/*
+File   : mixin.scss
+Date   : 2024.09.26
+*/
+
+
+//* font */
+@mixin ftR {
+  font-family: "Pretendard_Regular";
+  font-weight: normal;
+}
+
+@mixin ftM {
+  font-family: "Pretendard_Medium";
+  font-weight: normal;
+}
+
+@mixin ftB {
+  font-family: "Pretendard_SemiBold";
+}
+
+
+
+//* scroll  */
+// ::-webkit-scrollbar 
+@mixin scrollbar($w: 12px, $h: 12px, $bg:$scrollbarBgColor) {
+  width: $w;
+  height: $h;
+  background: $bg;
+}
+
+//::-webkit-scrollbar-thumb 
+@mixin scrollbar_thumb($h: 15px, $br:5px, $bg:$scrollThumbColor) {
+  height: $h;
+  border-radius: $br;
+  background: $bg;
+}
+
+
+@mixin bgimg($p:center, $s:auto) {
+  background-position: $p;
+  background-size: $s;
+  background-repeat: no-repeat;
+}
+
+
+//* text */
+// hide 
+@mixin txtHide {
+  text-indent: -999999px;
+  font-size: 0;
+}
+
+
+
+//* ellipsis */
+//* hover visible */
+@mixin ellipsisHover {
+  white-space: normal !important;
+  overflow: visible !important;
+  word-break: break-all !important;
+}
+
+//* text ellipsis */
+// display 있어야 나타남
+@mixin ellipsis {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+@mixin ellipsis2($wlc:2) {
+  display: -webkit-box;
+  //width: 100px;
+  //height: 100px;
+  //line-height: 22px;
+  text-align: left;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: normal;
+  word-break: break-all;
+  -webkit-line-clamp: $wlc;
+  -webkit-box-orient: vertical;
+}
+
+
+//* display*/
+//* inline-block */
+@mixin dpLayout {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+//* flex */
+@mixin flexBox($f:flex, $fw:null, $d:initial, $j:space-between, $a:center, $g:10px) {
+  display: $f;
+  flex-wrap: $fw;
+  flex-direction: $d;
+  justify-content: $j;
+  align-items: $a;
+  gap: $g;
+}
+
+@mixin inflexBox($f:inline-flex, $fw:null, $d:initial, $j:space-between, $a:center, $g:10px) {
+  display: $f;
+  flex-wrap: $fw;
+  flex-direction: $d;
+  justify-content: $j;
+  align-items: $a;
+  gap: $g;
+}
+
+@mixin gridBox($d:grid, $g:10px, $c:null, $r:null) {
+  display: $d;
+  grid-template-columns: $c;
+  // grid-template-columns: repeat(auto-fill, minmax(20%, auto));
+  grid-template-rows: $r;
+  gap: $g;
+}
+
+//* animation */
+@mixin transition {
+  transition: all 0.2s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+
+//* ico */
+@mixin iLayout($a:middle) {
+  content: "";
+  position: relative;
+  display: inline-block;
+  background-position: 0px 0px;
+  font-size: 0;
+  font-style: normal;
+  vertical-align: $a;
+}
+
+@mixin iMark {
+  @include iLayout;
+  @include ico_i;
+}
+
+@mixin iMarkHover($w:200px, $t:null, $r:null, $b:28px, $l:-26px) {
+  @include ftR;
+  display: none;
+  position: absolute;
+  width: $w;
+  height: auto;
+  min-height: 30px;
+  top: $t;
+  left: $l;
+  right: $r;
+  bottom: $b;
+  padding: 6px 12px;
+  color: $ftColor;
+  font-size: 12px;
+  text-align: left;
+  font-style: normal;
+  line-height: 1.5;
+  white-space: normal;
+  border-radius: 4px;
+  border: 1px solid $pointColor;
+  background-color: $white;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
+  cursor: default;
+  z-index: 3;
+}
+
+@mixin iMarkHover_L($t:-20px, $r:0, $b:auto, $l:50px) {
+  top: $t;
+  right: $r;
+  bottom: $b;
+  left: $l;
+}
+
+@mixin iMarkHover_TL($t:28px, $r:auto, $b:auto, $l:0) {
+  top: $t;
+  left: $l;
+  right: $r;
+  bottom: $b;
+}
+
+@mixin iMarkHover_TR($t:28px, $r:0, $b:auto, $l:auto) {
+  top: $t;
+  left: $l;
+  right: $r;
+  bottom: $b;
+}
+
+
+
+
+//* 페이지 로딩 */
+@mixin loadingBg {
+  position: fixed;
+  display: block;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 9999;
+
+  p {
+    position: absolute;
+    top: calc(50% - 70px);
+    width: 100%;
+    text-align: center;
+    font-size: 18px;
+    line-height: 1.5;
+    color: $ftColor4;
+    z-index: 9999;
+
+    &:before {
+      @include iLayout;
+      @include ico_loading;
+      content: "";
+      display: block;
+      width: 100px;
+      height: 80px;
+      margin: 0 auto 40px;
+      background-size: 100px 80px;
+      animation: rotationLoading 1.2s infinite steps(9);
+    }
+
+    b {
+      display: block;
+      margin-bottom: 10px;
+      font-size: 18px;
+    }
+  }
+
+  &.complete {
+    display: none;
+    opacity: 0;
+    z-index: -999;
+  }
+}
+
+@mixin loadingDot($zIndex:700) {
+  position: relative;
+  top: 0;
+  width: auto;
+  z-index: $zIndex;
+
+  &:before {
+    @include iLayout;
+    // @include icoB_loadingDot;
+    position: absolute;
+    background-size: contain;
+    width: 100%;
+    height: 100%;
+    background-size: 44px 44px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    // background-color: rgba(0, 0, 0, 0.8) !important;
+    background-color: #000000;
+    opacity: 0.8;
+    z-index: $zIndex;
+  }
+}
+
+@mixin loadingCircle($zIndex:701) {
+  position: relative;
+  top: 0;
+  width: auto;
+  z-index: $zIndex;
+
+  &:before {
+    @include iLayout;
+    @include ico_loadingCircle;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 50%;
+    left: 50%;
+    border-radius: inherit;
+    background-size: 50px 50px;
+    transform: translate(-50%, -50%);
+    // background-color: rgba(0, 0, 0, 0.5);
+    background-color: $white;
+    opacity: 0.8;
+    z-index: $zIndex;
+  }
+}
+
+@mixin loadingText($zIndex:700) {
+  position: relative;
+  top: 0;
+  width: auto;
+  z-index: $zIndex;
+
+  >.dataNoneText {
+    position: absolute;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    top: 50%;
+    left: 50%;
+    color: $ftColor;
+    transform: translate(-50%, -50%);
+    background-color: #ffffff;
+    opacity: 0.8;
+    z-index: $zIndex;
+  }
+
+  ul,
+  div {
+    &:not(.dataNoneText) {
+      display: none !important;
+    }
+  }
+}
+
+
+
+//* title */
+@mixin title($fs: 22px) {
+  @include ftB;
+  font-size: $fs;
+  color: $ftColor;
+}
+
+@mixin title2($fs: 18px) {
+  @include ftB;
+  font-size: $fs;
+  color: $ftColor;
+}
+
+
+@mixin titleSub {
+  @include ftM;
+  margin-top: 5px;
+  font-size: 13px;
+  color: $subFtColor;
+}
+
+@mixin titleLayout {
+  >p {
+    &:first-child {
+      @include title;
+    }
+
+    &:nth-child(n+2) {
+      @include titleSub();
+    }
+  }
+
+  .location {
+    @include location;
+  }
+}
+
+
+
+//* .location */
+@mixin location {
+  position: absolute;
+  top: 30px;
+  right: 30px;
+
+  span {
+    display: inline-block;
+    font-size: 18px;
+
+    &:nth-child(n+2) {
+      &:before {
+        content: ">";
+        position: relative;
+        display: inline-block;
+        margin: 0 3px;
+      }
+    }
+
+    &:last-child {
+      color: $pointColor;
+    }
+  }
+}
+
+//* txtDot */
+//* before */
+@mixin txtDot($width:3px, $height: 3px) {
+  content: "";
+  position: relative;
+  display: inline-block;
+  width: $width;
+  height: $height;
+  top: -3px;
+  margin-right: 4px;
+  border-radius: 100%;
+  background-color: $ftColor;
+}
+
+
+//* daterangepicker */
+@mixin daterangepicker {
+  padding: 4px 4px 4px 4px;
+  // box-shadow: $dateShadow;
+  border: 1px solid $dateBorderColor;
+  background-color: $dateBgColor;
+  right: 65px !important;
+
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  ::selection {
+    color: #ffffff;
+    background-color: $mainColor;
+  }
+
+  &:before,
+  &:after {
+    display: none;
+  }
+
+  &.show-ranges {
+    .drp-calendar {
+
+      // 왼쪽 달력 
+      &.left {
+        padding: 4px;
+        border-left: none;
+      }
+
+      // 오른쪽 달력 
+      &.right {
+        padding: 4px;
+      }
+    }
+  }
+
+  //* datepicker */
+  .calendar-table {
+    background-color: transparent;
+    border: 1px solid transparent;
+
+    //* 이전 & 다음 아이콘 */
+    .prev,
+    .next {
+      span {
+        border-color: $mainColor;
+      }
+    }
+
+    table {
+      thead {
+        tr {
+          th {
+            &.available {
+              &:hover {
+                border: none;
+                background-color: transparent;
+              }
+            }
+          }
+
+          // year 
+          &:nth-child(1) {
+            th {
+              @include ftM;
+              padding: 0px 0 5px 0px;
+              font-weight: normal;
+              font-size: 13px;
+              color: $dateFtColor5;
+            }
+          }
+
+          // day 
+          &:nth-child(2) {
+            th {
+              color: $dateFtColor2;
+              border-bottom: none;
+            }
+          }
+        }
+      }
+
+      tbody {
+        td {
+          // @include RobotoR;
+          position: relative;
+          height: 26px;
+          color: $dateFtColor5;
+          font-size: 12px;
+          border: none;
+
+          &.off,
+          .ui-state-disabled {
+            color: $dateFtColor3;
+            background-color: transparent;
+          }
+
+          &:hover {
+            color: $dateFtColor4;
+            // border-radius: 100%;
+            border-radius: 5px;
+            background-color: $mainColor;
+          }
+
+          //* 기간 선택 */
+          &.in-range {
+            color: $ftColor;
+            background-color: $dateBgColor2;
+
+            &:hover {
+              border-radius: 0;
+              background-color: $dateBgColor3;
+            }
+          }
+
+          &.start-date {
+            &:hover {
+              border-radius: 4px 0 0 4px;
+            }
+          }
+
+          &.active,
+          &.end-date {
+            color: $dateFtColor6;
+            background-color: $mainColor;
+
+            &:hover {
+              color: $dateFtColor6;
+              background-color: $mainColor;
+            }
+          }
+
+          &.end-date {
+            &:hover {
+              border-radius: 0 4px 4px 0;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  //* time */
+  .calendar-time {
+    text-align: right;
+
+    select {
+
+      &.hourselect,
+      &.minuteselect,
+      &.ampmselect,
+      &.secondselect {
+        min-width: 50px;
+        height: 26px;
+        padding: 2px 6px;
+        border: 1px solid $dateIpBorderColor;
+        background-color: $dateIpBgColor;
+      }
+    }
+  }
+
+  .ranges {
+    // display: none;
+    padding-left: 6px;
+    overflow-x: hidden !important;
+
+    ul {
+
+      li {
+        color: $dateFtColor5;
+
+        &:hover {
+          color: $ftColor;
+          background-color: $dateBgColor3;
+        }
+
+        &.active {
+          color: $dateFtColor6;
+          background-color: $mainColor;
+        }
+      }
+    }
+  }
+
+  //* 확인, 취소 버튼 */
+  .drp-buttons {
+    border-color: $dateBorderColor;
+
+    button {
+
+      &.cancelBtn,
+      &.applyBtn {
+        font-family: "NotoSansR";
+        position: relative;
+        text-align: center;
+        color: $dateFtColor7;
+        border: 2px solid $mainColor;
+        border-radius: 2px;
+        background-color: $mainColor;
+        cursor: pointer;
+      }
+    }
+  }
+
+  // single 
+  &.single {
+    width: fit-content;
+
+    .ranges {
+      display: none;
+    }
+  }
+}
+
+
+// timepicker
+@mixin timepicker {
+  //  .ui-timepicker-standard 
+  width: 200px;
+  border: 1px solid $ipBorderColor;
+  font-size: 14px;
+
+  a {
+    @include ftR();
+    color: $ftColor;
+
+    &.ui-state-hover {
+      color: $pointColor;
+      border-color: transparent;
+      // font-weight: normal;
+      background-color: transparent;
+    }
+
+    // &#ui-active-item {
+    //   color: #fff;
+    //   background-color: $pointColor;
+    // }
+  }
+
+  ul {
+    &::-webkit-scrollbar {
+      @include scrollbar($w:6px, $bg:transparent);
+    }
+
+    &::-webkit-scrollbar-thumb {
+      @include scrollbar_thumb($br:4px);
+      // background-color: #dedede;
+    }
+  }
+}
+
+
+//* dim */
+@mixin dimBox {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 5px;
+  background-color: rgba(0, 0, 0, 0.55);
+  z-index: 990;
+}
+
+
+
+@mixin dimCircle($zIndex:700) {
+  position: relative;
+  top: 0;
+  width: auto;
+  height: 100%;
+  z-index: $zIndex;
+
+  &:before {
+    @include iLayout;
+    @include ico_loadingCircle();
+    position: absolute;
+    background-size: contain;
+    width: 100%;
+    height: 100%;
+    top: 50%;
+    left: 50%;
+    background-size: 80px 80px;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.55) !important;
+    background-position: center;
+    z-index: $zIndex;
+    opacity: 1;
+  }
+}
+
+
+//* button */
+// @mixin iBtn {
+// @include btnLayout;
+// }
+
+@mixin btnLayout($w:null, $h:null, $br:4px, $fs:null, $minW:null) {
+  @include ftR;
+  position: relative;
+  min-width: $minW;
+  width: $w;
+  height: $h;
+  font-size: $fs;
+  text-align: center;
+  border-radius: $br;
+  cursor: pointer;
+
+  &:disabled {
+    @include btn_disabled;
+    cursor: default;
+  }
+}
+
+@mixin btn_disabled {
+  color: $btnDis_ftColor;
+  border: 1px solid $btnDis_borderColor;
+  background-color: $btnDis_bgColor;
+  box-shadow: none
+}
+
+//* normal */
+@mixin btnLayout_normal($width:140px) {
+  position: relative;
+  min-width: $width;
+  padding: 0 10px;
+  height: 40px;
+  border-radius: 20px;
+  font-size: 15px;
+}
+
+@mixin btnS($w: auto, $minW:90px, $h:36px, $br:4px, $fs:14px, $pd:0 15px) {
+  @include ftR;
+  width: $w;
+  min-width: $minW;
+  height: $h;
+  padding: $pd;
+  font-size: $fs;
+  text-align: center;
+  border-radius: $br;
+  cursor: pointer;
+}
+
+
+// ON > bg: pointColor
+@mixin btn_main {
+  color: $btn_ftColor;
+  border: 1px solid $btn_BorderColor;
+  background-color: $btn_bgColor;
+
+  &:disabled {
+    @include btn_disabled;
+  }
+}
+
+//  BG : pointColor2
+@mixin btn2 {
+  color: $btn_ftColor2;
+  border: 1px solid $btn_BorderColor2;
+  background-color: $btn_BgColor2;
+
+  &:disabled {
+    @include btn_disabled;
+  }
+}
+
+// BG(gray)
+@mixin btn3 {
+  color: $btn_ftColor3;
+  border: 1px solid $btn_BorderColor3;
+  background-color: $btn_BgColor3;
+}
+
+
+@mixin btn_off {
+  color: $btnOff_ftColor;
+  border: 1px solid $btnOff_BorderColor;
+  background-color: $btnOff_BgColor;
+  box-shadow: none
+}
+
+@mixin btn_delete {
+  color: $btnDlt_ftColor;
+  border: 1px solid $btnDlt_BorderColor;
+  box-shadow: $btnDlt_shadow;
+  background-color: $btnDlt_bgColor;
+}
+
+//  bgColor
+@mixin btn_excel($w:auto, $minW:70px, $h:36px) {
+  @include btnLayout();
+  @include btn2();
+  min-width: $minW;
+  width: $w;
+  height: $h;
+
+  vertical-align: middle;
+
+  &:before {
+    @include iLayout;
+    @include ico_excel;
+    width: 12px;
+    height: 12px;
+    margin-right: 5px;
+    vertical-align: middle;
+  }
+}
+
+
+
+
+
+
+//* btnArea */
+@mixin btnArea($margin:40px 0 0 0) {
+  margin: $margin;
+  font-size: 0;
+  text-align: center;
+
+  button {
+    @include btnLayout_normal;
+    @include btn_main;
+    display: inline-block;
+    min-width: 140px;
+    height: 44px;
+    font-size: 15px;
+    margin-left: 12px;
+
+    &:first-child {
+      margin-left: 0;
+    }
+  }
+}
+
+
+//* input */
+//* option title */
+@mixin ip_title($d:inline-block, $w:null, $fs: 16px) {
+  // @include ftM();
+  min-width: $w;
+  display: $d;
+  font-size: $fs;
+}
+
+//* input */
+@mixin input($w:200px, $h:36px) {
+  @include dpLayout;
+  @include ftR;
+  min-width: $w;
+  height: $h;
+  padding: 6px 10px;
+  font-size: 14px;
+  color: $ftColor;
+  border-radius: 4px;
+  box-sizing: border-box;
+  border: 1px solid $ipBorderColor;
+  background-color: $ipBgColor;
+
+  &:disabled {
+    color: $dis_ftColor;
+    border: 1px solid $ipBorderColor_disabled;
+    background: $ipBgColor_disabled;
+  }
+
+  &:focus {
+    outline: none;
+  }
+
+  &::placeholder {
+    font-size: 14px;
+    color: $ipFtColor_placeholder;
+  }
+}
+
+//* textarea border 없어도 되는 경우 */
+@mixin textarea {
+  @include ftR();
+  position: relative;
+  width: 100%;
+  padding: 0 10px 0 0;
+  border-radius: 5px;
+  color: $ftColor;
+  box-sizing: border-box;
+  border: 10px solid transparent;
+  background-color: $ipBgColor;
+
+  &:focus {
+    outline: none;
+  }
+
+  &::placeholder,
+  &::-webkit-input-placeholder {
+    color: $ipFtColor_placeholder;
+  }
+}
+
+// textarea
+// 복사버튼 & border 있는경우
+@mixin textareaBox($width: 100%, $height: 120px) {
+  @include textarea;
+  width: $width;
+  height: $height;
+  border: 1px solid $ipBorderColor;
+  background-color: $ipBgColor;
+
+  textarea {
+    height: calc(#{$height} - 2px);
+    border-right: 10px;
+    resize: none;
+    background-color: $ipBgColor;
+  }
+
+  ::-webkit-scrollbar {
+    @include scrollbar;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @include scrollbar_thumb;
+  }
+}
+
+//* select */
+@mixin select($width:150px, $h: 36px) {
+  @include ico_select;
+  @include ftR();
+  min-width: $width;
+  height: $h;
+  padding: 4px 30px 4px 15px;
+  appearance: none;
+  font-size: 14px;
+  color: $ftColor;
+  line-height: 1;
+  border-radius: 5px;
+  border: 1px solid $ipBorderColor;
+  box-shadow: none;
+  background-color: $ipBgColor;
+  background-position-x: calc(100% - 15px);
+  outline: none;
+  cursor: pointer;
+
+  option {
+    background-color: $ipBgColor;
+  }
+
+  &:disabled {
+    color: $ipFtColor_disabled;
+    border: 1px solid $ipBorderColor_disabled;
+    background-color: $ipBgColor_disabled;
+    opacity: 1;
+  }
+}
+
+//* checkbox */
+@mixin checkbox($d:block, $m:null) {
+  display: none;
+
+  +label {
+    position: relative;
+    display: $d;
+    color: $ftColor;
+    cursor: pointer;
+
+    &:before {
+      @include iLayout;
+      @include ico_checkbox_off;
+      content: "";
+      width: 22px;
+      height: 22px;
+      margin-right: 6px;
+      vertical-align: middle;
+      background-size: contain;
+    }
+  }
+
+  &:not(:last-of-type) {
+    +label {
+      margin: $m;
+    }
+  }
+
+  &:checked {
+    +label {
+      &:before {
+        @include iLayout;
+        @include ico_checkbox_on;
+        width: 22px;
+        height: 22px;
+        vertical-align: middle;
+        background-size: contain;
+      }
+    }
+  }
+
+  &:disabled {
+    +label {
+      &:before {
+        @include iLayout;
+        @include ico_checkbox_disabled;
+        width: 22px;
+        height: 22px;
+        vertical-align: middle;
+        background-size: contain;
+        cursor: default;
+      }
+    }
+  }
+}
+
+// checkbox2 : bg green
+// input[type="checkbox"]
+@mixin checkbox2($w:16px, $h:16px, $d:block, $bgSize:contain, $m:null) {
+  +label {
+    position: relative;
+    display: $d;
+    color: $ftColor;
+    cursor: pointer;
+
+    &:before {
+      @include iLayout;
+      @include ico_checkbox_off;
+      content: "";
+      width: $w;
+      height: $h;
+      margin-right: 6px;
+      vertical-align: middle;
+      background-size: contain;
+    }
+  }
+
+  &:not(:last-of-type) {
+    +label {
+      margin: $m;
+    }
+  }
+
+  &:checked {
+    +label {
+      &:before {
+        @include iLayout;
+        @include ico_checkbox2_on;
+        width: $w;
+        height: $h;
+        vertical-align: middle;
+        background-size: contain;
+      }
+    }
+  }
+
+  &:disabled {
+    +label {
+      &:before {
+        @include iLayout;
+        @include ico_checkbox_disabled;
+        width: $w;
+        height: $h;
+        vertical-align: middle;
+        background-size: contain;
+        cursor: default;
+      }
+    }
+  }
+}
+
+
+//* raio */
+@mixin radio($m:null) {
+  display: none;
+
+  +label {
+    position: relative;
+    display: inline-block;
+    font-size: 14px;
+    cursor: pointer;
+
+    &:before {
+      @include iLayout;
+      @include ico_radio_off;
+      content: "";
+      width: 16px;
+      height: 16px;
+      margin-right: 6px;
+      top: -1px;
+      vertical-align: middle;
+      background-size: auto;
+    }
+  }
+
+  &:not(:last-of-type) {
+    +label {
+      margin: $m;
+    }
+  }
+
+  &:checked {
+    +label {
+      &:before {
+        @include iLayout;
+        @include ico_radio_on;
+        width: 16px;
+        height: 16px;
+        vertical-align: middle;
+        background-size: auto;
+      }
+    }
+  }
+
+  &:disabled {
+    +label {
+      &:before {
+        @include iLayout;
+        @include ico_radio_disabled;
+        width: 16px;
+        height: 16px;
+        vertical-align: middle;
+        background-size: auto;
+      }
+    }
+  }
+}
+
+// radioBox, checkBox
+@mixin inputBox ($h:34px, $f:flex) {
+  @include flexBox($a:center, $f:flex, $j:start, $g:14px);
+  display: $f;
+  border-radius: 5px;
+  height: $h;
+  padding: 0 20px 0 0;
+  border: 1px solid $ipBorderColor;
+  // box-shadow: $boxShadow2;
+  background-color: $white;
+
+  >p {
+    @include flexBox($f:inline-flex);
+    height: 100%;
+    padding: 0 15px;
+    font-size: 14px;
+    color: $ftColor4;
+    border-radius: 5px 0 0 5px;
+    background-color: $pointColor;
+  }
+
+  input {
+    &+label {
+      margin: 0;
+    }
+  }
+}
+
+
+
+
+
+//* calendarBox */
+@mixin calendar($w: 240px, $minW:240px, $h:34px, $bgColor: transparent) {
+  @include flexBox($g:0);
+  position: relative;
+  min-width: $minW;
+  // height: calc($height - 2px);
+  // padding: 0 18px;
+  padding: 0;
+  border-radius: 5px;
+  vertical-align: middle;
+  border: 1px solid $ipBorderColor;
+  background-color: $ipBgColor;
+
+  &:before {
+    @include iLayout;
+    @include ico_calendar;
+    position: relative;
+    display: inline-block;
+    top: 0px;
+    left: 0px;
+    width: 40px;
+    min-width: 40px;
+    height: $h;
+    border-radius: 3px 0px 0px 3px;
+    background-color: $pointColor;
+    z-index: 1;
+    cursor: pointer;
+  }
+
+  input {
+    flex-grow: 1;
+    @include ftR();
+    position: relative;
+    width: calc(100% - 40px);
+    height: $h;
+    margin: auto 0;
+    padding: 0 18px;
+    text-align: left;
+    font-size: 13px;
+    color: $ftColor;
+    border: none;
+    background-color: transparent;
+    z-index: 2;
+    cursor: pointer;
+  }
+}
+
+@mixin calendar_single($width: 140px, $height:34px, $bgColor: transparent) {
+  position: relative;
+  display: inline-block;
+  width: $width;
+  // height: calc($height - 2px);
+  // padding: 0 18px;
+  padding: 0;
+  border-radius: 4px;
+  vertical-align: middle;
+  border: 1px solid $mainColor;
+  background-color: $ipBgColor;
+
+  &:before {
+    @include iLayout;
+    @include ico_calendar;
+    position: absolute;
+    display: inline-block;
+    top: 0px;
+    left: 0px;
+    width: 40px;
+    height: 100%;
+    border-radius: 3px 0px 0px 3px;
+    background-color: $pointColor;
+    z-index: 1;
+    cursor: pointer;
+  }
+
+  input {
+    @include ftR();
+    position: relative;
+    width: calc(100% - 40px);
+    min-width: auto;
+    height: $height;
+    margin: auto 0;
+    left: 40px;
+    padding: 0 10px;
+    text-align: center;
+    font-size: 14px;
+    color: $ftColor;
+    border: none;
+    background-color: transparent;
+    z-index: 2;
+    cursor: pointer;
+  }
+}
+
+
+@mixin calendarBox($minW: 230px, $height:34px) {
+  position: relative;
+  display: inline-flex;
+  gap: 10px;
+  width: fit-content;
+  // border: 1px solid $borderColor;
+  // border-radius: 5px;
+  // box-shadow: $boxShadow2;
+  cursor: pointer;
+
+  p {
+    display: inline-block;
+    padding-right: 12px;
+    font-size: 14px;
+  }
+
+  .calendar {
+    @include calendar;
+    width: $minW;
+
+    input {
+      height: $height;
+    }
+  }
+
+  button {
+    @include btnLayout;
+    @include btn_main;
+    width: 84px;
+    height: $height;
+    font-size: 14px;
+    // border-radius: 20px;
+  }
+}
+
+
+
+//*  timeBox */
+@mixin time($width: 110px, $height:36px, $bgColor: transparent) {
+  position: relative;
+  display: inline-block;
+  width: $width;
+  // height: calc($height - 2px);
+  // padding: 0 18px;
+  padding: 0;
+  border-radius: 5px;
+  vertical-align: middle;
+  border: 1px solid $pointColor;
+  background-color: $ipBgColor;
+
+  &:before {
+    @include iLayout;
+    @include ico_time;
+    position: absolute;
+    display: inline-block;
+    top: 0px;
+    left: 0px;
+    width: 40px;
+    height: $height;
+    border-radius: 3px 0px 0px 3px;
+    background-color: $pointColor;
+    z-index: 1;
+    cursor: pointer;
+  }
+
+  // &:after {
+  //   @include iLayout;
+  //   @include ico_select;
+
+  // }
+
+  input {
+    @include ftR();
+    position: relative;
+    width: calc(100% - 40px);
+    min-width: auto;
+    height: $height;
+    margin: auto 0;
+    left: 40px;
+    padding: 0 10px;
+    text-align: center;
+    font-size: 14px;
+    color: $ftColor;
+    // color: #fff;
+    border: none;
+    background-color: transparent;
+    z-index: 2;
+    cursor: pointer;
+  }
+}
+
+@mixin timeBox($width: 110px, $height:40px) {
+  position: relative;
+  cursor: pointer;
+
+  p {
+    display: inline-block;
+    padding-right: 12px;
+    font-size: 14px;
+  }
+
+  .time {
+    @include time;
+    width: $width;
+  }
+
+  // button {
+  //   @include btnLayout;
+  //   @include btn_main2;
+  //   width: 84px;
+  //   height: $height;
+  //   margin-left: 10px;
+  //   font-size: 14px;
+  //   border-radius: 20px;
+  // }
+}
+
+
+//* searchBox */
+//* input 안에 검색 */
+@mixin searchBox($w:220px, $h:36px) {
+  display: inline-flex;
+  justify-content: space-between;
+  width: $w;
+  height: $h;
+  font-size: 0;
+  vertical-align: middle;
+  border-radius: 5px;
+  border: 1px solid $ipBorderColor;
+  background-color: $ipBgColor;
+
+  input,
+  button {
+    @include dpLayout;
+  }
+
+  input {
+    flex-grow: 1;
+    border: none;
+    width: 100%;
+    height: 100%;
+    padding: 0 5px 0px 10px;
+    text-align: left;
+    font-size: 16px;
+    border: none;
+    background-color: transparent;
+  }
+
+  button {
+    @include btn_main;
+    @include ico_search;
+    min-width: 40px;
+    height: 100%;
+    font-size: 0;
+    vertical-align: middle;
+  }
+}
+
+//* 검색버튼 있는 type */
+@mixin searchBox_t2($w:auto, $ip_width:200px) {
+  display: inline-flex;
+  justify-content: space-between;
+  vertical-align: middle;
+
+  input,
+  button {
+    @include dpLayout;
+  }
+
+  input[type="text"] {
+    flex-grow: 1;
+    width: $ip_width;
+    padding: 0 5px 0px 10px;
+    text-align: left;
+    font-size: 13px;
+    border: 1px solid $ipBorderColor;
+    background-color: $ipBgColor;
+  }
+
+  button {
+    @include btnLayout_normal;
+    @include btn_main;
+    min-width: 80px;
+    height: 40px;
+    margin-left: 10px;
+    vertical-align: middle;
+    font-size: 14px;
+  }
+}
+
+//* 검색아이콘 있는 type */
+@mixin searchBox_t3($w:auto, $h:34px, $ip_width:200px) {
+  display: inline-flex;
+  justify-content: space-between;
+  vertical-align: middle;
+  height: $h;
+
+  input,
+  button {
+    @include dpLayout;
+  }
+
+  input[type="text"] {
+    flex-grow: 1;
+    width: $ip_width;
+    height: 100%;
+    padding: 0 5px 0px 10px;
+    text-align: left;
+    font-size: 13px;
+    border-radius: 4px 0 0 4px;
+    border: 1px solid $ipBorderColor;
+    background-color: $ipBgColor;
+  }
+
+  button {
+    @include iLayout;
+    @include ico_search;
+    min-width: 32px;
+    height: 100%;
+    font-size: 0;
+    vertical-align: middle;
+    border-radius: 0 5px 5px 0;
+    background-color: $pointColor;
+  }
+}
+
+
+
+//* label square(정사각형) > before add */
+@mixin label($w:10px, $h:10px, $bgColor: $labelColor) {
+  content: "";
+  position: relative;
+  display: inline-block;
+  width: $w;
+  height: $h;
+  // top: 2px;
+  margin-right: 10px;
+  background-color: $labelColor;
+}
+
+//* tab */
+//* tabButton  button 에 추가 */
+@mixin tabButton($width:70px, $height:30px, $br:15px, $fs:14px) {
+  @include btnLayout;
+  @include btn_off;
+  min-width: $width;
+  height: $height;
+  font-size: $fs;
+  border-radius: $br;
+
+  &.on,
+  &:hover {
+    @include btn_main;
+  }
+
+  &:nth-child(n+2) {
+    margin-left: 8px;
+  }
+
+  &.off {
+    @include btn_disabled();
+  }
+}
+
+
+@mixin tabLi($w:160px, $h:46px) {
+  ul {
+    @include inflexBox($g:0);
+    border-radius: 5px;
+    background-color: $btnOff_BgColor;
+
+    li {
+      @include flexBox($j:center);
+      min-width: $w;
+      height: $h;
+      padding: 6px 20px;
+      text-align: center;
+      color: $btnOff_ftColor;
+      vertical-align: middle;
+      // border: 1px solid $btnOff_BorderColor;
+
+      // background-color: $btnOff_BgColor;
+      cursor: pointer;
+
+      &.on {
+        color: $btn_ftColor2;
+        border-radius: 5px;
+        // border: $btn_BorderColor2;
+        background-color: $btn_BgColor2;
+        box-shadow: $tabShadow_on;
+      }
+    }
+  }
+}
+
+
+
+//* tabView > tabViewList */
+@mixin tabViewList($display: block) {
+  display: none;
+
+  &.show {
+    display: $display;
+  }
+}
+
+
+//* paging */
+@mixin paging($m: 20px auto) {
+  position: relative;
+  text-align: center;
+
+  >ul {
+    @include flexBox($g:0, $j:center);
+    margin: $m;
+    text-align: center;
+
+    &:after {
+      content: "";
+      display: block;
+      clear: both;
+    }
+
+    >li {
+      @include ftR();
+      display: inline-block;
+      vertical-align: top;
+      min-width: 35px;
+      height: 35px;
+      text-align: center;
+      font-size: 13px;
+      color: $subFtColor;
+      border: 1px solid $ipBorderColor;
+      border-left: none;
+      background-color: transparent;
+      cursor: pointer;
+
+
+      &:hover {
+        color: $pointColor;
+      }
+
+      &:nth-child(1) {
+        border-radius: 2px 0 0 2px;
+        border: 1px solid $ipBorderColor;
+      }
+
+      &:last-child {
+        border-radius: 0 2px 2px 0;
+      }
+
+      >a {
+        @include flexBox($a:center, $j:center);
+        width: 100%;
+        height: 100%;
+      }
+
+      &.on {
+        color: $ftColor4;
+        background-color: $pointColor;
+      }
+
+      &.prev {
+        @include ico_pagingPrev;
+      }
+
+      &.next {
+        @include ico_pagingNext;
+      }
+    }
+  }
+}
+
+
+//* dataNone */
+@mixin dataNoneContent {
+  @include flex_center_column;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  padding: 10% 0;
+}
+
+
+@mixin dataNoneBorder($color: $tblBorderColor) {
+  border-top: 1px solid $color;
+  border-bottom: 1px solid $color;
+}
+
+@mixin dataNone {
+  @include dataNoneContent;
+  @include dataNoneText;
+}
+
+//* 테이블이 아닌 태그에서 데이터가 없음이 필요할 떄 */
+@mixin dataNoneArea($height:100%, $theadHeight:40px, $minHeight: 300px) {
+  // height: auto;
+  display: block !important;
+  height: -webkit-fill-available;
+
+  >.dataNone {
+    position: relative;
+    display: block;
+    height: $height;
+    // min-height: $minHeight;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    >p {
+      display: block;
+      font-size: 14px;
+      text-align: center;
+      line-height: 1.5;
+    }
+  }
+
+  ul,
+  div {
+    &:not(.dataNone) {
+      display: none !important;
+    }
+  }
+}
+
+//* table */
+//* tableDataNone */
+//* tableArap에 추가 */
+// thead가 없는 tableDataNone
+@mixin tableDataNone($height:100%, $theadHeight:40px, $minHeight: 300px) {
+  &.tableAreaDataNone {
+    height: auto;
+    border-bottom: none;
+
+    .tableDataNone {
+      display: block;
+      height: $height;
+      min-height: $minHeight;
+
+      >div {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        height: 100%;
+        min-height: $minHeight;
+
+        p {
+          display: block;
+          font-size: 14px;
+          text-align: center;
+          line-height: 1.5;
+        }
+      }
+
+      +.paging {
+        display: none;
+      }
+    }
+
+    .tableBox {
+      display: none;
+    }
+  }
+
+  .tableDataNone {
+    display: none;
+  }
+}
+
+// thead 가 있는 tableDataNone
+@mixin tableDataNone2($height:100%, $theadHeight:40px, $minHeight: 300px) {
+  &.tableAreaDataNone {
+    height: auto;
+    border-bottom: none;
+
+    .tableDataNone {
+      display: block;
+      height: calc(#{$height} - #{$theadHeight});
+      min-height: $minHeight;
+      border-bottom: 1px solid $borderColor;
+
+      >div {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        height: 100%;
+        min-height: $minHeight;
+
+        p {
+          display: block;
+          font-size: 14px;
+          text-align: center;
+          line-height: 1.5;
+        }
+      }
+
+      .tableBox {
+        overflow-y: clip;
+      }
+    }
+
+    .tableBox {
+      overflow: clip;
+
+      tbody,
+      tfoot {
+        display: none;
+      }
+    }
+  }
+
+  +.tableDataNone {
+    display: none;
+  }
+}
+
+// p:before 아이콘 추가
+// include tableDataNone 밑에 추가 
+@mixin tableDataNone_img {
+  .tableDataNone {
+    p {
+      &:before {
+        @include iLayout;
+        @include ico_error;
+        display: block;
+        margin: 0 auto 10px;
+      }
+    }
+  }
+}
+
+//* thead fixed */
+@mixin tableHeaderFixed {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+@mixin tableFootFixed {
+  position: sticky;
+  bottom: 0;
+  z-index: 1;
+}
+
+//* thead before add */
+@mixin tableHeaderBeforeFixed {
+  content: "";
+  position: absolute;
+  display: table-header-group;
+  width: 100%;
+  height: -webkit-fill-available;
+  border-top: 1px solid $tblBorderColor;
+  border-bottom: 1px solid $tblBorderColor;
+  background-color: $tblBorderColor; // thead border
+  z-index: -1;
+}
+
+@mixin tableFootBeforeFixed {
+  content: "";
+  position: absolute;
+  display: table-footer-group;
+  width: 100%;
+  height: -webkit-fill-available;
+  border-top: 1px solid $tblBorderColor;
+  border-bottom: 1px solid $tblBorderColor;
+  background-color: $tblBorderColor; // thead border
+  z-index: -1;
+}
+
+//* thead */
+@mixin tableHeaderFixedLayout {
+  @include tableHeaderFixed;
+
+  &:before {
+    @include tableHeaderBeforeFixed;
+  }
+}
+
+//* tfoot */
+@mixin tableFootFixedLayout {
+  @include tableFootFixed;
+
+  &:before {
+    @include tableFootBeforeFixed;
+  }
+}
+
+//* thead에 추가 */
+@mixin tableHeader_sort {
+  th {
+
+    &.sort,
+    &.sortUp,
+    &.sortDown {
+      &:after {
+        content: "";
+        position: relative;
+        display: inline-block;
+        width: 15px;
+        height: 13px;
+        top: -2px;
+        margin-left: 5px;
+        vertical-align: middle;
+      }
+    }
+
+    &.sort {
+      &:after {
+        @include ico_sort;
+        background-size: 100%;
+      }
+    }
+
+    &.sortUp {
+      &:after {
+        @include ico_sortUp;
+        background-size: 100%;
+      }
+    }
+
+    &.sortDown {
+      &:after {
+        @include ico_sortDown;
+        background-size: 100%;
+      }
+    }
+  }
+}
+
+//* thead에 추가 */
+@mixin tableHeader_bg($trBg_t2: $tblTheadBgColor, $trBg_t3: $tblTheadBgColor) {
+  table {
+    thead {
+      tr {
+        &:nth-child(2) {
+          th {
+            color: $white;
+            background-color: $trBg_t2;
+          }
+        }
+
+        &:nth-child(3) {
+          th {
+            background-color: $trBg_t3;
+          }
+        }
+      }
+    }
+  }
+}
+
+@mixin tableWrap {
+  overflow: overlay;
+  // border: 1px solid $tblBorderColor;
+
+  &::-webkit-scrollbar {
+    @include scrollbar($w:10px, $h: 8px, $bg:$scrollbarBgColor2);
+  }
+
+  &::-webkit-scrollbar-thumb {
+    @include scrollbar_thumb($h:8px);
+  }
+}
+
+//* 세로형 -1  > td 선없음 */
+@mixin tableLayout {
+  @include tableWrap;
+  // border-radius: 5px 5px 0 0;
+  background-color: transparent;
+
+  table {
+    width: auto;
+    min-width: 100%;
+    background: transparent;
+
+    .dimCircle {
+      &:before {
+        background-size: 30px 30px;
+      }
+    }
+
+    thead,
+    tbody,
+    tfoot {
+      tr {
+        // border-bottom: 1px solid $tblBorderColor;
+
+        td,
+        th {
+          @include ftM;
+          padding: 10px 6px;
+          vertical-align: middle;
+          text-align: center;
+          line-height: 20px;
+          font-size: 16px;
+          font-weight: normal;
+          color: $tblFtColor;
+        }
+      }
+    }
+
+    thead {
+      @include tableHeaderFixed;
+      @include tableHeader_sort;
+
+      &:before {
+        @include tableHeaderBeforeFixed;
+      }
+
+      tr {
+        th {
+          padding: 16px 6px;
+          // color: $tblTheaderFtColor; 
+          border-bottom: 1px solid $tblBorderColor;
+          background: $tblTheadBgColor;
+        }
+
+        &:nth-child(n+2) {
+          th {
+            background-color: $tblTheadBgColor2;
+          }
+        }
+      }
+    }
+
+    tbody {
+      tr {
+        border-bottom: 1px solid $tblBorderColor;
+
+        // &:last-child {
+        //   border-bottom: none;
+        // }
+
+        // &:hover {
+        //   background-color: $tblBgColor_hover;
+        // }
+
+        th,
+        td {
+          padding: 12px 6px;
+          font-size: 16px;
+        }
+      }
+    }
+
+    tfoot {
+      @include tableFootFixed;
+      @include tableHeader_sort;
+
+      &:before {
+        @include tableFootBeforeFixed;
+      }
+
+      tr {
+        border-top: 1px solid $tblBorderColor;
+        border-bottom: none;
+
+        th {
+          @include ftR;
+          font-size: 14px;
+          // color: $tblTheaderFtColor;
+          background: $tblTheadBgColor;
+        }
+      }
+    }
+  }
+}
+
+// total tr > th 색상변경 
+@mixin table_total {
+
+  th,
+  td {
+    background-color: $tblTotalBg;
+    border-bottom-color: $tblTotalBorder;
+  }
+
+  th,
+  td {
+    &.total {
+      @include ftM;
+    }
+  }
+
+  th {
+    &:nth-of-type(1) {
+      @include ftM;
+    }
+  }
+}
+
+//* 세로형 -2 > td 선있음*/
+@mixin tableLayout_t2 {
+  height: -webkit-fill-available;
+  border-radius: 5px 5px 0 0;
+  border-bottom: 1px solid $tblBorderColor;
+  background-color: transparent;
+  overflow: overlay;
+
+  &::-webkit-scrollbar-thumb {
+    @include scrollbar_thumb;
+    border-radius: 4px;
+  }
+
+  table {
+    width: auto;
+    min-width: 100%;
+    background: transparent;
+
+    .dimCircle {
+      &:before {
+        background-size: 30px 30px;
+      }
+    }
+
+    thead,
+    tbody {
+      tr {
+
+        th,
+        td {
+          padding: 10px 6px;
+          vertical-align: middle;
+          text-align: center;
+          line-height: 20px;
+          font-size: 13px;
+          font-weight: normal;
+          border: 1px solid $tblBorderColor;
+          color: $ftColor;
+          word-break: break-all;
+          white-space: normal;
+          background-color: $tblBgColor;
+          // &:last-child {
+          //   padding-right: 18px;
+          // }
+        }
+      }
+    }
+
+    thead {
+      @include tableHeaderFixed;
+      @include tableHeader_sort;
+
+      &:before {
+        @include tableHeaderBeforeFixed;
+      }
+
+      tr {
+        th {
+          @include ftM;
+          color: $white;
+          border-color: $tblBorderColor;
+          background-color: $tblTheadBgColor;
+        }
+
+        &:nth-child(2) {
+          th {
+            // color: $white);
+            color: $ftColor;
+            background-color: $tblTheadBgColor4;
+          }
+        }
+      }
+    }
+  }
+}
+
+//* 세로형 - 3 > tr 짝수의 td에 배경색 넣어주기 */
+@mixin tableLayout_t3 {
+  @include tableLayout_t2;
+
+  table {
+    tbody {
+      tr {
+        &:nth-child(even) {
+          td {
+            background-color: $tblTheadBgColor5;
+          }
+        }
+      }
+    }
+  }
+}
+
+
+
+
+
+
+//기본 박스(2) B : 그라데이션 있는 박스
+@mixin boxLayout($pd:30px 30px 30px 30px) {
+  position: relative;
+  padding: $pd;
+  // border: 1px solid $boxBorderColor;
+  border-radius: 5px;
+  box-shadow: 0 3px 10px 0 rgba(0, 0, 0, 0.08);
+  background-color: #fff;
+  overflow: hidden;
+
+  // &.dimDot {
+  //   @include loadingDot;
+  // }
+
+  // &.dimCircle {
+  //   @include loadingCircle;
+  // }
+}

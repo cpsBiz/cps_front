@@ -1,0 +1,155 @@
+@charset 'utf-8';
+
+/*
+File : report.scss
+Date : 2024.08.01
+menu : 리포트
+*/
+
+
+//* 실적 리포트 */
+.ic_reportPerformance {
+
+  .title {
+    @include titleLayout;
+  }
+
+  .content {
+    margin: 20px 0 0 0;
+
+    section {
+      &.sec_list {
+        @include boxLayout;
+
+        .optionBox {
+          >div {
+            display: block;
+            @include flexBox($fw:wrap, $j:start, $g:15px);
+
+            &:nth-child(n+2) {
+              margin: 15px 0 0 0;
+            }
+          }
+
+          .radioBox {
+            @include inputBox($f:inline-flex);
+          }
+
+          .calendarBox {
+            @include calendarBox;
+          }
+
+          .searchBox {
+            @include searchBox_t3;
+          }
+        }
+
+        .tableHeader {
+          @include flexBox($g:10px);
+          margin-top: 40px;
+
+          .tableTitle {
+            @include title2;
+            flex-grow: 1;
+
+            span {
+              &:before {
+                position: relative;
+                display: inline-block;
+                content: ">";
+                margin: 0 4px;
+              }
+            }
+          }
+
+          .searchBox {
+            @include searchBox_t3($w:210px);
+          }
+
+          .selectBox {
+            &.category {
+              min-width: 240px;
+            }
+          }
+        }
+
+        .tableArea {
+          @include tableDataNone($height:540px);
+          @include tableDataNone_img;
+          margin-top: 20px;
+
+          .tableBox {
+            @include tableLayout;
+            max-height: 600px;
+
+            table {
+              thead {
+                tr {
+                  th {
+                    min-width: 140px;
+                  }
+                }
+              }
+
+              tbody {
+                tr {
+                  td {
+                    &.sat {
+                      color: $ftColor5;
+                    }
+
+                    &.sun {
+                      color: $ftColor6;
+                    }
+
+                    .buttonBox {
+                      @include flexBox($g:10px, $j:center);
+
+                      button {
+                        @include btnLayout;
+                        min-width: 60px;
+                        height: 24px;
+                        font-size: 13px;
+
+                        &.campaign,
+                        &.site {
+                          @include btn3;
+                        }
+
+                        &.detail {
+                          @include btn2;
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+
+            &.selectDay {}
+
+            &.selectDetail {
+              table {
+                thead {
+                  tr {
+                    &:nth-child(2) {
+                      th {
+                        &:nth-child(1) {
+                          background-color: $tblTheadBgColor3;
+                        }
+
+                        &:nth-child(n+6) {
+                          background-color: $tblTheadBgColor4;
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

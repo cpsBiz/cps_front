@@ -1,0 +1,163 @@
+@charset 'utf-8';
+
+/*
+File   : image.scss
+Date   : 2024.09.26
+*/
+
+@mixin image($folder, $name, $path: "../image/", $format: "svg", $bgXY:center, $width:null, $height: null, $bgSize:null) {
+  background: url("#{$path}#{$folder}#{$name}.#{$format}") no-repeat $bgXY;
+  // background: url("../image/logo/logo_u.svg") center center no-repeat;
+  width: $width;
+  height: $height;
+  background-size: $bgSize;
+}
+
+@mixin imageMask($path:"../image/", $folder:null, $name:null, $format:"svg", $bgXY:center, $width:null, $height: null, $color:null) {
+  mask: url("#{$path}#{$folder}#{$name}.#{$format}") no-repeat $bgXY;
+  width: $width;
+  height: $height;
+  background: $color;
+}
+
+
+//* logo */
+@mixin logo_mobon {
+  @include image($folder:'logo', $name: '/ico_mobon', $format:'png', $width:112px, $height: 24px);
+}
+
+@mixin logo_mobon_wht {
+  @include image($folder:'logo', $name: '/ico_mobon_wht', $format:'png', $width:112px, $height: 24px, $bgSize: contain);
+}
+
+@mixin logo_mobonM {
+  @include image($folder:'logo', $name: '/ico_mobonM', $format:'png', $width:31px, $height: 24px);
+}
+
+//* header */
+@mixin ico_userinfo {
+  @include image($folder:'component', $name: '/ico_userinfo', $width:27px, $height: 17px);
+}
+
+
+//* loading */
+@mixin ico_loading {
+  @include image($folder:'loading', $name: '/ico_loading', $format:"gif");
+}
+
+@mixin ico_loadingCircle {
+  @include image($folder:'loading', $name: '/ico_loadingCircle', $format:"gif");
+}
+
+
+//* common */
+// i
+@mixin ico_i {
+  @include image($folder:'component', $name: '/ico_i', $width:14px, $height: 14px);
+}
+
+
+//* paging */
+@mixin ico_pagingPrev {
+  @include image($folder:'component', $name: '/ico_pagingPrev');
+}
+
+@mixin ico_pagingNext {
+  @include image($folder:'component', $name: '/ico_pagingNext');
+}
+
+//* input * /
+//* checkbox */
+@mixin ico_checkbox_off {
+  @include image($folder:'component', $name: '/ico_checkbox_off', $width:22px, $height: 22px);
+}
+
+// bg white green
+@mixin ico_checkbox_on {
+  @include image($folder:'component', $name: '/ico_checkbox_on', $width:22px, $height: 22px);
+}
+
+@mixin ico_checkbox_disabled {
+  @include image($folder:'component', $name: '/ico_checkbox_disabled', $width:16px, $height: 16px);
+}
+
+//* radio */
+@mixin ico_radio_off {
+  @include image($folder:'component', $name: '/ico_radio_off', $width:16px, $height: 16px);
+}
+
+@mixin ico_radio_on {
+  @include image($folder:'component', $name: '/ico_radio_on', $width:16px, $height: 16px);
+}
+
+@mixin ico_radio_disabled {
+  @include image($folder:'component', $name: '/ico_radio_disabled', $width:16px, $height: 16px);
+}
+
+
+
+//* select */
+@mixin ico_select {
+  @include image($folder:'component', $name: '/ico_select');
+  background-size: 9px 6px;
+}
+
+//* calendar */
+@mixin ico_calendar {
+  @include image($folder:'component', $name: '/ico_calendar', $format:"png", $width:16px, $height: 15px);
+}
+
+//* search */
+@mixin ico_search {
+  @include image($folder:'component', $name: '/ico_search', $width:15px, $height: 15px);
+}
+
+
+//* button */
+@mixin ico_excel {
+  @include image($folder:'component', $name: '/ico_excel', $width:12px, $height: 12px);
+}
+
+@mixin ico_user {
+  @include image($folder:'component', $name: '/ico_user', $width:22px, $height: 22px);
+}
+
+@mixin ico_edit {
+  @include image($folder:'component', $name: '/ico_edit', $width:22px, $height: 22px);
+}
+
+@mixin ico_delete {
+  @include image($folder:'component', $name: '/ico_delete', $width:22px, $height: 22px);
+}
+
+
+//* copy */
+//* table */
+@mixin ico_sort {
+  @include image($folder:'component', $name: '/ico_sort', $width:15px, $height: 13px);
+}
+
+@mixin ico_sortUp {
+  @include image($folder:'component', $name: '/ico_sortUp', $width:15px, $height: 13px);
+}
+
+@mixin ico_sortDown {
+  @include image($folder:'component', $name: '/ico_sortDown', $width:15px, $height: 13px);
+}
+
+// dataNone
+@mixin ico_error {
+  @include image($folder:'component', $name: '/ico_error', $width:49px, $height: 44px);
+}
+
+
+//* etc */
+@mixin ico_hamburger {
+  @include image($folder:'component', $name: '/ico_hamburger', $width:22px, $height: 22px);
+}
+
+
+// modal close 
+@mixin ico_close {
+  @include image($folder:'component', $name: '/ico_close', $width:22px, $height: 22px);
+}

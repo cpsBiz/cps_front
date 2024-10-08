@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+    <defs>
+        <clipPath id="n8aew56q0a">
+            <path data-name="사각형 695" transform="translate(-2 -2)" style="fill:#00ffe5;opacity:.7" d="M0 0h24v24H0z"/>
+        </clipPath>
+    </defs>
+    <g data-name="마스크 그룹 23" transform="translate(2 2)" style="clip-path:url(#n8aew56q0a)">
+        <g data-name="그룹 2474">
+            <path data-name="선 82" transform="translate(5.975 6.577)" style="fill:none;stroke:#fff;stroke-miterlimit:10;stroke-width:1.5px" d="M0 0h8.074"/>
+            <path data-name="선 106" transform="translate(5.975 9.673)" style="fill:none;stroke:#fff;stroke-miterlimit:10;stroke-width:1.5px" d="M0 0h8.074"/>
+            <path data-name="선 107" transform="translate(5.975 12.77)" style="fill:none;stroke:#fff;stroke-miterlimit:10;stroke-width:1.5px" d="M0 0h8.074"/>
+            <path data-name="사각형 697" d="M.457 0h13a.457.457 0 0 1 .457.457v15.22a.456.456 0 0 1-.456.456h-13A.457.457 0 0 1 0 15.676V.457A.457.457 0 0 1 .457 0z" transform="translate(3.044 1.934)" style="fill:none;stroke:#fff;stroke-miterlimit:10;stroke-width:1.5px"/>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,23 @@
+<svg id="ico_pup_close" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="22" height="22" viewBox="0 0 22 22">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: rgba(255,255,255,0);
+      }
+
+      .cls-2 {
+        clip-path: url(#clip-path);
+      }
+
+      .cls-3 {
+        fill: #777;
+      }
+    </style>
+    <clipPath id="clip-path">
+      <rect id="사각형_6091" data-name="사각형 6091" class="cls-1" width="22" height="22"/>
+    </clipPath>
+  </defs>
+  <g id="마스크_그룹_24" data-name="마스크 그룹 24" class="cls-2">
+    <path id="합치기_41" data-name="합치기 41" class="cls-3" d="M15.475,16.888,8.583,9.994l-6.89,6.895a.993.993,0,0,1-1.405-1.4l6.892-6.9L.289,1.693A.993.993,0,0,1,1.694.291L8.584,7.185,15.475.291a.992.992,0,0,1,1.4,1.4l-6.89,6.9,6.89,6.894a.993.993,0,1,1-1.4,1.405Z" transform="translate(2.417 2.412)"/>
+  </g>
+</svg>

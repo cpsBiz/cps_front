@@ -1,0 +1,153 @@
+@charset 'utf-8';
+
+/*
+File : campaign.scss
+Date : 2024.08.01
+menu : 캠페인관리
+*/
+
+
+//* 캠페인 카테고리 */
+.ic_campaignCategory {
+
+  .title {
+    @include titleLayout;
+  }
+
+  .content {
+    margin: 20px 0 0 0;
+
+    section {
+      &.sec_list {
+        .tab {
+          @include tabLi;
+        }
+
+        .tabView {
+          @include boxLayout;
+          margin: 20px 0 0 0;
+
+          .tabViewList {
+            @include tabViewList;
+          }
+        }
+
+
+        .tableHeader {
+          @include flexBox($g:10px);
+
+          .tableTitle {
+            @include title2;
+            flex-grow: 1;
+          }
+
+          .searchBox {
+            @include searchBox_t3($w:210px);
+          }
+
+          .selectBox {
+            select {
+              &.category {
+                min-width: 240px;
+              }
+            }
+          }
+
+          .buttonBox {
+            button {
+              @include btnS;
+
+              &.change {
+                @include btn_main;
+              }
+
+              &.register {
+                @include btn_main;
+              }
+
+              &.excelUpload {
+                @include btn_excel;
+              }
+
+              &.rankSave,
+              &.save {
+                @include btn2;
+                min-width: 140px;
+              }
+            }
+          }
+        }
+
+        .tableArea {
+          @include tableDataNone($height:540px);
+          @include tableDataNone_img;
+          margin-top: 20px;
+
+          .tableBox {
+            @include tableLayout;
+            max-height: 600px;
+
+            table {
+              thead {
+                tr {
+                  th {
+                    .iBox {
+                      margin-left: 4px;
+                      vertical-align: initial;
+                    }
+
+                    &:nth-last-child(2) {
+                      width: 200px;
+                    }
+
+                    &:last-child {
+                      width: 200px;
+
+                      .iBox {
+                        .iMarkHover {
+                          @include iMarkHover_TR;
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+
+              tbody {
+                tr {
+                  td {
+                    .buttonBox {
+                      @include flexBox($g:20px, $j:center);
+
+                      button {
+                        @include iLayout;
+
+                        // &.login {
+                        //   @include ico_user;
+                        // }
+
+                        &.modify,
+                        &.categoryChange {
+                          @include ico_edit;
+                        }
+
+                        &.delete {
+                          @include ico_delete;
+                        }
+
+                        &.listChange {
+                          @include iLayout;
+                          @include ico_hamburger;
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

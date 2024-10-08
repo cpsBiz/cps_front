@@ -1,0 +1,4969 @@
+@charset "UTF-8";
+/*
+Explain : MOBON TIMEBOARD
+File : common.scss 
+Date : 2024.09.05
+Version : 1.1.34
+*/
+/*
+z-index 순서
+# timepicker : 999
+# herder > menuMore  : 999
+# modal, modalDim: 999, 998
+# dashboard > setting icon : 980
+# header>sideNav>div hover(layoutNoticeLog) :850
+# tooltipHover, userMenu : 800,801
+# dimDot, dimCircle : 701
+# dimText : 700 // dimCircle, dimDot과 동일 z-index면 dimCircle 안먹음
+# selectDiv : 600
+# 캠페인리스트 : 500-1
+# 날짜(dateList) : 10s
+*/
+/*
+File   : font.scss
+Date   : 2024.09.26
+*/
+@font-face {
+  font-family: "Pretendard_Light";
+  src: url("../font/Pretendard-Light.eot");
+  src: url("../font/Pretendard-Light.eot?#iefix") format("embedded-opentype"), url("../font/Pretendard-Light.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Pretendard_Regular";
+  src: url("../font/Pretendard-Regular.eot");
+  src: url("../font/Pretendard-Regular.eot?#iefix") format("embedded-opentype"), url("../font/Pretendard-Regular.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Pretendard_Medium";
+  src: url("../font/Pretendard-Medium.eot");
+  src: url("../font/Pretendard-Medium.eot?#iefix") format("embedded-opentype"), url("../font/Pretendard-Medium.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Pretendard_SemiBold";
+  src: url("../font/Pretendard-SemiBold.eot");
+  src: url("../font/Pretendard-SemiBold.eot?#iefix") format("embedded-opentype"), url("../font/Pretendard-SemiBold.woff") format("woff");
+}
+
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  vertical-align: baseline;
+}
+
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+
+body {
+  line-height: 1;
+}
+
+ol,
+ul {
+  list-style: none;
+}
+
+blockquote,
+q {
+  quotes: none;
+}
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: "";
+  content: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+strong {
+  font-weight: normal;
+}
+
+em {
+  font-style: normal;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  border: none;
+  outline: none;
+  background: none;
+  cursor: pointer;
+}
+
+* {
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: normal;
+}
+
+input {
+  outline: none;
+}
+
+input::-ms-clear {
+  display: none;
+}
+
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 30px white inset;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+}
+
+button {
+  font-family: inherit;
+}
+
+/*
+File   : color.scss
+Date   : 2024.09.26
+*/
+/*
+File   : image.scss
+Date   : 2024.09.26
+*/
+/*
+File   : mixin.scss
+Date   : 2024.09.26
+*/
+@-webkit-keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/*
+File   : layout.scss
+Date   : 2024.07.25
+*/
+html {
+  font-family: "Pretendard_Regular";
+  font-weight: normal;
+  min-height: -webkit-fill-available;
+  font-size: 16px;
+  color: #333333;
+}
+
+html ::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+  background: transparent;
+}
+
+html ::-webkit-scrollbar-thumb {
+  height: 15px;
+  border-radius: 5px;
+  background: #dedede;
+}
+
+.wrap {
+  position: relative;
+  width: 100%;
+  min-width: 1900px;
+  color: #333333;
+  background-color: #f8f8f8;
+}
+
+.header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: initial;
+  -webkit-box-direction: initial;
+      -ms-flex-direction: initial;
+          flex-direction: initial;
+  -webkit-box-pack: left;
+      -ms-flex-pack: left;
+          justify-content: left;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 16px;
+  position: realtive;
+  width: 100%;
+  height: 70px;
+  padding: 0 60px 0 0;
+  border-bottom: 1px solid #0c1439;
+  color: #ffffff;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  background-color: #0c1439;
+  -webkit-transition: all 0.4s;
+  transition: all 0.4s;
+  z-index: 9999;
+}
+
+.header h1 {
+  width: 250px;
+  height: 100%;
+  padding: 23px 0 0 20px;
+  -webkit-box-shadow: 2px -1px 8px 0 rgba(0, 0, 0, 0.05);
+          box-shadow: 2px -1px 8px 0 rgba(0, 0, 0, 0.05);
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+}
+
+.header h1 a {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: initial;
+  -webkit-box-direction: initial;
+      -ms-flex-direction: initial;
+          flex-direction: initial;
+  -webkit-box-pack: left;
+      -ms-flex-pack: left;
+          justify-content: left;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: end;
+  gap: 8px;
+  font-family: "Pretendard_SemiBold";
+  width: 200px;
+  font-size: 18px;
+  word-break: keep-all;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+}
+
+.header h1 a:before {
+  content: "";
+  position: relative;
+  display: inline-block;
+  background-position: 0px 0px;
+  font-size: 0;
+  font-style: normal;
+  vertical-align: middle;
+  background: url("../image/logo/ico_mobon_wht.png") no-repeat center;
+  width: 112px;
+  height: 24px;
+  background-size: contain;
+  max-width: 112px;
+}
+
+.header .sideMenu {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: initial;
+  -webkit-box-direction: initial;
+      -ms-flex-direction: initial;
+          flex-direction: initial;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 40px;
+  position: relative;
+  margin-left: auto;
+}
+
+.header .sideMenu .name {
+  font-family: "Pretendard_SemiBold";
+  font-size: 14px;
+  color: #6380ff;
+}
+
+.header .sideMenu .userMenu button {
+  font-size: 16px;
+  font-family: "Pretendard_SemiBold";
+}
+
+.header .sideMenu .userMenu button.menuMore > ul {
+  display: none;
+}
+
+.header .sideMenu .userMenu button.menuMore > ul.on {
+  display: block;
+}
+
+.header .sideMenu .userMenu .userinfo {
+  content: "";
+  position: relative;
+  display: inline-block;
+  background-position: 0px 0px;
+  font-size: 0;
+  font-style: normal;
+  vertical-align: middle;
+  background: url("../image/component/ico_userinfo.svg") no-repeat center;
+  width: 27px;
+  height: 17px;
+}
+
+.header .sideMenu .userMenu .userinfo + ul {
+  position: absolute;
+  display: none;
+  width: 160px;
+  padding: 10px;
+  top: 30px;
+  right: 0px;
+  border-radius: 5px;
+  border: 1px solid #4664e6;
+  background-color: #0c1439;
+  z-index: 999;
+}
+
+.header .sideMenu .userMenu .userinfo + ul.on {
+  display: block;
+}
+
+.header .sideMenu .userMenu .userinfo + ul li {
+  padding: 10px;
+  min-height: 40px;
+}
+
+.header .sideMenu .userMenu .userinfo + ul li button {
+  font-family: "Pretendard_Regular";
+  font-weight: normal;
+  width: 100%;
+  color: #ffffff;
+  text-align: left;
+  font-size: 16px;
+}
+
+.header .sideMenu .userMenu .userinfo + ul li button:hover {
+  color: #4664e6;
+}
+
+.navigation {
+  position: absolute;
+  width: 250px;
+  top: 70px;
+  left: 0;
+  min-height: calc(100vh - 70px);
+  height: -webkit-fill-available;
+  color: #ffffff;
+  -webkit-box-shadow: 2px 2px 8px 0 rgba(0, 0, 0, 0.05);
+          box-shadow: 2px 2px 8px 0 rgba(0, 0, 0, 0.05);
+  background-color: #0c1439;
+}
+
+.navigation .lnb {
+  margin: 60px 0 0 0;
+}
+
+.navigation .lnb > li > a {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: initial;
+  -webkit-box-direction: initial;
+      -ms-flex-direction: initial;
+          flex-direction: initial;
+  -webkit-box-pack: left;
+      -ms-flex-pack: left;
+          justify-content: left;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 8px;
+  padding: 15px 10px 15px 20px;
+  font-size: 16px;
+  color: #ffffff;
+}
+
+.navigation .lnb > li > a::before {
+  background-position: center;
+  background-size: auto;
+  background-repeat: no-repeat;
+  content: '';
+  display: block;
+  width: 22px;
+  height: 22px;
+}
+
+.navigation .lnb > li > a.on {
+  color: #6380ff;
+  background-color: #6380ff;
+}
+
+.navigation .lnb > li.on > a {
+  background-color: #4664e6;
+}
+
+.navigation .lnb > li ul {
+  display: none;
+  width: 100%;
+}
+
+.navigation .lnb > li ul.on {
+  display: block;
+}
+
+.navigation .lnb > li ul li.on {
+  color: #6380ff;
+}
+
+.navigation .lnb > li ul li a {
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+  display: block;
+  padding: 13px 0 13px 50px;
+  font-size: 14px;
+}
+
+.navigation .lnb > li ul li a:hover {
+  color: #4664e6;
+}
+
+.navigation .lnb .dashboard a::before {
+  background-image: url("../image/menu/ico_dashboard.svg");
+}
+
+.navigation .lnb .report a::before {
+  background-image: url("../image/menu/ico_graph.svg");
+}
+
+.navigation .lnb .campaign a::before {
+  background-image: url("../image/menu/ico_write.svg");
+}
+
+.navigation .lnb .menu a::before {
+  background-image: url("../image/menu/ico_list.svg");
+}
+
+.navigation .lnb .account a::before {
+  background-image: url("../image/menu/ico_customer.svg");
+}
+
+.navigation .lnb .customer a::before {
+  background-image: url("../image/menu/ico_customerVip.svg");
+}
+
+.navigation .lnb .notice a::before {
+  background-image: url("../image/menu/ico_notice.svg");
+}
+
+.container {
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+  width: calc(100% - 250px);
+  min-height: 1000px;
+  margin: 0 0 45px 250px;
+  padding: 30px;
+  position: relative;
+}
+
+.container:after {
+  display: block;
+  content: "";
+  width: 100%;
+  clear: both;
+}
+
+/*
+File   : content.scss
+Date   : 2024.07.30
+*/
+::-moz-selection {
+  color: #ffffff;
+  background: #4664e6;
+}
+::selection {
+  color: #ffffff;
+  background: #4664e6;
+}
+
+.hide {
+  text-indent: -999999px;
+  font-size: 0;
+}
+
+.hidden {
+  position: fixed;
+  top: 0;
+  left: -999em;
+}
+
+.clear {
+  clear: both;
+}
+
+.disNone {
+  display: none !important;
+}
+
+.loadingBg {
+  position: fixed;
+  display: block;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 9999;
+}
+
+.loadingBg p {
+  position: absolute;
+  top: calc(50% - 70px);
+  width: 100%;
+  text-align: center;
+  font-size: 18px;
+  line-height: 1.5;
+  color: #ffffff;
+  z-index: 9999;
+}
+
+.loadingBg p:before {
+  content: "";
+  position: relative;
+  display: inline-block;
+  background-position: 0px 0px;
+  font-size: 0;
+  font-style: normal;
+  vertical-align: middle;
+  background: url("../image/loading/ico_loading.gif") no-repeat center;
+  content: "";
+  display: block;
+  width: 100px;
+  height: 80px;
+  margin: 0 auto 40px;
+  background-size: 100px 80px;
+  -webkit-animation: rotationLoading 1.2s infinite steps(9);
+          animation: rotationLoading 1.2s infinite steps(9);
+}
+
+.loadingBg p b {
+  display: block;
+  margin-bottom: 10px;
+  font-size: 18px;
+}
+
+.loadingBg.complete {
+  display: none;
+  opacity: 0;
+  z-index: -999;
+}
+
+.dimCircle {
+  position: relative;
+  top: 0;
+  width: auto;
+  z-index: 701;
+}
+
+.dimCircle:before {
+  content: "";
+  position: relative;
+  display: inline-block;
+  background-position: 0px 0px;
+  font-size: 0;
+  font-style: normal;
+  vertical-align: middle;
+  background: url("../image/loading/ico_loadingCircle.gif") no-repeat center;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 50%;
+  left: 50%;
+  border-radius: inherit;
+  background-size: 50px 50px;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  background-color: #ffffff;
+  opacity: 0.8;
+  z-index: 701;
+}
+
+.dataNoneText {
+  display: none;
+}
+
+.dimText {
+  position: relative;
+  top: 0;
+  width: auto;
+  z-index: 700;
+}
+
+.dimText > .dataNoneText {
+  position: absolute;
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 100%;
+  height: 100%;
+  top: 50%;
+  left: 50%;
+  color: #333333;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  background-color: #ffffff;
+  opacity: 0.8;
+  z-index: 700;
+}
+
+.dimText ul:not(.dataNoneText),
+.dimText div:not(.dataNoneText) {
+  display: none !important;
+}
+
+.dataNoneArea {
+  display: block !important;
+  height: -webkit-fill-available;
+}
+
+.dataNoneArea > .dataNone {
+  position: relative;
+  display: block;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.dataNoneArea > .dataNone > p {
+  display: block;
+  font-size: 14px;
+  text-align: center;
+  line-height: 1.5;
+}
+
+.dataNoneArea ul:not(.dataNone),
+.dataNoneArea div:not(.dataNone) {
+  display: none !important;
+}
+
+.dataNone {
+  display: none;
+}
+
+.iBox {
+  position: relative;
+  display: inline-block;
+  content: "";
+  position: relative;
+  display: inline-block;
+  background-position: 0px 0px;
+  font-size: 0;
+  font-style: normal;
+  vertical-align: middle;
+  background: url("../image/component/ico_i.svg") no-repeat center;
+  width: 14px;
+  height: 14px;
+}
+
+.iMarkHover {
+  font-family: "Pretendard_Regular";
+  font-weight: normal;
+  display: none;
+  position: absolute;
+  width: 200px;
+  height: auto;
+  min-height: 30px;
+  left: -26px;
+  bottom: 28px;
+  padding: 6px 12px;
+  color: #333333;
+  font-size: 12px;
+  text-align: left;
+  font-style: normal;
+  line-height: 1.5;
+  white-space: normal;
+  border-radius: 4px;
+  border: 1px solid #4664e6;
+  background-color: #ffffff;
+  -webkit-box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
+          box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
+  cursor: default;
+  z-index: 3;
+}
+
+input {
+  display: inline-block;
+  vertical-align: middle;
+  font-family: "Pretendard_Regular";
+  font-weight: normal;
+  min-width: 200px;
+  height: 36px;
+  padding: 6px 10px;
+  font-size: 14px;
+  color: #333333;
+  border-radius: 4px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  border: 1px solid #e6e6e6;
+  background-color: #ffffff;
+}
+
+input:disabled {
+  color: #b3b3b3;
+  border: 1px solid #eeeeee;
+  background: #f3f3f3;
+}
+
+input:focus {
+  outline: none;
+}
+
+input::-webkit-input-placeholder {
+  font-size: 14px;
+  color: #9ba0a2;
+}
+
+input:-ms-input-placeholder {
+  font-size: 14px;
+  color: #9ba0a2;
+}
+
+input::-ms-input-placeholder {
+  font-size: 14px;
+  color: #9ba0a2;
+}
+
+input::placeholder {
+  font-size: 14px;
+  color: #9ba0a2;
+}
+
+textarea {
+  font-family: "Pretendard_Regular";
+  font-weight: normal;
+  position: relative;
+  width: 100%;
+  padding: 0 10px 0 0;
+  border-radius: 5px;
+  color: #333333;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  border: 10px solid transparent;
+  background-color: #ffffff;
+}
+
+textarea:focus {
+  outline: none;
+}
+
+textarea::-webkit-input-placeholder, textarea::-webkit-input-placeholder {
+  color: #9ba0a2;
+}
+
+textarea::placeholder, textarea::-webkit-input-placeholder {
+  color: #9ba0a2;
+}
+
+select {
+  background: url("../image/component/ico_select.svg") no-repeat center;
+  background-size: 9px 6px;
+  font-family: "Pretendard_Regular";
+  font-weight: normal;
+  min-width: 150px;
+  height: 36px;
+  padding: 4px 30px 4px 15px;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  font-size: 14px;
+  color: #333333;
+  line-height: 1;
+  border-radius: 5px;
+  border: 1px solid #e6e6e6;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  background-color: #ffffff;
+  background-position-x: calc(100% - 15px);
+  outline: none;
+  cursor: pointer;
+}
+
+select option {
+  background-color: #ffffff;
+}
+
+select:disabled {
+  color: #cbcbcb;
+  border: 1px solid #eeeeee;
+  background-color: #f3f3f3;
+  opacity: 1;
+}
+
+input[type="checkbox"] {
+  display: none;
+}
+
+input[type="checkbox"] + label {
+  position: relative;
+  display: block;
+  color: #333333;
+  cursor: pointer;
+}
+
+input[type="checkbox"] + label:before {
+  content: "";
+  position: relative;
+  display: inline-block;
+  background-position: 0px 0px;
+  font-size: 0;
+  font-style: normal;
+  vertical-align: middle;
+  background: url("../image/component/ico_checkbox_off.svg") no-repeat center;
+  width: 22px;
+  height: 22px;
+  content: "";
+  width: 22px;
+  height: 22px;
+  margin-right: 6px;
+  vertical-align: middle;
+  background-size: contain;
+}
+
+input[type="checkbox"]:checked + label:before {
+  content: "";
+  position: relative;
+  display: inline-block;
+  background-position: 0px 0px;
+  font-size: 0;
+  font-style: normal;
+  vertical-align: middle;
+  background: url("../image/component/ico_checkbox_on.svg") no-repeat center;
+  width: 22px;
+  height: 22px;
+  width: 22px;
+  height: 22px;
+  vertical-align: middle;
+  background-size: contain;
+}
+
+input[type="checkbox"]:disabled + label:before {
+  content: "";
+  position: relative;
+  display: inline-block;
+  background-position: 0px 0px;
+  font-size: 0;
+  font-style: normal;
+  vertical-align: middle;
+  background: url("../image/component/ico_checkbox_disabled.svg") no-repeat center;
+  width: 16px;
+  height: 16px;
+  width: 22px;
+  height: 22px;
+  vertical-align: middle;
+  background-size: contain;
+  cursor: default;
+}
+
+input[type="radio"] {
+  display: none;
+}
+
+input[type="radio"] + label {
+  position: relative;
+  display: inline-block;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+input[type="radio"] + label:before {
+  content: "";
+  position: relative;
+  display: inline-block;
+  background-position: 0px 0px;
+  font-size: 0;
+  font-style: normal;
+  vertical-align: middle;
+  background: url("../image/component/ico_radio_off.svg") no-repeat center;
+  width: 16px;
+  height: 16px;
+  content: "";
+  width: 16px;
+  height: 16px;
+  margin-right: 6px;
+  top: -1px;
+  vertical-align: middle;
+  background-size: auto;
+}
+
+input[type="radio"]:checked + label:before {
+  content: "";
+  position: relative;
+  display: inline-block;
+  background-position: 0px 0px;
+  font-size: 0;
+  font-style: normal;
+  vertical-align: middle;
+  background: url("../image/component/ico_radio_on.svg") no-repeat center;
+  width: 16px;
+  height: 16px;
+  width: 16px;
+  height: 16px;
+  vertical-align: middle;
+  background-size: auto;
+}
+
+input[type="radio"]:disabled + label:before {
+  content: "";
+  position: relative;
+  display: inline-block;
+  background-position: 0px 0px;
+  font-size: 0;
+  font-style: normal;
+  vertical-align: middle;
+  background: url("../image/component/ico_radio_disabled.svg") no-repeat center;
+  width: 16px;
+  height: 16px;
+  width: 16px;
+  height: 16px;
+  vertical-align: middle;
+  background-size: auto;
+}
+
+.daterangepicker {
+  padding: 4px 4px 4px 4px;
+  border: 1px solid #d6d6d6;
+  background-color: #ffffff;
+  right: 65px !important;
+}
+
+.daterangepicker ::-webkit-scrollbar {
+  width: 10px;
+}
+
+.daterangepicker ::-moz-selection {
+  color: #ffffff;
+  background-color: #4664e6;
+}
+
+.daterangepicker ::selection {
+  color: #ffffff;
+  background-color: #4664e6;
+}
+
+.daterangepicker:before, .daterangepicker:after {
+  display: none;
+}
+
+.daterangepicker.show-ranges .drp-calendar.left {
+  padding: 4px;
+  border-left: none;
+}
+
+.daterangepicker.show-ranges .drp-calendar.right {
+  padding: 4px;
+}
+
+.daterangepicker .calendar-table {
+  background-color: transparent;
+  border: 1px solid transparent;
+}
+
+.daterangepicker .calendar-table .prev span,
+.daterangepicker .calendar-table .next span {
+  border-color: #4664e6;
+}
+
+.daterangepicker .calendar-table table thead tr th.available:hover {
+  border: none;
+  background-color: transparent;
+}
+
+.daterangepicker .calendar-table table thead tr:nth-child(1) th {
+  font-family: "Pretendard_Medium";
+  font-weight: normal;
+  padding: 0px 0 5px 0px;
+  font-weight: normal;
+  font-size: 13px;
+  color: #222222;
+}
+
+.daterangepicker .calendar-table table thead tr:nth-child(2) th {
+  color: #222222;
+  border-bottom: none;
+}
+
+.daterangepicker .calendar-table table tbody td {
+  position: relative;
+  height: 26px;
+  color: #222222;
+  font-size: 12px;
+  border: none;
+}
+
+.daterangepicker .calendar-table table tbody td.off,
+.daterangepicker .calendar-table table tbody td .ui-state-disabled {
+  color: #e5e5e5;
+  background-color: transparent;
+}
+
+.daterangepicker .calendar-table table tbody td:hover {
+  color: #ffffff;
+  border-radius: 5px;
+  background-color: #4664e6;
+}
+
+.daterangepicker .calendar-table table tbody td.in-range {
+  color: #333333;
+  background-color: #f1f3ff;
+}
+
+.daterangepicker .calendar-table table tbody td.in-range:hover {
+  border-radius: 0;
+  background-color: #eeeeee;
+}
+
+.daterangepicker .calendar-table table tbody td.start-date:hover {
+  border-radius: 4px 0 0 4px;
+}
+
+.daterangepicker .calendar-table table tbody td.active, .daterangepicker .calendar-table table tbody td.end-date {
+  color: #ffffff;
+  background-color: #4664e6;
+}
+
+.daterangepicker .calendar-table table tbody td.active:hover, .daterangepicker .calendar-table table tbody td.end-date:hover {
+  color: #ffffff;
+  background-color: #4664e6;
+}
+
+.daterangepicker .calendar-table table tbody td.end-date:hover {
+  border-radius: 0 4px 4px 0;
+}
+
+.daterangepicker .calendar-time {
+  text-align: right;
+}
+
+.daterangepicker .calendar-time select.hourselect, .daterangepicker .calendar-time select.minuteselect, .daterangepicker .calendar-time select.ampmselect, .daterangepicker .calendar-time select.secondselect {
+  min-width: 50px;
+  height: 26px;
+  padding: 2px 6px;
+  border: 1px solid #e6e6e6;
+  background-color: #ffffff;
+}
+
+.daterangepicker .ranges {
+  padding-left: 6px;
+  overflow-x: hidden !important;
+}
+
+.daterangepicker .ranges ul li {
+  color: #222222;
+}
+
+.daterangepicker .ranges ul li:hover {
+  color: #333333;
+  background-color: #eeeeee;
+}
+
+.daterangepicker .ranges ul li.active {
+  color: #ffffff;
+  background-color: #4664e6;
+}
+
+.daterangepicker .drp-buttons {
+  border-color: #d6d6d6;
+}
+
+.daterangepicker .drp-buttons button.cancelBtn, .daterangepicker .drp-buttons button.applyBtn {
+  font-family: "NotoSansR";
+  position: relative;
+  text-align: center;
+  color: #ffffff;
+  border: 2px solid #4664e6;
+  border-radius: 2px;
+  background-color: #4664e6;
+  cursor: pointer;
+}
+
+.daterangepicker.single {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+
+.daterangepicker.single .ranges {
+  display: none;
+}
+
+.ui-timepicker-container {
+  width: 200px;
+  border: 1px solid #e6e6e6;
+  font-size: 14px;
+}
+
+.ui-timepicker-container a {
+  font-family: "Pretendard_Regular";
+  font-weight: normal;
+  color: #333333;
+}
+
+.ui-timepicker-container a.ui-state-hover {
+  color: #4664e6;
+  border-color: transparent;
+  background-color: transparent;
+}
+
+.ui-timepicker-container ul::-webkit-scrollbar {
+  width: 6px;
+  height: 12px;
+  background: transparent;
+}
+
+.ui-timepicker-container ul::-webkit-scrollbar-thumb {
+  height: 15px;
+  border-radius: 4px;
+  background: #dedede;
+}
+
+.paging {
+  position: relative;
+  text-align: center;
+}
+
+.paging > ul {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: initial;
+  -webkit-box-direction: initial;
+      -ms-flex-direction: initial;
+          flex-direction: initial;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 0;
+  margin: 20px auto;
+  text-align: center;
+}
+
+.paging > ul:after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+.paging > ul > li {
+  font-family: "Pretendard_Regular";
+  font-weight: normal;
+  display: inline-block;
+  vertical-align: top;
+  min-width: 35px;
+  height: 35px;
+  text-align: center;
+  font-size: 13px;
+  color: #777777;
+  border: 1px solid #e6e6e6;
+  border-left: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.paging > ul > li:hover {
+  color: #4664e6;
+}
+
+.paging > ul > li:nth-child(1) {
+  border-radius: 2px 0 0 2px;
+  border: 1px solid #e6e6e6;
+}
+
+.paging > ul > li:last-child {
+  border-radius: 0 2px 2px 0;
+}
+
+.paging > ul > li > a {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: initial;
+  -webkit-box-direction: initial;
+      -ms-flex-direction: initial;
+          flex-direction: initial;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 10px;
+  width: 100%;
+  height: 100%;
+}
+
+.paging > ul > li.on {
+  color: #ffffff;
+  background-color: #4664e6;
+}
+
+.paging > ul > li.prev {
+  background: url("../image/component/ico_pagingPrev.svg") no-repeat center;
+}
+
+.paging > ul > li.next {
+  background: url("../image/component/ico_pagingNext.svg") no-repeat center;
+}
+
+.btnArea {
+  margin: 40px 0 0 0;
+  font-size: 0;
+  text-align: center;
+}
+
+.btnArea button {
+  position: relative;
+  min-width: 140px;
+  padding: 0 10px;
+  height: 40px;
+  border-radius: 20px;
+  font-size: 15px;
+  color: #ffffff;
+  border: 1px solid #4664e6;
+  background-color: #4664e6;
+  display: inline-block;
+  min-width: 140px;
+  height: 44px;
+  font-size: 15px;
+  margin-left: 12px;
+}
+
+.btnArea button:disabled {
+  color: #b3b3b3;
+  border: 1px solid #eceff1;
+  background-color: #eceff1;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.btnArea button:first-child {
+  margin-left: 0;
+}
+
+.ui-timepicker-container {
+  z-index: 999 !important;
+}
+
+/*
+File : modalLayout.scss
+Date   : 2024.07.30
+*/
+.modalDim {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: #000000;
+  opacity: 0.5;
+  z-index: 998;
+}
+
+/* content */
+/* modalFooter */
+/* layout */
+/*
+File   : modal.scss
+Date   : 2024.07.30
+*/
+.modalWrap.md_alert {
+  display: none;
+  z-index: 999;
+}
+
+.modalWrap.md_alert.modalOn {
+  display: block;
+}
+
+.modalWrap.md_alert .modalContainer {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  overflow: hidden;
+  z-index: 999;
+  border-radius: 8px;
+  -webkit-box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.1);
+          box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.1);
+  background-color: #ffffff;
+  z-index: 999;
+}
+
+.modalWrap.md_alert .modalContainer .modalTitle {
+  height: 50px;
+  font-size: 18px;
+  margin: 0 25px;
+  padding: 15px 0px 0 0;
+}
+
+.modalWrap.md_alert .modalContainer .modalTitle p {
+  font-family: "Pretendard_SemiBold";
+  display: inline-block;
+  padding: 6px 0 0 0;
+  font-size: 18px;
+}
+
+.modalWrap.md_alert .modalContainer .modalTitle button {
+  position: relative;
+  float: right;
+  right: -2px;
+  padding: 15px;
+}
+
+.modalWrap.md_alert .modalContainer .modalTitle button.close {
+  font-family: "Pretendard_Regular";
+  font-weight: normal;
+  position: relative;
+  text-align: center;
+  border-radius: 4px;
+  cursor: pointer;
+  background: url("../image/component/ico_close.svg") no-repeat center;
+  width: 22px;
+  height: 22px;
+  font-size: 0;
+}
+
+.modalWrap.md_alert .modalContainer .modalTitle button.close:disabled {
+  color: #b3b3b3;
+  border: 1px solid #eceff1;
+  background-color: #eceff1;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  cursor: default;
+}
+
+.modalWrap.md_alert .modalContainer .modalContent {
+  position: relative;
+  width: calc(100% - 20px);
+  max-height: 650px;
+  margin: 10px 10px 0 10px;
+  padding: 10px 10px 20px 20px;
+  overflow-y: auto;
+}
+
+.modalWrap.md_alert .modalContainer .modalContent ::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+  background: transparent;
+}
+
+.modalWrap.md_alert .modalContainer .modalContent ::-webkit-scrollbar-thumb {
+  height: 15px;
+  border-radius: 5px;
+  background: #dedede;
+}
+
+.modalWrap.md_alert .modalContainer .modalFooter {
+  padding-top: 10px;
+  margin-top: 10px;
+  text-align: center;
+}
+
+.modalWrap.md_alert .modalContainer .modalFooter button {
+  font-family: "Pretendard_Regular";
+  font-weight: normal;
+  position: relative;
+  text-align: center;
+  border-radius: 4px;
+  cursor: pointer;
+  min-width: 120px;
+  height: 40px;
+  margin-left: 8px;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+.modalWrap.md_alert .modalContainer .modalFooter button:disabled {
+  color: #b3b3b3;
+  border: 1px solid #eceff1;
+  background-color: #eceff1;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  cursor: default;
+}
+
+.modalWrap.md_alert .modalContainer .modalFooter button:first-child {
+  margin-left: 0;
+}
+
+.modalWrap.md_alert .modalContainer .modalFooter button.create, .modalWrap.md_alert .modalContainer .modalFooter button.modify, .modalWrap.md_alert .modalContainer .modalFooter button.confirm, .modalWrap.md_alert .modalContainer .modalFooter button.save {
+  color: #ffffff;
+  border: 1px solid #4664e6;
+  background-color: #4664e6;
+}
+
+.modalWrap.md_alert .modalContainer .modalFooter button.create:disabled, .modalWrap.md_alert .modalContainer .modalFooter button.modify:disabled, .modalWrap.md_alert .modalContainer .modalFooter button.confirm:disabled, .modalWrap.md_alert .modalContainer .modalFooter button.save:disabled {
+  color: #b3b3b3;
+  border: 1px solid #eceff1;
+  background-color: #eceff1;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.modalWrap.md_alert .modalContainer .modalFooter button.cancel {
+  color: #ffffff;
+  border: 1px solid #c8c8c8;
+  background-color: #c8c8c8;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.modalWrap.md_alert .modalContainer .modalFooter button.delete {
+  color: #ffffff;
+  border: 1px solid #f65a5a;
+  -webkit-box-shadow: 0 0 5px 0 #f65a5a;
+          box-shadow: 0 0 5px 0 #f65a5a;
+  background-color: #f65a5a;
+}
+
+.modalWrap.md_alert .modalDim {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: #000000;
+  opacity: 0.5;
+  z-index: 998;
+}
+
+.modalWrap.md_alert .modalContainer {
+  width: 460px;
+  height: 250px;
+}
+
+.modalWrap.md_alert .modalContainer .modalContent {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 10px;
+  height: 110px;
+}
+
+.modalWrap.md_alert .modalContainer .modalContent > div {
+  text-align: center;
+}
+
+.modalWrap.md_alert .modalContainer .modalContent > div p {
+  line-height: 1.5;
+}
+
+.modalWrap.md_alert .modalContainer .modalContent > div p:nth-child(1) {
+  font-family: "Pretendard_SemiBold";
+  font-size: 18px;
+}
+
+.modalWrap.md_alert .modalContainer .modalContent > div p:nth-child(2) {
+  margin: 20px 0 0 0;
+}
+
+.modalWrap.md_alert .modalContainer .modalContent > div p:nth-child(n+2) {
+  font-size: 16px;
+  color: #777777;
+}
+
+.modalWrap.md_alert .modalContainer .modalContent > div strong {
+  font-family: "Pretendard_SemiBold";
+  font-size: 16px;
+  line-height: 1.5;
+  text-align: center;
+}
+
+.modalWrap.md_categoryRegister {
+  display: none;
+  z-index: 999;
+}
+
+.modalWrap.md_categoryRegister.modalOn {
+  display: block;
+}
+
+.modalWrap.md_categoryRegister .modalContainer {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  overflow: hidden;
+  z-index: 999;
+  border-radius: 8px;
+  -webkit-box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.1);
+          box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.1);
+  background-color: #ffffff;
+  z-index: 999;
+}
+
+.modalWrap.md_categoryRegister .modalContainer .modalTitle {
+  height: 50px;
+  font-size: 18px;
+  margin: 0 25px;
+  padding: 15px 0px 0 0;
+}
+
+.modalWrap.md_categoryRegister .modalContainer .modalTitle p {
+  font-family: "Pretendard_SemiBold";
+  display: inline-block;
+  padding: 6px 0 0 0;
+  font-size: 18px;
+}
+
+.modalWrap.md_categoryRegister .modalContainer .modalTitle button {
+  position: relative;
+  float: right;
+  right: -2px;
+  padding: 15px;
+}
+
+.modalWrap.md_categoryRegister .modalContainer .modalTitle button.close {
+  font-family: "Pretendard_Regular";
+  font-weight: normal;
+  position: relative;
+  text-align: center;
+  border-radius: 4px;
+  cursor: pointer;
+  background: url("../image/component/ico_close.svg") no-repeat center;
+  width: 22px;
+  height: 22px;
+  font-size: 0;
+}
+
+.modalWrap.md_categoryRegister .modalContainer .modalTitle button.close:disabled {
+  color: #b3b3b3;
+  border: 1px solid #eceff1;
+  background-color: #eceff1;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  cursor: default;
+}
+
+.modalWrap.md_categoryRegister .modalContainer .modalContent {
+  position: relative;
+  width: calc(100% - 20px);
+  max-height: 650px;
+  margin: 10px 10px 0 10px;
+  padding: 10px 10px 20px 20px;
+  overflow-y: auto;
+}
+
+.modalWrap.md_categoryRegister .modalContainer .modalContent ::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+  background: transparent;
+}
+
+.modalWrap.md_categoryRegister .modalContainer .modalContent ::-webkit-scrollbar-thumb {
+  height: 15px;
+  border-radius: 5px;
+  background: #dedede;
+}
+
+.modalWrap.md_categoryRegister .modalContainer .modalFooter {
+  padding-top: 10px;
+  margin-top: 10px;
+  text-align: center;
+}
+
+.modalWrap.md_categoryRegister .modalContainer .modalFooter button {
+  font-family: "Pretendard_Regular";
+  font-weight: normal;
+  position: relative;
+  text-align: center;
+  border-radius: 4px;
+  cursor: pointer;
+  min-width: 120px;
+  height: 40px;
+  margin-left: 8px;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+.modalWrap.md_categoryRegister .modalContainer .modalFooter button:disabled {
+  color: #b3b3b3;
+  border: 1px solid #eceff1;
+  background-color: #eceff1;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  cursor: default;
+}
+
+.modalWrap.md_categoryRegister .modalContainer .modalFooter button:first-child {
+  margin-left: 0;
+}
+
+.modalWrap.md_categoryRegister .modalContainer .modalFooter button.create, .modalWrap.md_categoryRegister .modalContainer .modalFooter button.modify, .modalWrap.md_categoryRegister .modalContainer .modalFooter button.confirm, .modalWrap.md_categoryRegister .modalContainer .modalFooter button.save {
+  color: #ffffff;
+  border: 1px solid #4664e6;
+  background-color: #4664e6;
+}
+
+.modalWrap.md_categoryRegister .modalContainer .modalFooter button.create:disabled, .modalWrap.md_categoryRegister .modalContainer .modalFooter button.modify:disabled, .modalWrap.md_categoryRegister .modalContainer .modalFooter button.confirm:disabled, .modalWrap.md_categoryRegister .modalContainer .modalFooter button.save:disabled {
+  color: #b3b3b3;
+  border: 1px solid #eceff1;
+  background-color: #eceff1;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.modalWrap.md_categoryRegister .modalContainer .modalFooter button.cancel {
+  color: #ffffff;
+  border: 1px solid #c8c8c8;
+  background-color: #c8c8c8;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.modalWrap.md_categoryRegister .modalContainer .modalFooter button.delete {
+  color: #ffffff;
+  border: 1px solid #f65a5a;
+  -webkit-box-shadow: 0 0 5px 0 #f65a5a;
+          box-shadow: 0 0 5px 0 #f65a5a;
+  background-color: #f65a5a;
+}
+
+.modalWrap.md_categoryRegister .modalDim {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: #000000;
+  opacity: 0.5;
+  z-index: 998;
+}
+
+.modalWrap.md_categoryRegister .modalContainer {
+  width: 460px;
+  height: 250px;
+}
+
+.modalWrap.md_categoryRegister .modalContainer .modalContent {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 10px;
+  height: 110px;
+}
+
+.modalWrap.md_categoryRegister .modalContainer .modalContent .inputBox input {
+  width: 260px;
+}
+
+.modalWrap.md_categoryRegister .modalContainer .modalContent .categoryBox {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 10px;
+}
+
+.modalWrap.md_categoryRegister .modalContainer .modalContent .categoryBox p {
+  font-family: "Pretendard_SemiBold";
+  position: relative;
+  text-align: center;
+  color: #000000;
+}
+
+.modalWrap.md_categoryRegister .modalContainer .modalContent .categoryBox p:nth-child(1) {
+  font-size: 22px;
+}
+
+.modalWrap.md_categoryRegister .modalContainer .modalContent .categoryBox p:nth-child(1):before {
+  content: "";
+  position: absolute;
+  display: inline-block;
+  width: 100%;
+  height: 11px;
+  left: 0;
+  bottom: -2px;
+  background-color: #d8dcec;
+  z-index: -1;
+}
+
+.modalWrap.md_categoryRegister .modalContainer .modalContent .categoryBox p:nth-child(n+2) {
+  font-size: 18px;
+  line-height: 1.5;
+}
+
+.modalWrap.md_categoryChange {
+  display: none;
+  z-index: 999;
+}
+
+.modalWrap.md_categoryChange.modalOn {
+  display: block;
+}
+
+.modalWrap.md_categoryChange .modalContainer {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  overflow: hidden;
+  z-index: 999;
+  border-radius: 8px;
+  -webkit-box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.1);
+          box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.1);
+  background-color: #ffffff;
+  z-index: 999;
+}
+
+.modalWrap.md_categoryChange .modalContainer .modalTitle {
+  height: 50px;
+  font-size: 18px;
+  margin: 0 25px;
+  padding: 15px 0px 0 0;
+}
+
+.modalWrap.md_categoryChange .modalContainer .modalTitle p {
+  font-family: "Pretendard_SemiBold";
+  display: inline-block;
+  padding: 6px 0 0 0;
+  font-size: 18px;
+}
+
+.modalWrap.md_categoryChange .modalContainer .modalTitle button {
+  position: relative;
+  float: right;
+  right: -2px;
+  padding: 15px;
+}
+
+.modalWrap.md_categoryChange .modalContainer .modalTitle button.close {
+  font-family: "Pretendard_Regular";
+  font-weight: normal;
+  position: relative;
+  text-align: center;
+  border-radius: 4px;
+  cursor: pointer;
+  background: url("../image/component/ico_close.svg") no-repeat center;
+  width: 22px;
+  height: 22px;
+  font-size: 0;
+}
+
+.modalWrap.md_categoryChange .modalContainer .modalTitle button.close:disabled {
+  color: #b3b3b3;
+  border: 1px solid #eceff1;
+  background-color: #eceff1;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  cursor: default;
+}
+
+.modalWrap.md_categoryChange .modalContainer .modalContent {
+  position: relative;
+  width: calc(100% - 20px);
+  max-height: 650px;
+  margin: 10px 10px 0 10px;
+  padding: 10px 10px 20px 20px;
+  overflow-y: auto;
+}
+
+.modalWrap.md_categoryChange .modalContainer .modalContent ::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+  background: transparent;
+}
+
+.modalWrap.md_categoryChange .modalContainer .modalContent ::-webkit-scrollbar-thumb {
+  height: 15px;
+  border-radius: 5px;
+  background: #dedede;
+}
+
+.modalWrap.md_categoryChange .modalContainer .modalFooter {
+  padding-top: 10px;
+  margin-top: 10px;
+  text-align: center;
+}
+
+.modalWrap.md_categoryChange .modalContainer .modalFooter button {
+  font-family: "Pretendard_Regular";
+  font-weight: normal;
+  position: relative;
+  text-align: center;
+  border-radius: 4px;
+  cursor: pointer;
+  min-width: 120px;
+  height: 40px;
+  margin-left: 8px;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+.modalWrap.md_categoryChange .modalContainer .modalFooter button:disabled {
+  color: #b3b3b3;
+  border: 1px solid #eceff1;
+  background-color: #eceff1;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  cursor: default;
+}
+
+.modalWrap.md_categoryChange .modalContainer .modalFooter button:first-child {
+  margin-left: 0;
+}
+
+.modalWrap.md_categoryChange .modalContainer .modalFooter button.create, .modalWrap.md_categoryChange .modalContainer .modalFooter button.modify, .modalWrap.md_categoryChange .modalContainer .modalFooter button.confirm, .modalWrap.md_categoryChange .modalContainer .modalFooter button.save {
+  color: #ffffff;
+  border: 1px solid #4664e6;
+  background-color: #4664e6;
+}
+
+.modalWrap.md_categoryChange .modalContainer .modalFooter button.create:disabled, .modalWrap.md_categoryChange .modalContainer .modalFooter button.modify:disabled, .modalWrap.md_categoryChange .modalContainer .modalFooter button.confirm:disabled, .modalWrap.md_categoryChange .modalContainer .modalFooter button.save:disabled {
+  color: #b3b3b3;
+  border: 1px solid #eceff1;
+  background-color: #eceff1;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.modalWrap.md_categoryChange .modalContainer .modalFooter button.cancel {
+  color: #ffffff;
+  border: 1px solid #c8c8c8;
+  background-color: #c8c8c8;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.modalWrap.md_categoryChange .modalContainer .modalFooter button.delete {
+  color: #ffffff;
+  border: 1px solid #f65a5a;
+  -webkit-box-shadow: 0 0 5px 0 #f65a5a;
+          box-shadow: 0 0 5px 0 #f65a5a;
+  background-color: #f65a5a;
+}
+
+.modalWrap.md_categoryChange .modalDim {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: #000000;
+  opacity: 0.5;
+  z-index: 998;
+}
+
+.modalWrap.md_categoryChange .modalContainer {
+  width: 460px;
+  height: 250px;
+}
+
+.modalWrap.md_categoryChange .modalContainer .modalContent {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 10px;
+  height: 110px;
+}
+
+.modalWrap.md_categoryChange .modalContainer .modalContent .categoryBox {
+  text-align: center;
+}
+
+.modalWrap.md_categoryChange .modalContainer .modalContent .categoryBox p {
+  font-family: "Pretendard_SemiBold";
+  line-height: 1.5;
+}
+
+.modalWrap.md_categoryChange .modalContainer .modalContent .categoryBox p span {
+  margin-right: 4px;
+  color: #4664e6;
+}
+
+.modalWrap.md_categoryChange .modalContainer .modalContent .categoryBox p span:before, .modalWrap.md_categoryChange .modalContainer .modalContent .categoryBox p span:after {
+  position: realtive;
+  display: inline-block;
+}
+
+.modalWrap.md_categoryChange .modalContainer .modalContent .categoryBox p span:before {
+  content: "[";
+}
+
+.modalWrap.md_categoryChange .modalContainer .modalContent .categoryBox p span:after {
+  content: "]";
+}
+
+.modalWrap.md_categoryChange .modalContainer .modalContent .categoryBox p:nth-child(1) {
+  font-family: "Pretendard_SemiBold";
+  font-size: 18px;
+}
+
+.modalWrap.md_categoryChange .modalContainer .modalContent .categoryBox p:nth-child(2) {
+  margin: 20px 0 0 0;
+}
+
+.modalWrap.md_categoryChange .modalContainer .modalContent .categoryBox p:nth-child(n+2) {
+  font-size: 16px;
+  color: #777777;
+}
+
+.modalWrap.md_categoryChange .modalContainer .modalContent .categoryBox select {
+  width: 260px;
+  margin: 10px 0 0 0;
+}
+
+.modalWrap.md_inquiryDetail {
+  display: none;
+  z-index: 999;
+}
+
+.modalWrap.md_inquiryDetail.modalOn {
+  display: block;
+}
+
+.modalWrap.md_inquiryDetail .modalContainer {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  overflow: hidden;
+  z-index: 999;
+  border-radius: 8px;
+  -webkit-box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.1);
+          box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.1);
+  background-color: #ffffff;
+  z-index: 999;
+}
+
+.modalWrap.md_inquiryDetail .modalContainer .modalTitle {
+  height: 50px;
+  font-size: 18px;
+  margin: 0 25px;
+  padding: 15px 0px 0 0;
+}
+
+.modalWrap.md_inquiryDetail .modalContainer .modalTitle p {
+  font-family: "Pretendard_SemiBold";
+  display: inline-block;
+  padding: 6px 0 0 0;
+  font-size: 18px;
+}
+
+.modalWrap.md_inquiryDetail .modalContainer .modalTitle button {
+  position: relative;
+  float: right;
+  right: -2px;
+  padding: 15px;
+}
+
+.modalWrap.md_inquiryDetail .modalContainer .modalTitle button.close {
+  font-family: "Pretendard_Regular";
+  font-weight: normal;
+  position: relative;
+  text-align: center;
+  border-radius: 4px;
+  cursor: pointer;
+  background: url("../image/component/ico_close.svg") no-repeat center;
+  width: 22px;
+  height: 22px;
+  font-size: 0;
+}
+
+.modalWrap.md_inquiryDetail .modalContainer .modalTitle button.close:disabled {
+  color: #b3b3b3;
+  border: 1px solid #eceff1;
+  background-color: #eceff1;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  cursor: default;
+}
+
+.modalWrap.md_inquiryDetail .modalContainer .modalContent {
+  position: relative;
+  width: calc(100% - 20px);
+  max-height: 650px;
+  margin: 10px 10px 0 10px;
+  padding: 10px 10px 20px 20px;
+  overflow-y: auto;
+}
+
+.modalWrap.md_inquiryDetail .modalContainer .modalContent ::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+  background: transparent;
+}
+
+.modalWrap.md_inquiryDetail .modalContainer .modalContent ::-webkit-scrollbar-thumb {
+  height: 15px;
+  border-radius: 5px;
+  background: #dedede;
+}
+
+.modalWrap.md_inquiryDetail .modalContainer .modalFooter {
+  padding-top: 10px;
+  margin-top: 10px;
+  text-align: center;
+}
+
+.modalWrap.md_inquiryDetail .modalContainer .modalFooter button {
+  font-family: "Pretendard_Regular";
+  font-weight: normal;
+  position: relative;
+  text-align: center;
+  border-radius: 4px;
+  cursor: pointer;
+  min-width: 120px;
+  height: 40px;
+  margin-left: 8px;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+.modalWrap.md_inquiryDetail .modalContainer .modalFooter button:disabled {
+  color: #b3b3b3;
+  border: 1px solid #eceff1;
+  background-color: #eceff1;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  cursor: default;
+}
+
+.modalWrap.md_inquiryDetail .modalContainer .modalFooter button:first-child {
+  margin-left: 0;
+}
+
+.modalWrap.md_inquiryDetail .modalContainer .modalFooter button.create, .modalWrap.md_inquiryDetail .modalContainer .modalFooter button.modify, .modalWrap.md_inquiryDetail .modalContainer .modalFooter button.confirm, .modalWrap.md_inquiryDetail .modalContainer .modalFooter button.save {
+  color: #ffffff;
+  border: 1px solid #4664e6;
+  background-color: #4664e6;
+}
+
+.modalWrap.md_inquiryDetail .modalContainer .modalFooter button.create:disabled, .modalWrap.md_inquiryDetail .modalContainer .modalFooter button.modify:disabled, .modalWrap.md_inquiryDetail .modalContainer .modalFooter button.confirm:disabled, .modalWrap.md_inquiryDetail .modalContainer .modalFooter button.save:disabled {
+  color: #b3b3b3;
+  border: 1px solid #eceff1;
+  background-color: #eceff1;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.modalWrap.md_inquiryDetail .modalContainer .modalFooter button.cancel {
+  color: #ffffff;
+  border: 1px solid #c8c8c8;
+  background-color: #c8c8c8;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.modalWrap.md_inquiryDetail .modalContainer .modalFooter button.delete {
+  color: #ffffff;
+  border: 1px solid #f65a5a;
+  -webkit-box-shadow: 0 0 5px 0 #f65a5a;
+          box-shadow: 0 0 5px 0 #f65a5a;
+  background-color: #f65a5a;
+}
+
+.modalWrap.md_inquiryDetail .modalDim {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: #000000;
+  opacity: 0.5;
+  z-index: 998;
+}
+
+.modalWrap.md_inquiryDetail .modalContainer {
+  width: 800px;
+  height: 800px;
+}
+
+.modalWrap.md_inquiryDetail .modalContainer .modalContent {
+  height: 750px;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.modalWrap.md_inquiryDetail .modalContainer .modalContent section.sec_listT1 .tableArea .tableBox, .modalWrap.md_inquiryDetail .modalContainer .modalContent section.sec_listT2 .tableArea .tableBox {
+  overflow: overlay;
+  background-color: transparent;
+  max-height: 650px;
+  border-bottom: 1px solid #dadada;
+}
+
+.modalWrap.md_inquiryDetail .modalContainer .modalContent section.sec_listT1 .tableArea .tableBox::-webkit-scrollbar, .modalWrap.md_inquiryDetail .modalContainer .modalContent section.sec_listT2 .tableArea .tableBox::-webkit-scrollbar {
+  width: 10px;
+  height: 8px;
+  background: #f4f4f4;
+}
+
+.modalWrap.md_inquiryDetail .modalContainer .modalContent section.sec_listT1 .tableArea .tableBox::-webkit-scrollbar-thumb, .modalWrap.md_inquiryDetail .modalContainer .modalContent section.sec_listT2 .tableArea .tableBox::-webkit-scrollbar-thumb {
+  height: 8px;
+  border-radius: 5px;
+  background: #dedede;
+}
+
+.modalWrap.md_inquiryDetail .modalContainer .modalContent section.sec_listT1 .tableArea .tableBox table, .modalWrap.md_inquiryDetail .modalContainer .modalContent section.sec_listT2 .tableArea .tableBox table {
+  width: auto;
+  min-width: 100%;
+  background: transparent;
+}
+
+.modalWrap.md_inquiryDetail .modalContainer .modalContent section.sec_listT1 .tableArea .tableBox table .dimCircle:before, .modalWrap.md_inquiryDetail .modalContainer .modalContent section.sec_listT2 .tableArea .tableBox table .dimCircle:before {
+  background-size: 30px 30px;
+}
+
+.modalWrap.md_inquiryDetail .modalContainer .modalContent section.sec_listT1 .tableArea .tableBox table thead tr td,
+.modalWrap.md_inquiryDetail .modalContainer .modalContent section.sec_listT1 .tableArea .tableBox table thead tr th,
+.modalWrap.md_inquiryDetail .modalContainer .modalContent section.sec_listT1 .tableArea .tableBox table tbody tr td,
+.modalWrap.md_inquiryDetail .modalContainer .modalContent section.sec_listT1 .tableArea .tableBox table tbody tr th,
+.modalWrap.md_inquiryDetail .modalContainer .modalContent section.sec_listT1 .tableArea .tableBox table tfoot tr td,
+.modalWrap.md_inquiryDetail .modalContainer .modalContent section.sec_listT1 .tableArea .tableBox table tfoot tr th, .modalWrap.md_inquiryDetail .modalContainer .modalContent section.sec_listT2 .tableArea .tableBox table thead tr td,
+.modalWrap.md_inquiryDetail .modalContainer .modalContent section.sec_listT2 .tableArea .tableBox table thead tr th,
+.modalWrap.md_inquiryDetail .modalContainer .modalContent section.sec_listT2 .tableArea .tableBox table tbody tr td,
+.modalWrap.md_inquiryDetail .modalContainer .modalContent section.sec_listT2 .tableArea .tableBox table tbody tr th,
+.modalWrap.md_inquiryDetail .modalContainer .modalContent section.sec_listT2 .tableArea .tableBox table tfoot tr td,
+.modalWrap.md_inquiryDetail .modalContainer .modalContent section.sec_listT2 .tableArea .tableBox table tfoot tr th {
+  font-family: "Pretendard_Medium";
+  font-weight: normal;
+  padding: 10px 6px;
+  vertical-align: middle;
+  text-align: center;
+  line-height: 20px;
+  font-size: 16px;
+  font-weight: normal;
+  color: #000000;
+}
+
+.modalWrap.md_inquiryDetail .modalContainer .modalContent section.sec_listT1 .tableArea .tableBox table thead, .modalWrap.md_inquiryDetail .modalContainer .modalContent section.sec_listT2 .tableArea .tableBox table thead {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+.modalWrap.md_inquiryDetail .modalContainer .modalContent section.sec_listT1 .tableArea .tableBox table thead th.sort:after, .modalWrap.md_inquiryDetail .modalContainer .modalContent section.sec_listT1 .tableArea .tableBox table thead th.sortUp:after, .modalWrap.md_inquiryDetail .modalContainer .modalContent section.sec_listT1 .tableArea .tableBox table thead th.sortDown:after, .modalWrap.md_inquiryDetail .modalContainer .modalContent section.sec_listT2 .tableArea .tableBox table thead th.sort:after, .modalWrap.md_inquiryDetail .modalContainer .modalContent section.sec_listT2 .tableArea .tableBox table thead th.sortUp:after, .modalWrap.md_inquiryDetail .modalContainer .modalContent section.sec_listT2 .tableArea .tableBox table thead th.sortDown:after {
+  content: "";
+  position: relative;
+  display: inline-block;
+  width: 15px;
+  height: 13px;
+  top: -2px;
+  margin-left: 5px;
+  vertical-align: middle;
+}
+
+.modalWrap.md_inquiryDetail .modalContainer .modalContent section.sec_listT1 .tableArea .tableBox table thead th.sort:after, .modalWrap.md_inquiryDetail .modalContainer .modalContent section.sec_listT2 .tableArea .tableBox table thead th.sort:after {
+  background: url("../image/component/ico_sort.svg") no-repeat center;
+  width: 15px;
+  height: 13px;
+  background-size: 100%;
+}
+
+.modalWrap.md_inquiryDetail .modalContainer .modalContent section.sec_listT1 .tableArea .tableBox table thead th.sortUp:after, .modalWrap.md_inquiryDetail .modalContainer .modalContent section.sec_listT2 .tableArea .tableBox table thead th.sortUp:after {
+  background: url("../image/component/ico_sortUp.svg") no-repeat center;
+  width: 15px;
+  height: 13px;
+  background-size: 100%;
+}
+
+.modalWrap.md_inquiryDetail .modalContainer .modalContent section.sec_listT1 .tableArea .tableBox table thead th.sortDown:after, .modalWrap.md_inquiryDetail .modalContainer .modalContent section.sec_listT2 .tableArea .tableBox table thead th.sortDown:after {
+  background: url("../image/component/ico_sortDown.svg") no-repeat center;
+  width: 15px;
+  height: 13px;
+  background-size: 100%;
+}
+
+.modalWrap.md_inquiryDetail .modalContainer .modalContent section.sec_listT1 .tableArea .tableBox table thead:before, .modalWrap.md_inquiryDetail .modalContainer .modalContent section.sec_listT2 .tableArea .tableBox table thead:before {
+  content: "";
+  position: absolute;
+  display: table-header-group;
+  width: 100%;
+  height: -webkit-fill-available;
+  border-top: 1px solid #e0e0e0;
+  border-bottom: 1px solid #e0e0e0;
+  background-color: #e0e0e0;
+  z-index: -1;
+}
+
+.modalWrap.md_inquiryDetail .modalContainer .modalContent section.sec_listT1 .tableArea .tableBox table thead tr th, .modalWrap.md_inquiryDetail .modalContainer .modalContent section.sec_listT2 .tableArea .tableBox table thead tr th {
+  padding: 16px 6px;
+  border-bottom: 1px solid #e0e0e0;
+  background: #f4f4f4;
+}
+
+.modalWrap.md_inquiryDetail .modalContainer .modalContent section.sec_listT1 .tableArea .tableBox table thead tr:nth-child(n+2) th, .modalWrap.md_inquiryDetail .modalContainer .modalContent section.sec_listT2 .tableArea .tableBox table thead tr:nth-child(n+2) th {
+  background-color: #f1f3ff;
+}
+
+.modalWrap.md_inquiryDetail .modalContainer .modalContent section.sec_listT1 .tableArea .tableBox table tbody tr, .modalWrap.md_inquiryDetail .modalContainer .modalContent section.sec_listT2 .tableArea .tableBox table tbody tr {
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.modalWrap.md_inquiryDetail .modalContainer .modalContent section.sec_listT1 .tableArea .tableBox table tbody tr th,
+.modalWrap.md_inquiryDetail .modalContainer .modalContent section.sec_listT1 .tableArea .tableBox table tbody tr td, .modalWrap.md_inquiryDetail .modalContainer .modalContent section.sec_listT2 .tableArea .tableBox table tbody tr th,
+.modalWrap.md_inquiryDetail .modalContainer .modalContent section.sec_listT2 .tableArea .tableBox table tbody tr td {
+  padding: 12px 6px;
+  font-size: 16px;
+}
+
+.modalWrap.md_inquiryDetail .modalContainer .modalContent section.sec_listT1 .tableArea .tableBox table tfoot, .modalWrap.md_inquiryDetail .modalContainer .modalContent section.sec_listT2 .tableArea .tableBox table tfoot {
+  position: -webkit-sticky;
+  position: sticky;
+  bottom: 0;
+  z-index: 1;
+}
+
+.modalWrap.md_inquiryDetail .modalContainer .modalContent section.sec_listT1 .tableArea .tableBox table tfoot th.sort:after, .modalWrap.md_inquiryDetail .modalContainer .modalContent section.sec_listT1 .tableArea .tableBox table tfoot th.sortUp:after, .modalWrap.md_inquiryDetail .modalContainer .modalContent section.sec_listT1 .tableArea .tableBox table tfoot th.sortDown:after, .modalWrap.md_inquiryDetail .modalContainer .modalContent section.sec_listT2 .tableArea .tableBox table tfoot th.sort:after, .modalWrap.md_inquiryDetail .modalContainer .modalContent section.sec_listT2 .tableArea .tableBox table tfoot th.sortUp:after, .modalWrap.md_inquiryDetail .modalContainer .modalContent section.sec_listT2 .tableArea .tableBox table tfoot th.sortDown:after {
+  content: "";
+  position: relative;
+  display: inline-block;
+  width: 15px;
+  height: 13px;
+  top: -2px;
+  margin-left: 5px;
+  vertical-align: middle;
+}
+
+.modalWrap.md_inquiryDetail .modalContainer .modalContent section.sec_listT1 .tableArea .tableBox table tfoot th.sort:after, .modalWrap.md_inquiryDetail .modalContainer .modalContent section.sec_listT2 .tableArea .tableBox table tfoot th.sort:after {
+  background: url("../image/component/ico_sort.svg") no-repeat center;
+  width: 15px;
+  height: 13px;
+  background-size: 100%;
+}
+
+.modalWrap.md_inquiryDetail .modalContainer .modalContent section.sec_listT1 .tableArea .tableBox table tfoot th.sortUp:after, .modalWrap.md_inquiryDetail .modalContainer .modalContent section.sec_listT2 .tableArea .tableBox table tfoot th.sortUp:after {
+  background: url("../image/component/ico_sortUp.svg") no-repeat center;
+  width: 15px;
+  height: 13px;
+  background-size: 100%;
+}
+
+.modalWrap.md_inquiryDetail .modalContainer .modalContent section.sec_listT1 .tableArea .tableBox table tfoot th.sortDown:after, .modalWrap.md_inquiryDetail .modalContainer .modalContent section.sec_listT2 .tableArea .tableBox table tfoot th.sortDown:after {
+  background: url("../image/component/ico_sortDown.svg") no-repeat center;
+  width: 15px;
+  height: 13px;
+  background-size: 100%;
+}
+
+.modalWrap.md_inquiryDetail .modalContainer .modalContent section.sec_listT1 .tableArea .tableBox table tfoot:before, .modalWrap.md_inquiryDetail .modalContainer .modalContent section.sec_listT2 .tableArea .tableBox table tfoot:before {
+  content: "";
+  position: absolute;
+  display: table-footer-group;
+  width: 100%;
+  height: -webkit-fill-available;
+  border-top: 1px solid #e0e0e0;
+  border-bottom: 1px solid #e0e0e0;
+  background-color: #e0e0e0;
+  z-index: -1;
+}
+
+.modalWrap.md_inquiryDetail .modalContainer .modalContent section.sec_listT1 .tableArea .tableBox table tfoot tr, .modalWrap.md_inquiryDetail .modalContainer .modalContent section.sec_listT2 .tableArea .tableBox table tfoot tr {
+  border-top: 1px solid #e0e0e0;
+  border-bottom: none;
+}
+
+.modalWrap.md_inquiryDetail .modalContainer .modalContent section.sec_listT1 .tableArea .tableBox table tfoot tr th, .modalWrap.md_inquiryDetail .modalContainer .modalContent section.sec_listT2 .tableArea .tableBox table tfoot tr th {
+  font-family: "Pretendard_Regular";
+  font-weight: normal;
+  font-size: 14px;
+  background: #f4f4f4;
+}
+
+.modalWrap.md_inquiryDetail .modalContainer .modalContent section.sec_listT1 .tableArea .tableBox table tbody tr th, .modalWrap.md_inquiryDetail .modalContainer .modalContent section.sec_listT2 .tableArea .tableBox table tbody tr th {
+  width: 180px;
+  padding-left: 45px;
+  text-align: left;
+}
+
+.modalWrap.md_inquiryDetail .modalContainer .modalContent section.sec_listT1 .tableArea .tableBox table tbody tr td, .modalWrap.md_inquiryDetail .modalContainer .modalContent section.sec_listT2 .tableArea .tableBox table tbody tr td {
+  padding-right: 20px;
+  text-align: left;
+}
+
+.modalWrap.md_inquiryDetail .modalContainer .modalContent section.sec_listT1 .tableArea .tableBox table tbody tr td.wait, .modalWrap.md_inquiryDetail .modalContainer .modalContent section.sec_listT2 .tableArea .tableBox table tbody tr td.wait {
+  color: #ec3f3f;
+}
+
+.modalWrap.md_inquiryDetail .modalContainer .modalContent section.sec_listT1 .tableArea .tableBox table tbody tr td.complete, .modalWrap.md_inquiryDetail .modalContainer .modalContent section.sec_listT2 .tableArea .tableBox table tbody tr td.complete {
+  color: #4664e6;
+}
+
+.modalWrap.md_inquiryDetail .modalContainer .modalContent section.sec_listT1 .tableArea .tableBox table tbody tr td button.download, .modalWrap.md_inquiryDetail .modalContainer .modalContent section.sec_listT2 .tableArea .tableBox table tbody tr td button.download {
+  font-family: "Pretendard_Regular";
+  font-weight: normal;
+  position: relative;
+  text-align: center;
+  border-radius: 4px;
+  cursor: pointer;
+  color: #ffffff;
+  border: 1px solid #0c1439;
+  background-color: #0c1439;
+  min-width: 90px;
+  height: 30px;
+}
+
+.modalWrap.md_inquiryDetail .modalContainer .modalContent section.sec_listT1 .tableArea .tableBox table tbody tr td button.download:disabled, .modalWrap.md_inquiryDetail .modalContainer .modalContent section.sec_listT2 .tableArea .tableBox table tbody tr td button.download:disabled {
+  color: #b3b3b3;
+  border: 1px solid #eceff1;
+  background-color: #eceff1;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  cursor: default;
+}
+
+.modalWrap.md_inquiryDetail .modalContainer .modalContent section.sec_listT1 .tableArea .tableBox table tbody tr td button.download:disabled, .modalWrap.md_inquiryDetail .modalContainer .modalContent section.sec_listT2 .tableArea .tableBox table tbody tr td button.download:disabled {
+  color: #b3b3b3;
+  border: 1px solid #eceff1;
+  background-color: #eceff1;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.modalWrap.md_inquiryDetail .modalContainer .modalContent section.sec_listT1 .tableArea .tableBox table tbody tr td .textareaBox, .modalWrap.md_inquiryDetail .modalContainer .modalContent section.sec_listT2 .tableArea .tableBox table tbody tr td .textareaBox {
+  font-family: "Pretendard_Regular";
+  font-weight: normal;
+  position: relative;
+  width: 100%;
+  padding: 0 10px 0 0;
+  border-radius: 5px;
+  color: #333333;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  border: 10px solid transparent;
+  background-color: #ffffff;
+  width: 100%;
+  height: 120px;
+  border: 1px solid #e6e6e6;
+  background-color: #ffffff;
+}
+
+.modalWrap.md_inquiryDetail .modalContainer .modalContent section.sec_listT1 .tableArea .tableBox table tbody tr td .textareaBox:focus, .modalWrap.md_inquiryDetail .modalContainer .modalContent section.sec_listT2 .tableArea .tableBox table tbody tr td .textareaBox:focus {
+  outline: none;
+}
+
+.modalWrap.md_inquiryDetail .modalContainer .modalContent section.sec_listT1 .tableArea .tableBox table tbody tr td .textareaBox::-webkit-input-placeholder, .modalWrap.md_inquiryDetail .modalContainer .modalContent section.sec_listT1 .tableArea .tableBox table tbody tr td .textareaBox::-webkit-input-placeholder, .modalWrap.md_inquiryDetail .modalContainer .modalContent section.sec_listT2 .tableArea .tableBox table tbody tr td .textareaBox::-webkit-input-placeholder, .modalWrap.md_inquiryDetail .modalContainer .modalContent section.sec_listT2 .tableArea .tableBox table tbody tr td .textareaBox::-webkit-input-placeholder {
+  color: #9ba0a2;
+}
+
+.modalWrap.md_inquiryDetail .modalContainer .modalContent section.sec_listT1 .tableArea .tableBox table tbody tr td .textareaBox::placeholder, .modalWrap.md_inquiryDetail .modalContainer .modalContent section.sec_listT1 .tableArea .tableBox table tbody tr td .textareaBox::-webkit-input-placeholder, .modalWrap.md_inquiryDetail .modalContainer .modalContent section.sec_listT2 .tableArea .tableBox table tbody tr td .textareaBox::placeholder, .modalWrap.md_inquiryDetail .modalContainer .modalContent section.sec_listT2 .tableArea .tableBox table tbody tr td .textareaBox::-webkit-input-placeholder {
+  color: #9ba0a2;
+}
+
+.modalWrap.md_inquiryDetail .modalContainer .modalContent section.sec_listT1 .tableArea .tableBox table tbody tr td .textareaBox textarea, .modalWrap.md_inquiryDetail .modalContainer .modalContent section.sec_listT2 .tableArea .tableBox table tbody tr td .textareaBox textarea {
+  height: calc(120px - 2px);
+  border-right: 10px;
+  resize: none;
+  background-color: #ffffff;
+}
+
+.modalWrap.md_inquiryDetail .modalContainer .modalContent section.sec_listT1 .tableArea .tableBox table tbody tr td .textareaBox ::-webkit-scrollbar, .modalWrap.md_inquiryDetail .modalContainer .modalContent section.sec_listT2 .tableArea .tableBox table tbody tr td .textareaBox ::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+  background: transparent;
+}
+
+.modalWrap.md_inquiryDetail .modalContainer .modalContent section.sec_listT1 .tableArea .tableBox table tbody tr td .textareaBox ::-webkit-scrollbar-thumb, .modalWrap.md_inquiryDetail .modalContainer .modalContent section.sec_listT2 .tableArea .tableBox table tbody tr td .textareaBox ::-webkit-scrollbar-thumb {
+  height: 15px;
+  border-radius: 5px;
+  background: #dedede;
+}
+
+.modalWrap.md_inquiryDetail .modalContainer .modalContent section.sec_listT1 .tableArea .tableBox table tbody tr td .sendBox, .modalWrap.md_inquiryDetail .modalContainer .modalContent section.sec_listT2 .tableArea .tableBox table tbody tr td .sendBox {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: initial;
+  -webkit-box-direction: initial;
+      -ms-flex-direction: initial;
+          flex-direction: initial;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 10px;
+  margin: 10px 0 0 0;
+}
+
+.modalWrap.md_inquiryDetail .modalContainer .modalContent section.sec_listT1 .tableArea .tableBox table tbody tr td .sendBox input, .modalWrap.md_inquiryDetail .modalContainer .modalContent section.sec_listT2 .tableArea .tableBox table tbody tr td .sendBox input {
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+}
+
+.modalWrap.md_inquiryDetail .modalContainer .modalContent section.sec_listT1 .tableArea .tableBox table tbody tr td .sendBox button, .modalWrap.md_inquiryDetail .modalContainer .modalContent section.sec_listT2 .tableArea .tableBox table tbody tr td .sendBox button {
+  font-family: "Pretendard_Regular";
+  font-weight: normal;
+  position: relative;
+  text-align: center;
+  border-radius: 4px;
+  cursor: pointer;
+  color: #ffffff;
+  border: 1px solid #0c1439;
+  background-color: #0c1439;
+  min-width: 90px;
+  height: 34px;
+}
+
+.modalWrap.md_inquiryDetail .modalContainer .modalContent section.sec_listT1 .tableArea .tableBox table tbody tr td .sendBox button:disabled, .modalWrap.md_inquiryDetail .modalContainer .modalContent section.sec_listT2 .tableArea .tableBox table tbody tr td .sendBox button:disabled {
+  color: #b3b3b3;
+  border: 1px solid #eceff1;
+  background-color: #eceff1;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  cursor: default;
+}
+
+.modalWrap.md_inquiryDetail .modalContainer .modalContent section.sec_listT1 .tableArea .tableBox table tbody tr td .sendBox button:disabled, .modalWrap.md_inquiryDetail .modalContainer .modalContent section.sec_listT2 .tableArea .tableBox table tbody tr td .sendBox button:disabled {
+  color: #b3b3b3;
+  border: 1px solid #eceff1;
+  background-color: #eceff1;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.modalWrap.md_inquiryDetail .modalContainer .modalContent section.sec_listT1 {
+  position: relative;
+  width: 100%;
+}
+
+.modalWrap.md_inquiryDetail .modalContainer .modalContent section.sec_listT1 .tableArea .tableBox table tbody tr:nth-child(7) td, .modalWrap.md_inquiryDetail .modalContainer .modalContent section.sec_listT1 .tableArea .tableBox table tbody tr:nth-child(8) td, .modalWrap.md_inquiryDetail .modalContainer .modalContent section.sec_listT1 .tableArea .tableBox table tbody tr:nth-child(11) td, .modalWrap.md_inquiryDetail .modalContainer .modalContent section.sec_listT1 .tableArea .tableBox table tbody tr:nth-child(12) td {
+  text-align: right;
+}
+
+.modalWrap.md_inquiryDetail .modalContainer .modalContent section.sec_listT1 .tableArea .tableBox table tbody tr:last-child {
+  border-bottom: none;
+}
+
+.modalWrap.md_inquiryDetail .modalContainer .modalContent section.sec_listT2 {
+  position: relative;
+  width: 100%;
+}
+
+.modalWrap.md_inquiryDetail .modalContainer .modalContent section.sec_listT2 .tableArea .tableBox table tbody tr:last-child {
+  border-bottom: none;
+}
+
+/*
+File : report.scss
+Date : 2024.08.01
+menu : 리포트
+*/
+.ic_reportPerformance .title > p:first-child {
+  font-family: "Pretendard_SemiBold";
+  font-size: 22px;
+  color: #333333;
+}
+
+.ic_reportPerformance .title > p:nth-child(n+2) {
+  font-family: "Pretendard_Medium";
+  font-weight: normal;
+  margin-top: 5px;
+  font-size: 13px;
+  color: #777777;
+}
+
+.ic_reportPerformance .title .location {
+  position: absolute;
+  top: 30px;
+  right: 30px;
+}
+
+.ic_reportPerformance .title .location span {
+  display: inline-block;
+  font-size: 18px;
+}
+
+.ic_reportPerformance .title .location span:nth-child(n+2):before {
+  content: ">";
+  position: relative;
+  display: inline-block;
+  margin: 0 3px;
+}
+
+.ic_reportPerformance .title .location span:last-child {
+  color: #4664e6;
+}
+
+.ic_reportPerformance .content {
+  margin: 20px 0 0 0;
+}
+
+.ic_reportPerformance .content section.sec_list {
+  position: relative;
+  padding: 30px 30px 30px 30px;
+  border-radius: 5px;
+  -webkit-box-shadow: 0 3px 10px 0 rgba(0, 0, 0, 0.08);
+          box-shadow: 0 3px 10px 0 rgba(0, 0, 0, 0.08);
+  background-color: #fff;
+  overflow: hidden;
+}
+
+.ic_reportPerformance .content section.sec_list .optionBox > div {
+  display: block;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-orient: initial;
+  -webkit-box-direction: initial;
+      -ms-flex-direction: initial;
+          flex-direction: initial;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 15px;
+}
+
+.ic_reportPerformance .content section.sec_list .optionBox > div:nth-child(n+2) {
+  margin: 15px 0 0 0;
+}
+
+.ic_reportPerformance .content section.sec_list .optionBox .radioBox {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: initial;
+  -webkit-box-direction: initial;
+      -ms-flex-direction: initial;
+          flex-direction: initial;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 14px;
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  border-radius: 5px;
+  height: 34px;
+  padding: 0 20px 0 0;
+  border: 1px solid #e6e6e6;
+  background-color: #ffffff;
+}
+
+.ic_reportPerformance .content section.sec_list .optionBox .radioBox > p {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-orient: initial;
+  -webkit-box-direction: initial;
+      -ms-flex-direction: initial;
+          flex-direction: initial;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 10px;
+  height: 100%;
+  padding: 0 15px;
+  font-size: 14px;
+  color: #ffffff;
+  border-radius: 5px 0 0 5px;
+  background-color: #4664e6;
+}
+
+.ic_reportPerformance .content section.sec_list .optionBox .radioBox input + label {
+  margin: 0;
+}
+
+.ic_reportPerformance .content section.sec_list .optionBox .calendarBox {
+  position: relative;
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  gap: 10px;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  cursor: pointer;
+}
+
+.ic_reportPerformance .content section.sec_list .optionBox .calendarBox p {
+  display: inline-block;
+  padding-right: 12px;
+  font-size: 14px;
+}
+
+.ic_reportPerformance .content section.sec_list .optionBox .calendarBox .calendar {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: initial;
+  -webkit-box-direction: initial;
+      -ms-flex-direction: initial;
+          flex-direction: initial;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 0;
+  position: relative;
+  min-width: 240px;
+  padding: 0;
+  border-radius: 5px;
+  vertical-align: middle;
+  border: 1px solid #e6e6e6;
+  background-color: #ffffff;
+  width: 230px;
+}
+
+.ic_reportPerformance .content section.sec_list .optionBox .calendarBox .calendar:before {
+  content: "";
+  position: relative;
+  display: inline-block;
+  background-position: 0px 0px;
+  font-size: 0;
+  font-style: normal;
+  vertical-align: middle;
+  background: url("../image/component/ico_calendar.png") no-repeat center;
+  width: 16px;
+  height: 15px;
+  position: relative;
+  display: inline-block;
+  top: 0px;
+  left: 0px;
+  width: 40px;
+  min-width: 40px;
+  height: 34px;
+  border-radius: 3px 0px 0px 3px;
+  background-color: #4664e6;
+  z-index: 1;
+  cursor: pointer;
+}
+
+.ic_reportPerformance .content section.sec_list .optionBox .calendarBox .calendar input {
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  font-family: "Pretendard_Regular";
+  font-weight: normal;
+  position: relative;
+  width: calc(100% - 40px);
+  height: 34px;
+  margin: auto 0;
+  padding: 0 18px;
+  text-align: left;
+  font-size: 13px;
+  color: #333333;
+  border: none;
+  background-color: transparent;
+  z-index: 2;
+  cursor: pointer;
+}
+
+.ic_reportPerformance .content section.sec_list .optionBox .calendarBox .calendar input {
+  height: 34px;
+}
+
+.ic_reportPerformance .content section.sec_list .optionBox .calendarBox button {
+  font-family: "Pretendard_Regular";
+  font-weight: normal;
+  position: relative;
+  text-align: center;
+  border-radius: 4px;
+  cursor: pointer;
+  color: #ffffff;
+  border: 1px solid #4664e6;
+  background-color: #4664e6;
+  width: 84px;
+  height: 34px;
+  font-size: 14px;
+}
+
+.ic_reportPerformance .content section.sec_list .optionBox .calendarBox button:disabled {
+  color: #b3b3b3;
+  border: 1px solid #eceff1;
+  background-color: #eceff1;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  cursor: default;
+}
+
+.ic_reportPerformance .content section.sec_list .optionBox .calendarBox button:disabled {
+  color: #b3b3b3;
+  border: 1px solid #eceff1;
+  background-color: #eceff1;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.ic_reportPerformance .content section.sec_list .optionBox .searchBox {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  vertical-align: middle;
+  height: 34px;
+}
+
+.ic_reportPerformance .content section.sec_list .optionBox .searchBox input,
+.ic_reportPerformance .content section.sec_list .optionBox .searchBox button {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.ic_reportPerformance .content section.sec_list .optionBox .searchBox input[type="text"] {
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  width: 200px;
+  height: 100%;
+  padding: 0 5px 0px 10px;
+  text-align: left;
+  font-size: 13px;
+  border-radius: 4px 0 0 4px;
+  border: 1px solid #e6e6e6;
+  background-color: #ffffff;
+}
+
+.ic_reportPerformance .content section.sec_list .optionBox .searchBox button {
+  content: "";
+  position: relative;
+  display: inline-block;
+  background-position: 0px 0px;
+  font-size: 0;
+  font-style: normal;
+  vertical-align: middle;
+  background: url("../image/component/ico_search.svg") no-repeat center;
+  width: 15px;
+  height: 15px;
+  min-width: 32px;
+  height: 100%;
+  font-size: 0;
+  vertical-align: middle;
+  border-radius: 0 5px 5px 0;
+  background-color: #4664e6;
+}
+
+.ic_reportPerformance .content section.sec_list .tableHeader {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: initial;
+  -webkit-box-direction: initial;
+      -ms-flex-direction: initial;
+          flex-direction: initial;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 10px;
+  margin-top: 40px;
+}
+
+.ic_reportPerformance .content section.sec_list .tableHeader .tableTitle {
+  font-family: "Pretendard_SemiBold";
+  font-size: 18px;
+  color: #333333;
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+}
+
+.ic_reportPerformance .content section.sec_list .tableHeader .tableTitle span:before {
+  position: relative;
+  display: inline-block;
+  content: ">";
+  margin: 0 4px;
+}
+
+.ic_reportPerformance .content section.sec_list .tableHeader .searchBox {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  vertical-align: middle;
+  height: 34px;
+}
+
+.ic_reportPerformance .content section.sec_list .tableHeader .searchBox input,
+.ic_reportPerformance .content section.sec_list .tableHeader .searchBox button {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.ic_reportPerformance .content section.sec_list .tableHeader .searchBox input[type="text"] {
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  width: 200px;
+  height: 100%;
+  padding: 0 5px 0px 10px;
+  text-align: left;
+  font-size: 13px;
+  border-radius: 4px 0 0 4px;
+  border: 1px solid #e6e6e6;
+  background-color: #ffffff;
+}
+
+.ic_reportPerformance .content section.sec_list .tableHeader .searchBox button {
+  content: "";
+  position: relative;
+  display: inline-block;
+  background-position: 0px 0px;
+  font-size: 0;
+  font-style: normal;
+  vertical-align: middle;
+  background: url("../image/component/ico_search.svg") no-repeat center;
+  width: 15px;
+  height: 15px;
+  min-width: 32px;
+  height: 100%;
+  font-size: 0;
+  vertical-align: middle;
+  border-radius: 0 5px 5px 0;
+  background-color: #4664e6;
+}
+
+.ic_reportPerformance .content section.sec_list .tableHeader .selectBox.category {
+  min-width: 240px;
+}
+
+.ic_reportPerformance .content section.sec_list .tableArea {
+  margin-top: 20px;
+}
+
+.ic_reportPerformance .content section.sec_list .tableArea.tableAreaDataNone {
+  height: auto;
+  border-bottom: none;
+}
+
+.ic_reportPerformance .content section.sec_list .tableArea.tableAreaDataNone .tableDataNone {
+  display: block;
+  height: 540px;
+  min-height: 300px;
+}
+
+.ic_reportPerformance .content section.sec_list .tableArea.tableAreaDataNone .tableDataNone > div {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  height: 100%;
+  min-height: 300px;
+}
+
+.ic_reportPerformance .content section.sec_list .tableArea.tableAreaDataNone .tableDataNone > div p {
+  display: block;
+  font-size: 14px;
+  text-align: center;
+  line-height: 1.5;
+}
+
+.ic_reportPerformance .content section.sec_list .tableArea.tableAreaDataNone .tableDataNone + .paging {
+  display: none;
+}
+
+.ic_reportPerformance .content section.sec_list .tableArea.tableAreaDataNone .tableBox {
+  display: none;
+}
+
+.ic_reportPerformance .content section.sec_list .tableArea .tableDataNone {
+  display: none;
+}
+
+.ic_reportPerformance .content section.sec_list .tableArea .tableDataNone p:before {
+  content: "";
+  position: relative;
+  display: inline-block;
+  background-position: 0px 0px;
+  font-size: 0;
+  font-style: normal;
+  vertical-align: middle;
+  background: url("../image/component/ico_error.svg") no-repeat center;
+  width: 49px;
+  height: 44px;
+  display: block;
+  margin: 0 auto 10px;
+}
+
+.ic_reportPerformance .content section.sec_list .tableArea .tableBox {
+  overflow: overlay;
+  background-color: transparent;
+  max-height: 600px;
+}
+
+.ic_reportPerformance .content section.sec_list .tableArea .tableBox::-webkit-scrollbar {
+  width: 10px;
+  height: 8px;
+  background: #f4f4f4;
+}
+
+.ic_reportPerformance .content section.sec_list .tableArea .tableBox::-webkit-scrollbar-thumb {
+  height: 8px;
+  border-radius: 5px;
+  background: #dedede;
+}
+
+.ic_reportPerformance .content section.sec_list .tableArea .tableBox table {
+  width: auto;
+  min-width: 100%;
+  background: transparent;
+}
+
+.ic_reportPerformance .content section.sec_list .tableArea .tableBox table .dimCircle:before {
+  background-size: 30px 30px;
+}
+
+.ic_reportPerformance .content section.sec_list .tableArea .tableBox table thead tr td,
+.ic_reportPerformance .content section.sec_list .tableArea .tableBox table thead tr th,
+.ic_reportPerformance .content section.sec_list .tableArea .tableBox table tbody tr td,
+.ic_reportPerformance .content section.sec_list .tableArea .tableBox table tbody tr th,
+.ic_reportPerformance .content section.sec_list .tableArea .tableBox table tfoot tr td,
+.ic_reportPerformance .content section.sec_list .tableArea .tableBox table tfoot tr th {
+  font-family: "Pretendard_Medium";
+  font-weight: normal;
+  padding: 10px 6px;
+  vertical-align: middle;
+  text-align: center;
+  line-height: 20px;
+  font-size: 16px;
+  font-weight: normal;
+  color: #000000;
+}
+
+.ic_reportPerformance .content section.sec_list .tableArea .tableBox table thead {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+.ic_reportPerformance .content section.sec_list .tableArea .tableBox table thead th.sort:after, .ic_reportPerformance .content section.sec_list .tableArea .tableBox table thead th.sortUp:after, .ic_reportPerformance .content section.sec_list .tableArea .tableBox table thead th.sortDown:after {
+  content: "";
+  position: relative;
+  display: inline-block;
+  width: 15px;
+  height: 13px;
+  top: -2px;
+  margin-left: 5px;
+  vertical-align: middle;
+}
+
+.ic_reportPerformance .content section.sec_list .tableArea .tableBox table thead th.sort:after {
+  background: url("../image/component/ico_sort.svg") no-repeat center;
+  width: 15px;
+  height: 13px;
+  background-size: 100%;
+}
+
+.ic_reportPerformance .content section.sec_list .tableArea .tableBox table thead th.sortUp:after {
+  background: url("../image/component/ico_sortUp.svg") no-repeat center;
+  width: 15px;
+  height: 13px;
+  background-size: 100%;
+}
+
+.ic_reportPerformance .content section.sec_list .tableArea .tableBox table thead th.sortDown:after {
+  background: url("../image/component/ico_sortDown.svg") no-repeat center;
+  width: 15px;
+  height: 13px;
+  background-size: 100%;
+}
+
+.ic_reportPerformance .content section.sec_list .tableArea .tableBox table thead:before {
+  content: "";
+  position: absolute;
+  display: table-header-group;
+  width: 100%;
+  height: -webkit-fill-available;
+  border-top: 1px solid #e0e0e0;
+  border-bottom: 1px solid #e0e0e0;
+  background-color: #e0e0e0;
+  z-index: -1;
+}
+
+.ic_reportPerformance .content section.sec_list .tableArea .tableBox table thead tr th {
+  padding: 16px 6px;
+  border-bottom: 1px solid #e0e0e0;
+  background: #f4f4f4;
+}
+
+.ic_reportPerformance .content section.sec_list .tableArea .tableBox table thead tr:nth-child(n+2) th {
+  background-color: #f1f3ff;
+}
+
+.ic_reportPerformance .content section.sec_list .tableArea .tableBox table tbody tr {
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.ic_reportPerformance .content section.sec_list .tableArea .tableBox table tbody tr th,
+.ic_reportPerformance .content section.sec_list .tableArea .tableBox table tbody tr td {
+  padding: 12px 6px;
+  font-size: 16px;
+}
+
+.ic_reportPerformance .content section.sec_list .tableArea .tableBox table tfoot {
+  position: -webkit-sticky;
+  position: sticky;
+  bottom: 0;
+  z-index: 1;
+}
+
+.ic_reportPerformance .content section.sec_list .tableArea .tableBox table tfoot th.sort:after, .ic_reportPerformance .content section.sec_list .tableArea .tableBox table tfoot th.sortUp:after, .ic_reportPerformance .content section.sec_list .tableArea .tableBox table tfoot th.sortDown:after {
+  content: "";
+  position: relative;
+  display: inline-block;
+  width: 15px;
+  height: 13px;
+  top: -2px;
+  margin-left: 5px;
+  vertical-align: middle;
+}
+
+.ic_reportPerformance .content section.sec_list .tableArea .tableBox table tfoot th.sort:after {
+  background: url("../image/component/ico_sort.svg") no-repeat center;
+  width: 15px;
+  height: 13px;
+  background-size: 100%;
+}
+
+.ic_reportPerformance .content section.sec_list .tableArea .tableBox table tfoot th.sortUp:after {
+  background: url("../image/component/ico_sortUp.svg") no-repeat center;
+  width: 15px;
+  height: 13px;
+  background-size: 100%;
+}
+
+.ic_reportPerformance .content section.sec_list .tableArea .tableBox table tfoot th.sortDown:after {
+  background: url("../image/component/ico_sortDown.svg") no-repeat center;
+  width: 15px;
+  height: 13px;
+  background-size: 100%;
+}
+
+.ic_reportPerformance .content section.sec_list .tableArea .tableBox table tfoot:before {
+  content: "";
+  position: absolute;
+  display: table-footer-group;
+  width: 100%;
+  height: -webkit-fill-available;
+  border-top: 1px solid #e0e0e0;
+  border-bottom: 1px solid #e0e0e0;
+  background-color: #e0e0e0;
+  z-index: -1;
+}
+
+.ic_reportPerformance .content section.sec_list .tableArea .tableBox table tfoot tr {
+  border-top: 1px solid #e0e0e0;
+  border-bottom: none;
+}
+
+.ic_reportPerformance .content section.sec_list .tableArea .tableBox table tfoot tr th {
+  font-family: "Pretendard_Regular";
+  font-weight: normal;
+  font-size: 14px;
+  background: #f4f4f4;
+}
+
+.ic_reportPerformance .content section.sec_list .tableArea .tableBox table thead tr th {
+  min-width: 140px;
+}
+
+.ic_reportPerformance .content section.sec_list .tableArea .tableBox table tbody tr td.sat {
+  color: #4664e6;
+}
+
+.ic_reportPerformance .content section.sec_list .tableArea .tableBox table tbody tr td.sun {
+  color: #ec3f3f;
+}
+
+.ic_reportPerformance .content section.sec_list .tableArea .tableBox table tbody tr td .buttonBox {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: initial;
+  -webkit-box-direction: initial;
+      -ms-flex-direction: initial;
+          flex-direction: initial;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 10px;
+}
+
+.ic_reportPerformance .content section.sec_list .tableArea .tableBox table tbody tr td .buttonBox button {
+  font-family: "Pretendard_Regular";
+  font-weight: normal;
+  position: relative;
+  text-align: center;
+  border-radius: 4px;
+  cursor: pointer;
+  min-width: 60px;
+  height: 24px;
+  font-size: 13px;
+}
+
+.ic_reportPerformance .content section.sec_list .tableArea .tableBox table tbody tr td .buttonBox button:disabled {
+  color: #b3b3b3;
+  border: 1px solid #eceff1;
+  background-color: #eceff1;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  cursor: default;
+}
+
+.ic_reportPerformance .content section.sec_list .tableArea .tableBox table tbody tr td .buttonBox button.campaign, .ic_reportPerformance .content section.sec_list .tableArea .tableBox table tbody tr td .buttonBox button.site {
+  color: #000000;
+  border: 1px solid #d8dcec;
+  background-color: #d8dcec;
+}
+
+.ic_reportPerformance .content section.sec_list .tableArea .tableBox table tbody tr td .buttonBox button.detail {
+  color: #ffffff;
+  border: 1px solid #0c1439;
+  background-color: #0c1439;
+}
+
+.ic_reportPerformance .content section.sec_list .tableArea .tableBox table tbody tr td .buttonBox button.detail:disabled {
+  color: #b3b3b3;
+  border: 1px solid #eceff1;
+  background-color: #eceff1;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.ic_reportPerformance .content section.sec_list .tableArea .tableBox.selectDetail table thead tr:nth-child(2) th:nth-child(1) {
+  background-color: #dee5ff;
+}
+
+.ic_reportPerformance .content section.sec_list .tableArea .tableBox.selectDetail table thead tr:nth-child(2) th:nth-child(n+6) {
+  background-color: #e6e6e6;
+}
+
+/*
+File : campaign.scss
+Date : 2024.08.01
+menu : 캠페인관리
+*/
+.ic_campaignCategory .title > p:first-child {
+  font-family: "Pretendard_SemiBold";
+  font-size: 22px;
+  color: #333333;
+}
+
+.ic_campaignCategory .title > p:nth-child(n+2) {
+  font-family: "Pretendard_Medium";
+  font-weight: normal;
+  margin-top: 5px;
+  font-size: 13px;
+  color: #777777;
+}
+
+.ic_campaignCategory .title .location {
+  position: absolute;
+  top: 30px;
+  right: 30px;
+}
+
+.ic_campaignCategory .title .location span {
+  display: inline-block;
+  font-size: 18px;
+}
+
+.ic_campaignCategory .title .location span:nth-child(n+2):before {
+  content: ">";
+  position: relative;
+  display: inline-block;
+  margin: 0 3px;
+}
+
+.ic_campaignCategory .title .location span:last-child {
+  color: #4664e6;
+}
+
+.ic_campaignCategory .content {
+  margin: 20px 0 0 0;
+}
+
+.ic_campaignCategory .content section.sec_list .tab ul {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-orient: initial;
+  -webkit-box-direction: initial;
+      -ms-flex-direction: initial;
+          flex-direction: initial;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 0;
+  border-radius: 5px;
+  background-color: #c8c8c8;
+}
+
+.ic_campaignCategory .content section.sec_list .tab ul li {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: initial;
+  -webkit-box-direction: initial;
+      -ms-flex-direction: initial;
+          flex-direction: initial;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 10px;
+  min-width: 160px;
+  height: 46px;
+  padding: 6px 20px;
+  text-align: center;
+  color: #ffffff;
+  vertical-align: middle;
+  cursor: pointer;
+}
+
+.ic_campaignCategory .content section.sec_list .tab ul li.on {
+  color: #ffffff;
+  border-radius: 5px;
+  background-color: #0c1439;
+  -webkit-box-shadow: 3px 0 6px 0 rgba(0, 0, 0, 0.1);
+          box-shadow: 3px 0 6px 0 rgba(0, 0, 0, 0.1);
+}
+
+.ic_campaignCategory .content section.sec_list .tabView {
+  position: relative;
+  padding: 30px 30px 30px 30px;
+  border-radius: 5px;
+  -webkit-box-shadow: 0 3px 10px 0 rgba(0, 0, 0, 0.08);
+          box-shadow: 0 3px 10px 0 rgba(0, 0, 0, 0.08);
+  background-color: #fff;
+  overflow: hidden;
+  margin: 20px 0 0 0;
+}
+
+.ic_campaignCategory .content section.sec_list .tabView .tabViewList {
+  display: none;
+}
+
+.ic_campaignCategory .content section.sec_list .tabView .tabViewList.show {
+  display: block;
+}
+
+.ic_campaignCategory .content section.sec_list .tableHeader {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: initial;
+  -webkit-box-direction: initial;
+      -ms-flex-direction: initial;
+          flex-direction: initial;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 10px;
+}
+
+.ic_campaignCategory .content section.sec_list .tableHeader .tableTitle {
+  font-family: "Pretendard_SemiBold";
+  font-size: 18px;
+  color: #333333;
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+}
+
+.ic_campaignCategory .content section.sec_list .tableHeader .searchBox {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  vertical-align: middle;
+  height: 34px;
+}
+
+.ic_campaignCategory .content section.sec_list .tableHeader .searchBox input,
+.ic_campaignCategory .content section.sec_list .tableHeader .searchBox button {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.ic_campaignCategory .content section.sec_list .tableHeader .searchBox input[type="text"] {
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  width: 200px;
+  height: 100%;
+  padding: 0 5px 0px 10px;
+  text-align: left;
+  font-size: 13px;
+  border-radius: 4px 0 0 4px;
+  border: 1px solid #e6e6e6;
+  background-color: #ffffff;
+}
+
+.ic_campaignCategory .content section.sec_list .tableHeader .searchBox button {
+  content: "";
+  position: relative;
+  display: inline-block;
+  background-position: 0px 0px;
+  font-size: 0;
+  font-style: normal;
+  vertical-align: middle;
+  background: url("../image/component/ico_search.svg") no-repeat center;
+  width: 15px;
+  height: 15px;
+  min-width: 32px;
+  height: 100%;
+  font-size: 0;
+  vertical-align: middle;
+  border-radius: 0 5px 5px 0;
+  background-color: #4664e6;
+}
+
+.ic_campaignCategory .content section.sec_list .tableHeader .selectBox select.category {
+  min-width: 240px;
+}
+
+.ic_campaignCategory .content section.sec_list .tableHeader .buttonBox button {
+  font-family: "Pretendard_Regular";
+  font-weight: normal;
+  width: auto;
+  min-width: 90px;
+  height: 36px;
+  padding: 0 15px;
+  font-size: 14px;
+  text-align: center;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.ic_campaignCategory .content section.sec_list .tableHeader .buttonBox button.change {
+  color: #ffffff;
+  border: 1px solid #4664e6;
+  background-color: #4664e6;
+}
+
+.ic_campaignCategory .content section.sec_list .tableHeader .buttonBox button.change:disabled {
+  color: #b3b3b3;
+  border: 1px solid #eceff1;
+  background-color: #eceff1;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.ic_campaignCategory .content section.sec_list .tableHeader .buttonBox button.register {
+  color: #ffffff;
+  border: 1px solid #4664e6;
+  background-color: #4664e6;
+}
+
+.ic_campaignCategory .content section.sec_list .tableHeader .buttonBox button.register:disabled {
+  color: #b3b3b3;
+  border: 1px solid #eceff1;
+  background-color: #eceff1;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.ic_campaignCategory .content section.sec_list .tableHeader .buttonBox button.excelUpload {
+  font-family: "Pretendard_Regular";
+  font-weight: normal;
+  position: relative;
+  text-align: center;
+  border-radius: 4px;
+  cursor: pointer;
+  color: #ffffff;
+  border: 1px solid #0c1439;
+  background-color: #0c1439;
+  min-width: 70px;
+  width: auto;
+  height: 36px;
+  vertical-align: middle;
+}
+
+.ic_campaignCategory .content section.sec_list .tableHeader .buttonBox button.excelUpload:disabled {
+  color: #b3b3b3;
+  border: 1px solid #eceff1;
+  background-color: #eceff1;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  cursor: default;
+}
+
+.ic_campaignCategory .content section.sec_list .tableHeader .buttonBox button.excelUpload:disabled {
+  color: #b3b3b3;
+  border: 1px solid #eceff1;
+  background-color: #eceff1;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.ic_campaignCategory .content section.sec_list .tableHeader .buttonBox button.excelUpload:before {
+  content: "";
+  position: relative;
+  display: inline-block;
+  background-position: 0px 0px;
+  font-size: 0;
+  font-style: normal;
+  vertical-align: middle;
+  background: url("../image/component/ico_excel.svg") no-repeat center;
+  width: 12px;
+  height: 12px;
+  width: 12px;
+  height: 12px;
+  margin-right: 5px;
+  vertical-align: middle;
+}
+
+.ic_campaignCategory .content section.sec_list .tableHeader .buttonBox button.rankSave, .ic_campaignCategory .content section.sec_list .tableHeader .buttonBox button.save {
+  color: #ffffff;
+  border: 1px solid #0c1439;
+  background-color: #0c1439;
+  min-width: 140px;
+}
+
+.ic_campaignCategory .content section.sec_list .tableHeader .buttonBox button.rankSave:disabled, .ic_campaignCategory .content section.sec_list .tableHeader .buttonBox button.save:disabled {
+  color: #b3b3b3;
+  border: 1px solid #eceff1;
+  background-color: #eceff1;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.ic_campaignCategory .content section.sec_list .tableArea {
+  margin-top: 20px;
+}
+
+.ic_campaignCategory .content section.sec_list .tableArea.tableAreaDataNone {
+  height: auto;
+  border-bottom: none;
+}
+
+.ic_campaignCategory .content section.sec_list .tableArea.tableAreaDataNone .tableDataNone {
+  display: block;
+  height: 540px;
+  min-height: 300px;
+}
+
+.ic_campaignCategory .content section.sec_list .tableArea.tableAreaDataNone .tableDataNone > div {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  height: 100%;
+  min-height: 300px;
+}
+
+.ic_campaignCategory .content section.sec_list .tableArea.tableAreaDataNone .tableDataNone > div p {
+  display: block;
+  font-size: 14px;
+  text-align: center;
+  line-height: 1.5;
+}
+
+.ic_campaignCategory .content section.sec_list .tableArea.tableAreaDataNone .tableDataNone + .paging {
+  display: none;
+}
+
+.ic_campaignCategory .content section.sec_list .tableArea.tableAreaDataNone .tableBox {
+  display: none;
+}
+
+.ic_campaignCategory .content section.sec_list .tableArea .tableDataNone {
+  display: none;
+}
+
+.ic_campaignCategory .content section.sec_list .tableArea .tableDataNone p:before {
+  content: "";
+  position: relative;
+  display: inline-block;
+  background-position: 0px 0px;
+  font-size: 0;
+  font-style: normal;
+  vertical-align: middle;
+  background: url("../image/component/ico_error.svg") no-repeat center;
+  width: 49px;
+  height: 44px;
+  display: block;
+  margin: 0 auto 10px;
+}
+
+.ic_campaignCategory .content section.sec_list .tableArea .tableBox {
+  overflow: overlay;
+  background-color: transparent;
+  max-height: 600px;
+}
+
+.ic_campaignCategory .content section.sec_list .tableArea .tableBox::-webkit-scrollbar {
+  width: 10px;
+  height: 8px;
+  background: #f4f4f4;
+}
+
+.ic_campaignCategory .content section.sec_list .tableArea .tableBox::-webkit-scrollbar-thumb {
+  height: 8px;
+  border-radius: 5px;
+  background: #dedede;
+}
+
+.ic_campaignCategory .content section.sec_list .tableArea .tableBox table {
+  width: auto;
+  min-width: 100%;
+  background: transparent;
+}
+
+.ic_campaignCategory .content section.sec_list .tableArea .tableBox table .dimCircle:before {
+  background-size: 30px 30px;
+}
+
+.ic_campaignCategory .content section.sec_list .tableArea .tableBox table thead tr td,
+.ic_campaignCategory .content section.sec_list .tableArea .tableBox table thead tr th,
+.ic_campaignCategory .content section.sec_list .tableArea .tableBox table tbody tr td,
+.ic_campaignCategory .content section.sec_list .tableArea .tableBox table tbody tr th,
+.ic_campaignCategory .content section.sec_list .tableArea .tableBox table tfoot tr td,
+.ic_campaignCategory .content section.sec_list .tableArea .tableBox table tfoot tr th {
+  font-family: "Pretendard_Medium";
+  font-weight: normal;
+  padding: 10px 6px;
+  vertical-align: middle;
+  text-align: center;
+  line-height: 20px;
+  font-size: 16px;
+  font-weight: normal;
+  color: #000000;
+}
+
+.ic_campaignCategory .content section.sec_list .tableArea .tableBox table thead {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+.ic_campaignCategory .content section.sec_list .tableArea .tableBox table thead th.sort:after, .ic_campaignCategory .content section.sec_list .tableArea .tableBox table thead th.sortUp:after, .ic_campaignCategory .content section.sec_list .tableArea .tableBox table thead th.sortDown:after {
+  content: "";
+  position: relative;
+  display: inline-block;
+  width: 15px;
+  height: 13px;
+  top: -2px;
+  margin-left: 5px;
+  vertical-align: middle;
+}
+
+.ic_campaignCategory .content section.sec_list .tableArea .tableBox table thead th.sort:after {
+  background: url("../image/component/ico_sort.svg") no-repeat center;
+  width: 15px;
+  height: 13px;
+  background-size: 100%;
+}
+
+.ic_campaignCategory .content section.sec_list .tableArea .tableBox table thead th.sortUp:after {
+  background: url("../image/component/ico_sortUp.svg") no-repeat center;
+  width: 15px;
+  height: 13px;
+  background-size: 100%;
+}
+
+.ic_campaignCategory .content section.sec_list .tableArea .tableBox table thead th.sortDown:after {
+  background: url("../image/component/ico_sortDown.svg") no-repeat center;
+  width: 15px;
+  height: 13px;
+  background-size: 100%;
+}
+
+.ic_campaignCategory .content section.sec_list .tableArea .tableBox table thead:before {
+  content: "";
+  position: absolute;
+  display: table-header-group;
+  width: 100%;
+  height: -webkit-fill-available;
+  border-top: 1px solid #e0e0e0;
+  border-bottom: 1px solid #e0e0e0;
+  background-color: #e0e0e0;
+  z-index: -1;
+}
+
+.ic_campaignCategory .content section.sec_list .tableArea .tableBox table thead tr th {
+  padding: 16px 6px;
+  border-bottom: 1px solid #e0e0e0;
+  background: #f4f4f4;
+}
+
+.ic_campaignCategory .content section.sec_list .tableArea .tableBox table thead tr:nth-child(n+2) th {
+  background-color: #f1f3ff;
+}
+
+.ic_campaignCategory .content section.sec_list .tableArea .tableBox table tbody tr {
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.ic_campaignCategory .content section.sec_list .tableArea .tableBox table tbody tr th,
+.ic_campaignCategory .content section.sec_list .tableArea .tableBox table tbody tr td {
+  padding: 12px 6px;
+  font-size: 16px;
+}
+
+.ic_campaignCategory .content section.sec_list .tableArea .tableBox table tfoot {
+  position: -webkit-sticky;
+  position: sticky;
+  bottom: 0;
+  z-index: 1;
+}
+
+.ic_campaignCategory .content section.sec_list .tableArea .tableBox table tfoot th.sort:after, .ic_campaignCategory .content section.sec_list .tableArea .tableBox table tfoot th.sortUp:after, .ic_campaignCategory .content section.sec_list .tableArea .tableBox table tfoot th.sortDown:after {
+  content: "";
+  position: relative;
+  display: inline-block;
+  width: 15px;
+  height: 13px;
+  top: -2px;
+  margin-left: 5px;
+  vertical-align: middle;
+}
+
+.ic_campaignCategory .content section.sec_list .tableArea .tableBox table tfoot th.sort:after {
+  background: url("../image/component/ico_sort.svg") no-repeat center;
+  width: 15px;
+  height: 13px;
+  background-size: 100%;
+}
+
+.ic_campaignCategory .content section.sec_list .tableArea .tableBox table tfoot th.sortUp:after {
+  background: url("../image/component/ico_sortUp.svg") no-repeat center;
+  width: 15px;
+  height: 13px;
+  background-size: 100%;
+}
+
+.ic_campaignCategory .content section.sec_list .tableArea .tableBox table tfoot th.sortDown:after {
+  background: url("../image/component/ico_sortDown.svg") no-repeat center;
+  width: 15px;
+  height: 13px;
+  background-size: 100%;
+}
+
+.ic_campaignCategory .content section.sec_list .tableArea .tableBox table tfoot:before {
+  content: "";
+  position: absolute;
+  display: table-footer-group;
+  width: 100%;
+  height: -webkit-fill-available;
+  border-top: 1px solid #e0e0e0;
+  border-bottom: 1px solid #e0e0e0;
+  background-color: #e0e0e0;
+  z-index: -1;
+}
+
+.ic_campaignCategory .content section.sec_list .tableArea .tableBox table tfoot tr {
+  border-top: 1px solid #e0e0e0;
+  border-bottom: none;
+}
+
+.ic_campaignCategory .content section.sec_list .tableArea .tableBox table tfoot tr th {
+  font-family: "Pretendard_Regular";
+  font-weight: normal;
+  font-size: 14px;
+  background: #f4f4f4;
+}
+
+.ic_campaignCategory .content section.sec_list .tableArea .tableBox table thead tr th .iBox {
+  margin-left: 4px;
+  vertical-align: initial;
+}
+
+.ic_campaignCategory .content section.sec_list .tableArea .tableBox table thead tr th:nth-last-child(2) {
+  width: 200px;
+}
+
+.ic_campaignCategory .content section.sec_list .tableArea .tableBox table thead tr th:last-child {
+  width: 200px;
+}
+
+.ic_campaignCategory .content section.sec_list .tableArea .tableBox table thead tr th:last-child .iBox .iMarkHover {
+  top: 28px;
+  left: auto;
+  right: 0;
+  bottom: auto;
+}
+
+.ic_campaignCategory .content section.sec_list .tableArea .tableBox table tbody tr td .buttonBox {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: initial;
+  -webkit-box-direction: initial;
+      -ms-flex-direction: initial;
+          flex-direction: initial;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 20px;
+}
+
+.ic_campaignCategory .content section.sec_list .tableArea .tableBox table tbody tr td .buttonBox button {
+  content: "";
+  position: relative;
+  display: inline-block;
+  background-position: 0px 0px;
+  font-size: 0;
+  font-style: normal;
+  vertical-align: middle;
+}
+
+.ic_campaignCategory .content section.sec_list .tableArea .tableBox table tbody tr td .buttonBox button.modify, .ic_campaignCategory .content section.sec_list .tableArea .tableBox table tbody tr td .buttonBox button.categoryChange {
+  background: url("../image/component/ico_edit.svg") no-repeat center;
+  width: 22px;
+  height: 22px;
+}
+
+.ic_campaignCategory .content section.sec_list .tableArea .tableBox table tbody tr td .buttonBox button.delete {
+  background: url("../image/component/ico_delete.svg") no-repeat center;
+  width: 22px;
+  height: 22px;
+}
+
+.ic_campaignCategory .content section.sec_list .tableArea .tableBox table tbody tr td .buttonBox button.listChange {
+  content: "";
+  position: relative;
+  display: inline-block;
+  background-position: 0px 0px;
+  font-size: 0;
+  font-style: normal;
+  vertical-align: middle;
+  background: url("../image/component/ico_hamburger.svg") no-repeat center;
+  width: 22px;
+  height: 22px;
+}
+
+/*
+File : account.scss
+Date : 2024.08.01
+menu : 계정관리
+
+*/
+.ic_accountManager .title > p:first-child,
+.ic_accountCustomer .title > p:first-child {
+  font-family: "Pretendard_SemiBold";
+  font-size: 22px;
+  color: #333333;
+}
+
+.ic_accountManager .title > p:nth-child(n+2),
+.ic_accountCustomer .title > p:nth-child(n+2) {
+  font-family: "Pretendard_Medium";
+  font-weight: normal;
+  margin-top: 5px;
+  font-size: 13px;
+  color: #777777;
+}
+
+.ic_accountManager .title .location,
+.ic_accountCustomer .title .location {
+  position: absolute;
+  top: 30px;
+  right: 30px;
+}
+
+.ic_accountManager .title .location span,
+.ic_accountCustomer .title .location span {
+  display: inline-block;
+  font-size: 18px;
+}
+
+.ic_accountManager .title .location span:nth-child(n+2):before,
+.ic_accountCustomer .title .location span:nth-child(n+2):before {
+  content: ">";
+  position: relative;
+  display: inline-block;
+  margin: 0 3px;
+}
+
+.ic_accountManager .title .location span:last-child,
+.ic_accountCustomer .title .location span:last-child {
+  color: #4664e6;
+}
+
+.ic_accountManager .content,
+.ic_accountCustomer .content {
+  margin: 20px 0 0 0;
+}
+
+.ic_accountManager .content section.sec_list,
+.ic_accountCustomer .content section.sec_list {
+  position: relative;
+  padding: 30px 30px 30px 30px;
+  border-radius: 5px;
+  -webkit-box-shadow: 0 3px 10px 0 rgba(0, 0, 0, 0.08);
+          box-shadow: 0 3px 10px 0 rgba(0, 0, 0, 0.08);
+  background-color: #fff;
+  overflow: hidden;
+}
+
+.ic_accountManager .content section.sec_list .tableHeader,
+.ic_accountCustomer .content section.sec_list .tableHeader {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: initial;
+  -webkit-box-direction: initial;
+      -ms-flex-direction: initial;
+          flex-direction: initial;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 10px;
+}
+
+.ic_accountManager .content section.sec_list .tableHeader .searchBox,
+.ic_accountCustomer .content section.sec_list .tableHeader .searchBox {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  vertical-align: middle;
+  height: 34px;
+}
+
+.ic_accountManager .content section.sec_list .tableHeader .searchBox input,
+.ic_accountManager .content section.sec_list .tableHeader .searchBox button,
+.ic_accountCustomer .content section.sec_list .tableHeader .searchBox input,
+.ic_accountCustomer .content section.sec_list .tableHeader .searchBox button {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.ic_accountManager .content section.sec_list .tableHeader .searchBox input[type="text"],
+.ic_accountCustomer .content section.sec_list .tableHeader .searchBox input[type="text"] {
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  width: 200px;
+  height: 100%;
+  padding: 0 5px 0px 10px;
+  text-align: left;
+  font-size: 13px;
+  border-radius: 4px 0 0 4px;
+  border: 1px solid #e6e6e6;
+  background-color: #ffffff;
+}
+
+.ic_accountManager .content section.sec_list .tableHeader .searchBox button,
+.ic_accountCustomer .content section.sec_list .tableHeader .searchBox button {
+  content: "";
+  position: relative;
+  display: inline-block;
+  background-position: 0px 0px;
+  font-size: 0;
+  font-style: normal;
+  vertical-align: middle;
+  background: url("../image/component/ico_search.svg") no-repeat center;
+  width: 15px;
+  height: 15px;
+  min-width: 32px;
+  height: 100%;
+  font-size: 0;
+  vertical-align: middle;
+  border-radius: 0 5px 5px 0;
+  background-color: #4664e6;
+}
+
+.ic_accountManager .content section.sec_list .tableHeader button.register,
+.ic_accountCustomer .content section.sec_list .tableHeader button.register {
+  font-family: "Pretendard_Regular";
+  font-weight: normal;
+  width: auto;
+  min-width: 90px;
+  height: 36px;
+  padding: 0 15px;
+  font-size: 14px;
+  text-align: center;
+  border-radius: 4px;
+  cursor: pointer;
+  color: #ffffff;
+  border: 1px solid #0c1439;
+  background-color: #0c1439;
+}
+
+.ic_accountManager .content section.sec_list .tableHeader button.register:disabled,
+.ic_accountCustomer .content section.sec_list .tableHeader button.register:disabled {
+  color: #b3b3b3;
+  border: 1px solid #eceff1;
+  background-color: #eceff1;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.ic_accountManager .content section.sec_list .tableArea,
+.ic_accountCustomer .content section.sec_list .tableArea {
+  margin-top: 15px;
+}
+
+.ic_accountManager .content section.sec_list .tableArea.tableAreaDataNone,
+.ic_accountCustomer .content section.sec_list .tableArea.tableAreaDataNone {
+  height: auto;
+  border-bottom: none;
+}
+
+.ic_accountManager .content section.sec_list .tableArea.tableAreaDataNone .tableDataNone,
+.ic_accountCustomer .content section.sec_list .tableArea.tableAreaDataNone .tableDataNone {
+  display: block;
+  height: 540px;
+  min-height: 300px;
+}
+
+.ic_accountManager .content section.sec_list .tableArea.tableAreaDataNone .tableDataNone > div,
+.ic_accountCustomer .content section.sec_list .tableArea.tableAreaDataNone .tableDataNone > div {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  height: 100%;
+  min-height: 300px;
+}
+
+.ic_accountManager .content section.sec_list .tableArea.tableAreaDataNone .tableDataNone > div p,
+.ic_accountCustomer .content section.sec_list .tableArea.tableAreaDataNone .tableDataNone > div p {
+  display: block;
+  font-size: 14px;
+  text-align: center;
+  line-height: 1.5;
+}
+
+.ic_accountManager .content section.sec_list .tableArea.tableAreaDataNone .tableDataNone + .paging,
+.ic_accountCustomer .content section.sec_list .tableArea.tableAreaDataNone .tableDataNone + .paging {
+  display: none;
+}
+
+.ic_accountManager .content section.sec_list .tableArea.tableAreaDataNone .tableBox,
+.ic_accountCustomer .content section.sec_list .tableArea.tableAreaDataNone .tableBox {
+  display: none;
+}
+
+.ic_accountManager .content section.sec_list .tableArea .tableDataNone,
+.ic_accountCustomer .content section.sec_list .tableArea .tableDataNone {
+  display: none;
+}
+
+.ic_accountManager .content section.sec_list .tableArea .tableDataNone p:before,
+.ic_accountCustomer .content section.sec_list .tableArea .tableDataNone p:before {
+  content: "";
+  position: relative;
+  display: inline-block;
+  background-position: 0px 0px;
+  font-size: 0;
+  font-style: normal;
+  vertical-align: middle;
+  background: url("../image/component/ico_error.svg") no-repeat center;
+  width: 49px;
+  height: 44px;
+  display: block;
+  margin: 0 auto 10px;
+}
+
+.ic_accountManager .content section.sec_list .tableArea .tableBox,
+.ic_accountCustomer .content section.sec_list .tableArea .tableBox {
+  overflow: overlay;
+  background-color: transparent;
+  max-height: 600px;
+}
+
+.ic_accountManager .content section.sec_list .tableArea .tableBox::-webkit-scrollbar,
+.ic_accountCustomer .content section.sec_list .tableArea .tableBox::-webkit-scrollbar {
+  width: 10px;
+  height: 8px;
+  background: #f4f4f4;
+}
+
+.ic_accountManager .content section.sec_list .tableArea .tableBox::-webkit-scrollbar-thumb,
+.ic_accountCustomer .content section.sec_list .tableArea .tableBox::-webkit-scrollbar-thumb {
+  height: 8px;
+  border-radius: 5px;
+  background: #dedede;
+}
+
+.ic_accountManager .content section.sec_list .tableArea .tableBox table,
+.ic_accountCustomer .content section.sec_list .tableArea .tableBox table {
+  width: auto;
+  min-width: 100%;
+  background: transparent;
+}
+
+.ic_accountManager .content section.sec_list .tableArea .tableBox table .dimCircle:before,
+.ic_accountCustomer .content section.sec_list .tableArea .tableBox table .dimCircle:before {
+  background-size: 30px 30px;
+}
+
+.ic_accountManager .content section.sec_list .tableArea .tableBox table thead tr td,
+.ic_accountManager .content section.sec_list .tableArea .tableBox table thead tr th,
+.ic_accountManager .content section.sec_list .tableArea .tableBox table tbody tr td,
+.ic_accountManager .content section.sec_list .tableArea .tableBox table tbody tr th,
+.ic_accountManager .content section.sec_list .tableArea .tableBox table tfoot tr td,
+.ic_accountManager .content section.sec_list .tableArea .tableBox table tfoot tr th,
+.ic_accountCustomer .content section.sec_list .tableArea .tableBox table thead tr td,
+.ic_accountCustomer .content section.sec_list .tableArea .tableBox table thead tr th,
+.ic_accountCustomer .content section.sec_list .tableArea .tableBox table tbody tr td,
+.ic_accountCustomer .content section.sec_list .tableArea .tableBox table tbody tr th,
+.ic_accountCustomer .content section.sec_list .tableArea .tableBox table tfoot tr td,
+.ic_accountCustomer .content section.sec_list .tableArea .tableBox table tfoot tr th {
+  font-family: "Pretendard_Medium";
+  font-weight: normal;
+  padding: 10px 6px;
+  vertical-align: middle;
+  text-align: center;
+  line-height: 20px;
+  font-size: 16px;
+  font-weight: normal;
+  color: #000000;
+}
+
+.ic_accountManager .content section.sec_list .tableArea .tableBox table thead,
+.ic_accountCustomer .content section.sec_list .tableArea .tableBox table thead {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+.ic_accountManager .content section.sec_list .tableArea .tableBox table thead th.sort:after, .ic_accountManager .content section.sec_list .tableArea .tableBox table thead th.sortUp:after, .ic_accountManager .content section.sec_list .tableArea .tableBox table thead th.sortDown:after,
+.ic_accountCustomer .content section.sec_list .tableArea .tableBox table thead th.sort:after,
+.ic_accountCustomer .content section.sec_list .tableArea .tableBox table thead th.sortUp:after,
+.ic_accountCustomer .content section.sec_list .tableArea .tableBox table thead th.sortDown:after {
+  content: "";
+  position: relative;
+  display: inline-block;
+  width: 15px;
+  height: 13px;
+  top: -2px;
+  margin-left: 5px;
+  vertical-align: middle;
+}
+
+.ic_accountManager .content section.sec_list .tableArea .tableBox table thead th.sort:after,
+.ic_accountCustomer .content section.sec_list .tableArea .tableBox table thead th.sort:after {
+  background: url("../image/component/ico_sort.svg") no-repeat center;
+  width: 15px;
+  height: 13px;
+  background-size: 100%;
+}
+
+.ic_accountManager .content section.sec_list .tableArea .tableBox table thead th.sortUp:after,
+.ic_accountCustomer .content section.sec_list .tableArea .tableBox table thead th.sortUp:after {
+  background: url("../image/component/ico_sortUp.svg") no-repeat center;
+  width: 15px;
+  height: 13px;
+  background-size: 100%;
+}
+
+.ic_accountManager .content section.sec_list .tableArea .tableBox table thead th.sortDown:after,
+.ic_accountCustomer .content section.sec_list .tableArea .tableBox table thead th.sortDown:after {
+  background: url("../image/component/ico_sortDown.svg") no-repeat center;
+  width: 15px;
+  height: 13px;
+  background-size: 100%;
+}
+
+.ic_accountManager .content section.sec_list .tableArea .tableBox table thead:before,
+.ic_accountCustomer .content section.sec_list .tableArea .tableBox table thead:before {
+  content: "";
+  position: absolute;
+  display: table-header-group;
+  width: 100%;
+  height: -webkit-fill-available;
+  border-top: 1px solid #e0e0e0;
+  border-bottom: 1px solid #e0e0e0;
+  background-color: #e0e0e0;
+  z-index: -1;
+}
+
+.ic_accountManager .content section.sec_list .tableArea .tableBox table thead tr th,
+.ic_accountCustomer .content section.sec_list .tableArea .tableBox table thead tr th {
+  padding: 16px 6px;
+  border-bottom: 1px solid #e0e0e0;
+  background: #f4f4f4;
+}
+
+.ic_accountManager .content section.sec_list .tableArea .tableBox table thead tr:nth-child(n+2) th,
+.ic_accountCustomer .content section.sec_list .tableArea .tableBox table thead tr:nth-child(n+2) th {
+  background-color: #f1f3ff;
+}
+
+.ic_accountManager .content section.sec_list .tableArea .tableBox table tbody tr,
+.ic_accountCustomer .content section.sec_list .tableArea .tableBox table tbody tr {
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.ic_accountManager .content section.sec_list .tableArea .tableBox table tbody tr th,
+.ic_accountManager .content section.sec_list .tableArea .tableBox table tbody tr td,
+.ic_accountCustomer .content section.sec_list .tableArea .tableBox table tbody tr th,
+.ic_accountCustomer .content section.sec_list .tableArea .tableBox table tbody tr td {
+  padding: 12px 6px;
+  font-size: 16px;
+}
+
+.ic_accountManager .content section.sec_list .tableArea .tableBox table tfoot,
+.ic_accountCustomer .content section.sec_list .tableArea .tableBox table tfoot {
+  position: -webkit-sticky;
+  position: sticky;
+  bottom: 0;
+  z-index: 1;
+}
+
+.ic_accountManager .content section.sec_list .tableArea .tableBox table tfoot th.sort:after, .ic_accountManager .content section.sec_list .tableArea .tableBox table tfoot th.sortUp:after, .ic_accountManager .content section.sec_list .tableArea .tableBox table tfoot th.sortDown:after,
+.ic_accountCustomer .content section.sec_list .tableArea .tableBox table tfoot th.sort:after,
+.ic_accountCustomer .content section.sec_list .tableArea .tableBox table tfoot th.sortUp:after,
+.ic_accountCustomer .content section.sec_list .tableArea .tableBox table tfoot th.sortDown:after {
+  content: "";
+  position: relative;
+  display: inline-block;
+  width: 15px;
+  height: 13px;
+  top: -2px;
+  margin-left: 5px;
+  vertical-align: middle;
+}
+
+.ic_accountManager .content section.sec_list .tableArea .tableBox table tfoot th.sort:after,
+.ic_accountCustomer .content section.sec_list .tableArea .tableBox table tfoot th.sort:after {
+  background: url("../image/component/ico_sort.svg") no-repeat center;
+  width: 15px;
+  height: 13px;
+  background-size: 100%;
+}
+
+.ic_accountManager .content section.sec_list .tableArea .tableBox table tfoot th.sortUp:after,
+.ic_accountCustomer .content section.sec_list .tableArea .tableBox table tfoot th.sortUp:after {
+  background: url("../image/component/ico_sortUp.svg") no-repeat center;
+  width: 15px;
+  height: 13px;
+  background-size: 100%;
+}
+
+.ic_accountManager .content section.sec_list .tableArea .tableBox table tfoot th.sortDown:after,
+.ic_accountCustomer .content section.sec_list .tableArea .tableBox table tfoot th.sortDown:after {
+  background: url("../image/component/ico_sortDown.svg") no-repeat center;
+  width: 15px;
+  height: 13px;
+  background-size: 100%;
+}
+
+.ic_accountManager .content section.sec_list .tableArea .tableBox table tfoot:before,
+.ic_accountCustomer .content section.sec_list .tableArea .tableBox table tfoot:before {
+  content: "";
+  position: absolute;
+  display: table-footer-group;
+  width: 100%;
+  height: -webkit-fill-available;
+  border-top: 1px solid #e0e0e0;
+  border-bottom: 1px solid #e0e0e0;
+  background-color: #e0e0e0;
+  z-index: -1;
+}
+
+.ic_accountManager .content section.sec_list .tableArea .tableBox table tfoot tr,
+.ic_accountCustomer .content section.sec_list .tableArea .tableBox table tfoot tr {
+  border-top: 1px solid #e0e0e0;
+  border-bottom: none;
+}
+
+.ic_accountManager .content section.sec_list .tableArea .tableBox table tfoot tr th,
+.ic_accountCustomer .content section.sec_list .tableArea .tableBox table tfoot tr th {
+  font-family: "Pretendard_Regular";
+  font-weight: normal;
+  font-size: 14px;
+  background: #f4f4f4;
+}
+
+.ic_accountManager .content section.sec_list .tableArea .tableBox table .buttonBox,
+.ic_accountCustomer .content section.sec_list .tableArea .tableBox table .buttonBox {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: initial;
+  -webkit-box-direction: initial;
+      -ms-flex-direction: initial;
+          flex-direction: initial;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 20px;
+}
+
+.ic_accountManager .content section.sec_list .tableArea .tableBox table .buttonBox button,
+.ic_accountCustomer .content section.sec_list .tableArea .tableBox table .buttonBox button {
+  content: "";
+  position: relative;
+  display: inline-block;
+  background-position: 0px 0px;
+  font-size: 0;
+  font-style: normal;
+  vertical-align: middle;
+}
+
+.ic_accountManager .content section.sec_list .tableArea .tableBox table .buttonBox button.login,
+.ic_accountCustomer .content section.sec_list .tableArea .tableBox table .buttonBox button.login {
+  background: url("../image/component/ico_user.svg") no-repeat center;
+  width: 22px;
+  height: 22px;
+}
+
+.ic_accountManager .content section.sec_list .tableArea .tableBox table .buttonBox button.modify,
+.ic_accountCustomer .content section.sec_list .tableArea .tableBox table .buttonBox button.modify {
+  background: url("../image/component/ico_edit.svg") no-repeat center;
+  width: 22px;
+  height: 22px;
+}
+
+.ic_accountManager .content section.sec_list .tableArea .tableBox table .buttonBox button.delete,
+.ic_accountCustomer .content section.sec_list .tableArea .tableBox table .buttonBox button.delete {
+  background: url("../image/component/ico_delete.svg") no-repeat center;
+  width: 22px;
+  height: 22px;
+}
+
+/*
+File : customer.scss
+Date : 2024.09.25
+menu : 고객관리
+*/
+.ic_inquiryList .title > p:first-child {
+  font-family: "Pretendard_SemiBold";
+  font-size: 22px;
+  color: #333333;
+}
+
+.ic_inquiryList .title > p:nth-child(n+2) {
+  font-family: "Pretendard_Medium";
+  font-weight: normal;
+  margin-top: 5px;
+  font-size: 13px;
+  color: #777777;
+}
+
+.ic_inquiryList .title .location {
+  position: absolute;
+  top: 30px;
+  right: 30px;
+}
+
+.ic_inquiryList .title .location span {
+  display: inline-block;
+  font-size: 18px;
+}
+
+.ic_inquiryList .title .location span:nth-child(n+2):before {
+  content: ">";
+  position: relative;
+  display: inline-block;
+  margin: 0 3px;
+}
+
+.ic_inquiryList .title .location span:last-child {
+  color: #4664e6;
+}
+
+.ic_inquiryList .content {
+  margin: 20px 0 0 0;
+}
+
+.ic_inquiryList .content section.sec_alarm {
+  position: relative;
+  padding: 14px 30px;
+  border-radius: 5px;
+  background-color: #0c1439;
+}
+
+.ic_inquiryList .content section.sec_alarm p {
+  font-family: "Pretendard_Medium";
+  font-weight: normal;
+  color: #ffffff;
+}
+
+.ic_inquiryList .content section.sec_alarm p b {
+  font-family: "Pretendard_SemiBold";
+  margin: 0 2px;
+  font-size: 20px;
+  color: #4664e6;
+}
+
+.ic_inquiryList .content section.sec_list {
+  position: relative;
+  padding: 30px 30px 30px 30px;
+  border-radius: 5px;
+  -webkit-box-shadow: 0 3px 10px 0 rgba(0, 0, 0, 0.08);
+          box-shadow: 0 3px 10px 0 rgba(0, 0, 0, 0.08);
+  background-color: #fff;
+  overflow: hidden;
+  margin: 20px 0 0 0;
+}
+
+.ic_inquiryList .content section.sec_list .tableHeader {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: initial;
+  -webkit-box-direction: initial;
+      -ms-flex-direction: initial;
+          flex-direction: initial;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 10px;
+}
+
+.ic_inquiryList .content section.sec_list .tableHeader > div:nth-child(1) {
+  margin-right: auto;
+}
+
+.ic_inquiryList .content section.sec_list .tableHeader .radioBox {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: initial;
+  -webkit-box-direction: initial;
+      -ms-flex-direction: initial;
+          flex-direction: initial;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 14px;
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  border-radius: 5px;
+  height: 34px;
+  padding: 0 20px 0 0;
+  border: 1px solid #e6e6e6;
+  background-color: #ffffff;
+}
+
+.ic_inquiryList .content section.sec_list .tableHeader .radioBox > p {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-orient: initial;
+  -webkit-box-direction: initial;
+      -ms-flex-direction: initial;
+          flex-direction: initial;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 10px;
+  height: 100%;
+  padding: 0 15px;
+  font-size: 14px;
+  color: #ffffff;
+  border-radius: 5px 0 0 5px;
+  background-color: #4664e6;
+}
+
+.ic_inquiryList .content section.sec_list .tableHeader .radioBox input + label {
+  margin: 0;
+}
+
+.ic_inquiryList .content section.sec_list .tableHeader .selectBox.category {
+  min-width: 240px;
+}
+
+.ic_inquiryList .content section.sec_list .tableHeader .searchBox {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  vertical-align: middle;
+  height: 34px;
+}
+
+.ic_inquiryList .content section.sec_list .tableHeader .searchBox input,
+.ic_inquiryList .content section.sec_list .tableHeader .searchBox button {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.ic_inquiryList .content section.sec_list .tableHeader .searchBox input[type="text"] {
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  width: 200px;
+  height: 100%;
+  padding: 0 5px 0px 10px;
+  text-align: left;
+  font-size: 13px;
+  border-radius: 4px 0 0 4px;
+  border: 1px solid #e6e6e6;
+  background-color: #ffffff;
+}
+
+.ic_inquiryList .content section.sec_list .tableHeader .searchBox button {
+  content: "";
+  position: relative;
+  display: inline-block;
+  background-position: 0px 0px;
+  font-size: 0;
+  font-style: normal;
+  vertical-align: middle;
+  background: url("../image/component/ico_search.svg") no-repeat center;
+  width: 15px;
+  height: 15px;
+  min-width: 32px;
+  height: 100%;
+  font-size: 0;
+  vertical-align: middle;
+  border-radius: 0 5px 5px 0;
+  background-color: #4664e6;
+}
+
+.ic_inquiryList .content section.sec_list .tableArea {
+  margin-top: 20px;
+}
+
+.ic_inquiryList .content section.sec_list .tableArea.tableAreaDataNone {
+  height: auto;
+  border-bottom: none;
+}
+
+.ic_inquiryList .content section.sec_list .tableArea.tableAreaDataNone .tableDataNone {
+  display: block;
+  height: 540px;
+  min-height: 300px;
+}
+
+.ic_inquiryList .content section.sec_list .tableArea.tableAreaDataNone .tableDataNone > div {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  height: 100%;
+  min-height: 300px;
+}
+
+.ic_inquiryList .content section.sec_list .tableArea.tableAreaDataNone .tableDataNone > div p {
+  display: block;
+  font-size: 14px;
+  text-align: center;
+  line-height: 1.5;
+}
+
+.ic_inquiryList .content section.sec_list .tableArea.tableAreaDataNone .tableDataNone + .paging {
+  display: none;
+}
+
+.ic_inquiryList .content section.sec_list .tableArea.tableAreaDataNone .tableBox {
+  display: none;
+}
+
+.ic_inquiryList .content section.sec_list .tableArea .tableDataNone {
+  display: none;
+}
+
+.ic_inquiryList .content section.sec_list .tableArea .tableDataNone p:before {
+  content: "";
+  position: relative;
+  display: inline-block;
+  background-position: 0px 0px;
+  font-size: 0;
+  font-style: normal;
+  vertical-align: middle;
+  background: url("../image/component/ico_error.svg") no-repeat center;
+  width: 49px;
+  height: 44px;
+  display: block;
+  margin: 0 auto 10px;
+}
+
+.ic_inquiryList .content section.sec_list .tableArea .tableBox {
+  overflow: overlay;
+  background-color: transparent;
+  max-height: 600px;
+}
+
+.ic_inquiryList .content section.sec_list .tableArea .tableBox::-webkit-scrollbar {
+  width: 10px;
+  height: 8px;
+  background: #f4f4f4;
+}
+
+.ic_inquiryList .content section.sec_list .tableArea .tableBox::-webkit-scrollbar-thumb {
+  height: 8px;
+  border-radius: 5px;
+  background: #dedede;
+}
+
+.ic_inquiryList .content section.sec_list .tableArea .tableBox table {
+  width: auto;
+  min-width: 100%;
+  background: transparent;
+}
+
+.ic_inquiryList .content section.sec_list .tableArea .tableBox table .dimCircle:before {
+  background-size: 30px 30px;
+}
+
+.ic_inquiryList .content section.sec_list .tableArea .tableBox table thead tr td,
+.ic_inquiryList .content section.sec_list .tableArea .tableBox table thead tr th,
+.ic_inquiryList .content section.sec_list .tableArea .tableBox table tbody tr td,
+.ic_inquiryList .content section.sec_list .tableArea .tableBox table tbody tr th,
+.ic_inquiryList .content section.sec_list .tableArea .tableBox table tfoot tr td,
+.ic_inquiryList .content section.sec_list .tableArea .tableBox table tfoot tr th {
+  font-family: "Pretendard_Medium";
+  font-weight: normal;
+  padding: 10px 6px;
+  vertical-align: middle;
+  text-align: center;
+  line-height: 20px;
+  font-size: 16px;
+  font-weight: normal;
+  color: #000000;
+}
+
+.ic_inquiryList .content section.sec_list .tableArea .tableBox table thead {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+.ic_inquiryList .content section.sec_list .tableArea .tableBox table thead th.sort:after, .ic_inquiryList .content section.sec_list .tableArea .tableBox table thead th.sortUp:after, .ic_inquiryList .content section.sec_list .tableArea .tableBox table thead th.sortDown:after {
+  content: "";
+  position: relative;
+  display: inline-block;
+  width: 15px;
+  height: 13px;
+  top: -2px;
+  margin-left: 5px;
+  vertical-align: middle;
+}
+
+.ic_inquiryList .content section.sec_list .tableArea .tableBox table thead th.sort:after {
+  background: url("../image/component/ico_sort.svg") no-repeat center;
+  width: 15px;
+  height: 13px;
+  background-size: 100%;
+}
+
+.ic_inquiryList .content section.sec_list .tableArea .tableBox table thead th.sortUp:after {
+  background: url("../image/component/ico_sortUp.svg") no-repeat center;
+  width: 15px;
+  height: 13px;
+  background-size: 100%;
+}
+
+.ic_inquiryList .content section.sec_list .tableArea .tableBox table thead th.sortDown:after {
+  background: url("../image/component/ico_sortDown.svg") no-repeat center;
+  width: 15px;
+  height: 13px;
+  background-size: 100%;
+}
+
+.ic_inquiryList .content section.sec_list .tableArea .tableBox table thead:before {
+  content: "";
+  position: absolute;
+  display: table-header-group;
+  width: 100%;
+  height: -webkit-fill-available;
+  border-top: 1px solid #e0e0e0;
+  border-bottom: 1px solid #e0e0e0;
+  background-color: #e0e0e0;
+  z-index: -1;
+}
+
+.ic_inquiryList .content section.sec_list .tableArea .tableBox table thead tr th {
+  padding: 16px 6px;
+  border-bottom: 1px solid #e0e0e0;
+  background: #f4f4f4;
+}
+
+.ic_inquiryList .content section.sec_list .tableArea .tableBox table thead tr:nth-child(n+2) th {
+  background-color: #f1f3ff;
+}
+
+.ic_inquiryList .content section.sec_list .tableArea .tableBox table tbody tr {
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.ic_inquiryList .content section.sec_list .tableArea .tableBox table tbody tr th,
+.ic_inquiryList .content section.sec_list .tableArea .tableBox table tbody tr td {
+  padding: 12px 6px;
+  font-size: 16px;
+}
+
+.ic_inquiryList .content section.sec_list .tableArea .tableBox table tfoot {
+  position: -webkit-sticky;
+  position: sticky;
+  bottom: 0;
+  z-index: 1;
+}
+
+.ic_inquiryList .content section.sec_list .tableArea .tableBox table tfoot th.sort:after, .ic_inquiryList .content section.sec_list .tableArea .tableBox table tfoot th.sortUp:after, .ic_inquiryList .content section.sec_list .tableArea .tableBox table tfoot th.sortDown:after {
+  content: "";
+  position: relative;
+  display: inline-block;
+  width: 15px;
+  height: 13px;
+  top: -2px;
+  margin-left: 5px;
+  vertical-align: middle;
+}
+
+.ic_inquiryList .content section.sec_list .tableArea .tableBox table tfoot th.sort:after {
+  background: url("../image/component/ico_sort.svg") no-repeat center;
+  width: 15px;
+  height: 13px;
+  background-size: 100%;
+}
+
+.ic_inquiryList .content section.sec_list .tableArea .tableBox table tfoot th.sortUp:after {
+  background: url("../image/component/ico_sortUp.svg") no-repeat center;
+  width: 15px;
+  height: 13px;
+  background-size: 100%;
+}
+
+.ic_inquiryList .content section.sec_list .tableArea .tableBox table tfoot th.sortDown:after {
+  background: url("../image/component/ico_sortDown.svg") no-repeat center;
+  width: 15px;
+  height: 13px;
+  background-size: 100%;
+}
+
+.ic_inquiryList .content section.sec_list .tableArea .tableBox table tfoot:before {
+  content: "";
+  position: absolute;
+  display: table-footer-group;
+  width: 100%;
+  height: -webkit-fill-available;
+  border-top: 1px solid #e0e0e0;
+  border-bottom: 1px solid #e0e0e0;
+  background-color: #e0e0e0;
+  z-index: -1;
+}
+
+.ic_inquiryList .content section.sec_list .tableArea .tableBox table tfoot tr {
+  border-top: 1px solid #e0e0e0;
+  border-bottom: none;
+}
+
+.ic_inquiryList .content section.sec_list .tableArea .tableBox table tfoot tr th {
+  font-family: "Pretendard_Regular";
+  font-weight: normal;
+  font-size: 14px;
+  background: #f4f4f4;
+}
+
+.ic_inquiryList .content section.sec_list .tableArea .tableBox table thead tr th {
+  min-width: 140px;
+}
+
+.ic_inquiryList .content section.sec_list .tableArea .tableBox table tbody tr:hover {
+  background-color: #e6e6e6;
+}
+
+.ic_inquiryList .content section.sec_list .tableArea .tableBox table tbody tr td.wait {
+  color: #4664e6;
+}
+
+.ic_inquiryList .content section.sec_list .tableArea .tableBox table tbody tr td.complete {
+  color: #ec3f3f;
+}
+
+.ic_inquiryList .content section.sec_list .tableArea .tableBox table tbody tr td .buttonBox {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: initial;
+  -webkit-box-direction: initial;
+      -ms-flex-direction: initial;
+          flex-direction: initial;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 10px;
+}
+
+.ic_inquiryList .content section.sec_list .tableArea .tableBox table tbody tr td .buttonBox button {
+  font-family: "Pretendard_Regular";
+  font-weight: normal;
+  position: relative;
+  text-align: center;
+  border-radius: 4px;
+  cursor: pointer;
+  min-width: 60px;
+  height: 24px;
+  font-size: 13px;
+}
+
+.ic_inquiryList .content section.sec_list .tableArea .tableBox table tbody tr td .buttonBox button:disabled {
+  color: #b3b3b3;
+  border: 1px solid #eceff1;
+  background-color: #eceff1;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  cursor: default;
+}
+
+.ic_inquiryList .content section.sec_list .tableArea .tableBox table tbody tr td .buttonBox button.detail {
+  color: #ffffff;
+  border: 1px solid #0c1439;
+  background-color: #0c1439;
+}
+
+.ic_inquiryList .content section.sec_list .tableArea .tableBox table tbody tr td .buttonBox button.detail:disabled {
+  color: #b3b3b3;
+  border: 1px solid #eceff1;
+  background-color: #eceff1;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}

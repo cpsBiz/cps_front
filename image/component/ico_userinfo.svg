@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="27" height="17" viewBox="0 0 27 17">
+    <circle data-name="타원 46" cx="3.5" cy="3.5" r="3.5" transform="translate(3)" style="fill:#6380ff"/>
+    <path data-name="사각형 4636" d="M6.5 0A6.5 6.5 0 0 1 13 6.5V8H0V6.5A6.5 6.5 0 0 1 6.5 0z" transform="translate(0 9)" style="fill:#6380ff"/>
+    <path data-name="다각형 1" d="M4.5 0 9 6H0z" transform="rotate(180 13.5 6)" style="fill:#6380ff"/>
+</svg>

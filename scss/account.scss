@@ -1,0 +1,76 @@
+@charset 'utf-8';
+
+/*
+File : account.scss
+Date : 2024.08.01
+menu : 계정관리
+
+*/
+
+//* 관리자, 회원 */
+.ic_accountManager,
+.ic_accountCustomer {
+
+  .title {
+    @include titleLayout;
+
+  }
+
+  .content {
+    margin: 20px 0 0 0;
+
+    section {
+      &.sec_list {
+        @include boxLayout;
+
+        .tableHeader {
+          @include flexBox($g:10px);
+
+          .searchBox {
+            @include searchBox_t3($w:210px);
+          }
+
+          button {
+            &.register {
+              @include btnS;
+              @include btn2;
+            }
+          }
+        }
+
+        .tableArea {
+          @include tableDataNone($height:540px);
+          @include tableDataNone_img;
+          margin-top: 15px;
+
+          .tableBox {
+            @include tableLayout;
+            max-height: 600px;
+
+            table {
+              .buttonBox {
+                @include flexBox($g:20px, $j:center);
+
+                button {
+                  @include iLayout;
+
+                  &.login {
+                    @include ico_user;
+                  }
+
+                  &.modify {
+                    @include ico_edit;
+                  }
+
+                  &.delete {
+                    @include ico_delete;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,209 @@
+@charset "UTF-8";
+/*
+File   : color.scss
+Date   : 2024.09.26
+*/
+
+$white: #ffffff;
+$black: #000000;
+$red: #ff0000;
+
+//* basic */
+$mainColor: #4664e6;
+$subColor: #0c1439;
+$ftColor: #333333;
+$subFtColor: #777777;
+$borderColor: #dadada;
+$bgColor: #f8f8f8;
+
+//* daterangepicker */
+$dateFtColor2: #222222; // 요일
+$dateFtColor3: #e5e5e5; // off
+$dateFtColor4: #ffffff; // hover
+$dateFtColor5: #222222; // 
+$dateFtColor6: #ffffff;
+$dateFtColor7: #ffffff; // 
+
+$dateBorderColor: #d6d6d6;
+$dateShadow: 0 5px 5px 0 rgba(0, 0, 0, 0.1);
+$dateBgColor: #ffffff;
+// 기간선택
+$dateBgColor2: #f1f3ff;
+$dateBgColor3: #eeeeee;
+// disabled 
+$dageDisFtColor: #cccccc;
+$dageDisBgColor: #f8f8f8;
+// input 
+$dateIpBorderColor: #e6e6e6;
+$dateIpBgColor: #ffffff;
+
+// point 
+$pointColor: $mainColor;
+$pointColor2: $subColor;
+// point - etc
+// $issueColor: #ffcf31;
+// $waitColor: #f3b115;
+// $errorColor: #ff6767;
+
+$dis_ftColor: #b3b3b3;
+$dis_brdColor: #eceff1;
+$dis_bgColor: #eceff1;
+
+//* Font */
+$ftColor2: $pointColor;
+$ftColor3: #000000;
+$ftColor4: #ffffff;
+$ftColor5: #4664e6;
+$ftColor6: #ec3f3f;
+$ftColor7: #6380ff;
+
+
+// up & down 
+$upColor: #ff6767;
+$downColor: #5ab7ff;
+
+// border
+// bgColor 
+
+
+// scroll 
+$scrollbarBgColor: transparent;
+$scrollbarBgColor2: #f4f4f4; //table scroll bg
+$scrollThumbColor: #dedede;
+$scrollThumbColor2: $pointColor;
+
+
+// shadow 
+$shadow: 0 0 20px 0 $pointColor; // B: point, C: point
+$shadow2: 0 0 20px 0 $pointColor; // C: none
+$shadow3: 0 2px 0 0 rgba(0, 0, 0, 0.5),
+inset 0 0 30px 0 rgba(255, 255, 255, 0.1); // C : none
+$shadow4: 0.8px 0px 5px 0 rgba(0, 0, 0, 0.15); // C : none
+$shadow5: 0 0 20px 0 rgba(0, 0, 0, 0.5),
+inset 0 0 30px 0 rgba(255, 255, 255, 0.1); // C: none;
+
+//* header */
+$headerFtColor: $white;
+$headerBorderColor: $pointColor2;
+// $headerStoreBorderColor: #48527a;
+// $headerUserBgColor: #182152;
+$headerBgColor: $pointColor2;
+
+//* navigation */
+$ico_navColor_on: $pointColor; //ico on
+$ico_navColor_off: $white; //ico off
+$navFtColor: $white;
+$navFtColor2: #ffffff; // nav 하위 폰트 색상
+$navOnFtColor: #6380ff;
+$navShadow: 0 2px 0 0 rgba(0, 0, 0, 0.5),
+inset 0 0 15px 0 rgba(255, 255, 255, 0.05);
+$navCloseBorderColor: #48527a;
+$navCloseBgColor: #182152;
+$navBgColor: $pointColor2;
+$navBgColor2: $pointColor; // 1depth active
+$navBgColor3: #161e48; // 2depth
+
+
+// iMarkHover 
+$bubbleBorderColor: #293363;
+$bubbleBgColor: #293363;
+$bubbleShadow: 0 0 10px 0 rgba(140, 228, 252, 0.5);
+
+//* button */
+// main 1 - on (main)
+$btn_ftColor: $white;
+$btn_BorderColor: $pointColor;
+$btn_bgColor: $pointColor;
+// main 2 - on (pointColor2)
+$btn_ftColor2: #ffffff;
+$btn_BorderColor2: $pointColor2;
+$btn_BgColor2: $pointColor2;
+
+
+// BTN 3
+$btn_ftColor3: $ftColor3;
+$btn_BorderColor3: #d8dcec;
+$btn_BgColor3: #d8dcec;
+// off
+$btnOff_ftColor: #ffffff;
+$btnOff_BorderColor: #c8c8c8;
+$btnOff_BgColor: #c8c8c8;
+// disabled
+$btnDis_ftColor: $dis_ftColor;
+$btnDis_borderColor: $dis_brdColor;
+$btnDis_bgColor: $dis_bgColor;
+// delete(red) 
+$btnDlt_ftColor: #ffffff;
+$btnDlt_BorderColor: #f65a5a;
+$btnDlt_shadow: 0 0 5px 0 #f65a5a;
+$btnDlt_bgColor: #f65a5a;
+
+
+//* Table */
+// table - thead, tbody 
+$tblBorderColor: #e0e0e0;
+$tblFtColor: #000000;
+$tblBgColor: #ffffff;
+// total 
+$tblTotalBg: #f6f6f9;
+$tblTotalBorder: #bfcace;
+// row over
+$tblRowHover: #f6f6f9;
+// table - thead */
+// $tblTheaderFtColor: #77787d;
+$tblTheadBgColor: #f4f4f4;
+$tblTheadBgColor2: #f1f3ff;
+$tblTheadBgColor3: #dee5ff;
+$tblTheadBgColor4: #e6e6e6;
+// border
+$tblBorderColor2: #ececec;
+// hover
+$tblBgColor_hover: #e6e6e6;
+
+
+
+//* input */
+$ipBorderColor: #e6e6e6;
+$ipBgColor: #ffffff; // checkBox bg
+// placeholder
+$ipFtColor_placeholder: #9ba0a2;
+// disabled
+$ipFtColor_disabled: #cbcbcb;
+$ipBorderColor_disabled: #eeeeee;
+$ipBgColor_disabled: #f3f3f3;
+
+
+// paging 
+$pagingFtgColor: #000000;
+$pagingBgColor: #f4f4f4;
+
+//* tab */
+$tabFtColor: $btnOff_ftColor;
+$tabBorder: $btnOff_BorderColor;
+$tabBgColor: $btnOff_BgColor;
+$tabShadow_on: 3px 0 6px 0 rgba(0, 0, 0, 0.1);
+
+
+//* tabView */
+$tabViewBorder: 1px solid $borderColor;
+$tabViewBorder2: none;
+
+//* box layout */
+$boxBorderColor: #232357;
+$boxShadow: 0 2px 0 0 rgba(0, 0, 0, 0.5),
+inset 0 0 15px 0 rgba(255, 255, 255, 0.05);
+$boxBgColor: #111a46;
+
+
+//* z-index */
+$zIndex: auto; // none, 1
+
+
+//* modal */
+$ico_closeColor: #2d5a7d;
+$modalBorderColor: transparent;
+$modalShadow: 3px 3px 12px 0 rgba(21, 21, 21, 0.5);
+$modalBgColor: #ffffff;
+
+//* Etc */
+$etcColor: #d8dcec; // B: blue, C: purple

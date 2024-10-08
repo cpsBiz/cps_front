@@ -1,0 +1,124 @@
+@charset 'utf-8';
+
+/*
+File : customer.scss
+Date : 2024.09.25
+menu : 고객관리
+*/
+
+
+//* 1:1문의내역 */
+.ic_inquiryList {
+
+  .title {
+    @include titleLayout;
+  }
+
+  .content {
+    margin: 20px 0 0 0;
+
+    section {
+      &.sec_alarm {
+        position: relative;
+        padding: 14px 30px;
+        border-radius: 5px;
+        background-color: $pointColor2;
+
+        p {
+          @include ftM;
+          color: $ftColor4;
+
+          b {
+            @include ftB;
+            margin: 0 2px;
+            font-size: 20px;
+            color: $pointColor;
+          }
+        }
+      }
+
+      &.sec_list {
+        @include boxLayout;
+        margin: 20px 0 0 0;
+
+        .tableHeader {
+          @include flexBox($g:10px);
+
+          >div {
+            &:nth-child(1) {
+              margin-right: auto;
+            }
+          }
+
+          .radioBox {
+            @include inputBox($f:inline-flex);
+          }
+
+          .selectBox {
+            &.category {
+              min-width: 240px;
+            }
+          }
+
+          .searchBox {
+            @include searchBox_t3($w:210px);
+          }
+        }
+
+        .tableArea {
+          @include tableDataNone($height:540px);
+          @include tableDataNone_img;
+          margin-top: 20px;
+
+          .tableBox {
+            @include tableLayout;
+            max-height: 600px;
+
+            table {
+              thead {
+                tr {
+                  th {
+                    min-width: 140px;
+                  }
+                }
+              }
+
+              tbody {
+                tr {
+                  &:hover {
+                    background-color: $tblBgColor_hover;
+                  }
+
+                  td {
+                    &.wait {
+                      color: $ftColor5;
+                    }
+
+                    &.complete {
+                      color: $ftColor6;
+                    }
+
+                    .buttonBox {
+                      @include flexBox($g:10px, $j:center);
+
+                      button {
+                        @include btnLayout;
+                        min-width: 60px;
+                        height: 24px;
+                        font-size: 13px;
+
+                        &.detail {
+                          @include btn2;
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,128 @@
+@charset 'utf-8';
+
+/*
+File   : content.scss
+Date   : 2024.07.30
+*/
+
+//* text */
+::selection {
+  color: $ftColor4;
+  background: $pointColor;
+}
+
+.hide {
+  @include txtHide();
+}
+
+.hidden {
+  position: fixed;
+  top: 0;
+  left: -999em;
+}
+
+.clear {
+  clear: both;
+}
+
+.disNone {
+  display: none !important;
+}
+
+
+//* loading  */
+.loadingBg {
+  @include loadingBg;
+}
+
+.dimCircle {
+  @include loadingCircle;
+}
+
+// .dimDot {
+//   @include loadingDot;
+// }
+.dataNoneText {
+  display: none;
+}
+
+.dimText {
+  @include loadingText;
+}
+
+
+// dataNoneArea, dataNone 은 한 세트 구조
+// 안맞는 경우에는 개별 css 추가 
+.dataNoneArea {
+  @include dataNoneArea;
+}
+
+.dataNone {
+  display: none;
+}
+
+//* iBox */
+.iBox {
+  position: relative;
+  display: inline-block;
+  @include iMark;
+}
+
+.iMark {
+
+}
+
+.iMarkHover {
+  @include iMarkHover;
+}
+
+
+//* input */
+input {
+  @include input;
+}
+
+textarea {
+  @include textarea;
+}
+
+//* select */
+select {
+  @include select;
+}
+
+//* checkbox */
+input[type="checkbox"] {
+  @include checkbox;
+}
+
+//* radio */
+input[type="radio"] {
+  @include radio;
+}
+
+//* daterangepicker */
+.daterangepicker {
+  @include daterangepicker;
+}
+
+// timepicker lib
+.ui-timepicker-container {
+  @include timepicker;
+}
+
+//* paging */
+.paging {
+  @include paging;
+}
+
+//* btnArea */
+.btnArea {
+  @include btnArea;
+}
+
+//* timepicker */
+.ui-timepicker-container {
+  // modal 에서 안나옴 
+  z-index: 999 !important;
+}

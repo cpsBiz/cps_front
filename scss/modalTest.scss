@@ -1,0 +1,166 @@
+@charset 'utf-8';
+
+/*
+File   : modalTest.scss
+ Date   : 2024.08.27
+*/
+/* 퍼블 확인용  CSS  */
+
+/* 
+modal
+*/
+.wrap {
+  .modal {
+    >strong {
+      font-family: "NotoSansR";
+      position: relative;
+      display: block;
+      width: 100%;
+      top: 20px;
+      margin: 20px auto 0;
+      font-weight: bold;
+      font-size: 24px;
+    }
+
+    >p {
+      font-family: "NotoSansR";
+      position: relative;
+      display: block;
+      width: 100%;
+      top: 10px;
+      // margin: 20px auto 0;
+      font-weight: bold;
+      font-size: 16px;
+      line-height: 1.5;
+
+      &:nth-of-type(1) {
+        margin: 20px 0 0 0;
+      }
+
+      &:nth-child(n+2) {
+        font-size: 14px;
+
+        &:before {
+          content: "#";
+          margin: 0 2px;
+        }
+      }
+    }
+
+    .modalWrap {
+      position: relative !important;
+      display: block !important;
+      margin: 50px 0 50px 0;
+      margin: 40px auto 100px auto;
+
+      .modalContainer {
+        position: relative !important;
+        top: 0 !important;
+        left: 0 !important;
+        transform: none !important;
+      }
+
+      .modalDim {
+        display: none;
+      }
+    }
+  }
+}
+
+/* 
+modalTest
+*/
+.wrap {
+  &.modalTest {
+
+    >strong,
+    >p {
+      display: none;
+    }
+
+    .modal {
+      .modalWrap {
+        display: none !important;
+        padding-left: 300px;
+
+        &.modalOn {
+          position: fixed !important;
+          display: block !important;
+          margin: 0;
+          padding: 0;
+
+          .modalContainer {
+            position: fixed !important;
+            top: 50% !important;
+            left: 50% !important;
+            transform: translate(-50%, -50%) !important;
+          }
+
+          .modalDim {
+            display: block;
+          }
+        }
+      }
+    }
+  }
+
+  &.modalView {
+    .modal {
+      // position: absolute;
+      width: calc(100% - 250px);
+      // top: 70px;
+      margin-left: 250px;
+      padding-left: 30px;
+    }
+  }
+}
+
+.modalTestWrap {
+  width: calc(100% - 50px);
+
+  .modalTestContainer {
+    margin-top: 40px;
+
+    &:first-child {
+      margin-top: 0;
+    }
+
+    .title {
+      strong {
+        font-family: "NotoSansR";
+        position: relative;
+        display: block;
+        width: 100%;
+        font-weight: bold;
+        font-size: 24px;
+      }
+
+      p {
+        font-family: "NotoSansR";
+        position: relative;
+        display: block;
+        width: 100%;
+        margin: 20px 0 0 0;
+        font-weight: bold;
+        font-size: 16px;
+      }
+    }
+
+    .buttonBox {
+      margin-top: 10px;
+
+      button {
+        position: relative;
+        display: inline-block;
+        min-width: 100px;
+        height: 40px;
+        margin: 10px 5px 0 5px;
+        padding: 0 10px;
+        font-size: 16px;
+        border-radius: 5px;
+        color: #222;
+        border: 1px solid #222;
+      }
+    }
+  }
+}

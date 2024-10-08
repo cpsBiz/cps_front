@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 22 22">
+    <defs>
+        <clipPath id="kkjc2cdgla">
+            <path data-name="사각형 6090" transform="translate(-3.967 -3.221)" style="fill:none" d="M0 0h22v22H0z"/>
+        </clipPath>
+    </defs>
+    <rect data-name="사각형 3762" width="22" height="22" rx="3" style="fill:#d8dcec"/>
+    <g data-name="그룹 7592" transform="translate(3.967 3.221)" style="clip-path:url(#kkjc2cdgla)">
+        <g data-name="그룹 7593">
+            <path data-name="합치기 40" d="M973.348 13317.136a2.071 2.071 0 0 1-2.059-1.854l-.958-9.118h-1.3v-2h3.84v-.351a2.037 2.037 0 0 1 2.035-2.036h2.052a2.037 2.037 0 0 1 2.032 2.036v.351h3.84v2h-1.3l-.955 9.118a2.074 2.074 0 0 1-2.062 1.854zm3.947-12.971v-.351a.335.335 0 0 0-.334-.335h-2.052a.335.335 0 0 0-.334.335v.351z" transform="translate(-968.9 -13301.678)" style="fill:#4a547d;stroke:transparent;stroke-miterlimit:10"/>
+            <path d="M.65 6h-1.3V0h1.3z" transform="translate(8.671 6.371)" style="fill:#d8dcec"/>
+            <path data-name="라인" d="M.65 6h-1.3V0h1.3z" transform="translate(5.396 6.371)" style="fill:#d8dcec"/>
+        </g>
+    </g>
+</svg>

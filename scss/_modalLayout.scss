@@ -1,0 +1,161 @@
+@charset 'utf-8';
+
+/*
+File : modalLayout.scss
+Date   : 2024.07.30
+*/
+
+//* dim */
+@mixin modalDim {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: #000000;
+  opacity: 0.5;
+  z-index: 998;
+}
+
+.modalDim {
+  @include modalDim;
+}
+
+//* modal */
+@mixin modal {
+  display: none;
+  z-index: 999;
+
+  &.modalOn {
+    display: block;
+  }
+}
+
+//* layout */
+@mixin modalPosition {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  overflow: hidden;
+  z-index: 999;
+}
+
+
+//* box */
+@mixin modalBox {
+  // position: absolute;
+  border-radius: 8px;
+  box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.1);
+  background-color: $white;
+  z-index: 999;
+}
+
+//* title */
+@mixin modalTitle($pd:15px 0px 0 0) {
+  height: 50px;
+  font-size: 18px;
+  margin: 0 25px;
+  padding: $pd;
+  // border-bottom: 1px solid $borderColor3;
+
+  p {
+    @include ftB;
+    display: inline-block;
+    padding: 6px 0 0 0;
+    font-size: 18px;
+  }
+
+  button {
+    position: relative;
+    float: right;
+    right: -2px;
+    padding: 15px;
+
+    &.close {
+      @include btnLayout;
+      @include ico_close;
+      font-size: 0;
+    }
+  }
+}
+
+/* content */
+@mixin modalContent {
+  position: relative;
+  width: calc(100% - 20px);
+  max-height: 650px;
+  margin: 10px 10px 0 10px;
+  padding: 10px 10px 20px 20px;
+  overflow-y: auto;
+}
+
+/* modalFooter */
+@mixin modalFooter {
+  padding-top: 10px;
+  margin-top: 10px;
+  text-align: center;
+
+  button {
+    @include btnLayout;
+    min-width: 120px;
+    height: 40px;
+    margin-left: 8px;
+    border-radius: 4px;
+    font-size: 16px;
+
+    &:first-child {
+      margin-left: 0;
+    }
+
+    &.create,
+    &.modify,
+    &.confirm,
+    &.save {
+      @include btn_main;
+    }
+
+    &.cancel {
+      @include btn_off;
+    }
+
+    &.delete {
+      @include btn_delete;
+    }
+  }
+}
+
+
+/* layout */
+@mixin modalLayout {
+  @include modal;
+
+  .modalContainer {
+    @include modalPosition();
+    @include modalBox;
+
+    .modalTitle {
+      @include modalTitle;
+    }
+
+    .modalContent {
+      @include modalContent;
+
+      ::-webkit-scrollbar {
+        @include scrollbar;
+      }
+
+      ::-webkit-scrollbar-thumb {
+        @include scrollbar_thumb;
+      }
+    }
+
+    .modalFooter {
+      @include modalFooter;
+    }
+  }
+
+  .modalDim {
+    @include modalDim;
+  }
+}
