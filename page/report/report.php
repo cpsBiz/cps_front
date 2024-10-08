@@ -427,10 +427,10 @@
         const keyword = document.getElementById('keyword').value;
 
         // 로그인 아이디 타입
-        const type = 'MASTER';
+        // const type = 'MASTER';
 
         // 로그인한 아이디
-        const searchId = '';
+        // const searchId = '';
 
         // totalCount 받은거를 size로 나눴을때의 총 페이지수
         const page = 0;
@@ -459,13 +459,19 @@
                 cancelYn: cancelYn,
                 keywordType: keywordType,
                 keyword: keyword,
-                type: type,
-                searchId: searchId,
+                // type: type,
+                // searchId: searchId,
                 page: page,
                 orderBy: orderBy
             },
             success: function(result) {
                 console.log(result);
+                const data = result;
+                const resultCode = data.resultCode;
+                const resultMessage = data.resultMessage;
+                const totalCount = data.totalCount;
+                const datas = data.datas;
+
             },
             error: function(request, status, error) {
                 console.log(error)
