@@ -1,4 +1,10 @@
 <? include_once $_SERVER['DOCUMENT_ROOT'] . "/header.php"; ?>
+<?
+header('Access-Control-Allow-Origin: *');
+header('Access-Control-Max-Age: 86400');
+header('Access-Control-Allow-Headers: x-requested-with');
+header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS');
+?>
 <!DOCTYPE html>
 <html lang="ko">
 
@@ -427,7 +433,7 @@
         const keyword = document.getElementById('keyword').value;
 
         // 로그인 아이디 타입
-        // const type = 'MASTER';
+        const type = 'MASTER';
 
         // 로그인한 아이디
         // const searchId = '';
@@ -446,11 +452,11 @@
         }
 
         $.ajax({
-            type: 'GET',
-            url: 'http://192.168.150.61:9100/api/admin/summaryCount',
-            async: true,
-            dataType: 'JSON',
-            data: {
+            type: 'POST',
+            url: 'http://192.168.150.61/api/admin/summaryCount',
+            type: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify({
                 dayType: dayType,
                 regStart: regStart,
                 regEnd: regEnd,
@@ -463,7 +469,7 @@
                 // searchId: searchId,
                 page: page,
                 orderBy: orderBy
-            },
+            }),
             success: function(result) {
                 console.log(result);
                 const data = result;
