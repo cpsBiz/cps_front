@@ -506,7 +506,7 @@ header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS');
                     } else if (checkDate[1] === 6) {
                         keyword.classList.add('sun');
                     }
-                } else if (earchType === 'MONTH') {
+                } else if (searchType === 'MONTH') {
                     const checkDate = formatAndCheckDate(item.keyWordName);
                     keywordText = checkDate[0];
                 } else {
