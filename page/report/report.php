@@ -426,142 +426,141 @@ header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS');
     }
 
     function renderData(data) {
-        // 상세보기 선택된 값에 맞게 첫번째 행의 타이틀 변경
+        // 1. 첫번째 행 키워드 타이틀 설정
+        setTitle();
+
+        // 2. 합계 데이터 렌더링
+        renderSumRow(data);
+
+        // 3. 데이터 테이블 렌더링
+        renderTableRows(data.datas);
+    }
+
+    // 첫번째 행 키워드 타이틀 설정 함수
+    function setTitle() {
         let title = '';
-        const searchType = document.querySelector('input[name="searchType"]:checked').value;
+        const searchType = getSearchTypeValue();
+
         if (searchType === 'DAY' || searchType === 'MONTH') {
-            title = '날짜'
+            title = '날짜';
         } else {
-            const checkedRadio = document.querySelector('input[name="searchType"]:checked')
+            const checkedRadio = document.querySelector('input[name="searchType"]:checked');
             title = document.querySelector(`label[for="${checkedRadio.id}"]`).innerHTML;
         }
         document.getElementById('searchTypeTitle').innerHTML = title;
-
-        // 합계 데이터
-        const sumRow = document.createElement('tr');
-        const sumKeyword = document.createElement('th');
-        sumKeyword.textContent = '합계';
-        sumRow.appendChild(sumKeyword);
-
-        const sumCnt = document.createElement('th');
-        sumCnt.textContent = commaLocale(data.cnt);
-        sumRow.appendChild(sumCnt);
-
-        const sumClickCnt = document.createElement('th');
-        sumClickCnt.textContent = commaLocale(data.clickCnt);
-        sumRow.appendChild(sumClickCnt);
-
-        const sumRewardCnt = document.createElement('th');
-        sumRewardCnt.textContent = commaLocale(data.rewardCnt);
-        sumRow.appendChild(sumRewardCnt);
-
-        const sumCvr = document.createElement('th');
-        sumCvr.textContent = 1;
-        sumRow.appendChild(sumCvr);
-
-        const sumProductPrice = document.createElement('th');
-        sumProductPrice.textContent = commaLocale(data.productPrice) + '원';
-        sumRow.appendChild(sumProductPrice);
-
-        const sumCommission = document.createElement('th');
-        sumCommission.textContent = commaLocale(data.commission) + '원';
-        sumRow.appendChild(sumCommission);
-
-        const sumCommissionProfit = document.createElement('th');
-        sumCommissionProfit.textContent = commaLocale(data.commissionProfit) + '원';
-        sumRow.appendChild(sumCommissionProfit);
-
-        const sumViewDetail = document.createElement('th');
-        sumViewDetail.appendChild(createDetailButtons(searchType));
-        sumRow.appendChild(sumViewDetail);
-
-        if (document.getElementById('reportHead').childElementCount > 1) {
-            document.getElementById('reportHead').removeChild(document.getElementById('reportHead').lastElementChild);
-        }
-        document.getElementById('reportHead').appendChild(sumRow);
-
-        // 데이터 테이블에 렌더링
-        const tableData = data.datas;
-        const cancelYn = document.querySelector('input[name="cancelYn"]:checked').value;
-        document.getElementById('reportData').innerHTML = '';
-
-        // 데이터 리스트
-        tableData.forEach(
-            item => {
-                // 행 생성
-                const row = document.createElement('tr');
-
-                // 키워드
-                const keyword = document.createElement('td');
-                let keywordText = '';
-                if (searchType === 'DAY') { // 상세보기 선택 값이 일별일때
-                    const checkDate = formatAndCheckDate(item.keyWordName);
-                    keywordText = checkDate[0];
-
-                    // 요일이 토,일 일때 행에 css구분 클래스 추가
-                    if (checkDate[1] === 0) {
-                        keyword.classList.add('sat');
-                    } else if (checkDate[1] === 6) {
-                        keyword.classList.add('sun');
-                    }
-                } else if (searchType === 'MONTH') { // 상세보기 선택 값이 월별일때
-                    const checkDate = formatAndCheckDate(item.keyWordName);
-                    keywordText = checkDate[0];
-                } else {
-                    keywordText = item.keyWordName;
-                }
-                keyword.textContent = keywordText;
-                row.appendChild(keyword);
-
-                // 노출수
-                const cnt = document.createElement('td');
-                cnt.textContent = commaLocale(item.cnt);
-                row.appendChild(cnt);
-
-                // 클릭수
-                const clickCnt = document.createElement('td');
-                clickCnt.textContent = commaLocale(item.clickCnt);
-                row.appendChild(clickCnt);
-
-                // 건수
-                const rewardCnt = document.createElement('td');
-                const rewardCntText = cancelYn === 'N' ? item.confirmRewardCnt : cancelYn === 'Y' ? item.cancelRewardCnt : item.rewardCnt;
-                rewardCnt.textContent = commaLocale(rewardCntText);
-                row.appendChild(rewardCnt);
-
-                // 전환율
-                const cvr = document.createElement('td');
-                cvr.textContent = 1;
-                row.appendChild(cvr);
-
-                // 구매액
-                const productPrice = document.createElement('td');
-                const productPriceText = cancelYn === 'N' ? item.confirmProductPrice : cancelYn === 'Y' ? item.cancelProductPrice : item.productPrice;
-                productPrice.textContent = commaLocale(productPriceText) + '원';
-                row.appendChild(productPrice);
-
-                // 커미션 매출
-                const commission = document.createElement('td');
-                const commissionText = cancelYn === 'N' ? item.confirmCommission : cancelYn === 'Y' ? item.cancelCommission : item.commission;
-                commission.textContent = commaLocale(commissionText) + '원';
-                row.appendChild(commission);
-
-                // 커미션 이익
-                const commissionProfit = document.createElement('td');
-                const commissionProfitText = cancelYn === 'N' ? item.confirmCommissionProfit : cancelYn === 'Y' ? item.cancelCommissionProfit : item.commissionProfit;
-                commissionProfit.textContent = commaLocale(commissionProfitText) + '원';
-                row.appendChild(commissionProfit);
-
-                // 상세보기 영역
-                const viewDetail = document.createElement('td');
-                viewDetail.appendChild(createDetailButtons(searchType, item.keyword));
-                row.appendChild(viewDetail);
-
-                document.getElementById('reportData').appendChild(row);
-            }
-        )
     }
 
+    // 합계 데이터 행 렌더링 함수
+    function renderSumRow(data) {
+        const sumRow = document.createElement('tr');
+        sumRow.appendChild(createCell('th', '합계'));
+        sumRow.appendChild(createCell('th', commaLocale(data.cnt)));
+        sumRow.appendChild(createCell('th', commaLocale(data.clickCnt)));
+        sumRow.appendChild(createCell('th', commaLocale(data.rewardCnt)));
+        sumRow.appendChild(createCell('th', '1')); // 전환율 값 예시로 1
+        sumRow.appendChild(createCell('th', commaLocale(data.productPrice) + '원'));
+        sumRow.appendChild(createCell('th', commaLocale(data.commission) + '원'));
+        sumRow.appendChild(createCell('th', commaLocale(data.commissionProfit) + '원'));
+
+        const sumViewDetail = document.createElement('th');
+        sumViewDetail.appendChild(createDetailButtons(getSearchTypeValue()));
+        sumRow.appendChild(sumViewDetail);
+
+        // 기존 합계 데이터 행 제거
+        const reportHead = document.getElementById('reportHead');
+        if (reportHead.childElementCount > 1) {
+            reportHead.removeChild(reportHead.lastElementChild);
+        }
+        reportHead.appendChild(sumRow);
+    }
+
+    // 테이블 행 렌더링 함수
+    function renderTableRows(tableData) {
+        const reportData = document.getElementById('reportData');
+        const searchType = getSearchTypeValue();
+        const cancelYn = getCancelYnValue();
+
+        reportData.innerHTML = ''; // 테이블 초기화
+
+        tableData.forEach(item => {
+            const row = document.createElement('tr');
+
+            // 데이터 열 생성
+            row.appendChild(createKeywordCell(item, searchType));
+            row.appendChild(createCell('td', commaLocale(item.cnt)));
+            row.appendChild(createCell('td', commaLocale(item.clickCnt)));
+            row.appendChild(createCell('td', commaLocale(getRewardCount(item, cancelYn))));
+            row.appendChild(createCell('td', '1')); // 전환율 값 예시로 1
+            row.appendChild(createCell('td', commaLocale(getProductPrice(item, cancelYn)) + '원'));
+            row.appendChild(createCell('td', commaLocale(getCommission(item, cancelYn)) + '원'));
+            row.appendChild(createCell('td', commaLocale(getCommissionProfit(item, cancelYn)) + '원'));
+
+            // 상세보기 영역
+            const viewDetail = document.createElement('td');
+            viewDetail.appendChild(createDetailButtons(searchType, item.keyword));
+            row.appendChild(viewDetail);
+
+            reportData.appendChild(row);
+        });
+    }
+
+    // 검색 타입 값 가져오기 함수
+    function getSearchTypeValue() {
+        return document.querySelector('input[name="searchType"]:checked').value;
+    }
+
+    // 취소 여부 값 가져오기 함수
+    function getCancelYnValue() {
+        return document.querySelector('input[name="cancelYn"]:checked').value;
+    }
+
+    // 테이블 셀 생성 함수
+    function createCell(tag, textContent) {
+        const cell = document.createElement(tag);
+        cell.textContent = textContent;
+        return cell;
+    }
+
+    // 키워드 셀 생성 함수 (검색 타입에 따라 날짜 처리 포함)
+    function createKeywordCell(item, searchType) {
+        const keyword = document.createElement('td');
+        let keywordText = item.keyWordName;
+
+        if (searchType === 'DAY' || searchType === 'MONTH') {
+            const [formattedDate, dayIndex] = formatAndCheckDate(item.keyWordName);
+            keywordText = formattedDate;
+
+            if (searchType === 'DAY') {
+                if (dayIndex === 0) keyword.classList.add('sat'); // 토요일
+                if (dayIndex === 6) keyword.classList.add('sun'); // 일요일
+            }
+        }
+
+        keyword.textContent = keywordText;
+        return keyword;
+    }
+
+    // 건수 데이터
+    function getRewardCount(item, cancelYn) {
+        return cancelYn === 'N' ? item.confirmRewardCnt : cancelYn === 'Y' ? item.cancelRewardCnt : item.rewardCnt;
+    }
+
+    // 구매액 데이터
+    function getProductPrice(item, cancelYn) {
+        return cancelYn === 'N' ? item.confirmProductPrice : cancelYn === 'Y' ? item.cancelProductPrice : item.productPrice;
+    }
+
+    // 커미션 매출 데이터
+    function getCommission(item, cancelYn) {
+        return cancelYn === 'N' ? item.confirmCommission : cancelYn === 'Y' ? item.cancelCommission : item.commission;
+    }
+
+    // 커미션 이익 데이터
+    function getCommissionProfit(item, cancelYn) {
+        return cancelYn === 'N' ? item.confirmCommissionProfit : cancelYn === 'Y' ? item.cancelCommissionProfit : item.commissionProfit;
+    }
+
+    // 천단위 컴마
     function commaLocale(val) {
         return parseInt(val).toLocaleString();
     }
@@ -635,12 +634,14 @@ header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS');
         ]
     }
 
+    // 무슨 요일인지 확인하는 함수
     function getDayOfWeek(date) {
         const days = ["일요일", "월요일", "화요일", "수요일", "목요일", "금요일", "토요일"];
         const dayName = days[date.getDay()]; // getDay()는 0 (일요일) ~ 6 (토요일) 사이의 숫자 반환
         return dayName;
     }
 
+    // 일,월별에 맞춰서 날짜를 리턴하는 함수
     function getRegDates(input, dayType) {
         // 입력 문자열에서 날짜 범위를 분리
         const [startDate, endDate] = input.split(" ~ ");
@@ -725,8 +726,6 @@ header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS');
                 target = ''
                 break;
         }
-
-
 
         // 정렬순서
         if (headerClassList === 'sortUp') {
