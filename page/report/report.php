@@ -324,8 +324,7 @@ header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS');
     // 현재 페이지 초기화 변수
     let page = 0;
 
-    function getReport(orderBy = '', detail = false, detailKeyword = '') {
-        console.log(detail, detailKeyword)
+    function getReport(orderBy = '') {
         try {
             // 상세보기 선택에서 월별은 제외한 나머지는 DAY
             let dayType = document.querySelector('input[name="searchType"]:checked').value === 'MONTH' ? 'MONTH' : 'DAY';
@@ -364,17 +363,6 @@ header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS');
                 throw new Error('필수값이 누락되었습니다.');
             }
 
-            // 상세보기일때 데이터 변경
-            if (detail && detailKeyword) {
-                if (searchType === 'DAY' || searchType === 'MONTH') {
-                    searchType = 'EQ' + searchType;
-                } else {
-                    keywordType = 'EQ' + searchType;
-                    keyword = detailKeyword;
-                }
-            }
-
-
             // AJAX 요청 데이터 설정
             const requestData = {
                 dayType,
@@ -398,10 +386,7 @@ header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS');
                 contentType: 'application/json',
                 data: JSON.stringify(requestData),
                 success: function(result) {
-                    if (!detail) {
-                        handleSuccessResponse(result, searchType, size, page);
-                        return;
-                    }
+                    handleSuccessResponse(result, searchType, size, page);
                 },
                 error: function(request, status, error) {
                     console.error(`Error: ${error}`);
@@ -741,8 +726,7 @@ header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS');
 
     // 상세보기 데이터 조회
     function getViewDetailData(keyword) {
-        console.log(keyword)
-        getReport('', true, keyword);
+
     }
 
 
