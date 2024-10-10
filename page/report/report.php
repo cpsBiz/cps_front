@@ -324,103 +324,143 @@ header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS');
     // 현재 페이지 초기화 변수
     let page = 0;
 
-    function getReport(
-        orderBy = ''
-    ) {
-        // 상세보기 선택에서 월별은 제외한 나머지는 DAY
-        const dayType = document.querySelector('input[name="searchType"]:checked').value === 'MONTH' ? 'MONTH' : 'DAY';
+    function getReport(orderBy = '', detail = false, detailKeyword = '') {
+        console.log(detail, detailKeyword)
+        try {
+            // 상세보기 선택에서 월별은 제외한 나머지는 DAY
+            let dayType = document.querySelector('input[name="searchType"]:checked').value === 'MONTH' ? 'MONTH' : 'DAY';
 
-        // 월별 YYYYMM, 일별 YYYYMMDD
-        const regFull = getRegDates(document.getElementById('dateInput').value, dayType);
-        const regStart = regFull[0];
-        const regEnd = regFull[1];
+            // 월별 YYYYMM, 일별 YYYYMMDD
+            const regFull = getRegDates(document.getElementById('dateInput').value, dayType);
+            const regStart = regFull[0];
+            const regEnd = regFull[1];
 
-        // 상세보기 선택 값
-        const searchType = document.querySelector('input[name="searchType"]:checked').value;
+            // 상세보기 선택 값
+            let searchType = document.querySelector('input[name="searchType"]:checked').value;
 
-        // 영역 선택 값
-        const os = document.querySelector('input[name="os"]:checked').value;
+            // 영역 선택 값
+            const os = document.querySelector('input[name="os"]:checked').value;
 
-        // 상태 선택 값, 취소분만 취소완료
-        const cancelYn = document.querySelector('input[name="cancelYn"]:checked').value;
+            // 상태 선택 값, 취소분만 취소완료
+            const cancelYn = document.querySelector('input[name="cancelYn"]:checked').value;
 
-        // 선택 영역 선택 값
-        const keywordType = document.querySelector('input[name="keywordType"]:checked').value;
+            // 선택 영역 선택 값
+            let keywordType = document.querySelector('input[name="keywordType"]:checked').value;
 
-        // ID/명/법인명 입력 값
-        const keyword = document.getElementById('keyword').value;
+            // ID/명/법인명 입력 값
+            let keyword = document.getElementById('keyword').value;
 
-        // 로그인 아이디 타입
-        const type = 'MASTER';
+            // 로그인 아이디 타입
+            const type = 'MASTER';
 
-        // 로그인한 아이디
-        // const searchId = '';
+            // 로그인한 아이디
+            // const searchId = '';
 
-        // 한 페이지에서 몇개의 데이터를 보여줄건지
-        const size = parseInt(document.getElementById('size').value);
+            // 한 페이지에서 몇개의 데이터를 보여줄건지
+            const size = parseInt(document.getElementById('size').value);
 
-        if (!dayType || !regFull || !regStart || !regEnd || !searchType || !type) {
-            return alert('필수값이 누락되었습니다.');
+            // 필수 값 유효성 검사
+            if (!searchType || !dayType || !regStart || !regEnd) {
+                throw new Error('필수값이 누락되었습니다.');
+            }
+
+            // 상세보기일때 데이터 변경
+            if (detail && detailKeyword) {
+                if (searchType === 'DAY' || searchType === 'MONTH') {
+                    searchType = 'EQ' + searchType;
+                } else {
+                    keywordType = 'EQ' + searchType;
+                    keyword = detailKeyword;
+                }
+            }
+
+
+            // AJAX 요청 데이터 설정
+            const requestData = {
+                dayType,
+                regStart,
+                regEnd,
+                searchType,
+                os,
+                cancelYn,
+                keywordType,
+                keyword,
+                type,
+                page,
+                size,
+                orderBy
+            };
+
+            // 7. AJAX 요청 수행
+            $.ajax({
+                type: 'POST',
+                url: 'http://192.168.150.61/api/admin/summaryCount',
+                contentType: 'application/json',
+                data: JSON.stringify(requestData),
+                success: function(result) {
+                    if (!detail) {
+                        handleSuccessResponse(result, searchType, size, page);
+                        return;
+                    }
+                },
+                error: function(request, status, error) {
+                    console.error(`Error: ${error}`);
+                }
+            });
+        } catch (error) {
+            alert(error.message);
+        }
+    }
+
+    // API 응답 처리 및 데이터 렌더링
+    function handleSuccessResponse(data, searchType, size, page) {
+        // 상세보기 선택 값 업데이트
+        const checkedRadio = document.querySelector('input[name="searchType"]:checked');
+        const tableTitle = document.querySelector('.tableTitle span');
+        tableTitle.textContent = document.querySelector(`label[for="${checkedRadio.id}"]`).innerHTML;
+
+        // 데이터가 없는 경우 UI 처리
+        const tableBoxes = document.querySelectorAll('.tableBox');
+        const paging = document.querySelector('.paging');
+        const tableDataNone = document.querySelector('.tableDataNone');
+
+        if (data.totalCount === 0) {
+            hideElements([...tableBoxes, paging]);
+            tableDataNone.style.display = 'block';
+            return;
         }
 
-        $.ajax({
-            type: 'POST',
-            url: 'http://192.168.150.61/api/admin/summaryCount',
-            type: 'POST',
-            contentType: 'application/json',
-            data: JSON.stringify({
-                dayType: dayType,
-                regStart: regStart,
-                regEnd: regEnd,
-                searchType: searchType,
-                os: os,
-                cancelYn: cancelYn,
-                keywordType: keywordType,
-                keyword: keyword,
-                // type: type,
-                // searchId: searchId,
-                page: page,
-                size: size,
-                orderBy: orderBy
-            }),
-            success: function(result) {
-                const data = result;
+        // 데이터가 있는 경우 UI 처리
+        showElements([...tableBoxes, paging]);
+        tableDataNone.style.display = 'none';
 
-                const checkedRadio = document.querySelector('input[name="searchType"]:checked')
-                document.querySelector('.tableTitle span').textContent = document.querySelector(`label[for="${checkedRadio.id}"]`).innerHTML
+        // 데이터 렌더링 및 페이지네이션 설정
+        renderData(data);
+        renderPagination(data.totalCount, size, page);
+    }
 
-                if (data.totalCount === 0) {
-                    document.querySelectorAll('.tableBox').forEach(element => {
-                        element.style.display = 'none';
-                    });
-                    document.querySelector('.paging').style.display = 'none';
-                    document.querySelector('.tableDataNone').style.display = 'block';
-                    return
-                } else {
-                    document.querySelectorAll('.tableBox').forEach(element => {
-                        element.style.display = 'block';
-                    });
-                    document.querySelector('.paging').style.display = 'block';
-                    document.querySelector('.tableDataNone').style.display = 'none';
-                }
+    // 특정 요소 리스트를 숨기는 함수
+    function hideElements(elements) {
+        elements.forEach(element => {
+            element.style.display = 'none';
+        });
+    }
 
-                renderData(data);
-                renderPagination(data.totalCount, size, page);
-            },
-            error: function(request, status, error) {
-                console.log(error)
-            }
-        })
+    // 특정 요소 리스트를 보이는 함수
+    function showElements(elements) {
+        elements.forEach(element => {
+            element.style.display = 'block';
+        });
     }
 
     function renderData(data) {
-        // 1. 첫번째 행 키워드 타이틀 설정
+        // 첫번째 행 키워드 타이틀 설정
         setTitle();
 
-        // 2. 합계 데이터 렌더링
+        // 합계 데이터 렌더링
         renderSumRow(data);
 
-        // 3. 데이터 테이블 렌더링
+        // 데이터 테이블 렌더링
         renderTableRows(data.datas);
     }
 
@@ -558,7 +598,7 @@ header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS');
         const button = document.createElement('button');
         button.textContent = text;
         button.classList.add(className);
-        button.onclick = () => getViewDetailData(className.toUpperCase(), keyword);
+        button.onclick = () => getViewDetailData(keyword);
         return button;
     }
 
@@ -700,8 +740,9 @@ header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS');
     }
 
     // 상세보기 데이터 조회
-    function getViewDetailData(keywordType, keyword) {
-        console.log(keywordType, keyword)
+    function getViewDetailData(keyword) {
+        console.log(keyword)
+        getReport('', true, keyword);
     }
 
 
