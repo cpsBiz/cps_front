@@ -324,7 +324,8 @@ header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS');
     // 현재 페이지 초기화 변수
     let page = 0;
 
-    function getReport(orderBy = '') {
+    function getReport(orderBy = '', detail = false, detailKeyword = '', btn = '') {
+        console.log(detail, detailKeyword)
         try {
             // 상세보기 선택에서 월별은 제외한 나머지는 DAY
             let dayType = document.querySelector('input[name="searchType"]:checked').value === 'MONTH' ? 'MONTH' : 'DAY';
@@ -363,6 +364,22 @@ header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS');
                 throw new Error('필수값이 누락되었습니다.');
             }
 
+            // 상세보기일때 데이터 변경
+            if (detail && detailKeyword) {
+                if (searchType === 'DAY' || searchType === 'MONTH') {
+                    dayType = 'EQ' + searchType;
+                } else {
+                    keywordType = 'EQ' + searchType;
+                    keyword = detailKeyword;
+                }
+
+                if (btn === 'SITE' || btn === 'CAMPAIGN' || btn === 'DETAIL') {
+                    searchType = btn;
+                }
+            }
+
+
+
             // AJAX 요청 데이터 설정
             const requestData = {
                 dayType,
@@ -386,7 +403,10 @@ header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS');
                 contentType: 'application/json',
                 data: JSON.stringify(requestData),
                 success: function(result) {
-                    handleSuccessResponse(result, searchType, size, page);
+                    if (!detail) {
+                        handleSuccessResponse(result, searchType, size, page);
+                        return;
+                    }
                 },
                 error: function(request, status, error) {
                     console.error(`Error: ${error}`);
@@ -583,7 +603,7 @@ header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS');
         const button = document.createElement('button');
         button.textContent = text;
         button.classList.add(className);
-        button.onclick = () => getViewDetailData(keyword);
+        button.onclick = () => getViewDetailData(keyword, className.toUpperCase());
         return button;
     }
 
@@ -725,8 +745,8 @@ header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS');
     }
 
     // 상세보기 데이터 조회
-    function getViewDetailData(keyword) {
-
+    function getViewDetailData(keyword, btn) {
+        getReport('', true, keyword, btn);
     }
 
 
