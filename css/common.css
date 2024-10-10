@@ -4341,6 +4341,10 @@ menu : 리포트
   display: none;
 }
 
+.ic_reportPerformance .content section.sec_list .tableArea .tableDataNone p {
+  text-align: center;
+}
+
 .ic_reportPerformance
   .content
   section.sec_list

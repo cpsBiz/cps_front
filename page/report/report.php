@@ -171,7 +171,7 @@ header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS');
                             <select id="size">
                                 <option value="10">10개씩 보기</option>
                                 <option value="20">20개씩 보기</option>
-                                <option value="40">40개씩 보기</option>
+                                <option value="40" selected>40개씩 보기</option>
                                 <option value="60">60개씩 보기</option>
                                 <option value="100">100개씩 보기</option>
                             </select>
@@ -197,77 +197,9 @@ header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS');
                                         <th class="sortUp">커미션 이익</th>
                                         <th>상세보기</th>
                                     </tr>
-                                    <tr>
-                                        <th>합계</th>
-                                        <th>123,888,999</th>
-                                        <th>123,888,999</th>
-                                        <th>456,000</th>
-                                        <th>59%</th>
-                                        <th>123,888,999</th>
-                                        <th>123,888,999원</th>
-                                        <th>123,888,999원</th>
-                                        <th>
-                                            <div class="buttonBox">
-                                                <button type="button" class="campaign">캠페인</button>
-                                                <button type="button" class="site">사이트</button>
-                                                <button type="button" class="detail">상세</button>
-                                            </div>
-                                        </th>
-                                    </tr>
                                 </thead>
                                 <tbody id="reportData">
-                                    <!-- 토요일, 일요일은 sat, sun 클래스 추가-->
-                                    <tr>
-                                        <td>2024.09.19</td>
-                                        <td>123,456,890</td>
-                                        <td>123,456,890</td>
-                                        <td>456,890</td>
-                                        <td>57%</td>
-                                        <td>123,456,890</td>
-                                        <td>123,456,890원</td>
-                                        <td>3,456,890원</td>
-                                        <td>
-                                            <div class="buttonBox">
-                                                <button type="button" class="campaign">캠페인</button>
-                                                <button type="button" class="site">사이트</button>
-                                                <button type="button" class="detail">상세</button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="sat">2024.09.19</td>
-                                        <td>123,456,890</td>
-                                        <td>123,456,890</td>
-                                        <td>456,890</td>
-                                        <td>57%</td>
-                                        <td>123,456,890</td>
-                                        <td>123,456,890원</td>
-                                        <td>3,456,890원</td>
-                                        <td>
-                                            <div class="buttonBox">
-                                                <button type="button" class="campaign">캠페인</button>
-                                                <button type="button" class="site">사이트</button>
-                                                <button type="button" class="detail">상세</button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="sun">2024.09.19</td>
-                                        <td>123,456,890</td>
-                                        <td>123,456,890</td>
-                                        <td>456,890</td>
-                                        <td>57%</td>
-                                        <td>123,456,890</td>
-                                        <td>123,456,890원</td>
-                                        <td>3,456,890원</td>
-                                        <td>
-                                            <div class="buttonBox">
-                                                <button type="button" class="campaign">캠페인</button>
-                                                <button type="button" class="site">사이트</button>
-                                                <button type="button" class="detail">상세</button>
-                                            </div>
-                                        </td>
-                                    </tr>
+
                                 </tbody>
                             </table>
                         </div>
@@ -400,6 +332,10 @@ header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS');
 
 </html>
 <script>
+    $(function() {
+        getReport();
+    })
+
     function getReport(
         orderBy = ''
     ) {
@@ -464,8 +400,24 @@ header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS');
             }),
             success: function(result) {
                 const data = result;
-                renderData(data);
 
+                const checkedRadio = document.querySelector('input[name="searchType"]:checked')
+                document.querySelector('.tableTitle span').textContent = document.querySelector(`label[for="${checkedRadio.id}"]`).innerHTML
+
+                if (data.totalCount === 0) {
+                    document.querySelectorAll('.tableBox').forEach(element => {
+                        element.style.display = 'none';
+                    });
+                    document.querySelector('.tableDataNone').style.display = 'block';
+                    return
+                } else {
+                    document.querySelectorAll('.tableBox').forEach(element => {
+                        element.style.display = 'block';
+                    });
+                    document.querySelector('.tableDataNone').style.display = 'none';
+                }
+
+                renderData(data);
             },
             error: function(request, status, error) {
                 console.log(error)
@@ -523,9 +475,10 @@ header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS');
         sumViewDetail.appendChild(createDetailButtons(searchType));
         sumRow.appendChild(sumViewDetail);
 
-        const reportHead = document.getElementById('reportHead');
-        reportHead.removeChild(reportHead.lastElementChild);
-        reportHead.appendChild(sumRow);
+        if (document.getElementById('reportHead').childElementCount > 1) {
+            document.getElementById('reportHead').removeChild(document.getElementById('reportHead').lastElementChild);
+        }
+        document.getElementById('reportHead').appendChild(sumRow);
 
         // 데이터 테이블에 렌더링
         const tableData = data.datas;
@@ -601,7 +554,7 @@ header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS');
 
                 // 상세보기 영역
                 const viewDetail = document.createElement('td');
-                viewDetail.appendChild(createDetailButtons(searchType));
+                viewDetail.appendChild(createDetailButtons(searchType, item.keyword));
                 row.appendChild(viewDetail);
 
                 document.getElementById('reportData').appendChild(row);
@@ -614,7 +567,7 @@ header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS');
     }
 
     // 버튼을 생성하는 함수
-    function createButton(text, className) {
+    function createButton(text, className, keyword) {
         const button = document.createElement('button');
         button.textContent = text;
         button.classList.add(className);
@@ -622,24 +575,24 @@ header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS');
     }
 
     // 상세보기 영역 생성 함수
-    function createDetailButtons(searchType) {
+    function createDetailButtons(searchType, keyword) {
         const btnBox = document.createElement('div');
         btnBox.classList.add('buttonBox');
 
         if (searchType === 'DAY' || searchType === 'MONTH') {
-            btnBox.appendChild(createButton('캠페인', 'campaign'));
-            btnBox.appendChild(createButton('사이트', 'site'));
-            btnBox.appendChild(createButton('상세', 'detail'));
+            btnBox.appendChild(createButton('캠페인', 'campaign', keyword));
+            btnBox.appendChild(createButton('사이트', 'site', keyword));
+            btnBox.appendChild(createButton('상세', 'detail', keyword));
 
         } else if (['MERCHANT', 'CAMPAIGN', 'AFFLIATE', 'MEMBERAFF'].includes(searchType)) {
-            btnBox.appendChild(createButton('일별', 'day'));
-            btnBox.appendChild(createButton('월별', 'month'));
-            btnBox.appendChild(createButton('사이트', 'site'));
+            btnBox.appendChild(createButton('일별', 'day', keyword));
+            btnBox.appendChild(createButton('월별', 'month', keyword));
+            btnBox.appendChild(createButton('사이트', 'site', keyword));
 
         } else if (['SITE', 'MEMBERAGC'].includes(searchType)) {
-            btnBox.appendChild(createButton('일별', 'day'));
-            btnBox.appendChild(createButton('월별', 'month'));
-            btnBox.appendChild(createButton('캠페인', 'campaign'));
+            btnBox.appendChild(createButton('일별', 'day', keyword));
+            btnBox.appendChild(createButton('월별', 'month', keyword));
+            btnBox.appendChild(createButton('캠페인', 'campaign', keyword));
         }
 
         return btnBox;
