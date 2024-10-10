@@ -4895,7 +4895,29 @@ menu : 리포트
   tr
   td
   .buttonBox
-  button.site {
+  button.site,
+.ic_reportPerformance
+  .content
+  section.sec_list
+  .tableArea
+  .tableBox
+  table
+  tbody
+  tr
+  td
+  .buttonBox
+  button.day,
+.ic_reportPerformance
+  .content
+  section.sec_list
+  .tableArea
+  .tableBox
+  table
+  tbody
+  tr
+  td
+  .buttonBox
+  button.month {
   color: #000000;
   border: 1px solid #d8dcec;
   background-color: #d8dcec;

@@ -489,6 +489,7 @@ header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS');
         // 데이터 테이블에 렌더링
         const tableData = data.datas;
         const cancelYn = document.querySelector('input[name="cancelYn"]:checked').value;
+        document.getElementById('reportData').innerHTML = '';
         tableData.forEach(
             item => {
                 // 행 생성
@@ -497,16 +498,17 @@ header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS');
                 // 키워드
                 const keyword = document.createElement('td');
                 let keywordText = '';
-                if (searchType === 'DAY') {
+                if (searchType === 'DAY') { // 상세보기 선택 값이 일별일때
                     const checkDate = formatAndCheckDate(item.keyWordName);
                     keywordText = checkDate[0];
 
+                    // 요일이 토,일 일때 행에 css구분 클래스 추가
                     if (checkDate[1] === 0) {
                         keyword.classList.add('sat');
                     } else if (checkDate[1] === 6) {
                         keyword.classList.add('sun');
                     }
-                } else if (searchType === 'MONTH') {
+                } else if (searchType === 'MONTH') { // 상세보기 선택 값이 월별일때
                     const checkDate = formatAndCheckDate(item.keyWordName);
                     keywordText = checkDate[0];
                 } else {
@@ -554,10 +556,46 @@ header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS');
                 commissionProfit.textContent = parseInt(commissionProfitText).toLocaleString() + '원';
                 row.appendChild(commissionProfit);
 
+                // 상세보기 영역
+                const viewDetail = document.createElement('td');
+                viewDetail.appendChild(createDetailButtons(searchType));
+                row.appendChild(viewDetail);
 
                 document.getElementById('reportData').appendChild(row);
             }
         )
+    }
+
+    // 버튼을 생성하는 함수
+    function createButton(text, className) {
+        const button = document.createElement('button');
+        button.textContent = text;
+        button.classList.add(className);
+        return button;
+    }
+
+    // 상세보기 영역 생성 함수
+    function createDetailButtons(searchType) {
+        const btnBox = document.createElement('div');
+        btnBox.classList.add('buttonBox');
+
+        if (searchType === 'DAY' || searchType === 'MONTH') {
+            btnBox.appendChild(createButton('캠페인', 'campaign'));
+            btnBox.appendChild(createButton('사이트', 'site'));
+            btnBox.appendChild(createButton('상세', 'detail'));
+
+        } else if (['MERCHANT', 'CAMPAIGN', 'AFFLIATE', 'MEMBERAFF'].includes(searchType)) {
+            btnBox.appendChild(createButton('일별', 'day'));
+            btnBox.appendChild(createButton('월별', 'month'));
+            btnBox.appendChild(createButton('사이트', 'site'));
+
+        } else if (['SITE', 'MEMBERAGC'].includes(searchType)) {
+            btnBox.appendChild(createButton('일별', 'day'));
+            btnBox.appendChild(createButton('월별', 'month'));
+            btnBox.appendChild(createButton('캠페인', 'campaign'));
+        }
+
+        return btnBox;
     }
 
     // 날짜를 변환하고, 요일을 판단하는 함수
