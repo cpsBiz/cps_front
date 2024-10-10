@@ -325,7 +325,6 @@ header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS');
     let page = 0;
 
     function getReport(orderBy = '', detail = false, detailKeyword = '', btn = '') {
-        console.log(detail, detailKeyword)
         try {
             // 상세보기 선택에서 월별은 제외한 나머지는 DAY
             let dayType = document.querySelector('input[name="searchType"]:checked').value === 'MONTH' ? 'MONTH' : 'DAY';
@@ -370,12 +369,13 @@ header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS');
                     dayType = 'EQ' + searchType;
                 } else {
                     keywordType = 'EQ' + searchType;
-                    keyword = detailKeyword;
                 }
 
                 if (btn === 'SITE' || btn === 'CAMPAIGN' || btn === 'DETAIL') {
                     searchType = btn;
                 }
+
+                keyword = detailKeyword;
             }
 
 
@@ -396,17 +396,18 @@ header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS');
                 orderBy
             };
 
-            // 7. AJAX 요청 수행
+            // AJAX 요청 수행
             $.ajax({
                 type: 'POST',
                 url: 'http://192.168.150.61/api/admin/summaryCount',
                 contentType: 'application/json',
                 data: JSON.stringify(requestData),
                 success: function(result) {
-                    if (!detail) {
-                        handleSuccessResponse(result, searchType, size, page);
+                    if (detail) {
+                        openDetailModal(result);
                         return;
                     }
+                    handleSuccessResponse(result, searchType, size, page);
                 },
                 error: function(request, status, error) {
                     console.error(`Error: ${error}`);
@@ -820,5 +821,18 @@ header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS');
         const get = target + orderBy;
 
         getReport(get)
+    }
+
+    function pageLink(val) {
+        page = val;
+        getReport();
+    }
+
+    function openDetailModal(data) {
+        console.log(data)
+    }
+
+    function detailModalRender(data) {
+
     }
 </script>
