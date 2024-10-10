@@ -185,7 +185,7 @@ header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS');
                         <!-- 요약리포트 selectDay -->
                         <div class="tableBox selectDay">
                             <table>
-                                <thead>
+                                <thead id="reportHead">
                                     <tr>
                                         <th id="searchTypeTitle" class="sortDown">날짜</th>
                                         <th class="sortUp">노출수</th>
@@ -272,7 +272,7 @@ header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS');
                             </table>
                         </div>
                         <!-- 상세리포트 selectDetail -->
-                        <div class="tableBox selectDetail">
+                        <!-- <div class="tableBox selectDetail">
                             <table>
                                 <thead>
                                     <tr>
@@ -310,7 +310,6 @@ header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS');
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <!-- 토요일, 일요일은 sat, sun 클래스 추가-->
                                     <tr>
                                         <td>2024.09.19</td>
                                         <td>OOOOOOO</td>
@@ -366,7 +365,7 @@ header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS');
                                     </tr>
                                 </tbody>
                             </table>
-                        </div>
+                        </div> -->
                         <div class="tableDataNone">
                             <div>
                                 <p>내용이 없습니다. </p>
@@ -486,10 +485,54 @@ header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS');
         }
         document.getElementById('searchTypeTitle').innerHTML = title;
 
+        // 합계 데이터
+        const sumRow = document.createElement('tr');
+        const sumKeyword = document.createElement('th');
+        sumKeyword.textContent = '합계';
+        sumRow.appendChild(sumKeyword);
+
+        const sumCnt = document.createElement('th');
+        sumCnt.textContent = commaLocale(data.cnt);
+        sumRow.appendChild(sumCnt);
+
+        const sumClickCnt = document.createElement('th');
+        sumClickCnt.textContent = commaLocale(data.clickCnt);
+        sumRow.appendChild(sumClickCnt);
+
+        const sumRewardCnt = document.createElement('th');
+        sumRewardCnt.textContent = commaLocale(data.rewardCnt);
+        sumRow.appendChild(sumRewardCnt);
+
+        const sumCvr = document.createElement('th');
+        sumCvr.textContent = 1;
+        sumRow.appendChild(sumCvr);
+
+        const sumProductPrice = document.createElement('th');
+        sumProductPrice.textContent = commaLocale(data.productPrice) + '원';
+        sumRow.appendChild(sumProductPrice);
+
+        const sumCommission = document.createElement('th');
+        sumCommission.textContent = commaLocale(data.commission) + '원';
+        sumRow.appendChild(sumCommission);
+
+        const sumCommissionProfit = document.createElement('th');
+        sumCommissionProfit.textContent = commaLocale(data.commissionProfit) + '원';
+        sumRow.appendChild(sumCommissionProfit);
+
+        const sumViewDetail = document.createElement('th');
+        sumViewDetail.appendChild(createDetailButtons(searchType));
+        sumRow.appendChild(sumViewDetail);
+
+        const reportHead = document.getElementById('reportHead');
+        reportHead.removeChild(reportHead.lastElementChild);
+        reportHead.appendChild(sumRow);
+
         // 데이터 테이블에 렌더링
         const tableData = data.datas;
         const cancelYn = document.querySelector('input[name="cancelYn"]:checked').value;
         document.getElementById('reportData').innerHTML = '';
+
+        // 데이터 리스트
         tableData.forEach(
             item => {
                 // 행 생성
@@ -519,18 +562,18 @@ header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS');
 
                 // 노출수
                 const cnt = document.createElement('td');
-                cnt.textContent = parseInt(item.cnt).toLocaleString();
+                cnt.textContent = commaLocale(item.cnt);
                 row.appendChild(cnt);
 
                 // 클릭수
                 const clickCnt = document.createElement('td');
-                clickCnt.textContent = parseInt(item.clickCnt).toLocaleString();
+                clickCnt.textContent = commaLocale(item.clickCnt);
                 row.appendChild(clickCnt);
 
                 // 건수
                 const rewardCnt = document.createElement('td');
                 const rewardCntText = cancelYn === 'N' ? item.confirmRewardCnt : cancelYn === 'Y' ? item.cancelRewardCnt : item.rewardCnt;
-                rewardCnt.textContent = parseInt(rewardCntText).toLocaleString();
+                rewardCnt.textContent = commaLocale(rewardCntText);
                 row.appendChild(rewardCnt);
 
                 // 전환율
@@ -541,19 +584,19 @@ header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS');
                 // 구매액
                 const productPrice = document.createElement('td');
                 const productPriceText = cancelYn === 'N' ? item.confirmProductPrice : cancelYn === 'Y' ? item.cancelProductPrice : item.productPrice;
-                productPrice.textContent = parseInt(productPriceText).toLocaleString() + '원';
+                productPrice.textContent = commaLocale(productPriceText) + '원';
                 row.appendChild(productPrice);
 
                 // 커미션 매출
                 const commission = document.createElement('td');
                 const commissionText = cancelYn === 'N' ? item.confirmCommission : cancelYn === 'Y' ? item.cancelCommission : item.commission;
-                commission.textContent = parseInt(commissionText).toLocaleString() + '원';
+                commission.textContent = commaLocale(commissionText) + '원';
                 row.appendChild(commission);
 
                 // 커미션 이익
                 const commissionProfit = document.createElement('td');
                 const commissionProfitText = cancelYn === 'N' ? item.confirmCommissionProfit : cancelYn === 'Y' ? item.cancelCommissionProfit : item.commissionProfit;
-                commissionProfit.textContent = parseInt(commissionProfitText).toLocaleString() + '원';
+                commissionProfit.textContent = commaLocale(commissionProfitText) + '원';
                 row.appendChild(commissionProfit);
 
                 // 상세보기 영역
@@ -564,6 +607,10 @@ header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS');
                 document.getElementById('reportData').appendChild(row);
             }
         )
+    }
+
+    function commaLocale(val) {
+        return parseInt(val).toLocaleString();
     }
 
     // 버튼을 생성하는 함수

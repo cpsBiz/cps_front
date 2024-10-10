@@ -4816,6 +4816,16 @@ menu : 리포트
   tbody
   tr
   td
+  .buttonBox,
+.ic_reportPerformance
+  .content
+  section.sec_list
+  .tableArea
+  .tableBox
+  table
+  thead
+  tr
+  th
   .buttonBox {
   display: -webkit-box;
   display: -ms-flexbox;
