@@ -304,22 +304,7 @@ header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS');
                             </div>
                         </div>
                         <div class="paging">
-                            <ul>
-                                <!-- <li class="prev-list"><a href="javascript:pageLink(0);"></a></li> -->
-                                <li class="prev"><a href="javascript:pageLink(0);"></a></li>
-                                <li class="on"><a href="javascript:pageLink(1);">1</a></li>
-                                <li><a href="javascript:pageLink(2);">2</a></li>
-                                <li><a href="javascript:pageLink(3);">3</a></li>
-                                <li><a href="javascript:pageLink(4);">4</a></li>
-                                <li><a href="javascript:pageLink(5);">5</a></li>
-                                <li><a href="javascript:pageLink(6);">6</a></li>
-                                <li><a href="javascript:pageLink(7);">7</a></li>
-                                <li><a href="javascript:pageLink(8);">8</a></li>
-                                <li><a href="javascript:pageLink(9);">9</a></li>
-                                <li><a href="javascript:pageLink(10);">10</a></li>
-                                <li class="next"><a href="javascript:pageLink(10+1);"></a></li>
-                                <!-- <li class="next-list"><a href="javascript:pageLink(10+1);"></a></li> -->
-                            </ul>
+                            <ul></ul>
                         </div>
                     </div>
                 </section>
@@ -335,6 +320,9 @@ header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS');
     $(function() {
         getReport();
     })
+
+    // 현재 페이지 초기화 변수
+    let page = 0;
 
     function getReport(
         orderBy = ''
@@ -367,9 +355,6 @@ header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS');
 
         // 로그인한 아이디
         // const searchId = '';
-
-        // totalCount 받은거를 size로 나눴을때의 총 페이지수
-        const page = 0;
 
         // 한 페이지에서 몇개의 데이터를 보여줄건지
         const size = parseInt(document.getElementById('size').value);
@@ -408,16 +393,19 @@ header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS');
                     document.querySelectorAll('.tableBox').forEach(element => {
                         element.style.display = 'none';
                     });
+                    document.querySelector('.paging').style.display = 'none';
                     document.querySelector('.tableDataNone').style.display = 'block';
                     return
                 } else {
                     document.querySelectorAll('.tableBox').forEach(element => {
                         element.style.display = 'block';
                     });
+                    document.querySelector('.paging').style.display = 'block';
                     document.querySelector('.tableDataNone').style.display = 'none';
                 }
 
                 renderData(data);
+                renderPagination(data.totalCount, size, page);
             },
             error: function(request, status, error) {
                 console.log(error)
@@ -463,7 +451,7 @@ header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS');
         sumRow.appendChild(createCell('th', commaLocale(data.commissionProfit) + '원'));
 
         const sumViewDetail = document.createElement('th');
-        sumViewDetail.appendChild(createDetailButtons(getSearchTypeValue()));
+        sumViewDetail.appendChild(createDetailButtons(getSearchTypeValue(), 'SUM'));
         sumRow.appendChild(sumViewDetail);
 
         // 기존 합계 데이터 행 제거
@@ -497,7 +485,7 @@ header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS');
 
             // 상세보기 영역
             const viewDetail = document.createElement('td');
-            viewDetail.appendChild(createDetailButtons(searchType, item.keyword));
+            viewDetail.appendChild(createDetailButtons(searchType, item.keyWord));
             row.appendChild(viewDetail);
 
             reportData.appendChild(row);
@@ -570,11 +558,13 @@ header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS');
         const button = document.createElement('button');
         button.textContent = text;
         button.classList.add(className);
+        button.onclick = () => getViewDetailData(className.toUpperCase(), keyword);
         return button;
     }
 
     // 상세보기 영역 생성 함수
     function createDetailButtons(searchType, keyword) {
+
         const btnBox = document.createElement('div');
         btnBox.classList.add('buttonBox');
 
@@ -666,6 +656,54 @@ header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS');
 
         return [regStart, regEnd];
     }
+
+    // 페이지네이션 버튼 렌더링
+    function renderPagination(totalCount, size, page) {
+        const currentPage = page === 0 ? 1 : page;
+
+        // 총 페이지 수 계산
+        const totalPages = Math.ceil(totalCount / size);
+
+        // Pagination Container 선택
+        const paginationContainer = document.querySelector('.paging > ul');
+
+        // 기존 페이지 링크 초기화
+        paginationContainer.innerHTML = '';
+
+        // 이전 (`prev`) 버튼 추가
+        const prevPage = document.createElement('li');
+        prevPage.classList.add('prev');
+        prevPage.innerHTML = `<a href="javascript:pageLink(${Math.max(currentPage - 1, 1)});"></a>`;
+        paginationContainer.appendChild(prevPage);
+
+        // 페이지 숫자 버튼 추가
+        const startPage = Math.floor((currentPage - 1) / 10) * 10 + 1;
+        const endPage = Math.min(startPage + 9, totalPages);
+
+        for (let i = startPage; i <= endPage; i++) {
+            const pageItem = document.createElement('li');
+            pageItem.innerHTML = `<a href="javascript:pageLink(${i});">${i}</a>`;
+
+            // 현재 페이지에 `on` 클래스 추가
+            if (i === currentPage) {
+                pageItem.classList.add('on');
+            }
+
+            paginationContainer.appendChild(pageItem);
+        }
+
+        // 다음 (`next`) 버튼 추가
+        const nextPage = document.createElement('li');
+        nextPage.classList.add('next');
+        nextPage.innerHTML = `<a href="javascript:pageLink(${Math.min(currentPage + 1, totalPages)});"></a>`;
+        paginationContainer.appendChild(nextPage);
+    }
+
+    // 상세보기 데이터 조회
+    function getViewDetailData(keywordType, keyword) {
+        console.log(keywordType, keyword)
+    }
+
 
     // 모든 정렬 가능한 <th> 요소들을 선택합니다.
     const sortableHeaders = document.querySelectorAll('th.sortUp, th.sortDown');
