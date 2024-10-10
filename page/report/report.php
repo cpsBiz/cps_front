@@ -122,9 +122,9 @@ header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS');
                                 <p>영역</p>
                                 <input type="radio" name="os" id="os1" value="" checked>
                                 <label for="os1">전체</label>
-                                <input type="radio" name="os" id="os2" value="P">
+                                <input type="radio" name="os" id="os2" value="PC">
                                 <label for="os2">PC</label>
-                                <input type="radio" name="os" id="os3" value="M">
+                                <input type="radio" name="os" id="os3" value="MOBILE">
                                 <label for="os3">모바일</label>
                             </div>
                             <div class="radioBox">
@@ -168,8 +168,12 @@ header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS');
                             <!-- <p>상세 리포트</p> -->
                         </div>
                         <div class="selectBox">
-                            <select name="" id="">
-                                <option value="">10개씩 보기</option>
+                            <select id="size">
+                                <option value="10">10개씩 보기</option>
+                                <option value="20">20개씩 보기</option>
+                                <option value="40">40개씩 보기</option>
+                                <option value="60">60개씩 보기</option>
+                                <option value="100">100개씩 보기</option>
                             </select>
                         </div>
                     </div>
@@ -183,14 +187,14 @@ header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS');
                             <table>
                                 <thead>
                                     <tr>
-                                        <th class="sort">날짜</th>
+                                        <th id="searchTypeTitle" class="sortDown">날짜</th>
                                         <th class="sortUp">노출수</th>
-                                        <th class="sortDown">클릭수</th>
-                                        <th class="sort">건수</th>
-                                        <th class="sort">전환율</th>
-                                        <th class="sort">구매액</th>
-                                        <th class="sort">커미션 매출</th>
-                                        <th class="sort">커미션 이익</th>
+                                        <th class="sortUp">클릭수</th>
+                                        <th class="sortUp">건수</th>
+                                        <th class="sortUp">전환율</th>
+                                        <th class="sortUp">구매액</th>
+                                        <th class="sortUp">커미션 매출</th>
+                                        <th class="sortUp">커미션 이익</th>
                                         <th>상세보기</th>
                                     </tr>
                                     <tr>
@@ -211,7 +215,7 @@ header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS');
                                         </th>
                                     </tr>
                                 </thead>
-                                <tbody>
+                                <tbody id="reportData">
                                     <!-- 토요일, 일요일은 sat, sun 클래스 추가-->
                                     <tr>
                                         <td>2024.09.19</td>
@@ -263,17 +267,6 @@ header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS');
                                                 <button type="button" class="detail">상세</button>
                                             </div>
                                         </td>
-                                    </tr>
-                                    <tr>
-                                        <td>&nbsp;</td>
-                                        <td>&nbsp;</td>
-                                        <td>&nbsp;</td>
-                                        <td>&nbsp;</td>
-                                        <td>&nbsp;</td>
-                                        <td>&nbsp;</td>
-                                        <td>&nbsp;</td>
-                                        <td>&nbsp;</td>
-                                        <td>&nbsp;</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -408,7 +401,9 @@ header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS');
 
 </html>
 <script>
-    function getReport() {
+    function getReport(
+        orderBy = ''
+    ) {
         // 상세보기 선택에서 월별은 제외한 나머지는 DAY
         const dayType = document.querySelector('input[name="searchType"]:checked').value === 'MONTH' ? 'MONTH' : 'DAY';
 
@@ -442,10 +437,7 @@ header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS');
         const page = 0;
 
         // 한 페이지에서 몇개의 데이터를 보여줄건지
-        const size = 0;
-
-        // 테이블에서 정렬
-        const orderBy = '';
+        const size = parseInt(document.getElementById('size').value);
 
         if (!dayType || !regFull || !regStart || !regEnd || !searchType || !type) {
             return alert('필수값이 누락되었습니다.');
@@ -468,21 +460,147 @@ header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS');
                 // type: type,
                 // searchId: searchId,
                 page: page,
+                size: size,
                 orderBy: orderBy
             }),
             success: function(result) {
-                console.log(result);
                 const data = result;
-                const resultCode = data.resultCode;
-                const resultMessage = data.resultMessage;
-                const totalCount = data.totalCount;
-                const datas = data.datas;
+                renderData(data);
 
             },
             error: function(request, status, error) {
                 console.log(error)
             }
         })
+    }
+
+    function renderData(data) {
+        // 상세보기 선택된 값에 맞게 첫번째 행의 타이틀 변경
+        let title = '';
+        const searchType = document.querySelector('input[name="searchType"]:checked').value;
+        if (searchType === 'DAY' || searchType === 'MONTH') {
+            title = '날짜'
+        } else {
+            const checkedRadio = document.querySelector('input[name="searchType"]:checked')
+            title = document.querySelector(`label[for="${checkedRadio.id}"]`).innerHTML;
+        }
+        document.getElementById('searchTypeTitle').innerHTML = title;
+
+        // 데이터 테이블에 렌더링
+        const tableData = data.datas;
+        const cancelYn = document.querySelector('input[name="cancelYn"]:checked').value;
+        tableData.forEach(
+            item => {
+                // 행 생성
+                const row = document.createElement('tr');
+
+                // 키워드
+                const keyword = document.createElement('td');
+                let keywordText = '';
+                if (searchType === 'DAY') {
+                    const checkDate = formatAndCheckDate(item.keyWordName);
+                    keywordText = checkDate[0];
+
+                    if (checkDate[1] === 0) {
+                        keyword.classList.add('sat');
+                    } else if (checkDate[1] === 6) {
+                        keyword.classList.add('sun');
+                    }
+                } else if (earchType === 'MONTH') {
+                    const checkDate = formatAndCheckDate(item.keyWordName);
+                    keywordText = checkDate[0];
+                } else {
+                    keywordText = item.keyWordName;
+                }
+                keyword.textContent = keywordText;
+                row.appendChild(keyword);
+
+                // 노출수
+                const cnt = document.createElement('td');
+                cnt.textContent = parseInt(item.cnt).toLocaleString();
+                row.appendChild(cnt);
+
+                // 클릭수
+                const clickCnt = document.createElement('td');
+                clickCnt.textContent = parseInt(item.clickCnt).toLocaleString();
+                row.appendChild(clickCnt);
+
+                // 건수
+                const rewardCnt = document.createElement('td');
+                const rewardCntText = cancelYn === 'N' ? item.confirmRewardCnt : cancelYn === 'Y' ? item.cancelRewardCnt : item.rewardCnt;
+                rewardCnt.textContent = parseInt(rewardCntText).toLocaleString();
+                row.appendChild(rewardCnt);
+
+                // 전환율
+                const cvr = document.createElement('td');
+                cvr.textContent = 1;
+                row.appendChild(cvr);
+
+                // 구매액
+                const productPrice = document.createElement('td');
+                const productPriceText = cancelYn === 'N' ? item.confirmProductPrice : cancelYn === 'Y' ? item.cancelProductPrice : item.productPrice;
+                productPrice.textContent = parseInt(productPriceText).toLocaleString() + '원';
+                row.appendChild(productPrice);
+
+                // 커미션 매출
+                const commission = document.createElement('td');
+                const commissionText = cancelYn === 'N' ? item.confirmCommission : cancelYn === 'Y' ? item.cancelCommission : item.commission;
+                commission.textContent = parseInt(commissionText).toLocaleString() + '원';
+                row.appendChild(commission);
+
+                // 커미션 이익
+                const commissionProfit = document.createElement('td');
+                const commissionProfitText = cancelYn === 'N' ? item.confirmCommissionProfit : cancelYn === 'Y' ? item.cancelCommissionProfit : item.commissionProfit;
+                commissionProfit.textContent = parseInt(commissionProfitText).toLocaleString() + '원';
+                row.appendChild(commissionProfit);
+
+
+                document.getElementById('reportData').appendChild(row);
+            }
+        )
+    }
+
+    // 날짜를 변환하고, 요일을 판단하는 함수
+    function formatAndCheckDate(dateStr) {
+        let year, month, day;
+        let formattedDate = '';
+        let dayOfWeek = '';
+
+        // 날짜 문자열 길이에 따라 연도, 월, 일을 파싱
+        if (dateStr.length === 6) {
+            // "YYYYMM" 형식
+            year = dateStr.substring(0, 4); // 연도
+            month = dateStr.substring(4, 6); // 월
+            formattedDate = `${year}.${month}`;
+
+            // 해당 월의 첫날을 기준으로 요일 계산
+            dayOfWeek = getDayOfWeek(new Date(year, month - 1, 1));
+
+        } else if (dateStr.length === 8) {
+            // "YYYYMMDD" 형식
+            year = dateStr.substring(0, 4); // 연도
+            month = dateStr.substring(4, 6); // 월
+            day = dateStr.substring(6, 8); // 일
+            formattedDate = `${year}.${month}.${day}`;
+
+            // 해당 날짜로 요일 계산
+            dayOfWeek = getDayOfWeek(new Date(year, month - 1, day));
+
+        } else {
+            console.error("지원하지 않는 날짜 형식입니다.");
+            return;
+        }
+
+        return [
+            formattedDate,
+            dayOfWeek
+        ]
+    }
+
+    function getDayOfWeek(date) {
+        const days = ["일요일", "월요일", "화요일", "수요일", "목요일", "금요일", "토요일"];
+        const dayName = days[date.getDay()]; // getDay()는 0 (일요일) ~ 6 (토요일) 사이의 숫자 반환
+        return dayName;
     }
 
     function getRegDates(input, dayType) {
@@ -508,5 +626,79 @@ header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS');
         }
 
         return [regStart, regEnd];
+    }
+
+    // 모든 정렬 가능한 <th> 요소들을 선택합니다.
+    const sortableHeaders = document.querySelectorAll('th.sortUp, th.sortDown');
+
+    // 각 <th> 요소에 클릭 이벤트 리스너를 추가합니다.
+    sortableHeaders.forEach(header => {
+        header.addEventListener('click', () => {
+            if (header.classList.contains('sortUp')) {
+                // sortUp 상태이면 sortDown으로 변경
+                header.classList.remove('sortUp');
+                header.classList.add('sortDown');
+            } else if (header.classList.contains('sortDown')) {
+                // sortDown 상태이면 sort으로 변경
+                header.classList.remove('sortDown');
+                header.classList.add('sortUp');
+            }
+
+            // 클래스가 변경될 때마다 함수를 호출합니다.
+            handleSort(header);
+        });
+    });
+
+    // 정렬 함수를 정의합니다.
+    function handleSort(header) {
+        let target, orderBy = '';
+        // 클릭한 헤더의 텍스트를 가져옴
+        const headerText = header.innerText;
+        // 클릭한 헤더의 클래스를 가져옴
+        const headerClassList = header.classList.value;
+
+        // 전환율은 프론트에서 계산 전체건수/구매건수 -> 클릭후 구매전환율
+        // 취소건 아닌것으로 조회시 confirmRewardCnt
+        // 취소건 조회시 cancelRewardCnt
+
+        switch (headerText) {
+            case '날짜':
+                target = 'regDate'
+                break;
+            case '노출수':
+                target = 'cnt'
+                break;
+            case '클릭수':
+                target = 'clickCnt'
+                break;
+            case '건수':
+                target = 'rewardCnt'
+                break;
+            case '전환율':
+                target = ''
+                break;
+            case '구매액':
+                target = ''
+                break;
+            case '커미션 매출':
+                target = ''
+                break;
+            case '커미션 이익':
+                target = ''
+                break;
+        }
+
+
+
+        // 정렬순서
+        if (headerClassList === 'sortUp') {
+            orderBy = 'Asc'
+        } else if (headerClassList === 'sortDown') {
+            orderBy = 'Desc'
+        }
+
+        const get = target + orderBy;
+
+        getReport(get)
     }
 </script>
