@@ -398,10 +398,11 @@
                 data: JSON.stringify(requestData),
                 success: function(result) {
                     if (detail) {
-                        reportModal(result)
+                        // 수정필요 - 사이즈, 페이지 임시 데이터
+                        modalHandleSuccessResponse(result, 40, 0)
                         return;
                     }
-                    handleSuccessResponse(result, searchType, size, page);
+                    handleSuccessResponse(result, size, page);
                 },
                 error: function(request, status, error) {
                     console.error(`Error: ${error}`);
@@ -413,7 +414,7 @@
     }
 
     // API 응답 처리 및 데이터 렌더링
-    function handleSuccessResponse(data, searchType, size, page) {
+    function handleSuccessResponse(data, size, page) {
         // 상세보기 선택 값 업데이트
         const checkedRadio = document.querySelector('input[name="searchType"]:checked');
         const tableTitle = document.querySelector('.tableTitle span');
@@ -465,7 +466,7 @@
     }
 
     // 첫번째 행 키워드 타이틀 설정 함수
-    function setTitle() {
+    function setTitle(modal = false) {
         let title = '';
         const searchType = getSearchTypeValue();
 
@@ -475,11 +476,11 @@
             const checkedRadio = document.querySelector('input[name="searchType"]:checked');
             title = document.querySelector(`label[for="${checkedRadio.id}"]`).innerHTML;
         }
-        document.getElementById('searchTypeTitle').innerHTML = title;
+        document.getElementById(!modal ? 'searchTypeTitle' : 'modal-searchTypeTitle').innerHTML = title;
     }
 
     // 합계 데이터 행 렌더링 함수
-    function renderSumRow(data) {
+    function renderSumRow(data, modal = false) {
         const sumRow = document.createElement('tr');
         sumRow.appendChild(createCell('th', '합계'));
         sumRow.appendChild(createCell('th', commaLocale(data.cnt)));
@@ -496,12 +497,14 @@
         sumRow.appendChild(createCell('th', commaLocale(data.commission) + '원'));
         sumRow.appendChild(createCell('th', commaLocale(data.commissionProfit) + '원'));
 
-        const sumViewDetail = document.createElement('th');
-        sumViewDetail.appendChild(createDetailButtons(getSearchTypeValue(), 'SUM'));
-        sumRow.appendChild(sumViewDetail);
+        if(!modal){
+            const sumViewDetail = document.createElement('th');
+            sumViewDetail.appendChild(createDetailButtons(getSearchTypeValue(), 'SUM'));
+            sumRow.appendChild(sumViewDetail);
+        }
 
         // 기존 합계 데이터 행 제거
-        const reportHead = document.getElementById('reportHead');
+        const reportHead = document.getElementById(!modal ? 'reportHead': 'modal-reportHead');
         if (reportHead.childElementCount > 1) {
             reportHead.removeChild(reportHead.lastElementChild);
         }
@@ -509,8 +512,8 @@
     }
 
     // 테이블 행 렌더링 함수
-    function renderTableRows(tableData) {
-        const reportData = document.getElementById('reportData');
+    function renderTableRows(tableData, modal = false) {
+        const reportData = document.getElementById(!modal ? 'reportData' : 'modal-reportData');
         const searchType = getSearchTypeValue();
         const cancelYn = getCancelYnValue();
 
@@ -537,10 +540,11 @@
             row.appendChild(createCell('td', commaLocale(getCommissionProfit(item, cancelYn)) + '원'));
 
             // 상세보기 영역
-            const viewDetail = document.createElement('td');
-            viewDetail.appendChild(createDetailButtons(searchType, item.keyWord));
-            row.appendChild(viewDetail);
-
+            if(!modal){
+                const viewDetail = document.createElement('td');
+                viewDetail.appendChild(createDetailButtons(searchType, item.keyWord));
+                row.appendChild(viewDetail);
+            }
             reportData.appendChild(row);
         });
     }
@@ -711,14 +715,14 @@
     }
 
     // 페이지네이션 버튼 렌더링
-    function renderPagination(totalCount, size, page) {
+    function renderPagination(totalCount, size, page, modal = false) {
         const currentPage = page === 0 ? 1 : page;
 
         // 총 페이지 수 계산
         const totalPages = Math.ceil(totalCount / size);
 
         // Pagination Container 선택
-        const paginationContainer = document.querySelector('.paging > ul');
+        const paginationContainer = document.querySelector(!modal ? '.paging > ul' : '.modal-paging > ul');
 
         // 기존 페이지 링크 초기화
         paginationContainer.innerHTML = '';
@@ -726,7 +730,7 @@
         // 이전 (`prev`) 버튼 추가
         const prevPage = document.createElement('li');
         prevPage.classList.add('prev');
-        prevPage.innerHTML = `<a href="javascript:pageLink(${Math.max(currentPage - 1, 1)});"></a>`;
+        prevPage.innerHTML = `<a href="javascript:pageLink(${Math.max(currentPage - 1, 1)}, ${modal});"></a>`;
         paginationContainer.appendChild(prevPage);
 
         // 페이지 숫자 버튼 추가
@@ -735,7 +739,7 @@
 
         for (let i = startPage; i <= endPage; i++) {
             const pageItem = document.createElement('li');
-            pageItem.innerHTML = `<a href="javascript:pageLink(${i});">${i}</a>`;
+            pageItem.innerHTML = `<a href="javascript:pageLink(${i}, ${modal});">${i}</a>`;
 
             // 현재 페이지에 `on` 클래스 추가
             if (i === currentPage) {
@@ -748,7 +752,7 @@
         // 다음 (`next`) 버튼 추가
         const nextPage = document.createElement('li');
         nextPage.classList.add('next');
-        nextPage.innerHTML = `<a href="javascript:pageLink(${Math.min(currentPage + 1, totalPages)});"></a>`;
+        nextPage.innerHTML = `<a href="javascript:pageLink(${Math.min(currentPage + 1, totalPages)}, ${modal});"></a>`;
         paginationContainer.appendChild(nextPage);
     }
 
@@ -842,9 +846,13 @@
         getReport(get)
     }
 
-    function pageLink(val) {
-        page = val;
-        getReport();
+    function pageLink(val, modal) {
+        if(!modal){
+            page = val;
+            getReport();
+        }else{
+            console.log('모달 페이지 이동')
+        }
     }
 </script>
 <? include_once $_SERVER['DOCUMENT_ROOT']."/page/report/reportModal.php"; ?>
