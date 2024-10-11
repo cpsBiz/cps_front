@@ -490,7 +490,7 @@
         if (data.clickCnt === 0 || data.rewardCnt === 0) {
             rewardRate = '0%';
         } else {
-            rewardRate = (data.rewardCnt / data.clickCnt).toFixed(2) + '%';
+            rewardRate = (data.rewardCnt / data.clickCnt * 100).toFixed(2) + '%';
         }
         sumRow.appendChild(createCell('th', rewardRate));
         sumRow.appendChild(createCell('th', commaLocale(data.productPrice) + '원'));
@@ -530,7 +530,7 @@
             if (item.clickCnt === 0 || getRewardCount(item, cancelYn) === 0) {
                 rewardRate = '0%';
             } else {
-                rewardRate = (getRewardCount(item, cancelYn) / item.clickCnt).toFixed(2) + '%';
+                rewardRate = (getRewardCount(item, cancelYn) / item.clickCnt * 100).toFixed(2) + '%';
             }
             row.appendChild(createCell('td', rewardRate));
             row.appendChild(createCell('td', commaLocale(getProductPrice(item, cancelYn)) + '원'));
