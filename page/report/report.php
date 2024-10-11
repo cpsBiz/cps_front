@@ -1,4 +1,4 @@
-<? include_once $_SERVER['DOCUMENT_ROOT'] . "/header.php"; ?>
+
 <!DOCTYPE html>
 <html lang="ko">
 
@@ -398,8 +398,7 @@
                 data: JSON.stringify(requestData),
                 success: function(result) {
                     if (detail) {
-                        openDetailModal(result);
-                        console.log('상세보기')
+                        reportModal(result)
                         return;
                     }
                     handleSuccessResponse(result, searchType, size, page);
@@ -774,17 +773,17 @@
 
             // 클릭한 요소의 상태 변경
             if (header.classList.contains('sort')) {
-                // 'sort' 상태이면 'sortUp'으로 변경
+                // 'sort' 상태이면 'sortDown'으로 변경
                 header.classList.remove('sort');
-                header.classList.add('sortUp');
-            } else if (header.classList.contains('sortUp')) {
-                // 'sortUp' 상태이면 'sortDown'으로 변경
-                header.classList.remove('sortUp');
                 header.classList.add('sortDown');
-            } else if (header.classList.contains('sortDown')) {
-                // 'sortDown' 상태이면 'sort'로 변경
-                header.classList.remove('sortDown');
+            } else if (header.classList.contains('sortUp')) {
+                // 'sortUp' 상태이면 'sort'으로 변경
+                header.classList.remove('sortUp');
                 header.classList.add('sort');
+            } else if (header.classList.contains('sortDown')) {
+                // 'sortDown' 상태이면 'sortUp'로 변경
+                header.classList.remove('sortDown');
+                header.classList.add('sortUp');
             }
 
             // 클래스가 변경될 때마다 함수를 호출합니다.
@@ -848,3 +847,4 @@
         getReport();
     }
 </script>
+<? include_once $_SERVER['DOCUMENT_ROOT']."/page/report/reportModal.php"; ?>
