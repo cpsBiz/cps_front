@@ -1,10 +1,4 @@
 <? include_once $_SERVER['DOCUMENT_ROOT'] . "/header.php"; ?>
-<?
-header('Access-Control-Allow-Origin: *');
-header('Access-Control-Max-Age: 86400');
-header('Access-Control-Allow-Headers: x-requested-with');
-header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS');
-?>
 <!DOCTYPE html>
 <html lang="ko">
 
@@ -188,13 +182,13 @@ header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS');
                                 <thead id="reportHead">
                                     <tr>
                                         <th id="searchTypeTitle" class="sortDown">날짜</th>
-                                        <th class="sortUp">노출수</th>
-                                        <th class="sortUp">클릭수</th>
-                                        <th class="sortUp">건수</th>
-                                        <th class="sortUp">전환율</th>
-                                        <th class="sortUp">구매액</th>
-                                        <th class="sortUp">커미션 매출</th>
-                                        <th class="sortUp">커미션 이익</th>
+                                        <th class="sort">노출수</th>
+                                        <th class="sort">클릭수</th>
+                                        <th class="sort">건수</th>
+                                        <th class="sort">전환율</th>
+                                        <th class="sort">구매액</th>
+                                        <th class="sort">커미션 매출</th>
+                                        <th class="sort">커미션 이익</th>
                                         <th>상세보기</th>
                                     </tr>
                                 </thead>
@@ -405,6 +399,7 @@ header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS');
                 success: function(result) {
                     if (detail) {
                         openDetailModal(result);
+                        console.log('상세보기')
                         return;
                     }
                     handleSuccessResponse(result, searchType, size, page);
@@ -491,7 +486,13 @@ header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS');
         sumRow.appendChild(createCell('th', commaLocale(data.cnt)));
         sumRow.appendChild(createCell('th', commaLocale(data.clickCnt)));
         sumRow.appendChild(createCell('th', commaLocale(data.rewardCnt)));
-        sumRow.appendChild(createCell('th', '1')); // 전환율 값 예시로 1
+        let rewardRate;
+        if (data.clickCnt === 0 || data.rewardCnt === 0) {
+            rewardRate = '0%';
+        } else {
+            rewardRate = (data.rewardCnt / data.clickCnt).toFixed(2) + '%';
+        }
+        sumRow.appendChild(createCell('th', rewardRate));
         sumRow.appendChild(createCell('th', commaLocale(data.productPrice) + '원'));
         sumRow.appendChild(createCell('th', commaLocale(data.commission) + '원'));
         sumRow.appendChild(createCell('th', commaLocale(data.commissionProfit) + '원'));
@@ -524,7 +525,14 @@ header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS');
             row.appendChild(createCell('td', commaLocale(item.cnt)));
             row.appendChild(createCell('td', commaLocale(item.clickCnt)));
             row.appendChild(createCell('td', commaLocale(getRewardCount(item, cancelYn))));
-            row.appendChild(createCell('td', '1')); // 전환율 값 예시로 1
+
+            let rewardRate;
+            if (item.clickCnt === 0 || getRewardCount(item, cancelYn) === 0) {
+                rewardRate = '0%';
+            } else {
+                rewardRate = (getRewardCount(item, cancelYn) / item.clickCnt).toFixed(2) + '%';
+            }
+            row.appendChild(createCell('td', rewardRate));
             row.appendChild(createCell('td', commaLocale(getProductPrice(item, cancelYn)) + '원'));
             row.appendChild(createCell('td', commaLocale(getCommission(item, cancelYn)) + '원'));
             row.appendChild(createCell('td', commaLocale(getCommissionProfit(item, cancelYn)) + '원'));
@@ -752,19 +760,31 @@ header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS');
 
 
     // 모든 정렬 가능한 <th> 요소들을 선택합니다.
-    const sortableHeaders = document.querySelectorAll('th.sortUp, th.sortDown');
+    const sortableHeaders = document.querySelectorAll('th.sort, th.sortUp, th.sortDown');
 
-    // 각 <th> 요소에 클릭 이벤트 리스너를 추가합니다.
     sortableHeaders.forEach(header => {
         header.addEventListener('click', () => {
-            if (header.classList.contains('sortUp')) {
-                // sortUp 상태이면 sortDown으로 변경
+            // 클릭된 요소를 제외하고 모든 요소를 'sort' 상태로 초기화
+            sortableHeaders.forEach(otherHeader => {
+                if (otherHeader !== header) {
+                    otherHeader.classList.remove('sortUp', 'sortDown');
+                    otherHeader.classList.add('sort');
+                }
+            });
+
+            // 클릭한 요소의 상태 변경
+            if (header.classList.contains('sort')) {
+                // 'sort' 상태이면 'sortUp'으로 변경
+                header.classList.remove('sort');
+                header.classList.add('sortUp');
+            } else if (header.classList.contains('sortUp')) {
+                // 'sortUp' 상태이면 'sortDown'으로 변경
                 header.classList.remove('sortUp');
                 header.classList.add('sortDown');
             } else if (header.classList.contains('sortDown')) {
-                // sortDown 상태이면 sort으로 변경
+                // 'sortDown' 상태이면 'sort'로 변경
                 header.classList.remove('sortDown');
-                header.classList.add('sortUp');
+                header.classList.add('sort');
             }
 
             // 클래스가 변경될 때마다 함수를 호출합니다.
@@ -826,13 +846,5 @@ header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS');
     function pageLink(val) {
         page = val;
         getReport();
-    }
-
-    function openDetailModal(data) {
-        console.log(data)
-    }
-
-    function detailModalRender(data) {
-
     }
 </script>
