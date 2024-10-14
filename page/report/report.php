@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="ko">
 
@@ -16,14 +15,12 @@
     <script type="text/javascript" src="../../js/lib/moment.min.js"></script>
     <script type="text/javascript" src="../../js/lib/daterangepicker_popup.js"></script>
     <script type="text/javascript" src="../../js/ui.js"></script>
+    <script type="text/javascript" src="./report.js"></script>
     <link type="text/css" rel="stylesheet" href="../../css/lib/daterangepicker_popup.css" />
     <link type="text/css" rel="stylesheet" href="../../css/common.css">
 </head>
 
 <body>
-    <!-- 캠페인관리 > 캠페인 카테고리 -->
-    <!-- ic_reportPerformance 클래스는 해당 페이지를 구분하는 id 값으로 사용하는 클래스입니다. 
-             다른 페이지에는 사용을 지양해주시기 바랍니다.(추후 유지보수때 css 수정 어려움) -->
     <div class="wrap ic_reportPerformance">
         <header class="header">
             <h1><a href="javascript:void(0);">통합카트</a></h1>
@@ -88,8 +85,8 @@
                                 <p>일반</p>
                                 <input type="radio" name="dayType" id="dayType1" checked>
                                 <label for="dayType1">요약</label>
-                                <input type="radio" name="dayType" id="dayType2">
-                                <label for="dayType2">상세</label>
+                                <!-- <input type="radio" name="dayType" id="dayType2">
+                                <label for="dayType2">상세</label> -->
                             </div>
                             <div class="radioBox">
                                 <p>상세보기</p>
@@ -159,7 +156,6 @@
                     <div class="tableHeader">
                         <div class="tableTitle">
                             <p>요약 리포트<span>일별</span></p>
-                            <!-- <p>상세 리포트</p> -->
                         </div>
                         <div class="selectBox">
                             <select id="size">
@@ -171,10 +167,7 @@
                             </select>
                         </div>
                     </div>
-                    <!--// 내용이 없을 때 tableWrap & tableAreaDataNone 함께 사용 -->
-                    <!-- <div class="tableArea tableAreaDataNone"> -->
                     <div class="tableArea">
-                        <!-- table 스크롤 생기게 하고 싶을 때 tableBox 에 높이값(max-height) 추가-->
                         <!-- 상세리포트 테이블과 요약리포트 테이블은 tableBox에 selectDay, selectDetail 클래스로 구분함  >> 퍼블확인을 위해 tableBox 두개 추가한 부분이므로 개발할때는 한개만 사용하고 클래스로 구분하면 됩니다. -->
                         <!-- 요약리포트 selectDay -->
                         <div class="tableBox selectDay">
@@ -402,7 +395,7 @@
                 success: function(result) {
                     if (detail) {
                         // 수정필요 - 사이즈, 페이지 임시 데이터
-                        modalHandleSuccessResponse(result, 40, 0, searchType)
+                        modalHandleSuccessResponse(result, 40, 0, searchType, btn)
                         return;
                     }
                     handleSuccessResponse(result, size, page);
@@ -441,20 +434,6 @@
         // 데이터 렌더링 및 페이지네이션 설정
         renderData(data);
         renderPagination(data.totalCount, size, page);
-    }
-
-    // 특정 요소 리스트를 숨기는 함수
-    function hideElements(elements) {
-        elements.forEach(element => {
-            element.style.display = 'none';
-        });
-    }
-
-    // 특정 요소 리스트를 보이는 함수
-    function showElements(elements) {
-        elements.forEach(element => {
-            element.style.display = 'block';
-        });
     }
 
     function renderData(data) {
@@ -500,14 +479,14 @@
         sumRow.appendChild(createCell('th', commaLocale(data.commission) + '원'));
         sumRow.appendChild(createCell('th', commaLocale(data.commissionProfit) + '원'));
 
-        if(!modal){
+        if (!modal) {
             const sumViewDetail = document.createElement('th');
             sumViewDetail.appendChild(createDetailButtons(getSearchTypeValue(), 'SUM'));
             sumRow.appendChild(sumViewDetail);
         }
 
         // 기존 합계 데이터 행 제거
-        const reportHead = document.getElementById(!modal ? 'reportHead': 'modal-reportHead');
+        const reportHead = document.getElementById(!modal ? 'reportHead' : 'modal-reportHead');
         if (reportHead.childElementCount > 1) {
             reportHead.removeChild(reportHead.lastElementChild);
         }
@@ -543,7 +522,7 @@
             row.appendChild(createCell('td', commaLocale(getCommissionProfit(item, cancelYn)) + '원'));
 
             // 상세보기 영역
-            if(!modal){
+            if (!modal) {
                 const viewDetail = document.createElement('td');
                 viewDetail.appendChild(createDetailButtons(searchType, item.keyWord));
                 row.appendChild(viewDetail);
@@ -608,10 +587,7 @@
         return cancelYn === 'N' ? item.confirmCommissionProfit : cancelYn === 'Y' ? item.cancelCommissionProfit : item.commissionProfit;
     }
 
-    // 천단위 컴마
-    function commaLocale(val) {
-        return parseInt(val).toLocaleString();
-    }
+
 
     // 버튼을 생성하는 함수
     function createButton(text, className, keyword) {
@@ -631,7 +607,7 @@
         if (searchType === 'DAY' || searchType === 'MONTH') {
             btnBox.appendChild(createButton('캠페인', 'campaign', keyword));
             btnBox.appendChild(createButton('사이트', 'site', keyword));
-            btnBox.appendChild(createButton('상세', 'detail', keyword));
+            // btnBox.appendChild(createButton('상세', 'detail', keyword));
 
         } else if (['MERCHANT', 'CAMPAIGN', 'AFFLIATE', 'MEMBERAFF'].includes(searchType)) {
             btnBox.appendChild(createButton('일별', 'day', keyword));
@@ -647,75 +623,7 @@
         return btnBox;
     }
 
-    // 날짜를 변환하고, 요일을 판단하는 함수
-    function formatAndCheckDate(dateStr) {
-        let year, month, day;
-        let formattedDate = '';
-        let dayOfWeek = '';
 
-        // 날짜 문자열 길이에 따라 연도, 월, 일을 파싱
-        if (dateStr.length === 6) {
-            // "YYYYMM" 형식
-            year = dateStr.substring(0, 4); // 연도
-            month = dateStr.substring(4, 6); // 월
-            formattedDate = `${year}.${month}`;
-
-            // 해당 월의 첫날을 기준으로 요일 계산
-            dayOfWeek = getDayOfWeek(new Date(year, month - 1, 1));
-
-        } else if (dateStr.length === 8) {
-            // "YYYYMMDD" 형식
-            year = dateStr.substring(0, 4); // 연도
-            month = dateStr.substring(4, 6); // 월
-            day = dateStr.substring(6, 8); // 일
-            formattedDate = `${year}.${month}.${day}`;
-
-            // 해당 날짜로 요일 계산
-            dayOfWeek = getDayOfWeek(new Date(year, month - 1, day));
-
-        } else {
-            console.error("지원하지 않는 날짜 형식입니다.");
-            return;
-        }
-
-        return [
-            formattedDate,
-            dayOfWeek
-        ]
-    }
-
-    // 무슨 요일인지 확인하는 함수
-    function getDayOfWeek(date) {
-        const days = ["일요일", "월요일", "화요일", "수요일", "목요일", "금요일", "토요일"];
-        const dayName = days[date.getDay()]; // getDay()는 0 (일요일) ~ 6 (토요일) 사이의 숫자 반환
-        return dayName;
-    }
-
-    // 일,월별에 맞춰서 날짜를 리턴하는 함수
-    function getRegDates(input, dayType) {
-        // 입력 문자열에서 날짜 범위를 분리
-        const [startDate, endDate] = input.split(" ~ ");
-
-        // 시작 날짜와 끝 날짜에서 년도와 월, 일을 추출
-        const [startYear, startMonth, startDay] = startDate.split("-").map(Number);
-        const [endYear, endMonth, endDay] = endDate.split("-").map(Number);
-
-        // regStart와 regEnd 초기화
-        let regStart, regEnd;
-
-        // 특정 타입이 월별인지 일별인지 확인
-        if (dayType === 'MONTH') {
-            // 월별
-            regStart = `${startYear}${String(startMonth).padStart(2, '0')}`; // YYYYMM 형식
-            regEnd = `${startYear}${String(endMonth).padStart(2, '0')}`; // YYYYMM 형식
-        } else {
-            // 일별
-            regStart = `${startYear}${String(startMonth).padStart(2, '0')}${String(startDay).padStart(2, '0')}`; // YYYYMMDD 형식
-            regEnd = `${endYear}${String(endMonth).padStart(2, '0')}${String(endDay).padStart(2, '0')}`; // YYYYMMDD 형식
-        }
-
-        return [regStart, regEnd];
-    }
 
     // 페이지네이션 버튼 렌더링
     function renderPagination(totalCount, size, page, modal = false) {
@@ -812,16 +720,16 @@
 
         switch (headerText) {
             case '날짜':
-                target = 'regDate'
+                target = ''
                 break;
             case '노출수':
-                target = 'cnt'
+                target = ''
                 break;
             case '클릭수':
-                target = 'clickCnt'
+                target = ''
                 break;
             case '건수':
-                target = 'rewardCnt'
+                target = ''
                 break;
             case '전환율':
                 target = ''
@@ -850,13 +758,13 @@
     }
 
     function pageLink(val, modal) {
-        if(!modal){
+        if (!modal) {
             page = val;
             getReport();
-        }else{
+        } else {
             modalPage = val;
             getReportModalFilterData();
         }
     }
 </script>
-<? include_once $_SERVER['DOCUMENT_ROOT']."/page/report/reportModal.php"; ?>
+<? include_once $_SERVER['DOCUMENT_ROOT'] . "/page/report/reportModal.php"; ?>
