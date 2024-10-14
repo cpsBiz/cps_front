@@ -55,7 +55,7 @@ var navigation = function(){
 
 //* daterangepicker */ 
 var daterangepicker = function () {
-  $("[id^='dateInput']").each(function() {
+  $("[id^='dateInput'], #modal-dateInput").each(function() {
     var _this = this.id;
     $('#'+_this).daterangepicker({
       autoApply: true,

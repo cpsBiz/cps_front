@@ -573,7 +573,7 @@
     function createKeywordCell(item, searchType) {
         const keyword = document.createElement('td');
         let keywordText = item.keyWordName;
-        console.log('createKeywordCell',searchType)
+
         if (searchType === 'DAY' || searchType === 'MONTH') {
             const [formattedDate, dayIndex] = formatAndCheckDate(item.keyWordName);
             keywordText = formattedDate;
@@ -674,7 +674,7 @@
             dayOfWeek = getDayOfWeek(new Date(year, month - 1, day));
 
         } else {
-            console.error("지원하지 않는 날짜 형식입니다.",dateStr);
+            console.error("지원하지 않는 날짜 형식입니다.");
             return;
         }
 

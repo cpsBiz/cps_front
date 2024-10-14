@@ -1,20 +1,7 @@
-<style>
-  .modal {
-    display: none;
-    position: fixed;
-    z-index: 10;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-  }
+<link type="text/css" rel="stylesheet" href="./reportModal.css">
 
-  .modal-content {
-    background-color: white;
-    padding: 20px;
-    margin: 15%;
-  }
+<style>
+ 
 </style>
 <div id="myModal" class="modal">
   <div class="modal-content" id="modal-content">
@@ -22,36 +9,32 @@
     <div id="modal-body">
           <div class="modal-content">
           <section class="modal-sec_list">
-              <div class="modal-optionBox">
-                  <div>
-                      <div class="modal-calendarBox">
-                          <div class="modal-calendar">
-                              <input type="text" id="modal-dateInput" name="modal-dateInput" value="">
-                          </div>
-                      </div>
-                  </div>
-              </div>
               <div class="modal-tableHeader">
                   <div class="modal-tableTitle">
                       <p>요약 리포트<span>일별</span></p>
-                      <!-- <p>상세 리포트</p> -->
                   </div>
-                  <div class="modal-selectBox">
-                      <select id="modal-size">
-                          <option value="10">10개씩 보기</option>
-                          <option value="20">20개씩 보기</option>
-                          <option value="40" selected>40개씩 보기</option>
-                          <option value="60">60개씩 보기</option>
-                          <option value="100">100개씩 보기</option>
-                      </select>
+                  <div class="modal-filterArea">
+                    <div class="modal-optionBox">
+                        <div>
+                            <div class="modal-calendarBox">
+                                <div class="modal-calendar">
+                                    <input type="text" id="modal-dateInput" name=dateInput" value="">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-selectBox">
+                        <select id="modal-size">
+                            <option value="10">10개씩 보기</option>
+                            <option value="20">20개씩 보기</option>
+                            <option value="40" selected>40개씩 보기</option>
+                            <option value="60">60개씩 보기</option>
+                            <option value="100">100개씩 보기</option>
+                        </select>
+                    </div>
                   </div>
               </div>
-              <!--// 내용이 없을 때 tableWrap & tableAreaDataNone 함께 사용 -->
-              <!-- <div class="tableArea tableAreaDataNone"> -->
               <div class="modal-tableArea">
-                  <!-- table 스크롤 생기게 하고 싶을 때 tableBox 에 높이값(max-height) 추가-->
-                  <!-- 상세리포트 테이블과 요약리포트 테이블은 tableBox에 selectDay, selectDetail 클래스로 구분함  >> 퍼블확인을 위해 tableBox 두개 추가한 부분이므로 개발할때는 한개만 사용하고 클래스로 구분하면 됩니다. -->
-                  <!-- 요약리포트 selectDay -->
                   <div class="modal-tableBox modal-selectDay">
                       <table>
                           <thead id="modal-reportHead">
@@ -141,5 +124,11 @@
     if (event.target == modal) {
       modal.style.display = "none";
     }
+  }
+
+  // 상세보기 모달 닫을때 데이터 렌더링 초기화
+  function reportModalReset(){
+    document.getElementById('modal-reportData').innerHTML = '';
+    document.querySelector('.modal-paging > ul').innerHTML = '';
   }
 </script>

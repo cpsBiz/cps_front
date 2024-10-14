@@ -1,0 +1,868 @@
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 10;
+  left: 50%;
+  top: 50%;
+  background-color: rgba(0, 0, 0, 0.5);
+  transform: translate(-50%, -50%);
+}
+
+.modal-content {
+  background-color: white;
+}
+ section.modal-sec_list {
+  position: relative;
+  padding: 30px 30px 30px 30px;
+  border-radius: 5px;
+  -webkit-box-shadow: 0 3px 10px 0 rgba(0, 0, 0, 0.08);
+  box-shadow: 0 3px 10px 0 rgba(0, 0, 0, 0.08);
+  background-color: #fff;
+  overflow: hidden;
+}
+
+ section.modal-sec_list .modal-optionBox > div {
+  display: block;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -webkit-box-orient: initial;
+  -webkit-box-direction: initial;
+  -ms-flex-direction: initial;
+  flex-direction: initial;
+  -webkit-box-pack: start;
+  -ms-flex-pack: start;
+  justify-content: start;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  gap: 15px;
+}
+
+
+  section.modal-sec_list
+  .modal-optionBox
+  > div:nth-child(n + 2) {
+  margin: 15px 0 0 0;
+}
+
+
+ section.modal-sec_list .modal-optionBox .modal-calendarBox {
+  position: relative;
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  gap: 10px;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  cursor: pointer;
+}
+
+ section.modal-sec_list .modal-optionBox .modal-calendarBox p {
+  display: inline-block;
+  padding-right: 12px;
+  font-size: 14px;
+}
+
+
+  section.modal-sec_list
+  .modal-optionBox
+  .modal-calendarBox
+  .modal-calendar {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: initial;
+  -webkit-box-direction: initial;
+  -ms-flex-direction: initial;
+  flex-direction: initial;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  gap: 0;
+  position: relative;
+  min-width: 240px;
+  padding: 0;
+  border-radius: 5px;
+  vertical-align: middle;
+  border: 1px solid #e6e6e6;
+  background-color: #ffffff;
+  width: 230px;
+}
+
+
+  section.modal-sec_list
+  .modal-optionBox
+  .modal-calendarBox
+  .modal-calendar:before {
+  content: '';
+  position: relative;
+  display: inline-block;
+  background-position: 0px 0px;
+  font-size: 0;
+  font-style: normal;
+  vertical-align: middle;
+  background: url('../../image/component/ico_calendar.png') no-repeat center;
+  width: 16px;
+  height: 15px;
+  position: relative;
+  display: inline-block;
+  top: 0px;
+  left: 0px;
+  width: 40px;
+  min-width: 40px;
+  height: 34px;
+  border-radius: 3px 0px 0px 3px;
+  background-color: #4664e6;
+  z-index: 1;
+  cursor: pointer;
+}
+
+
+  section.modal-sec_list
+  .modal-optionBox
+  .modal-calendarBox
+  .modal-calendar
+  input {
+  -webkit-box-flex: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+  font-family: 'Pretendard_Regular';
+  font-weight: normal;
+  position: relative;
+  width: calc(100% - 40px);
+  height: 34px;
+  margin: auto 0;
+  padding: 0 18px;
+  text-align: left;
+  font-size: 13px;
+  color: #333333;
+  border: none;
+  background-color: transparent;
+  z-index: 2;
+  cursor: pointer;
+}
+
+
+  section.modal-sec_list
+  .modal-optionBox
+  .modal-calendarBox
+  .modal-calendar
+  input {
+  height: 34px;
+}
+
+ section.modal-sec_list .modal-optionBox .modal-calendarBox button {
+  font-family: 'Pretendard_Regular';
+  font-weight: normal;
+  position: relative;
+  text-align: center;
+  border-radius: 4px;
+  cursor: pointer;
+  color: #ffffff;
+  border: 1px solid #4664e6;
+  background-color: #4664e6;
+  width: 84px;
+  height: 34px;
+  font-size: 14px;
+}
+
+
+  section.modal-sec_list
+  .modal-optionBox
+  .modal-calendarBox
+  button:disabled {
+  color: #b3b3b3;
+  border: 1px solid #eceff1;
+  background-color: #eceff1;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  cursor: default;
+}
+
+
+  section.modal-sec_list
+  .modal-optionBox
+  .modal-calendarBox
+  button:disabled {
+  color: #b3b3b3;
+  border: 1px solid #eceff1;
+  background-color: #eceff1;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+
+
+ section.modal-sec_list .modal-tableHeader {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: column;
+  -webkit-box-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -webkit-box-align: flex-start;
+  -ms-flex-align: flex-start;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+ section.modal-sec_list .modal-tableHeader .modal-tableTitle {
+  font-family: 'Pretendard_SemiBold';
+  font-size: 18px;
+  color: #333333;
+  -webkit-box-flex: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+}
+
+
+  section.modal-sec_list
+  .modal-tableHeader
+  .modal-tableTitle
+  span:before {
+  position: relative;
+  display: inline-block;
+  content: '>';
+  margin: 0 4px;
+}
+
+
+
+  section.modal-sec_list
+  .modal-tableHeader
+  .selectBox.category {
+  min-width: 240px;
+}
+
+.modal-filterArea{
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+ section.modal-sec_list .modal-tableArea {
+  margin-top: 20px;
+}
+
+ section.modal-sec_list .modal-tableArea.modal-tableAreaDataNone {
+  height: auto;
+  border-bottom: none;
+}
+
+
+  section.modal-sec_list
+  .modal-tableArea.modal-tableAreaDataNone
+  .modal-tableDataNone {
+  display: block;
+  height: 540px;
+  min-height: 300px;
+}
+
+
+  section.modal-sec_list
+  .modal-tableArea.modal-tableAreaDataNone
+  .modal-tableDataNone
+  > div {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  height: 100%;
+  min-height: 300px;
+}
+
+
+  section.modal-sec_list
+  .modal-tableArea.modal-tableAreaDataNone
+  .modal-tableDataNone
+  > div
+  p {
+  display: block;
+  font-size: 14px;
+  text-align: center;
+  line-height: 1.5;
+}
+
+
+  section.modal-sec_list
+  .modal-tableArea.modal-tableAreaDataNone
+  .modal-tableDataNone
+  + .modal-paging {
+  display: none;
+}
+
+
+  section.modal-sec_list
+  .modal-tableArea.modal-tableAreaDataNone
+  .modal-tableBox {
+  display: none;
+}
+
+ section.modal-sec_list .modal-tableArea .modal-tableDataNone {
+  display: none;
+}
+
+ section.modal-sec_list .modal-tableArea .modal-tableDataNone p {
+  text-align: center;
+}
+
+
+  section.modal-sec_list
+  .modal-tableArea
+  .modal-tableDataNone
+  p:before {
+  content: '';
+  position: relative;
+  display: inline-block;
+  background-position: 0px 0px;
+  font-size: 0;
+  font-style: normal;
+  vertical-align: middle;
+  background: url('../../image/component/ico_error.svg') no-repeat center;
+  width: 49px;
+  height: 44px;
+  display: block;
+  margin: 0 auto 10px;
+}
+
+ section.modal-sec_list .modal-tableArea .modal-tableBox {
+  overflow: overlay;
+  background-color: transparent;
+  max-height: 600px;
+}
+
+
+  section.modal-sec_list
+  .modal-tableArea
+  .modal-tableBox::-webkit-scrollbar {
+  width: 10px;
+  height: 8px;
+  background: #f4f4f4;
+}
+
+
+  section.modal-sec_list
+  .modal-tableArea
+  .modal-tableBox::-webkit-scrollbar-thumb {
+  height: 8px;
+  border-radius: 5px;
+  background: #dedede;
+}
+
+ section.modal-sec_list .modal-tableArea .modal-tableBox table {
+  width: auto;
+  min-width: 100%;
+  background: transparent;
+}
+
+
+  section.modal-sec_list
+  .modal-tableArea
+  .modal-tableBox
+  table
+  .dimCircle:before {
+  background-size: 30px 30px;
+}
+
+
+  section.modal-sec_list
+  .modal-tableArea
+  .modal-tableBox
+  table
+  thead
+  tr
+  td,
+
+  section.modal-sec_list
+  .modal-tableArea
+  .modal-tableBox
+  table
+  thead
+  tr
+  th,
+
+  section.modal-sec_list
+  .modal-tableArea
+  .modal-tableBox
+  table
+  tbody
+  tr
+  td,
+
+  section.modal-sec_list
+  .modal-tableArea
+  .modal-tableBox
+  table
+  tbody
+  tr
+  th,
+
+  section.modal-sec_list
+  .modal-tableArea
+  .modal-tableBox
+  table
+  tfoot
+  tr
+  td,
+
+  section.modal-sec_list
+  .modal-tableArea
+  .modal-tableBox
+  table
+  tfoot
+  tr
+  th {
+  font-family: 'Pretendard_Medium';
+  font-weight: normal;
+  padding: 10px 6px;
+  vertical-align: middle;
+  text-align: center;
+  line-height: 20px;
+  font-size: 16px;
+  font-weight: normal;
+  color: #000000;
+}
+
+
+  section.modal-sec_list
+  .modal-tableArea
+  .modal-tableBox
+  table
+  thead {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+
+  section.modal-sec_list
+  .modal-tableArea
+  .modal-tableBox
+  table
+  thead
+  th.modal-sort:after,
+
+  section.modal-sec_list
+  .modal-tableArea
+  .modal-tableBox
+  table
+  thead
+  th.modal-sortUp:after,
+
+  section.modal-sec_list
+  .modal-tableArea
+  .modal-tableBox
+  table
+  thead
+  th.modal-sortDown:after {
+  content: '';
+  position: relative;
+  display: inline-block;
+  width: 15px;
+  height: 13px;
+  top: -2px;
+  margin-left: 5px;
+  vertical-align: middle;
+}
+
+
+  section.modal-sec_list
+  .modal-tableArea
+  .modal-tableBox
+  table
+  thead
+  th.modal-sort:after {
+  background: url('../../image/component/ico_sort.svg') no-repeat center;
+  width: 15px;
+  height: 13px;
+  background-size: 100%;
+  cursor: pointer;
+}
+
+
+  section.modal-sec_list
+  .modal-tableArea
+  .modal-tableBox
+  table
+  thead
+  th.modal-sortUp:after {
+  background: url('../../image/component/ico_sortUp.svg') no-repeat center;
+  width: 15px;
+  height: 13px;
+  background-size: 100%;
+  cursor: pointer;
+}
+
+
+  section.modal-sec_list
+  .modal-tableArea
+  .modal-tableBox
+  table
+  thead
+  th.modal-sortDown:after {
+  background: url('../../image/component/ico_sortDown.svg') no-repeat center;
+  width: 15px;
+  height: 13px;
+  background-size: 100%;
+  cursor: pointer;
+}
+
+
+  section.modal-sec_list
+  .modal-tableArea
+  .modal-tableBox
+  table
+  thead:before {
+  content: '';
+  position: absolute;
+  display: table-header-group;
+  width: 100%;
+  height: -webkit-fill-available;
+  border-top: 1px solid #e0e0e0;
+  border-bottom: 1px solid #e0e0e0;
+  background-color: #e0e0e0;
+  z-index: -1;
+}
+
+
+  section.modal-sec_list
+  .modal-tableArea
+  .modal-tableBox
+  table
+  thead
+  tr
+  th {
+  padding: 16px 6px;
+  border-bottom: 1px solid #e0e0e0;
+  background: #f4f4f4;
+}
+
+
+  section.modal-sec_list
+  .modal-tableArea
+  .modal-tableBox
+  table
+  thead
+  tr:nth-child(n + 2)
+  th {
+  background-color: #f1f3ff;
+}
+
+
+  section.modal-sec_list
+  .modal-tableArea
+  .modal-tableBox
+  table
+  tbody
+  tr {
+  border-bottom: 1px solid #e0e0e0;
+}
+
+
+  section.modal-sec_list
+  .modal-tableArea
+  .modal-tableBox
+  table
+  tbody
+  tr
+  th,
+
+  section.modal-sec_list
+  .modal-tableArea
+  .modal-tableBox
+  table
+  tbody
+  tr
+  td {
+  padding: 12px 6px;
+  font-size: 16px;
+}
+
+
+  section.modal-sec_list
+  .modal-tableArea
+  .modal-tableBox
+  table
+  tfoot {
+  position: -webkit-sticky;
+  position: sticky;
+  bottom: 0;
+  z-index: 1;
+}
+
+
+  section.modal-sec_list
+  .modal-tableArea
+  .modal-tableBox
+  table
+  tfoot
+  th.modal-sort:after,
+
+  section.modal-sec_list
+  .modal-tableArea
+  .modal-tableBox
+  table
+  tfoot
+  th.modal-sortUp:after,
+
+  section.modal-sec_list
+  .modal-tableArea
+  .modal-tableBox
+  table
+  tfoot
+  th.modal-sortDown:after {
+  content: '';
+  position: relative;
+  display: inline-block;
+  width: 15px;
+  height: 13px;
+  top: -2px;
+  margin-left: 5px;
+  vertical-align: middle;
+}
+
+
+  section.modal-sec_list
+  .modal-tableArea
+  .modal-tableBox
+  table
+  tfoot
+  th.modal-sort:after {
+  background: url('../../image/component/ico_sort.svg') no-repeat center;
+  width: 15px;
+  height: 13px;
+  background-size: 100%;
+}
+
+
+  section.modal-sec_list
+  .modal-tableArea
+  .modal-tableBox
+  table
+  tfoot
+  th.modal-sortUp:after {
+  background: url('../../image/component/ico_sortUp.svg') no-repeat center;
+  width: 15px;
+  height: 13px;
+  background-size: 100%;
+}
+
+
+  section.modal-sec_list
+  .modal-tableArea
+  .modal-tableBox
+  table
+  tfoot
+  th.modal-sortDown:after {
+  background: url('../../image/component/ico_sortDown.svg') no-repeat center;
+  width: 15px;
+  height: 13px;
+  background-size: 100%;
+}
+
+
+  section.modal-sec_list
+  .modal-tableArea
+  .modal-tableBox
+  table
+  tfoot:before {
+  content: '';
+  position: absolute;
+  display: table-footer-group;
+  width: 100%;
+  height: -webkit-fill-available;
+  border-top: 1px solid #e0e0e0;
+  border-bottom: 1px solid #e0e0e0;
+  background-color: #e0e0e0;
+  z-index: -1;
+}
+
+
+  section.modal-sec_list
+  .modal-tableArea
+  .modal-tableBox
+  table
+  tfoot
+  tr {
+  border-top: 1px solid #e0e0e0;
+  border-bottom: none;
+}
+
+
+  section.modal-sec_list
+  .modal-tableArea
+  .modal-tableBox
+  table
+  tfoot
+  tr
+  th {
+  font-family: 'Pretendard_Regular';
+  font-weight: normal;
+  font-size: 14px;
+  background: #f4f4f4;
+}
+
+
+  section.modal-sec_list
+  .modal-tableArea
+  .modal-tableBox
+  table
+  thead
+  tr
+  th {
+  min-width: 140px;
+}
+
+
+  section.modal-sec_list
+  .modal-tableArea
+  .modal-tableBox
+  table
+  tbody
+  tr
+  td.sat {
+  color: #4664e6;
+}
+
+
+  section.modal-sec_list
+  .modal-tableArea
+  .modal-tableBox
+  table
+  tbody
+  tr
+  td.sun {
+  color: #ec3f3f;
+}
+
+  section.modal-sec_list
+  .modal-tableArea
+  .modal-tableBox.selectDetail
+  table
+  thead
+  tr:nth-child(2)
+  th:nth-child(1) {
+  background-color: #dee5ff;
+}
+
+
+  section.modal-sec_list
+  .modal-tableArea
+  .modal-tableBox.selectDetail
+  table
+  thead
+  tr:nth-child(2)
+  th:nth-child(n + 6) {
+  background-color: #e6e6e6;
+}
+
+/* 모달 페이징 버튼 */
+
+.modal-paging {
+  position: relative;
+  text-align: center;
+}
+
+.modal-paging > ul {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: initial;
+  -webkit-box-direction: initial;
+  -ms-flex-direction: initial;
+  flex-direction: initial;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  gap: 0;
+  margin: 20px auto;
+  text-align: center;
+}
+
+.modal-paging > ul:after {
+  content: '';
+  display: block;
+  clear: both;
+}
+
+.modal-paging > ul > li {
+  font-family: 'Pretendard_Regular';
+  font-weight: normal;
+  display: inline-block;
+  vertical-align: top;
+  min-width: 35px;
+  height: 35px;
+  text-align: center;
+  font-size: 13px;
+  color: #777777;
+  border: 1px solid #e6e6e6;
+  border-left: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.modal-paging > ul > li:hover {
+  color: #4664e6;
+}
+
+.modal-paging > ul > li:nth-child(1) {
+  border-radius: 2px 0 0 2px;
+  border: 1px solid #e6e6e6;
+}
+
+.modal-paging > ul > li:last-child {
+  border-radius: 0 2px 2px 0;
+}
+
+.modal-paging > ul > li > a {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: initial;
+  -webkit-box-direction: initial;
+  -ms-flex-direction: initial;
+  flex-direction: initial;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  height: 100%;
+}
+
+.modal-paging > ul > li.on {
+  color: #ffffff;
+  background-color: #4664e6;
+}
+
+.modal-paging > ul > li.prev {
+  background: url('../../image/component/ico_pagingPrev.svg') no-repeat center;
+}
+
+.modal-paging > ul > li.next {
+  background: url('../../image/component/ico_pagingNext.svg') no-repeat center;
+}
