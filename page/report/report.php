@@ -459,7 +459,7 @@
     }
 
     // 첫번째 행 키워드 타이틀 설정 함수
-    function setTitle(modal = false) {
+    function setTitle(modal = false, modalReportTitle) {
         let title = '';
         const searchType = getSearchTypeValue();
 
@@ -469,7 +469,7 @@
             const checkedRadio = document.querySelector('input[name="searchType"]:checked');
             title = document.querySelector(`label[for="${checkedRadio.id}"]`).innerHTML;
         }
-        document.getElementById(!modal ? 'searchTypeTitle' : 'modal-searchTypeTitle').innerHTML = title;
+        document.getElementById(!modal ? 'searchTypeTitle' : 'modal-searchTypeTitle').innerHTML = !modal ? title : modalReportTitle;
     }
 
     // 합계 데이터 행 렌더링 함수

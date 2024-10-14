@@ -123,7 +123,7 @@
       modalDateCopy();
     }
     // 모달 첫번째 행 키워드 타이틀 설정
-    setTitle(true);
+    setTitle(true, modalReportTitle);
 
     // 모달 합계 데이터처리
     renderSumRow(data, true)
