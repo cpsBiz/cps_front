@@ -22,6 +22,10 @@
                   <input type="text" id="modal-dateInput" name=dateInput" value="">
                 </div>
               </div>
+              <input type="hidden" id="detailBtnDayType">
+              <input type="hidden" id="detailBtnKeywordType">
+              <input type="hidden" id="detailBtnsearchType">
+              <input type="hidden" id="detailBtnKeyword">
               <button class="modal-searchBtn" onclick="getReportModalFilterData()">검색</button>
             </div>
           </div>
@@ -73,7 +77,7 @@
   const modal = document.getElementById("myModal");
 
   // API 응답 처리 및 데이터 렌더링
-  function modalHandleSuccessResponse(data, size, page, modalSearchType, btn) {
+  function modalHandleSuccessResponse(data, size, page, modalSearchType, btn, refresh = false) {
     // 데이터가 없는 경우 UI 처리
     const tableBoxes = document.querySelectorAll('.modal-tableBox');
     const paging = document.querySelector('.modal-paging');
@@ -90,11 +94,11 @@
     tableDataNone.style.display = 'none';
 
     // 데이터 렌더링 및 페이지네이션 설정
-    reportModalOpen(data, modalSearchType, btn);
+    reportModalOpen(data, modalSearchType, btn, refresh);
     renderPagination(data.totalCount, size, page, true);
   }
 
-  function reportModalOpen(data, modalSearchType, btn) {
+  function reportModalOpen(data, modalSearchType, btn, refresh = false) {
     // 모달 리포트 제목
     let modalReportTitle = ''
     switch (btn) {
@@ -111,7 +115,11 @@
         modalReportTitle = '캠페인';
         break;
     }
-    document.querySelector('.modal-tableTitle > p > span').textContent = modalReportTitle;
+    const checkedRadio = document.querySelector('input[name="searchType"]:checked');
+    const titleGroup = document.querySelector(`label[for="${checkedRadio.id}"]`).innerHTML;
+    if (!refresh) {
+      document.querySelector('.modal-tableTitle > p > span').textContent = titleGroup + ' > ' + modalReportTitle;
+    }
 
     // 모달에 기존 날짜 선택값 복사
     modalDateCopy();
@@ -162,16 +170,78 @@
 
   function modalHandleSort(header) {
     console.log('모달 정렬 호출 : ', header);
+    return;
+    getReportModalFilterData();
   }
 
+  // 모달 검색 함수 -> 날짜, 페이지 아이템 사이즈를 제외한 나머지는 기존 필터에서 가져온다.
   function getReportModalFilterData(orderBy = '') {
-    console.log('모달데이터 요청');
+    try {
+      // 상세보기 선택에서 월별은 제외한 나머지는 DAY
+      let dayType = document.getElementById('detailBtnDayType').value;
 
-    // 모달 페이지에서 한번에 몇개 데이터 출력하는지
-    const size = parseInt(document.getElementById('modal-size').value);
+      // 월별 YYYYMM, 일별 YYYYMMDD
+      const regFull = getRegDates(document.getElementById('modal-dateInput').value, dayType);
+      const regStart = regFull[0];
+      const regEnd = regFull[1];
 
-    // 모달 날짜
-    const date = ''
+      // 상세보기 선택 값
+      let searchType = document.getElementById('detailBtnsearchType').value;
+
+      // 영역 선택 값
+      const os = document.querySelector('input[name="os"]:checked').value;
+
+      // 상태 선택 값, 취소분만 취소완료
+      const cancelYn = document.querySelector('input[name="cancelYn"]:checked').value;
+
+      // 선택 영역 선택 값
+      let keywordType = document.getElementById('detailBtnKeywordType').value;
+
+      // ID/명/법인명 입력 값
+      let keyword = document.getElementById('detailBtnKeyword').value;
+
+      // 로그인 아이디 타입
+      const type = 'MASTER';
+
+      // 로그인한 아이디
+      // const searchId = '';
+
+      // 한 페이지에서 몇개의 데이터를 보여줄건지
+      const size = parseInt(document.getElementById('modal-size').value);
+
+      // AJAX 요청 데이터 설정
+      const requestData = {
+        dayType,
+        regStart,
+        regEnd,
+        searchType,
+        os,
+        cancelYn,
+        keywordType,
+        keyword,
+        type,
+        page,
+        size,
+        orderBy
+      };
+      
+      // AJAX 요청 수행
+      $.ajax({
+        type: 'POST',
+        url: 'http://192.168.101.156/api/admin/summaryCount',
+        contentType: 'application/json',
+        data: JSON.stringify(requestData),
+        success: function(result) {
+          // 수정필요 - 사이즈, 페이지 임시 데이터
+          modalHandleSuccessResponse(result, 40, 0, searchType, false, true)
+        },
+        error: function(request, status, error) {
+          console.error(`Error: ${error}`);
+        }
+      });
+    } catch (error) {
+      alert(error.message);
+    }
   }
 
   function closeModal() {

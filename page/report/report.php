@@ -368,8 +368,6 @@
                 keyword = detailKeyword;
             }
 
-
-
             // AJAX 요청 데이터 설정
             const requestData = {
                 dayType,
@@ -393,7 +391,12 @@
                 contentType: 'application/json',
                 data: JSON.stringify(requestData),
                 success: function(result) {
-                    if (detail) {
+                    if (detail && detailKeyword) {
+                        document.getElementById('detailBtnDayType').value = dayType;
+                        document.getElementById('detailBtnKeywordType').value = keywordType;
+                        document.getElementById('detailBtnsearchType').value = searchType;
+                        document.getElementById('detailBtnKeyword').value = keyword;
+
                         // 수정필요 - 사이즈, 페이지 임시 데이터
                         modalHandleSuccessResponse(result, 40, 0, searchType, btn)
                         return;
