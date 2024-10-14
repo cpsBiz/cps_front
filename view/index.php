@@ -7,8 +7,12 @@
   <meta name="format-detection" content="telephone=no">
   <title>쇼핑적립</title>
   <link rel="icon" type="image/x-icon" href="./images/favicon.ico">
+  <script type="text/javascript" src="../admin/js/lib/jquery-2.2.2.min.js"></script>
+  <script type="text/javascript" src="../admin/js/lib/jquery.easing.1.3.js"></script>
+  <script type="text/javascript" src="../admin/js/lib/jquery-ui.min.js"></script>
   <!-- style -->
   <link rel="stylesheet" href="./css/style.css">
+  <link rel="stylesheet" href="./index.css">
 </head>
 
 <body>
@@ -68,42 +72,7 @@
           </div>
           <button class="ico-heart" type="button"></button>
         </div>
-        <div class="list list2">
-          <p class="title"><span class="logo" style="background-image: url(./images/test/테무.png);"></span>테무</p>
-          <p class="percent"><span class="ico-point"></span>3.36%</p>
-          <a href="./sub-2-1.html">테무 바로가기</a>
-          <button class="ico-heart" type="button">즐겨찾기</button>
-        </div>
-        <div class="list list3">
-          <p class="title"><span class="logo" style="background-image: url(./images/test/알리.png);"></span>알리익스프레스</p>
-          <p class="percent"><span class="ico-point"></span>3.36%</p>
-          <a href="./sub-2-1.html">알리익스프레스 바로가기</a>
-          <button class="ico-heart" type="button">즐겨찾기</button>
-        </div>
-        <div class="list list4">
-          <p class="title"><span class="logo" style="background-image: url(./images/test/지마켓.png);"></span>지마켓</p>
-          <p class="percent"><span class="ico-point"></span>3.36%</p>
-          <a href="./sub-2-1.html">지마켓 바로가기</a>
-          <button class="ico-heart" type="button">즐겨찾기</button>
-        </div>
-        <div class="list list5">
-          <p class="title"><span class="logo" style="background-image: url(./images/test/11번가.png);"></span>11번가</p>
-          <p class="percent"><span class="ico-point"></span>3.36%</p>
-          <a href="./sub-2-1.html">11번가 바로가기</a>
-          <button class="ico-heart" type="button">즐겨찾기</button>
-        </div>
-        <div class="list list6">
-          <p class="title"><span class="logo" style="background-image: url(./images/test/이마트.png);"></span>이마트몰</p>
-          <p class="percent"><span class="ico-point"></span>3.36%</p>
-          <a href="./sub-2-1.html">이마트몰 바로가기</a>
-          <button class="ico-heart" type="button">즐겨찾기</button>
-        </div>
-        <div class="list list7">
-          <p class="title"><span class="logo" style="background-image: url(./images/test/홈플러스.png);"></span>홈플러스</p>
-          <p class="percent"><span class="ico-point"></span>3.36%</p>
-          <a href="./sub-2-1.html">홈플러스 바로가기</a>
-          <button class="ico-heart" type="button">즐겨찾기</button>
-        </div>
+        <div class="campaign-list" id="campaign-list"></div>
       </div>
     </div>
     <div class="bottom-menu-wrap">
@@ -120,10 +89,64 @@
 </html>
 <script>
   $(function() {
-
+    getCampaignView();
   })
 
-  function getViewData() {
+  function getCampaignView() {
+    try {
+      const affliateId = '';
+      const zoneId = '';
+      const site = '';
+      const userId = '';
+      const adId = '';
+      const os = 'AOS';
+      const category = '';
 
+      // AJAX 요청 데이터 설정
+      const requestData = {
+        affliateId,
+        zoneId,
+        site,
+        userId,
+        adId,
+        os,
+        category
+      };
+
+      // AJAX 요청 수행
+      $.ajax({
+        type: 'POST',
+        url: 'http://192.168.101.156/api/view/campaignView',
+        contentType: 'application/json',
+        data: JSON.stringify(requestData),
+        success: function(result) {
+          handelCampaingView(result);
+        },
+        error: function(request, status, error) {
+          console.error(`Error: ${error}`);
+        }
+      });
+    } catch (error) {
+      alert(error.message);
+    }
+  }
+
+  function handelCampaingView(result) {
+    const data = result.datas;
+    console.log(data);
+    let list = '';
+    data.forEach(item => {
+      list += `
+              <div class="list">
+                <p class="title"><span class="logo" style="background-image: url(${item.logo});"></span>${item.campaignName}</p>
+                <p class="percent"><span class="ico-point"></span>3.36%</p>
+                <a href="./campaign.php?url=${item.clickUrl}">바로가기</a>
+                <button class="ico-heart" type="button">즐겨찾기</button>
+              </div>
+            `;
+    });
+
+    $('#campaign-list').empty();
+    $('#campaign-list').append(list);
   }
 </script>

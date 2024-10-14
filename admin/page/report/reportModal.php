@@ -18,10 +18,10 @@
                   <input type="text" id="modal-dateInput" name=dateInput" value="">
                 </div>
               </div>
-              <input type="hidden" id="detailBtnDayType">
-              <input type="hidden" id="detailBtnKeywordType">
-              <input type="hidden" id="detailBtnsearchType">
-              <input type="hidden" id="detailBtnKeyword">
+              <input type="hidden" id="detailBtnDayType" value="">
+              <input type="hidden" id="detailBtnKeywordType" value="">
+              <input type="hidden" id="detailBtnsearchType" value="">
+              <input type="hidden" id="detailBtnKeyword" value="">
               <button class="modal-searchBtn" onclick="getReportModalFilterData()">검색</button>
             </div>
           </div>
@@ -206,7 +206,14 @@
 
       // 정렬 값
       const orderBy = orderByData.orderBy;
-      const orderByName = orderByData.orderByName;
+      let orderByName = '';
+      if (!orderByName && (dayType === 'DAY' || dayType === 'EQDAY')) {
+        orderByName = 'regDay';
+      } else if (!orderByName && (dayType === 'MONTH' || dayType === 'EQMONTH')) {
+        orderByName = 'regYm';
+      } else if (orderByName) {
+        orderByName = orderByData.orderByName;
+      }
 
       // AJAX 요청 데이터 설정
       const requestData = {

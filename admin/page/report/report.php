@@ -373,7 +373,14 @@
 
             // 정렬 값
             const orderBy = orderByData.orderBy;
-            const orderByName = orderByData.orderByName;
+            let orderByName = '';
+            if (!orderByName && dayType === 'DAY') {
+                orderByName = 'regDay';
+            } else if (!orderByName && dayType === 'MONTH') {
+                orderByName = 'regYm';
+            } else if (orderByName) {
+                orderByName = orderByData.orderByName;
+            }
 
             // AJAX 요청 데이터 설정
             const requestData = {
@@ -625,4 +632,4 @@
         });
     });
 </script>
-<? include_once $_SERVER['DOCUMENT_ROOT'] . "/page/report/reportModal.php"; ?>
+<? include_once $_SERVER['DOCUMENT_ROOT'] . "/admin/page/report/reportModal.php"; ?>
