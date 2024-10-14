@@ -287,7 +287,6 @@ function handleSort(header, modal = false) {
     target,
   };
 
-  return console.log(orderByData);
   if (!modal) {
     getReport(orderByData);
   } else {
