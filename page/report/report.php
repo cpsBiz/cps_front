@@ -314,7 +314,10 @@
     // 모달 페이지 초기화 변수
     let modalPage = 0;
 
-    function getReport(orderBy = '', detail = false, detailKeyword = '', btn = '') {
+    function getReport(orderByData = {
+        orderBy: 'DESC',
+        orderByName: ''
+    }, detail = false, detailKeyword = '', btn = '') {
         try {
             // 상세보기 선택에서 월별은 제외한 나머지는 DAY
             let dayType = document.querySelector('input[name="searchType"]:checked').value === 'MONTH' ? 'MONTH' : 'DAY';
@@ -368,6 +371,10 @@
                 keyword = detailKeyword;
             }
 
+            // 정렬 값
+            const orderBy = orderByData.orderBy;
+            const orderByName = orderByData.orderByName;
+
             // AJAX 요청 데이터 설정
             const requestData = {
                 dayType,
@@ -381,7 +388,8 @@
                 type,
                 page,
                 size,
-                orderBy
+                orderBy,
+                orderByName
             };
 
             // AJAX 요청 수행
@@ -534,100 +542,6 @@
         });
     }
 
-    // 검색 타입 값 가져오기 함수
-    function getSearchTypeValue() {
-        return document.querySelector('input[name="searchType"]:checked').value;
-    }
-
-    // 취소 여부 값 가져오기 함수
-    function getCancelYnValue() {
-        return document.querySelector('input[name="cancelYn"]:checked').value;
-    }
-
-    // 테이블 셀 생성 함수
-    function createCell(tag, textContent) {
-        const cell = document.createElement(tag);
-        cell.textContent = textContent;
-        return cell;
-    }
-
-    // 키워드 셀 생성 함수 (검색 타입에 따라 날짜 처리 포함)
-    function createKeywordCell(item, searchType) {
-        const keyword = document.createElement('td');
-        let keywordText = item.keyWordName;
-
-        if (searchType === 'DAY' || searchType === 'MONTH') {
-            const [formattedDate, dayIndex] = formatAndCheckDate(item.keyWordName);
-            keywordText = formattedDate;
-
-            if (searchType === 'DAY') {
-                if (dayIndex === 0) keyword.classList.add('sat'); // 토요일
-                if (dayIndex === 6) keyword.classList.add('sun'); // 일요일
-            }
-        }
-
-        keyword.textContent = keywordText;
-        return keyword;
-    }
-
-    // 건수 데이터
-    function getRewardCount(item, cancelYn) {
-        return cancelYn === 'N' ? item.confirmRewardCnt : cancelYn === 'Y' ? item.cancelRewardCnt : item.rewardCnt;
-    }
-
-    // 구매액 데이터
-    function getProductPrice(item, cancelYn) {
-        return cancelYn === 'N' ? item.confirmProductPrice : cancelYn === 'Y' ? item.cancelProductPrice : item.productPrice;
-    }
-
-    // 커미션 매출 데이터
-    function getCommission(item, cancelYn) {
-        return cancelYn === 'N' ? item.confirmCommission : cancelYn === 'Y' ? item.cancelCommission : item.commission;
-    }
-
-    // 커미션 이익 데이터
-    function getCommissionProfit(item, cancelYn) {
-        return cancelYn === 'N' ? item.confirmCommissionProfit : cancelYn === 'Y' ? item.cancelCommissionProfit : item.commissionProfit;
-    }
-
-
-
-    // 버튼을 생성하는 함수
-    function createButton(text, className, keyword) {
-        const button = document.createElement('button');
-        button.textContent = text;
-        button.classList.add(className);
-        button.onclick = () => getViewDetailData(keyword, className.toUpperCase());
-        return button;
-    }
-
-    // 상세보기 영역 생성 함수
-    function createDetailButtons(searchType, keyword) {
-
-        const btnBox = document.createElement('div');
-        btnBox.classList.add('buttonBox');
-
-        if (searchType === 'DAY' || searchType === 'MONTH') {
-            btnBox.appendChild(createButton('캠페인', 'campaign', keyword));
-            btnBox.appendChild(createButton('사이트', 'site', keyword));
-            // btnBox.appendChild(createButton('상세', 'detail', keyword));
-
-        } else if (['MERCHANT', 'CAMPAIGN', 'AFFLIATE', 'MEMBERAFF'].includes(searchType)) {
-            btnBox.appendChild(createButton('일별', 'day', keyword));
-            btnBox.appendChild(createButton('월별', 'month', keyword));
-            btnBox.appendChild(createButton('사이트', 'site', keyword));
-
-        } else if (['SITE', 'MEMBERAGC'].includes(searchType)) {
-            btnBox.appendChild(createButton('일별', 'day', keyword));
-            btnBox.appendChild(createButton('월별', 'month', keyword));
-            btnBox.appendChild(createButton('캠페인', 'campaign', keyword));
-        }
-
-        return btnBox;
-    }
-
-
-
     // 페이지네이션 버튼 렌더링
     function renderPagination(totalCount, size, page, modal = false) {
         const currentPage = page === 0 ? 1 : page;
@@ -708,66 +622,5 @@
             handleSort(header);
         });
     });
-
-    // 정렬 함수를 정의합니다.
-    function handleSort(header) {
-        let target, orderBy = '';
-        // 클릭한 헤더의 텍스트를 가져옴
-        const headerText = header.innerText;
-        // 클릭한 헤더의 클래스를 가져옴
-        const headerClassList = header.classList.value;
-
-        // 전환율은 프론트에서 계산 전체건수/구매건수 -> 클릭후 구매전환율
-        // 취소건 아닌것으로 조회시 confirmRewardCnt
-        // 취소건 조회시 cancelRewardCnt
-
-        switch (headerText) {
-            case '날짜':
-                target = ''
-                break;
-            case '노출수':
-                target = ''
-                break;
-            case '클릭수':
-                target = ''
-                break;
-            case '건수':
-                target = ''
-                break;
-            case '전환율':
-                target = ''
-                break;
-            case '구매액':
-                target = ''
-                break;
-            case '커미션 매출':
-                target = ''
-                break;
-            case '커미션 이익':
-                target = ''
-                break;
-        }
-
-        // 정렬순서
-        if (headerClassList === 'sortUp') {
-            orderBy = 'Asc'
-        } else if (headerClassList === 'sortDown') {
-            orderBy = 'Desc'
-        }
-
-        const get = target + orderBy;
-
-        getReport(get)
-    }
-
-    function pageLink(val, modal) {
-        if (!modal) {
-            page = val;
-            getReport();
-        } else {
-            modalPage = val;
-            getReportModalFilterData();
-        }
-    }
 </script>
 <? include_once $_SERVER['DOCUMENT_ROOT'] . "/page/report/reportModal.php"; ?>

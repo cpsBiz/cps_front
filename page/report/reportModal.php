@@ -1,8 +1,4 @@
 <link type="text/css" rel="stylesheet" href="./reportModal.css">
-
-<style>
-
-</style>
 <div class="modal" id="myModal">
   <div class="modal-background" onclick="closeModal()"></div>
   <div class="modal-content">
@@ -10,7 +6,7 @@
       <div class="modal-tableHeader">
         <div class="modal-headerTop">
           <div class="modal-tableTitle">
-            <p>요약 리포트<span>일별</span></p>
+            <p>요약 리포트<span></span></p>
           </div>
           <span class="close-modal" onclick="closeModal()">&times;</span>
         </div>
@@ -161,21 +157,18 @@
         }
 
         // 클래스가 변경될 때마다 함수를 호출합니다.
-        modalHandleSort(header);
+        handleSort(header, true);
       });
     });
 
     modal.style.display = "block";
   }
 
-  function modalHandleSort(header) {
-    console.log('모달 정렬 호출 : ', header);
-    return;
-    getReportModalFilterData();
-  }
-
   // 모달 검색 함수 -> 날짜, 페이지 아이템 사이즈를 제외한 나머지는 기존 필터에서 가져온다.
-  function getReportModalFilterData(orderBy = '') {
+  function getReportModalFilterData(orderByData = {
+    orderBy: 'DESC',
+    orderByName: ''
+  }) {
     try {
       // 상세보기 선택에서 월별은 제외한 나머지는 DAY
       let dayType = document.getElementById('detailBtnDayType').value;
@@ -209,6 +202,10 @@
       // 한 페이지에서 몇개의 데이터를 보여줄건지
       const size = parseInt(document.getElementById('modal-size').value);
 
+      // 정렬 값
+      const orderBy = orderByData.orderBy;
+      const orderByName = orderByData.orderByName;
+
       // AJAX 요청 데이터 설정
       const requestData = {
         dayType,
@@ -222,9 +219,10 @@
         type,
         page,
         size,
-        orderBy
+        orderBy,
+        orderByName
       };
-      
+
       // AJAX 요청 수행
       $.ajax({
         type: 'POST',
