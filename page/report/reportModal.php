@@ -93,7 +93,7 @@
   const closeModal = document.getElementById("close-modal");
 
    // API 응답 처리 및 데이터 렌더링
-   function modalHandleSuccessResponse(data, size, page) {
+   function modalHandleSuccessResponse(data, size, page, modalSearchType) {
         // 데이터가 없는 경우 UI 처리
         const tableBoxes = document.querySelectorAll('.modal-tableBox');
         const paging = document.querySelector('.modal-paging');
@@ -110,11 +110,11 @@
         tableDataNone.style.display = 'none';
 
         // 데이터 렌더링 및 페이지네이션 설정
-        reportModalOpen(data);
+        reportModalOpen(data, modalSearchType);
         renderPagination(data.totalCount, size, page, true);
     }
 
-  function reportModalOpen(data) {
+  function reportModalOpen(data, modalSearchType) {
     // 모달 첫번째 행 키워드 타이틀 설정
     setTitle(true);
 
@@ -122,13 +122,13 @@
     renderSumRow(data, true)
 
     // 모달 데이터 리스트 처리
-    renderTableRows(data.datas, true);
+    renderTableRows(data.datas, true, modalSearchType);
 
     modal.style.display = "block";
   }
 
   function getReportModalFilterData(){
-
+    console.log('모달데이터 요청');
   }
 
   // 모달 닫기

@@ -318,6 +318,9 @@
     // 현재 페이지 초기화 변수
     let page = 0;
 
+    // 모달 페이지 초기화 변수
+    let modalPage = 0;
+
     function getReport(orderBy = '', detail = false, detailKeyword = '', btn = '') {
         try {
             // 상세보기 선택에서 월별은 제외한 나머지는 DAY
@@ -393,13 +396,13 @@
             // AJAX 요청 수행
             $.ajax({
                 type: 'POST',
-                url: 'http://192.168.150.61/api/admin/summaryCount',
+                url: 'http://192.168.101.156/api/admin/summaryCount',
                 contentType: 'application/json',
                 data: JSON.stringify(requestData),
                 success: function(result) {
                     if (detail) {
                         // 수정필요 - 사이즈, 페이지 임시 데이터
-                        modalHandleSuccessResponse(result, 40, 0)
+                        modalHandleSuccessResponse(result, 40, 0, searchType)
                         return;
                     }
                     handleSuccessResponse(result, size, page);
@@ -512,9 +515,9 @@
     }
 
     // 테이블 행 렌더링 함수
-    function renderTableRows(tableData, modal = false) {
+    function renderTableRows(tableData, modal = false, modalSearchType = '') {
         const reportData = document.getElementById(!modal ? 'reportData' : 'modal-reportData');
-        const searchType = getSearchTypeValue();
+        const searchType = !modalSearchType ? getSearchTypeValue() : modalSearchType;
         const cancelYn = getCancelYnValue();
 
         reportData.innerHTML = ''; // 테이블 초기화
@@ -570,7 +573,7 @@
     function createKeywordCell(item, searchType) {
         const keyword = document.createElement('td');
         let keywordText = item.keyWordName;
-
+        console.log('createKeywordCell',searchType)
         if (searchType === 'DAY' || searchType === 'MONTH') {
             const [formattedDate, dayIndex] = formatAndCheckDate(item.keyWordName);
             keywordText = formattedDate;
@@ -671,7 +674,7 @@
             dayOfWeek = getDayOfWeek(new Date(year, month - 1, day));
 
         } else {
-            console.error("지원하지 않는 날짜 형식입니다.");
+            console.error("지원하지 않는 날짜 형식입니다.",dateStr);
             return;
         }
 
@@ -851,7 +854,8 @@
             page = val;
             getReport();
         }else{
-            console.log('모달 페이지 이동')
+            modalPage = val;
+            getReportModalFilterData();
         }
     }
 </script>
