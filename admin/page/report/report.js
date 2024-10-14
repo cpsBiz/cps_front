@@ -208,34 +208,70 @@ function handleSort(header, modal = false) {
   // 클릭한 헤더의 클래스를 가져옴
   const headerClassList = header.classList.value;
 
-  // 전환율은 프론트에서 계산 전체건수/구매건수 -> 클릭후 구매전환율
-  // 취소건 아닌것으로 조회시 confirmRewardCnt
-  // 취소건 조회시 cancelRewardCnt
+  // 취소상태
+  const cancelYn = getCancelYnValue();
 
   switch (headerText) {
-    case "날짜":
+    case "일별":
+      target = "regDay";
+      break;
+    case "일별":
+      target = "regYm";
+      break;
+    case "광고주":
+      target = "memberName";
+      break;
+    case "캠페인":
+      target = "campaignName";
+      break;
+    case "매체":
+      target = "affliateName";
+      break;
+    case "사이트":
+      target = "site";
+      break;
+    case "광고주대행사":
+      target = "";
+      break;
+    case "매체대행사":
       target = "";
       break;
     case "노출수":
-      target = "";
+      target = "cnt";
       break;
     case "클릭수":
-      target = "";
+      target = "clickCnt";
       break;
     case "건수":
-      target = "";
+      cancelYn === "N"
+        ? (target = "confirmRewardCnt")
+        : cancelYn === "Y"
+        ? (target = "cancelRewardCnt")
+        : "rewardCnt";
       break;
     case "전환율":
-      target = "";
+      cancelYn === "N" ? (target = "") : cancelYn === "Y" ? (target = "") : "";
       break;
     case "구매액":
-      target = "";
+      cancelYn === "N"
+        ? (target = "confirmProductPrice")
+        : cancelYn === "Y"
+        ? (target = "cancelProductPrice")
+        : "productPrice";
       break;
     case "커미션 매출":
-      target = "";
+      cancelYn === "N"
+        ? (target = "confirmCommission")
+        : cancelYn === "Y"
+        ? (target = "cancelCommission")
+        : "commission";
       break;
     case "커미션 이익":
-      target = "";
+      cancelYn === "N"
+        ? (target = "confirmCommissionProfit")
+        : cancelYn === "Y"
+        ? (target = "cancelCommissionProfit")
+        : "commissionProfit";
       break;
   }
 

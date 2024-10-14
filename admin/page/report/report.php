@@ -463,8 +463,10 @@
         let title = '';
         const searchType = getSearchTypeValue();
 
-        if (searchType === 'DAY' || searchType === 'MONTH') {
-            title = '날짜';
+        if (searchType === 'DAY') {
+            title = '일별'
+        } else if (searchType === 'MONTH') {
+            title = '월별';
         } else {
             const checkedRadio = document.querySelector('input[name="searchType"]:checked');
             title = document.querySelector(`label[for="${checkedRadio.id}"]`).innerHTML;
