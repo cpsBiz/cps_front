@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,6 +10,7 @@
   <!-- style -->
   <link rel="stylesheet" href="./css/style.css">
 </head>
+
 <body>
   <div class="wrap">
     <!-- header -->
@@ -24,7 +26,7 @@
     <div class="main">
       <div id="event-popup1" class="event-popup on">
         <div class="event-cont">
-          <div class="logo" style="background-image: url(../images/test/지마켓.png);"></div>
+          <div class="logo" style="background-image: url(./images/test/지마켓.png);"></div>
           <p>지마켓 수수료 2% 상향 이벤트<span>기간 : 10/1 ~ 10/30</span></p>
         </div>
         <a href="javascript:void(0)"></a>
@@ -68,37 +70,37 @@
         </div>
         <div class="list list2">
           <p class="title"><span class="logo" style="background-image: url(./images/test/테무.png);"></span>테무</p>
-          <p class="percent"><span class="ico-point"></span>3.36%</p> 
+          <p class="percent"><span class="ico-point"></span>3.36%</p>
           <a href="./sub-2-1.html">테무 바로가기</a>
           <button class="ico-heart" type="button">즐겨찾기</button>
         </div>
         <div class="list list3">
           <p class="title"><span class="logo" style="background-image: url(./images/test/알리.png);"></span>알리익스프레스</p>
-          <p class="percent"><span class="ico-point"></span>3.36%</p> 
+          <p class="percent"><span class="ico-point"></span>3.36%</p>
           <a href="./sub-2-1.html">알리익스프레스 바로가기</a>
           <button class="ico-heart" type="button">즐겨찾기</button>
         </div>
         <div class="list list4">
           <p class="title"><span class="logo" style="background-image: url(./images/test/지마켓.png);"></span>지마켓</p>
-          <p class="percent"><span class="ico-point"></span>3.36%</p> 
+          <p class="percent"><span class="ico-point"></span>3.36%</p>
           <a href="./sub-2-1.html">지마켓 바로가기</a>
           <button class="ico-heart" type="button">즐겨찾기</button>
         </div>
         <div class="list list5">
           <p class="title"><span class="logo" style="background-image: url(./images/test/11번가.png);"></span>11번가</p>
-          <p class="percent"><span class="ico-point"></span>3.36%</p> 
+          <p class="percent"><span class="ico-point"></span>3.36%</p>
           <a href="./sub-2-1.html">11번가 바로가기</a>
           <button class="ico-heart" type="button">즐겨찾기</button>
         </div>
         <div class="list list6">
           <p class="title"><span class="logo" style="background-image: url(./images/test/이마트.png);"></span>이마트몰</p>
-          <p class="percent"><span class="ico-point"></span>3.36%</p> 
+          <p class="percent"><span class="ico-point"></span>3.36%</p>
           <a href="./sub-2-1.html">이마트몰 바로가기</a>
           <button class="ico-heart" type="button">즐겨찾기</button>
         </div>
         <div class="list list7">
           <p class="title"><span class="logo" style="background-image: url(./images/test/홈플러스.png);"></span>홈플러스</p>
-          <p class="percent"><span class="ico-point"></span>3.36%</p> 
+          <p class="percent"><span class="ico-point"></span>3.36%</p>
           <a href="./sub-2-1.html">홈플러스 바로가기</a>
           <button class="ico-heart" type="button">즐겨찾기</button>
         </div>
@@ -114,4 +116,14 @@
   </div>
   <script src="./js/common.js"></script>
 </body>
+
 </html>
+<script>
+  $(function() {
+
+  })
+
+  function getViewData() {
+
+  }
+</script>

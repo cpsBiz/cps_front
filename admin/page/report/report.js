@@ -215,7 +215,7 @@ function handleSort(header, modal = false) {
     case "일별":
       target = "regDay";
       break;
-    case "일별":
+    case "월별":
       target = "regYm";
       break;
     case "광고주":
@@ -231,10 +231,10 @@ function handleSort(header, modal = false) {
       target = "site";
       break;
     case "광고주대행사":
-      target = "";
+      target = "memberAgencyName";
       break;
     case "매체대행사":
-      target = "";
+      target = "affliateAgencyName";
       break;
     case "노출수":
       target = "cnt";
@@ -250,7 +250,7 @@ function handleSort(header, modal = false) {
         : "rewardCnt";
       break;
     case "전환율":
-      cancelYn === "N" ? (target = "") : cancelYn === "Y" ? (target = "") : "";
+      target = "";
       break;
     case "구매액":
       cancelYn === "N"
