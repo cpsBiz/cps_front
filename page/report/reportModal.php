@@ -118,8 +118,10 @@
     }
 
     // 모달에 기존 날짜 선택값 복사
-    modalDateCopy();
 
+    if (!refresh) {
+      modalDateCopy();
+    }
     // 모달 첫번째 행 키워드 타이틀 설정
     setTitle(true);
 
