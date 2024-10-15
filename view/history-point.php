@@ -233,43 +233,43 @@
           <button class="ico-close type1" type="button" onclick="selectListClose('#select-btn1', '#select-wrap', '#select-list1')">닫기</button>
         </div>
         <ul class="select-cont">
-          <li class="list list1 on">
+          <li class="list list1 on" onclick="getCommissionList()">
             <p class="value">2024년 9월</p>
             <div class="ico-check on"></div>
           </li>
-          <li class="list list2">
+          <li class="list list2" onclick="getCommissionList()">
             <p class="value">2024년 8월</p>
             <div class="ico-check on"></div>
           </li>
-          <li class="list list3">
+          <li class="list list3" onclick="getCommissionList()">
             <p class="value">2024년 7월</p>
             <div class="ico-check on"></div>
           </li>
-          <li class="list list4">
+          <li class="list list4" onclick="getCommissionList()">
             <p class="value">2024년 6월</p>
             <div class="ico-check on"></div>
           </li>
-          <li class="list list5">
+          <li class="list list5" onclick="getCommissionList()">
             <p class="value">2024년 5월</p>
             <div class="ico-check on"></div>
           </li>
-          <li class="list list6">
+          <li class="list list6" onclick="getCommissionList()">
             <p class="value">2024년 4월</p>
             <div class="ico-check on"></div>
           </li>
-          <li class="list list7">
+          <li class="list list7" onclick="getCommissionList()">
             <p class="value">2024년 3월</p>
             <div class="ico-check on"></div>
           </li>
-          <li class="list list8">
+          <li class="list list8" onclick="getCommissionList()">
             <p class="value">2024년 2월</p>
             <div class="ico-check on"></div>
           </li>
-          <li class="list list9">
+          <li class="list list9" onclick="getCommissionList()">
             <p class="value">2024년 1월</p>
             <div class="ico-check on"></div>
           </li>
-          <li class="list list10">
+          <li class="list list10" onclick="getCommissionList()">
             <p class="value">2023년 12월</p>
             <div class="ico-check on"></div>
           </li>
