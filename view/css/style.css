@@ -4070,9 +4070,6 @@ input[type=checkbox]:checked + label .ico-check.on {
 .sub.sub-2-1 .cont.cont1 .box.box2 {
   margin-bottom: 10px;
 }
-.sub.sub-2-1 .cont.cont1 .box.box2 .gray-box {
-  min-height: 83px;
-}
 .sub.sub-2-1 .cont.cont1 .box.box2 .gray-box p {
   gap: 20px;
   margin-bottom: 13px;

@@ -55,16 +55,13 @@ $campaignNum = $_REQUEST['campaignNum'];
         <div class="box box1">
           <div class="title">
             <p id="campaignName"></p>
-            <p class="blue">최대<span id="campaignRewardPer"></span></p>
+            <p id="rewardPerArea" class="blue">최대<span id="campaignRewardPer"></span></p>
             <p>적립 받으세요!</p>
           </div>
           <div id="campaignLogo" class="logo"></div>
         </div>
         <div class="box box2">
-          <div id="campaignRewardDate" class="gray-box">
-            <p><span>적립시점</span>구매 완료 후 1시간 이내</p>
-            <p><span>적립확정</span>구매 확정 후 2개월 뒤 월 말</p>
-          </div>
+          <div id="campaignRewardDate" class="gray-box"></div>
         </div>
         <div class="box box3">
           <a href="./qna.php">적립에 문제가 있다면 1:1 문의하기<span class="ico-arrow type1 right"></span></a>
@@ -215,21 +212,26 @@ $campaignNum = $_REQUEST['campaignNum'];
     const commissionPaymentStandard = `<p><span>지급시점</span>${data.commissionPaymentStandard}</p>`;
     $('#campaignRewardDate').append(commissionPaymentStandard);
 
-    // 적립 퍼센트
-    const rewardPer = 2.45 + '%';
-    $('#campaignRewardPer').append(rewardPer);
-
-    // 적립대상
-    const accessProduct = [{
-      category: '헤드폰 악세사리/인테리어',
-      per: '6.3%'
-    }, {
-      category: 'PC 주변기기/태블릿',
-      per: '2.1%'
-    }, {
-      category: '그 외 기타상품',
-      per: '4.9%'
-    }];
+    // 적립 퍼센트 -> 아직은 데이터가 없음
+    const rewardPer = '';
+    // const rewardPer = '2.45%';
+    if (!rewardPer) {
+      $('#rewardPerArea').css('display', 'none');
+    } else {
+      $('#campaignRewardPer').append(rewardPer);
+    }
+    // 적립대상 -> 아직은 데이터가 없음
+    // const accessProduct = [{
+    //   category: '헤드폰 악세사리/인테리어',
+    //   per: '6.3%'
+    // }, {
+    //   category: 'PC 주변기기/태블릿',
+    //   per: '2.1%'
+    // }, {
+    //   category: '그 외 기타상품',
+    //   per: '4.9%'
+    // }];
+    const accessProduct = [];
     if (accessProduct.length === 0) {
       $('#accessProductArea').css('display', 'none');
     } else {
