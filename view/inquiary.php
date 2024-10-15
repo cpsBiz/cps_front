@@ -17,7 +17,7 @@
     <header>
       <h1>1:1 문의하기</h1>
       <div class="btn-list">
-        <a href="./sub-2-1.html" class="ico-arrow type1 left">이전</a>
+        <a href="javascript:history.back()" class="ico-arrow type1 left">이전</a>
       </div>
     </header>
     <!-- main -->
