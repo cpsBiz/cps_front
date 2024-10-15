@@ -226,7 +226,7 @@
         keywordType,
         keyword,
         type,
-        page,
+        modalPage,
         size,
         orderBy,
         orderByName
@@ -239,8 +239,7 @@
         contentType: 'application/json',
         data: JSON.stringify(requestData),
         success: function(result) {
-          // 수정필요 - 사이즈, 페이지 임시 데이터
-          modalHandleSuccessResponse(result, 40, 0, searchType, false, true)
+          modalHandleSuccessResponse(result, size, modalPage, searchType, false, true)
         },
         error: function(request, status, error) {
           console.error(`Error: ${error}`);
@@ -252,6 +251,7 @@
   }
 
   function closeModal() {
+    reportModalReset();
     modal.style.display = "none";
   }
 
@@ -259,6 +259,7 @@
   function reportModalReset() {
     document.getElementById('modal-reportData').innerHTML = '';
     document.querySelector('.modal-paging > ul').innerHTML = '';
+    modalPage = 1;
   }
 
   function modalDateCopy() {

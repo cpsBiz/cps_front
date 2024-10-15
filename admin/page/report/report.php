@@ -309,10 +309,10 @@
     })
 
     // 현재 페이지 초기화 변수
-    let page = 0;
+    let page = 1;
 
     // 모달 페이지 초기화 변수
-    let modalPage = 0;
+    let modalPage = 1;
 
     function getReport(orderByData = {
         orderBy: 'DESC',
@@ -412,8 +412,7 @@
                         document.getElementById('detailBtnsearchType').value = searchType;
                         document.getElementById('detailBtnKeyword').value = keyword;
 
-                        // 수정필요 - 사이즈, 페이지 임시 데이터
-                        modalHandleSuccessResponse(result, 40, 0, searchType, btn)
+                        modalHandleSuccessResponse(result, size, modalPage, searchType, btn)
                         return;
                     }
                     handleSuccessResponse(result, size, page);
