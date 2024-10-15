@@ -166,7 +166,7 @@
       <!-- select-list1 -->
       <div id="select-list1" class="select-list">
         <div class="select-head">
-          <p>조회 월 선택</p>
+          <p>문의 종류 선택</p>
           <button class="ico-close type1" type="button" onclick="selectListClose('#select-btn1', '#select-wrap', '#select-list1')">닫기</button>
         </div>
         <ul class="select-cont">
@@ -183,7 +183,7 @@
       <!-- select-list2 -->
       <div id="select-list2" class="select-list">
         <div class="select-head">
-          <p>조회 월 선택</p>
+          <p>구매 쇼핑몰 선택</p>
           <button class="ico-close type1" type="button" onclick="selectListClose('#select-btn2', '#select-wrap', '#select-list2')">닫기</button>
         </div>
         <ul class="select-cont">
@@ -200,7 +200,7 @@
       <!-- select-list3 -->
       <div id="select-list3" class="select-list">
         <div class="select-head">
-          <p>조회 월 선택</p>
+          <p>문의 목적 선택</p>
           <button class="ico-close type1" type="button" onclick="selectListClose('#select-btn3', '#select-wrap', '#select-list3')">닫기</button>
         </div>
         <ul class="select-cont">
@@ -217,7 +217,7 @@
       <!-- select-list4 -->
       <div id="select-list4" class="select-list">
         <div class="select-head">
-          <p>조회 월 선택</p>
+          <p>결제 통화 선택</p>
           <button class="ico-close type1" type="button" onclick="selectListClose('#select-btn4', '#select-wrap', '#select-list4')">닫기</button>
         </div>
         <ul class="select-cont">
@@ -234,7 +234,7 @@
       <!-- select-list5 -->
       <div id="select-list5" class="select-list">
         <div class="select-head">
-          <p>조회 월 선택</p>
+          <p>결제 수단 선택</p>
           <button class="ico-close type1" type="button" onclick="selectListClose('#select-btn5', '#select-wrap', '#select-list5')">닫기</button>
         </div>
         <ul class="select-cont">

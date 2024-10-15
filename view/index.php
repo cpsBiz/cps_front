@@ -95,10 +95,49 @@ $affliateId = $_REQUEST['affliateId'];
 </html>
 <script>
   $(function() {
+    getBanner();
     getMemberCommission();
     getMemberStick();
     getCampaignView();
   })
+
+  // 배너 조회
+  function getBanner() {
+    return console.log('배너 조회 호출');
+
+    try {
+      // AJAX 요청 데이터 설정
+      const requestData = {
+
+      };
+
+      // AJAX 요청 수행
+      $.ajax({
+        type: 'POST',
+        url: 'http://192.168.101.156/api/view/',
+        contentType: 'application/json',
+        data: JSON.stringify(requestData),
+        success: function(result) {
+          const banner = `
+                          <div id="event-popup1" class="event-popup on">
+                            <div class="event-cont">
+                              <div class="logo" style="background-image: url(./images/test/지마켓.png);"></div>
+                              <p>지마켓 수수료 2% 상향 이벤트<span>기간 : 10/1 ~ 10/30</span></p>
+                            </div>
+                            <a href="javascript:void(0)"></a>
+                            <button class="close" onclick="eventPopupClose('#event-popup1')"></button>
+                          </div>
+                          `;
+          $('.main').prepend(banner);
+        },
+        error: function(request, status, error) {
+          console.error(`Error: ${error}`);
+        }
+      });
+    } catch (error) {
+      alert(error.message);
+    }
+  }
 
   // 회원 적립금 조회
   function getMemberCommission() {
