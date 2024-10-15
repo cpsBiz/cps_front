@@ -301,7 +301,7 @@
   margin-bottom: 10px;
 }
 .list-wrap.type1 .list .title .logo {
-  background-size: cover;
+  background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
   background-color: transparent;
