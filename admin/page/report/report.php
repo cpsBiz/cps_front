@@ -314,6 +314,16 @@
     // 모달 페이지 초기화 변수
     let modalPage = 0;
 
+    // 페이지이동시 정렬 유지 변수 
+    let checkOrderByData = {
+        orderBy: '',
+        orderByName: ''
+    };
+    let checkOrderByDataModal = {
+        orderBy: '',
+        orderByName: ''
+    };
+
     function getReport(orderByData = {
         orderBy: 'DESC',
         orderByName: ''
@@ -373,6 +383,7 @@
 
             // 정렬 값
             const orderBy = orderByData.orderBy;
+            checkOrderByData.orderBy = orderBy;
             let orderByName = orderByData.orderByName;
             if (!orderByName && searchType === 'DAY') {
                 orderByName = 'regDay';
@@ -381,6 +392,7 @@
             } else if (orderByName) {
                 orderByName = orderByData.orderByName;
             }
+            checkOrderByData.orderByName = orderByName;
 
             // AJAX 요청 데이터 설정
             const requestData = {

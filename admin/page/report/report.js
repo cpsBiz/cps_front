@@ -296,9 +296,9 @@ function handleSort(header, modal = false) {
 function pageLink(val, modal) {
   if (!modal) {
     page = val;
-    getReport();
+    getReport(checkOrderByData);
   } else {
     modalPage = val;
-    getReportModalFilterData();
+    getReportModalFilterData(checkOrderByDataModal);
   }
 }

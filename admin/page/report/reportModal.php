@@ -206,6 +206,7 @@
 
       // 정렬 값
       const orderBy = orderByData.orderBy;
+      checkOrderByDataModal.orderBy = orderBy;
       let orderByName = '';
       if (!orderByName && (searchType === 'DAY' || dayType === 'EQDAY')) {
         orderByName = 'regDay';
@@ -214,6 +215,7 @@
       } else if (orderByName) {
         orderByName = orderByData.orderByName;
       }
+      checkOrderByDataModal.orderByName = orderByName;
 
       // AJAX 요청 데이터 설정
       const requestData = {
