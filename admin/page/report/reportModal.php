@@ -207,9 +207,9 @@
       // 정렬 값
       const orderBy = orderByData.orderBy;
       let orderByName = '';
-      if (!orderByName && (dayType === 'DAY' || dayType === 'EQDAY')) {
+      if (!orderByName && (searchType === 'DAY' || dayType === 'EQDAY')) {
         orderByName = 'regDay';
-      } else if (!orderByName && (dayType === 'MONTH' || dayType === 'EQMONTH')) {
+      } else if (!orderByName && (searchType === 'MONTH' || dayType === 'EQMONTH')) {
         orderByName = 'regYm';
       } else if (orderByName) {
         orderByName = orderByData.orderByName;

@@ -309,10 +309,10 @@
     })
 
     // 현재 페이지 초기화 변수
-    let page = 1;
+    let page = 0;
 
     // 모달 페이지 초기화 변수
-    let modalPage = 1;
+    let modalPage = 0;
 
     function getReport(orderByData = {
         orderBy: 'DESC',
@@ -373,10 +373,10 @@
 
             // 정렬 값
             const orderBy = orderByData.orderBy;
-            let orderByName = '';
-            if (!orderByName && dayType === 'DAY') {
+            let orderByName = orderByData.orderByName;
+            if (!orderByName && searchType === 'DAY') {
                 orderByName = 'regDay';
-            } else if (!orderByName && dayType === 'MONTH') {
+            } else if (!orderByName && searchType === 'MONTH') {
                 orderByName = 'regYm';
             } else if (orderByName) {
                 orderByName = orderByData.orderByName;

@@ -210,7 +210,6 @@ function handleSort(header, modal = false) {
 
   // 취소상태
   const cancelYn = getCancelYnValue();
-
   switch (headerText) {
     case "일별":
       target = "regDay";
@@ -284,7 +283,7 @@ function handleSort(header, modal = false) {
 
   const orderByData = {
     orderBy,
-    target,
+    orderByName: target,
   };
 
   if (!modal) {
