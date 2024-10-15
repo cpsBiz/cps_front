@@ -292,6 +292,7 @@
 <script>
   $(function() {
     getCommission();
+    getCommissionList();
   });
 
   // 회원 적립금 조회
@@ -334,7 +335,7 @@
     try {
       const userId = "string";
       const affliateId = "string";
-      const regYm = 0;
+      const regYm = convertToYYYYMM(document.querySelector('#select-list1 .list.on').children[0].innerHTML);
       const status = 0;
 
       // AJAX 요청 데이터 설정
@@ -352,6 +353,7 @@
         contentType: 'application/json',
         data: JSON.stringify(requestData),
         success: function(result) {
+          selectListClose('#select-btn1', '#select-wrap', '#select-list1');
           renderCommissionList(result);
         },
         error: function(request, status, error) {
@@ -365,6 +367,6 @@
 
   // 회원 적립금 리스트 렌더링
   function renderCommissionList(data) {
-
+    console.log(data);
   }
 </script>
