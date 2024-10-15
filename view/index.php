@@ -95,8 +95,8 @@ $affliateId = $_REQUEST['affliateId'];
 </html>
 <script>
   $(function() {
-    // getMemberCommission();
-    // getMemberStick();
+    getMemberCommission();
+    getMemberStick();
     getCampaignView();
   })
 
@@ -105,7 +105,9 @@ $affliateId = $_REQUEST['affliateId'];
     try {
       const userId = '';
       const affliateId = '';
-      const requestDate = {
+
+      // AJAX 요청 데이터 설정
+      const requestData = {
         userId,
         affliateId
       };
@@ -117,8 +119,8 @@ $affliateId = $_REQUEST['affliateId'];
         contentType: 'application/json',
         data: JSON.stringify(requestData),
         success: function(result) {
-          const memberCommission = result.data.cnt;
-          const appendCommission = `<span class="ico-point"></span>${memberCommission.toLocaleString()}<span class="ico-arrow type2 right"></span>`;
+          const memberCommission = parseInt(result.data.userCommission).toLocaleString();
+          const appendCommission = `<span class="ico-point"></span>${memberCommission}<span class="ico-arrow type2 right"></span>`;
           $('#memberCommission').append(appendCommission);
         },
         error: function(request, status, error) {
@@ -137,7 +139,9 @@ $affliateId = $_REQUEST['affliateId'];
     try {
       const userId = '';
       const affliateId = '';
-      const requestDate = {
+
+      // AJAX 요청 데이터 설정
+      const requestData = {
         userId,
         affliateId
       };
@@ -149,8 +153,8 @@ $affliateId = $_REQUEST['affliateId'];
         contentType: 'application/json',
         data: JSON.stringify(requestData),
         success: function(result) {
-          const memberStick = 1000;
-          const appendStick = memberStick.toLocaleString() + '개';
+          const memberStick = parseInt(result.data.cnt).toLocaleString();
+          const appendStick = `${memberStick}개`;
           $('#memberStick').append(appendStick);
         },
         error: function(request, status, error) {
@@ -211,7 +215,7 @@ $affliateId = $_REQUEST['affliateId'];
 
   function handelCampaingView(result) {
     const data = result.datas;
-    console.log(data);
+
     let list = '';
     data.forEach(item => {
       let apiUrl = '';
@@ -221,12 +225,13 @@ $affliateId = $_REQUEST['affliateId'];
         apiUrl = 'http://192.168.101.156/api/clickDotPitch/campaignClick';
       }
 
+      // 해야함 - 즐겨찾기 유무 데이터 처리 필요
       list += `
               <div class="list">
                 <p class="title"><span class="logo" style="background-image: url(${item.logo});"></span>${item.memberName}</p>
                 <p class="percent"><span class="ico-point"></span>3.36%</p>
                 <a href="./campaign.php?clickUrl=${item.clickUrl}&apiUrl=${apiUrl}">바로가기</a>
-                <button class="ico-heart" type="button">즐겨찾기</button>
+                <button class="ico-heart" type="button" onclick="patchFavorites(${item.campaignNum})">즐겨찾기</button>
               </div>
             `;
     });
@@ -236,10 +241,34 @@ $affliateId = $_REQUEST['affliateId'];
   }
 
   // 캠페인 즐겨찾기 등록, 삭제
-  function patchFavorites() {
-    const userId = '';
-    const campaignNum = '';
-    const apiType = '';
+  function patchFavorites(campaignNum) {
+    return console.log('즐겨찾기호출 : ' + campaignNum);
+    try {
+      const userId = '';
+      const apiType = '';
 
+      // AJAX 요청 데이터 설정
+      const requestData = {
+        userId,
+        campaignNum,
+        apiType,
+      };
+
+      // AJAX 요청 수행
+      $.ajax({
+        type: 'POST',
+        url: 'http://192.168.101.156/api/view/favorites',
+        contentType: 'application/json',
+        data: JSON.stringify(requestData),
+        success: function(result) {
+          console.log(result);
+        },
+        error: function(request, status, error) {
+          console.error(`Error: ${error}`);
+        }
+      });
+    } catch (error) {
+      alert(error.message);
+    }
   }
 </script>
