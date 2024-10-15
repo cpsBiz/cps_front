@@ -54,14 +54,14 @@ $campaignNum = $_REQUEST['campaignNum'];
       <div class="cont cont1">
         <div class="box box1">
           <div class="title">
-            <p>알리익스프레스 쇼핑하고</p>
-            <p class="blue">최대<span>2.45%</span></p>
+            <p id="campaignName"></p>
+            <p class="blue">최대<span id="campaignRewardPer"></span></p>
             <p>적립 받으세요!</p>
           </div>
           <div id="campaignLogo" class="logo"></div>
         </div>
         <div class="box box2">
-          <div class="gray-box">
+          <div id="campaignRewardDate" class="gray-box">
             <p><span>적립시점</span>구매 완료 후 1시간 이내</p>
             <p><span>적립확정</span>구매 확정 후 2개월 뒤 월 말</p>
           </div>
@@ -70,16 +70,16 @@ $campaignNum = $_REQUEST['campaignNum'];
           <a href="./qna.php">적립에 문제가 있다면 1:1 문의하기<span class="ico-arrow type1 right"></span></a>
         </div>
         <div class="box box4">
-          <p class="sub-title">적립 대상</p>
-          <div class="gray-box">
-            <p>해드폰 악세사리/인테리어 <span class="percent">6.3%</span></p>
-            <p>PC 주변기기/태블릿 <span class="percent">2.1%</span></p>
-            <p>그 외 기타상품 <span class="percent">4.9%</span></p>
+          <div id="accessProductArea">
+            <p class="sub-title">적립 대상</p>
+            <div id="campaignAccessProduct" class="gray-box"></div>
           </div>
-          <p class="sub-title">제외 대상</p>
-          <div id="campaignDenyProduct" class="gray-box"></div>
+          <div id="denyProductArea">
+            <p class="sub-title">제외 대상</p>
+            <div id="campaignDenyProduct" class="gray-box"></div>
+          </div>
         </div>
-        <div class="box box5">
+        <div id="noticeArea" class="box box5">
           <p>유의사항</p>
           <ul id="campaignNotice"></ul>
         </div>
@@ -203,27 +203,65 @@ $campaignNum = $_REQUEST['campaignNum'];
   function renderCampaignData(data) {
     console.log(data);
 
+    // 이름
+    const name = data.campaignName + ' 쇼핑하고';
+    $('#campaignName').append(name);
+
     // 로고
     const logo = data.logo;
     $('#campaignLogo').css('background-image', `url(${logo})`);
 
     // 지급시점
-    const commissionPaymentStandard = data.commissionPaymentStandard
+    const commissionPaymentStandard = `<p><span>지급시점</span>${data.commissionPaymentStandard}</p>`;
+    $('#campaignRewardDate').append(commissionPaymentStandard);
+
+    // 적립 퍼센트
+    const rewardPer = 2.45 + '%';
+    $('#campaignRewardPer').append(rewardPer);
+
+    // 적립대상
+    const accessProduct = [{
+      category: '헤드폰 악세사리/인테리어',
+      per: '6.3%'
+    }, {
+      category: 'PC 주변기기/태블릿',
+      per: '2.1%'
+    }, {
+      category: '그 외 기타상품',
+      per: '4.9%'
+    }];
+    if (accessProduct.length === 0) {
+      $('#accessProductArea').css('display', 'none');
+    } else {
+      let accessProductList = '';
+      accessProduct.forEach(item => {
+        accessProductList += `<p>${item.category} <span class="percent">${item.per}</span></p>`;
+      });
+      $('#campaignAccessProduct').append(accessProductList);
+    }
 
     // 제외대상
     const denyProduct = data.denyProduct.split('\r\n');
-    let denyProductList = '';
-    denyProduct.forEach(item => {
-      denyProductList += `<p>${item}</p>`;
-    });
-    $('#campaignDenyProduct').append(denyProductList);
+    if (!data.denyProduct || denyProduct.length === 0) {
+      $('#denyProductArea').css('display', 'none');
+    } else {
+      let denyProductList = '';
+      denyProduct.forEach(item => {
+        denyProductList += `<p>${item}</p>`;
+      });
+      $('#campaignDenyProduct').append(denyProductList);
+    }
 
     // 유의사항
     const notice = data.notice.split('\r\n');
-    let noticeList = '';
-    notice.forEach(item => {
-      noticeList += `<li>${item}</li>`;
-    });
-    $('#campaignNotice').append(noticeList);
+    if (!data.notice || notice.length === 0) {
+      $('#noticeArea').css('display', 'none');
+    } else {
+      let noticeList = '';
+      notice.forEach(item => {
+        noticeList += `<li>${item}</li>`;
+      });
+      $('#campaignNotice').append(noticeList);
+    }
   }
 </script>
