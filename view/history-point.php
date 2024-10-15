@@ -328,4 +328,43 @@
       alert(error.message);
     }
   }
+
+  // 회원 적립금 리스트 조회
+  function getCommissionList() {
+    try {
+      const userId = "string";
+      const affliateId = "string";
+      const regYm = 0;
+      const status = 0;
+
+      // AJAX 요청 데이터 설정
+      const requestData = {
+        userId,
+        affliateId,
+        regYm,
+        status
+      };
+
+      // AJAX 요청 수행
+      $.ajax({
+        type: 'POST',
+        url: 'http://192.168.101.156/api/view/memberCommissionList',
+        contentType: 'application/json',
+        data: JSON.stringify(requestData),
+        success: function(result) {
+          renderCommissionList(result);
+        },
+        error: function(request, status, error) {
+          console.error(`Error: ${error}`);
+        }
+      });
+    } catch (error) {
+      alert(error.message);
+    }
+  }
+
+  // 회원 적립금 리스트 렌더링
+  function renderCommissionList(data) {
+
+  }
 </script>

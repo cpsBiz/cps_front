@@ -95,49 +95,49 @@ $affliateId = $_REQUEST['affliateId'];
 </html>
 <script>
   $(function() {
-    getBanner();
+    // getBanner();
     getMemberCommission();
     getMemberStick();
     getCampaignView();
   })
 
   // 배너 조회
-  function getBanner() {
-    return console.log('배너 조회 호출');
+  // function getBanner() {
+  //   return console.log('배너 조회 호출');
 
-    try {
-      // AJAX 요청 데이터 설정
-      const requestData = {
+  //   try {
+  //     // AJAX 요청 데이터 설정
+  //     const requestData = {
 
-      };
+  //     };
 
-      // AJAX 요청 수행
-      $.ajax({
-        type: 'POST',
-        url: 'http://192.168.101.156/api/view/',
-        contentType: 'application/json',
-        data: JSON.stringify(requestData),
-        success: function(result) {
-          const banner = `
-                          <div id="event-popup1" class="event-popup on">
-                            <div class="event-cont">
-                              <div class="logo" style="background-image: url(./images/test/지마켓.png);"></div>
-                              <p>지마켓 수수료 2% 상향 이벤트<span>기간 : 10/1 ~ 10/30</span></p>
-                            </div>
-                            <a href="javascript:void(0)"></a>
-                            <button class="close" onclick="eventPopupClose('#event-popup1')"></button>
-                          </div>
-                          `;
-          $('.main').prepend(banner);
-        },
-        error: function(request, status, error) {
-          console.error(`Error: ${error}`);
-        }
-      });
-    } catch (error) {
-      alert(error.message);
-    }
-  }
+  //     // AJAX 요청 수행
+  //     $.ajax({
+  //       type: 'POST',
+  //       url: 'http://192.168.101.156/api/view/',
+  //       contentType: 'application/json',
+  //       data: JSON.stringify(requestData),
+  //       success: function(result) {
+  //         const banner = `
+  //                         <div id="event-popup1" class="event-popup on">
+  //                           <div class="event-cont">
+  //                             <div class="logo" style="background-image: url(./images/test/지마켓.png);"></div>
+  //                             <p>지마켓 수수료 2% 상향 이벤트<span>기간 : 10/1 ~ 10/30</span></p>
+  //                           </div>
+  //                           <a href="javascript:void(0)"></a>
+  //                           <button class="close" onclick="eventPopupClose('#event-popup1')"></button>
+  //                         </div>
+  //                         `;
+  //         $('.main').prepend(banner);
+  //       },
+  //       error: function(request, status, error) {
+  //         console.error(`Error: ${error}`);
+  //       }
+  //     });
+  //   } catch (error) {
+  //     alert(error.message);
+  //   }
+  // }
 
   // 회원 적립금 조회
   function getMemberCommission() {
@@ -213,13 +213,11 @@ $affliateId = $_REQUEST['affliateId'];
       // 매체가 선택한 사이트
       const site = 'moneyweather';
       // 로그인 유저 아이디
-      const userId = '';
+      const userId = 'string';
       // 광고 아이디
       const adId = '';
       // 기기 OS
       const os = 'AOS';
-      // 캠페인 카테고리
-      const category = '';
 
       // AJAX 요청 데이터 설정
       const requestData = {
@@ -229,7 +227,7 @@ $affliateId = $_REQUEST['affliateId'];
         userId,
         adId,
         os,
-        category
+        category: category ? category : ''
       };
 
       // AJAX 요청 수행
@@ -253,6 +251,9 @@ $affliateId = $_REQUEST['affliateId'];
   function handelCampaingView(result) {
     const data = result.datas;
 
+    $('#campaign-list').empty();
+    if (!data || data.length === 0) return;
+
     let list = '';
     data.forEach(item => {
       let apiUrl = '';
@@ -273,17 +274,15 @@ $affliateId = $_REQUEST['affliateId'];
             `;
     });
 
-    $('#campaign-list').empty();
     $('#campaign-list').append(list);
   }
 
   // 캠페인 즐겨찾기 등록, 삭제
   function patchFavorites(campaignNum, favorites) {
-    return console.log('즐겨찾기호출 : ' + campaignNum + ', ' + favorites);
     try {
-      const userId = '';
-      const affliatedId = '';
-      const apiType = '';
+      const userId = 'string';
+      const affliatedId = 'moneyweather';
+      const apiType = favorites === 'NON_FAVORITE' ? 'i' : 'd';
 
       // AJAX 요청 데이터 설정
       const requestData = {
