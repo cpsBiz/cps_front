@@ -1,3 +1,9 @@
+<?
+// 로그인 유저 아이디
+$userId = $_REQUEST['userId'];
+// 매체 아이디
+$affliateId = $_REQUEST['affliateId'];
+?>
 <!DOCTYPE html>
 <html lang="ko">
 
@@ -40,25 +46,25 @@
         <div class="point-info">
           <div class="text-box">
             <p class="title">총 적립 포인트</p>
-            <p class="point"><span class="ico-point"></span>1,230<span class="ico-arrow type2 right"></span></p>
+            <p id="memberCommission" class="point"></p>
           </div>
           <a href="./sub-5.html"></a>
         </div>
       </div>
       <div class="tab-box-wrap">
         <div class="tab-box">
-          <div class="tab tab1 on"><a href="javascript:void(0)">인기순</a></div>
-          <div class="tab tab2"><a href="javascript:void(0)">종합몰</a></div>
-          <div class="tab tab3"><a href="javascript:void(0)">패션</a></div>
-          <div class="tab tab4"><a href="javascript:void(0)">뷰티</a></div>
-          <div class="tab tab5"><a href="javascript:void(0)">즐겨찾기</a></div>
+          <div class="tab tab1 on"><a href="javascript:getCampaignView('')">인기순</a></div>
+          <div class="tab tab2"><a href="javascript:getCampaignView('')">종합몰</a></div>
+          <div class="tab tab3"><a href="javascript:getCampaignView('')">패션</a></div>
+          <div class="tab tab4"><a href="javascript:getCampaignView('')">뷰티</a></div>
+          <div class="tab tab5"><a href="javascript:getCampaignView('favorites')">즐겨찾기</a></div>
         </div>
       </div>
       <div class="list-wrap type1">
         <div class="list list1 type1">
           <p class="title">쿠팡 검색 쇼핑하고 선물 받기</p>
           <div class="info-wrap">
-            <a class="candy type1" href="javascript:void(0)">20개</a>
+            <a id="memberStick" class="candy type1" href="javascript:void(0)"></a>
             <div class="coupang-search-wrap">
               <span class="logo">쿠팡</span>
               <input type="text" placeholder="쿠팡에서 검색">
@@ -89,17 +95,89 @@
 </html>
 <script>
   $(function() {
+    // getMemberCommission();
+    // getMemberStick();
     getCampaignView();
   })
 
-  function getCampaignView() {
+  // 회원 적립금 조회
+  function getMemberCommission() {
     try {
-      const affliateId = '';
-      const zoneId = '';
-      const site = '';
       const userId = '';
+      const affliateId = '';
+      const requestDate = {
+        userId,
+        affliateId
+      };
+
+      // AJAX 요청 수행
+      $.ajax({
+        type: 'POST',
+        url: 'http://192.168.101.156/api/view/memberCommission',
+        contentType: 'application/json',
+        data: JSON.stringify(requestData),
+        success: function(result) {
+          const memberCommission = result.data.cnt;
+          const appendCommission = `<span class="ico-point"></span>${memberCommission.toLocaleString()}<span class="ico-arrow type2 right"></span>`;
+          $('#memberCommission').append(appendCommission);
+        },
+        error: function(request, status, error) {
+          console.error(`Error: ${error}`);
+        }
+      });
+    } catch (error) {
+      alert(error.message);
+    }
+
+
+  }
+
+  // 쿠팡 막대사탕 조회
+  function getMemberStick() {
+    try {
+      const userId = '';
+      const affliateId = '';
+      const requestDate = {
+        userId,
+        affliateId
+      };
+
+      // AJAX 요청 수행
+      $.ajax({
+        type: 'POST',
+        url: 'http://192.168.101.156/api/view/memberStick',
+        contentType: 'application/json',
+        data: JSON.stringify(requestData),
+        success: function(result) {
+          const memberStick = 1000;
+          const appendStick = memberStick.toLocaleString() + '개';
+          $('#memberStick').append(appendStick);
+        },
+        error: function(request, status, error) {
+          console.error(`Error: ${error}`);
+        }
+      });
+    } catch (error) {
+      alert(error.message);
+    }
+  }
+
+  // 캠페인 영역
+  function getCampaignView(category) {
+    try {
+      // 매체 아이디
+      const affliateId = 'moneyweather';
+      // 지면 아이디
+      const zoneId = '1234';
+      // 매체가 선택한 사이트
+      const site = 'moneyweather';
+      // 로그인 유저 아이디
+      const userId = '';
+      // 광고 아이디
       const adId = '';
+      // 기기 OS
       const os = 'AOS';
+      // 캠페인 카테고리
       const category = '';
 
       // AJAX 요청 데이터 설정
@@ -136,11 +214,18 @@
     console.log(data);
     let list = '';
     data.forEach(item => {
+      let apiUrl = '';
+      if (item.adminId === 'linkprice') {
+        apiUrl = 'http://192.168.101.156/api/clickLinkPrice/campaignClick';
+      } else if (item.adminId === 'dotpitch') {
+        apiUrl = 'http://192.168.101.156/api/clickDotPitch/campaignClick';
+      }
+
       list += `
               <div class="list">
-                <p class="title"><span class="logo" style="background-image: url(${item.logo});"></span>${item.campaignName}</p>
+                <p class="title"><span class="logo" style="background-image: url(${item.logo});"></span>${item.memberName}</p>
                 <p class="percent"><span class="ico-point"></span>3.36%</p>
-                <a href="./campaign.php?url=${item.clickUrl}">바로가기</a>
+                <a href="./campaign.php?clickUrl=${item.clickUrl}&apiUrl=${apiUrl}">바로가기</a>
                 <button class="ico-heart" type="button">즐겨찾기</button>
               </div>
             `;
@@ -148,5 +233,13 @@
 
     $('#campaign-list').empty();
     $('#campaign-list').append(list);
+  }
+
+  // 캠페인 즐겨찾기 등록, 삭제
+  function patchFavorites() {
+    const userId = '';
+    const campaignNum = '';
+    const apiType = '';
+
   }
 </script>
