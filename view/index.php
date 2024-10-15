@@ -46,9 +46,9 @@ $affliateId = $_REQUEST['affliateId'];
         <div class="point-info">
           <div class="text-box">
             <p class="title">총 적립 포인트</p>
-            <p id="memberCommission" class="point"></p>
+            <p id="userCommission" class="point"></p>
           </div>
-          <a href="./sub-5.html"></a>
+          <a href="./history-point.php"></a>
         </div>
       </div>
       <div class="tab-box-wrap">
@@ -86,7 +86,7 @@ $affliateId = $_REQUEST['affliateId'];
       <a class="menu on" href="./index.html"><span class="ico-save">적립</span></a>
       <a class="menu" href="javascript:void(0)"><span class="ico-trend">트렌드</span></a>
       <a class="menu" href="javascript:void(0)"><span class="ico-delivery">배송</span></a>
-      <a class="menu" href="./sub-5.html"><span class="ico-breakDown">내역</span></a>
+      <a class="menu" href="./history-point.php"><span class="ico-breakDown">내역</span></a>
     </div>
   </div>
   <script src="./js/common.js"></script>
@@ -158,9 +158,9 @@ $affliateId = $_REQUEST['affliateId'];
         contentType: 'application/json',
         data: JSON.stringify(requestData),
         success: function(result) {
-          const memberCommission = parseInt(result.data.userCommission).toLocaleString();
-          const appendCommission = `<span class="ico-point"></span>${memberCommission}<span class="ico-arrow type2 right"></span>`;
-          $('#memberCommission').append(appendCommission);
+          const userCommission = parseInt(result.data.userCommission).toLocaleString();
+          const appendCommission = `<span class="ico-point"></span>${userCommission}<span class="ico-arrow type2 right"></span>`;
+          $('#userCommission').append(appendCommission);
         },
         error: function(request, status, error) {
           console.error(`Error: ${error}`);
@@ -169,8 +169,6 @@ $affliateId = $_REQUEST['affliateId'];
     } catch (error) {
       alert(error.message);
     }
-
-
   }
 
   // 쿠팡 막대사탕 조회
@@ -269,8 +267,8 @@ $affliateId = $_REQUEST['affliateId'];
               <div class="list">
                 <p class="title"><span class="logo" style="background-image: url(${item.logo});"></span>${item.memberName}</p>
                 <p class="percent"><span class="ico-point"></span>3.36%</p>
-                <a href="./campaign.php?clickUrl=${item.clickUrl}&apiUrl=${apiUrl}">바로가기</a>
-                <button class="ico-heart" type="button" onclick="patchFavorites(${item.campaignNum})">즐겨찾기</button>
+                <a href="./campaign.php?clickUrl=${item.clickUrl}&apiUrl=${apiUrl}&campaignNum=${item.campaignNum}">바로가기</a>
+                <button class="ico-heart ${item.favorites === 'favorites' ? 'on' : ''}" type="button" onclick="patchFavorites(${item.campaignNum}, '${item.favorites}')">즐겨찾기</button>
               </div>
             `;
     });
@@ -280,15 +278,17 @@ $affliateId = $_REQUEST['affliateId'];
   }
 
   // 캠페인 즐겨찾기 등록, 삭제
-  function patchFavorites(campaignNum) {
-    return console.log('즐겨찾기호출 : ' + campaignNum);
+  function patchFavorites(campaignNum, favorites) {
+    return console.log('즐겨찾기호출 : ' + campaignNum + ', ' + favorites);
     try {
       const userId = '';
+      const affliatedId = '';
       const apiType = '';
 
       // AJAX 요청 데이터 설정
       const requestData = {
         userId,
+        affliatedId,
         campaignNum,
         apiType,
       };

@@ -15,7 +15,7 @@
     <header>
       <h1>꼭 읽어보세요 (기프티콘)</h1>
       <div class="btn-list">
-        <a href="./sub-5.html" class="ico-arrow type1 left">이전</a>
+        <a href="./history-gifticon.php" class="ico-arrow type1 left">이전</a>
       </div>
     </header>
     <!-- main -->

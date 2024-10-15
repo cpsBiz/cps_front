@@ -2030,7 +2030,7 @@ input[type=checkbox]:checked + label .ico-check.on {
   font-size: 30px;
 }
 .sub.sub-2-1 .cont.cont1 .box.box1 .logo {
-  background-size: cover;
+  background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
   background-color: transparent;

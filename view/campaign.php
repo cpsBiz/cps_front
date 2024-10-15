@@ -21,6 +21,7 @@ foreach ($params as $key => $value) {
   }
 }
 $apiUrl = $_REQUEST['apiUrl'];
+$campaignNum = $_REQUEST['campaignNum'];
 ?>
 <!DOCTYPE html>
 <html lang="ko">
@@ -57,7 +58,7 @@ $apiUrl = $_REQUEST['apiUrl'];
             <p class="blue">최대<span>2.45%</span></p>
             <p>적립 받으세요!</p>
           </div>
-          <div class="logo" style="background-image: url(./images/test/쿠팡.png);"></div>
+          <div id="campaignLogo" class="logo"></div>
         </div>
         <div class="box box2">
           <div class="gray-box">
@@ -85,14 +86,12 @@ $apiUrl = $_REQUEST['apiUrl'];
         <div class="box box5">
           <p>유의사항</p>
           <ul>
-            <li>유의사항 1번입니다유의사항 1번입니다.유의사항 1번입니다.</li>
-            <li>유의사항 1번입니다유의사항 2번입니다.유의사항 2번입니다.</li>
-            <li>유의사항 1번입니다유의사항 3번입니다.유의사항 3번입니다.</li>
-            <li>유의사항 1번입니다유의사항 4번입니다.유의사항 4번입니다.</li>
+            <li id="campaignNotice"></li>
           </ul>
         </div>
         <input type="hidden" id="apiUrl" value="<?= $apiUrl; ?>">
         <input type="hidden" id="clickUrl" value="<?= $clickUrl; ?>">
+        <input type="hidden" id="campaignNum" value="<?= $campaignNum; ?>">
         <a id="buttonUrl" class="submit-btn on" href="">쇼핑하고 적립받기</a>
       </div>
     </div>
@@ -110,20 +109,21 @@ $apiUrl = $_REQUEST['apiUrl'];
   function checkParam() {
     const apiUrl = '<?= $apiUrl; ?>';
     const clickUrl = '<?= $clickUrl; ?>';
+    const campaignNum = '<?= $campaignNum; ?>';
 
     const checkApiUrl = document.getElementById('apiUrl').value;
     const checkClickUrl = document.getElementById('clickUrl').value;
-    if (apiUrl === checkApiUrl && clickUrl === checkClickUrl) {
-      getClickRewardUrl(apiUrl, clickUrl);
+    const checkCampaignNum = document.getElementById('campaignNum').value;
+    if (apiUrl === checkApiUrl && clickUrl === checkClickUrl && campaignNum === checkCampaignNum) {
+      getClickRewardUrl(apiUrl, clickUrl, campaignNum);
     } else {
       alert('잘못된 접근입니다.')
       history.back();
     }
   }
 
-  function getClickRewardUrl(apiUrl, clickUrl) {
+  function getClickRewardUrl(apiUrl, clickUrl, campaignNum) {
     try {
-      const campaignNum = 0;
       const affliateId = 'string';
       const zoneId = 'string';
       const agencyId = 'string';
@@ -163,6 +163,8 @@ $apiUrl = $_REQUEST['apiUrl'];
             return;
           }
           $('#buttonUrl').attr('href', buttonUrl);
+
+          getCampaignData(campaignNum);
         },
         error: function(request, status, error) {
           console.error(`Error: ${error}`);
@@ -171,5 +173,46 @@ $apiUrl = $_REQUEST['apiUrl'];
     } catch (error) {
       alert(error.message);
     }
+  }
+
+  function getCampaignData(campaignNum) {
+    try {
+      // AJAX 요청 데이터 설정
+      const requestData = {
+        campaignNum,
+      };
+
+      // AJAX 요청 수행
+      $.ajax({
+        type: 'POST',
+        url: 'http://192.168.101.156/api/admin/campaignList',
+        contentType: 'application/json',
+        data: JSON.stringify(requestData),
+        success: function(result) {
+          const data = result.datas[0];
+          if (!data) {
+            alert('존재하지않는 캠페인입니다.')
+            history.back();
+            return;
+          }
+          renderCampaignData(data);
+        },
+        error: function(request, status, error) {
+          console.error(`Error: ${error}`);
+        }
+      });
+    } catch (error) {
+      alert(error.message);
+    }
+  }
+
+  function renderCampaignData(data) {
+    console.log(data);
+
+    const logo = data.logo;
+    $('#campaignLogo').css('background-image', `url(${logo})`);
+
+    const notice = data.notice;
+    $('#campaignNotice').append(notice);
   }
 </script>
