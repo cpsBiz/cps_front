@@ -142,8 +142,8 @@ $affliateId = $_REQUEST['affliateId'];
   // 회원 적립금 조회
   function getMemberCommission() {
     try {
-      const userId = '';
-      const affliateId = '';
+      const userId = 'string';
+      const affliateId = 'string';
 
       // AJAX 요청 데이터 설정
       const requestData = {
@@ -174,8 +174,8 @@ $affliateId = $_REQUEST['affliateId'];
   // 쿠팡 막대사탕 조회
   function getMemberStick() {
     try {
-      const userId = '';
-      const affliateId = '';
+      const userId = 'string';
+      const affliateId = 'string';
 
       // AJAX 요청 데이터 설정
       const requestData = {
