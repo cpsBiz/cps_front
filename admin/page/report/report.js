@@ -246,7 +246,7 @@ function handleSort(header, modal = false) {
         ? (target = "confirmRewardCnt")
         : cancelYn === "Y"
         ? (target = "cancelRewardCnt")
-        : "rewardCnt";
+        : (target = "rewardCnt");
       break;
     case "전환율":
       target = "";
@@ -256,21 +256,21 @@ function handleSort(header, modal = false) {
         ? (target = "confirmProductPrice")
         : cancelYn === "Y"
         ? (target = "cancelProductPrice")
-        : "productPrice";
+        : (target = "productPrice");
       break;
     case "커미션 매출":
       cancelYn === "N"
         ? (target = "confirmCommission")
         : cancelYn === "Y"
         ? (target = "cancelCommission")
-        : "commission";
+        : (target = "commission");
       break;
     case "커미션 이익":
       cancelYn === "N"
         ? (target = "confirmCommissionProfit")
         : cancelYn === "Y"
         ? (target = "cancelCommissionProfit")
-        : "commissionProfit";
+        : (target = "commissionProfit");
       break;
   }
 
