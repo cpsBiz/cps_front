@@ -142,8 +142,8 @@ $affliateId = $_REQUEST['affliateId'];
   // 회원 적립금 조회
   function getMemberCommission() {
     try {
-      const userId = 'string';
-      const affliateId = 'string';
+      const userId = 'userId11';
+      const affliateId = 'affliateId';
 
       // AJAX 요청 데이터 설정
       const requestData = {
@@ -174,8 +174,8 @@ $affliateId = $_REQUEST['affliateId'];
   // 쿠팡 막대사탕 조회
   function getMemberStick() {
     try {
-      const userId = 'string';
-      const affliateId = 'string';
+      const userId = 'userId11';
+      const affliateId = 'affliateId';
 
       // AJAX 요청 데이터 설정
       const requestData = {
@@ -207,13 +207,13 @@ $affliateId = $_REQUEST['affliateId'];
   function getCampaignView(category) {
     try {
       // 매체 아이디
-      const affliateId = 'moneyweather';
+      const affliateId = 'affliateId';
       // 지면 아이디
-      const zoneId = '1234';
+      const zoneId = 'zoneId11';
       // 매체가 선택한 사이트
       const site = 'moneyweather';
       // 로그인 유저 아이디
-      const userId = 'string';
+      const userId = 'userId11';
       // 광고 아이디
       const adId = '';
       // 기기 OS
@@ -280,8 +280,8 @@ $affliateId = $_REQUEST['affliateId'];
   // 캠페인 즐겨찾기 등록, 삭제
   function patchFavorites(campaignNum, favorites) {
     try {
-      const userId = 'string';
-      const affliatedId = 'moneyweather';
+      const userId = 'userId11';
+      const affliatedId = 'affliatedId';
       const apiType = favorites === 'NON_FAVORITE' ? 'i' : 'd';
 
       // AJAX 요청 데이터 설정
