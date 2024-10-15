@@ -578,7 +578,13 @@
         // 이전 (`prev`) 버튼 추가
         const prevPage = document.createElement('li');
         prevPage.classList.add('prev');
-        prevPage.innerHTML = `<a href="javascript:pageLink(${Math.max(currentPage - 1, 1)}, ${modal});"></a>`;
+        if (currentPage === 1) {
+            // 첫 페이지일 경우 비활성화
+            prevPage.classList.add('disabled');
+            prevPage.innerHTML = `<a href="javascript:void(0);"></a>`;
+        } else {
+            prevPage.innerHTML = `<a href="javascript:pageLink(${Math.max(currentPage - 2, 1)}, ${modal});"></a>`;
+        }
         paginationContainer.appendChild(prevPage);
 
         // 페이지 숫자 버튼 추가
@@ -587,7 +593,7 @@
 
         for (let i = startPage; i <= endPage; i++) {
             const pageItem = document.createElement('li');
-            pageItem.innerHTML = `<a href="javascript:pageLink(${i}, ${modal});">${i}</a>`;
+            pageItem.innerHTML = `<a href="javascript:pageLink(${i-1}, ${modal});">${i}</a>`;
 
             // 현재 페이지에 `on` 클래스 추가
             if (i === currentPage) {
@@ -600,7 +606,13 @@
         // 다음 (`next`) 버튼 추가
         const nextPage = document.createElement('li');
         nextPage.classList.add('next');
-        nextPage.innerHTML = `<a href="javascript:pageLink(${Math.min(currentPage + 1, totalPages)}, ${modal});"></a>`;
+        if (currentPage === totalPages) {
+            // 마지막 페이지일 경우 비활성화
+            nextPage.classList.add('disabled');
+            nextPage.innerHTML = `<a href="javascript:void(0);"></a>`;
+        } else {
+            nextPage.innerHTML = `<a href="javascript:pageLink(${Math.min(currentPage + 2, totalPages)}, ${modal});"></a>`;
+        }
         paginationContainer.appendChild(nextPage);
     }
 
