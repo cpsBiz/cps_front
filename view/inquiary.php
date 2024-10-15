@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,6 +10,7 @@
   <!-- style -->
   <link rel="stylesheet" href="./css/style.css">
 </head>
+
 <body>
   <div class="wrap">
     <!-- header -->
@@ -106,12 +108,12 @@
           </div>
           <div class="gray-box">
             <p>
-              (주)인라이플은 1:1 문의 내역에 대해 관리하는 회사 입니다. 
-              수집한 정보는 문의 이외의 목적으로 사용하지 않으며 관련 법령 및 내부 정책에 따라 3년간 보관 후 파기 합니다. 
+              (주)인라이플은 1:1 문의 내역에 대해 관리하는 회사 입니다.
+              수집한 정보는 문의 이외의 목적으로 사용하지 않으며 관련 법령 및 내부 정책에 따라 3년간 보관 후 파기 합니다.
               개인정보 수집 및 이용에 대한 동의를 거부할 수 있으며, 이 경우 문의 접수가 제한 됩니다.
             </p>
           </div>
-          <a class="submit-btn on" href="javascript:void(0)" onclick="popupOn('#popup-wrap', '.popup1')">문의하기</a>
+          <a class="submit-btn on" href="javascript:void(0)" onclick="checkInquiaryData()">문의하기</a>
         </div>
         <!-- 기타문의 -->
         <div id="form-box2" class="form-box">
@@ -157,7 +159,7 @@
               <li>파일 첨부는 JPG / PNG / GIF / PDF 만 가능합니다.</li>
             </ul>
           </div>
-          <a class="submit-btn on" href="javascript:void(0)" onclick="popupOn('#popup-wrap', '.popup2')">문의하기</a>
+          <a class="submit-btn on" href="javascript:void(0)" onclick="checkInquiaryData()">문의하기</a>
         </div>
       </div>
     </div>
@@ -276,4 +278,40 @@
   <script src="./js/common.js"></script>
   <script src="./js/page.js"></script>
 </body>
+
 </html>
+<script>
+  // 입력값 검증
+  function checkInquiaryData() {
+    // 문의 종류
+    const inquiaryType = document.getElementById('ask-value').textContent;
+
+    if (inquiaryType === '누락문의') {
+      omissionInquiary();
+    } else if (inquiaryType === '기타문의') {
+      etcInquiary();
+    } else {
+      alert('잘못된 접근입니다.');
+    }
+  }
+
+  // 누락문의검증
+  function omissionInquiary() {
+    console.log('누락문의검증');
+  }
+
+  // 기타문의검증
+  function etcInquiary() {
+    console.log('기타문의검증');
+  }
+
+
+
+  function postInquiary(data) {
+    try {
+      popupOn('#popup-wrap', '.popup1')
+    } catch (error) {
+      alert(error);
+    }
+  }
+</script>
