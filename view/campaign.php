@@ -77,17 +77,11 @@ $campaignNum = $_REQUEST['campaignNum'];
             <p>그 외 기타상품 <span class="percent">4.9%</span></p>
           </div>
           <p class="sub-title">제외 대상</p>
-          <div class="gray-box">
-            <p>기프트카드 구매건</p>
-            <p>특정 셀러에서 구매한 상품</p>
-            <p>주문건 환불, 교환, 취소 시</p>
-          </div>
+          <div id="campaignDenyProduct" class="gray-box"></div>
         </div>
         <div class="box box5">
           <p>유의사항</p>
-          <ul>
-            <li id="campaignNotice"></li>
-          </ul>
+          <ul id="campaignNotice"></ul>
         </div>
         <input type="hidden" id="apiUrl" value="<?= $apiUrl; ?>">
         <input type="hidden" id="clickUrl" value="<?= $clickUrl; ?>">
@@ -209,10 +203,27 @@ $campaignNum = $_REQUEST['campaignNum'];
   function renderCampaignData(data) {
     console.log(data);
 
+    // 로고
     const logo = data.logo;
     $('#campaignLogo').css('background-image', `url(${logo})`);
 
-    const notice = data.notice;
-    $('#campaignNotice').append(notice);
+    // 지급시점
+    const commissionPaymentStandard = data.commissionPaymentStandard
+
+    // 제외대상
+    const denyProduct = data.denyProduct.split('\r\n');
+    let denyProductList = '';
+    denyProduct.forEach(item => {
+      denyProductList += `<p>${item}</p>`;
+    });
+    $('#campaignDenyProduct').append(denyProductList);
+
+    // 유의사항
+    const notice = data.notice.split('\r\n');
+    let noticeList = '';
+    notice.forEach(item => {
+      noticeList += `<li>${item}</li>`;
+    });
+    $('#campaignNotice').append(noticeList);
   }
 </script>
