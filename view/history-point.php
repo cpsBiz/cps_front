@@ -1,3 +1,19 @@
+<?
+// 현재 날짜를 기준으로 최근 1년의 월을 가져오는 함수
+function getLastYearMonths()
+{
+  $months = [];
+  // 현재 날짜로부터 12개월 전까지 반복
+  for ($i = 0; $i < 12; $i++) {
+    $month = date('Y년 n월', strtotime("-$i month")); // "-$i month"를 통해 과거 월을 계산
+    $months[] = $month;
+  }
+  return $months;
+}
+
+// 월 리스트 가져오기
+$months = getLastYearMonths();
+?>
 <!DOCTYPE html>
 <html lang="ko">
 
@@ -85,16 +101,16 @@
         <div class="line line2">
           <p>포인트 상세내역</p>
           <div id="select-btn1" class="select-btn type2" onclick="selectListOn('#select-btn1', '#select-wrap', '#select-list1')">
-            <p class="value">2024년 9월</p>
+            <p class="value"><?= $months[0]; ?></p>
             <div class="ico-arrow type2 bottom"></div>
           </div>
         </div>
         <div class="tab-box-wrap">
           <div class="tab-box">
-            <div class="tab tab1 on"><a href="javascript:getCommissionList(0)">전체</a></div>
-            <div class="tab tab2"><a href="javascript:getCommissionList(100)">예정</a></div>
-            <div class="tab tab3"><a href="javascript:getCommissionList(210)">확정</a></div>
-            <div class="tab tab4"><a href="javascript:getCommissionList(310)">취소</a></div>
+            <div class="tab tab1 on"><a href="javascript:checkFilter(0)">전체</a></div>
+            <div class="tab tab2"><a href="javascript:checkFilter(100)">예정</a></div>
+            <div class="tab tab3"><a href="javascript:checkFilter(210)">확정</a></div>
+            <div class="tab tab4"><a href="javascript:checkFilter(310)">취소</a></div>
           </div>
         </div>
         <!-- 리스트 있을 경우 -->
@@ -114,46 +130,19 @@
           <button class="ico-close type1" type="button" onclick="selectListClose('#select-btn1', '#select-wrap', '#select-list1')">닫기</button>
         </div>
         <ul class="select-cont">
-          <li class="list list1 on" onclick="getCommissionList()">
-            <p class="value">2024년 9월</p>
-            <div class="ico-check on"></div>
-          </li>
-          <li class="list list2" onclick="getCommissionList()">
-            <p class="value">2024년 8월</p>
-            <div class="ico-check on"></div>
-          </li>
-          <li class="list list3" onclick="getCommissionList()">
-            <p class="value">2024년 7월</p>
-            <div class="ico-check on"></div>
-          </li>
-          <li class="list list4" onclick="getCommissionList()">
-            <p class="value">2024년 6월</p>
-            <div class="ico-check on"></div>
-          </li>
-          <li class="list list5" onclick="getCommissionList()">
-            <p class="value">2024년 5월</p>
-            <div class="ico-check on"></div>
-          </li>
-          <li class="list list6" onclick="getCommissionList()">
-            <p class="value">2024년 4월</p>
-            <div class="ico-check on"></div>
-          </li>
-          <li class="list list7" onclick="getCommissionList()">
-            <p class="value">2024년 3월</p>
-            <div class="ico-check on"></div>
-          </li>
-          <li class="list list8" onclick="getCommissionList()">
-            <p class="value">2024년 2월</p>
-            <div class="ico-check on"></div>
-          </li>
-          <li class="list list9" onclick="getCommissionList()">
-            <p class="value">2024년 1월</p>
-            <div class="ico-check on"></div>
-          </li>
-          <li class="list list10" onclick="getCommissionList()">
-            <p class="value">2023년 12월</p>
-            <div class="ico-check on"></div>
-          </li>
+          <?
+          foreach ($months as $index => $month) {
+            // 클래스와 onclick 핸들러 설정
+            $listClass = "list list" . ($index + 1);
+            $isActive = ($index === 0) ? 'on' : ''; // 첫 번째 항목만 활성화
+          ?>
+            <li class="<?= $listClass . ' ' . $isActive; ?>" onclick="checkFilter('','<?= $month; ?>')">
+              <p class="value"><?= $month; ?></p>
+              <div class="ico-check <?= $isActive; ?>"></div>
+            </li>
+          <?
+          }
+          ?>
         </ul>
       </div>
     </div>
@@ -173,7 +162,7 @@
 <script>
   $(function() {
     getCommission();
-    getCommissionList();
+    getCommissionList(0, "<?= $months[0]; ?>");
   });
 
   // 회원 적립금 조회
@@ -211,12 +200,23 @@
     }
   }
 
+  let checkStatus = 0;
+  let checkDate = '<?= $months[0] ?>';
+
+  function checkFilter(status, date) {
+    console.log(status);
+    if (status !== '') checkStatus = status;
+    if (date) checkDate = date;
+
+    getCommissionList(checkStatus, checkDate);
+  }
+
   // 회원 적립금 리스트 조회
-  function getCommissionList(status) {
+  function getCommissionList(status, date) {
     try {
       const userId = "userId11";
       const affliateId = "affliateId";
-      const regYm = convertToYYYYMM(document.querySelector('#select-list1 .list.on').children[0].innerHTML);
+      const regYm = convertDate(date);
 
       // AJAX 요청 데이터 설정
       const requestData = {
