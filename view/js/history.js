@@ -4,8 +4,8 @@ function moveHistory(param) {
   location.href = `./${url}`;
 }
 
+
 function convertToYYYYMM(dateString) {
-  console.log(dateString);
   // 연도와 월을 추출
   const year = dateString.match(/\d{4}/)[0];
   const month = dateString.match(/\d{1,2}(?=월)/)[0];
