@@ -17,11 +17,7 @@ const $type1Lists = document.querySelectorAll(".list-wrap.type1 .list");
 const $type1ListsIcoHeart = document.querySelectorAll(
   ".list-wrap.type1 .ico-heart"
 );
-// list type2
-const $type2Lists = document.querySelectorAll(".list-wrap.type2 .list");
-const $type2ListsToolTipBox = document.querySelectorAll(
-  ".list-wrap.type2 .list .tool-tip-box"
-);
+
 // list type3
 const $type3Lists = document.querySelectorAll(".list-wrap.type3 .list");
 const $type3ListsTop = document.querySelectorAll(
@@ -49,28 +45,35 @@ if ($type1Lists) {
   });
 }
 
-// list type2
-if ($type2Lists) {
-  $type2Lists.forEach((elm) => {
-    elm.addEventListener("click", (e) => {
-      if (e.target.className === "tool-tip") return;
-      if (e.target.tagName.toLowerCase() !== "button") {
-        $type2ListsToolTipBox.forEach((elm) => elm.classList.remove("on"));
-      }
+function historyPointEvent() {
+  // list type2
+  const $type2Lists = document.querySelectorAll(".list-wrap.type2 .list");
+  const $type2ListsToolTipBox = document.querySelectorAll(
+    ".list-wrap.type2 .list .tool-tip-box"
+  );
+  // list type2
+  if ($type2Lists) {
+    $type2Lists.forEach((elm) => {
+      elm.addEventListener("click", (e) => {
+        if (e.target.className === "tool-tip") return;
+        if (e.target.tagName.toLowerCase() !== "button") {
+          $type2ListsToolTipBox.forEach((elm) => elm.classList.remove("on"));
+        }
+      });
     });
-  });
 
-  $type2ListsToolTipBox.forEach((elm) => {
-    elm.addEventListener("click", (e) => {
-      if (e.target.className === "tool-tip") return;
-      if (!elm.classList.contains("on")) {
-        $type2ListsToolTipBox.forEach((elm) => elm.classList.remove("on"));
-        elm.classList.add("on");
-      } else if (elm.classList.contains("on")) {
-        $type2ListsToolTipBox.forEach((elm) => elm.classList.remove("on"));
-      }
+    $type2ListsToolTipBox.forEach((elm) => {
+      elm.addEventListener("click", (e) => {
+        if (e.target.className === "tool-tip") return;
+        if (!elm.classList.contains("on")) {
+          $type2ListsToolTipBox.forEach((elm) => elm.classList.remove("on"));
+          elm.classList.add("on");
+        } else if (elm.classList.contains("on")) {
+          $type2ListsToolTipBox.forEach((elm) => elm.classList.remove("on"));
+        }
+      });
     });
-  });
+  }
 }
 
 // list type3
@@ -149,6 +152,7 @@ function selectListOn(selectBtn, selectWrap, selectList) {
 function selectListsCheck($selectLists, $selectList, $selectBtnValue) {
   $selectLists.forEach((elm) => elm.classList.remove("on"));
   $selectList.classList.add("on");
+  $selectList.querySelector('div').classList.add('on');
   $selectBtnValue.innerText = `${
     $selectList.querySelector(".value").innerText
   }`;

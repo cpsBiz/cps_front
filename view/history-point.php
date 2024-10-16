@@ -249,6 +249,7 @@ $months = getLastYearMonths();
   function renderCommissionList(data) {
     console.log(data);
 
+    $('.list-none-box').css('display', 'none');
     $('.list-wrap.type2').empty();
 
     const datas = data.datas;
@@ -302,10 +303,12 @@ $months = getLastYearMonths();
                 <div class="point-box">
                   <div class="text text1">
                     <p>${status.text}</p>
+                    ${item.status === 100 ? `
                     <div class="tool-tip-box">
                       <button class="ico-question" type="button"></button>
                       <div class="tool-tip">적립예정일: ${item.commissionPaymentStandard}</div>
                     </div>
+                    ` : ''}  
                   </div>
                   <p class="text text2">+${item.userCommission.toLocaleString()}</p>
                 </div>
@@ -317,5 +320,7 @@ $months = getLastYearMonths();
               `;
     });
     $('.list-wrap.type2').append(list);
+
+    historyPointEvent();
   }
 </script>
