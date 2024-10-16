@@ -198,8 +198,6 @@ $campaignNum = $_REQUEST['campaignNum'];
   }
 
   function renderCampaignData(data) {
-    console.log(data);
-
     // 이름
     const name = data.memberName + ' 쇼핑하고';
     $('#campaignName').append(name);
@@ -212,14 +210,14 @@ $campaignNum = $_REQUEST['campaignNum'];
     const commissionPaymentStandard = `<p><span>지급시점</span>${data.commissionPaymentStandard}</p>`;
     $('#campaignRewardDate').append(commissionPaymentStandard);
 
-    // 적립 퍼센트 -> 아직은 데이터가 없음
-    const rewardPer = '';
-    // const rewardPer = '2.45%';
+    // 적립 퍼센트
+    const rewardPer = '<?= $_REQUEST['per']; ?>';
     if (!rewardPer) {
       $('#rewardPerArea').css('display', 'none');
     } else {
-      $('#campaignRewardPer').append(rewardPer);
+      $('#campaignRewardPer').append(rewardPer + '%');
     }
+
     // 적립대상 -> 아직은 데이터가 없음
     // const accessProduct = [{
     //   category: '헤드폰 악세사리/인테리어',
