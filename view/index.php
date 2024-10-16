@@ -224,13 +224,14 @@ $affliateId = $_REQUEST['affliateId'];
       }
 
       // 적립률 - OS별로 PC,MOBILE 나눠서 계산필요
-      const commissionPer = (item.commissionMobile * item.affliateCommissionShare * item.userCommissionShare) / 100
+      const commission = getDevice() ? item.commissionMobile : item.commissionPc;
+      const commissionPer = (commission * ((item.affliateCommissionShare * item.userCommissionShare) / 100)) / 100;
 
       // 해야함 - 즐겨찾기 유무 데이터 처리 필요
       list += `
               <div class="list">
                 <p class="title"><span class="logo" style="background-image: url(${item.logo});"></span>${item.memberName}</p>
-                <p class="percent"><span class="ico-point"></span>${commissionPer}%</p>
+                <p class="percent"><span class="ico-point"></span>${commissionPer.toFixed(2)}%</p>
                 <a href="./campaign.php?clickUrl=${item.clickUrl}&apiUrl=${apiUrl}&campaignNum=${item.campaignNum}">바로가기</a>
                 <button class="ico-heart ${item.favorites === 'FAVORITE' ? 'on' : ''}" type="button" onclick="patchFavorites(${item.campaignNum}, '${item.favorites}', this)">즐겨찾기</button>
               </div>

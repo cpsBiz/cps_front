@@ -194,3 +194,15 @@ function formBoxOn(
   $formBoxTarget.classList.add("on");
   sessionStorage.setItem("form-box-number", JSON.stringify(formObj));
 }
+
+function getDevice() {
+  //모바일기기 배열
+  const Mobile =
+    /iPhone|iPad|Android|BlackBerry|Windows Phone|Windows CE|LG|MOT|SAMSUNG|SonyEricsson|Nokia/i.test(
+      navigator.userAgent
+    )
+      ? true
+      : false;
+
+  return Mobile;
+}
