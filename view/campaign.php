@@ -105,7 +105,7 @@ $campaignNum = $_REQUEST['campaignNum'];
     const checkApiUrl = document.getElementById('apiUrl').value;
     const checkClickUrl = document.getElementById('clickUrl').value;
     const checkCampaignNum = document.getElementById('campaignNum').value;
-    if (apiUrl === checkApiUrl && clickUrl === checkClickUrl && campaignNum === checkCampaignNum) {
+    if ((apiUrl && clickUrl && campaignNum) && apiUrl === checkApiUrl && clickUrl === checkClickUrl && campaignNum === checkCampaignNum) {
       getClickRewardUrl(apiUrl, clickUrl, campaignNum);
     } else {
       alert('잘못된 접근입니다.')
@@ -206,7 +206,7 @@ $campaignNum = $_REQUEST['campaignNum'];
 
     // 로고
     const logo = data.logo;
-    $('#campaignLogo').css('background-image', `url(${logo})`);
+    if (logo) $('#campaignLogo').css('background-image', `url(${logo})`);
 
     // 지급시점
     const commissionPaymentStandard = `<p><span>지급시점</span>${data.commissionPaymentStandard}</p>`;
@@ -243,8 +243,8 @@ $campaignNum = $_REQUEST['campaignNum'];
     }
 
     // 제외대상
-    const denyProduct = data.denyProduct && data.denyProduct.contains('\r\n') ? data.denyProduct.split('\r\n') : data.denyProduct;
-    if (!data.denyProduct || denyProduct.length === 0) {
+    const denyProduct = data.denyProduct && data.denyProduct.includes('\r\n') ? data.denyProduct.split('\r\n') : [data.denyProduct];
+    if (!denyProduct || denyProduct.length === 0 || !denyProduct[0]) {
       $('#denyProductArea').css('display', 'none');
     } else {
       let denyProductList = '';
@@ -255,8 +255,8 @@ $campaignNum = $_REQUEST['campaignNum'];
     }
 
     // 유의사항
-    const notice = data.notice && data.notice.contains('\r\n') ? data.notice.split('\r\n') : data.notice;
-    if (!data.notice || notice.length === 0) {
+    const notice = data.notice && data.notice.includes('\r\n') ? data.notice.split('\r\n') : [data.notice];
+    if (!notice || notice.length === 0 || !notice[0]) {
       $('#noticeArea').css('display', 'none');
     } else {
       let noticeList = '';
