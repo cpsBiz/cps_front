@@ -35,13 +35,7 @@
         <p class="candy-count"></p>
         <a href="./history-stick.php"></a>
       </div>
-      <div class="list-wrap type4">
-        <div class="list list1">
-          <div class="logo" style="background-image: url(./images/test/홈플러스.png)">스타벅스</div>
-          <p class="title">스타벅스<span class="candy-info">20개</span></p>
-          <a href="javascript:void(0)" onclick="getGifticonList()"></a>
-        </div>
-      </div>
+      <div class="list-wrap type4"></div>
     </div>
 
     <!-- popup-wrap -->
@@ -141,13 +135,17 @@
   }
 
   // 룰렛 브랜드 리스트 렌더링
-  function renderBrandList(data) {
+  function renderBrandList(data = [1, 2, 3, 4, 5]) {
     console.log('룰렛 브랜드 리스트 렌더링');
     let list = '';
 
     data.forEach(item => {
       list += `
-              <div class="item item1" style="width: 62px; height: 80px; background-image: url(./images/test/roulette_text.png);"></div>
+              <div class="list list1">
+                <div class="logo" style="background-image: url(./images/test/홈플러스.png)">스타벅스</div>
+                <p class="title">스타벅스<span class="candy-info">20개</span></p>
+                <a href="javascript:void(0)" onclick="getGifticonList()"></a>
+              </div>
               `;
     })
     $('.list-wrap.type4').empty();
@@ -165,15 +163,28 @@
   }
 
   // 룰렛 기프티콘 리스트 렌더링
-  function renderGifticonList(data) {
+  function renderGifticonList(data = [1, 2, 3, 4, 5, 6]) {
     let list = '';
-
+    let i = 1;
     data.forEach(item => {
-      list += ``;
+      list += `
+              <div class="item item${i}" style="width: 62px; height: 80px; background-image: url(./images/test/roulette_text.png);"></div>
+              `;
+      i++;
     });
 
     $('.roulette.item-roulette').empty();
     $('.roulette.item-roulette').append(list);
+
+    const stickCnt = document.querySelector('.candy-info > span').textContent.replace('개', '');
+    const button = `
+                  <button class="popup-btn ${stickCnt >= 20 ? '' : 'gray'}" type="button" onclick="getRoulette()" ${stickCnt < 20 ? 'disabled' : ''}>
+                  ${stickCnt >= 20 ? '룰렛 돌리기' : '막대사탕 20개부터 참여가능'}
+                  </button>
+                  `;
+    $('.btn-box').empty();
+    $('.btn-box').append(button);
+
     popupOn('#popup-wrap', '.popup1');
   }
 
