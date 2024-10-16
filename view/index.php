@@ -256,8 +256,8 @@ $affliateId = $_REQUEST['affliateId'];
                   </div>
                   <div class="link-wrap">
                     <div class="link-box"><a href="./history-gifticon.php">당첨내역</a></div>
-                    <div class="link-box"><a href="./event-rullet.php">행운의룰렛 GO</a></div>
-                    <div class="link-box"><a href="./event-rullet-notice.php">이벤트 안내</a></div>
+                    <div class="link-box"><a href="./event-roulette.php">행운의룰렛 GO</a></div>
+                    <div class="link-box"><a href="./event-roulette-notice.php">이벤트 안내</a></div>
                   </div>
                   <button class="ico-heart ${item.favorites === 'FAVORITE' ? 'on' : ''}" type="button" onclick="patchFavorites(${item.campaignNum}, '${item.favorites}', this)"></button>
                   `;
