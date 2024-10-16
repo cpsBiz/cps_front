@@ -223,9 +223,8 @@ $affliateId = $_REQUEST['affliateId'];
         apiUrl = 'http://192.168.101.156/api/clickDotPitch/campaignClick';
       }
 
-      // 적립률 - OS별로 PC,MOBILE 나눠서 계산필요
-      const commission = getDevice() ? item.commissionMobile : item.commissionPc;
-      const commissionPer = ((commission * ((item.affliateCommissionShare * item.userCommissionShare) / 100)) / 100).toFixed(2);
+      // 적립률
+      const commissionPer = getCommissionPer(item);
 
       // 해야함 - 즐겨찾기 유무 데이터 처리 필요
       list += `
@@ -243,6 +242,8 @@ $affliateId = $_REQUEST['affliateId'];
 
   function renderCoupangArea(item) {
     const apiUrl = 'http://192.168.101.156/api/clickCoupang/campaignClick';
+    const commissionPer = getCommissionPer(item);
+
     const area = `
                   <p class="title">쿠팡 검색 쇼핑하고 선물 받기</p>
                   <div class="info-wrap">
@@ -250,7 +251,7 @@ $affliateId = $_REQUEST['affliateId'];
                     <div class="coupang-search-wrap">
                       <span class="logo">쿠팡</span>
                       <input type="text" placeholder="쿠팡에서 검색" disabled>
-                      <a href="./campaign.php?clickUrl=${item.clickUrl}&apiUrl=${apiUrl}&campaignNum=${item.campaignNum}">검색</a>
+                      <a href="./campaign.php?clickUrl=${item.clickUrl}&apiUrl=${apiUrl}&campaignNum=${item.campaignNum}&per=${commissionPer}">검색</a>
                     </div>
                   </div>
                   <div class="link-wrap">

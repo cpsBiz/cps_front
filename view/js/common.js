@@ -206,3 +206,15 @@ function getDevice() {
 
   return Mobile;
 }
+
+function getCommissionPer(item) {
+  // 적립률 - OS별로 PC,MOBILE 나눠서 계산필요
+  const commission = getDevice() ? item.commissionMobile : item.commissionPc;
+  const commissionPer = (
+    (commission *
+      ((item.affliateCommissionShare * item.userCommissionShare) / 100)) /
+    100
+  ).toFixed(2);
+
+  return commissionPer;
+}
