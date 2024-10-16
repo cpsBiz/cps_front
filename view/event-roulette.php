@@ -39,7 +39,7 @@
         <div class="list list1">
           <div class="logo" style="background-image: url(./images/test/홈플러스.png)">스타벅스</div>
           <p class="title">스타벅스<span class="candy-info">20개</span></p>
-          <a href="javascript:void(0)" onclick="popupOn('#popup-wrap', '.popup1')"></a>
+          <a href="javascript:void(0)" onclick="getGifticonList()"></a>
         </div>
       </div>
     </div>
@@ -62,20 +62,13 @@
         <div class="roulette-wrap">
           <div class="roulette-box">
             <div class="roulette bg-roulette"></div>
-            <div class="roulette item-roulette">
-              <div class="item item1" style="width: 62px; height: 80px; background-image: url(./images/test/roulette_text.png);"></div>
-              <div class="item item2" style="width: 62px; height: 80px; background-image: url(./images/test/roulette_text.png);"></div>
-              <div class="item item3" style="width: 62px; height: 80px; background-image: url(./images/test/roulette_text.png);"></div>
-              <div class="item item4" style="width: 62px; height: 80px; background-image: url(./images/test/roulette_text.png);"></div>
-              <div class="item item5" style="width: 62px; height: 80px; background-image: url(./images/test/roulette_text.png);"></div>
-              <div class="item item6" style="width: 62px; height: 80px; background-image: url(./images/test/roulette_text.png);"></div>
-            </div>
+            <div class="roulette item-roulette"></div>
             <div class="roulette fix-roulette"></div>
           </div>
         </div>
         <div class="box">
           <div class="btn-box">
-            <button class="popup-btn gray" type="button" onclick="popupClose('#popup-wrap', '.popup1'), popupOn('#popup-wrap', '.popup2')">막대사탕 20개부터 참여가능</button>
+            <button class="popup-btn gray" type="button" onclick="getRoulette()">막대사탕 20개부터 참여가능</button>
           </div>
         </div>
         <button class="ico-close type1" type="button" onclick="popupClose('#popup-wrap', '.popup1')">닫기</button>
@@ -85,21 +78,7 @@
       <div class="popup type2 popup2">
         <div class="box">
           <p>🎉당첨을 축하드립니다!</p>
-          <div class="goods-box">
-            <div class="img-box" style="background-image: url(./images/test/스타벅스\ 상품.png);"></div>
-            <div class="text-box">
-              <div class="title-box">
-                <div class="logo-box">
-                  <div class="logo" style="background-image: url(./images/test/스타벅스로고.png);"></div>
-                  <p class="logo-title">스타벅스</p>
-                </div>
-                <p class="title">아이스 카페 아메리카노 T아이스 카페 아메리카노 T</p>
-              </div>
-              <div class="info-box">
-                <p class="date">지급예정 (2024.10.15)</p>
-              </div>
-            </div>
-          </div>
+          <div class="goods-box"></div>
           <div class="btn-box">
             <a href="javascript:void(0)" class="popup-btn" onclick="popupClose('#popup-wrap', '.popup2')">당첨내역 보러가기</a>
           </div>
@@ -116,6 +95,7 @@
 <script>
   $(function() {
     getMemberStick();
+    getBrandList();
   });
 
   // 쿠팡 막대사탕 조회
@@ -150,18 +130,86 @@
     }
   }
 
-  // 브랜드 리스트 조회
+  // 룰렛 브랜드 리스트 조회
   function getBrandList() {
-
+    console.log('룰렛 브랜드 리스트 조회');
+    try {
+      renderBrandList();
+    } catch (error) {
+      alert(error);
+    }
   }
 
-  // 룰렛 기프티콘 조회
+  // 룰렛 브랜드 리스트 렌더링
+  function renderBrandList(data) {
+    console.log('룰렛 브랜드 리스트 렌더링');
+    let list = '';
+
+    data.forEach(item => {
+      list += `
+              <div class="item item1" style="width: 62px; height: 80px; background-image: url(./images/test/roulette_text.png);"></div>
+              `;
+    })
+    $('.list-wrap.type4').empty();
+    $('.list-wrap.type4').append(list);
+  }
+
+  // 룰렛 기프티콘 리스트 조회
   function getGifticonList() {
-
+    console.log('룰렛 기프티콘 리스트 조회');
+    try {
+      renderGifticonList();
+    } catch (error) {
+      alert(error)
+    }
   }
 
-  // 룰렛 당첨내역 조회
-  function getRoulette() {
+  // 룰렛 기프티콘 리스트 렌더링
+  function renderGifticonList(data) {
+    let list = '';
 
+    data.forEach(item => {
+      list += ``;
+    });
+
+    $('.roulette.item-roulette').empty();
+    $('.roulette.item-roulette').append(list);
+    popupOn('#popup-wrap', '.popup1');
+  }
+
+  // 룰렛 돌리기
+  function getRoulette() {
+    try {
+      console.log('룰렛 돌리기');
+      renderRouletteWin();
+
+    } catch (error) {
+      alert(error);
+    }
+  }
+
+  // 룰렛 당첨 내역 렌더링
+  function renderRouletteWin() {
+    console.log('룰렛 당첨 팝업 렌더링');
+    const list = `
+                  <div class="img-box" style="background-image: url(./images/test/스타벅스\ 상품.png);"></div>
+                  <div class="text-box">
+                    <div class="title-box">
+                      <div class="logo-box">
+                        <div class="logo" style="background-image: url(./images/test/스타벅스로고.png);"></div>
+                        <p class="logo-title">스타벅스</p>
+                      </div>
+                      <p class="title">아이스 카페 아메리카노 T아이스 카페 아메리카노 T</p>
+                    </div>
+                    <div class="info-box">
+                      <p class="date">지급예정 (2024.10.15)</p>
+                    </div>
+                  </div>
+                  `;
+    $('.goods-box').empty();
+    $('.goods-box').append(list);
+    getMemberStick();
+    popupClose('#popup-wrap', '.popup1');
+    popupOn('#popup-wrap', '.popup2');
   }
 </script>
