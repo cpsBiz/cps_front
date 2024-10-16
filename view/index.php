@@ -232,7 +232,7 @@ $affliateId = $_REQUEST['affliateId'];
                 <p class="title"><span class="logo" style="background-image: url(${item.logo});"></span>${item.memberName}</p>
                 <p class="percent"><span class="ico-point"></span>${commissionPer}%</p>
                 <a href="./campaign.php?clickUrl=${item.clickUrl}&apiUrl=${apiUrl}&campaignNum=${item.campaignNum}">바로가기</a>
-                <button class="ico-heart ${item.favorites === 'FAVORITE' ? 'on' : ''}" type="button" onclick="patchFavorites(${item.campaignNum}, '${item.favorites}')">즐겨찾기</button>
+                <button class="ico-heart ${item.favorites === 'FAVORITE' ? 'on' : ''}" type="button" onclick="patchFavorites(${item.campaignNum}, '${item.favorites}', this)">즐겨찾기</button>
               </div>
             `;
     });
@@ -257,7 +257,7 @@ $affliateId = $_REQUEST['affliateId'];
                     <div class="link-box"><a href="./sub-2-3.html">행운의룰렛 GO</a></div>
                     <div class="link-box"><a href="./sub-2-4.html">이벤트 안내</a></div>
                   </div>
-                  <button class="ico-heart ${item.favorites === 'FAVORITE' ? 'on' : ''}" type="button" onclick="patchFavorites(${item.campaignNum}, '${item.favorites}')"></button>
+                  <button class="ico-heart ${item.favorites === 'FAVORITE' ? 'on' : ''}" type="button" onclick="patchFavorites(${item.campaignNum}, '${item.favorites}', this)"></button>
                   `;
     removeCoupangArea();
     $('#coupangArea').append(area);
@@ -301,7 +301,7 @@ $affliateId = $_REQUEST['affliateId'];
   }
 
   // 캠페인 즐겨찾기 등록, 삭제
-  function patchFavorites(campaignNum, favorites) {
+  function patchFavorites(campaignNum, favorites, dom) {
     try {
       const userId = 'dhhan';
       const affliatedId = 'affliatedId';
@@ -322,7 +322,12 @@ $affliateId = $_REQUEST['affliateId'];
         contentType: 'application/json',
         data: JSON.stringify(requestData),
         success: function(result) {
-          console.log(result);
+          if (result.resultCode === '0000') {
+            let domClass = dom.classList;
+            domClass.value.includes('on') ? domClass.remove('on') : domClass.add('on');
+          } else {
+            alert(result.resultMessage);
+          }
         },
         error: function(request, status, error) {
           console.error(`Error: ${error}`);
