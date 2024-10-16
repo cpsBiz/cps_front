@@ -18,7 +18,7 @@
     <header>
       <h1>쿠팡 이벤트 안내</h1>
       <div class="btn-list">
-        <a href="./index.html" class="ico-arrow type1 left">이전</a>
+        <a href="./index.php" class="ico-arrow type1 left">이전</a>
       </div>
     </header>
     <!-- main -->
