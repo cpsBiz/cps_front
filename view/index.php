@@ -241,14 +241,15 @@ $affliateId = $_REQUEST['affliateId'];
   }
 
   function renderCoupangArea(item) {
+    const apiUrl = 'http://192.168.101.156/api/clickCoupang/campaignClick';
     const area = `
                   <p class="title">쿠팡 검색 쇼핑하고 선물 받기</p>
                   <div class="info-wrap">
                     <a id="memberStick" class="candy type1" href="javascript:void(0)"></a>
                     <div class="coupang-search-wrap">
                       <span class="logo">쿠팡</span>
-                      <input type="text" placeholder="쿠팡에서 검색">
-                      <a href="javascript:void(0)">검색</a>
+                      <input type="text" placeholder="쿠팡에서 검색" disabled>
+                      <a href="./campaign.php?clickUrl=${item.clickUrl}&apiUrl=${apiUrl}&campaignNum=${item.campaignNum}">검색</a>
                     </div>
                   </div>
                   <div class="link-wrap">
@@ -256,7 +257,7 @@ $affliateId = $_REQUEST['affliateId'];
                     <div class="link-box"><a href="./sub-2-3.html">행운의룰렛 GO</a></div>
                     <div class="link-box"><a href="./sub-2-4.html">이벤트 안내</a></div>
                   </div>
-                  <button class="ico-heart ${item.favorites === 'FAVORITE' ? 'on' : ''}" type="button"></button>
+                  <button class="ico-heart ${item.favorites === 'FAVORITE' ? 'on' : ''}" type="button" onclick="patchFavorites(${item.campaignNum}, '${item.favorites}')"></button>
                   `;
     removeCoupangArea();
     $('#coupangArea').append(area);

@@ -201,7 +201,7 @@ $campaignNum = $_REQUEST['campaignNum'];
     console.log(data);
 
     // 이름
-    const name = data.campaignName + ' 쇼핑하고';
+    const name = data.memberName + ' 쇼핑하고';
     $('#campaignName').append(name);
 
     // 로고
@@ -243,7 +243,7 @@ $campaignNum = $_REQUEST['campaignNum'];
     }
 
     // 제외대상
-    const denyProduct = data.denyProduct.split('\r\n');
+    const denyProduct = data.denyProduct && data.denyProduct.contains('\r\n') ? data.denyProduct.split('\r\n') : data.denyProduct;
     if (!data.denyProduct || denyProduct.length === 0) {
       $('#denyProductArea').css('display', 'none');
     } else {
@@ -255,7 +255,7 @@ $campaignNum = $_REQUEST['campaignNum'];
     }
 
     // 유의사항
-    const notice = data.notice.split('\r\n');
+    const notice = data.notice && data.notice.contains('\r\n') ? data.notice.split('\r\n') : data.notice;
     if (!data.notice || notice.length === 0) {
       $('#noticeArea').css('display', 'none');
     } else {
