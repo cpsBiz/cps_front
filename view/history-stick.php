@@ -1,3 +1,19 @@
+<?
+// 현재 날짜를 기준으로 최근 1년의 월을 가져오는 함수
+function getLastYearMonths()
+{
+  $months = [];
+  // 현재 날짜로부터 12개월 전까지 반복
+  for ($i = 0; $i < 12; $i++) {
+    $month = date('Y년 n월', strtotime("-$i month")); // "-$i month"를 통해 과거 월을 계산
+    $months[] = $month;
+  }
+  return $months;
+}
+
+// 월 리스트 가져오기
+$months = getLastYearMonths();
+?>
 <!DOCTYPE html>
 <html lang="ko">
 
@@ -62,14 +78,15 @@
         <div class="line line2">
           <p>막대사탕 상세내역</p>
           <div id="select-btn2" class="select-btn type2" onclick="selectListOn('#select-btn2', '#select-wrap', '#select-list2')">
-            <p class="value">2024년 9월</p>
+            <p class="value"><?= $months[0]; ?></p>
             <div class="ico-arrow type2 bottom"></div>
           </div>
         </div>
         <div class="tab-box-wrap">
           <div class="tab-box">
-            <div class="tab tab1 on"><a href="javascript:void(0)">적립</a></div>
-            <div class="tab tab2"><a href="javascript:void(0)">사용/취소</a></div>
+            <div class="tab tab1 on"><a href="javascript:checkFilter(210)">확정</a></div>
+            <div class="tab tab2"><a href="javascript:checkFilter(100)">예정</a></div>
+            <div class="tab tab3"><a href="javascript:checkFilter(0)">사용/취소</a></div>
           </div>
         </div>
         <!-- 리스트 있을 경우 -->
@@ -151,46 +168,19 @@
           <button class="ico-close type1" type="button" onclick="selectListClose('#select-btn2', '#select-wrap', '#select-list2')">닫기</button>
         </div>
         <ul class="select-cont">
-          <li class="list list1 on">
-            <p class="value">2024년 9월</p>
-            <div class="ico-check on"></div>
-          </li>
-          <li class="list list2">
-            <p class="value">2024년 8월</p>
-            <div class="ico-check on"></div>
-          </li>
-          <li class="list list3">
-            <p class="value">2024년 7월</p>
-            <div class="ico-check on"></div>
-          </li>
-          <li class="list list4">
-            <p class="value">2024년 6월</p>
-            <div class="ico-check on"></div>
-          </li>
-          <li class="list list5">
-            <p class="value">2024년 5월</p>
-            <div class="ico-check on"></div>
-          </li>
-          <li class="list list6">
-            <p class="value">2024년 4월</p>
-            <div class="ico-check on"></div>
-          </li>
-          <li class="list list7">
-            <p class="value">2024년 3월</p>
-            <div class="ico-check on"></div>
-          </li>
-          <li class="list list8">
-            <p class="value">2024년 2월</p>
-            <div class="ico-check on"></div>
-          </li>
-          <li class="list list9">
-            <p class="value">2024년 1월</p>
-            <div class="ico-check on"></div>
-          </li>
-          <li class="list list10">
-            <p class="value">2023년 12월</p>
-            <div class="ico-check on"></div>
-          </li>
+          <?
+          foreach ($months as $index => $month) {
+            // 클래스와 onclick 핸들러 설정
+            $listClass = "list list" . ($index + 1);
+            $isActive = ($index === 0) ? 'on' : ''; // 첫 번째 항목만 활성화
+          ?>
+            <li class="<?= $listClass . ' ' . $isActive; ?>" onclick="checkFilter('','<?= $month; ?>')">
+              <p class="value"><?= $month; ?></p>
+              <div class="ico-check <?= $isActive; ?>"></div>
+            </li>
+          <?
+          }
+          ?>
         </ul>
       </div>
     </div>
@@ -211,13 +201,14 @@
 <script>
   $(function() {
     getStick();
+    getStickList(210, "<?= $months[0]; ?>");
   });
 
   // 쿠팡 막대사탕 조회
   function getStick() {
     try {
-      const userId = 'dhhan';
-      const affliateId = 'moneyweather';
+      const userId = 'userId11';
+      const affliateId = 'affliateId';
 
       // AJAX 요청 데이터 설정
       const requestData = {
@@ -243,5 +234,97 @@
     } catch (error) {
       alert(error.message);
     }
+  }
+
+  let checkStatus = 0;
+  let checkDate = '<?= $months[0] ?>';
+
+  function checkFilter(status, date) {
+    console.log(status);
+    if (status !== '') checkStatus = status;
+    if (date) checkDate = date;
+
+    //getStickList(checkStatus, checkDate);
+  }
+
+  // 회원 적립금 리스트 조회
+  function getStickList(status, date) {
+    try {
+      const userId = "userId11";
+      const affliateId = "affliateId";
+      const regYm = convertDate(date);
+
+      // AJAX 요청 데이터 설정
+      const requestData = {
+        userId,
+        affliateId,
+        regYm,
+        status
+      };
+
+      // AJAX 요청 수행
+      $.ajax({
+        type: 'POST',
+        url: 'http://192.168.101.156/api/giftCoupang/coupangStickList',
+        contentType: 'application/json',
+        data: JSON.stringify(requestData),
+        success: function(result) {
+          selectListClose('#select-btn2', '#select-wrap', '#select-list2');
+          renderStickList(result);
+        },
+        error: function(request, status, error) {
+          console.error(`Error: ${error}`);
+        }
+      });
+    } catch (error) {
+      alert(error.message);
+    }
+  }
+
+  // 회원 적립금 리스트 렌더링
+  function renderStickList(data) {
+    console.log(data);
+
+    $('.list-none-box').css('display', 'none');
+    $('.list-wrap.type5').empty();
+
+    const datas = data.datas;
+    if (!datas || datas.length === 0) {
+      $('.list-none-box').css('display', 'block');
+      return;
+    }
+
+    const ex = [{
+
+    }, ]
+
+    let list = '';
+    datas.forEach(item => {
+      let status = {
+        text: '',
+        color: ''
+      }
+      switch (item.status) {
+        case 100:
+          status.text = '적립예정';
+          status.color = 'red';
+          break;
+        case 210:
+          status.text = '적립확정';
+          status.color = 'blue';
+          break;
+        case 310:
+          status.text = '적립취소';
+          status.color = 'green';
+          break;
+      }
+
+      list += `
+
+              `;
+    });
+    $('.list-wrap.type5').append(list);
+
+    historyPointEvent();
   }
 </script>

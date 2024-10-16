@@ -1,3 +1,19 @@
+<?
+// 현재 날짜를 기준으로 최근 1년의 월을 가져오는 함수
+function getLastYearMonths()
+{
+  $months = [];
+  // 현재 날짜로부터 12개월 전까지 반복
+  for ($i = 0; $i < 12; $i++) {
+    $month = date('Y년 n월', strtotime("-$i month")); // "-$i month"를 통해 과거 월을 계산
+    $months[] = $month;
+  }
+  return $months;
+}
+
+// 월 리스트 가져오기
+$months = getLastYearMonths();
+?>
 <!DOCTYPE html>
 <html lang="ko">
 
@@ -9,6 +25,9 @@
   <link rel="icon" type="image/x-icon" href="./images/favicon.ico">
   <!-- style -->
   <link rel="stylesheet" href="./css/style.css">
+  <script type="text/javascript" src="../admin/js/lib/jquery-2.2.2.min.js"></script>
+  <script type="text/javascript" src="../admin/js/lib/jquery.easing.1.3.js"></script>
+  <script type="text/javascript" src="../admin/js/lib/jquery-ui.min.js"></script>
   <script src="./js/history.js"></script>
 </head>
 
@@ -50,15 +69,14 @@
         <div class="line line2">
           <p>기프티콘 당첨내역</p>
           <div id="select-btn3" class="select-btn type2" onclick="selectListOn('#select-btn3', '#select-wrap', '#select-list3')">
-            <p class="value">2024년 9월</p>
+            <p class="value"><?= $months[0]; ?></p>
             <div class="ico-arrow type2 bottom"></div>
           </div>
         </div>
         <div class="tab-box-wrap">
           <div class="tab-box">
-            <div class="tab tab1 on"><a href="javascript:void(0)">사용가능</a></div>
-            <div class="tab tab2"><a href="javascript:void(0)">지급예정</a></div>
-            <div class="tab tab2"><a href="javascript:void(0)">사용완료/만료</a></div>
+            <div class="tab tab1 on"><a href="javascript:checkFilter(0)">사용가능</a></div>
+            <div class="tab tab2"><a href="javascript:checkFilter(0)">사용완료/만료</a></div>
           </div>
         </div>
         <!-- 리스트 있을 경우 -->
@@ -137,46 +155,19 @@
           <button class="ico-close type1" type="button" onclick="selectListClose('#select-btn3', '#select-wrap', '#select-list3')">닫기</button>
         </div>
         <ul class="select-cont">
-          <li class="list list1 on">
-            <p class="value">2024년 9월</p>
-            <div class="ico-check on"></div>
-          </li>
-          <li class="list list2">
-            <p class="value">2024년 8월</p>
-            <div class="ico-check on"></div>
-          </li>
-          <li class="list list3">
-            <p class="value">2024년 7월</p>
-            <div class="ico-check on"></div>
-          </li>
-          <li class="list list4">
-            <p class="value">2024년 6월</p>
-            <div class="ico-check on"></div>
-          </li>
-          <li class="list list5">
-            <p class="value">2024년 5월</p>
-            <div class="ico-check on"></div>
-          </li>
-          <li class="list list6">
-            <p class="value">2024년 4월</p>
-            <div class="ico-check on"></div>
-          </li>
-          <li class="list list7">
-            <p class="value">2024년 3월</p>
-            <div class="ico-check on"></div>
-          </li>
-          <li class="list list8">
-            <p class="value">2024년 2월</p>
-            <div class="ico-check on"></div>
-          </li>
-          <li class="list list9">
-            <p class="value">2024년 1월</p>
-            <div class="ico-check on"></div>
-          </li>
-          <li class="list list10">
-            <p class="value">2023년 12월</p>
-            <div class="ico-check on"></div>
-          </li>
+          <?
+          foreach ($months as $index => $month) {
+            // 클래스와 onclick 핸들러 설정
+            $listClass = "list list" . ($index + 1);
+            $isActive = ($index === 0) ? 'on' : ''; // 첫 번째 항목만 활성화
+          ?>
+            <li class="<?= $listClass . ' ' . $isActive; ?>" onclick="checkFilter('','<?= $month; ?>')">
+              <p class="value"><?= $month; ?></p>
+              <div class="ico-check <?= $isActive; ?>"></div>
+            </li>
+          <?
+          }
+          ?>
         </ul>
       </div>
     </div>
@@ -193,3 +184,101 @@
 </body>
 
 </html>
+
+<script>
+  $(function() {
+    getGifticonList(210, "<?= $months[0]; ?>");
+  });
+
+  let checkStatus = 0;
+  let checkDate = '<?= $months[0] ?>';
+
+  function checkFilter(status, date) {
+    console.log(status);
+    if (status !== '') checkStatus = status;
+    if (date) checkDate = date;
+
+    //getGifticonList(checkStatus, checkDate);
+  }
+
+  // 회원 적립금 리스트 조회
+  function getGifticonList(status, date) {
+    try {
+      const userId = "userId11";
+      const affliateId = "affliateId";
+      const regYm = convertDate(date);
+
+      // AJAX 요청 데이터 설정
+      const requestData = {
+        userId,
+        affliateId,
+        regYm,
+        status
+      };
+
+      // AJAX 요청 수행
+      $.ajax({
+        type: 'POST',
+        url: 'http://192.168.101.156/api/',
+        contentType: 'application/json',
+        data: JSON.stringify(requestData),
+        success: function(result) {
+          selectListClose('#select-btn3', '#select-wrap', '#select-list3');
+          renderGifticonList(result);
+        },
+        error: function(request, status, error) {
+          console.error(`Error: ${error}`);
+        }
+      });
+    } catch (error) {
+      alert(error.message);
+    }
+  }
+
+  // 회원 적립금 리스트 렌더링
+  function renderGifticonList(data) {
+    console.log(data);
+
+    $('.list-none-box').css('display', 'none');
+    $('.list-wrap.type6').empty();
+
+    const datas = data.datas;
+    if (!datas || datas.length === 0) {
+      $('.list-none-box').css('display', 'block');
+      return;
+    }
+
+    const ex = [{
+
+    }, ]
+
+    let list = '';
+    datas.forEach(item => {
+      let status = {
+        text: '',
+        color: ''
+      }
+      switch (item.status) {
+        case 100:
+          status.text = '적립예정';
+          status.color = 'red';
+          break;
+        case 210:
+          status.text = '적립확정';
+          status.color = 'blue';
+          break;
+        case 310:
+          status.text = '적립취소';
+          status.color = 'green';
+          break;
+      }
+
+      list += `
+
+              `;
+    });
+    $('.list-wrap.type6').append(list);
+
+    historyPointEvent();
+  }
+</script>
