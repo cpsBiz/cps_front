@@ -4388,6 +4388,7 @@ input[type=checkbox]:checked + label .ico-check.on {
   margin-bottom: 10px;
 }
 .sub.sub-5 .cont.cont .list-none-box {
+  display: none;
   position: relative;
   height: calc(100vh - 347px);
 }

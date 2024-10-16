@@ -91,133 +91,14 @@
         </div>
         <div class="tab-box-wrap">
           <div class="tab-box">
-            <div class="tab tab1 on"><a href="javascript:void(0)">전체</a></div>
-            <div class="tab tab2"><a href="javascript:void(0)">예정</a></div>
-            <div class="tab tab3"><a href="javascript:void(0)">확정</a></div>
-            <div class="tab tab4"><a href="javascript:void(0)">취소</a></div>
+            <div class="tab tab1 on"><a href="javascript:getCommissionList(0)">전체</a></div>
+            <div class="tab tab2"><a href="javascript:getCommissionList(100)">예정</a></div>
+            <div class="tab tab3"><a href="javascript:getCommissionList(210)">확정</a></div>
+            <div class="tab tab4"><a href="javascript:getCommissionList(310)">취소</a></div>
           </div>
         </div>
         <!-- 리스트 있을 경우 -->
-        <div class="list-wrap type2">
-          <div class="list list1 red">
-            <p class="title">쿠팡</p>
-            <div class="text-box">
-              <p class="text text1">곡물그대로21 크리스피롤 1.5kg 오리지널곡물그대로21 크리스피롤 1.5kg 오리지널</p>
-              <p class="text text2">21,230원</p>
-            </div>
-            <div class="point-box">
-              <div class="text text1">
-                <p>적립예정</p>
-                <div class="tool-tip-box">
-                  <button class="ico-question" type="button"></button>
-                  <div class="tool-tip">적립예정일: 구매 완료 3개월 이내</div>
-                </div>
-              </div>
-              <p class="text text2">+1,230</p>
-            </div>
-            <div class="info-box">
-              <p class="date">24.09.03</p>
-              <p class="state">쇼핑적립</p>
-            </div>
-          </div>
-          <div class="list list2 blue">
-            <p class="title">쿠팡</p>
-            <div class="text-box">
-              <p class="text text1">곡물그대로21 크리스피롤 1.5kg 오리지널곡물그대로21 크리스피롤 1.5kg 오리지널</p>
-              <p class="text text2">21,230원</p>
-            </div>
-            <div class="point-box">
-              <div class="text text1">
-                <p>적립확정</p>
-                <div class="tool-tip-box">
-                  <button class="ico-question" type="button"></button>
-                  <div class="tool-tip">적립예정일: 구매 완료 3개월 이내</div>
-                </div>
-              </div>
-              <p class="text text2">+1,230</p>
-            </div>
-            <div class="info-box">
-              <p class="date">24.09.03</p>
-              <p class="state">카트공유</p>
-            </div>
-          </div>
-          <div class="list list3 green">
-            <p class="title">쿠팡</p>
-            <div class="text-box">
-              <p class="text text1">곡물그대로21 크리스피롤 1.5kg 오리지널곡물그대로21 크리스피롤 1.5kg 오리지널</p>
-              <p class="text text2">21,230원</p>
-            </div>
-            <div class="point-box">
-              <div class="text text1">
-                <p>적립취소</p>
-              </div>
-              <p class="text text2">+1,230</p>
-            </div>
-            <div class="info-box">
-              <p class="date">24.09.03</p>
-              <p class="state">배송조회</p>
-            </div>
-          </div>
-          <div class="list list4 green">
-            <p class="title">쿠팡</p>
-            <div class="text-box">
-              <p class="text text1">곡물그대로21 크리스피롤 1.5kg 오리지널곡물그대로21 크리스피롤 1.5kg 오리지널</p>
-              <p class="text text2">21,230원</p>
-            </div>
-            <div class="point-box">
-              <div class="text text1">
-                <p>적립취소</p>
-              </div>
-              <p class="text text2">+1,230</p>
-            </div>
-            <div class="info-box">
-              <p class="date">24.09.03</p>
-              <p class="state">배송조회</p>
-            </div>
-          </div>
-          <div class="list list5 red">
-            <p class="title">쿠팡</p>
-            <div class="text-box">
-              <p class="text text1">곡물그대로21 크리스피롤 1.5kg 오리지널곡물그대로21 크리스피롤 1.5kg 오리지널</p>
-              <p class="text text2">21,230원</p>
-            </div>
-            <div class="point-box">
-              <div class="text text1">
-                <p>적립예정</p>
-                <div class="tool-tip-box">
-                  <button class="ico-question" type="button"></button>
-                  <div class="tool-tip">적립예정일: 구매 완료 3개월 이내</div>
-                </div>
-              </div>
-              <p class="text text2">+1,230</p>
-            </div>
-            <div class="info-box">
-              <p class="date">24.09.03</p>
-              <p class="state">쇼핑적립</p>
-            </div>
-          </div>
-          <div class="list list6 blue">
-            <p class="title">쿠팡</p>
-            <div class="text-box">
-              <p class="text text1">곡물그대로21 크리스피롤 1.5kg 오리지널곡물그대로21 크리스피롤 1.5kg 오리지널</p>
-              <p class="text text2">21,230원</p>
-            </div>
-            <div class="point-box">
-              <div class="text text1">
-                <p>적립확정</p>
-                <div class="tool-tip-box">
-                  <button class="ico-question" type="button"></button>
-                  <div class="tool-tip">적립예정일: 구매 완료 3개월 이내</div>
-                </div>
-              </div>
-              <p class="text text2">+1,230</p>
-            </div>
-            <div class="info-box">
-              <p class="date">24.09.03</p>
-              <p class="state">카트공유</p>
-            </div>
-          </div>
-        </div>
+        <div class="list-wrap type2"></div>
         <!-- 리스트 없을 경우 -->
         <div class="list-none-box">
           <p><span class="ico-exclamation"></span>적립내역이 없습니다.</p>
@@ -331,12 +212,11 @@
   }
 
   // 회원 적립금 리스트 조회
-  function getCommissionList() {
+  function getCommissionList(status) {
     try {
-      const userId = "dhhan";
-      const affliateId = "moneyweather";
+      const userId = "userId11";
+      const affliateId = "affliateId";
       const regYm = convertToYYYYMM(document.querySelector('#select-list1 .list.on').children[0].innerHTML);
-      const status = 0;
 
       // AJAX 요청 데이터 설정
       const requestData = {
@@ -368,5 +248,74 @@
   // 회원 적립금 리스트 렌더링
   function renderCommissionList(data) {
     console.log(data);
+
+    $('.list-wrap.type2').empty();
+
+    const datas = data.datas;
+    if (!datas || datas.length === 0) {
+      $('.list-none-box').css('display', 'block');
+      return;
+    }
+
+    const ex = [{
+      userId: "userId11",
+      regDay: 20240930,
+      regYm: 202409,
+      campaignName: "link_11st 캠페인 자동 등록",
+      productName: "(9월 마지막 20%+5%)아토팜 탑투토워시 용기1+리필2+추가리필1/99특가/크림/로션/판테놀/수딩젤/소독티슈",
+      productPrice: 38900,
+      userCommission: 48,
+      productCnt: 1,
+      merchantId: "link_11st",
+      status: 100,
+      commissionPaymentStandard: "구매 확정 월 기준 익익월 6일 지급"
+    }, ]
+
+    let list = '';
+    datas.forEach(item => {
+      let status = {
+        text: '',
+        color: ''
+      }
+      switch (item.status) {
+        case 100:
+          status.text = '적립예정';
+          status.color = 'red';
+          break;
+        case 210:
+          status.text = '적립확정';
+          status.color = 'blue';
+          break;
+        case 310:
+          status.text = '적립취소';
+          status.color = 'green';
+          break;
+      }
+
+      list += `
+              <div class="list list1 ${status.color}">
+                <p class="title">${item.campaignName}</p>
+                <div class="text-box">
+                  <p class="text text1">${item.productName}</p>
+                  <p class="text text2">${item.productPrice.toLocaleString()}원</p>
+                </div>
+                <div class="point-box">
+                  <div class="text text1">
+                    <p>${status.text}</p>
+                    <div class="tool-tip-box">
+                      <button class="ico-question" type="button"></button>
+                      <div class="tool-tip">적립예정일: ${item.commissionPaymentStandard}</div>
+                    </div>
+                  </div>
+                  <p class="text text2">+${item.userCommission.toLocaleString()}</p>
+                </div>
+                <div class="info-box">
+                  <p class="date">${formatDate(item.regDay)}</p>
+                  <p class="state">쇼핑적립</p>
+                </div>
+              </div>
+              `;
+    });
+    $('.list-wrap.type2').append(list);
   }
 </script>

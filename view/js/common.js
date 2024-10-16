@@ -218,3 +218,29 @@ function getCommissionPer(item) {
 
   return commissionPer;
 }
+
+// 날짜를 변환하고, 요일을 판단하는 함수
+function formatDate(date) {
+  let year, month, day;
+  let formattedDate = "";
+  let dateStr = String(date);
+
+  // 날짜 문자열 길이에 따라 연도, 월, 일을 파싱
+  if (dateStr.length === 6) {
+    // "YYYYMM" 형식
+    year = dateStr.substring(0, 4); // 연도
+    month = dateStr.substring(4, 6); // 월
+    formattedDate = `${year}.${month}`;
+  } else if (dateStr.length === 8) {
+    // "YYYYMMDD" 형식
+    year = dateStr.substring(0, 4); // 연도
+    month = dateStr.substring(4, 6); // 월
+    day = dateStr.substring(6, 8); // 일
+    formattedDate = `${year}.${month}.${day}`;
+  } else {
+    console.error("지원하지 않는 날짜 형식입니다.");
+    return;
+  }
+
+  return formattedDate;
+}
