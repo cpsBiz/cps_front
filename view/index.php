@@ -61,29 +61,13 @@ $affliateId = $_REQUEST['affliateId'];
         </div>
       </div>
       <div class="list-wrap type1">
-        <div class="list list1 type1">
-          <p class="title">쿠팡 검색 쇼핑하고 선물 받기</p>
-          <div class="info-wrap">
-            <a id="memberStick" class="candy type1" href="javascript:void(0)"></a>
-            <div class="coupang-search-wrap">
-              <span class="logo">쿠팡</span>
-              <input type="text" placeholder="쿠팡에서 검색">
-              <a href="javascript:void(0)">검색</a>
-            </div>
-          </div>
-          <div class="link-wrap">
-            <div class="link-box"><a href="./sub-2-2.html">당첨내역</a></div>
-            <div class="link-box"><a href="./sub-2-3.html">행운의룰렛 GO</a></div>
-            <div class="link-box"><a href="./sub-2-4.html">이벤트 안내</a></div>
-          </div>
-          <button class="ico-heart" type="button"></button>
-        </div>
+        <div id="coupangArea" class="list list1 type1"></div>
         <div class="campaign-list" id="campaign-list"></div>
       </div>
     </div>
     <div class="bottom-menu-wrap">
       <a class="menu" href="javascript:void(0)"><span class="ico-cart">카트</span></a>
-      <a class="menu on" href="./index.html"><span class="ico-save">적립</span></a>
+      <a class="menu on" href="./index.php"><span class="ico-save">적립</span></a>
       <a class="menu" href="javascript:void(0)"><span class="ico-trend">트렌드</span></a>
       <a class="menu" href="javascript:void(0)"><span class="ico-delivery">배송</span></a>
       <a class="menu" href="./history-point.php"><span class="ico-breakDown">내역</span></a>
@@ -97,7 +81,6 @@ $affliateId = $_REQUEST['affliateId'];
   $(function() {
     // getBanner();
     getMemberCommission();
-    getMemberStick();
     getCampaignView();
   })
 
@@ -142,8 +125,8 @@ $affliateId = $_REQUEST['affliateId'];
   // 회원 적립금 조회
   function getMemberCommission() {
     try {
-      const userId = 'userId11';
-      const affliateId = 'affliateId';
+      const userId = 'dhhan';
+      const affliateId = 'moneyweather';
 
       // AJAX 요청 데이터 설정
       const requestData = {
@@ -171,49 +154,17 @@ $affliateId = $_REQUEST['affliateId'];
     }
   }
 
-  // 쿠팡 막대사탕 조회
-  function getMemberStick() {
-    try {
-      const userId = 'userId11';
-      const affliateId = 'affliateId';
-
-      // AJAX 요청 데이터 설정
-      const requestData = {
-        userId,
-        affliateId
-      };
-
-      // AJAX 요청 수행
-      $.ajax({
-        type: 'POST',
-        url: 'http://192.168.101.156/api/view/memberStick',
-        contentType: 'application/json',
-        data: JSON.stringify(requestData),
-        success: function(result) {
-          const memberStick = parseInt(result.data.cnt).toLocaleString();
-          const appendStick = `${memberStick}개`;
-          $('#memberStick').append(appendStick);
-        },
-        error: function(request, status, error) {
-          console.error(`Error: ${error}`);
-        }
-      });
-    } catch (error) {
-      alert(error.message);
-    }
-  }
-
   // 캠페인 영역
   function getCampaignView(category) {
     try {
       // 매체 아이디
-      const affliateId = 'affliateId';
+      const affliateId = 'moneyweather';
       // 지면 아이디
-      const zoneId = 'zoneId11';
+      const zoneId = 'zonedhhan';
       // 매체가 선택한 사이트
       const site = 'moneyweather';
       // 로그인 유저 아이디
-      const userId = 'userId11';
+      const userId = 'dhhan';
       // 광고 아이디
       const adId = '';
       // 기기 OS
@@ -252,10 +203,19 @@ $affliateId = $_REQUEST['affliateId'];
     const data = result.datas;
 
     $('#campaign-list').empty();
-    if (!data || data.length === 0) return;
+    if (!data || data.length === 0) {
+      removeCoupangArea();
+      return;
+    }
 
     let list = '';
+    let checkCoupang = false;
     data.forEach(item => {
+      if (item.memberName === '쿠팡') {
+        checkCoupang = true;
+        renderCoupangArea(item);
+        return
+      }
       let apiUrl = '';
       if (item.adminId === 'linkprice') {
         apiUrl = 'http://192.168.101.156/api/clickLinkPrice/campaignClick';
@@ -263,24 +223,86 @@ $affliateId = $_REQUEST['affliateId'];
         apiUrl = 'http://192.168.101.156/api/clickDotPitch/campaignClick';
       }
 
+      // 적립률 - OS별로 PC,MOBILE 나눠서 계산필요
+      const commissionPer = (item.commissionMobile * item.affliateCommissionShare * item.userCommissionShare) / 100
+
       // 해야함 - 즐겨찾기 유무 데이터 처리 필요
       list += `
               <div class="list">
                 <p class="title"><span class="logo" style="background-image: url(${item.logo});"></span>${item.memberName}</p>
-                <p class="percent"><span class="ico-point"></span>3.36%</p>
+                <p class="percent"><span class="ico-point"></span>${commissionPer}%</p>
                 <a href="./campaign.php?clickUrl=${item.clickUrl}&apiUrl=${apiUrl}&campaignNum=${item.campaignNum}">바로가기</a>
-                <button class="ico-heart ${item.favorites === 'favorites' ? 'on' : ''}" type="button" onclick="patchFavorites(${item.campaignNum}, '${item.favorites}')">즐겨찾기</button>
+                <button class="ico-heart ${item.favorites === 'FAVORITE' ? 'on' : ''}" type="button" onclick="patchFavorites(${item.campaignNum}, '${item.favorites}')">즐겨찾기</button>
               </div>
             `;
     });
-
+    if (!checkCoupang) removeCoupangArea();
     $('#campaign-list').append(list);
+  }
+
+  function renderCoupangArea(item) {
+    const area = `
+                  <p class="title">쿠팡 검색 쇼핑하고 선물 받기</p>
+                  <div class="info-wrap">
+                    <a id="memberStick" class="candy type1" href="javascript:void(0)"></a>
+                    <div class="coupang-search-wrap">
+                      <span class="logo">쿠팡</span>
+                      <input type="text" placeholder="쿠팡에서 검색">
+                      <a href="javascript:void(0)">검색</a>
+                    </div>
+                  </div>
+                  <div class="link-wrap">
+                    <div class="link-box"><a href="./sub-2-2.html">당첨내역</a></div>
+                    <div class="link-box"><a href="./sub-2-3.html">행운의룰렛 GO</a></div>
+                    <div class="link-box"><a href="./sub-2-4.html">이벤트 안내</a></div>
+                  </div>
+                  <button class="ico-heart ${item.favorites === 'FAVORITE' ? 'on' : ''}" type="button"></button>
+                  `;
+    removeCoupangArea();
+    $('#coupangArea').append(area);
+    getMemberStick();
+  }
+
+  function removeCoupangArea() {
+    $('#coupangArea').empty();
+  }
+
+  // 쿠팡 막대사탕 조회
+  function getMemberStick() {
+    try {
+      const userId = 'dhhan';
+      const affliateId = 'moneyweather';
+
+      // AJAX 요청 데이터 설정
+      const requestData = {
+        userId,
+        affliateId
+      };
+
+      // AJAX 요청 수행
+      $.ajax({
+        type: 'POST',
+        url: 'http://192.168.101.156/api/giftCoupang/coupangStick',
+        contentType: 'application/json',
+        data: JSON.stringify(requestData),
+        success: function(result) {
+          const memberStick = parseInt(result.data.cnt).toLocaleString();
+          const appendStick = `${memberStick}개`;
+          $('#memberStick').append(appendStick);
+        },
+        error: function(request, status, error) {
+          console.error(`Error: ${error}`);
+        }
+      });
+    } catch (error) {
+      alert(error.message);
+    }
   }
 
   // 캠페인 즐겨찾기 등록, 삭제
   function patchFavorites(campaignNum, favorites) {
     try {
-      const userId = 'userId11';
+      const userId = 'dhhan';
       const affliatedId = 'affliatedId';
       const apiType = favorites === 'NON_FAVORITE' ? 'i' : 'd';
 

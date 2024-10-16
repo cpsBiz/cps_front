@@ -298,8 +298,8 @@
   // 회원 적립금 조회
   function getCommission() {
     try {
-      const userId = 'userId11';
-      const affliateId = 'affliateId';
+      const userId = 'dhhan';
+      const affliateId = 'moneyweather';
 
       // AJAX 요청 데이터 설정
       const requestData = {
@@ -333,8 +333,8 @@
   // 회원 적립금 리스트 조회
   function getCommissionList() {
     try {
-      const userId = "userId11";
-      const affliateId = "affliateId";
+      const userId = "dhhan";
+      const affliateId = "moneyweather";
       const regYm = convertToYYYYMM(document.querySelector('#select-list1 .list.on').children[0].innerHTML);
       const status = 0;
 

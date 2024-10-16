@@ -115,14 +115,14 @@ $campaignNum = $_REQUEST['campaignNum'];
 
   function getClickRewardUrl(apiUrl, clickUrl, campaignNum) {
     try {
-      const affliateId = 'string';
-      const zoneId = 'string';
+      const affliateId = 'moneyweather';
+      const zoneId = 'zonedhhan';
       const agencyId = 'string';
       const merchantId = 'string';
       const type = '';
       const site = '';
       const os = 'aos';
-      const userId = 'string';
+      const userId = 'dhhan';
       const adId = '';
 
       // AJAX 요청 데이터 설정

@@ -216,8 +216,8 @@
   // 쿠팡 막대사탕 조회
   function getStick() {
     try {
-      const userId = '';
-      const affliateId = '';
+      const userId = 'dhhan';
+      const affliateId = 'moneyweather';
 
       // AJAX 요청 데이터 설정
       const requestData = {
@@ -228,7 +228,7 @@
       // AJAX 요청 수행
       $.ajax({
         type: 'POST',
-        url: 'http://192.168.101.156/api/view/memberStick',
+        url: 'http://192.168.101.156/api/giftCoupang/coupangStick',
         contentType: 'application/json',
         data: JSON.stringify(requestData),
         success: function(result) {
