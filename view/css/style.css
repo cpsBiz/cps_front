@@ -4138,6 +4138,28 @@ input[type=checkbox]:checked + label .ico-check.on {
   background: #777;
   border-radius: 100%;
 }
+.sub.sub-2-3 {
+  padding: 24px 20px;
+  background: #fafafa;
+}
+.sub.sub-2-3 .title-box {
+  margin-bottom: 23px;
+}
+.sub.sub-2-3 .title-box .title {
+  font-family: "Pretendard-Bold";
+  font-size: 16px;
+  color: #000;
+  margin-bottom: 4px;
+}
+.sub.sub-2-3 .title-box .text {
+  font-family: "Pretendard-Medium";
+  font-size: 13px;
+  color: #777;
+  line-height: 1.2;
+}
+.sub.sub-2-3 .candy-link-wrap {
+  margin-bottom: 20px;
+}
 .sub.sub-2-4 {
   padding: 0 0 60px;
   background: #fafafa;
