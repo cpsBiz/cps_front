@@ -84,14 +84,14 @@ $months = getLastYearMonths();
         </div>
         <div class="tab-box-wrap">
           <div class="tab-box">
-            <div class="tab tab1 on"><a href="javascript:checkFilter(210)">확정</a></div>
+            <div class="tab tab1 on"><a href="javascript:checkFilter(310)">확정</a></div>
             <div class="tab tab2"><a href="javascript:checkFilter(100)">예정</a></div>
             <div class="tab tab3"><a href="javascript:checkFilter(0)">사용/취소</a></div>
           </div>
         </div>
         <!-- 리스트 있을 경우 -->
-        <!-- 막대사탕 적립 -->
-        <div class="list-wrap type5 type5-1">
+        <div class="list-wrap type5">
+          <!-- 막대사탕 적립 type5에 type5-1추가필요 -->
           <div class="list list1">
             <div class="text-box text-box1">
               <div class="text text1">
@@ -105,22 +105,8 @@ $months = getLastYearMonths();
               <p class="state">2개</p>
             </div>
           </div>
-          <div class="list list1">
-            <div class="text-box text-box1">
-              <div class="text text1">
-                <p>곡물그대로21 크리스피롤 1.5kg 오리지널곡물그대로21 크리스피롤 1.5kg 오리지널</p>
-              </div>
-              <p class="text text2">21,230원</p>
-            </div>
-            <div class="text-box text-box2">
-              <p class="date">24.09.03</p>
-              <p class="state">2개</p>
-            </div>
-          </div>
-        </div>
-        <!-- 막대사탕 사용/취소 -->
-        <div class="list-wrap type5 type5-2">
-          <div class="list list1">
+          <!-- 막대사탕 사용/취소 type5에 type5-2추가필요 -->
+          <div class="list list2">
             <div class="text-box text-box1">
               <div class="text text1">
                 <p>곡물그대로21 크리스피롤 1.5kg 오리지널곡물그대로21 크리스피롤 1.5kg 오리지널</p>
@@ -133,22 +119,6 @@ $months = getLastYearMonths();
               <div class="state-box">
                 <p class="state">2개</p>
                 <p class="state-info red">취소</p>
-              </div>
-            </div>
-          </div>
-          <div class="list list1">
-            <div class="text-box text-box1">
-              <div class="text text1">
-                <p>곡물그대로21 크리스피롤 1.5kg 오리지널곡물그대로21 크리스피롤 1.5kg 오리지널</p>
-                <span>외 1건</span>
-              </div>
-              <p class="text text2">21,230원</p>
-            </div>
-            <div class="text-box text-box2">
-              <p class="date">24.09.03</p>
-              <div class="state-box">
-                <p class="state">2개</p>
-                <p class="state-info blue">사용</p>
               </div>
             </div>
           </div>
@@ -201,13 +171,13 @@ $months = getLastYearMonths();
 <script>
   $(function() {
     getStick();
-    getStickList(210, "<?= $months[0]; ?>");
+    getStickList(200, "<?= $months[0]; ?>");
   });
 
   // 쿠팡 막대사탕 조회
   function getStick() {
     try {
-      const userId = 'userId11';
+      const userId = '김호성userId';
       const affliateId = 'affliateId';
 
       // AJAX 요청 데이터 설정
@@ -244,19 +214,21 @@ $months = getLastYearMonths();
     if (status !== '') checkStatus = status;
     if (date) checkDate = date;
 
-    //getStickList(checkStatus, checkDate);
+    getStickList(checkStatus, checkDate);
   }
 
-  // 회원 적립금 리스트 조회
+  // 막대사탕 리스트 조회
   function getStickList(status, date) {
     try {
-      const userId = "userId11";
+      const userId = "김호성userId";
+      const merchantId = "coupang";
       const affliateId = "affliateId";
       const regYm = convertDate(date);
 
       // AJAX 요청 데이터 설정
       const requestData = {
         userId,
+        merchantId,
         affliateId,
         regYm,
         status
@@ -281,12 +253,12 @@ $months = getLastYearMonths();
     }
   }
 
-  // 회원 적립금 리스트 렌더링
+  // 막대사탕 리스트 렌더링
   function renderStickList(data) {
     console.log(data);
 
     $('.list-none-box').css('display', 'none');
-    $('.list-wrap.type5').empty();
+    //$('.list-wrap.type5').empty();
 
     const datas = data.datas;
     if (!datas || datas.length === 0) {
@@ -295,8 +267,15 @@ $months = getLastYearMonths();
     }
 
     const ex = [{
-
-    }, ]
+      rewardUnitNum: 2,
+      cnt: 1,
+      stockCnt: 0,
+      totalPrice: 10050,
+      productName: "폰타나 카르니아 베이컨 앤 머쉬룸 크림 파스타 소스",
+      rewardCnt: 1,
+      status: 310,
+      regDay: 20241010
+    }]
 
     let list = '';
     datas.forEach(item => {
@@ -306,23 +285,45 @@ $months = getLastYearMonths();
       }
       switch (item.status) {
         case 100:
-          status.text = '적립예정';
+          status.text = '예정';
           status.color = 'red';
           break;
         case 210:
-          status.text = '적립확정';
+          status.text = '확정';
           status.color = 'blue';
           break;
         case 310:
-          status.text = '적립취소';
-          status.color = 'green';
+          status.text = '취소';
+          status.color = 'red';
           break;
       }
 
       list += `
-
+              <div class="list">
+                <div class="text-box text-box1">
+                  <div class="text text1">
+                    <p>${item.productName}</p>
+                    ${item.cnt > 1 ? 
+                    `<span>외 ${item.cnt - 1}건</span>` : ''
+                    }
+                  </div>
+                  <p class="text text2">${item.totalPrice.toLocaleString()}원</p>
+                </div>
+                <div class="text-box text-box2">
+                  <p class="date">${formatDate(item.regDay)}</p>
+                  ${status.text === '취소' ? `
+                  <div class="state-box">
+                    <p class="state">${item.rewardCnt.toLocaleString()}개</p>
+                    <p class="state-info ${status.color}">${status.text}</p>
+                  </div>`:
+                  `<p class="state">${item.rewardCnt.toLocaleString()}개</p>`
+                  }
+                </div>
+              </div>
               `;
     });
+    document.querySelector('.list-wrap.type5').classList.remove('type5-1', 'type5-2');
+    document.querySelector('.list-wrap.type5').classList.add(checkStatus === 310 ? 'type5-2' : 'type5-1');
     $('.list-wrap.type5').append(list);
 
     historyPointEvent();

@@ -294,7 +294,7 @@ $months = getLastYearMonths();
       }
 
       list += `
-              <div class="list list1 ${status.color}">
+              <div class="list ${status.color}">
                 <p class="title">${item.campaignName}</p>
                 <div class="text-box">
                   <p class="text text1">${item.productName}</p>
