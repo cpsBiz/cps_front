@@ -190,9 +190,9 @@ $months = getLastYearMonths();
   // 막대사탕 리스트 조회
   function getStickList(status, date) {
     try {
-      const userId = "김호성userId";
+      const userId = "userId11";
       const merchantId = "coupang";
-      const affliateId = "affliateId";
+      const affliateId = "moneyweather";
       const regYm = convertDate(date);
 
       // AJAX 요청 데이터 설정
@@ -236,17 +236,6 @@ $months = getLastYearMonths();
       return;
     }
 
-    const ex = [{
-      rewardUnitNum: 2,
-      cnt: 1,
-      stockCnt: 0,
-      totalPrice: 10050,
-      productName: "폰타나 카르니아 베이컨 앤 머쉬룸 크림 파스타 소스",
-      rewardCnt: 1,
-      status: 310,
-      regDay: 20241010
-    }]
-
     let list = '';
     datas.forEach(item => {
       let status = {
@@ -254,15 +243,11 @@ $months = getLastYearMonths();
         color: ''
       }
       switch (item.status) {
-        case 100:
-          status.text = '예정';
-          status.color = 'red';
-          break;
-        case 200:
-          status.text = '확정';
+        case 210:
+          status.text = '사용';
           status.color = 'blue';
           break;
-        case 0:
+        case 310:
           status.text = '취소';
           status.color = 'red';
           break;
@@ -281,7 +266,7 @@ $months = getLastYearMonths();
                 </div>
                 <div class="text-box text-box2">
                   <p class="date">${formatDate(item.regDay)}</p>
-                  ${status.text === '취소' ? `
+                  ${(item.status === 210 || item.status === 310) ? `
                   <div class="state-box">
                     <p class="state">${item.rewardCnt.toLocaleString()}개</p>
                     <p class="state-info ${status.color}">${status.text}</p>
