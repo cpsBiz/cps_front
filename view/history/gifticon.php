@@ -22,13 +22,13 @@ $months = getLastYearMonths();
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="format-detection" content="telephone=no">
   <title>내역</title>
-  <link rel="icon" type="image/x-icon" href="./images/favicon.ico">
+  <link rel="icon" type="image/x-icon" href="/view/images/favicon.ico">
   <!-- style -->
-  <link rel="stylesheet" href="./css/style.css">
-  <script type="text/javascript" src="../admin/js/lib/jquery-2.2.2.min.js"></script>
-  <script type="text/javascript" src="../admin/js/lib/jquery.easing.1.3.js"></script>
-  <script type="text/javascript" src="../admin/js/lib/jquery-ui.min.js"></script>
-  <script src="./js/history.js"></script>
+  <link rel="stylesheet" href="/view/css/style.css">
+  <script type="text/javascript" src="/admin/js/lib/jquery-2.2.2.min.js"></script>
+  <script type="text/javascript" src="/admin/js/lib/jquery.easing.1.3.js"></script>
+  <script type="text/javascript" src="/admin/js/lib/jquery-ui.min.js"></script>
+  <script src="/view/js/history.js"></script>
 </head>
 
 <body>
@@ -37,7 +37,7 @@ $months = getLastYearMonths();
     <header>
       <h1>내역</h1>
       <div class="btn-list">
-        <a href="./index.php" class="ico-arrow type1 left">이전</a>
+        <a href="/view/index.php" class="ico-arrow type1 left">이전</a>
       </div>
     </header>
     <!-- main -->
@@ -62,7 +62,7 @@ $months = getLastYearMonths();
         </div>
       </div>
       <div class="line line1">
-        <a href="./notice-gifticon.php">[필독] 꼭 읽어보세요! (기프티콘)<span class="ico-arrow type1 right"></span></a>
+        <a href="/view/notice/gifticon.php">[필독] 꼭 읽어보세요! (기프티콘)<span class="ico-arrow type1 right"></span></a>
       </div>
       <!-- 기프티콘 당첨내역 -->
       <div class="cont cont3">
@@ -83,11 +83,11 @@ $months = getLastYearMonths();
         <!-- 기프티콘 사용가능 -->
         <div class="list-wrap type6 type6-1">
           <div class="list list1">
-            <div class="img-box" style="background-image: url(./images/test/스타벅스상품.png);"></div>
+            <div class="img-box" style="background-image: url(/view/images/test/스타벅스상품.png);"></div>
             <div class="text-box">
               <div class="title-box">
                 <div class="logo-box">
-                  <div class="logo" style="background-image: url(./images/test/스타벅스로고.png);"></div>
+                  <div class="logo" style="background-image: url(/view/images/test/스타벅스로고.png);"></div>
                   <p class="logo-title">스타벅스</p>
                 </div>
                 <p class="title">아이스 카페 아메리카노 T</p>
@@ -97,17 +97,17 @@ $months = getLastYearMonths();
                 <p class="date date2">유효기간 (2024.10.15)</p>
               </div>
             </div>
-            <a href="./gifticon-detail.php"></a>
+            <a href="/view/gifticon-detail.php"></a>
           </div>
         </div>
         <!-- 기프티콘 지급예정 -->
         <div class="list-wrap type6 type6-2">
           <div class="list list1">
-            <div class="img-box" style="background-image: url(./images/test/스타벅스상품.png);"></div>
+            <div class="img-box" style="background-image: url(/view/images/test/스타벅스상품.png);"></div>
             <div class="text-box">
               <div class="title-box">
                 <div class="logo-box">
-                  <div class="logo" style="background-image: url(./images/test/스타벅스로고.png);"></div>
+                  <div class="logo" style="background-image: url(/view/images/test/스타벅스로고.png);"></div>
                   <p class="logo-title">스타벅스</p>
                 </div>
                 <p class="title">아이스 카페 아메리카노 T</p>
@@ -117,17 +117,17 @@ $months = getLastYearMonths();
                 <p class="date date2">유효기간 (2024.10.15)</p>
               </div>
             </div>
-            <a href="./gifticon-detail.php"></a>
+            <a href="/view/gifticon-detail.php"></a>
           </div>
         </div>
         <!-- 기프티콘 사용만료 -->
         <div class="list-wrap type6 type6-3">
           <div class="list list1">
-            <div class="img-box" style="background-image: url(./images/test/스타벅스상품.png);"></div>
+            <div class="img-box" style="background-image: url(/view/images/test/스타벅스상품.png);"></div>
             <div class="text-box">
               <div class="title-box">
                 <div class="logo-box">
-                  <div class="logo" style="background-image: url(./images/test/스타벅스로고.png);"></div>
+                  <div class="logo" style="background-image: url(/view/images/test/스타벅스로고.png);"></div>
                   <p class="logo-title">스타벅스</p>
                 </div>
                 <p class="title">아이스 카페 아메리카노 T</p>
@@ -137,7 +137,7 @@ $months = getLastYearMonths();
                 <p class="date date2">유효기간 (2024.10.15)</p>
               </div>
             </div>
-            <a href="./gifticon-detail.php"></a>
+            <a href="/view/gifticon-detail.php"></a>
           </div>
         </div>
         <!-- 리스트 없을 경우 -->
@@ -173,14 +173,14 @@ $months = getLastYearMonths();
     </div>
     <div class="bottom-menu-wrap">
       <a class="menu" href="javascript:void(0)"><span class="ico-cart">카트</span></a>
-      <a class="menu" href="./index.php"><span class="ico-save">적립</span></a>
+      <a class="menu" href="/view/index.php"><span class="ico-save">적립</span></a>
       <a class="menu" href="javascript:void(0)"><span class="ico-trend">트렌드</span></a>
       <a class="menu" href="javascript:void(0)"><span class="ico-delivery">배송</span></a>
-      <a class="menu on" href="./history-point.php"><span class="ico-breakDown">내역</span></a>
+      <a class="menu on" href="/view/history/point.php"><span class="ico-breakDown">내역</span></a>
     </div>
   </div>
-  <script src="./js/common.js"></script>
-  <script src="./js/page.js"></script>
+  <script src="/view/js/common.js"></script>
+  <script src="/view/js/page.js"></script>
 </body>
 
 </html>

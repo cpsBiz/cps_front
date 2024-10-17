@@ -31,12 +31,12 @@ $campaignNum = $_REQUEST['campaignNum'];
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="format-detection" content="telephone=no">
   <title>쇼핑적립 상세정보</title>
-  <link rel="icon" type="image/x-icon" href="./images/favicon.ico">
+  <link rel="icon" type="image/x-icon" href="/view/images/favicon.ico">
   <!-- style -->
-  <link rel="stylesheet" href="./css/style.css">
-  <script type="text/javascript" src="../admin/js/lib/jquery-2.2.2.min.js"></script>
-  <script type="text/javascript" src="../admin/js/lib/jquery.easing.1.3.js"></script>
-  <script type="text/javascript" src="../admin/js/lib/jquery-ui.min.js"></script>
+  <link rel="stylesheet" href="/view/css/style.css">
+  <script type="text/javascript" src="/admin/js/lib/jquery-2.2.2.min.js"></script>
+  <script type="text/javascript" src="/admin/js/lib/jquery.easing.1.3.js"></script>
+  <script type="text/javascript" src="/admin/js/lib/jquery-ui.min.js"></script>
 </head>
 
 <body>
@@ -45,7 +45,7 @@ $campaignNum = $_REQUEST['campaignNum'];
     <header>
       <h1>쇼핑적립 상세정보</h1>
       <div class="btn-list">
-        <a href="./index.php" class="ico-arrow type1 left">이전</a>
+        <a href="/view/index.php" class="ico-arrow type1 left">이전</a>
       </div>
     </header>
     <!-- main -->
@@ -64,7 +64,7 @@ $campaignNum = $_REQUEST['campaignNum'];
           <div id="campaignRewardDate" class="gray-box"></div>
         </div>
         <div class="box box3">
-          <a href="./inquiary.php">적립에 문제가 있다면 1:1 문의하기<span class="ico-arrow type1 right"></span></a>
+          <a href="/view/inquiary.php">적립에 문제가 있다면 1:1 문의하기<span class="ico-arrow type1 right"></span></a>
         </div>
         <div class="box box4">
           <div id="accessProductArea">
@@ -87,8 +87,8 @@ $campaignNum = $_REQUEST['campaignNum'];
       </div>
     </div>
   </div>
-  <script src="./js/common.js"></script>
-  <script src="./js/page.js"></script>
+  <script src="/view/js/common.js"></script>
+  <script src="/view/js/page.js"></script>
 </body>
 
 </html>

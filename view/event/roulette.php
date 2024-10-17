@@ -6,12 +6,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="format-detection" content="telephone=no">
   <title>행운의 룰렛</title>
-  <link rel="icon" type="image/x-icon" href="./images/favicon.ico">
+  <link rel="icon" type="image/x-icon" href="/view/images/favicon.ico">
   <!-- style -->
-  <link rel="stylesheet" href="./css/style.css">
-  <script type="text/javascript" src="../admin/js/lib/jquery-2.2.2.min.js"></script>
-  <script type="text/javascript" src="../admin/js/lib/jquery.easing.1.3.js"></script>
-  <script type="text/javascript" src="../admin/js/lib/jquery-ui.min.js"></script>
+  <link rel="stylesheet" href="/view/css/style.css">
+  <script type="text/javascript" src="/admin/js/lib/jquery-2.2.2.min.js"></script>
+  <script type="text/javascript" src="/admin/js/lib/jquery.easing.1.3.js"></script>
+  <script type="text/javascript" src="/admin/js/lib/jquery-ui.min.js"></script>
 </head>
 
 <body>
@@ -20,7 +20,7 @@
     <header>
       <h1>행운의 룰렛</h1>
       <div class="btn-list">
-        <a href="./index.php" class="ico-arrow type1 left">이전</a>
+        <a href="/view/index.php" class="ico-arrow type1 left">이전</a>
       </div>
     </header>
     <!-- main -->
@@ -33,7 +33,7 @@
       <div class="candy-link-wrap">
         <p class="title">내 막대사탕</p>
         <p class="candy-count"></p>
-        <a href="./history-stick.php"></a>
+        <a href="/view/history/stick.php"></a>
       </div>
       <div class="list-wrap type4"></div>
     </div>
@@ -43,7 +43,7 @@
       <!-- popup1 -->
       <div class="roulette-popup popup1">
         <div class="logo-box">
-          <div class="logo" style="background-image: url(./images/test/11번가.png);"></div>
+          <div class="logo" style="background-image: url(/view/images/test/11번가.png);"></div>
           <p class="text">
             스타벅스
             <span>
@@ -79,8 +79,8 @@
       </div>
     </div>
   </div>
-  <script src="./js/common.js"></script>
-  <script src="./js/page.js"></script>
+  <script src="/view/js/common.js"></script>
+  <script src="/view/js/page.js"></script>
 </body>
 
 </html>
@@ -164,7 +164,7 @@
     data.forEach(item => {
       list += `
               <div class="list list1">
-                <div class="logo" style="background-image: url(./images/test/홈플러스.png)">스타벅스</div>
+                <div class="logo" style="background-image: url(/view/images/test/홈플러스.png)">스타벅스</div>
                 <p class="title">스타벅스<span class="candy-info">20개</span></p>
                 <a href="javascript:void(0)" onclick="getGifticonList()"></a>
               </div>
@@ -203,7 +203,7 @@
     let i = 1;
     data.forEach(item => {
       list += `
-              <div class="item item${i}" style="width: 62px; height: 80px; background-image: url(./images/test/roulette_text.png);">${i}</div>
+              <div class="item item${i}" style="width: 62px; height: 80px; background-image: url(/view/images/test/roulette_text.png);">${i}</div>
               `;
       i++;
     });
@@ -300,11 +300,11 @@
   // 룰렛 당첨 내역 렌더링
   function renderRouletteWin(result) {
     const list = `
-      <div class="img-box" style="background-image: url(./images/test/스타벅스상품.png);"></div>
+      <div class="img-box" style="background-image: url(/view/images/test/스타벅스상품.png);"></div>
       <div class="text-box">
         <div class="title-box">
           <div class="logo-box">
-            <div class="logo" style="background-image: url(./images/test/스타벅스로고.png);"></div>
+            <div class="logo" style="background-image: url(/view/images/test/스타벅스로고.png);"></div>
             <p class="logo-title">스타벅스</p>
           </div>
           <p class="title">아이스 카페 아메리카노 T</p>

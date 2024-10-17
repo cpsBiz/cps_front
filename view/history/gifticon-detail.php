@@ -5,9 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="format-detection" content="telephone=no">
   <title>기프티콘 상세정보</title>
-  <link rel="icon" type="image/x-icon" href="./images/favicon.ico">
+  <link rel="icon" type="image/x-icon" href="/view/images/favicon.ico">
   <!-- style -->
-  <link rel="stylesheet" href="./css/style.css">
+  <link rel="stylesheet" href="/view/css/style.css">
 </head>
 <body>
   <div class="wrap">
@@ -15,7 +15,7 @@
     <header>
       <h1>기프티콘 상세정보</h1>
       <div class="btn-list">
-        <a href="./history-gifticon.php" class="ico-arrow type1 left">이전</a>
+        <a href="/view/history/gifticon.php" class="ico-arrow type1 left">이전</a>
       </div>
     </header>
     <!-- main -->
@@ -25,9 +25,9 @@
         <!-- 기프티콘 상세 사용가능 -->
         <div class="giftcon-info-wrap" style="margin-bottom: 20px;">
           <div class="goods-info-box">
-            <div class="goods-img" style="background-image: url(./images/test/스타벅스상품.png);"></div>
+            <div class="goods-img" style="background-image: url(/view/images/test/스타벅스상품.png);"></div>
             <div class="logo-box">
-              <div class="logo" style="background-image: url(./images/test/스타벅스로고.png);"></div>
+              <div class="logo" style="background-image: url(/view/images/test/스타벅스로고.png);"></div>
               <p class="logo-title">스타벅스</p>
             </div>
             <p class="title">아이스 카페 아메리카노 T</p>
@@ -44,7 +44,7 @@
             <p class="text">*교환이나 환불, 유효기간은 연장이 불가합니다.</p>
           </div>
           <div class="barcode-box">
-            <div class="barcode" style="background-image: url(./images/test/barcode1.png);"></div>
+            <div class="barcode" style="background-image: url(/view/images/test/barcode1.png);"></div>
           </div>
           <p class="title">유의사항</p>
           <div class="gray-box">
@@ -68,9 +68,9 @@
         <!-- 기프티콘 상세 지급예정 -->
         <div class="giftcon-info-wrap type2" style="margin-bottom: 20px;">
           <div class="goods-info-box">
-            <div class="goods-img" style="background-image: url(./images/test/스타벅스상품.png);"></div>
+            <div class="goods-img" style="background-image: url(/view/images/test/스타벅스상품.png);"></div>
             <div class="logo-box">
-              <div class="logo" style="background-image: url(./images/test/스타벅스로고.png);"></div>
+              <div class="logo" style="background-image: url(/view/images/test/스타벅스로고.png);"></div>
               <p class="logo-title">스타벅스</p>
             </div>
             <p class="title">아이스 카페 아메리카노 T</p>
@@ -108,9 +108,9 @@
         <!-- 기프티콘 상세 사용완료 -->
         <div class="giftcon-info-wrap type3">
           <div class="goods-info-box">
-            <div class="goods-img" style="background-image: url(./images/test/스타벅스상품.png);"></div>
+            <div class="goods-img" style="background-image: url(/view/images/test/스타벅스상품.png);"></div>
             <div class="logo-box">
-              <div class="logo" style="background-image: url(./images/test/스타벅스로고.png);"></div>
+              <div class="logo" style="background-image: url(/view/images/test/스타벅스로고.png);"></div>
               <p class="logo-title">스타벅스</p>
             </div>
             <p class="title">아이스 카페 아메리카노 T</p>
@@ -127,7 +127,7 @@
             <p class="text">*교환이나 환불, 유효기간은 연장이 불가합니다.</p>
           </div>
           <div class="barcode-box">
-            <div class="barcode" style="background-image: url(./images/test/barcode1.png);"></div>
+            <div class="barcode" style="background-image: url(/view/images/test/barcode1.png);"></div>
             <p class="state blue">사용완료</p>
           </div>
           <p class="title">유의사항</p>
@@ -152,9 +152,9 @@
         <!-- 기프티콘 상세 사용만료 -->
         <div class="giftcon-info-wrap type3">
           <div class="goods-info-box">
-            <div class="goods-img" style="background-image: url(./images/test/스타벅스상품.png);"></div>
+            <div class="goods-img" style="background-image: url(/view/images/test/스타벅스상품.png);"></div>
             <div class="logo-box">
-              <div class="logo" style="background-image: url(./images/test/스타벅스로고.png);"></div>
+              <div class="logo" style="background-image: url(/view/images/test/스타벅스로고.png);"></div>
               <p class="logo-title">스타벅스</p>
             </div>
             <p class="title">아이스 카페 아메리카노 T</p>
@@ -171,7 +171,7 @@
             <p class="text">*교환이나 환불, 유효기간은 연장이 불가합니다.</p>
           </div>
           <div class="barcode-box">
-            <div class="barcode" style="background-image: url(./images/test/barcode1.png);"></div>
+            <div class="barcode" style="background-image: url(/view/images/test/barcode1.png);"></div>
             <p class="state red">사용만료</p>
           </div>
           <p class="title">유의사항</p>
@@ -196,7 +196,7 @@
       </div>
     </div>
   </div>
-  <script src="./js/common.js"></script>
-  <script src="./js/page.js"></script>
+  <script src="/view/js/common.js"></script>
+  <script src="/view/js/page.js"></script>
 </body>
 </html>

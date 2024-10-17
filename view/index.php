@@ -13,12 +13,12 @@ $affliateId = $_REQUEST['affliateId'];
   <meta name="format-detection" content="telephone=no">
   <title>쇼핑적립</title>
   <link rel="icon" type="image/x-icon" href="./images/favicon.ico">
-  <script type="text/javascript" src="../admin/js/lib/jquery-2.2.2.min.js"></script>
-  <script type="text/javascript" src="../admin/js/lib/jquery.easing.1.3.js"></script>
-  <script type="text/javascript" src="../admin/js/lib/jquery-ui.min.js"></script>
+  <script type="text/javascript" src="/admin/js/lib/jquery-2.2.2.min.js"></script>
+  <script type="text/javascript" src="/admin/js/lib/jquery.easing.1.3.js"></script>
+  <script type="text/javascript" src="/admin/js/lib/jquery-ui.min.js"></script>
   <!-- style -->
-  <link rel="stylesheet" href="./css/style.css">
-  <link rel="stylesheet" href="./index.css">
+  <link rel="stylesheet" href="/view/css/style.css">
+  <link rel="stylesheet" href="/view/css/index.css">
 </head>
 
 <body>
@@ -27,8 +27,8 @@ $affliateId = $_REQUEST['affliateId'];
     <header>
       <h1>쇼핑적립</h1>
       <div class="btn-list">
-        <a href="./" class="ico-arrow type1 left">이전</a>
-        <a href="./" class="ico-home">홈</a>
+        <a href="/view/index.php" class="ico-arrow type1 left">이전</a>
+        <a href="/view/index.php" class="ico-home">홈</a>
       </div>
     </header>
     <!-- main -->
@@ -36,7 +36,7 @@ $affliateId = $_REQUEST['affliateId'];
     <div class="main">
       <div id="event-popup1" class="event-popup on">
         <div class="event-cont">
-          <div class="logo" style="background-image: url(./images/test/지마켓.png);"></div>
+          <div class="logo" style="background-image: url(/view/images/test/지마켓.png);"></div>
           <p>지마켓 수수료 2% 상향 이벤트<span>기간 : 10/1 ~ 10/30</span></p>
         </div>
         <a href="javascript:void(0)"></a>
@@ -48,7 +48,7 @@ $affliateId = $_REQUEST['affliateId'];
             <p class="title">총 적립 포인트</p>
             <p id="userCommission" class="point"></p>
           </div>
-          <a href="./history-point.php"></a>
+          <a href="/view/history/point.php"></a>
         </div>
       </div>
       <div class="tab-box-wrap">
@@ -67,10 +67,10 @@ $affliateId = $_REQUEST['affliateId'];
     </div>
     <div class="bottom-menu-wrap">
       <a class="menu" href="javascript:void(0)"><span class="ico-cart">카트</span></a>
-      <a class="menu on" href="./index.php"><span class="ico-save">적립</span></a>
+      <a class="menu on" href="/view/index.php"><span class="ico-save">적립</span></a>
       <a class="menu" href="javascript:void(0)"><span class="ico-trend">트렌드</span></a>
       <a class="menu" href="javascript:void(0)"><span class="ico-delivery">배송</span></a>
-      <a class="menu" href="./history-point.php"><span class="ico-breakDown">내역</span></a>
+      <a class="menu" href="/view/history/point.php"><span class="ico-breakDown">내역</span></a>
     </div>
   </div>
   <script src="./js/common.js"></script>
@@ -231,7 +231,7 @@ $affliateId = $_REQUEST['affliateId'];
               <div class="list">
                 <p class="title"><span class="logo" style="background-image: url(${item.logo});"></span>${item.memberName}</p>
                 <p class="percent"><span class="ico-point"></span>${commissionPer}%</p>
-                <a href="./campaign.php?clickUrl=${item.clickUrl}&apiUrl=${apiUrl}&campaignNum=${item.campaignNum}&per=${commissionPer}">바로가기</a>
+                <a href="/view/reward/campaign.php?clickUrl=${item.clickUrl}&apiUrl=${apiUrl}&campaignNum=${item.campaignNum}&per=${commissionPer}">바로가기</a>
                 <button class="ico-heart ${item.favorites === 'FAVORITE' ? 'on' : ''}" type="button" onclick="patchFavorites(${item.campaignNum}, '${item.favorites}', this)">즐겨찾기</button>
               </div>
             `;
@@ -251,13 +251,13 @@ $affliateId = $_REQUEST['affliateId'];
                     <div class="coupang-search-wrap">
                       <span class="logo">쿠팡</span>
                       <input type="text" placeholder="쿠팡에서 검색" disabled>
-                      <a href="./campaign.php?clickUrl=${item.clickUrl}&apiUrl=${apiUrl}&campaignNum=${item.campaignNum}&per=${commissionPer}">검색</a>
+                      <a href="/view/reward/campaign.php?clickUrl=${item.clickUrl}&apiUrl=${apiUrl}&campaignNum=${item.campaignNum}&per=${commissionPer}">검색</a>
                     </div>
                   </div>
                   <div class="link-wrap">
-                    <div class="link-box"><a href="./history-gifticon.php">당첨내역</a></div>
-                    <div class="link-box"><a href="./event-roulette.php">행운의룰렛 GO</a></div>
-                    <div class="link-box"><a href="./event-roulette-notice.php">이벤트 안내</a></div>
+                    <div class="link-box"><a href="/view/history/gifticon.php">당첨내역</a></div>
+                    <div class="link-box"><a href="/view/event/roulette.php">행운의룰렛 GO</a></div>
+                    <div class="link-box"><a href="/view/event/roulette-notice.php">이벤트 안내</a></div>
                   </div>
                   <button class="ico-heart ${item.favorites === 'FAVORITE' ? 'on' : ''}" type="button" onclick="patchFavorites(${item.campaignNum}, '${item.favorites}', this)"></button>
                   `;

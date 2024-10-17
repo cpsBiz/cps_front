@@ -5,9 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="format-detection" content="telephone=no">
   <title>꼭 읽어보세요 (포인트)</title>
-  <link rel="icon" type="image/x-icon" href="./images/favicon.ico">
+  <link rel="icon" type="image/x-icon" href="/view/images/favicon.ico">
   <!-- style -->
-  <link rel="stylesheet" href="./css/style.css">
+  <link rel="stylesheet" href="/view/css/style.css">
 </head>
 <body>
   <div class="wrap">
@@ -15,7 +15,7 @@
     <header>
       <h1>꼭 읽어보세요 (포인트)</h1>
       <div class="btn-list">
-        <a href="./history-point.php" class="ico-arrow type1 left">이전</a>
+        <a href="/view/history/point.php" class="ico-arrow type1 left">이전</a>
       </div>
     </header>
     <!-- main -->
@@ -152,7 +152,7 @@
       </div>
     </div>
   </div>
-  <script src="./js/common.js"></script>
-  <script src="./js/page.js"></script>
+  <script src="/view/js/common.js"></script>
+  <script src="/view/js/page.js"></script>
 </body>
 </html>
