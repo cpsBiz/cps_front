@@ -1,36 +1,104 @@
 @font-face {
-  font-family: "Pretendard-Regular";
-  src: url("../font/Pretendard-Regular.woff") format("woff");
+  font-family: 'Pretendard-Regular';
+  src: url('../font/Pretendard-Regular.woff') format('woff');
 }
 @font-face {
-  font-family: "Pretendard-Medium";
-  src: url("../font/Pretendard-Medium.woff") format("woff");
+  font-family: 'Pretendard-Medium';
+  src: url('../font/Pretendard-Medium.woff') format('woff');
 }
 @font-face {
-  font-family: "Pretendard-SemiBold";
-  src: url("../font/Pretendard-SemiBold.woff") format("woff");
+  font-family: 'Pretendard-SemiBold';
+  src: url('../font/Pretendard-SemiBold.woff') format('woff');
 }
 @font-face {
-  font-family: "Pretendard-Bold";
-  src: url("../font/Pretendard-Bold.woff") format("woff");
+  font-family: 'Pretendard-Bold';
+  src: url('../font/Pretendard-Bold.woff') format('woff');
 }
 @font-face {
-  font-family: "Pretendard-ExtraBold";
-  src: url("../font/Pretendard-ExtraBold.woff") format("woff");
+  font-family: 'Pretendard-ExtraBold';
+  src: url('../font/Pretendard-ExtraBold.woff') format('woff');
 }
-html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed,
-figure, figcaption, footer, header, hgroup,
-menu, nav, output, ruby, section, summary,
-time, mark, audio, video {
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
   margin: 0;
   padding: 0;
   border: 0;
@@ -41,8 +109,17 @@ time, mark, audio, video {
 }
 
 /* HTML5 display-role reset for older browsers */
-article, aside, details, figcaption, figure,
-footer, header, hgroup, menu, nav, section {
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
   display: block;
 }
 
@@ -50,17 +127,21 @@ body {
   line-height: 1;
 }
 
-ol, ul {
+ol,
+ul {
   list-style: none;
 }
 
-blockquote, q {
+blockquote,
+q {
   quotes: none;
 }
 
-blockquote:before, blockquote:after,
-q:before, q:after {
-  content: "";
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: '';
   content: none;
 }
 
@@ -287,7 +368,7 @@ body.scrollNone {
   width: 20%;
 }
 .bottom-menu-wrap .menu span {
-  font-family: "Pretendard-Regular";
+  font-family: 'Pretendard-Regular';
   position: relative;
   font-size: 12px;
   color: #444;
@@ -295,7 +376,7 @@ body.scrollNone {
   padding-top: 23px;
 }
 .bottom-menu-wrap .menu span::before {
-  content: "";
+  content: '';
   display: block;
   position: absolute;
   width: 20px;
@@ -349,7 +430,7 @@ body.scrollNone {
   cursor: pointer;
 }
 .list-wrap-box .first-list p {
-  font-family: "Pretendard-Bold";
+  font-family: 'Pretendard-Bold';
   font-size: 16px;
 }
 .list-wrap-box .first-list .ico-arrow {
@@ -385,7 +466,7 @@ body.scrollNone {
   padding-top: 18px;
 }
 .list-wrap.type1 .list .title {
-  font-family: "Pretendard-Medium";
+  font-family: 'Pretendard-Medium';
   font-size: 15px;
   display: flex;
   flex-direction: column;
@@ -405,7 +486,7 @@ body.scrollNone {
   border: solid 1px #d9d9d9;
 }
 .list-wrap.type1 .list .percent {
-  font-family: "Pretendard-ExtraBold";
+  font-family: 'Pretendard-ExtraBold';
   display: flex;
   align-items: center;
   gap: 2px;
@@ -447,7 +528,7 @@ body.scrollNone {
   white-space: wrap;
 }
 .list-wrap.type1 .list.type1 .title {
-  font-family: "Pretendard-Bold";
+  font-family: 'Pretendard-Bold';
   font-size: 16px;
   color: #000;
   align-items: flex-start;
@@ -465,7 +546,7 @@ body.scrollNone {
 .list-wrap.type1 .list.type1 .info-wrap .candy {
   position: relative;
   white-space: nowrap;
-  font-family: "Pretendard-Bold";
+  font-family: 'Pretendard-Bold';
   font-size: 16px;
   color: #000;
 }
@@ -476,12 +557,13 @@ body.scrollNone {
   height: 24px;
   line-height: 24px;
 }
-.list-wrap.type1 .list.type1 .info-wrap .candy.type1::before, .list-wrap.type1 .list.type1 .info-wrap .candy.type1::after {
+.list-wrap.type1 .list.type1 .info-wrap .candy.type1::before,
+.list-wrap.type1 .list.type1 .info-wrap .candy.type1::after {
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
   background-color: transparent;
-  content: "";
+  content: '';
   position: absolute;
   display: block;
   top: 50%;
@@ -511,7 +593,7 @@ body.scrollNone {
   text-indent: 100%;
   white-space: nowrap;
   overflow: hidden;
-  content: "";
+  content: '';
   position: absolute;
   display: block;
   top: 50%;
@@ -521,14 +603,22 @@ body.scrollNone {
   height: 20px;
   background-image: url(../images/icon/coupang.png);
 }
-.list-wrap.type1 .list.type1 .info-wrap .coupang-search-wrap input[type=text] {
+.list-wrap.type1
+  .list.type1
+  .info-wrap
+  .coupang-search-wrap
+  input[type='text'] {
   border-radius: 17px;
   background: #fafafa;
   border: none;
   padding: 9px 36px 9px 40px;
 }
-.list-wrap.type1 .list.type1 .info-wrap .coupang-search-wrap input[type=text]::placeholder {
-  font-family: "Pretendard-Medium";
+.list-wrap.type1
+  .list.type1
+  .info-wrap
+  .coupang-search-wrap
+  input[type='text']::placeholder {
+  font-family: 'Pretendard-Medium';
   font-size: 14px;
   color: #c8c8c8;
 }
@@ -560,7 +650,7 @@ body.scrollNone {
   width: 100%;
 }
 .list-wrap.type1 .list.type1 .link-wrap .link-box a {
-  font-family: "Pretendard-SemiBold";
+  font-family: 'Pretendard-SemiBold';
   width: unset;
   height: unset;
   font-size: 15px;
@@ -591,7 +681,7 @@ body.scrollNone {
   text-decoration: line-through;
 }
 .list-wrap.type2 .list .title {
-  font-family: "Pretendard-Bold";
+  font-family: 'Pretendard-Bold';
   font-size: 16px;
   margin-bottom: 4px;
 }
@@ -602,7 +692,7 @@ body.scrollNone {
   margin-bottom: 4px;
 }
 .list-wrap.type2 .list .text-box .text {
-  font-family: "Pretendard-Regular";
+  font-family: 'Pretendard-Regular';
   font-size: 11px;
   color: #777;
 }
@@ -622,7 +712,7 @@ body.scrollNone {
   margin-bottom: 7px;
 }
 .list-wrap.type2 .list .point-box .text {
-  font-family: "Pretendard-Bold";
+  font-family: 'Pretendard-Bold';
 }
 .list-wrap.type2 .list .point-box .text.text1 {
   display: flex;
@@ -641,12 +731,12 @@ body.scrollNone {
   align-items: center;
 }
 .list-wrap.type2 .list .info-box .date {
-  font-family: "Pretendard-Medium";
+  font-family: 'Pretendard-Medium';
   display: block;
   font-size: 12px;
 }
 .list-wrap.type2 .list .info-box .state {
-  font-family: "Pretendard-SemiBold";
+  font-family: 'Pretendard-SemiBold';
   font-size: 11px;
   color: #576585;
   padding: 4px 8px;
@@ -666,7 +756,7 @@ body.scrollNone {
   padding: 14px 20px;
 }
 .list-wrap.type3 .list > .top p {
-  font-family: "Pretendard-Medium";
+  font-family: 'Pretendard-Medium';
   width: 100%;
   word-break: keep-all;
   position: relative;
@@ -676,8 +766,8 @@ body.scrollNone {
   line-height: 1.2;
 }
 .list-wrap.type3 .list > .top p::before {
-  font-family: "Pretendard-Bold";
-  content: "Q";
+  font-family: 'Pretendard-Bold';
+  content: 'Q';
   display: block;
   position: absolute;
   top: -3px;
@@ -727,7 +817,7 @@ body.scrollNone {
   background-repeat: no-repeat;
   background-position: center;
   background-color: transparent;
-  content: "";
+  content: '';
   position: absolute;
   display: block;
   width: 14px;
@@ -750,12 +840,12 @@ body.scrollNone {
   border-radius: 14px;
 }
 .list-wrap.type4 .list .title {
-  font-family: "Pretendard-SemiBold";
+  font-family: 'Pretendard-SemiBold';
   font-size: 14px;
   color: #000;
 }
 .list-wrap.type4 .list .candy-info {
-  font-family: "Pretendard-Regular";
+  font-family: 'Pretendard-Regular';
   display: block;
   position: relative;
   font-size: 13px;
@@ -769,7 +859,7 @@ body.scrollNone {
   background-repeat: no-repeat;
   background-position: center;
   background-color: transparent;
-  content: "";
+  content: '';
   display: block;
   position: absolute;
   width: 14px;
@@ -803,7 +893,7 @@ body.scrollNone {
   color: #777;
 }
 .list-wrap.type5 .list .text-box.text-box1 .text.text1 p {
-  font-family: "Pretendard-Regular";
+  font-family: 'Pretendard-Regular';
   overflow: hidden;
   text-overflow: ellipsis;
   max-width: 192px;
@@ -816,7 +906,7 @@ body.scrollNone {
   top: 17px;
 }
 .list-wrap.type5 .list .text-box.text-box1 .text.text2 {
-  font-family: "Pretendard-Regular";
+  font-family: 'Pretendard-Regular';
   font-size: 12px;
   color: #777;
 }
@@ -826,12 +916,12 @@ body.scrollNone {
   align-items: flex-end;
 }
 .list-wrap.type5 .list .text-box.text-box2 .date {
-  font-family: "Pretendard-Medium";
+  font-family: 'Pretendard-Medium';
   font-size: 12px;
   color: #000;
 }
 .list-wrap.type5 .list .text-box.text-box2 .state {
-  font-family: "Pretendard-Bold";
+  font-family: 'Pretendard-Bold';
   position: relative;
   font-size: 16px;
   color: #000;
@@ -842,7 +932,7 @@ body.scrollNone {
   background-repeat: no-repeat;
   background-position: center;
   background-color: transparent;
-  content: "";
+  content: '';
   position: absolute;
   display: block;
   width: 20px;
@@ -867,7 +957,7 @@ body.scrollNone {
   align-items: flex-end;
 }
 .list-wrap.type5.type5-2 .list .text-box.text-box2 .state-box .state-info {
-  font-family: "Pretendard-SemiBold";
+  font-family: 'Pretendard-SemiBold';
   font-size: 11px;
   padding: 3.5px 15px;
   border-radius: 10px;
@@ -920,12 +1010,12 @@ body.scrollNone {
   height: 18px;
 }
 .list-wrap.type6 .list .text-box .title-box .logo-box .logo-title {
-  font-family: "Pretendard-Medium";
+  font-family: 'Pretendard-Medium';
   font-size: 13px;
   color: #777;
 }
 .list-wrap.type6 .list .text-box .title-box .title {
-  font-family: "Pretendard-SemiBold";
+  font-family: 'Pretendard-SemiBold';
   position: absolute;
   top: 21px;
   left: 0;
@@ -935,7 +1025,7 @@ body.scrollNone {
   width: 182px;
 }
 .list-wrap.type6 .list .text-box .info-box .date {
-  font-family: "Pretendard-Regular";
+  font-family: 'Pretendard-Regular';
   font-size: 12px;
   color: #777;
 }
@@ -977,11 +1067,11 @@ body.scrollNone {
   align-items: center;
 }
 .point-info-wrap .point-info .text-box .title {
-  font-family: "Pretendard-Medium";
+  font-family: 'Pretendard-Medium';
   font-size: 14px;
 }
 .point-info-wrap .point-info .text-box .point {
-  font-family: "Pretendard-Bold";
+  font-family: 'Pretendard-Bold';
   display: flex;
   align-items: center;
   gap: 4px;
@@ -1015,12 +1105,12 @@ body.scrollNone {
   justify-content: space-between;
 }
 .candy-info-wrap .candy-info .text-box .text {
-  font-family: "Pretendard-Medium";
+  font-family: 'Pretendard-Medium';
   font-size: 14px;
   color: #000;
 }
 .candy-info-wrap .candy-info .text-box .candy {
-  font-family: "Pretendard-Bold";
+  font-family: 'Pretendard-Bold';
   position: relative;
   font-size: 18px;
   color: #000;
@@ -1032,7 +1122,7 @@ body.scrollNone {
   background-repeat: no-repeat;
   background-position: center;
   background-color: transparent;
-  content: "";
+  content: '';
   display: block;
   position: absolute;
   width: 20px;
@@ -1050,7 +1140,7 @@ body.scrollNone {
   display: block;
 }
 .tool-tip-box .tool-tip {
-  font-family: "Pretendard-Regular";
+  font-family: 'Pretendard-Regular';
   position: absolute;
   background: var(--color1);
   padding: 5px 7px;
@@ -1064,7 +1154,7 @@ body.scrollNone {
   z-index: 9;
 }
 .tool-tip-box .tool-tip::before {
-  content: "";
+  content: '';
   display: block;
   position: absolute;
   width: 0;
@@ -1084,7 +1174,7 @@ body.scrollNone {
   background: #fafafa;
 }
 .gray-box ul li {
-  font-family: "Pretendard-Regular";
+  font-family: 'Pretendard-Regular';
   position: relative;
   font-size: 12px;
   padding-left: 11px;
@@ -1096,7 +1186,7 @@ body.scrollNone {
   margin-bottom: 0;
 }
 .gray-box ul li::before {
-  content: "";
+  content: '';
   display: block;
   position: absolute;
   left: 0;
@@ -1119,12 +1209,12 @@ body.scrollNone {
   position: relative;
 }
 .candy-link-wrap .title {
-  font-family: "Pretendard-Medium";
+  font-family: 'Pretendard-Medium';
   font-size: 14px;
   color: #000;
 }
 .candy-link-wrap .candy-count {
-  font-family: "Pretendard-Bold";
+  font-family: 'Pretendard-Bold';
   position: relative;
   font-size: 18px;
   color: #000;
@@ -1132,12 +1222,13 @@ body.scrollNone {
   padding-right: 20px;
   line-height: 20px;
 }
-.candy-link-wrap .candy-count::before, .candy-link-wrap .candy-count::after {
+.candy-link-wrap .candy-count::before,
+.candy-link-wrap .candy-count::after {
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
   background-color: transparent;
-  content: "";
+  content: '';
   position: absolute;
   display: block;
   top: 50%;
@@ -1187,7 +1278,7 @@ body.scrollNone {
   height: 60px;
 }
 .history-link-wrap .link p {
-  font-family: "Pretendard-Medium";
+  font-family: 'Pretendard-Medium';
   font-size: 14px;
   color: #444;
 }
@@ -1210,7 +1301,7 @@ body.scrollNone {
   background-image: url(../images/icon/history-gift.png);
 }
 .history-link-wrap .link.on p {
-  font-family: "Pretendard-Bold";
+  font-family: 'Pretendard-Bold';
   color: #000;
 }
 .history-link-wrap .link.on.point .icon {
@@ -1254,12 +1345,12 @@ body.scrollNone {
   border-radius: 100%;
 }
 .giftcon-info-wrap .goods-info-box .logo-box .logo-title {
-  font-family: "Pretendard-Medium";
+  font-family: 'Pretendard-Medium';
   font-size: 13px;
   color: #777;
 }
 .giftcon-info-wrap .goods-info-box .title {
-  font-family: "Pretendard-Bold";
+  font-family: 'Pretendard-Bold';
   font-size: 18px;
   color: #000;
   margin-bottom: 25px;
@@ -1271,7 +1362,7 @@ body.scrollNone {
   margin-bottom: 10px;
 }
 .giftcon-info-wrap .date-info-box .date-box {
-  font-family: "Pretendard-Regular";
+  font-family: 'Pretendard-Regular';
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -1280,12 +1371,12 @@ body.scrollNone {
   margin-bottom: 8px;
 }
 .giftcon-info-wrap .date-info-box .date-box:last-of-type {
-  font-family: "Pretendard-SemiBold";
+  font-family: 'Pretendard-SemiBold';
   color: #292929;
   margin-bottom: 12px;
 }
 .giftcon-info-wrap .date-info-box > .text {
-  font-family: "Pretendard-Medium";
+  font-family: 'Pretendard-Medium';
   font-size: 13px;
   color: #ec3f3f;
   text-align: center;
@@ -1307,7 +1398,7 @@ body.scrollNone {
   height: 111px;
 }
 .giftcon-info-wrap > .title {
-  font-family: "Pretendard-Bold";
+  font-family: 'Pretendard-Bold';
   font-size: 16px;
   color: #000;
   margin-bottom: 10px;
@@ -1316,7 +1407,7 @@ body.scrollNone {
   padding: 20px 15px;
 }
 .giftcon-info-wrap .gray-box .title {
-  font-family: "Pretendard-SemiBold";
+  font-family: 'Pretendard-SemiBold';
   font-size: 13px;
   color: #444;
   margin-bottom: 10px;
@@ -1346,7 +1437,7 @@ body.scrollNone {
   opacity: 0.5;
 }
 .giftcon-info-wrap.type3 .barcode-box .state {
-  font-family: "Pretendard-Bold";
+  font-family: 'Pretendard-Bold';
   position: absolute;
   font-size: 14px;
   padding: 7px 14px;
@@ -1428,11 +1519,6 @@ body.scrollNone {
   background-color: transparent;
   background-image: url(../images/icon/fix-roulette.png);
 }
-.roulette-wrap .roulette-box:hover .bg-roulette,
-.roulette-wrap .roulette-box:hover .item-roulette {
-  transition-duration: 3.7s;
-  transform: translate(-50%, -50%) rotate(3000deg);
-}
 
 .select-btn {
   user-select: none;
@@ -1453,12 +1539,12 @@ body.scrollNone {
   transform: rotate(0deg);
 }
 .select-btn.type1 .value {
-  font-family: "Pretendard-Medium";
+  font-family: 'Pretendard-Medium';
   font-size: 15px;
   color: #c8c8c8;
 }
 .select-btn.type1 .value.on {
-  font-family: "Pretendard-Bold";
+  font-family: 'Pretendard-Bold';
   color: #000;
 }
 .select-btn.type1 .ico-arrow {
@@ -1475,7 +1561,7 @@ body.scrollNone {
   transform: rotate(-90deg);
 }
 .select-btn.type2 .value {
-  font-family: "Pretendard-Medium";
+  font-family: 'Pretendard-Medium';
   font-size: 14px;
   color: #777;
 }
@@ -1525,7 +1611,7 @@ body.scrollNone {
   background: #fff;
 }
 #select-wrap .select-list .select-head p {
-  font-family: "Pretendard-Bold";
+  font-family: 'Pretendard-Bold';
   font-size: 18px;
 }
 #select-wrap .select-list .select-cont {
@@ -1547,7 +1633,7 @@ body.scrollNone {
   user-select: none;
 }
 #select-wrap .select-list .select-cont .list .value {
-  font-family: "Pretendard-Regular";
+  font-family: 'Pretendard-Regular';
   font-size: 16px;
   color: #666;
 }
@@ -1555,7 +1641,7 @@ body.scrollNone {
   display: none;
 }
 #select-wrap .select-list .select-cont .list.on .value {
-  font-family: "Pretendard-Bold";
+  font-family: 'Pretendard-Bold';
   color: #000;
 }
 #select-wrap .select-list .select-cont .list.on .ico-check {
@@ -1572,12 +1658,12 @@ input {
   display: block;
 }
 
-input[type=file] {
+input[type='file'] {
   display: none;
 }
 
-input[type=file] + label {
-  font-family: "Pretendard-Bold";
+input[type='file'] + label {
+  font-family: 'Pretendard-Bold';
   cursor: pointer;
   padding: 7px 14px;
   background: var(--color1);
@@ -1594,7 +1680,7 @@ input[type=file] + label {
   margin-bottom: 10px;
 }
 .file-box .file-info .size {
-  font-family: "Pretendard-Medium";
+  font-family: 'Pretendard-Medium';
   font-size: 12px;
 }
 .file-box .file-list {
@@ -1608,7 +1694,7 @@ input[type=file] + label {
   gap: 5px;
 }
 .file-box .file-list .list p {
-  font-family: "Pretendard-Medium";
+  font-family: 'Pretendard-Medium';
   font-size: 12px;
   max-width: 250px;
   overflow: hidden;
@@ -1616,34 +1702,34 @@ input[type=file] + label {
   text-overflow: ellipsis;
 }
 
-input[type=text],
+input[type='text'],
 textarea {
-  font-family: "Pretendard-Bold";
+  font-family: 'Pretendard-Bold';
   font-size: 15px;
   width: 100%;
   padding: 14px 20px;
   border-radius: 12px;
   border: solid 2px #eeeeee;
 }
-input[type=text]:focus,
+input[type='text']:focus,
 textarea:focus {
   outline: none;
 }
-input[type=text]::placeholder,
+input[type='text']::placeholder,
 textarea::placeholder {
-  font-family: "Pretendard-Medium";
+  font-family: 'Pretendard-Medium';
   font-size: 15px;
   color: #c8c8c8;
 }
-input[type=text].error,
+input[type='text'].error,
 textarea.error {
   position: relative;
   border: solid 2px #ec3f3f;
   margin-bottom: 0;
 }
-input[type=text].error + span,
+input[type='text'].error + span,
 textarea.error + span {
-  font-family: "Pretendard-Regular";
+  font-family: 'Pretendard-Regular';
   display: block;
   color: #ec3f3f;
   font-size: 11px;
@@ -1659,25 +1745,25 @@ textarea {
   box-sizing: border-box;
 }
 
-input[type=checkbox] {
+input[type='checkbox'] {
   display: none;
 }
 
-input[type=checkbox] + label {
-  font-family: "Pretendard-Bold";
+input[type='checkbox'] + label {
+  font-family: 'Pretendard-Bold';
   font-size: 16px;
   display: flex;
   align-items: center;
   gap: 6px;
 }
-input[type=checkbox] + label .ico-check.on {
+input[type='checkbox'] + label .ico-check.on {
   display: none;
 }
 
-input[type=checkbox]:checked + label .ico-check {
+input[type='checkbox']:checked + label .ico-check {
   display: none;
 }
-input[type=checkbox]:checked + label .ico-check.on {
+input[type='checkbox']:checked + label .ico-check.on {
   display: block;
 }
 
@@ -1694,7 +1780,7 @@ input[type=checkbox]:checked + label .ico-check.on {
   display: none;
 }
 .tab-box-wrap .tab-box .tab a {
-  font-family: "Pretendard-Regular";
+  font-family: 'Pretendard-Regular';
   display: block;
   padding: 7px 14px;
   border-radius: 15px;
@@ -1704,13 +1790,13 @@ input[type=checkbox]:checked + label .ico-check.on {
   color: #697486;
 }
 .tab-box-wrap .tab-box .tab.on a {
-  font-family: "Pretendard-Bold";
+  font-family: 'Pretendard-Bold';
   background: var(--color1);
   color: #fff;
 }
 
 .submit-btn {
-  font-family: "Pretendard-Regular";
+  font-family: 'Pretendard-Regular';
   display: block;
   width: 100%;
   background: #c8c8c8;
@@ -1753,14 +1839,14 @@ input[type=checkbox]:checked + label .ico-check.on {
   display: block;
 }
 #popup-wrap .popup p {
-  font-family: "Pretendard-Medium";
+  font-family: 'Pretendard-Medium';
   font-size: 18px;
   line-height: 26px;
   text-align: center;
   margin-bottom: 20px;
 }
 #popup-wrap .popup .btn-box .popup-btn {
-  font-family: "Pretendard-Medium";
+  font-family: 'Pretendard-Medium';
   padding: 11px;
   width: 100%;
   background: var(--color4);
@@ -1776,7 +1862,7 @@ input[type=checkbox]:checked + label .ico-check.on {
   padding: 40px 25px 25px;
 }
 #popup-wrap .popup.type2 p {
-  font-family: "Pretendard-Bold";
+  font-family: 'Pretendard-Bold';
   margin-bottom: 15px;
 }
 #popup-wrap .popup.type2 .goods-box {
@@ -1816,14 +1902,14 @@ input[type=checkbox]:checked + label .ico-check.on {
   height: 18px;
 }
 #popup-wrap .popup.type2 .goods-box .text-box .title-box .logo-box .logo-title {
-  font-family: "Pretendard-Medium";
+  font-family: 'Pretendard-Medium';
   font-size: 13px;
   color: #777;
   margin-bottom: 0;
   line-height: unset;
 }
 #popup-wrap .popup.type2 .goods-box .text-box .title-box .title {
-  font-family: "Pretendard-SemiBold";
+  font-family: 'Pretendard-SemiBold';
   position: absolute;
   top: 21px;
   left: 0;
@@ -1835,7 +1921,7 @@ input[type=checkbox]:checked + label .ico-check.on {
   margin-bottom: 0;
 }
 #popup-wrap .popup.type2 .goods-box .text-box .info-box .date {
-  font-family: "Pretendard-Regular";
+  font-family: 'Pretendard-Regular';
   font-size: 12px;
   color: #777;
   margin-bottom: 0;
@@ -1880,12 +1966,12 @@ input[type=checkbox]:checked + label .ico-check.on {
   border-radius: 20px;
 }
 #popup-wrap .roulette-popup .logo-box .text {
-  font-family: "Pretendard-Medium";
+  font-family: 'Pretendard-Medium';
   font-size: 13px;
   color: #777;
 }
 #popup-wrap .roulette-popup .logo-box .text span {
-  font-family: "Pretendard-SemiBold";
+  font-family: 'Pretendard-SemiBold';
   margin-top: 6px;
   display: block;
   font-size: 14px;
@@ -1893,7 +1979,7 @@ input[type=checkbox]:checked + label .ico-check.on {
   line-height: 1.2;
 }
 #popup-wrap .roulette-popup .candy-info {
-  font-family: "Pretendard-Bold";
+  font-family: 'Pretendard-Bold';
   font-size: 18px;
   color: #000;
   line-height: 21px;
@@ -1910,7 +1996,7 @@ input[type=checkbox]:checked + label .ico-check.on {
   background-repeat: no-repeat;
   background-position: center;
   background-color: transparent;
-  content: "";
+  content: '';
   display: block;
   position: absolute;
   width: 20px;
@@ -1924,7 +2010,7 @@ input[type=checkbox]:checked + label .ico-check.on {
   margin-bottom: 20px;
 }
 #popup-wrap .roulette-popup .btn-box .popup-btn {
-  font-family: "Pretendard-Regular";
+  font-family: 'Pretendard-Regular';
   padding: 17.5px;
   width: 100%;
   background: var(--color4);
@@ -1966,13 +2052,13 @@ input[type=checkbox]:checked + label .ico-check.on {
   border-radius: 14px;
 }
 .event-popup .event-cont p {
-  font-family: "Pretendard-Bold";
+  font-family: 'Pretendard-Bold';
   color: #fff;
   font-size: 16px;
   letter-spacing: -0.48px;
 }
 .event-popup .event-cont p span {
-  font-family: "Pretendard-Medium";
+  font-family: 'Pretendard-Medium';
   margin-top: 4px;
   display: block;
   color: #c8c8c8;
@@ -2012,7 +2098,7 @@ header {
   z-index: 9999;
 }
 header h1 {
-  font-family: "Pretendard-Bold";
+  font-family: 'Pretendard-Bold';
   font-size: 18px;
   position: absolute;
   top: 50%;
@@ -2222,7 +2308,7 @@ header .btn-list {
   width: 20%;
 }
 .bottom-menu-wrap .menu span {
-  font-family: "Pretendard-Regular";
+  font-family: 'Pretendard-Regular';
   position: relative;
   font-size: 12px;
   color: #444;
@@ -2230,7 +2316,7 @@ header .btn-list {
   padding-top: 23px;
 }
 .bottom-menu-wrap .menu span::before {
-  content: "";
+  content: '';
   display: block;
   position: absolute;
   width: 20px;
@@ -2284,7 +2370,7 @@ header .btn-list {
   cursor: pointer;
 }
 .list-wrap-box .first-list p {
-  font-family: "Pretendard-Bold";
+  font-family: 'Pretendard-Bold';
   font-size: 16px;
 }
 .list-wrap-box .first-list .ico-arrow {
@@ -2320,7 +2406,7 @@ header .btn-list {
   padding-top: 18px;
 }
 .list-wrap.type1 .list .title {
-  font-family: "Pretendard-Medium";
+  font-family: 'Pretendard-Medium';
   font-size: 15px;
   display: flex;
   flex-direction: column;
@@ -2340,7 +2426,7 @@ header .btn-list {
   border: solid 1px #d9d9d9;
 }
 .list-wrap.type1 .list .percent {
-  font-family: "Pretendard-ExtraBold";
+  font-family: 'Pretendard-ExtraBold';
   display: flex;
   align-items: center;
   gap: 2px;
@@ -2382,7 +2468,7 @@ header .btn-list {
   white-space: wrap;
 }
 .list-wrap.type1 .list.type1 .title {
-  font-family: "Pretendard-Bold";
+  font-family: 'Pretendard-Bold';
   font-size: 16px;
   color: #000;
   align-items: flex-start;
@@ -2400,7 +2486,7 @@ header .btn-list {
 .list-wrap.type1 .list.type1 .info-wrap .candy {
   position: relative;
   white-space: nowrap;
-  font-family: "Pretendard-Bold";
+  font-family: 'Pretendard-Bold';
   font-size: 16px;
   color: #000;
 }
@@ -2411,12 +2497,13 @@ header .btn-list {
   height: 24px;
   line-height: 24px;
 }
-.list-wrap.type1 .list.type1 .info-wrap .candy.type1::before, .list-wrap.type1 .list.type1 .info-wrap .candy.type1::after {
+.list-wrap.type1 .list.type1 .info-wrap .candy.type1::before,
+.list-wrap.type1 .list.type1 .info-wrap .candy.type1::after {
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
   background-color: transparent;
-  content: "";
+  content: '';
   position: absolute;
   display: block;
   top: 50%;
@@ -2446,7 +2533,7 @@ header .btn-list {
   text-indent: 100%;
   white-space: nowrap;
   overflow: hidden;
-  content: "";
+  content: '';
   position: absolute;
   display: block;
   top: 50%;
@@ -2456,14 +2543,22 @@ header .btn-list {
   height: 20px;
   background-image: url(../images/icon/coupang.png);
 }
-.list-wrap.type1 .list.type1 .info-wrap .coupang-search-wrap input[type=text] {
+.list-wrap.type1
+  .list.type1
+  .info-wrap
+  .coupang-search-wrap
+  input[type='text'] {
   border-radius: 17px;
   background: #fafafa;
   border: none;
   padding: 9px 36px 9px 40px;
 }
-.list-wrap.type1 .list.type1 .info-wrap .coupang-search-wrap input[type=text]::placeholder {
-  font-family: "Pretendard-Medium";
+.list-wrap.type1
+  .list.type1
+  .info-wrap
+  .coupang-search-wrap
+  input[type='text']::placeholder {
+  font-family: 'Pretendard-Medium';
   font-size: 14px;
   color: #c8c8c8;
 }
@@ -2495,7 +2590,7 @@ header .btn-list {
   width: 100%;
 }
 .list-wrap.type1 .list.type1 .link-wrap .link-box a {
-  font-family: "Pretendard-SemiBold";
+  font-family: 'Pretendard-SemiBold';
   width: unset;
   height: unset;
   font-size: 15px;
@@ -2526,7 +2621,7 @@ header .btn-list {
   text-decoration: line-through;
 }
 .list-wrap.type2 .list .title {
-  font-family: "Pretendard-Bold";
+  font-family: 'Pretendard-Bold';
   font-size: 16px;
   margin-bottom: 4px;
 }
@@ -2537,7 +2632,7 @@ header .btn-list {
   margin-bottom: 4px;
 }
 .list-wrap.type2 .list .text-box .text {
-  font-family: "Pretendard-Regular";
+  font-family: 'Pretendard-Regular';
   font-size: 11px;
   color: #777;
 }
@@ -2557,7 +2652,7 @@ header .btn-list {
   margin-bottom: 7px;
 }
 .list-wrap.type2 .list .point-box .text {
-  font-family: "Pretendard-Bold";
+  font-family: 'Pretendard-Bold';
 }
 .list-wrap.type2 .list .point-box .text.text1 {
   display: flex;
@@ -2576,12 +2671,12 @@ header .btn-list {
   align-items: center;
 }
 .list-wrap.type2 .list .info-box .date {
-  font-family: "Pretendard-Medium";
+  font-family: 'Pretendard-Medium';
   display: block;
   font-size: 12px;
 }
 .list-wrap.type2 .list .info-box .state {
-  font-family: "Pretendard-SemiBold";
+  font-family: 'Pretendard-SemiBold';
   font-size: 11px;
   color: #576585;
   padding: 4px 8px;
@@ -2601,7 +2696,7 @@ header .btn-list {
   padding: 14px 20px;
 }
 .list-wrap.type3 .list > .top p {
-  font-family: "Pretendard-Medium";
+  font-family: 'Pretendard-Medium';
   width: 100%;
   word-break: keep-all;
   position: relative;
@@ -2611,8 +2706,8 @@ header .btn-list {
   line-height: 1.2;
 }
 .list-wrap.type3 .list > .top p::before {
-  font-family: "Pretendard-Bold";
-  content: "Q";
+  font-family: 'Pretendard-Bold';
+  content: 'Q';
   display: block;
   position: absolute;
   top: -3px;
@@ -2662,7 +2757,7 @@ header .btn-list {
   background-repeat: no-repeat;
   background-position: center;
   background-color: transparent;
-  content: "";
+  content: '';
   position: absolute;
   display: block;
   width: 14px;
@@ -2685,12 +2780,12 @@ header .btn-list {
   border-radius: 14px;
 }
 .list-wrap.type4 .list .title {
-  font-family: "Pretendard-SemiBold";
+  font-family: 'Pretendard-SemiBold';
   font-size: 14px;
   color: #000;
 }
 .list-wrap.type4 .list .candy-info {
-  font-family: "Pretendard-Regular";
+  font-family: 'Pretendard-Regular';
   display: block;
   position: relative;
   font-size: 13px;
@@ -2704,7 +2799,7 @@ header .btn-list {
   background-repeat: no-repeat;
   background-position: center;
   background-color: transparent;
-  content: "";
+  content: '';
   display: block;
   position: absolute;
   width: 14px;
@@ -2738,7 +2833,7 @@ header .btn-list {
   color: #777;
 }
 .list-wrap.type5 .list .text-box.text-box1 .text.text1 p {
-  font-family: "Pretendard-Regular";
+  font-family: 'Pretendard-Regular';
   overflow: hidden;
   text-overflow: ellipsis;
   max-width: 192px;
@@ -2751,7 +2846,7 @@ header .btn-list {
   top: 17px;
 }
 .list-wrap.type5 .list .text-box.text-box1 .text.text2 {
-  font-family: "Pretendard-Regular";
+  font-family: 'Pretendard-Regular';
   font-size: 12px;
   color: #777;
 }
@@ -2761,12 +2856,12 @@ header .btn-list {
   align-items: flex-end;
 }
 .list-wrap.type5 .list .text-box.text-box2 .date {
-  font-family: "Pretendard-Medium";
+  font-family: 'Pretendard-Medium';
   font-size: 12px;
   color: #000;
 }
 .list-wrap.type5 .list .text-box.text-box2 .state {
-  font-family: "Pretendard-Bold";
+  font-family: 'Pretendard-Bold';
   position: relative;
   font-size: 16px;
   color: #000;
@@ -2777,7 +2872,7 @@ header .btn-list {
   background-repeat: no-repeat;
   background-position: center;
   background-color: transparent;
-  content: "";
+  content: '';
   position: absolute;
   display: block;
   width: 20px;
@@ -2802,7 +2897,7 @@ header .btn-list {
   align-items: flex-end;
 }
 .list-wrap.type5.type5-2 .list .text-box.text-box2 .state-box .state-info {
-  font-family: "Pretendard-SemiBold";
+  font-family: 'Pretendard-SemiBold';
   font-size: 11px;
   padding: 3.5px 15px;
   border-radius: 10px;
@@ -2855,12 +2950,12 @@ header .btn-list {
   height: 18px;
 }
 .list-wrap.type6 .list .text-box .title-box .logo-box .logo-title {
-  font-family: "Pretendard-Medium";
+  font-family: 'Pretendard-Medium';
   font-size: 13px;
   color: #777;
 }
 .list-wrap.type6 .list .text-box .title-box .title {
-  font-family: "Pretendard-SemiBold";
+  font-family: 'Pretendard-SemiBold';
   position: absolute;
   top: 21px;
   left: 0;
@@ -2870,7 +2965,7 @@ header .btn-list {
   width: 182px;
 }
 .list-wrap.type6 .list .text-box .info-box .date {
-  font-family: "Pretendard-Regular";
+  font-family: 'Pretendard-Regular';
   font-size: 12px;
   color: #777;
 }
@@ -2912,11 +3007,11 @@ header .btn-list {
   align-items: center;
 }
 .point-info-wrap .point-info .text-box .title {
-  font-family: "Pretendard-Medium";
+  font-family: 'Pretendard-Medium';
   font-size: 14px;
 }
 .point-info-wrap .point-info .text-box .point {
-  font-family: "Pretendard-Bold";
+  font-family: 'Pretendard-Bold';
   display: flex;
   align-items: center;
   gap: 4px;
@@ -2950,12 +3045,12 @@ header .btn-list {
   justify-content: space-between;
 }
 .candy-info-wrap .candy-info .text-box .text {
-  font-family: "Pretendard-Medium";
+  font-family: 'Pretendard-Medium';
   font-size: 14px;
   color: #000;
 }
 .candy-info-wrap .candy-info .text-box .candy {
-  font-family: "Pretendard-Bold";
+  font-family: 'Pretendard-Bold';
   position: relative;
   font-size: 18px;
   color: #000;
@@ -2967,7 +3062,7 @@ header .btn-list {
   background-repeat: no-repeat;
   background-position: center;
   background-color: transparent;
-  content: "";
+  content: '';
   display: block;
   position: absolute;
   width: 20px;
@@ -2985,7 +3080,7 @@ header .btn-list {
   display: block;
 }
 .tool-tip-box .tool-tip {
-  font-family: "Pretendard-Regular";
+  font-family: 'Pretendard-Regular';
   position: absolute;
   background: var(--color1);
   padding: 5px 7px;
@@ -2999,7 +3094,7 @@ header .btn-list {
   z-index: 9;
 }
 .tool-tip-box .tool-tip::before {
-  content: "";
+  content: '';
   display: block;
   position: absolute;
   width: 0;
@@ -3019,7 +3114,7 @@ header .btn-list {
   background: #fafafa;
 }
 .gray-box ul li {
-  font-family: "Pretendard-Regular";
+  font-family: 'Pretendard-Regular';
   position: relative;
   font-size: 12px;
   padding-left: 11px;
@@ -3031,7 +3126,7 @@ header .btn-list {
   margin-bottom: 0;
 }
 .gray-box ul li::before {
-  content: "";
+  content: '';
   display: block;
   position: absolute;
   left: 0;
@@ -3054,12 +3149,12 @@ header .btn-list {
   position: relative;
 }
 .candy-link-wrap .title {
-  font-family: "Pretendard-Medium";
+  font-family: 'Pretendard-Medium';
   font-size: 14px;
   color: #000;
 }
 .candy-link-wrap .candy-count {
-  font-family: "Pretendard-Bold";
+  font-family: 'Pretendard-Bold';
   position: relative;
   font-size: 18px;
   color: #000;
@@ -3067,12 +3162,13 @@ header .btn-list {
   padding-right: 20px;
   line-height: 20px;
 }
-.candy-link-wrap .candy-count::before, .candy-link-wrap .candy-count::after {
+.candy-link-wrap .candy-count::before,
+.candy-link-wrap .candy-count::after {
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
   background-color: transparent;
-  content: "";
+  content: '';
   position: absolute;
   display: block;
   top: 50%;
@@ -3122,7 +3218,7 @@ header .btn-list {
   height: 60px;
 }
 .history-link-wrap .link p {
-  font-family: "Pretendard-Medium";
+  font-family: 'Pretendard-Medium';
   font-size: 14px;
   color: #444;
 }
@@ -3145,7 +3241,7 @@ header .btn-list {
   background-image: url(../images/icon/history-gift.png);
 }
 .history-link-wrap .link.on p {
-  font-family: "Pretendard-Bold";
+  font-family: 'Pretendard-Bold';
   color: #000;
 }
 .history-link-wrap .link.on.point .icon {
@@ -3189,12 +3285,12 @@ header .btn-list {
   border-radius: 100%;
 }
 .giftcon-info-wrap .goods-info-box .logo-box .logo-title {
-  font-family: "Pretendard-Medium";
+  font-family: 'Pretendard-Medium';
   font-size: 13px;
   color: #777;
 }
 .giftcon-info-wrap .goods-info-box .title {
-  font-family: "Pretendard-Bold";
+  font-family: 'Pretendard-Bold';
   font-size: 18px;
   color: #000;
   margin-bottom: 25px;
@@ -3206,7 +3302,7 @@ header .btn-list {
   margin-bottom: 10px;
 }
 .giftcon-info-wrap .date-info-box .date-box {
-  font-family: "Pretendard-Regular";
+  font-family: 'Pretendard-Regular';
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -3215,12 +3311,12 @@ header .btn-list {
   margin-bottom: 8px;
 }
 .giftcon-info-wrap .date-info-box .date-box:last-of-type {
-  font-family: "Pretendard-SemiBold";
+  font-family: 'Pretendard-SemiBold';
   color: #292929;
   margin-bottom: 12px;
 }
 .giftcon-info-wrap .date-info-box > .text {
-  font-family: "Pretendard-Medium";
+  font-family: 'Pretendard-Medium';
   font-size: 13px;
   color: #ec3f3f;
   text-align: center;
@@ -3242,7 +3338,7 @@ header .btn-list {
   height: 111px;
 }
 .giftcon-info-wrap > .title {
-  font-family: "Pretendard-Bold";
+  font-family: 'Pretendard-Bold';
   font-size: 16px;
   color: #000;
   margin-bottom: 10px;
@@ -3251,7 +3347,7 @@ header .btn-list {
   padding: 20px 15px;
 }
 .giftcon-info-wrap .gray-box .title {
-  font-family: "Pretendard-SemiBold";
+  font-family: 'Pretendard-SemiBold';
   font-size: 13px;
   color: #444;
   margin-bottom: 10px;
@@ -3281,7 +3377,7 @@ header .btn-list {
   opacity: 0.5;
 }
 .giftcon-info-wrap.type3 .barcode-box .state {
-  font-family: "Pretendard-Bold";
+  font-family: 'Pretendard-Bold';
   position: absolute;
   font-size: 14px;
   padding: 7px 14px;
@@ -3363,11 +3459,6 @@ header .btn-list {
   background-color: transparent;
   background-image: url(../images/icon/fix-roulette.png);
 }
-.roulette-wrap .roulette-box:hover .bg-roulette,
-.roulette-wrap .roulette-box:hover .item-roulette {
-  transition-duration: 3.7s;
-  transform: translate(-50%, -50%) rotate(3000deg);
-}
 
 .select-btn {
   user-select: none;
@@ -3388,12 +3479,12 @@ header .btn-list {
   transform: rotate(0deg);
 }
 .select-btn.type1 .value {
-  font-family: "Pretendard-Medium";
+  font-family: 'Pretendard-Medium';
   font-size: 15px;
   color: #c8c8c8;
 }
 .select-btn.type1 .value.on {
-  font-family: "Pretendard-Bold";
+  font-family: 'Pretendard-Bold';
   color: #000;
 }
 .select-btn.type1 .ico-arrow {
@@ -3410,7 +3501,7 @@ header .btn-list {
   transform: rotate(-90deg);
 }
 .select-btn.type2 .value {
-  font-family: "Pretendard-Medium";
+  font-family: 'Pretendard-Medium';
   font-size: 14px;
   color: #777;
 }
@@ -3460,7 +3551,7 @@ header .btn-list {
   background: #fff;
 }
 #select-wrap .select-list .select-head p {
-  font-family: "Pretendard-Bold";
+  font-family: 'Pretendard-Bold';
   font-size: 18px;
 }
 #select-wrap .select-list .select-cont {
@@ -3482,7 +3573,7 @@ header .btn-list {
   user-select: none;
 }
 #select-wrap .select-list .select-cont .list .value {
-  font-family: "Pretendard-Regular";
+  font-family: 'Pretendard-Regular';
   font-size: 16px;
   color: #666;
 }
@@ -3490,7 +3581,7 @@ header .btn-list {
   display: none;
 }
 #select-wrap .select-list .select-cont .list.on .value {
-  font-family: "Pretendard-Bold";
+  font-family: 'Pretendard-Bold';
   color: #000;
 }
 #select-wrap .select-list .select-cont .list.on .ico-check {
@@ -3507,12 +3598,12 @@ input {
   display: block;
 }
 
-input[type=file] {
+input[type='file'] {
   display: none;
 }
 
-input[type=file] + label {
-  font-family: "Pretendard-Bold";
+input[type='file'] + label {
+  font-family: 'Pretendard-Bold';
   cursor: pointer;
   padding: 7px 14px;
   background: var(--color1);
@@ -3529,7 +3620,7 @@ input[type=file] + label {
   margin-bottom: 10px;
 }
 .file-box .file-info .size {
-  font-family: "Pretendard-Medium";
+  font-family: 'Pretendard-Medium';
   font-size: 12px;
 }
 .file-box .file-list {
@@ -3543,7 +3634,7 @@ input[type=file] + label {
   gap: 5px;
 }
 .file-box .file-list .list p {
-  font-family: "Pretendard-Medium";
+  font-family: 'Pretendard-Medium';
   font-size: 12px;
   max-width: 250px;
   overflow: hidden;
@@ -3551,34 +3642,34 @@ input[type=file] + label {
   text-overflow: ellipsis;
 }
 
-input[type=text],
+input[type='text'],
 textarea {
-  font-family: "Pretendard-Bold";
+  font-family: 'Pretendard-Bold';
   font-size: 15px;
   width: 100%;
   padding: 14px 20px;
   border-radius: 12px;
   border: solid 2px #eeeeee;
 }
-input[type=text]:focus,
+input[type='text']:focus,
 textarea:focus {
   outline: none;
 }
-input[type=text]::placeholder,
+input[type='text']::placeholder,
 textarea::placeholder {
-  font-family: "Pretendard-Medium";
+  font-family: 'Pretendard-Medium';
   font-size: 15px;
   color: #c8c8c8;
 }
-input[type=text].error,
+input[type='text'].error,
 textarea.error {
   position: relative;
   border: solid 2px #ec3f3f;
   margin-bottom: 0;
 }
-input[type=text].error + span,
+input[type='text'].error + span,
 textarea.error + span {
-  font-family: "Pretendard-Regular";
+  font-family: 'Pretendard-Regular';
   display: block;
   color: #ec3f3f;
   font-size: 11px;
@@ -3594,25 +3685,25 @@ textarea {
   box-sizing: border-box;
 }
 
-input[type=checkbox] {
+input[type='checkbox'] {
   display: none;
 }
 
-input[type=checkbox] + label {
-  font-family: "Pretendard-Bold";
+input[type='checkbox'] + label {
+  font-family: 'Pretendard-Bold';
   font-size: 16px;
   display: flex;
   align-items: center;
   gap: 6px;
 }
-input[type=checkbox] + label .ico-check.on {
+input[type='checkbox'] + label .ico-check.on {
   display: none;
 }
 
-input[type=checkbox]:checked + label .ico-check {
+input[type='checkbox']:checked + label .ico-check {
   display: none;
 }
-input[type=checkbox]:checked + label .ico-check.on {
+input[type='checkbox']:checked + label .ico-check.on {
   display: block;
 }
 
@@ -3629,7 +3720,7 @@ input[type=checkbox]:checked + label .ico-check.on {
   display: none;
 }
 .tab-box-wrap .tab-box .tab a {
-  font-family: "Pretendard-Regular";
+  font-family: 'Pretendard-Regular';
   display: block;
   padding: 7px 14px;
   border-radius: 15px;
@@ -3639,13 +3730,13 @@ input[type=checkbox]:checked + label .ico-check.on {
   color: #697486;
 }
 .tab-box-wrap .tab-box .tab.on a {
-  font-family: "Pretendard-Bold";
+  font-family: 'Pretendard-Bold';
   background: var(--color1);
   color: #fff;
 }
 
 .submit-btn {
-  font-family: "Pretendard-Regular";
+  font-family: 'Pretendard-Regular';
   display: block;
   width: 100%;
   background: #c8c8c8;
@@ -3688,14 +3779,14 @@ input[type=checkbox]:checked + label .ico-check.on {
   display: block;
 }
 #popup-wrap .popup p {
-  font-family: "Pretendard-Medium";
+  font-family: 'Pretendard-Medium';
   font-size: 18px;
   line-height: 26px;
   text-align: center;
   margin-bottom: 20px;
 }
 #popup-wrap .popup .btn-box .popup-btn {
-  font-family: "Pretendard-Medium";
+  font-family: 'Pretendard-Medium';
   padding: 11px;
   width: 100%;
   background: var(--color4);
@@ -3711,7 +3802,7 @@ input[type=checkbox]:checked + label .ico-check.on {
   padding: 40px 25px 25px;
 }
 #popup-wrap .popup.type2 p {
-  font-family: "Pretendard-Bold";
+  font-family: 'Pretendard-Bold';
   margin-bottom: 15px;
 }
 #popup-wrap .popup.type2 .goods-box {
@@ -3751,14 +3842,14 @@ input[type=checkbox]:checked + label .ico-check.on {
   height: 18px;
 }
 #popup-wrap .popup.type2 .goods-box .text-box .title-box .logo-box .logo-title {
-  font-family: "Pretendard-Medium";
+  font-family: 'Pretendard-Medium';
   font-size: 13px;
   color: #777;
   margin-bottom: 0;
   line-height: unset;
 }
 #popup-wrap .popup.type2 .goods-box .text-box .title-box .title {
-  font-family: "Pretendard-SemiBold";
+  font-family: 'Pretendard-SemiBold';
   position: absolute;
   top: 21px;
   left: 0;
@@ -3770,7 +3861,7 @@ input[type=checkbox]:checked + label .ico-check.on {
   margin-bottom: 0;
 }
 #popup-wrap .popup.type2 .goods-box .text-box .info-box .date {
-  font-family: "Pretendard-Regular";
+  font-family: 'Pretendard-Regular';
   font-size: 12px;
   color: #777;
   margin-bottom: 0;
@@ -3815,12 +3906,12 @@ input[type=checkbox]:checked + label .ico-check.on {
   border-radius: 20px;
 }
 #popup-wrap .roulette-popup .logo-box .text {
-  font-family: "Pretendard-Medium";
+  font-family: 'Pretendard-Medium';
   font-size: 13px;
   color: #777;
 }
 #popup-wrap .roulette-popup .logo-box .text span {
-  font-family: "Pretendard-SemiBold";
+  font-family: 'Pretendard-SemiBold';
   margin-top: 6px;
   display: block;
   font-size: 14px;
@@ -3828,7 +3919,7 @@ input[type=checkbox]:checked + label .ico-check.on {
   line-height: 1.2;
 }
 #popup-wrap .roulette-popup .candy-info {
-  font-family: "Pretendard-Bold";
+  font-family: 'Pretendard-Bold';
   font-size: 18px;
   color: #000;
   line-height: 21px;
@@ -3845,7 +3936,7 @@ input[type=checkbox]:checked + label .ico-check.on {
   background-repeat: no-repeat;
   background-position: center;
   background-color: transparent;
-  content: "";
+  content: '';
   display: block;
   position: absolute;
   width: 20px;
@@ -3859,7 +3950,7 @@ input[type=checkbox]:checked + label .ico-check.on {
   margin-bottom: 20px;
 }
 #popup-wrap .roulette-popup .btn-box .popup-btn {
-  font-family: "Pretendard-Regular";
+  font-family: 'Pretendard-Regular';
   padding: 17.5px;
   width: 100%;
   background: var(--color4);
@@ -3901,13 +3992,13 @@ input[type=checkbox]:checked + label .ico-check.on {
   border-radius: 14px;
 }
 .event-popup .event-cont p {
-  font-family: "Pretendard-Bold";
+  font-family: 'Pretendard-Bold';
   color: #fff;
   font-size: 16px;
   letter-spacing: -0.48px;
 }
 .event-popup .event-cont p span {
-  font-family: "Pretendard-Medium";
+  font-family: 'Pretendard-Medium';
   margin-top: 4px;
   display: block;
   color: #c8c8c8;
@@ -3990,11 +4081,11 @@ input[type=checkbox]:checked + label .ico-check.on {
   border-radius: 21px;
 }
 .main .main-list-wrap .main-list .title {
-  font-family: "Pretendard-Medium";
+  font-family: 'Pretendard-Medium';
   font-size: 17px;
 }
 .main .main-list-wrap .main-list .title span {
-  font-family: "Pretendard-ExtraBold";
+  font-family: 'Pretendard-ExtraBold';
   margin-top: 3px;
   display: block;
   font-size: 20px;
@@ -4013,19 +4104,19 @@ input[type=checkbox]:checked + label .ico-check.on {
   padding: 0 20px 22px;
 }
 .sub.sub-2-1 .cont.cont1 .box .gray-box p {
-  font-family: "Pretendard-SemiBold";
+  font-family: 'Pretendard-SemiBold';
   display: flex;
   align-items: center;
   font-size: 14px;
 }
 .sub.sub-2-1 .cont.cont1 .box .gray-box p span {
-  font-family: "Pretendard-Regular";
+  font-family: 'Pretendard-Regular';
   display: inline-block;
   font-size: 13px;
   color: #777;
 }
 .sub.sub-2-1 .cont.cont1 .box .gray-box p span.percent {
-  font-family: "Pretendard-Bold";
+  font-family: 'Pretendard-Bold';
   font-size: 14px;
   color: var(--color6);
 }
@@ -4043,11 +4134,11 @@ input[type=checkbox]:checked + label .ico-check.on {
   gap: 4px;
 }
 .sub.sub-2-1 .cont.cont1 .box.box1 .title p {
-  font-family: "Pretendard-SemiBold";
+  font-family: 'Pretendard-SemiBold';
   font-size: 18px;
 }
 .sub.sub-2-1 .cont.cont1 .box.box1 .title p.blue {
-  font-family: "Pretendard-ExtraBold";
+  font-family: 'Pretendard-ExtraBold';
   display: flex;
   align-items: center;
   gap: 4px;
@@ -4081,7 +4172,7 @@ input[type=checkbox]:checked + label .ico-check.on {
   margin-bottom: 15px;
 }
 .sub.sub-2-1 .cont.cont1 .box.box3 a {
-  font-family: "Pretendard-Bold";
+  font-family: 'Pretendard-Bold';
   color: #000;
   font-size: 16px;
   display: flex;
@@ -4095,7 +4186,7 @@ input[type=checkbox]:checked + label .ico-check.on {
   margin-bottom: 8px;
 }
 .sub.sub-2-1 .cont.cont1 .box.box4 .sub-title {
-  font-family: "Pretendard-Bold";
+  font-family: 'Pretendard-Bold';
   font-size: 16px;
   margin-bottom: 10px;
 }
@@ -4113,13 +4204,13 @@ input[type=checkbox]:checked + label .ico-check.on {
   margin-bottom: 40px;
 }
 .sub.sub-2-1 .cont.cont1 .box.box5 p {
-  font-family: "Pretendard-SemiBold";
+  font-family: 'Pretendard-SemiBold';
   font-size: 13px;
   color: #777;
   margin-bottom: 11px;
 }
 .sub.sub-2-1 .cont.cont1 .box.box5 ul li {
-  font-family: "Pretendard-Regular";
+  font-family: 'Pretendard-Regular';
   position: relative;
   font-size: 12px;
   padding-left: 11px;
@@ -4128,7 +4219,7 @@ input[type=checkbox]:checked + label .ico-check.on {
   margin-bottom: 7px;
 }
 .sub.sub-2-1 .cont.cont1 .box.box5 ul li::before {
-  content: "";
+  content: '';
   display: block;
   position: absolute;
   left: 0;
@@ -4146,13 +4237,13 @@ input[type=checkbox]:checked + label .ico-check.on {
   margin-bottom: 23px;
 }
 .sub.sub-2-3 .title-box .title {
-  font-family: "Pretendard-Bold";
+  font-family: 'Pretendard-Bold';
   font-size: 16px;
   color: #000;
   margin-bottom: 4px;
 }
 .sub.sub-2-3 .title-box .text {
-  font-family: "Pretendard-Medium";
+  font-family: 'Pretendard-Medium';
   font-size: 13px;
   color: #777;
   line-height: 1.2;
@@ -4187,7 +4278,7 @@ input[type=checkbox]:checked + label .ico-check.on {
   height: 100%;
 }
 .sub.sub-2-4 .coupang-swiper .swiper-slide .item .step {
-  font-family: "Pretendard-Bold";
+  font-family: 'Pretendard-Bold';
   display: inline-block;
   padding: 7px 16px;
   border-radius: 15px;
@@ -4198,7 +4289,7 @@ input[type=checkbox]:checked + label .ico-check.on {
   margin-bottom: 20px;
 }
 .sub.sub-2-4 .coupang-swiper .swiper-slide .item > .text {
-  font-family: "Pretendard-Bold";
+  font-family: 'Pretendard-Bold';
   font-size: 16px;
   text-align: center;
   color: #000;
@@ -4219,7 +4310,7 @@ input[type=checkbox]:checked + label .ico-check.on {
   background-size: contain;
 }
 .sub.sub-2-4 .coupang-swiper .swiper-slide .item .img-box .text {
-  font-family: "Pretendard-Medium";
+  font-family: 'Pretendard-Medium';
   text-align: center;
   font-size: 13px;
   color: #ec3f3f;
@@ -4255,7 +4346,10 @@ input[type=checkbox]:checked + label .ico-check.on {
 .sub.sub-2-4 .coupang-swiper .swiper-pagination {
   bottom: 0;
 }
-.sub.sub-2-4 .coupang-swiper .swiper-pagination .swiper-pagination-bullet.swiper-pagination-bullet-active {
+.sub.sub-2-4
+  .coupang-swiper
+  .swiper-pagination
+  .swiper-pagination-bullet.swiper-pagination-bullet-active {
   background: #383c5e;
 }
 .sub.sub-4 {
@@ -4265,7 +4359,7 @@ input[type=checkbox]:checked + label .ico-check.on {
   padding-bottom: 10px;
 }
 .sub.sub-4 .box.box1 .title {
-  font-family: "Pretendard-Bold";
+  font-family: 'Pretendard-Bold';
   font-size: 16px;
   margin-bottom: 10px;
 }
@@ -4285,13 +4379,13 @@ input[type=checkbox]:checked + label .ico-check.on {
   margin-bottom: 10px;
 }
 .sub.sub-4 .form-box-wrap .form-box .input-box > p {
-  font-family: "Pretendard-Regular";
+  font-family: 'Pretendard-Regular';
   margin-top: 3px;
   font-size: 11px;
   color: #777;
   padding-left: 8px;
 }
-.sub.sub-4 .form-box-wrap .form-box .input-box input[type=checkbox] + label {
+.sub.sub-4 .form-box-wrap .form-box .input-box input[type='checkbox'] + label {
   margin-top: 38px;
   margin-bottom: 23px;
 }
@@ -4299,7 +4393,7 @@ input[type=checkbox]:checked + label .ico-check.on {
   margin-bottom: 25px;
 }
 .sub.sub-4 .form-box-wrap .form-box .gray-box p {
-  font-family: "Pretendard-Regular";
+  font-family: 'Pretendard-Regular';
   font-size: 13px;
   line-height: 17px;
   color: #777;
@@ -4316,7 +4410,7 @@ input[type=checkbox]:checked + label .ico-check.on {
   margin-bottom: 25px;
 }
 .sub.sub-4 .form-box-wrap .form-box .file-box .title {
-  font-family: "Pretendard-Bold";
+  font-family: 'Pretendard-Bold';
   font-size: 16px;
   margin-bottom: 10px;
 }
@@ -4340,7 +4434,11 @@ input[type=checkbox]:checked + label .ico-check.on {
   padding: 5px 13px;
   border-radius: 12px;
 }
-.sub.sub-5 .point-info-wrap .point-info .text-box:first-of-type .tool-tip::before {
+.sub.sub-5
+  .point-info-wrap
+  .point-info
+  .text-box:first-of-type
+  .tool-tip::before {
   left: 31.5px;
 }
 .sub.sub-5 .point-info-wrap .point-info .text-box:last-of-type .tool-tip {
@@ -4361,10 +4459,20 @@ input[type=checkbox]:checked + label .ico-check.on {
   font-size: 11px;
   color: rgba(255, 255, 255, 0.8);
 }
-.sub.sub-5 .point-info-wrap .point-info .text-box:last-of-type .tool-tip ul li:last-of-type {
+.sub.sub-5
+  .point-info-wrap
+  .point-info
+  .text-box:last-of-type
+  .tool-tip
+  ul
+  li:last-of-type {
   margin-bottom: 0;
 }
-.sub.sub-5 .point-info-wrap .point-info .text-box:last-of-type .tool-tip::before {
+.sub.sub-5
+  .point-info-wrap
+  .point-info
+  .text-box:last-of-type
+  .tool-tip::before {
   left: 50.5px;
 }
 .sub.sub-5 .point-info-wrap .point-info .text-box > div {
@@ -4379,7 +4487,7 @@ input[type=checkbox]:checked + label .ico-check.on {
   padding: 0 20px;
 }
 .sub.sub-5 .line.line1 a {
-  font-family: "Pretendard-Bold";
+  font-family: 'Pretendard-Bold';
   color: #000;
   font-size: 16px;
   display: flex;
@@ -4403,7 +4511,7 @@ input[type=checkbox]:checked + label .ico-check.on {
   align-items: center;
 }
 .sub.sub-5 .cont.cont .line.line2 > p {
-  font-family: "Pretendard-Bold";
+  font-family: 'Pretendard-Bold';
   font-size: 16px;
 }
 .sub.sub-5 .cont.cont .tab-box-wrap {
@@ -4415,7 +4523,7 @@ input[type=checkbox]:checked + label .ico-check.on {
   height: calc(100vh - 347px);
 }
 .sub.sub-5 .cont.cont .list-none-box p {
-  font-family: "Pretendard-Bold";
+  font-family: 'Pretendard-Bold';
   position: absolute;
   top: 25%;
   left: 50%;
@@ -4434,32 +4542,38 @@ input[type=checkbox]:checked + label .ico-check.on {
   padding: 0 20px;
 }
 .sub.sub-5-1 .box.box1 .title {
-  font-family: "Pretendard-Bold";
+  font-family: 'Pretendard-Bold';
   font-size: 16px;
   margin-bottom: 10px;
 }
 .sub.sub-5-1 .box.box1 .gray-box {
   padding: 20px 15px;
 }
-.sub.sub-5-2, .sub.sub-5-3-1 {
+.sub.sub-5-2,
+.sub.sub-5-3-1 {
   padding: 20px 0;
 }
-.sub.sub-5-2 .box.box1, .sub.sub-5-3-1 .box.box1 {
+.sub.sub-5-2 .box.box1,
+.sub.sub-5-3-1 .box.box1 {
   padding: 0 20px;
 }
-.sub.sub-5-2 .box.box1 .gray-box, .sub.sub-5-3-1 .box.box1 .gray-box {
+.sub.sub-5-2 .box.box1 .gray-box,
+.sub.sub-5-3-1 .box.box1 .gray-box {
   padding: 20px 15px;
 }
-.sub.sub-5-2 .box.box1 .gray-box .title, .sub.sub-5-3-1 .box.box1 .gray-box .title {
-  font-family: "Pretendard-SemiBold";
+.sub.sub-5-2 .box.box1 .gray-box .title,
+.sub.sub-5-3-1 .box.box1 .gray-box .title {
+  font-family: 'Pretendard-SemiBold';
   font-size: 13px;
   color: #444;
   margin-bottom: 10px;
 }
-.sub.sub-5-2 .box.box1 .gray-box ul, .sub.sub-5-3-1 .box.box1 .gray-box ul {
+.sub.sub-5-2 .box.box1 .gray-box ul,
+.sub.sub-5-3-1 .box.box1 .gray-box ul {
   margin-bottom: 20px;
 }
-.sub.sub-5-2 .box.box1 .gray-box ul:last-of-type, .sub.sub-5-3-1 .box.box1 .gray-box ul:last-of-type {
+.sub.sub-5-2 .box.box1 .gray-box ul:last-of-type,
+.sub.sub-5-3-1 .box.box1 .gray-box ul:last-of-type {
   margin-bottom: 0;
 }
 .sub.sub-5-3-2 {

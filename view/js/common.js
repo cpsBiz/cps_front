@@ -1,45 +1,45 @@
 // 모든 탭을 선택
-const tabs = document.querySelectorAll(".tab");
+const tabs = document.querySelectorAll('.tab');
 
 // 각 탭에 클릭 이벤트 리스너 추가
 tabs.forEach((tab) => {
-  tab.addEventListener("click", () => {
+  tab.addEventListener('click', () => {
     // 모든 탭에서 on 클래스 제거
-    tabs.forEach((t) => t.classList.remove("on"));
+    tabs.forEach((t) => t.classList.remove('on'));
 
     // 클릭된 탭에 on 클래스 추가
-    tab.classList.add("on");
+    tab.classList.add('on');
   });
 });
 
 // list type1
-const $type1Lists = document.querySelectorAll(".list-wrap.type1 .list");
+const $type1Lists = document.querySelectorAll('.list-wrap.type1 .list');
 const $type1ListsIcoHeart = document.querySelectorAll(
-  ".list-wrap.type1 .ico-heart"
+  '.list-wrap.type1 .ico-heart',
 );
 
 // list type3
-const $type3Lists = document.querySelectorAll(".list-wrap.type3 .list");
+const $type3Lists = document.querySelectorAll('.list-wrap.type3 .list');
 const $type3ListsTop = document.querySelectorAll(
-  ".list-wrap.type3 .list > .top"
+  '.list-wrap.type3 .list > .top',
 );
 const $type3ListsBottom = document.querySelectorAll(
-  ".list-wrap.type3 .list > .bottom"
+  '.list-wrap.type3 .list > .bottom',
 );
 const $type3ListsBottomContent = document.querySelectorAll(
-  ".list-wrap.type3 .list > .bottom > div"
+  '.list-wrap.type3 .list > .bottom > div',
 );
 // file
-const $inputFile1 = document.querySelector("#file-1");
+const $inputFile1 = document.querySelector('#file-1');
 
 // list type1
 if ($type1Lists) {
   $type1ListsIcoHeart.forEach((elm) => {
-    elm.addEventListener("click", () => {
-      if (!elm.classList.contains("on")) {
-        elm.classList.add("on");
-      } else if (elm.classList.contains("on")) {
-        elm.classList.remove("on");
+    elm.addEventListener('click', () => {
+      if (!elm.classList.contains('on')) {
+        elm.classList.add('on');
+      } else if (elm.classList.contains('on')) {
+        elm.classList.remove('on');
       }
     });
   });
@@ -47,29 +47,29 @@ if ($type1Lists) {
 
 function historyPointEvent() {
   // list type2
-  const $type2Lists = document.querySelectorAll(".list-wrap.type2 .list");
+  const $type2Lists = document.querySelectorAll('.list-wrap.type2 .list');
   const $type2ListsToolTipBox = document.querySelectorAll(
-    ".list-wrap.type2 .list .tool-tip-box"
+    '.list-wrap.type2 .list .tool-tip-box',
   );
   // list type2
   if ($type2Lists) {
     $type2Lists.forEach((elm) => {
-      elm.addEventListener("click", (e) => {
-        if (e.target.className === "tool-tip") return;
-        if (e.target.tagName.toLowerCase() !== "button") {
-          $type2ListsToolTipBox.forEach((elm) => elm.classList.remove("on"));
+      elm.addEventListener('click', (e) => {
+        if (e.target.className === 'tool-tip') return;
+        if (e.target.tagName.toLowerCase() !== 'button') {
+          $type2ListsToolTipBox.forEach((elm) => elm.classList.remove('on'));
         }
       });
     });
 
     $type2ListsToolTipBox.forEach((elm) => {
-      elm.addEventListener("click", (e) => {
-        if (e.target.className === "tool-tip") return;
-        if (!elm.classList.contains("on")) {
-          $type2ListsToolTipBox.forEach((elm) => elm.classList.remove("on"));
-          elm.classList.add("on");
-        } else if (elm.classList.contains("on")) {
-          $type2ListsToolTipBox.forEach((elm) => elm.classList.remove("on"));
+      elm.addEventListener('click', (e) => {
+        if (e.target.className === 'tool-tip') return;
+        if (!elm.classList.contains('on')) {
+          $type2ListsToolTipBox.forEach((elm) => elm.classList.remove('on'));
+          elm.classList.add('on');
+        } else if (elm.classList.contains('on')) {
+          $type2ListsToolTipBox.forEach((elm) => elm.classList.remove('on'));
         }
       });
     });
@@ -79,33 +79,33 @@ function historyPointEvent() {
 // list type3
 if ($type3Lists) {
   $type3ListsTop.forEach((elm) => {
-    elm.addEventListener("click", () => {
-      const $list = elm.closest(".list");
-      const $bottom = elm.closest(".list").querySelector(".bottom");
+    elm.addEventListener('click', () => {
+      const $list = elm.closest('.list');
+      const $bottom = elm.closest('.list').querySelector('.bottom');
       const bottomContentHeight = elm
-        .closest(".list")
-        .querySelector(".bottom > div").clientHeight;
+        .closest('.list')
+        .querySelector('.bottom > div').clientHeight;
 
-      if (!$list.classList.contains("on")) {
-        $type3ListsBottom.forEach((elm) => (elm.style.height = "0px"));
-        $type3Lists.forEach((elm) => elm.classList.remove("on"));
+      if (!$list.classList.contains('on')) {
+        $type3ListsBottom.forEach((elm) => (elm.style.height = '0px'));
+        $type3Lists.forEach((elm) => elm.classList.remove('on'));
         $bottom.style.height = `${bottomContentHeight}px`;
-        $list.classList.add("on");
-      } else if ($list.classList.contains("on")) {
-        $type3ListsBottom.forEach((elm) => (elm.style.height = "0px"));
-        $type3Lists.forEach((elm) => elm.classList.remove("on"));
-        $list.classList.remove("on");
+        $list.classList.add('on');
+      } else if ($list.classList.contains('on')) {
+        $type3ListsBottom.forEach((elm) => (elm.style.height = '0px'));
+        $type3Lists.forEach((elm) => elm.classList.remove('on'));
+        $list.classList.remove('on');
       }
     });
   });
 }
 
 // resize event
-window.addEventListener("resize", () => {
+window.addEventListener('resize', () => {
   // list type3
   if ($type3Lists) {
     $type3Lists.forEach((elm) => {
-      if (elm.classList.contains("on")) {
+      if (elm.classList.contains('on')) {
         elm.children[elm.children.length - 1].style.height = `${
           elm.children[elm.children.length - 1].children[0].clientHeight
         }px`;
@@ -117,60 +117,60 @@ window.addEventListener("resize", () => {
 // component
 // popup
 function popupOn(popupWrap, popup) {
-  document.body.classList.add("scrollNone");
-  document.querySelector(popupWrap).classList.add("on");
-  document.querySelector(popup).classList.add("on");
+  document.body.classList.add('scrollNone');
+  document.querySelector(popupWrap).classList.add('on');
+  document.querySelector(popup).classList.add('on');
 }
 
 function popupClose(popupWrap, popup) {
-  document.body.classList.remove("scrollNone");
-  document.querySelector(popupWrap).classList.remove("on");
-  document.querySelector(popup).classList.remove("on");
+  document.body.classList.remove('scrollNone');
+  document.querySelector(popupWrap).classList.remove('on');
+  document.querySelector(popup).classList.remove('on');
 }
 
 // event popup
 function eventPopupClose(popup) {
-  document.querySelector(popup).classList.remove("on");
+  document.querySelector(popup).classList.remove('on');
 }
 
 // select box
 function selectListOn(selectBtn, selectWrap, selectList) {
   const $selectBtnValue = document.querySelector(`${selectBtn} .value`);
   const $selectLists = document.querySelectorAll(`${selectList} .list`);
-  document.body.classList.add("scrollNone");
-  document.querySelector(selectBtn).classList.add("on");
-  document.querySelector(selectWrap).classList.add("on");
-  document.querySelector(selectList).classList.add("on");
+  document.body.classList.add('scrollNone');
+  document.querySelector(selectBtn).classList.add('on');
+  document.querySelector(selectWrap).classList.add('on');
+  document.querySelector(selectList).classList.add('on');
 
   $selectLists.forEach((elm) =>
-    elm.addEventListener("click", () =>
-      selectListsCheck($selectLists, elm, $selectBtnValue)
-    )
+    elm.addEventListener('click', () =>
+      selectListsCheck($selectLists, elm, $selectBtnValue),
+    ),
   );
 }
 
 function selectListsCheck($selectLists, $selectList, $selectBtnValue) {
-  $selectLists.forEach((elm) => elm.classList.remove("on"));
-  $selectList.classList.add("on");
+  $selectLists.forEach((elm) => elm.classList.remove('on'));
+  $selectList.classList.add('on');
   $selectList.querySelector('div').classList.add('on');
   $selectBtnValue.innerText = `${
-    $selectList.querySelector(".value").innerText
+    $selectList.querySelector('.value').innerText
   }`;
-  if (!$selectBtnValue.classList.contains("on"))
-    $selectBtnValue.classList.add("on");
+  if (!$selectBtnValue.classList.contains('on'))
+    $selectBtnValue.classList.add('on');
 }
 
 function selectListClose(selectBtn, selectWrap, selectList) {
   const $selectLists = document.querySelectorAll(`${selectList} .list`);
-  document.body.classList.remove("scrollNone");
-  document.querySelector(selectBtn).classList.remove("on");
-  document.querySelector(selectWrap).classList.remove("on");
-  document.querySelector(selectList).classList.remove("on");
+  document.body.classList.remove('scrollNone');
+  document.querySelector(selectBtn).classList.remove('on');
+  document.querySelector(selectWrap).classList.remove('on');
+  document.querySelector(selectList).classList.remove('on');
 
   $selectLists.forEach((elm) =>
-    elm.removeEventListener("click", () =>
-      selectListsCheck(elm, $selectBtnValue)
-    )
+    elm.removeEventListener('click', () =>
+      selectListsCheck(elm, $selectBtnValue),
+    ),
   );
 }
 
@@ -181,7 +181,7 @@ function formBoxOn(
   askText,
   askValue,
   formBoxElms,
-  formBoxTarget
+  formBoxTarget,
 ) {
   const $formBoxElms = document.querySelectorAll(formBoxElms);
   const $formBoxTarget = document.querySelector(formBoxTarget);
@@ -194,16 +194,16 @@ function formBoxOn(
     formBoxTarget,
   };
 
-  $formBoxElms.forEach((elm) => elm.classList.remove("on"));
-  $formBoxTarget.classList.add("on");
-  sessionStorage.setItem("form-box-number", JSON.stringify(formObj));
+  $formBoxElms.forEach((elm) => elm.classList.remove('on'));
+  $formBoxTarget.classList.add('on');
+  sessionStorage.setItem('form-box-number', JSON.stringify(formObj));
 }
 
 function getDevice() {
   //모바일기기 배열
   const Mobile =
     /iPhone|iPad|Android|BlackBerry|Windows Phone|Windows CE|LG|MOT|SAMSUNG|SonyEricsson|Nokia/i.test(
-      navigator.userAgent
+      navigator.userAgent,
     )
       ? true
       : false;
@@ -226,7 +226,7 @@ function getCommissionPer(item) {
 // 날짜를 변환하고, 요일을 판단하는 함수
 function formatDate(date) {
   let year, month, day;
-  let formattedDate = "";
+  let formattedDate = '';
   let dateStr = String(date);
 
   // 날짜 문자열 길이에 따라 연도, 월, 일을 파싱
@@ -242,7 +242,7 @@ function formatDate(date) {
     day = dateStr.substring(6, 8); // 일
     formattedDate = `${year}.${month}.${day}`;
   } else {
-    console.error("지원하지 않는 날짜 형식입니다.");
+    console.error('지원하지 않는 날짜 형식입니다.');
     return;
   }
 
