@@ -204,7 +204,6 @@ $months = getLastYearMonths();
   let checkDate = '<?= $months[0] ?>';
 
   function checkFilter(status, date) {
-    console.log(status);
     if (status !== '') checkStatus = status;
     if (date) checkDate = date;
 
@@ -247,8 +246,6 @@ $months = getLastYearMonths();
 
   // 회원 적립금 리스트 렌더링
   function renderCommissionList(data) {
-    console.log(data);
-
     $('.list-none-box').css('display', 'none');
     $('.list-wrap.type2').empty();
 
@@ -257,20 +254,6 @@ $months = getLastYearMonths();
       $('.list-none-box').css('display', 'block');
       return;
     }
-
-    const ex = [{
-      userId: "userId11",
-      regDay: 20240930,
-      regYm: 202409,
-      campaignName: "link_11st 캠페인 자동 등록",
-      productName: "(9월 마지막 20%+5%)아토팜 탑투토워시 용기1+리필2+추가리필1/99특가/크림/로션/판테놀/수딩젤/소독티슈",
-      productPrice: 38900,
-      userCommission: 48,
-      productCnt: 1,
-      merchantId: "link_11st",
-      status: 100,
-      commissionPaymentStandard: "구매 확정 월 기준 익익월 6일 지급"
-    }, ]
 
     let list = '';
     datas.forEach(item => {
@@ -314,7 +297,7 @@ $months = getLastYearMonths();
                 </div>
                 <div class="info-box">
                   <p class="date">${formatDate(item.regDay)}</p>
-                  <p class="state">쇼핑적립</p>
+                  <!--<p class="state">쇼핑적립</p>-->
                 </div>
               </div>
               `;
