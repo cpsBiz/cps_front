@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,6 +10,7 @@
   <!-- style -->
   <link rel="stylesheet" href="/view/css/style.css">
 </head>
+
 <body>
   <div class="wrap">
     <!-- header -->
@@ -42,4 +44,5 @@
   <script src="/view/js/common.js"></script>
   <script src="/view/js/page.js"></script>
 </body>
+
 </html>

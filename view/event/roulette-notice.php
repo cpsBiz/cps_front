@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,6 +13,7 @@
   <link rel="stylesheet" href="/view/css/swiper-min.css">
   <script src="/view/js/swiper.js"></script>
 </head>
+
 <body>
   <div class="wrap">
     <!-- header -->
@@ -67,7 +69,7 @@
               <div class="img-box">
                 <div class="img"></div>
                 <p class="text">*기프티콘은 당첨 후 30일 이내에 지급됩니다.</p>
-              </div>       
+              </div>
             </div>
           </div>
         </div>
@@ -77,15 +79,15 @@
   </div>
   <script>
     let swiper = new Swiper(".coupang-swiper", {
-      slidesPerView : 1,
+      slidesPerView: 1,
       loop: true,
       speed: 700,
       pagination: {
         el: ".swiper-pagination",
         clickable: true,
       },
-      autoplay:{
-		    delay: 2500,
+      autoplay: {
+        delay: 2500,
         disableOnInteraction: false,
       },
     });
@@ -93,4 +95,5 @@
   <script src="/view/js/common.js"></script>
   <script src="/view/js/page.js"></script>
 </body>
+
 </html>
