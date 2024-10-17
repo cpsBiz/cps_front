@@ -280,7 +280,5 @@ $months = getLastYearMonths();
     document.querySelector('.list-wrap.type5').classList.remove('type5-1', 'type5-2');
     document.querySelector('.list-wrap.type5').classList.add(checkStatus === 200 ? 'type5-1' : 'type5-2');
     $('.list-wrap.type5').append(list);
-
-    historyPointEvent();
   }
 </script>

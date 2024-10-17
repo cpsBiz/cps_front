@@ -292,6 +292,12 @@
         contentType: 'application/json',
         data: JSON.stringify(requestData),
         success: function(result) {
+          if (result.resultCode !== '0000') {
+            alert(result.resultMessage);
+            checkSpin = false;
+            return
+          }
+
           const data = result.data;
           // 룰렛 돌리기
           spin(data);

@@ -76,8 +76,8 @@ $months = getLastYearMonths();
                 </div>
                 <div class="tab-box-wrap">
                     <div class="tab-box">
-                        <div class="tab tab1 on"><a href="javascript:checkFilter(0)">사용가능</a></div>
-                        <div class="tab tab2"><a href="javascript:checkFilter(0)">사용완료/만료</a></div>
+                        <div class="tab tab1 on"><a href="javascript:checkFilter(200)">사용가능</a></div>
+                        <div class="tab tab2"><a href="javascript:checkFilter(200)">사용완료/만료</a></div>
                     </div>
                 </div>
                 <!-- 리스트 있을 경우 -->
@@ -171,45 +171,48 @@ $months = getLastYearMonths();
 
 <script>
     $(function() {
-        getGifticonList(210, "<?= $months[0]; ?>");
+        getGifticonList(200, "<?= $months[0]; ?>");
     });
 
-    let checkStatus = 0;
+    let checkStatus = 200;
     let checkDate = '<?= $months[0] ?>';
 
     function checkFilter(status, date) {
-        console.log(status);
         if (status !== '') checkStatus = status;
         if (date) checkDate = date;
 
-        //getGifticonList(checkStatus, checkDate);
+        getGifticonList(checkStatus, checkDate);
     }
 
     // 기프티콘 리스트 조회
     function getGifticonList(status, date) {
-        return console.log('기프티콘 리스트 조회')
         try {
             const userId = "userId11";
-            const affliateId = "affliateId";
-            const regYm = convertDate(date);
+            const merchantId = "coupang";
+            const affliateId = "moneyweather";
+            const awardYm = convertDate(date);
 
             // AJAX 요청 데이터 설정
             const requestData = {
+                brandId,
                 userId,
                 affliateId,
-                regYm,
-                status
+                merchantId,
+                giftYn,
+                awardYm
             };
 
             // AJAX 요청 수행
             $.ajax({
                 type: 'POST',
-                url: 'http://192.168.101.156/api/',
+                url: 'http://192.168.101.156/api/view/gifticonList',
                 contentType: 'application/json',
                 data: JSON.stringify(requestData),
                 success: function(result) {
+
+
                     selectListClose('#select-btn3', '#select-wrap', '#select-list3');
-                    renderGifticonList(result);
+                    renderStickList(result);
                 },
                 error: function(request, status, error) {
                     console.error(`Error: ${error}`);
@@ -220,7 +223,7 @@ $months = getLastYearMonths();
         }
     }
 
-    // 기프티콘 리스트 렌더링
+    // 막대사탕 리스트 렌더링
     function renderGifticonList(data) {
         console.log(data);
 
@@ -233,10 +236,6 @@ $months = getLastYearMonths();
             return;
         }
 
-        const ex = [{
-
-        }, ]
-
         let list = '';
         datas.forEach(item => {
             let status = {
@@ -244,26 +243,20 @@ $months = getLastYearMonths();
                 color: ''
             }
             switch (item.status) {
-                case 100:
-                    status.text = '적립예정';
-                    status.color = 'red';
-                    break;
                 case 210:
-                    status.text = '적립확정';
                     status.color = 'blue';
                     break;
                 case 310:
-                    status.text = '적립취소';
-                    status.color = 'green';
+                    status.color = 'red';
                     break;
             }
 
             list += `
-
-              `;
+                    
+                    `;
         });
+        document.querySelector('.list-wrap.type6').classList.remove('type6-1', 'type6-3');
+        document.querySelector('.list-wrap.type6').classList.add(checkStatus === 200 ? 'type6-1' : 'type6-3');
         $('.list-wrap.type6').append(list);
-
-        historyPointEvent();
     }
 </script>
