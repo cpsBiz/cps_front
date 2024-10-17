@@ -337,20 +337,20 @@
     const item = giftListData[itemIndex];
 
     const list = `
-                <div class="img-box" style="background-image: url(/view/images/test/스타벅스상품.png);"></div>
-                <div class="text-box">
-                  <div class="title-box">
-                    <div class="logo-box">
-                      <div class="logo" style="background-image: url(/view/images/test/스타벅스로고.png);"></div>
-                      <p class="logo-title">스타벅스</p>
+                  <div class="img-box" style="background-image: url(/view/images/test/스타벅스상품.png);"></div>
+                  <div class="text-box">
+                    <div class="title-box">
+                      <div class="logo-box">
+                        <div class="logo" style="background-image: url(/view/images/test/스타벅스로고.png);"></div>
+                        <p class="logo-title">${item.brandName}</p>
+                      </div>
+                      <p class="title">${item.productName}</p>
                     </div>
-                    <p class="title">${item.productName}</p>
+                    <div class="info-box">
+                      <p class="date">지급예정 (2024.10.15)</p>
+                    </div>
                   </div>
-                  <div class="info-box">
-                    <p class="date">지급예정 (2024.10.15)</p>
-                  </div>
-                </div>
-              `;
+                `;
 
     // 화면에 당첨 상품 표시
     $('.goods-box').empty();
