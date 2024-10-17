@@ -102,27 +102,6 @@ $months = getLastYearMonths();
                         <a href="/view/history/gifticon-detail.php"></a>
                     </div>
                 </div>
-                <!-- 기프티콘 지급예정 -->
-                <div class="list-wrap type6 type6-2">
-                    <div class="list list1">
-                        <div class="img-box" style="background-image: url(/view/images/test/스타벅스상품.png);"></div>
-                        <div class="text-box">
-                            <div class="title-box">
-                                <div class="logo-box">
-                                    <div class="logo" style="background-image: url(/view/images/test/스타벅스로고.png);">
-                                    </div>
-                                    <p class="logo-title">스타벅스</p>
-                                </div>
-                                <p class="title">아이스 카페 아메리카노 T</p>
-                            </div>
-                            <div class="info-box">
-                                <p class="date date1">당첨일자 (2024.08.15)</p>
-                                <p class="date date2">유효기간 (2024.10.15)</p>
-                            </div>
-                        </div>
-                        <a href="/view/history/gifticon-detail.php"></a>
-                    </div>
-                </div>
                 <!-- 기프티콘 사용만료 -->
                 <div class="list-wrap type6 type6-3">
                     <div class="list list1">
@@ -206,8 +185,9 @@ $months = getLastYearMonths();
         //getGifticonList(checkStatus, checkDate);
     }
 
-    // 회원 적립금 리스트 조회
+    // 기프티콘 리스트 조회
     function getGifticonList(status, date) {
+        return console.log('기프티콘 리스트 조회')
         try {
             const userId = "userId11";
             const affliateId = "affliateId";
@@ -240,7 +220,7 @@ $months = getLastYearMonths();
         }
     }
 
-    // 회원 적립금 리스트 렌더링
+    // 기프티콘 리스트 렌더링
     function renderGifticonList(data) {
         console.log(data);
 

@@ -20,7 +20,7 @@
       background-image: url(../images/icon/heart-on_hana.png);
     }
   }
-  
+
   .ico-check {
     &.on {
       background-image: url(../images/icon/check-on_hana.png);
@@ -114,7 +114,7 @@
   font-size: 12px;
 
   &::before {
-    content: "";
+    content: '';
     display: block;
     position: absolute;
     width: 0;
@@ -140,15 +140,15 @@
     &.top {
       transform: rotate(0deg);
     }
-  
+
     &.right {
       transform: rotate(90deg);
     }
-  
+
     &.bottom {
       transform: rotate(180deg);
     }
-  
+
     &.left {
       transform: rotate(270deg);
     }
@@ -162,7 +162,7 @@
     &.right {
       transform: rotate(0deg);
     }
-  
+
     &.bottom {
       transform: rotate(90deg);
     }
@@ -179,7 +179,7 @@
     height: 20px;
     background-image: url(../images/icon/close-type1.png);
   }
-  
+
   &.type2 {
     width: 14px;
     height: 14px;
@@ -269,7 +269,7 @@
     justify-content: center;
     height: 100%;
     width: 20%;
-  
+
     span {
       @include preRegular();
       position: relative;
@@ -277,9 +277,9 @@
       color: #444;
       display: block;
       padding-top: 23px;
-  
+
       &::before {
-        content: "";
+        content: '';
         display: block;
         position: absolute;
         width: 20px;
@@ -292,62 +292,62 @@
         background-size: contain;
       }
     }
-  
+
     .ico-cart {
       &::before {
         background-image: url(../images/icon/cart.png);
       }
     }
-  
+
     .ico-save {
       &::before {
         background-image: url(../images/icon/save.png);
       }
     }
-  
+
     .ico-trend {
       &::before {
         background-image: url(../images/icon/trend.png);
       }
     }
-  
+
     .ico-delivery {
       &::before {
         background-image: url(../images/icon/delivery.png);
       }
     }
-  
+
     .ico-breakDown {
       &::before {
         background-image: url(../images/icon/breakDown.png);
       }
     }
-  
+
     &.on {
       .ico-cart {
         &::before {
           background-image: url(../images/icon/cart-on.png);
         }
       }
-    
+
       .ico-save {
         &::before {
           background-image: url(../images/icon/save-on.png);
         }
       }
-    
+
       .ico-trend {
         &::before {
           background-image: url(../images/icon/trend-on.png);
         }
       }
-    
+
       .ico-delivery {
         &::before {
           background-image: url(../images/icon/delivery-on.png);
         }
       }
-    
+
       .ico-breakDown {
         &::before {
           background-image: url(../images/icon/breakDown-on.png);
@@ -375,7 +375,7 @@
 
     .ico-arrow {
       @include ico-arrow-type1-bottom();
-      transition: .3s;
+      transition: 0.3s;
     }
   }
 
@@ -385,7 +385,7 @@
       height: 0;
     }
   }
-  
+
   &.on {
     .first-list {
       .ico-arrow {
@@ -395,7 +395,7 @@
 
     .list-wrap {
       &.type3 {
-        transition: .3s;
+        transition: 0.3s;
       }
     }
   }
@@ -479,7 +479,7 @@
         .title {
           @include preBold();
           font-size: 16px;
-          color: #000; 
+          color: #000;
           align-items: flex-start;
           margin-bottom: 14px;
           line-height: 20px;
@@ -510,7 +510,7 @@
               &::before,
               &::after {
                 @include image-set();
-                content: "";
+                content: '';
                 position: absolute;
                 display: block;
                 top: 50%;
@@ -540,7 +540,7 @@
             .logo {
               @include image-set();
               @include text-hide();
-              content: "";
+              content: '';
               position: absolute;
               display: block;
               top: 50%;
@@ -665,7 +665,7 @@
             overflow: hidden;
             text-overflow: ellipsis;
             max-width: 192px;
-            white-space:nowrap;
+            white-space: nowrap;
           }
 
           &.text2 {
@@ -703,7 +703,7 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        
+
         .date {
           @include preMedium();
           display: block;
@@ -751,7 +751,7 @@
 
           &::before {
             @include preBold();
-            content: "Q";
+            content: 'Q';
             display: block;
             position: absolute;
             top: -3px;
@@ -762,14 +762,14 @@
 
         .ico-arrow {
           @include ico-arrow-type1-bottom();
-          transition: .3s;
+          transition: 0.3s;
         }
       }
 
       > .bottom {
         height: 0;
         overflow: hidden;
-        transition: .3s;
+        transition: 0.3s;
 
         > div {
           overflow: hidden;
@@ -808,7 +808,7 @@
 
       &::before {
         @include image-set();
-        content: "";
+        content: '';
         position: absolute;
         display: block;
         width: 14px;
@@ -826,13 +826,13 @@
         height: 42px;
         border-radius: 14px;
       }
-  
+
       .title {
-       @include preSemiBold();
-       font-size: 14px;
-       color: #000 
+        @include preSemiBold();
+        font-size: 14px;
+        color: #000;
       }
-  
+
       .candy-info {
         @include preRegular();
         display: block;
@@ -842,10 +842,10 @@
         padding-left: 16px;
         line-height: 15px;
         margin-top: 3px;
-  
+
         &::before {
           @include image-set();
-          content: "";
+          content: '';
           display: block;
           position: absolute;
           width: 14px;
@@ -885,13 +885,13 @@
               position: relative;
               font-size: 11px;
               color: #777;
-              
+
               p {
                 @include preRegular();
                 overflow: hidden;
                 text-overflow: ellipsis;
                 max-width: 192px;
-                white-space:nowrap;
+                white-space: nowrap;
                 line-height: 13px;
               }
 
@@ -930,7 +930,7 @@
 
             &::before {
               @include image-set();
-              content: "";
+              content: '';
               position: absolute;
               display: block;
               width: 20px;
@@ -1078,7 +1078,7 @@
     &.type6-2 {
       .list {
         .img-box {
-          opacity: .5;
+          opacity: 0.5;
         }
       }
     }
@@ -1086,9 +1086,9 @@
     &.type6-3 {
       .list {
         .img-box {
-          opacity: .5;
+          opacity: 0.5;
         }
-  
+
         .text-box {
           .title-box {
             .title {
@@ -1173,7 +1173,7 @@
 
         &::before {
           @include image-set();
-          content: "";
+          content: '';
           display: block;
           position: absolute;
           width: 20px;
@@ -1193,7 +1193,7 @@
 
   &.on {
     .tool-tip {
-      display: block
+      display: block;
     }
   }
 
@@ -1227,10 +1227,12 @@
       color: #777;
       margin-bottom: 7px;
 
-      &:last-of-type {margin-bottom: 0;}
+      &:last-of-type {
+        margin-bottom: 0;
+      }
 
       &::before {
-        content: "";
+        content: '';
         display: block;
         position: absolute;
         left: 0;
@@ -1273,7 +1275,7 @@
     &::before,
     &::after {
       @include image-set();
-      content: "";
+      content: '';
       position: absolute;
       display: block;
       top: 50%;
@@ -1370,13 +1372,13 @@
           background-image: url(../images/icon/history-point-on.png);
         }
       }
-  
+
       &.candy {
         .icon {
           background-image: url(../images/icon/history-candy-on.png);
         }
       }
-  
+
       &.gift {
         .icon {
           background-image: url(../images/icon/history-gift-on.png);
@@ -1508,16 +1510,15 @@
   &.type3 {
     .goods-info-box {
       .goods-img {
-        opacity: .5;
+        opacity: 0.5;
       }
-  
+
       .logo-box {
         .logo {
-          opacity: .5;
+          opacity: 0.5;
         }
-  
       }
-  
+
       .title {
         color: #777;
       }
@@ -1527,7 +1528,7 @@
       position: relative;
 
       .barcode {
-        opacity: .5;
+        opacity: 0.5;
       }
 
       .state {
@@ -1539,7 +1540,7 @@
         top: 49px;
         left: 50%;
         transform: translateX(-50%);
-        
+
         &.blue {
           background: #f6f9fe;
           color: #576585;
@@ -1555,13 +1556,12 @@
 }
 
 .roulette-wrap {
-
   .roulette-box {
     position: relative;
     width: 320px;
     height: 320px;
     margin: 0 auto;
-  
+
     .roulette {
       position: absolute;
       width: 100%;
@@ -1570,12 +1570,12 @@
       left: 50%;
       transform: translate(-50%, -50%);
     }
-  
+
     .bg-roulette {
       @include image-set();
       background-image: url(../images/icon/bg-roulette.png);
     }
-  
+
     .item-roulette {
       .item {
         @include image-set();
@@ -1612,19 +1612,10 @@
         }
       }
     }
-  
+
     .fix-roulette {
       @include image-set();
       background-image: url(../images/icon/fix-roulette.png);
-    }
-
-    // 제거
-    &:hover {
-      .bg-roulette,
-      .item-roulette {
-        transition-duration: 3.7s;
-        transform: translate(-50%, -50%) rotate(3000deg);
-      }
     }
   }
 }
@@ -1664,7 +1655,7 @@
 
     .ico-arrow {
       @include ico-arrow-type1-bottom();
-      transition: .3s;
+      transition: 0.3s;
     }
   }
 
@@ -1683,12 +1674,12 @@
     .value {
       @include preMedium();
       font-size: 14px;
-      color: #777
+      color: #777;
     }
 
     .ico-arrow {
       @include ico-arrow-type2-bottom();
-      transition: .3s;
+      transition: 0.3s;
     }
   }
 }
@@ -1700,7 +1691,7 @@
   position: fixed;
   left: 0;
   top: 0;
-  background: rgba(0, 0, 0, .7);
+  background: rgba(0, 0, 0, 0.7);
   z-index: 99999;
 
   &.on {
@@ -1760,7 +1751,6 @@
         cursor: pointer;
         user-select: none;
 
-
         .value {
           @include preRegular();
           font-size: 16px;
@@ -1776,7 +1766,7 @@
             @include preBold();
             color: #000;
           }
-  
+
           .ico-check {
             display: block;
           }
@@ -1789,8 +1779,6 @@
 .search-wrap {
   display: block;
   width: 100%;
-
-  
 }
 
 input {
@@ -1819,7 +1807,7 @@ input[type='file'] + label {
     align-items: center;
     gap: 6px;
     margin-bottom: 10px;
-  
+
     .size {
       @include preMedium();
       font-size: 12px;
@@ -1847,7 +1835,6 @@ input[type='file'] + label {
     }
   }
 }
-
 
 input[type='text'],
 textarea {
@@ -1967,7 +1954,7 @@ input[type='checkbox']:checked + label {
   text-align: center;
   color: #fff;
   font-size: 16px;
-  transition: .3s;
+  transition: 0.3s;
 
   &.on {
     background: var(--color3);
@@ -1982,7 +1969,7 @@ input[type='checkbox']:checked + label {
   left: 0;
   top: 0;
   position: fixed;
-  background: rgba(0, 0, 0, .7);
+  background: rgba(0, 0, 0, 0.7);
   z-index: 99999;
 
   &.on {
@@ -2021,7 +2008,7 @@ input[type='checkbox']:checked + label {
         color: #fff;
         font-size: 14px;
         border-radius: 8px;
-  
+
         &.gray {
           color: #000;
           background: #ececec;
@@ -2052,24 +2039,24 @@ input[type='checkbox']:checked + label {
           height: 86px;
           border-radius: 24px;
         }
-  
+
         .text-box {
           .title-box {
             position: relative;
             margin-bottom: 54px;
-  
+
             .logo-box {
               display: flex;
               align-items: center;
               gap: 3px;
-  
+
               .logo {
                 @include image-set();
                 border-radius: 100%;
                 width: 18px;
                 height: 18px;
               }
-  
+
               .logo-title {
                 @include preMedium();
                 font-size: 13px;
@@ -2078,7 +2065,7 @@ input[type='checkbox']:checked + label {
                 line-height: unset;
               }
             }
-  
+
             .title {
               @include preSemiBold();
               position: absolute;
@@ -2092,7 +2079,7 @@ input[type='checkbox']:checked + label {
               margin-bottom: 0;
             }
           }
-  
+
           .info-box {
             .date {
               @include preRegular();
@@ -2104,7 +2091,10 @@ input[type='checkbox']:checked + label {
         }
       }
 
-      a {display: block; text-align: center;}
+      a {
+        display: block;
+        text-align: center;
+      }
 
       .ico-close {
         position: absolute;
@@ -2140,7 +2130,7 @@ input[type='checkbox']:checked + label {
         width: 70px;
         height: 70px;
         background-size: contain;
-        border-radius: 20px
+        border-radius: 20px;
       }
 
       .text {
@@ -2165,7 +2155,7 @@ input[type='checkbox']:checked + label {
       color: #000;
       line-height: 21px;
       margin-bottom: 20px;
-      
+
       span {
         display: inline-block;
         position: relative;
@@ -2174,7 +2164,7 @@ input[type='checkbox']:checked + label {
 
         &::before {
           @include image-set();
-          content: "";
+          content: '';
           display: block;
           position: absolute;
           width: 20px;
@@ -2190,7 +2180,7 @@ input[type='checkbox']:checked + label {
     .roulette-wrap {
       margin-bottom: 20px;
     }
-    
+
     .btn-box {
       .popup-btn {
         @include preRegular();
@@ -2200,7 +2190,7 @@ input[type='checkbox']:checked + label {
         color: #fff;
         font-size: 16px;
         border-radius: 12px;
-  
+
         &.gray {
           background: #c8c8c8;
         }
@@ -2242,15 +2232,15 @@ input[type='checkbox']:checked + label {
       @include preBold();
       color: #fff;
       font-size: 16px;
-      letter-spacing: -.48px;
-  
+      letter-spacing: -0.48px;
+
       span {
         @include preMedium();
         margin-top: 4px;
         display: block;
         color: #c8c8c8;
         font-size: 14px;
-        letter-spacing: -.42px;
+        letter-spacing: -0.42px;
       }
     }
   }

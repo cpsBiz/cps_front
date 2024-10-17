@@ -346,9 +346,6 @@
                       </div>
                       <p class="title">${item.productName}</p>
                     </div>
-                    <div class="info-box">
-                      <p class="date">지급예정 (2024.10.15)</p>
-                    </div>
                   </div>
                 `;
 
