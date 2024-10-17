@@ -24,54 +24,8 @@
     <!-- ic_campaignCategory 클래스는 해당 페이지를 구분하는 id 값으로 사용하는 클래스입니다. 
              다른 페이지에는 사용을 지양해주시기 바랍니다.(추후 유지보수때 css 수정 어려움) -->
     <div class="wrap ic_campaignCategory">
-        <header class="header">
-            <h1><a href="javascript:void(0);">통합카트</a></h1>
-            <div class="sideMenu">
-                <div class="name"><strong>에비블루</strong>님</div>
-                <div class="userMenu">
-                    <button type="button" class="userinfo menuMore">고객정보</button>
-                    <ul>
-                        <li><button type="button">권한정보</button></li>
-                        <li><button type="button">회원정보수정</button></li>
-                        <li><button type="button">로그아웃</button></li>
-                    </ul>
-                </div>
-            </div>
-        </header>
-        <nav class="navigation">
-            <ul class="lnb">
-                <li class="dashboard">
-                    <a href="#"><span>대시보드</span></a>
-                </li>
-                <li class="report">
-                    <a href="#"><span>리포트</span></a>
-                </li>
-                <li class="campaign on">
-                    <a href="#"><span>캠페인 관리</span></a>
-                    <ul class="on">
-                        <li><a href="#">캠페인 생성</a></li>
-                        <li><a href="#">캠페인 리스트</a></li>
-                        <li class="on"><a href="#">캠페인 카테고리</a></li>
-                    </ul>
-                </li>
-                <li class="menu">
-                    <a href="#"><span>메뉴 관리</span></a>
-                </li>
-                <li class="account">
-                    <a href="#"><span>계정 관리</span></a>
-                    <ul>
-                        <li><a href="#">회원</a></li>
-                        <li><a href="#">관리자</a></li>
-                    </ul>
-                </li>
-                <li class="customer">
-                    <a href="#"><span>고객 관리</span></a>
-                </li>
-                <li class="notice">
-                    <a href="#"><span>공지사항</span></a>
-                </li>
-            </ul>
-        </nav>
+        <? include_once $_SERVER['DOCUMENT_ROOT'] . '/admin/page/header.php'; ?>
+        <? include_once $_SERVER['DOCUMENT_ROOT'] . '/admin/page/nav.php'; ?>
         <section class="container">
             <div class="title">
                 <p>캠페인 카테고리</p>
