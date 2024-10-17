@@ -1482,6 +1482,11 @@ body.scrollNone {
   background-position: center;
   background-color: transparent;
   position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
 }
 .roulette-wrap .roulette-box .item-roulette .item.item1 {
   top: 40px;

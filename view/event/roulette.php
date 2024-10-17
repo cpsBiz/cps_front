@@ -13,6 +13,23 @@
   <script type="text/javascript" src="/admin/js/lib/jquery.easing.1.3.js"></script>
   <script type="text/javascript" src="/admin/js/lib/jquery-ui.min.js"></script>
 </head>
+<style>
+  .itemBrand {
+    font-size: 9px;
+    text-align: center;
+  }
+
+  .itemProduct {
+    font-size: 11px;
+    font-weight: bold;
+    text-align: center;
+  }
+
+  .itemImage {
+    width: 40px;
+    height: 40px;
+  }
+</style>
 
 <body>
   <div class="wrap">
@@ -43,14 +60,8 @@
       <!-- popup1 -->
       <div class="roulette-popup popup1">
         <div class="logo-box">
-          <div class="logo" style="background-image: url(/view/images/test/11번가.png);"></div>
-          <p class="text">
-            스타벅스
-            <span>
-              20개 이상부터 참여 가능<br>
-              룰렛돌리기 참여시 20개 차감
-            </span>
-          </p>
+          <div id="roulette-popup-logo" class="logo"></div>
+          <p id="roulette-popup-text" class="text"></p>
         </div>
         <p class="candy-info">내가 가진<span></span></p>
         <div class="roulette-wrap">
@@ -93,23 +104,25 @@
   // 쿠팡 막대사탕 조회
   function getMemberStick() {
     try {
-      const userId = 'dhhan';
+      const userId = 'userId11';
+      const merchantId = 'coupang';
       const affliateId = 'moneyweather';
 
       // AJAX 요청 데이터 설정
       const requestData = {
         userId,
+        merchantId,
         affliateId
       };
 
       // AJAX 요청 수행
       $.ajax({
         type: 'POST',
-        url: 'http://192.168.101.156/api/giftCoupang/coupangStick',
+        url: 'http://192.168.101.156/api/view/coupangStick',
         contentType: 'application/json',
         data: JSON.stringify(requestData),
         success: function(result) {
-          const memberStick = parseInt(result.data.cnt).toLocaleString();
+          const memberStick = parseInt(result.data.cnt - result.data.stockCnt);
           const appendStick = `${memberStick}개`;
           $('.candy-count, .candy-info span').empty();
           $('.candy-count, .candy-info span').append(appendStick);
@@ -125,28 +138,22 @@
 
   // 룰렛 브랜드 리스트 조회
   function getBrandList() {
-    return renderBrandList();
     try {
       const requestData = {
-        brandId: "string",
         affliateId: "moneyweather",
-        merchantId: "coupang",
-        apiType: "string",
-        brandType: "string",
-        brandName: "string",
-        brandLogo: "string",
-        minCnt: 6,
-        brandYn: "string"
+        brandType: "BRAND",
+        merchantId: "coupang"
       }
 
       // AJAX 요청 수행
       $.ajax({
         type: 'POST',
-        url: 'http://192.168.101.156/api/',
+        url: 'http://192.168.101.156/api/view/giftBrandList',
         contentType: 'application/json',
         data: JSON.stringify(requestData),
         success: function(result) {
-          renderBrandList(result);
+          const data = result.datas;
+          renderBrandList(data);
         },
         error: function(request, status, error) {
           console.error(`Error: ${error}`);
@@ -158,15 +165,15 @@
   }
 
   // 룰렛 브랜드 리스트 렌더링
-  function renderBrandList(data = [1, 2, 3, 4, 5]) {
+  function renderBrandList(data) {
     let list = '';
-
     data.forEach(item => {
+      const itemStr = encodeURIComponent(JSON.stringify(item));
       list += `
               <div class="list list1">
-                <div class="logo" style="background-image: url(/view/images/test/홈플러스.png)">스타벅스</div>
-                <p class="title">스타벅스<span class="candy-info">20개</span></p>
-                <a href="javascript:void(0)" onclick="getGifticonList()"></a>
+                <div class="logo" style="background-image: url(${item.brandLogo})">${item.brandName}</div>
+                <p class="title">${item.brandName}<span class="candy-info">${item.minCnt}개</span></p>
+                <a href="javascript:void(0)" onclick="getGifticonList('${item.brandId}', '${itemStr}')"></a>
               </div>
               `;
     })
@@ -174,19 +181,28 @@
     $('.list-wrap.type4').append(list);
   }
 
+  let giftListData = [];
+  let selectedBrandLogo = '';
   // 룰렛 기프티콘 리스트 조회
-  function getGifticonList() {
-    return renderGifticonList();
+  function getGifticonList(brandId, brandData) {
+
+    const requestData = {
+      brandId,
+      affliateId: "moneyweather",
+      merchantId: "coupang"
+    }
 
     try {
       // AJAX 요청 수행
       $.ajax({
         type: 'POST',
-        url: 'http://192.168.101.156/api/',
+        url: 'http://192.168.101.156/api/view/giftProductList',
         contentType: 'application/json',
         data: JSON.stringify(requestData),
         success: function(result) {
-          renderGifticonList(result);
+          const data = result.datas;
+          giftListData = data;
+          renderGifticonList(giftListData, brandData);
         },
         error: function(request, status, error) {
           console.error(`Error: ${error}`);
@@ -197,66 +213,52 @@
     }
   }
 
-  const giftListData = [{
-    affliateId: 'coupang',
-    brandId: 'BR00002',
-    brandName: 'GS25',
-    productId: 'G00000182491',
-    productName: '콘칩'
-  }, {
-    affliateId: 'coupang',
-    brandId: 'BR00002',
-    brandName: 'GS25',
-    productId: 'G00000182518',
-    productName: '초콜릿'
-  }, {
-    affliateId: 'coupang',
-    brandId: 'BR00002',
-    brandName: 'GS25',
-    productId: 'G00000182520',
-    productName: '메로나'
-  }, {
-    affliateId: 'coupang',
-    brandId: 'BR00002',
-    brandName: 'GS25',
-    productId: 'G00000190659',
-    productName: '커피'
-  }, {
-    affliateId: 'coupang',
-    brandId: 'BR00002',
-    brandName: 'GS25',
-    productId: 'G00000190665',
-    productName: '사탕'
-  }, {
-    affliateId: 'coupang',
-    brandId: 'BR00002',
-    brandName: 'GS25',
-    productId: 'G00000190687',
-    productName: '젤리'
-  }];
-
   // 룰렛 기프티콘 리스트 렌더링
-  function renderGifticonList(data) {
+  function renderGifticonList(data, brandData) {
+    // 브랜드 데이터
+    const brandDataObject = JSON.parse(decodeURIComponent(brandData));
+
+    // 룰렛 팝업 로고 초기화 후 렌더링
+    selectedBrandLogo = brandDataObject.brandLogo;
+    $('#roulette-popup-logo').removeAttr('style');
+    $('#roulette-popup-logo').css('background-image', `url(${selectedBrandLogo})`);
+
+    // 룰렛 팝업 텍스트 초기화 후 렌더링
+    const minCnt = brandDataObject.minCnt;
+    const roulettePopUpText = `
+                                ${brandDataObject.brandName}
+                                <span>
+                                  ${minCnt}개 이상부터 참여 가능<br>
+                                  룰렛돌리기 참여시 ${minCnt}개 차감
+                                </span>
+                              `;
+    $('#roulette-popup-text').empty();
+    $('#roulette-popup-text').append(roulettePopUpText);
+
+    // 룰렛 기프티콘 리스트 초기화 후 렌더링
     let list = '';
     let i = 1;
-    giftListData.forEach(item => {
+    data.forEach(item => {
       list += `
-              <div class="item item${i}" style="width: 62px; height: 80px; background-image: url();">${item.productName}</div>
+              <div class="item item${i}" style="width: 62px; height: 80px;">
+                <p class="itemBrand">${item.brandName}</p>
+                <p class="itemProduct">${item.productName}</p>
+                <img class="itemImage" src="${item.productImageS}"/>
+              </div>
               `;
       i++;
     });
 
-    //룰렛 초기화 후 렌더링
     document.querySelector('.roulette.item-roulette').style = '';
     document.querySelector('.roulette.bg-roulette').style = '';
     $('.roulette.item-roulette').empty();
     $('.roulette.item-roulette').append(list);
 
-    const stickCnt = 20;
-    //document.querySelector('.candy-info > span').textContent.replace('개', '');
+    // 룰렛 버튼 초기화 후 렌더링
+    const stickCnt = document.querySelector('.candy-info > span').textContent.replace('개', '');
     const button = `
-                  <button class="popup-btn ${stickCnt >= 20 ? '' : 'gray'}" type="button" onclick="getRoulette()" ${stickCnt < 20 ? 'disabled' : ''}>
-                  ${stickCnt >= 20 ? '룰렛 돌리기' : '막대사탕 20개부터 참여가능'}
+                  <button class="popup-btn ${stickCnt >= minCnt ? '' : 'gray'}" type="button" onclick="getRoulette('${brandDataObject.brandId}', ${minCnt})" ${stickCnt < minCnt ? 'disabled' : ''}>
+                  ${stickCnt >= minCnt ? '룰렛 돌리기' : `막대사탕 ${minCnt}개부터 참여가능`}
                   </button>
                   `;
     $('#rouletteBtn').empty();
@@ -267,15 +269,20 @@
 
 
   // 서버에서 당첨된 아이템을 받아오는 함수
-  function getRoulette() {
+  let checkSpin = false;
+
+  function getRoulette(brandId, cnt) {
     try {
+      if (checkSpin) return;
+
+      checkSpin = true;
       // AJAX 요청 데이터 설정
       const requestData = {
         userId: "userId11",
         merchantId: "coupang",
         affliateId: "moneyweather",
-        brandId: "BR00002",
-        cnt: 20
+        brandId,
+        cnt
       };
 
       // AJAX 요청 수행
@@ -337,11 +344,11 @@
     const item = giftListData[itemIndex];
 
     const list = `
-                  <div class="img-box" style="background-image: url(/view/images/test/스타벅스상품.png);"></div>
+                  <div class="img-box" style="background-image: url(${item.productImageS});"></div>
                   <div class="text-box">
                     <div class="title-box">
                       <div class="logo-box">
-                        <div class="logo" style="background-image: url(/view/images/test/스타벅스로고.png);"></div>
+                        <div class="logo" style="background-image: url(${selectedBrandLogo});"></div>
                         <p class="logo-title">${item.brandName}</p>
                       </div>
                       <p class="title">${item.productName}</p>
@@ -357,5 +364,6 @@
     getMemberStick();
     popupClose('#popup-wrap', '.popup1');
     popupOn('#popup-wrap', '.popup2');
+    checkSpin = false;
   }
 </script>

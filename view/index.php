@@ -286,7 +286,7 @@ $affliateId = $_REQUEST['affliateId'];
             // AJAX 요청 수행
             $.ajax({
                 type: 'POST',
-                url: 'http://192.168.101.156/api/giftCoupang/coupangStick',
+                url: 'http://192.168.101.156/api/view/coupangStick',
                 contentType: 'application/json',
                 data: JSON.stringify(requestData),
                 success: function(result) {
