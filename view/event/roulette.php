@@ -210,6 +210,7 @@
 
     //룰렛 초기화 후 렌더링
     document.querySelector('.roulette.item-roulette').style = '';
+    document.querySelector('.roulette.bg-roulette').style = '';
     $('.roulette.item-roulette').empty();
     $('.roulette.item-roulette').append(list);
 
@@ -267,6 +268,7 @@
     const totalItems = 6; // 아이템 개수
     const degreePerItem = 360 / totalItems; // 각 아이템이 차지하는 각도
     const roulette = document.querySelector('.roulette-wrap .item-roulette');
+    const rouletteBg = document.querySelector('.roulette-wrap .bg-roulette');
 
     // 당첨 아이템이 무엇인지 매핑
     const itemIndex = {
@@ -285,6 +287,10 @@
     // 룰렛 회전
     roulette.style.transitionDuration = '3.7s'; // 회전 시간 설정
     roulette.style.transform = `translate(-50%, -50%) rotate(${totalRotation}deg)`; // 룰렛 회전
+    // 룰렛 배경 회전
+    rouletteBg.style.transitionDuration = '3.7s'; // 회전 시간 설정
+    rouletteBg.style.transform = `translate(-50%, -50%) rotate(${totalRotation}deg)`; // 룰렛 회전
+
 
     // transitionend 이벤트 리스너 추가 - 룰렛이 멈추면 실행
     roulette.addEventListener('transitionend', function handleTransitionEnd() {
