@@ -83,7 +83,7 @@ $months = getLastYearMonths();
         <!-- 기프티콘 사용가능 -->
         <div class="list-wrap type6 type6-1">
           <div class="list list1">
-            <div class="img-box" style="background-image: url(./images/test/스타벅스\ 상품.png);"></div>
+            <div class="img-box" style="background-image: url(./images/test/스타벅스상품.png);"></div>
             <div class="text-box">
               <div class="title-box">
                 <div class="logo-box">
@@ -103,7 +103,7 @@ $months = getLastYearMonths();
         <!-- 기프티콘 지급예정 -->
         <div class="list-wrap type6 type6-2">
           <div class="list list1">
-            <div class="img-box" style="background-image: url(./images/test/스타벅스\ 상품.png);"></div>
+            <div class="img-box" style="background-image: url(./images/test/스타벅스상품.png);"></div>
             <div class="text-box">
               <div class="title-box">
                 <div class="logo-box">
@@ -123,7 +123,7 @@ $months = getLastYearMonths();
         <!-- 기프티콘 사용만료 -->
         <div class="list-wrap type6 type6-3">
           <div class="list list1">
-            <div class="img-box" style="background-image: url(./images/test/스타벅스\ 상품.png);"></div>
+            <div class="img-box" style="background-image: url(./images/test/스타벅스상품.png);"></div>
             <div class="text-box">
               <div class="title-box">
                 <div class="logo-box">

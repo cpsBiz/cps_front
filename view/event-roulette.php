@@ -61,9 +61,7 @@
           </div>
         </div>
         <div class="box">
-          <div class="btn-box">
-            <button class="popup-btn gray" type="button" onclick="getRoulette()">막대사탕 20개부터 참여가능</button>
-          </div>
+          <div id="rouletteBtn" class="btn-box"></div>
         </div>
         <button class="ico-close type1" type="button" onclick="popupClose('#popup-wrap', '.popup1')">닫기</button>
       </div>
@@ -127,8 +125,33 @@
   // 룰렛 브랜드 리스트 조회
   function getBrandList() {
     console.log('룰렛 브랜드 리스트 조회');
+    return renderBrandList();
     try {
-      renderBrandList();
+      const requestData = {
+        brandId: "string",
+        affliateId: "moneyweather",
+        merchantId: "coupang",
+        apiType: "string",
+        brandType: "string",
+        brandName: "string",
+        brandLogo: "string",
+        minCnt: 6,
+        brandYn: "string"
+      }
+
+      // AJAX 요청 수행
+      $.ajax({
+        type: 'POST',
+        url: 'http://192.168.101.156/api/',
+        contentType: 'application/json',
+        data: JSON.stringify(requestData),
+        success: function(result) {
+          renderBrandList(result);
+        },
+        error: function(request, status, error) {
+          console.error(`Error: ${error}`);
+        }
+      });
     } catch (error) {
       alert(error);
     }
@@ -155,8 +178,22 @@
   // 룰렛 기프티콘 리스트 조회
   function getGifticonList() {
     console.log('룰렛 기프티콘 리스트 조회');
+    return renderGifticonList();
+
     try {
-      renderGifticonList();
+      // AJAX 요청 수행
+      $.ajax({
+        type: 'POST',
+        url: 'http://192.168.101.156/api/',
+        contentType: 'application/json',
+        data: JSON.stringify(requestData),
+        success: function(result) {
+          renderGifticonList(result);
+        },
+        error: function(request, status, error) {
+          console.error(`Error: ${error}`);
+        }
+      });
     } catch (error) {
       alert(error)
     }
@@ -176,14 +213,15 @@
     $('.roulette.item-roulette').empty();
     $('.roulette.item-roulette').append(list);
 
-    const stickCnt = document.querySelector('.candy-info > span').textContent.replace('개', '');
+    const stickCnt = 20;
+    //document.querySelector('.candy-info > span').textContent.replace('개', '');
     const button = `
                   <button class="popup-btn ${stickCnt >= 20 ? '' : 'gray'}" type="button" onclick="getRoulette()" ${stickCnt < 20 ? 'disabled' : ''}>
                   ${stickCnt >= 20 ? '룰렛 돌리기' : '막대사탕 20개부터 참여가능'}
                   </button>
                   `;
-    $('.btn-box').empty();
-    $('.btn-box').append(button);
+    $('#rouletteBtn').empty();
+    $('#rouletteBtn').append(button);
 
     popupOn('#popup-wrap', '.popup1');
   }
@@ -192,8 +230,30 @@
   function getRoulette() {
     try {
       console.log('룰렛 돌리기');
-      renderRouletteWin();
 
+      // AJAX 요청 데이터 설정
+      const requestData = {
+        userId: "userId11",
+        merchantId: "coupang",
+        affliateId: "moneyweather",
+        brandId: "BR00002",
+        cnt: 20
+      }
+
+      // AJAX 요청 수행
+      $.ajax({
+        type: 'POST',
+        url: 'http://192.168.101.156/api/giftCoupang/coupangGift',
+        contentType: 'application/json',
+        data: JSON.stringify(requestData),
+        success: function(result) {
+          console.log(result);
+          renderRouletteWin();
+        },
+        error: function(request, status, error) {
+          console.error(`Error: ${error}`);
+        }
+      });
     } catch (error) {
       alert(error);
     }
@@ -203,14 +263,14 @@
   function renderRouletteWin() {
     console.log('룰렛 당첨 팝업 렌더링');
     const list = `
-                  <div class="img-box" style="background-image: url(./images/test/스타벅스\ 상품.png);"></div>
+                  <div class="img-box" style="background-image: url(./images/test/스타벅스상품.png);"></div>
                   <div class="text-box">
                     <div class="title-box">
                       <div class="logo-box">
                         <div class="logo" style="background-image: url(./images/test/스타벅스로고.png);"></div>
                         <p class="logo-title">스타벅스</p>
                       </div>
-                      <p class="title">아이스 카페 아메리카노 T아이스 카페 아메리카노 T</p>
+                      <p class="title">아이스 카페 아메리카노 T</p>
                     </div>
                     <div class="info-box">
                       <p class="date">지급예정 (2024.10.15)</p>

@@ -84,44 +84,15 @@ $months = getLastYearMonths();
         </div>
         <div class="tab-box-wrap">
           <div class="tab-box">
-            <div class="tab tab1 on"><a href="javascript:checkFilter(310)">확정</a></div>
+            <div class="tab tab1 on"><a href="javascript:checkFilter(200)">확정</a></div>
             <div class="tab tab2"><a href="javascript:checkFilter(100)">예정</a></div>
             <div class="tab tab3"><a href="javascript:checkFilter(0)">사용/취소</a></div>
           </div>
         </div>
         <!-- 리스트 있을 경우 -->
-        <div class="list-wrap type5">
+        <div class="list-wrap type5 type5-1">
           <!-- 막대사탕 적립 type5에 type5-1추가필요 -->
-          <div class="list list1">
-            <div class="text-box text-box1">
-              <div class="text text1">
-                <p>곡물그대로21 크리스피롤 1.5kg 오리지널곡물그대로21 크리스피롤 1.5kg 오리지널</p>
-                <span>외 1건</span>
-              </div>
-              <p class="text text2">21,230원</p>
-            </div>
-            <div class="text-box text-box2">
-              <p class="date">24.09.03</p>
-              <p class="state">2개</p>
-            </div>
-          </div>
           <!-- 막대사탕 사용/취소 type5에 type5-2추가필요 -->
-          <div class="list list2">
-            <div class="text-box text-box1">
-              <div class="text text1">
-                <p>곡물그대로21 크리스피롤 1.5kg 오리지널곡물그대로21 크리스피롤 1.5kg 오리지널</p>
-                <span>외 1건</span>
-              </div>
-              <p class="text text2">21,230원</p>
-            </div>
-            <div class="text-box text-box2">
-              <p class="date">24.09.03</p>
-              <div class="state-box">
-                <p class="state">2개</p>
-                <p class="state-info red">취소</p>
-              </div>
-            </div>
-          </div>
         </div>
         <!-- 리스트 없을 경우 -->
         <div class="list-none-box">
@@ -206,11 +177,10 @@ $months = getLastYearMonths();
     }
   }
 
-  let checkStatus = 0;
+  let checkStatus = 200;
   let checkDate = '<?= $months[0] ?>';
 
   function checkFilter(status, date) {
-    console.log(status);
     if (status !== '') checkStatus = status;
     if (date) checkDate = date;
 
@@ -258,7 +228,7 @@ $months = getLastYearMonths();
     console.log(data);
 
     $('.list-none-box').css('display', 'none');
-    //$('.list-wrap.type5').empty();
+    $('.list-wrap.type5').empty();
 
     const datas = data.datas;
     if (!datas || datas.length === 0) {
@@ -288,11 +258,11 @@ $months = getLastYearMonths();
           status.text = '예정';
           status.color = 'red';
           break;
-        case 210:
+        case 200:
           status.text = '확정';
           status.color = 'blue';
           break;
-        case 310:
+        case 0:
           status.text = '취소';
           status.color = 'red';
           break;
@@ -323,7 +293,7 @@ $months = getLastYearMonths();
               `;
     });
     document.querySelector('.list-wrap.type5').classList.remove('type5-1', 'type5-2');
-    document.querySelector('.list-wrap.type5').classList.add(checkStatus === 310 ? 'type5-2' : 'type5-1');
+    document.querySelector('.list-wrap.type5').classList.add(checkStatus === 200 ? 'type5-1' : 'type5-2');
     $('.list-wrap.type5').append(list);
 
     historyPointEvent();

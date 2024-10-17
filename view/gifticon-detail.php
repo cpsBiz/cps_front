@@ -25,7 +25,7 @@
         <!-- 기프티콘 상세 사용가능 -->
         <div class="giftcon-info-wrap" style="margin-bottom: 20px;">
           <div class="goods-info-box">
-            <div class="goods-img" style="background-image: url(./images/test/스타벅스\ 상품.png);"></div>
+            <div class="goods-img" style="background-image: url(./images/test/스타벅스상품.png);"></div>
             <div class="logo-box">
               <div class="logo" style="background-image: url(./images/test/스타벅스로고.png);"></div>
               <p class="logo-title">스타벅스</p>
@@ -68,7 +68,7 @@
         <!-- 기프티콘 상세 지급예정 -->
         <div class="giftcon-info-wrap type2" style="margin-bottom: 20px;">
           <div class="goods-info-box">
-            <div class="goods-img" style="background-image: url(./images/test/스타벅스\ 상품.png);"></div>
+            <div class="goods-img" style="background-image: url(./images/test/스타벅스상품.png);"></div>
             <div class="logo-box">
               <div class="logo" style="background-image: url(./images/test/스타벅스로고.png);"></div>
               <p class="logo-title">스타벅스</p>
@@ -108,7 +108,7 @@
         <!-- 기프티콘 상세 사용완료 -->
         <div class="giftcon-info-wrap type3">
           <div class="goods-info-box">
-            <div class="goods-img" style="background-image: url(./images/test/스타벅스\ 상품.png);"></div>
+            <div class="goods-img" style="background-image: url(./images/test/스타벅스상품.png);"></div>
             <div class="logo-box">
               <div class="logo" style="background-image: url(./images/test/스타벅스로고.png);"></div>
               <p class="logo-title">스타벅스</p>
@@ -152,7 +152,7 @@
         <!-- 기프티콘 상세 사용만료 -->
         <div class="giftcon-info-wrap type3">
           <div class="goods-info-box">
-            <div class="goods-img" style="background-image: url(./images/test/스타벅스\ 상품.png);"></div>
+            <div class="goods-img" style="background-image: url(./images/test/스타벅스상품.png);"></div>
             <div class="logo-box">
               <div class="logo" style="background-image: url(./images/test/스타벅스로고.png);"></div>
               <p class="logo-title">스타벅스</p>
