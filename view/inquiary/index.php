@@ -137,20 +137,7 @@
               <label for="file-1">파일선택</label>
               <p class="size">0Byte</p>
             </div>
-            <div class="file-list">
-              <!-- <div class="list list1">
-                <p class="name">abcdefg_abcdefg_1234.jpg</p>
-                <button type="button" class="ico-close type2">삭제</button>
-              </div>
-              <div class="list list2">
-                <p class="name">abcdefg_abcdefg_1234.jpg</p>
-                <button type="button" class="ico-close type2">삭제</button>
-              </div>
-              <div class="list list3">
-                <p class="name">abcdefg_abcdefg_1234.jpg</p>
-                <button type="button" class="ico-close type2">삭제</button>
-              </div> -->
-            </div>
+            <div class="file-list"></div>
           </div>
           <div class="gray-box">
             <ul>
@@ -178,7 +165,7 @@
           </li>
           <li id="ask2" class="list list2 select-ask" onclick="formBoxOn('.select-ask', '#ask2', '기타문의', '#ask-value', '.form-box', '#form-box2')">
             <p class="value">기타문의</p>
-            <div class="ico-check on"></div>
+            <div class="ico-check"></div>
           </li>
         </ul>
       </div>
@@ -191,11 +178,11 @@
         <ul class="select-cont">
           <li class="list list1">
             <p class="value">없음1</p>
-            <div class="ico-check on"></div>
+            <div class="ico-check"></div>
           </li>
           <li class="list list2">
             <p class="value">없음2</p>
-            <div class="ico-check on"></div>
+            <div class="ico-check"></div>
           </li>
         </ul>
       </div>
@@ -206,13 +193,13 @@
           <button class="ico-close type1" type="button" onclick="selectListClose('#select-btn3', '#select-wrap', '#select-list3')">닫기</button>
         </div>
         <ul class="select-cont">
-          <li class="list list1">
+          <li class="list list1 ">
             <p class="value">없음3</p>
-            <div class="ico-check on"></div>
+            <div class="ico-check"></div>
           </li>
           <li class="list list2">
             <p class="value">없음4</p>
-            <div class="ico-check on"></div>
+            <div class="ico-check"></div>
           </li>
         </ul>
       </div>
@@ -224,12 +211,20 @@
         </div>
         <ul class="select-cont">
           <li class="list list1">
-            <p class="value">달러</p>
-            <div class="ico-check on"></div>
+            <p class="value">원화</p>
+            <div class="ico-check"></div>
           </li>
           <li class="list list2">
+            <p class="value">달러</p>
+            <div class="ico-check"></div>
+          </li>
+          <li class="list list3">
             <p class="value">엔화</p>
-            <div class="ico-check on"></div>
+            <div class="ico-check"></div>
+          </li>
+          <li class="list list4">
+            <p class="value">유로</p>
+            <div class="ico-check"></div>
           </li>
         </ul>
       </div>
@@ -242,11 +237,11 @@
         <ul class="select-cont">
           <li class="list list1">
             <p class="value">카드</p>
-            <div class="ico-check on"></div>
+            <div class="ico-check"></div>
           </li>
           <li class="list list2">
             <p class="value">현금</p>
-            <div class="ico-check on"></div>
+            <div class="ico-check"></div>
           </li>
         </ul>
       </div>
