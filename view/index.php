@@ -247,7 +247,7 @@ $affliateId = $_REQUEST['affliateId'];
     const area = `
                   <p class="title">쿠팡 검색 쇼핑하고 선물 받기</p>
                   <div class="info-wrap">
-                    <a id="memberStick" class="candy type1" href="javascript:void(0)"></a>
+                    <a id="memberStick" class="candy type1" href="/view/history/stick.php"></a>
                     <div class="coupang-search-wrap">
                       <span class="logo">쿠팡</span>
                       <input type="text" placeholder="쿠팡에서 검색" disabled>
