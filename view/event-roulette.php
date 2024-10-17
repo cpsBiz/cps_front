@@ -111,6 +111,7 @@
         success: function(result) {
           const memberStick = parseInt(result.data.cnt).toLocaleString();
           const appendStick = `${memberStick}개`;
+          $('.candy-count, .candy-info span').empty();
           $('.candy-count, .candy-info span').append(appendStick);
         },
         error: function(request, status, error) {
@@ -124,7 +125,6 @@
 
   // 룰렛 브랜드 리스트 조회
   function getBrandList() {
-    console.log('룰렛 브랜드 리스트 조회');
     return renderBrandList();
     try {
       const requestData = {
@@ -159,7 +159,6 @@
 
   // 룰렛 브랜드 리스트 렌더링
   function renderBrandList(data = [1, 2, 3, 4, 5]) {
-    console.log('룰렛 브랜드 리스트 렌더링');
     let list = '';
 
     data.forEach(item => {
@@ -177,7 +176,6 @@
 
   // 룰렛 기프티콘 리스트 조회
   function getGifticonList() {
-    console.log('룰렛 기프티콘 리스트 조회');
     return renderGifticonList();
 
     try {
@@ -205,11 +203,13 @@
     let i = 1;
     data.forEach(item => {
       list += `
-              <div class="item item${i}" style="width: 62px; height: 80px; background-image: url(./images/test/roulette_text.png);"></div>
+              <div class="item item${i}" style="width: 62px; height: 80px; background-image: url(./images/test/roulette_text.png);">${i}</div>
               `;
       i++;
     });
 
+    //룰렛 초기화 후 렌더링
+    document.querySelector('.roulette.item-roulette').style = '';
     $('.roulette.item-roulette').empty();
     $('.roulette.item-roulette').append(list);
 
@@ -226,11 +226,10 @@
     popupOn('#popup-wrap', '.popup1');
   }
 
-  // 룰렛 돌리기
+
+  // 서버에서 당첨된 아이템을 받아오는 함수
   function getRoulette() {
     try {
-      console.log('룰렛 돌리기');
-
       // AJAX 요청 데이터 설정
       const requestData = {
         userId: "userId11",
@@ -238,7 +237,7 @@
         affliateId: "moneyweather",
         brandId: "BR00002",
         cnt: 20
-      }
+      };
 
       // AJAX 요청 수행
       $.ajax({
@@ -248,7 +247,11 @@
         data: JSON.stringify(requestData),
         success: function(result) {
           console.log(result);
-          renderRouletteWin();
+          // API 결과에서 당첨 아이템을 받아옴
+          const winningItem = result.winningItem || 'item6'; // API에서 받은 아이템, 없으면 'item6'으로 가정
+
+          // 룰렛 돌리기
+          spin(winningItem, result);
         },
         error: function(request, status, error) {
           console.error(`Error: ${error}`);
@@ -259,26 +262,64 @@
     }
   }
 
+  // 룰렛 회전 함수 (당첨 아이템에 따라 멈추도록)
+  function spin(winningItem, result) {
+    const totalItems = 6; // 아이템 개수
+    const degreePerItem = 360 / totalItems; // 각 아이템이 차지하는 각도
+    const roulette = document.querySelector('.roulette-wrap .item-roulette');
+
+    // 당첨 아이템이 무엇인지 매핑
+    const itemIndex = {
+      'item1': 0,
+      'item2': 1,
+      'item3': 2,
+      'item4': 3,
+      'item5': 4,
+      'item6': 5
+    } [winningItem];
+
+    // 당첨된 아이템이 맨 위로 오도록 각도를 계산
+    const winningDegree = itemIndex * degreePerItem; // 당첨된 아이템에 해당하는 각도
+    const totalRotation = 360 * 5 - winningDegree; // 여러 바퀴 돌고 당첨 아이템에서 멈춤
+
+    // 룰렛 회전
+    roulette.style.transitionDuration = '3.7s'; // 회전 시간 설정
+    roulette.style.transform = `translate(-50%, -50%) rotate(${totalRotation}deg)`; // 룰렛 회전
+
+    // transitionend 이벤트 리스너 추가 - 룰렛이 멈추면 실행
+    roulette.addEventListener('transitionend', function handleTransitionEnd() {
+      setTimeout(() => {
+        // 룰렛 멈춤 이후 렌더링 함수 실행
+        renderRouletteWin(result);
+        // 이벤트 리스너 제거 (한 번만 실행되도록)
+        roulette.removeEventListener('transitionend', handleTransitionEnd);
+      }, 500);
+    });
+  }
+
   // 룰렛 당첨 내역 렌더링
-  function renderRouletteWin() {
-    console.log('룰렛 당첨 팝업 렌더링');
+  function renderRouletteWin(result) {
     const list = `
-                  <div class="img-box" style="background-image: url(./images/test/스타벅스상품.png);"></div>
-                  <div class="text-box">
-                    <div class="title-box">
-                      <div class="logo-box">
-                        <div class="logo" style="background-image: url(./images/test/스타벅스로고.png);"></div>
-                        <p class="logo-title">스타벅스</p>
-                      </div>
-                      <p class="title">아이스 카페 아메리카노 T</p>
-                    </div>
-                    <div class="info-box">
-                      <p class="date">지급예정 (2024.10.15)</p>
-                    </div>
-                  </div>
-                  `;
+      <div class="img-box" style="background-image: url(./images/test/스타벅스상품.png);"></div>
+      <div class="text-box">
+        <div class="title-box">
+          <div class="logo-box">
+            <div class="logo" style="background-image: url(./images/test/스타벅스로고.png);"></div>
+            <p class="logo-title">스타벅스</p>
+          </div>
+          <p class="title">아이스 카페 아메리카노 T</p>
+        </div>
+        <div class="info-box">
+          <p class="date">지급예정 (2024.10.15)</p>
+        </div>
+      </div>
+    `;
+
+    // 화면에 당첨 상품 표시
     $('.goods-box').empty();
     $('.goods-box').append(list);
+
+    // 추가적인 UI 조작
     getMemberStick();
     popupClose('#popup-wrap', '.popup1');
     popupOn('#popup-wrap', '.popup2');
