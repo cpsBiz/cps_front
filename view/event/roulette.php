@@ -72,7 +72,7 @@
           <p>🎉당첨을 축하드립니다!</p>
           <div class="goods-box"></div>
           <div class="btn-box">
-            <a href="javascript:void(0)" class="popup-btn" onclick="popupClose('#popup-wrap', '.popup2')">당첨내역 보러가기</a>
+            <a href="/view/history/gifticon.php" class="popup-btn" onclick="popupClose('#popup-wrap', '.popup2')">당첨내역 보러가기</a>
           </div>
         </div>
         <button class="ico-close type1" type="button" onclick="popupClose('#popup-wrap', '.popup2')">닫기</button>
@@ -197,13 +197,51 @@
     }
   }
 
+  const giftListData = [{
+    affliateId: 'coupang',
+    brandId: 'BR00002',
+    brandName: 'GS25',
+    productId: 'G00000182491',
+    productName: '콘칩'
+  }, {
+    affliateId: 'coupang',
+    brandId: 'BR00002',
+    brandName: 'GS25',
+    productId: 'G00000182518',
+    productName: '초콜릿'
+  }, {
+    affliateId: 'coupang',
+    brandId: 'BR00002',
+    brandName: 'GS25',
+    productId: 'G00000182520',
+    productName: '메로나'
+  }, {
+    affliateId: 'coupang',
+    brandId: 'BR00002',
+    brandName: 'GS25',
+    productId: 'G00000190659',
+    productName: '커피'
+  }, {
+    affliateId: 'coupang',
+    brandId: 'BR00002',
+    brandName: 'GS25',
+    productId: 'G00000190665',
+    productName: '사탕'
+  }, {
+    affliateId: 'coupang',
+    brandId: 'BR00002',
+    brandName: 'GS25',
+    productId: 'G00000190687',
+    productName: '젤리'
+  }];
+
   // 룰렛 기프티콘 리스트 렌더링
-  function renderGifticonList(data = [1, 2, 3, 4, 5, 6]) {
+  function renderGifticonList(data) {
     let list = '';
     let i = 1;
-    data.forEach(item => {
+    giftListData.forEach(item => {
       list += `
-              <div class="item item${i}" style="width: 62px; height: 80px; background-image: url(/view/images/test/roulette_text.png);">${i}</div>
+              <div class="item item${i}" style="width: 62px; height: 80px; background-image: url();">${item.productName}</div>
               `;
       i++;
     });
@@ -247,12 +285,9 @@
         contentType: 'application/json',
         data: JSON.stringify(requestData),
         success: function(result) {
-          console.log(result);
-          // API 결과에서 당첨 아이템을 받아옴
-          const winningItem = result.winningItem || 'item6'; // API에서 받은 아이템, 없으면 'item6'으로 가정
-
+          const data = result.data;
           // 룰렛 돌리기
-          spin(winningItem, result);
+          spin(data);
         },
         error: function(request, status, error) {
           console.error(`Error: ${error}`);
@@ -264,25 +299,19 @@
   }
 
   // 룰렛 회전 함수 (당첨 아이템에 따라 멈추도록)
-  function spin(winningItem, result) {
+  function spin(data) {
+    const winningItem = data.productId;
     const totalItems = 6; // 아이템 개수
     const degreePerItem = 360 / totalItems; // 각 아이템이 차지하는 각도
     const roulette = document.querySelector('.roulette-wrap .item-roulette');
     const rouletteBg = document.querySelector('.roulette-wrap .bg-roulette');
 
     // 당첨 아이템이 무엇인지 매핑
-    const itemIndex = {
-      'item1': 0,
-      'item2': 1,
-      'item3': 2,
-      'item4': 3,
-      'item5': 4,
-      'item6': 5
-    } [winningItem];
+    const itemIndex = giftListData.findIndex(item => item.productId === winningItem);
 
     // 당첨된 아이템이 맨 위로 오도록 각도를 계산
     const winningDegree = itemIndex * degreePerItem; // 당첨된 아이템에 해당하는 각도
-    const totalRotation = 360 * 5 - winningDegree; // 여러 바퀴 돌고 당첨 아이템에서 멈춤
+    const totalRotation = 360 * 6 - winningDegree; // 여러 바퀴 돌고 당첨 아이템에서 멈춤
 
     // 룰렛 회전
     roulette.style.transitionDuration = '3.7s'; // 회전 시간 설정
@@ -296,7 +325,7 @@
     roulette.addEventListener('transitionend', function handleTransitionEnd() {
       setTimeout(() => {
         // 룰렛 멈춤 이후 렌더링 함수 실행
-        renderRouletteWin(result);
+        renderRouletteWin(itemIndex);
         // 이벤트 리스너 제거 (한 번만 실행되도록)
         roulette.removeEventListener('transitionend', handleTransitionEnd);
       }, 500);
@@ -304,22 +333,24 @@
   }
 
   // 룰렛 당첨 내역 렌더링
-  function renderRouletteWin(result) {
+  function renderRouletteWin(itemIndex) {
+    const item = giftListData[itemIndex];
+
     const list = `
-      <div class="img-box" style="background-image: url(/view/images/test/스타벅스상품.png);"></div>
-      <div class="text-box">
-        <div class="title-box">
-          <div class="logo-box">
-            <div class="logo" style="background-image: url(/view/images/test/스타벅스로고.png);"></div>
-            <p class="logo-title">스타벅스</p>
-          </div>
-          <p class="title">아이스 카페 아메리카노 T</p>
-        </div>
-        <div class="info-box">
-          <p class="date">지급예정 (2024.10.15)</p>
-        </div>
-      </div>
-    `;
+                <div class="img-box" style="background-image: url(/view/images/test/스타벅스상품.png);"></div>
+                <div class="text-box">
+                  <div class="title-box">
+                    <div class="logo-box">
+                      <div class="logo" style="background-image: url(/view/images/test/스타벅스로고.png);"></div>
+                      <p class="logo-title">스타벅스</p>
+                    </div>
+                    <p class="title">${item.productName}</p>
+                  </div>
+                  <div class="info-box">
+                    <p class="date">지급예정 (2024.10.15)</p>
+                  </div>
+                </div>
+              `;
 
     // 화면에 당첨 상품 표시
     $('.goods-box').empty();
