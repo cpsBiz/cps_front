@@ -309,7 +309,41 @@
 
   function postInquiary(data) {
     try {
-      popupOn('#popup-wrap', '.popup1')
+      const requestData = {
+        inquiryNum: 0,
+        note: "string",
+        userId: "string",
+        inquiryType: "string",
+        campaignNum: 0,
+        merchantId: "string",
+        purpose: "string",
+        regDay: 0,
+        userName: "string",
+        orderNo: "string",
+        productCode: "string",
+        currency: "string",
+        payment: "string",
+        productPrice: 0,
+        productCnt: 0,
+        email: "string",
+        information: "string",
+        answerYn: "string"
+      }
+
+      // AJAX 요청 수행
+      $.ajax({
+        type: 'POST',
+        url: 'http://192.168.101.156/api/view/inquiary',
+        contentType: 'application/json',
+        data: JSON.stringify(requestData),
+        success: function(result) {
+          console.log(result);
+          popupOn('#popup-wrap', '.popup1');
+        },
+        error: function(request, status, error) {
+          console.error(`Error: ${error}`);
+        }
+      });
     } catch (error) {
       alert(error);
     }

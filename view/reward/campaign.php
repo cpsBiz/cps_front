@@ -64,7 +64,7 @@ $campaignNum = $_REQUEST['campaignNum'];
           <div id="campaignRewardDate" class="gray-box"></div>
         </div>
         <div class="box box3">
-          <a href="/view/inquiary.php">적립에 문제가 있다면 1:1 문의하기<span class="ico-arrow type1 right"></span></a>
+          <a href="/view/inquiary/index.php">적립에 문제가 있다면 1:1 문의하기<span class="ico-arrow type1 right"></span></a>
         </div>
         <div class="box box4">
           <div id="accessProductArea">
