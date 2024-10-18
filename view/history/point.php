@@ -168,8 +168,8 @@ $months = getLastYearMonths();
   // 회원 적립금 조회
   function getCommission() {
     try {
-      const userId = 'dhhan';
-      const affliateId = 'moneyweather';
+      const userId = 'userId김호성';
+      const affliateId = 'affliateId';
 
       // AJAX 요청 데이터 설정
       const requestData = {
