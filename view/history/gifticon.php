@@ -216,7 +216,7 @@ $months = getLastYearMonths();
 														<p class="date date2">유효기간 (${formatDate(item.validDay)})</p>
 												</div>
 										</div>
-										<a href="/view/history/gifticon-detail.php?object=${itemStr}"></a>
+										<a href="javascript:postToUrl('${itemStr}')"></a>
 								</div>
 							`;
 
@@ -224,5 +224,30 @@ $months = getLastYearMonths();
 		document.querySelector('.list-wrap.type6').classList.remove('type6-1', 'type6-3');
 		document.querySelector('.list-wrap.type6').classList.add(checkStatus === 'N' ? 'type6-1' : 'type6-3');
 		$('.list-wrap.type6').append(list);
+	}
+
+	function postToUrl(item) {
+		const path = '/view/history/gifticon-detail.php';
+		console.log(item);
+
+		// 동적으로 form 생성
+		const form = document.createElement('form');
+		form.action = '/view/history/gifticon-detail.php'; // 제출할 URL
+		form.method = 'POST'; // POST 방식
+
+		// hidden input 생성 및 데이터 설정
+		const input = document.createElement('input');
+		input.type = 'hidden';
+		input.name = 'object';
+		input.value = item;
+
+		// form에 input 추가
+		form.appendChild(input);
+
+		// form을 body에 추가
+		document.body.appendChild(form);
+
+		// form 제출
+		form.submit();
 	}
 </script>

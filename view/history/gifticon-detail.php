@@ -4,9 +4,6 @@ if (!$object) {
     header('Location: ' . $_SERVER['HTTP_REFERER']);
     exit;
 }
-
-// 여기서 object를 JSON으로 인코딩
-$objectJson = json_encode($object);
 ?>
 <!DOCTYPE html>
 <html lang="ko">
@@ -22,6 +19,17 @@ $objectJson = json_encode($object);
     <script type="text/javascript" src="/admin/js/lib/jquery-2.2.2.min.js"></script>
     <script type="text/javascript" src="/admin/js/lib/jquery.easing.1.3.js"></script>
     <script type="text/javascript" src="/admin/js/lib/jquery-ui.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.5/dist/JsBarcode.all.min.js"></script>
+    <style>
+        .gifticon-notice-list li {
+            list-style: none;
+            padding-left: 0 !important;
+        }
+
+        .gifticon-notice-list li::before {
+            content: none !important;
+        }
+    </style>
 </head>
 
 <body>
@@ -37,15 +45,14 @@ $objectJson = json_encode($object);
         <!-- hana 클래스 추가 시 시그니처 컬러 변경 -->
         <div class="sub sub-5-3-2">
             <div class="box box1">
-                <!-- 기프티콘 상세 사용가능 -->
                 <div class="giftcon-info-wrap" style="margin-bottom: 20px;">
                     <div class="goods-info-box">
-                        <div class="goods-img" style="background-image: url(/view/images/test/스타벅스상품.png);"></div>
+                        <div class="goods-img"></div>
                         <div class="logo-box">
-                            <div class="logo" style="background-image: url(/view/images/test/스타벅스로고.png);"></div>
-                            <p class="logo-title">스타벅스</p>
+                            <div class="logo"></div>
+                            <p class="logo-title"></p>
                         </div>
-                        <p class="title">아이스 카페 아메리카노 T</p>
+                        <p class="title"></p>
                     </div>
                     <div class="date-info-box">
                         <div class="date-box date-box1">
@@ -59,116 +66,13 @@ $objectJson = json_encode($object);
                         <p class="text">*교환이나 환불, 유효기간은 연장이 불가합니다.</p>
                     </div>
                     <div class="barcode-box">
-                        <div class="barcode" style="background-image: url(/view/images/test/barcode1.png);"></div>
+                        <canvas id="barcode" class="barcode"></canvas>
                     </div>
                     <p class="title">유의사항</p>
                     <div class="gray-box">
-                        <p class="title">상품고시정보</p>
-                        <ul>
-                            <li>발행자 : 주식회사 인라이플</li>
-                            <li>교환권 공급자 : (주)OOO마케팅</li>
-                        </ul>
-                        <p class="title">유효기간</p>
-                        <ul>
-                            <li>각 상품 상세페이지 내 유효기간 확인</li>
-                        </ul>
-                        <p class="title">이용조건(유효기간 경과시 보상 기준 포함)</p>
-                        <ul>
-                            <li>본상품의 매장 별 판매가격이 상이 할 수 있으며, 일부 매장에서는 추가금액 결제 후 교환 가능합니다.</li>
-                            <li>물품교환권은 구매일로부터 180일 이내, 금액 교환권은 270일 이내 2회 기간연장 가능합니다.</li>
-                            <li>상품에 따라 기간 연장이 불가한 상품이 있으니, 상품 설명을 참고하시기 바랍니다.</li>
-                        </ul>
+                        <ul id="notice" class="gifticon-notice-list"></ul>
                     </div>
                 </div>
-
-                <!-- 기프티콘 상세 사용완료 -->
-                <!-- <div class="giftcon-info-wrap type3">
-                    <div class="goods-info-box">
-                        <div class="goods-img" style="background-image: url(/view/images/test/스타벅스상품.png);"></div>
-                        <div class="logo-box">
-                            <div class="logo" style="background-image: url(/view/images/test/스타벅스로고.png);"></div>
-                            <p class="logo-title">스타벅스</p>
-                        </div>
-                        <p class="title">아이스 카페 아메리카노 T</p>
-                    </div>
-                    <div class="date-info-box">
-                        <div class="date-box date-box1">
-                            <p class="text">당첨일자</p>
-                            <p class="date">2024.09.30</p>
-                        </div>
-                        <div class="date-box date-box2">
-                            <p class="text">유효기간</p>
-                            <p class="date">2024.10.30</p>
-                        </div>
-                        <p class="text">*교환이나 환불, 유효기간은 연장이 불가합니다.</p>
-                    </div>
-                    <div class="barcode-box">
-                        <div class="barcode" style="background-image: url(/view/images/test/barcode1.png);"></div>
-                        <p class="state blue">사용완료</p>
-                    </div>
-                    <p class="title">유의사항</p>
-                    <div class="gray-box">
-                        <p class="title">상품고시정보</p>
-                        <ul>
-                            <li>발행자 : 주식회사 인라이플</li>
-                            <li>교환권 공급자 : (주)OOO마케팅</li>
-                        </ul>
-                        <p class="title">유효기간</p>
-                        <ul>
-                            <li>각 상품 상세페이지 내 유효기간 확인</li>
-                        </ul>
-                        <p class="title">이용조건(유효기간 경과시 보상 기준 포함)</p>
-                        <ul>
-                            <li>본상품의 매장 별 판매가격이 상이 할 수 있으며, 일부 매장에서는 추가금액 결제 후 교환 가능합니다.</li>
-                            <li>물품교환권은 구매일로부터 180일 이내, 금액 교환권은 270일 이내 2회 기간연장 가능합니다.</li>
-                            <li>상품에 따라 기간 연장이 불가한 상품이 있으니, 상품 설명을 참고하시기 바랍니다.</li>
-                        </ul>
-                    </div>
-                </div> -->
-                <!-- 기프티콘 상세 사용만료 -->
-                <!-- <div class="giftcon-info-wrap type3">
-                    <div class="goods-info-box">
-                        <div class="goods-img" style="background-image: url(/view/images/test/스타벅스상품.png);"></div>
-                        <div class="logo-box">
-                            <div class="logo" style="background-image: url(/view/images/test/스타벅스로고.png);"></div>
-                            <p class="logo-title">스타벅스</p>
-                        </div>
-                        <p class="title">아이스 카페 아메리카노 T</p>
-                    </div>
-                    <div class="date-info-box">
-                        <div class="date-box date-box1">
-                            <p class="text">당첨일자</p>
-                            <p class="date">2024.09.30</p>
-                        </div>
-                        <div class="date-box date-box2">
-                            <p class="text">유효기간</p>
-                            <p class="date">2024.10.30</p>
-                        </div>
-                        <p class="text">*교환이나 환불, 유효기간은 연장이 불가합니다.</p>
-                    </div>
-                    <div class="barcode-box">
-                        <div class="barcode" style="background-image: url(/view/images/test/barcode1.png);"></div>
-                        <p class="state red">사용만료</p>
-                    </div>
-                    <p class="title">유의사항</p>
-                    <div class="gray-box">
-                        <p class="title">상품고시정보</p>
-                        <ul>
-                            <li>발행자 : 주식회사 인라이플</li>
-                            <li>교환권 공급자 : (주)OOO마케팅</li>
-                        </ul>
-                        <p class="title">유효기간</p>
-                        <ul>
-                            <li>각 상품 상세페이지 내 유효기간 확인</li>
-                        </ul>
-                        <p class="title">이용조건(유효기간 경과시 보상 기준 포함)</p>
-                        <ul>
-                            <li>본상품의 매장 별 판매가격이 상이 할 수 있으며, 일부 매장에서는 추가금액 결제 후 교환 가능합니다.</li>
-                            <li>물품교환권은 구매일로부터 180일 이내, 금액 교환권은 270일 이내 2회 기간연장 가능합니다.</li>
-                            <li>상품에 따라 기간 연장이 불가한 상품이 있으니, 상품 설명을 참고하시기 바랍니다.</li>
-                        </ul>
-                    </div>
-                </div> -->
             </div>
         </div>
     </div>
@@ -178,10 +82,9 @@ $objectJson = json_encode($object);
 
 </html>
 <script>
-    const object = JSON.parse(<?= $objectJson ?>); // PHP에서 만든 JSON 문자열을 객체로 변환
-
+    const object = JSON.parse(escapeJsonString(`<?= $object ?>`));
     $(function() {
-        renderGifticonDetail(object); // 함수 호출
+        renderGifticonDetail(object);
     });
 
 
@@ -193,15 +96,54 @@ $objectJson = json_encode($object);
                 return
             }
 
+            // 넘겨받은 기프티콘 데이터
             const item = object;
-            console.log(item);
+            // 기프티콘 상태
             $('.giftcon-info-wrap').addClass(item.giftYn === 'N' ? '' : 'type3');
 
+            // 기프티콘 브랜드, 상품 정보
+            $('.goods-info-box .goods-img').css('background-image', `url(${item.productImageS})`);
+            $('.goods-info-box .logo-box .logo').css('background-image', `url(${item.brandIcon})`);
+            $('.goods-info-box .logo-box .logo-title').text(`${item.brandName}`);
+            $('.goods-info-box .title').text(`${item.productName}`);
+
+            // 기프티콘 당첨일자, 유효기간
             $('.date-box1 .date').append(formatDate(item.awardDay));
             $('.date-box2 .date').append(formatDate(item.validDay));
 
+            // 기프티콘 바코드
+            JsBarcode("#barcode", `${item.pinNo}`, {
+                format: "CODE128", // 바코드 형식
+                lineColor: "#000", // 바코드 색상
+                width: 2, // 막대 너비
+                height: 111, // 바코드 높이
+                displayValue: true // 바코드 값 표시 여부
+            });
+
+            if (item.giftYn === 'Y' || item.giftYn === 'V') {
+                const status = `<p class="state ${item.giftYn === 'Y' ? 'blue' : 'red'}">${item.giftYn === 'Y' ? '사용완료' : '사용만료'}</p>`;
+                $('.barcode-box').append(status);
+            }
+
+            // 유의사항
+            const notice = item.content && item.content.includes('\n') ? item.content.split('\n') : [item.content];
+            if (!notice || notice.length === 0 || !notice[0]) {
+                $('#notice').css('display', 'none');
+            } else {
+                let noticeList = '';
+                notice.forEach(item => {
+                    noticeList += `<li>${item}</li>`;
+                });
+                $('#notice').append(noticeList);
+            }
         } catch (error) {
             alert(error);
+            history.back();
         }
+    }
+
+    function escapeJsonString(jsonString) {
+        // 줄 바꿈 및 기타 제어 문자를 이스케이프 처리
+        return jsonString.replace(/[\r\n]+/g, '\\n'); // 줄 바꿈을 \\n으로 대체
     }
 </script>

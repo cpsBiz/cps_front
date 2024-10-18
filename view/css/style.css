@@ -904,6 +904,7 @@ body.scrollNone {
   display: block;
   position: absolute;
   top: 17px;
+  white-space: nowrap;
 }
 .list-wrap.type5 .list .text-box.text-box1 .text.text2 {
   font-family: 'Pretendard-Regular';
