@@ -300,6 +300,10 @@
     console.log('기타문의검증');
   }
 
+  function postFileUpload() {
+    console.log('파일 업로드');
+  }
+
 
 
   function postInquiary(data) {
@@ -325,20 +329,22 @@
         answerYn: "string"
       }
 
-      // AJAX 요청 수행
-      $.ajax({
-        type: 'POST',
-        url: 'http://192.168.101.156/api/view/inquiary',
-        contentType: 'application/json',
-        data: JSON.stringify(requestData),
-        success: function(result) {
-          console.log(result);
-          popupOn('#popup-wrap', '.popup1');
-        },
-        error: function(request, status, error) {
-          console.error(`Error: ${error}`);
-        }
-      });
+      postFileUpload.then(() => {
+        // AJAX 요청 수행
+        $.ajax({
+          type: 'POST',
+          url: 'http://192.168.101.156/api/view/inquiary',
+          contentType: 'application/json',
+          data: JSON.stringify(requestData),
+          success: function(result) {
+            console.log(result);
+            popupOn('#popup-wrap', '.popup1');
+          },
+          error: function(request, status, error) {
+            console.error(`Error: ${error}`);
+          }
+        });
+      })
     } catch (error) {
       alert(error);
     }

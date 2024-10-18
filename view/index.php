@@ -251,7 +251,7 @@ $affliateId = $_REQUEST['affliateId'];
                     <a id="memberStick" class="candy type1" href="/view/history/stick.php"></a>
                     <div class="coupang-search-wrap">
                       <span class="logo">쿠팡</span>
-                      <input type="text" placeholder="쿠팡에서 검색" disabled>
+                      <input type="text" placeholder="쿠팡에서 쇼핑하기" disabled>
                       <a href="/view/reward/campaign.php?clickUrl=${item.clickUrl}&apiUrl=${apiUrl}&campaignNum=${item.campaignNum}&per=${commissionPer}">검색</a>
                     </div>
                   </div>
@@ -274,12 +274,14 @@ $affliateId = $_REQUEST['affliateId'];
     // 쿠팡 막대사탕 조회
     function getMemberStick() {
         try {
-            const userId = 'dhhan';
+            const userId = 'userId11';
+            const merchantId = 'coupang';
             const affliateId = 'moneyweather';
 
             // AJAX 요청 데이터 설정
             const requestData = {
                 userId,
+                merchantId,
                 affliateId
             };
 
@@ -290,7 +292,7 @@ $affliateId = $_REQUEST['affliateId'];
                 contentType: 'application/json',
                 data: JSON.stringify(requestData),
                 success: function(result) {
-                    const memberStick = parseInt(result.data.cnt).toLocaleString();
+                    const memberStick = parseInt(result.data.cnt - result.data.stockCnt).toLocaleString();
                     const appendStick = `${memberStick}개`;
                     $('#memberStick').append(appendStick);
                 },

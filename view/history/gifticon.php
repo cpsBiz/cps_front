@@ -84,7 +84,7 @@ $months = getLastYearMonths();
 				<div class="list-wrap type6 type6-1"></div>
 				<!-- 리스트 없을 경우 -->
 				<div class="list-none-box">
-					<p><span class="ico-exclamation"></span>적립내역이 없습니다.</p>
+					<p><span class="ico-exclamation"></span>당첨내역이 없습니다.</p>
 				</div>
 			</div>
 		</div>

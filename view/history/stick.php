@@ -148,12 +148,14 @@ $months = getLastYearMonths();
   // 쿠팡 막대사탕 조회
   function getStick() {
     try {
-      const userId = '김호성userId';
-      const affliateId = 'affliateId';
+      const userId = 'userId11';
+      const merchantId = 'coupang';
+      const affliateId = 'moneyweather';
 
       // AJAX 요청 데이터 설정
       const requestData = {
         userId,
+        merchantId,
         affliateId
       };
 
@@ -164,7 +166,7 @@ $months = getLastYearMonths();
         contentType: 'application/json',
         data: JSON.stringify(requestData),
         success: function(result) {
-          const userStick = parseInt(result.data.cnt).toLocaleString();
+          const userStick = parseInt(result.data.cnt - result.data.stockCnt).toLocaleString();
           const appendUserStick = `${userStick}개`;
           $('#userStick').append(appendUserStick);
         },

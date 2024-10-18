@@ -257,7 +257,7 @@
     // 룰렛 버튼 초기화 후 렌더링
     const stickCnt = document.querySelector('.candy-info > span').textContent.replace('개', '');
     const button = `
-                  <button class="popup-btn ${stickCnt >= minCnt ? '' : 'gray'}" type="button" onclick="getRoulette('${brandDataObject.brandId}', ${minCnt})" ${stickCnt < minCnt ? 'disabled' : ''}>
+                  <button class="popup-btn ${stickCnt >= minCnt ? '' : 'gray'}" type="button" onclick="getRoulette('${brandDataObject.brandId}', ${minCnt}, ${stickCnt})" ${stickCnt < minCnt ? 'disabled' : ''}>
                   ${stickCnt >= minCnt ? '룰렛 돌리기' : `막대사탕 ${minCnt}개부터 참여가능`}
                   </button>
                   `;
@@ -271,9 +271,10 @@
   // 서버에서 당첨된 아이템을 받아오는 함수
   let checkSpin = false;
 
-  function getRoulette(brandId, cnt) {
+  function getRoulette(brandId, minCnt, stickCnt) {
     try {
       if (checkSpin) return;
+      if (minCnt > stickCnt) return alert('최소 개수가 부족합니다.');
 
       checkSpin = true;
       // AJAX 요청 데이터 설정
@@ -282,7 +283,7 @@
         merchantId: "coupang",
         affliateId: "moneyweather",
         brandId,
-        cnt
+        cnt: minCnt
       };
 
       // AJAX 요청 수행
