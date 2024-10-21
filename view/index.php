@@ -309,7 +309,7 @@ $affliateId = $_REQUEST['affliateId'];
     function patchFavorites(campaignNum, favorites, dom) {
         try {
             const userId = 'dhhan';
-            const affliatedId = 'affliatedId';
+            const affliatedId = 'moneyweather';
             const apiType = favorites === 'NON_FAVORITE' ? 'i' : 'd';
 
             // AJAX 요청 데이터 설정

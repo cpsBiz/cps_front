@@ -279,7 +279,7 @@
       checkSpin = true;
       // AJAX 요청 데이터 설정
       const requestData = {
-        userId: "dhhan",
+        userId: "userId11",
         merchantId: "coupang",
         affliateId: "moneyweather",
         brandId,

@@ -192,7 +192,7 @@ $months = getLastYearMonths();
   // 막대사탕 리스트 조회
   function getStickList(status, date) {
     try {
-      const userId = "dhhan";
+      const userId = "userId11";
       const merchantId = "coupang";
       const affliateId = "moneyweather";
       const regYm = convertDate(date);

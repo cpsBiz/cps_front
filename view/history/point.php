@@ -214,7 +214,7 @@ $months = getLastYearMonths();
   function getCommissionList(status, date) {
     try {
       const userId = "dhhan";
-      const affliateId = "affliateId";
+      const affliateId = "moneyweather";
       const regYm = convertDate(date);
 
       // AJAX 요청 데이터 설정

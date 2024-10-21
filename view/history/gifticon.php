@@ -146,7 +146,7 @@ $months = getLastYearMonths();
 	// 기프티콘 리스트 조회
 	function getGifticonList(status, date) {
 		try {
-			const userId = "dhhan";
+			const userId = "userId11";
 			const merchantId = "coupang";
 			const affliateId = "moneyweather";
 			const awardYm = convertDate(date);
@@ -184,6 +184,10 @@ $months = getLastYearMonths();
 		}
 	}
 
+	function base64Encode(str) {
+		return btoa(unescape(encodeURIComponent(str)));
+	}
+
 	// 막대사탕 리스트 렌더링
 	function renderGifticonList(data) {
 		$('.list-none-box').css('display', 'none');
@@ -197,7 +201,8 @@ $months = getLastYearMonths();
 
 		let list = '';
 		datas.forEach(item => {
-			const itemStr = encodeURIComponent(JSON.stringify(item));
+			const itemStr = base64Encode(JSON.stringify(item));
+
 
 			list += `
 								<div class="list list1">
@@ -228,7 +233,6 @@ $months = getLastYearMonths();
 
 	function postToUrl(item) {
 		const path = '/view/history/gifticon-detail.php';
-		console.log(item);
 
 		// 동적으로 form 생성
 		const form = document.createElement('form');
