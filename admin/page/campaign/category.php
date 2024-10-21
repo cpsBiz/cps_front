@@ -323,22 +323,8 @@ $total = 0;
 																		class="listChange">순위변경</button></div>
 															</td>
 														</tr>
-
-														<!-- <tr id="categoryList<?= $category; ?>">
-															<td><?= $categoryRank; ?></td>
-															<td><?= $categoryName; ?></td>
-															<td><?= $campaignCnt; ?></td>
-															<td>
-																<div class="buttonBox">
-																	<button type="button" class="modify" title="수정" onclick="modifyCategory('<?= $category; ?>', '<?= $categoryName; ?>', <?= $categoryRank; ?>)">수정</button>
-																	<button type="button" class="delete" title="삭제" onclick="deleteCategory('<?= $category; ?>')">삭제</button>
-																</div>
-															</td>
-															<td>
-																<div class="buttonBox"><button type="button" class="listChange">순위변경</button></div>
-															</td>
-														</tr> -->
 												<?
+														$i++;
 													}
 
 													mysqli_stmt_close($stmt);
