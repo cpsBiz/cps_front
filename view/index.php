@@ -322,7 +322,7 @@ $affliateId = $_REQUEST['affliateId'];
         try {
             const userId = 'dhhan';
             const affliateId = 'moneyweather';
-            const apiType = favorites === 'NON_FAVORITE' ? 'i' : 'd';
+            const apiType = favorites === 'NON_FAVORITE' ? 'I' : 'D';
 
             // AJAX 요청 데이터 설정
             const requestData = {
