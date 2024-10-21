@@ -9,7 +9,23 @@
   <link rel="icon" type="image/x-icon" href="/view/images/favicon.ico">
   <!-- style -->
   <link rel="stylesheet" href="/view/css/style.css">
+  <script type="text/javascript" src="/admin/js/lib/jquery-2.2.2.min.js"></script>
+  <script type="text/javascript" src="/admin/js/lib/jquery.easing.1.3.js"></script>
+  <script type="text/javascript" src="/admin/js/lib/jquery-ui.min.js"></script>
+  <script type="text/javascript" src="/admin/js/lib/moment.min.js"></script>
+  <script type="text/javascript" src="/admin/js/lib/daterangepicker_popup.js"></script>
+  <link type="text/css" rel="stylesheet" href="/admin/css/lib/daterangepicker_popup.css" />
 </head>
+<style>
+  input[type="date"]::-webkit-calendar-picker-indicator {
+    display: none;
+    -webkit-appearance: none;
+  }
+
+  .ranges {
+    display: none;
+  }
+</style>
 
 <body>
   <div class="wrap">
@@ -65,6 +81,9 @@
               <p class="value">문의 목적을 선택해주세요(필수)</p>
               <div class="ico-arrow type1"></div>
             </div>
+          </div>
+          <div class="input-box">
+            <input id="datepicker" type="text" placeholder="구매일을 선택해주세요(필수)">
           </div>
           <div class="input-box">
             <input type="text" placeholder="성함을 입력해주세요(필수)">
@@ -175,16 +194,7 @@
           <p>구매 쇼핑몰 선택</p>
           <button class="ico-close type1" type="button" onclick="selectListClose('#select-btn2', '#select-wrap', '#select-list2')">닫기</button>
         </div>
-        <ul class="select-cont">
-          <li class="list list1">
-            <p class="value">없음1</p>
-            <div class="ico-check"></div>
-          </li>
-          <li class="list list2">
-            <p class="value">없음2</p>
-            <div class="ico-check"></div>
-          </li>
-        </ul>
+        <ul id="shoppingMallList" class="select-cont"></ul>
       </div>
       <!-- select-list3 -->
       <div id="select-list3" class="select-list">
@@ -194,11 +204,23 @@
         </div>
         <ul class="select-cont">
           <li class="list list1 ">
-            <p class="value">없음3</p>
+            <p class="value">쇼핑적립 이용내역”의 구매금액과 결제 금액과 차이가 있어요.</p>
             <div class="ico-check"></div>
           </li>
           <li class="list list2">
-            <p class="value">없음4</p>
+            <p class="value">구매를 했는데, “적립 상세 내역” 이 보이지 않아요.</p>
+            <div class="ico-check"></div>
+          </li>
+          <li class="list list3">
+            <p class="value">구매를 했는데, 실제 결제 금액과 “적립 상세 내역” 구매 금액이 차이가 있어요.</p>
+            <div class="ico-check"></div>
+          </li>
+          <li class="list list4">
+            <p class="value">구매를 했는데, 적립 예정 포인트 금액이 0원으로 보여요.</p>
+            <div class="ico-check"></div>
+          </li>
+          <li class="list list5">
+            <p class="value">기타</p>
             <div class="ico-check"></div>
           </li>
         </ul>
@@ -215,7 +237,7 @@
             <div class="ico-check"></div>
           </li>
           <li class="list list2">
-            <p class="value">달러</p>
+            <p class="value">US달러</p>
             <div class="ico-check"></div>
           </li>
           <li class="list list3">
@@ -223,7 +245,11 @@
             <div class="ico-check"></div>
           </li>
           <li class="list list4">
-            <p class="value">유로</p>
+            <p class="value">위안화</p>
+            <div class="ico-check"></div>
+          </li>
+          <li class="list list5">
+            <p class="value">유로화</p>
             <div class="ico-check"></div>
           </li>
         </ul>
@@ -236,11 +262,27 @@
         </div>
         <ul class="select-cont">
           <li class="list list1">
-            <p class="value">카드</p>
+            <p class="value">신용카드</p>
             <div class="ico-check"></div>
           </li>
           <li class="list list2">
-            <p class="value">현금</p>
+            <p class="value">무통장입금</p>
+            <div class="ico-check"></div>
+          </li>
+          <li class="list list3">
+            <p class="value">핸드폰결제</p>
+            <div class="ico-check"></div>
+          </li>
+          <li class="list list4">
+            <p class="value">ARS결제</p>
+            <div class="ico-check"></div>
+          </li>
+          <li class="list list5">
+            <p class="value">실시간 계좌이체</p>
+            <div class="ico-check"></div>
+          </li>
+          <li class="list list6">
+            <p class="value">기타</p>
             <div class="ico-check"></div>
           </li>
         </ul>
@@ -276,6 +318,41 @@
 
 </html>
 <script>
+  $(function() {
+    getShoppingMallList();
+
+    $("#datepicker").daterangepicker({
+      autoUpdateInput: false,
+      singleDatePicker: true,
+      autoApply: true,
+      opens: 'center',
+      drops: 'auto',
+      maxDate: moment(),
+      locale: {
+        format: "YYYY-MM-DD",
+        daysOfWeek: ["일", "월", "화", "수", "목", "금", "토"],
+        monthNames: [
+          "01",
+          "02",
+          "03",
+          "04",
+          "05",
+          "06",
+          "07",
+          "08",
+          "09",
+          "10",
+          "11",
+          "12",
+        ],
+      }
+    });
+
+    $('#datepicker').on('apply.daterangepicker', function(ev, picker) {
+      $(this).val(picker.startDate.format('YYYY-MM-DD'));
+    });
+  })
+
   // 입력값 검증
   function checkInquiaryData() {
     // 문의 종류
@@ -308,28 +385,29 @@
 
   function postInquiary(data) {
     try {
-      const requestData = {
-        inquiryNum: 0,
-        note: "string",
-        userId: "string",
-        inquiryType: "string",
-        campaignNum: 0,
-        merchantId: "string",
-        purpose: "string",
-        regDay: 0,
-        userName: "string",
-        orderNo: "string",
-        productCode: "string",
-        currency: "string",
-        payment: "string",
-        productPrice: 0,
-        productCnt: 0,
-        email: "string",
-        information: "string",
-        answerYn: "string"
-      }
+      postFileUpload.then((fileList) => {
+        const requestData = {
+          inquiryNum: data.inquiryNum,
+          note: data.note,
+          userId: "string",
+          inquiryType: data.inquiaryType,
+          campaignNum: data.campaignNum,
+          merchantId: "string",
+          purpose: data.purpose,
+          regDay: data.regDay,
+          userName: data.userName,
+          orderNo: data.orderNo,
+          productCode: data.productCode,
+          currency: data.currency,
+          payment: data.payment,
+          productPrice: data.productPrice,
+          productCnt: data.productCnt,
+          email: data.email,
+          information: data.information,
+          answerYn: data.answerYn,
+          inquiaryFileList: fileList
+        }
 
-      postFileUpload.then(() => {
         // AJAX 요청 수행
         $.ajax({
           type: 'POST',
@@ -348,5 +426,40 @@
     } catch (error) {
       alert(error);
     }
+  }
+
+  function getShoppingMallList() {
+    try {
+      $.ajax({
+        type: 'POST',
+        url: 'http://192.168.101.156/api/view/inquiryMerchantList',
+        contentType: 'application/json',
+        success: function(result) {
+          renderShoppingMallList(result);
+        },
+        error: function(request, status, error) {
+          console.error(`Error: ${error}`);
+        }
+      });
+    } catch (error) {
+      alert(error);
+    }
+  }
+
+  function renderShoppingMallList(result) {
+    let list = '';
+    const data = result.datas;
+
+    data.forEach((item, index) => {
+      list += `
+              <li class="list list${index}">
+                <p class="value">${item.merchantId}</p>
+                <div class="ico-check"></div>
+              </li>
+              `;
+    });
+
+    $('#shoppingMallList').empty();
+    $('#shoppingMallList').append(list);
   }
 </script>
