@@ -232,7 +232,7 @@ $affliateId = $_REQUEST['affliateId'];
               <div class="list">
                 <p class="title"><span class="logo" style="background-image: url(${item.logo});"></span>${item.memberName}</p>
                 <p class="percent"><span class="ico-point"></span>${commissionPer}%</p>
-                <a href="/view/reward/campaign.php?clickUrl=${item.clickUrl}&apiUrl=${apiUrl}&campaignNum=${item.campaignNum}&per=${commissionPer}">바로가기</a>
+                <a href="/view/reward/campaign.php?clickUrl=${item.clickUrl}&apiUrl=${apiUrl}&campaignNum=${item.campaignNum}&per=${commissionPer}&affliateId=${item.affliateId}&merchantId=${item.merchantId}&agencyId=${item.adminId}&site=${item.site}">바로가기</a>
                 <button class="ico-heart ${item.favorites === 'FAVORITE' ? 'on' : ''}" type="button" onclick="patchFavorites(${item.campaignNum}, '${item.favorites}', this)">즐겨찾기</button>
               </div>
             `;
@@ -252,7 +252,7 @@ $affliateId = $_REQUEST['affliateId'];
                     <div class="coupang-search-wrap">
                       <span class="logo">쿠팡</span>
                       <input type="text" placeholder="쿠팡에서 쇼핑하기" disabled>
-                      <a href="/view/reward/campaign.php?clickUrl=${item.clickUrl}&apiUrl=${apiUrl}&campaignNum=${item.campaignNum}&per=${commissionPer}">검색</a>
+                      <a href="/view/reward/campaign.php?clickUrl=${item.clickUrl}&apiUrl=${apiUrl}&campaignNum=${item.campaignNum}&per=${commissionPer}&affliateId=${item.affliateId}&merchantId=${item.merchantId}&agencyId=${item.adminId}&site=${item.site}">검색</a>
                     </div>
                   </div>
                   <div class="link-wrap">

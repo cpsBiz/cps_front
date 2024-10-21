@@ -22,6 +22,10 @@ foreach ($params as $key => $value) {
 }
 $apiUrl = $_REQUEST['apiUrl'];
 $campaignNum = $_REQUEST['campaignNum'];
+$merchantId = $_REQUEST['merchantId'];
+$agencyId = $_REQUEST['agencyId'];
+$affliateId = $_REQUEST['affliateId'];
+$site = $_REQUEST['site'];
 ?>
 <!DOCTYPE html>
 <html lang="ko">
@@ -115,12 +119,12 @@ $campaignNum = $_REQUEST['campaignNum'];
 
   function getClickRewardUrl(apiUrl, clickUrl, campaignNum) {
     try {
-      const affliateId = 'moneyweather';
+      const affliateId = '<?= $affliateId; ?>';
       const zoneId = 'zonedhhan';
-      const agencyId = 'string';
-      const merchantId = 'string';
+      const agencyId = '<?= $agencyId; ?>';
+      const merchantId = '<?= $merchantId; ?>';
       const type = '';
-      const site = '';
+      const site = '<?= $site; ?>';
       const os = 'aos';
       const userId = 'dhhan';
       const adId = '';
