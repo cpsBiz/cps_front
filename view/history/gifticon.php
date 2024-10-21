@@ -184,10 +184,6 @@ $months = getLastYearMonths();
 		}
 	}
 
-	function base64Encode(str) {
-		return btoa(unescape(encodeURIComponent(str)));
-	}
-
 	// 막대사탕 리스트 렌더링
 	function renderGifticonList(data) {
 		$('.list-none-box').css('display', 'none');
@@ -232,8 +228,6 @@ $months = getLastYearMonths();
 	}
 
 	function postToUrl(item) {
-		const path = '/view/history/gifticon-detail.php';
-
 		// 동적으로 form 생성
 		const form = document.createElement('form');
 		form.action = '/view/history/gifticon-detail.php'; // 제출할 URL

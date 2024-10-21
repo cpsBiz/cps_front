@@ -20,6 +20,8 @@ if (!$object) {
 	<script type="text/javascript" src="/admin/js/lib/jquery.easing.1.3.js"></script>
 	<script type="text/javascript" src="/admin/js/lib/jquery-ui.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.5/dist/JsBarcode.all.min.js"></script>
+	<script src="/view/js/common.js"></script>
+	<script src="/view/js/page.js"></script>
 	<style>
 		.gifticon-notice-list li {
 			list-style: none;
@@ -76,18 +78,10 @@ if (!$object) {
 			</div>
 		</div>
 	</div>
-	<script src="/view/js/common.js"></script>
-	<script src="/view/js/page.js"></script>
 </body>
 
 </html>
 <script>
-	function decodeFromBase64(base64String) {
-		const jsonString = decodeURIComponent(escape(atob(base64String))); // Base64를 디코딩 후 JSON 문자열로 변환
-		const jsonObject = JSON.parse(jsonString); // JSON 문자열을 객체로 변환
-		return jsonObject;
-	}
-
 	const object = decodeFromBase64(`<?= $object ?>`);
 	$(function() {
 		renderGifticonDetail(object);

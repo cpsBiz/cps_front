@@ -1,11 +1,11 @@
 <?
-$url = $_SERVER['REQUEST_URI'];
-// URL에서 쿼리스트링 추출
-$parsedUrl = parse_url($url);
-$query = $parsedUrl['query'];
 
-// 쿼리스트링을 배열로 변환
-parse_str($query, $params);
+$object = $_REQUEST['object'] ?? null; // null로 기본값 설정
+if (!$object) {
+  header('Location: ' . $_SERVER['HTTP_REFERER']);
+  exit;
+}
+
 
 // 'apiUrl' 이전의 파라미터만 추출
 $clickUrl = '';
@@ -97,19 +97,23 @@ $site = $_REQUEST['site'];
 
 </html>
 <script>
+  const object = decodeFromBase64(`<?= $object ?>`);
+
   $(function() {
-    checkParam();
+    checkParam(object);
   })
 
-  function checkParam() {
-    const apiUrl = '<?= $apiUrl; ?>';
-    const clickUrl = '<?= $clickUrl; ?>';
-    const campaignNum = '<?= $campaignNum; ?>';
+  function checkParam(object) {
+    if (!object) {
+      alert('잘못된 접근입니다.');
+      history.back();
+      return;
+    }
+    const apiUrl = object.apiUrl;
+    const clickUrl = object.clickUrl;
+    const campaignNum = object.campaignNum;
 
-    const checkApiUrl = document.getElementById('apiUrl').value;
-    const checkClickUrl = document.getElementById('clickUrl').value;
-    const checkCampaignNum = document.getElementById('campaignNum').value;
-    if ((apiUrl && clickUrl && campaignNum) && apiUrl === checkApiUrl && clickUrl === checkClickUrl && campaignNum === checkCampaignNum) {
+    if (apiUrl && clickUrl && campaignNum) {
       getClickRewardUrl(apiUrl, clickUrl, campaignNum);
     } else {
       alert('잘못된 접근입니다.')
@@ -119,12 +123,12 @@ $site = $_REQUEST['site'];
 
   function getClickRewardUrl(apiUrl, clickUrl, campaignNum) {
     try {
-      const affliateId = '<?= $affliateId; ?>';
+      const affliateId = object.affliateId;
       const zoneId = 'zonedhhan';
-      const agencyId = '<?= $agencyId; ?>';
-      const merchantId = '<?= $merchantId; ?>';
+      const agencyId = object.agencyId;
+      const merchantId = object.merchantId;
       const type = '';
-      const site = '<?= $site; ?>';
+      const site = object.site;
       const os = 'aos';
       const userId = 'dhhan';
       const adId = '';

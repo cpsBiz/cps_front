@@ -16,6 +16,7 @@ $affliateId = $_REQUEST['affliateId'];
     <script type="text/javascript" src="/admin/js/lib/jquery-2.2.2.min.js"></script>
     <script type="text/javascript" src="/admin/js/lib/jquery.easing.1.3.js"></script>
     <script type="text/javascript" src="/admin/js/lib/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="/view/js/common.js"></script>
     <!-- style -->
     <link rel="stylesheet" href="/view/css/style.css">
     <link rel="stylesheet" href="/view/css/index.css">
@@ -53,10 +54,10 @@ $affliateId = $_REQUEST['affliateId'];
             </div>
             <div class="tab-box-wrap">
                 <div class="tab-box">
-                    <div class="tab tab1 on"><a href="javascript:getCampaignView('')">인기순</a></div>
-                    <div class="tab tab2"><a href="javascript:getCampaignView('')">종합몰</a></div>
-                    <div class="tab tab3"><a href="javascript:getCampaignView('')">패션</a></div>
-                    <div class="tab tab4"><a href="javascript:getCampaignView('')">뷰티</a></div>
+                    <div class="tab tab1 on"><a href="javascript:getCampaignView('C0014')">인기순</a></div>
+                    <div class="tab tab2"><a href="javascript:getCampaignView('C0001')">종합몰</a></div>
+                    <div class="tab tab3"><a href="javascript:getCampaignView('C0003')">패션</a></div>
+                    <div class="tab tab4"><a href="javascript:getCampaignView('C0002')">뷰티</a></div>
                     <div class="tab tab5"><a href="javascript:getCampaignView('favorites')">즐겨찾기</a></div>
                 </div>
             </div>
@@ -73,7 +74,7 @@ $affliateId = $_REQUEST['affliateId'];
             <a class="menu" href="/view/history/point.php"><span class="ico-breakDown">내역</span></a>
         </div>
     </div>
-    <script src="./js/common.js"></script>
+
 </body>
 
 </html>
@@ -81,7 +82,7 @@ $affliateId = $_REQUEST['affliateId'];
     $(function() {
         // getBanner();
         getMemberCommission();
-        getCampaignView();
+        getCampaignView('C0014');
     })
 
     // 배너 조회
@@ -227,12 +228,23 @@ $affliateId = $_REQUEST['affliateId'];
             // 적립률
             const commissionPer = getCommissionPer(item);
 
+            const params = {
+                clickUrl: getDevice() ? item.mobileClickUrl : item.clickUrl,
+                apiUrl,
+                campaignNum: item.campaignNum,
+                per: commissionPer,
+                affliateId: item.affliateId,
+                merchantId: item.merchantId,
+                agencyId: item.adminId,
+                site: item.site,
+            }
+            const itemStr = base64Encode(JSON.stringify(params));
             // 해야함 - 즐겨찾기 유무 데이터 처리 필요
             list += `
               <div class="list">
                 <p class="title"><span class="logo" style="background-image: url(${item.logo});"></span>${item.memberName}</p>
                 <p class="percent"><span class="ico-point"></span>${commissionPer}%</p>
-                <a href="/view/reward/campaign.php?clickUrl=${item.clickUrl}&apiUrl=${apiUrl}&campaignNum=${item.campaignNum}&per=${commissionPer}&affliateId=${item.affliateId}&merchantId=${item.merchantId}&agencyId=${item.adminId}&site=${item.site}">바로가기</a>
+                <a href="javascript:postToUrl('${itemStr}')">바로가기</a>
                 <button class="ico-heart ${item.favorites === 'FAVORITE' ? 'on' : ''}" type="button" onclick="patchFavorites(${item.campaignNum}, '${item.favorites}', this)">즐겨찾기</button>
               </div>
             `;
@@ -268,7 +280,7 @@ $affliateId = $_REQUEST['affliateId'];
     }
 
     function removeCoupangArea() {
-        $('#coupangArea').empty();
+        $('#coupangArea').hide();
     }
 
     // 쿠팡 막대사탕 조회
@@ -309,13 +321,13 @@ $affliateId = $_REQUEST['affliateId'];
     function patchFavorites(campaignNum, favorites, dom) {
         try {
             const userId = 'dhhan';
-            const affliatedId = 'moneyweather';
+            const affliateId = 'moneyweather';
             const apiType = favorites === 'NON_FAVORITE' ? 'i' : 'd';
 
             // AJAX 요청 데이터 설정
             const requestData = {
                 userId,
-                affliatedId,
+                affliateId,
                 campaignNum,
                 apiType,
             };
@@ -341,5 +353,27 @@ $affliateId = $_REQUEST['affliateId'];
         } catch (error) {
             alert(error.message);
         }
+    }
+
+    function postToUrl(item) {
+        // 동적으로 form 생성
+        const form = document.createElement('form');
+        form.action = '/view/reward/campaign.php'; // 제출할 URL
+        form.method = 'POST'; // POST 방식
+
+        // hidden input 생성 및 데이터 설정
+        const input = document.createElement('input');
+        input.type = 'hidden';
+        input.name = 'object';
+        input.value = item;
+
+        // form에 input 추가
+        form.appendChild(input);
+
+        // form을 body에 추가
+        document.body.appendChild(form);
+
+        // form 제출
+        form.submit();
     }
 </script>
