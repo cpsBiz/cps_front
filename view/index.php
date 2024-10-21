@@ -2,7 +2,7 @@
 // 로그인 유저 아이디
 $userId = $_REQUEST['userId'];
 // 매체 아이디
-$affliateId = $_REQUEST['moneyweather'];
+$affliateId = $_REQUEST['affliateId'];
 ?>
 <!DOCTYPE html>
 <html lang="ko">
@@ -274,7 +274,7 @@ $affliateId = $_REQUEST['moneyweather'];
     // 쿠팡 막대사탕 조회
     function getMemberStick() {
         try {
-            const userId = 'userId11';
+            const userId = 'dhhan';
             const merchantId = 'coupang';
             const affliateId = 'moneyweather';
 

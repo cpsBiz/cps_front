@@ -213,7 +213,7 @@ $months = getLastYearMonths();
   // 회원 적립금 리스트 조회
   function getCommissionList(status, date) {
     try {
-      const userId = "userId11";
+      const userId = "dhhan";
       const affliateId = "affliateId";
       const regYm = convertDate(date);
 

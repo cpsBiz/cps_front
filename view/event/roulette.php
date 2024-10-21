@@ -104,7 +104,7 @@
   // 쿠팡 막대사탕 조회
   function getMemberStick() {
     try {
-      const userId = 'userId11';
+      const userId = 'dhhan';
       const merchantId = 'coupang';
       const affliateId = 'moneyweather';
 
@@ -279,7 +279,7 @@
       checkSpin = true;
       // AJAX 요청 데이터 설정
       const requestData = {
-        userId: "userId11",
+        userId: "dhhan",
         merchantId: "coupang",
         affliateId: "moneyweather",
         brandId,

@@ -148,7 +148,7 @@ $months = getLastYearMonths();
   // 쿠팡 막대사탕 조회
   function getStick() {
     try {
-      const userId = 'userId11';
+      const userId = 'dhhan';
       const merchantId = 'coupang';
       const affliateId = 'moneyweather';
 
@@ -192,7 +192,7 @@ $months = getLastYearMonths();
   // 막대사탕 리스트 조회
   function getStickList(status, date) {
     try {
-      const userId = "userId11";
+      const userId = "dhhan";
       const merchantId = "coupang";
       const affliateId = "moneyweather";
       const regYm = convertDate(date);
