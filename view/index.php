@@ -2,7 +2,7 @@
 // 로그인 유저 아이디
 $userId = $_REQUEST['userId'];
 // 매체 아이디
-$affliateId = $_REQUEST['affliateId'];
+$affliateId = $_REQUEST['moneyweather'];
 ?>
 <!DOCTYPE html>
 <html lang="ko">
@@ -125,8 +125,8 @@ $affliateId = $_REQUEST['affliateId'];
     // 회원 적립금 조회
     function getMemberCommission() {
         try {
-            const userId = 'userId김호성';
-            const affliateId = 'affliateId';
+            const userId = 'dhhan';
+            const affliateId = 'moneyweather';
 
             // AJAX 요청 데이터 설정
             const requestData = {
