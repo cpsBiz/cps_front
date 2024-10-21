@@ -16,16 +16,6 @@
   <script type="text/javascript" src="/admin/js/lib/daterangepicker_popup.js"></script>
   <link type="text/css" rel="stylesheet" href="/admin/css/lib/daterangepicker_popup.css" />
 </head>
-<style>
-  input[type="date"]::-webkit-calendar-picker-indicator {
-    display: none;
-    -webkit-appearance: none;
-  }
-
-  .ranges {
-    display: none;
-  }
-</style>
 
 <body>
   <div class="wrap">
@@ -453,7 +443,7 @@
     data.forEach((item, index) => {
       list += `
               <li class="list list${index}">
-                <p class="value">${item.merchantId}</p>
+                <p class="value">${item.merchantName}</p>
                 <div class="ico-check"></div>
               </li>
               `;
