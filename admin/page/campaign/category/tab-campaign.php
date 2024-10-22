@@ -54,9 +54,9 @@
       </select>
     </div>
     <div class="buttonBox">
-      <button type="button" class="change">선택변경</button>
+      <button type="button" class="change" onclick="modifyCheckCampaign()">선택변경</button>
       <button type="button" class="excelUpload">엑셀 업로드</button>
-      <button type="button" class="save">변경사항 저장</button>
+      <button type="button" class="save" onclick="modifyCampaignRank()">변경사항 저장</button>
     </div>
   </div>
   <!--// 내용이 없을 때 tableWrap & tableAreaDataNone 함께 사용 -->
@@ -156,13 +156,13 @@
                 <td><?= $campaignName; ?></td>
                 <td>
                   <div class="buttonBox">
-                    <button type="button" class="categoryChange" onclick="modifySingleCategoryCampaign('<?= $campaignNum ?>', '<?= $campaignName; ?>', '<?= $category; ?>')">카테고리 변경</button>
+                    <button type="button" class="categoryChange" onclick="modifySingleCategoryCampaign('<?= $campaignNum ?>', '<?= $campaignName; ?>', '<?= $category; ?>', '<?= $affliateId; ?>')">카테고리 변경</button>
                   </div>
                 </td>
                 <td>
                   <div class="checkBox">
-                    <input type="checkbox" name="chk2" id="chk2_1">
-                    <label for="chk2_1"></label>
+                    <input type="checkbox" name="chk2" id="chk2_<?= $i; ?>" value="campaignList<?= $i; ?>">
+                    <label for="chk2_<?= $i; ?>"></label>
                   </div>
                 </td>
                 <td>
@@ -255,6 +255,95 @@
     window.location.href = url.toString();
   }
 
+  function modifyCheckCampaign() {
+    const checkedBoxes = document.querySelectorAll('input[name="chk2"]:checked');
+    if (checkedBoxes.length === 0) return alert('선택된 캠페인이 없습니다.');
+
+    const modal = `
+                    <div class="modalWrap md_categoryChange" id="md_categoryChange" style="display:block;">
+                        <div class="modalContainer">
+                            <div class="modalTitle">
+                                <p>카테고리 캠페인 관리 / 선택변경</p>
+                                <button class="close modalClose" onclick="location.reload();"></button>
+                            </div>
+                            <div class="modalContent">
+                                <div class="categoryBox">
+                                    <p>총 ${checkedBoxes.length}개의 캠페인을 선택하셨습니다.</p>
+                                    <select id="singleCategoryCampaign">
+                                    <?
+                                    $sql = "
+                                            SELECT 
+                                              CATEGORY, CATEGORY_NAME 
+                                            FROM CPS_CATEGORY 
+                                            ORDER BY CAST(CATEGORY_RANK AS UNSIGNED) ASC
+                                            ";
+                                    $stmt = mysqli_stmt_init($con);
+                                    if (mysqli_stmt_prepare($stmt, $sql)) {
+                                      mysqli_stmt_execute($stmt);
+                                      $result = mysqli_stmt_get_result($stmt);
+                                      while ($row = mysqli_fetch_assoc($result)) {
+                                    ?>
+                                      <option value="<?= $row['CATEGORY']; ?>" <? if ($paramCategory == $row['CATEGORY']) echo 'selected'; ?>><?= $row['CATEGORY_NAME']; ?></option>
+                                    <?
+                                      }
+                                      mysqli_stmt_close($stmt);
+                                    } ?>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="modalFooter">
+                                <button type="button" class="confirm" onclick="postModifyCheckCampaign()">변경</button>
+                                <button type="button" class="cancel" onclick="location.reload();">취소</button>
+                            </div>
+                        </div>
+                        <div class="modalDim" onclick="location.reload();"></div>
+                    </div>
+                    `;
+    $('#md_categoryChange').remove();
+    $('.wrap.modalView .modal').append(modal);
+  }
+
+  function postModifyCheckCampaign() {
+    try {
+      let campaignList = [];
+      const checkedBoxes = document.querySelectorAll('input[name="chk2"]:checked');
+      checkedBoxes.forEach(box => {
+        const row = document.getElementById(box.value); // 체크박스의 value 값이 tr의 id와 같음
+        const category = row.getAttribute('data-category');
+        const campaignNum = row.getAttribute('data-campaign-num');
+        const affliateId = row.getAttribute('data-affliate-id');
+
+        campaignList.push({
+          category,
+          campaignNum,
+          affliateId
+        });
+      });
+
+      const requestData = {
+        apiType: 'U',
+        campaignList
+      }
+
+      $.ajax({
+        type: 'POST',
+        url: '/admin/page/campaign/category/api/update-campaign-category.php',
+        contentType: 'application/json',
+        dataType: "JSON",
+        data: JSON.stringify(requestData),
+        success: function(result) {
+          if (result.resultCode !== 'success') return alert(result.resultMessage);
+          location.reload();
+        },
+        error: function(request, status, error) {
+          console.error(`Error: ${error}`);
+        }
+      });
+    } catch (error) {
+      alert(error);
+    }
+  }
+
   function modifyCampaignRank() {
     try {
       let campaignList = [];
@@ -280,11 +369,12 @@
 
       $.ajax({
         type: 'POST',
-        url: 'http://192.168.101.156/api/admin/category',
+        url: '/admin/page/campaign/category/api/update-campaign-rank.php',
         contentType: 'application/json',
+        dataType: "JSON",
         data: JSON.stringify(requestData),
         success: function(result) {
-          if (result.resultCode !== '0000') return alert(result.resultMessage);
+          if (result.resultCode !== 'success') return alert(result.resultMessage);
           location.reload();
         },
         error: function(request, status, error) {

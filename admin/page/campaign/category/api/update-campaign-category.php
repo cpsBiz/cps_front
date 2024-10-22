@@ -1,40 +1,71 @@
 <? include_once $_SERVER['DOCUMENT_ROOT'] . "/db_config.php"; ?>
 <?
-$C = $_POST[''];
-if (!$campaignNum) {
-  $json_data['resultCode'] = 'fail';
-  $json_data['resultMessage'] = '변경사항저장실패';
-  echo json_encode($json_data);
-  exit;
-}
+$inputData = file_get_contents("php://input");
 
-$sql = "
+$data = json_decode($inputData, true);
 
-        ";
-$stmt = mysqli_stmt_init($con);
-if (mysqli_stmt_prepare($stmt, $sql)) {
-  mysqli_stmt_bind_param($stmt, 'i', $C);
-  mysqli_stmt_execute($stmt);
-  $result = mysqli_stmt_get_result($stmt);
+if (isset($data['apiType']) && isset($data['campaignCategoryList'])) {
+  $apiType = $data['apiType'];
+  $campaignCategoryList = $data['campaignCategoryList'];
 
   $i = 0;
-  $json_data['datas'] = [];
-  while ($row = mysqli_fetch_assoc($result)) {
-    $json_data['datas'][$i][''] = $row[''];
-    $json_data['datas'][$i][''] = $row[''];
-    $i++;
+  foreach ($campaignCategoryList as $campaign) {
+    $category = $campaign['category'];
+    $nowCategory = $campaign['nowCategory'];
+    $affliateId = $campaign['affliateId'];
+    $campaignNum = $campaign['campaignNum'];
+
+    $sql = "
+            SELECT 
+              COUNT(*) AS CNT
+            FROM CPS_CAMPAIGN_RANK
+            WHERE 
+              CATEGORY = ? AND CAMPAIGN_NUM = ? AND AFFLIATE_ID = ?
+        ";
+    $stmt = mysqli_stmt_init($con);
+    if (mysqli_stmt_prepare($stmt, $sql)) {
+      mysqli_stmt_bind_param($stmt, 'sis', $category, $campaignNum, $affliateId);
+      mysqli_stmt_execute($stmt);
+      mysqli_stmt_bind_result($stmt, $cnt);
+      mysqli_stmt_fetch($stmt);
+      mysqli_stmt_close($stmt);
+
+      // CNT 값을 사용
+      if ($cnt > 0) {
+        $i++;
+      } else {
+        $sql2 = "
+                UPDATE CPS_CAMPAIGN_RANK
+                SET 
+                  CATEGORY = ?
+                WHERE 
+                  CATEGORY = ? AND CAMPAIGN_NUM = ? AND AFFLIATE_ID = ?
+                ";
+        $stmt2 = mysqli_stmt_init($con);
+        if (mysqli_stmt_prepare($stmt2, $sql2)) {
+          mysqli_stmt_bind_param($stmt2, 'ssis', $category, $nowCategory, $campaignNum, $affliateId);
+          mysqli_stmt_execute($stmt2);
+          mysqli_stmt_close($stmt2);
+        }
+      }
+    }
   }
 
-  if ($i == 0) {
-    $json_data['resultCode'] = 'fail';
-    $json_data['resultMessage'] = '변경사항저장실패';
-  } else {
-    $json_data['resultCode'] = 'success';
-    $json_data['resultMessage'] = '변경사항저장성공';
-  }
+  $total = count($campaignCategoryList);
+  $failCnt = $i;
+  $successCnt = $total - $failCnt;
 
-  echo json_encode($json_data);
-  mysqli_stmt_close($stmt);
-  exit;
+  $json_data['total'] = $total;
+  $json_data['failCnt'] = $failCnt;
+  $json_data['successCnt'] = $successCnt;
+
+  $json_data['resultCode'] = 'success';
+  $json_data['resultMessage'] = '변경사항저장성공';
+} else {
+  $json_data['resultCode'] = 'fail';
+  $json_data['resultMessage'] = '변경사항저장실패';
 }
+
+echo json_encode($json_data);
+exit;
 ?>

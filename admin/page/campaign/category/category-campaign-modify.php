@@ -1,5 +1,5 @@
 <script>
-  function modifySingleCategoryCampaign(campaignNum, campaignName, category) {
+  function modifySingleCategoryCampaign(campaignNum, campaignName, category, affliateId) {
     try {
       $.ajax({
         type: 'GET',
@@ -16,7 +16,7 @@
                         <div class="modalWrap md_categoryChange" id="md_categoryChange" style="display:block;">
                             <div class="modalContainer">
                                 <div class="modalTitle">
-                                    <p>카테고리 캠페인 관리/변경</p>
+                                    <p>카테고리 캠페인 관리 / 변경</p>
                                     <button class="close modalClose" onclick="location.reload();"></button>
                                 </div>
                                 <div class="modalContent">
@@ -30,7 +30,7 @@
                                     </div>
                                 </div>
                                 <div class="modalFooter">
-                                    <button type="button" class="confirm" onclick="postModifyCategoryCampaign('${campaignNum}', '${campaignName}')">변경</button>
+                                    <button type="button" class="confirm" onclick="postModifyCategoryCampaign('${campaignNum}', '${campaignName}', '${affliateId}', '${category}')">변경</button>
                                     <button type="button" class="cancel" onclick="location.reload();">취소</button>
                                 </div>
                             </div>
@@ -49,25 +49,26 @@
     }
   }
 
-  function postModifyCategoryCampaign(campaignNum, campaignName) {
+  function postModifyCategoryCampaign(campaignNum, campaignName, affliateId, nowCategory) {
     try {
       const requestData = {
-        campaignCategoryList: {
+        apiType: 'U',
+        campaignCategoryList: [{
           campaignNum,
-          campaignName,
+          affliateId,
+          nowCategory,
           category: document.getElementById('singleCategoryCampaign').value
-        }
+        }]
       }
-
-
 
       $.ajax({
         type: 'POST',
-        url: 'http://192.168.101.156/api/admin/campaignCategory',
+        url: '/admin/page/campaign/category/api/update-campaign-category.php',
         contentType: 'application/json',
+        dataType: 'JSON',
         data: JSON.stringify(requestData),
         success: function(result) {
-          if (result.resultCode !== '0000') return alert(result.resultMessage);
+          if (result.resultCode !== 'success') return alert(result.resultMessage);
           successModifyCategoryCampaign(`${campaignName}`);
         },
         error: function(request, status, error) {
@@ -79,7 +80,7 @@
     }
   }
 
-  function successModifyCategoryCampaign(campaignName, categoryName) {
+  function successModifyCategoryCampaign(campaignName) {
     const categoryNameElement = document.getElementById('singleCategoryCampaign');
     const categoryNameText = categoryNameElement.options[categoryNameElement.selectedIndex].text;
     const modal = `
