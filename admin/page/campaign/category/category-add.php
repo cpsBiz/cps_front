@@ -9,8 +9,8 @@ if (mysqli_stmt_prepare($stmt, $sql)) {
 $sql = "SELECT CATEGORY FROM CPS_CATEGORY ORDER BY CATEGORY DESC LIMIT 1";
 $result = fetchSingleValue($con, $sql);
 $LastCategory = $result ? $result['CATEGORY'] : null;
-$prefix = substr($LastCategory, 0, 1); // 'C'
-$number = substr($LastCategory, 1); // '0012'
+$prefix = substr($LastCategory, 0, 1);
+$number = substr($LastCategory, 1);
 $newNumber = intval($number) + 1;
 $newCategory = $prefix . str_pad($newNumber, strlen($number), '0', STR_PAD_LEFT);
 

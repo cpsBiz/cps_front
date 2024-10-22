@@ -146,7 +146,7 @@ $months = getLastYearMonths();
 	// 기프티콘 리스트 조회
 	function getGifticonList(status, date) {
 		try {
-			const userId = "userId11";
+			const userId = "dhhan";
 			const merchantId = "coupang";
 			const affliateId = "moneyweather";
 			const awardYm = convertDate(date);
