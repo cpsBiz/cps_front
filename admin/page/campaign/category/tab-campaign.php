@@ -7,11 +7,11 @@
       <select id="selectCategory" class="category" onchange="selectCategory()">
         <?
         $sql = "
-															SELECT 
-																CATEGORY, CATEGORY_NAME 
-															FROM CPS_CATEGORY 
-															ORDER BY CAST(CATEGORY_RANK AS UNSIGNED) ASC
-															";
+                SELECT 
+                  CATEGORY, CATEGORY_NAME 
+                FROM CPS_CATEGORY 
+                ORDER BY CAST(CATEGORY_RANK AS UNSIGNED) ASC
+                ";
         $stmt = mysqli_stmt_init($con);
         if (mysqli_stmt_prepare($stmt, $sql)) {
           mysqli_stmt_execute($stmt);
@@ -30,12 +30,12 @@
       <select id="selectAffliate" class="category" onchange="selectAffliate()">
         <?
         $sql = "
-															SELECT
-																MEMBER_ID
-															FROM CPS_MEMBER
-															WHERE
-																TYPE = 'AFFLIATE'
-															";
+                SELECT
+                  MEMBER_ID
+                FROM CPS_MEMBER
+                WHERE
+                  TYPE = 'AFFLIATE'
+                ";
         $stmt = mysqli_stmt_init($con);
         if (mysqli_stmt_prepare($stmt, $sql)) {
           mysqli_stmt_execute($stmt);
@@ -86,34 +86,34 @@
           $types = '';
           $values = array();
           $sql = "
-																SELECT 
-																	A.CATEGORY,
-																	A.AFFLIATE_ID,
-																	B.CAMPAIGN_NUM,
-																	B.CAMPAIGN_NAME
-																FROM CPS_CAMPAIGN_RANK A
-																JOIN CPS_CAMPAIGN B ON A.CAMPAIGN_NUM = B.CAMPAIGN_NUM
-																JOIN CPS_CATEGORY C ON C.CATEGORY = A.CATEGORY 
-																WHERE
-																	A.CATEGORY = ?
-																";
+                  SELECT 
+                    A.CATEGORY,
+                    A.AFFLIATE_ID,
+                    B.CAMPAIGN_NUM,
+                    B.CAMPAIGN_NAME
+                  FROM CPS_CAMPAIGN_RANK A
+                  JOIN CPS_CAMPAIGN B ON A.CAMPAIGN_NUM = B.CAMPAIGN_NUM
+                  JOIN CPS_CATEGORY C ON C.CATEGORY = A.CATEGORY 
+                  WHERE
+                    A.CATEGORY = ?
+                  ";
           $types .= 's';
           array_push($values, $paramCategory);
 
 
           if ($paramAffliate !== 'ALLAFFLIATE') {
             $sql .= "
-																	AND A.AFFLIATE_ID = ?
-																	";
+                    AND A.AFFLIATE_ID = ?
+                    ";
             $types .= 's';
             array_push($values, $paramAffliate);
           }
 
           $sql .= "
-																GROUP BY A.CAMPAIGN_NUM, A.CATEGORY
-																ORDER BY CAST(CAMPAIGN_RANK AS UNSIGNED) ASC
-																LIMIT ?, ?
-																";
+                  GROUP BY A.CAMPAIGN_NUM, A.CATEGORY
+                  ORDER BY CAMPAIGN_RANK ASC
+                  LIMIT ?, ?
+                  ";
 
           $page_int = ($page - 1) * $per;
           $types .= 'ii';
@@ -149,8 +149,9 @@
               $campaignNum = $row['CAMPAIGN_NUM'];
               $campaignName = $row['CAMPAIGN_NAME'];
               $category = $row['CATEGORY'];
+              $affliateId = $row['AFFLIATE_ID'];
           ?>
-              <tr id="campaignList<?= $i; ?>">
+              <tr id="campaignList<?= $i; ?>" data-category="<?= $category; ?>" data-campaign-num="<?= $campaignNum; ?>" data-affliate-id="<?= $affliateId; ?>">
                 <td><?= $i; ?></td>
                 <td><?= $campaignName; ?></td>
                 <td>
@@ -260,19 +261,21 @@
       const target = document.getElementById('drag-drop');
       for (let i = 0; i < target.childElementCount; i++) {
         const row = target.children[i];
-        const campaign = row.getAttribute('data-campaign');
-        const campaignName = row.getAttribute('data-campaign-name');
+        const category = row.getAttribute('data-category');
+        const affliateId = row.getAttribute('data-affliate-id');
+        const campaignNum = row.getAttribute('data-campaign-num');
 
         campaignList.push({
-          category: category,
-          categoryName: categoryName,
-          categoryRank: <?= $page_int; ?> + i + 1
+          category,
+          affliateId,
+          campaignNum,
+          campaignRank: <?= $page_int; ?> + i + 1
         });
       }
 
       const requestData = {
         apiType: 'U',
-        categoryList
+        campaignList
       }
 
       $.ajax({
@@ -291,6 +294,5 @@
     } catch (error) {
       alert(error);
     }
-
   }
 </script>

@@ -27,17 +27,17 @@
         <tbody id="drag-drop">
           <?
           $sql = "
-																SELECT SQL_CALC_FOUND_ROWS
-																	A.CATEGORY,
-																	A.CATEGORY_NAME,
-																	A.CATEGORY_RANK,
-																	COUNT(B.CAMPAIGN_NUM) AS CAMPAIGN_CNT
-																FROM CPS_CATEGORY A
-																LEFT JOIN CPS_CAMPAIGN B ON B.CATEGORY = A.CATEGORY 
-																GROUP BY A.CATEGORY
-																ORDER BY CAST(CATEGORY_RANK AS UNSIGNED) ASC
-																LIMIT ?, ?
-																";
+                  SELECT SQL_CALC_FOUND_ROWS
+                    A.CATEGORY,
+                    A.CATEGORY_NAME,
+                    A.CATEGORY_RANK,
+                    COUNT(B.CAMPAIGN_NUM) AS CAMPAIGN_CNT
+                  FROM CPS_CATEGORY A
+                  LEFT JOIN CPS_CAMPAIGN B ON B.CATEGORY = A.CATEGORY 
+                  GROUP BY A.CATEGORY
+                  ORDER BY CAST(CATEGORY_RANK AS UNSIGNED) ASC
+                  LIMIT ?, ?
+                  ";
 
           $page_int = ($page - 1) * $per;
 

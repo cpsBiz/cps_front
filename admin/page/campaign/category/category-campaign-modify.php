@@ -3,7 +3,7 @@
     try {
       $.ajax({
         type: 'GET',
-        url: '/admin/page/campaign/api/select-campaign-category.php',
+        url: '/admin/page/campaign/category/api/select-campaign-category.php',
         contentType: 'application/json',
         dataType: "JSON",
         data: {
