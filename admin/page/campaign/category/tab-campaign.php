@@ -305,24 +305,25 @@
 
   function postModifyCheckCampaign() {
     try {
-      let campaignList = [];
+      let campaignCategoryList = [];
       const checkedBoxes = document.querySelectorAll('input[name="chk2"]:checked');
       checkedBoxes.forEach(box => {
-        const row = document.getElementById(box.value); // 체크박스의 value 값이 tr의 id와 같음
-        const category = row.getAttribute('data-category');
+        const row = document.getElementById(box.value);
+        const nowCategory = row.getAttribute('data-category');
         const campaignNum = row.getAttribute('data-campaign-num');
         const affliateId = row.getAttribute('data-affliate-id');
 
-        campaignList.push({
-          category,
+        campaignCategoryList.push({
+          nowCategory,
           campaignNum,
-          affliateId
+          affliateId,
+          category: document.getElementById('singleCategoryCampaign').value
         });
       });
 
       const requestData = {
         apiType: 'U',
-        campaignList
+        campaignCategoryList
       }
 
       $.ajax({
