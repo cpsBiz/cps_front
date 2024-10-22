@@ -83,7 +83,7 @@ $total = 0;
 															<span class="iMarkHover">말풍선입니다.</span></span></th>
 												</tr>
 											</thead>
-											<tbody>
+											<tbody id="drag-drop">
 												<?
 												$sql = "
 																SELECT SQL_CALC_FOUND_ROWS
@@ -130,18 +130,21 @@ $total = 0;
 														$campaignCnt = $row['CAMPAIGN_CNT'];
 														$category = $row['CATEGORY'];
 												?>
-														<tr id="categoryList<?= $i; ?>">
+														<tr id="categoryList<?= $i; ?>" data-category="<?= $category; ?>" data-category-name="<?= $categoryName; ?>">
 															<td><?= $i; ?></td>
 															<td><?= $categoryName; ?></td>
 															<td><?= $campaignCnt; ?></td>
 															<td>
 																<div class="buttonBox">
 																	<button type="button" class="modify" title="수정" onclick="modifyCategory('<?= $category; ?>', '<?= $categoryName; ?>', <?= $categoryRank; ?>)">수정</button>
-																	<button type="button" class="delete" title="삭제" onclick="deleteCategory('<?= $category; ?>')">삭제</button>
+																	<button type="button" class="delete" title="삭제" onclick="deleteCategory('<?= $category; ?>', '<?= $categoryName; ?>')">삭제</button>
 																</div>
 															</td>
 															<td>
-																<div class="buttonBox"><button type="button" class="listChange">순위변경</button></div>
+																<div class="buttonBox">
+																	<!-- <button type="button" class="listChange">순위변경</button> -->
+																	<img class="drag-handle" src="/admin/image/component/ico_hamburger.svg" alt="">
+																</div>
 															</td>
 														</tr>
 												<?
@@ -157,7 +160,7 @@ $total = 0;
 									<? if ($total == 0) { ?>
 										<div class="categoryList tableDataNone">
 											<div>
-												<p>내용이 없습니다. </p>
+												<p style="text-align: center;">내용이 없습니다. </p>
 											</div>
 										</div>
 										<script>
@@ -191,6 +194,56 @@ $total = 0;
 												<? } ?>
 											</ul>
 										</div>
+										<style>
+											.drag-handle {
+												cursor: grab;
+											}
+										</style>
+										<script>
+											$('#drag-drop').sortable({
+												handle: '.drag-handle'
+											})
+
+											function modifyCategoryRank() {
+												try {
+													let categoryList = [];
+													const target = document.getElementById('drag-drop');
+													for (let i = 0; i < target.childElementCount; i++) {
+														const row = target.children[i]; // 현재 행 선택
+														const category = row.getAttribute('data-category'); // data-category 속성에서 카테고리 추출
+														const categoryName = row.getAttribute('data-category-name'); // data-category-name 속성에서 카테고리 이름 추출
+
+														categoryList.push({
+															category: category,
+															categoryName: categoryName,
+															categoryRank: <?= $page_int; ?> + i + 1
+														});
+													}
+
+													const requestData = {
+														apiType: 'U',
+														categoryList
+													}
+
+													$.ajax({
+														type: 'POST',
+														url: 'http://192.168.101.156/api/admin/category',
+														contentType: 'application/json',
+														data: JSON.stringify(requestData),
+														success: function(result) {
+															if (result.resultCode !== '0000') return alert(result.resultMessage);
+															location.reload();
+														},
+														error: function(request, status, error) {
+															console.error(`Error: ${error}`);
+														}
+													});
+												} catch (error) {
+													alert(error);
+												}
+
+											}
+										</script>
 									<? } ?>
 								</div>
 							</div>
@@ -217,11 +270,16 @@ $total = 0;
 											$stmt = mysqli_stmt_init($con);
 											if (mysqli_stmt_prepare($stmt, $sql)) {
 												mysqli_stmt_execute($stmt);
-												$result = mysqli_stmt_get_result($stmt);
-												while ($row = mysqli_fetch_assoc($result)) {
+												$selectCategoryList = mysqli_stmt_get_result($stmt);
+												$firstCategory = '';
+												$i = 0;
+												while ($row = mysqli_fetch_assoc($selectCategoryList)) {
+													if ($i == 0) $firstCategory = $row['CATEGORY'];
 											?>
 													<option value="<?= $row['CATEGORY']; ?>" <? if ($paramCategory == $row['CATEGORY']) echo 'selected'; ?>><?= $row['CATEGORY_NAME']; ?></option>
-											<? }
+											<? $i++;
+												}
+												mysqli_stmt_close($stmt);
 											} ?>
 										</select>
 										<select name="" id="">
@@ -262,7 +320,7 @@ $total = 0;
 																SELECT 
 																	C.CATEGORY_NAME,
 																	A.CATEGORY,
-																	A.CAMPAIGN_RANK,
+																	B.CAMPAIGN_NUM,
 																	B.CAMPAIGN_NAME
 																FROM CPS_CAMPAIGN_RANK A
 																JOIN CPS_CAMPAIGN B ON A.CAMPAIGN_NUM = B.CAMPAIGN_NUM
@@ -278,6 +336,8 @@ $total = 0;
 
 												$stmt = mysqli_stmt_init($con);
 												if (mysqli_stmt_prepare($stmt, $sql)) {
+													if (!$paramCategory) $paramCategory = $firstCategory;
+
 													mysqli_stmt_bind_param($stmt, 'sii', $paramCategory, $page_int, $per);
 													mysqli_stmt_execute($stmt);
 													$result = mysqli_stmt_get_result($stmt);
@@ -301,7 +361,10 @@ $total = 0;
 													// 결과를 처리
 													$i = $page_int + 1;
 													while ($row = mysqli_fetch_assoc($result)) {
+														$campaignNum = $row['CAMPAIGN_NUM'];
 														$campaignName = $row['CAMPAIGN_NAME'];
+														$category = $row['CATEGORY'];
+
 
 												?>
 														<tr id="campaignList<?= $i; ?>">
@@ -309,7 +372,7 @@ $total = 0;
 															<td><?= $campaignName; ?></td>
 															<td>
 																<div class="buttonBox">
-																	<button type="button" class="categoryChange">카테고리 변경</button>
+																	<button type="button" class="categoryChange" onclick="modifySingleCategoryCampaign('<?= $campaignNum ?>', '<?= $campaignName; ?>', '<?= $category; ?>')">카테고리 변경</button>
 																</div>
 															</td>
 															<td>
@@ -336,7 +399,7 @@ $total = 0;
 									<? if ($total == 0) { ?>
 										<div class="campaignList tableDataNone">
 											<div>
-												<p>내용이 없습니다. </p>
+												<p style="text-align: center;">내용이 없습니다. </p>
 											</div>
 										</div>
 										<script>
@@ -478,7 +541,7 @@ $total = 0;
 									</div>
 									<div class="tableDataNone">
 										<div>
-											<p>내용이 없습니다. </p>
+											<p style="text-align: center;">내용이 없습니다.</p>
 										</div>
 									</div>
 									<div class="paging">
@@ -530,5 +593,6 @@ if ($tab == '' || $tab == 'category') {
 }
 
 if ($tab == 'campaign') {
+	include_once $_SERVER['DOCUMENT_ROOT'] . "/admin/page/campaign/category-campaign-modify.php";
 }
 ?>
