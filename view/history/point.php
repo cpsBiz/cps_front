@@ -28,7 +28,7 @@ $months = getLastYearMonths();
   <script type="text/javascript" src="/admin/js/lib/jquery-2.2.2.min.js"></script>
   <script type="text/javascript" src="/admin/js/lib/jquery.easing.1.3.js"></script>
   <script type="text/javascript" src="/admin/js/lib/jquery-ui.min.js"></script>
-  <script src="/view/js/history.js"></script>
+
 </head>
 
 <body>
@@ -154,9 +154,10 @@ $months = getLastYearMonths();
       <a class="menu on" href="/view/history/point.php"><span class="ico-breakDown">내역</span></a>
     </div>
   </div>
-  <script src="/view/js/common.js"></script>
-  <script src="/view/js/page.js"></script>
 </body>
+<script src="/view/js/common.js"></script>
+<script src="/view/js/page.js"></script>
+<script src="/view/js/history.js"></script>
 
 </html>
 <script>

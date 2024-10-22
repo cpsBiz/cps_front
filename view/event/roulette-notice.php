@@ -92,8 +92,8 @@
       },
     });
   </script>
-  <script src="/view/js/common.js"></script>
-  <script src="/view/js/page.js"></script>
 </body>
+<script src="/view/js/common.js"></script>
+<script src="/view/js/page.js"></script>
 
 </html>

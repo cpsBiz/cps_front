@@ -16,7 +16,6 @@ $affliateId = $_REQUEST['affliateId'];
     <script type="text/javascript" src="/admin/js/lib/jquery-2.2.2.min.js"></script>
     <script type="text/javascript" src="/admin/js/lib/jquery.easing.1.3.js"></script>
     <script type="text/javascript" src="/admin/js/lib/jquery-ui.min.js"></script>
-    <script type="text/javascript" src="/view/js/common.js"></script>
     <!-- style -->
     <link rel="stylesheet" href="/view/css/style.css">
     <link rel="stylesheet" href="/view/css/index.css">
@@ -76,6 +75,7 @@ $affliateId = $_REQUEST['affliateId'];
     </div>
 
 </body>
+<script type="text/javascript" src="/view/js/common.js"></script>
 
 </html>
 <script>

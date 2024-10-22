@@ -20,8 +20,6 @@ if (!$object) {
 	<script type="text/javascript" src="/admin/js/lib/jquery.easing.1.3.js"></script>
 	<script type="text/javascript" src="/admin/js/lib/jquery-ui.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.5/dist/JsBarcode.all.min.js"></script>
-	<script src="/view/js/common.js"></script>
-	<script src="/view/js/page.js"></script>
 	<style>
 		.gifticon-notice-list li {
 			list-style: none;
@@ -79,6 +77,8 @@ if (!$object) {
 		</div>
 	</div>
 </body>
+<script src="/view/js/common.js"></script>
+<script src="/view/js/page.js"></script>
 
 </html>
 <script>
