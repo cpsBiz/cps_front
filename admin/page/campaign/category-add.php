@@ -25,7 +25,7 @@ $LastCategoryRank = $result ? $result['CATEGORY_RANK'] + 1 : null;
                     <div class="modalWrap md_categoryRegister" id="md_categoryRegister" style="display:block;">
                       <div class="modalContainer">
                         <div class="modalTitle">
-                          <p>카테고리 목록 추가 등록</p>
+                          <p>카테고리 목록 관리 / 추가 등록</p>
                           <button class="close modalClose" onclick="location.reload();"></button>
                         </div>
                         <div class="modalContent">
@@ -70,8 +70,12 @@ $LastCategoryRank = $result ? $result['CATEGORY_RANK'] + 1 : null;
         contentType: 'application/json',
         data: JSON.stringify(requestData),
         success: function(result) {
-          if (result.resultCode !== '0000') return alert(result.resultMessage);
-          successAddCategory(`${categoryList[0].categoryName}`);
+          if (result.resultCode === '0000') {
+            return successAddCategory(`${categoryList[0].categoryName}`);
+          } else if (result.resultCode === '3004') {
+            return validAddCategory(`${categoryList[0].categoryName}`);
+          }
+          alert(result.resultMessage);
         },
         error: function(request, status, error) {
           console.error(`Error: ${error}`);
@@ -87,18 +91,44 @@ $LastCategoryRank = $result ? $result['CATEGORY_RANK'] + 1 : null;
                   <div class="modalWrap md_categoryRegister" id="md_categoryRegister" style="display:block;">
                       <div class="modalContainer">
                           <div class="modalTitle">
-                              <p>카테고리 목록 추가 등록</p>
+                              <p>카테고리 목록 관리 / 추가 등록</p>
                               <button class="close modalClose" onclick="location.reload();"></button>
                           </div>
                           <div class="modalContent">
                               <div class="categoryBox">
                                   <p>${name}</p>
-                                  <p>카테고리 등록이 완료되었습니다.</p>
+                                  <p>카테고리 신규 등록이 완료되었습니다.</p>
                               </div>
                           </div>
                           <div class="modalFooter">
                               <button type="button" class="confirm" onclick="location.reload();">확인</button>
                           </div>
+                      </div>
+                      <div class="modalDim" onclick="location.reload();"></div>
+                  </div>
+                  `;
+    $('.wrap.modalView .modal').empty();
+    $('.wrap.modalView .modal').append(modal);
+  }
+
+  function validAddCategory(name) {
+    const modal = `
+                  <div class="modalWrap md_categoryRegister" id="md_categoryRegister" style="display:block;">
+                      <div class="modalContainer">
+                          <div class="modalTitle">
+                              <p>카테고리 목록 관리 / 추가 등록</p>
+                              <button class="close modalClose" onclick="location.reload();"></button>
+                          </div>
+                          <div class="modalContent">
+                              <div class="categoryBox">
+                                  <p>${name}</p>
+                                  <p>은(는) 이미 등록되어 있습니다.</p>
+                              </div>
+                          </div>
+                          <div class="modalFooter">
+                            <button type="button" class="confirm" onclick="addCategory();">재등록</button>
+                            <button type="button" class="cancel" onclick="location.reload();">취소</button>
+                        </div>
                       </div>
                       <div class="modalDim" onclick="location.reload();"></div>
                   </div>

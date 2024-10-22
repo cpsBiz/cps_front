@@ -1,15 +1,17 @@
 <script>
-  function deleteCategory(category) {
+  function deleteCategory(category, categoryName) {
     const modal = `
                   <div class="modalWrap md_alert" id="md_alert" style="display:block;">
                         <div class="modalContainer">
                             <div class="modalTitle">
+                                <p>카테고리 목록 관리 / 삭제</p>
                                 <button class="close modalClose" onclick="location.reload();"></button>
                             </div>
                             <div class="modalContent">
-                                <div>
-                                    <p>삭제하시겠습니까?</p>
-                                </div>
+                                <div class="categoryBox">
+                                  <p>${categoryName}</p>
+                                  <p>카테고리를 삭제 하시겠습니까?</p>
+                              </div>
                             </div>
                             <div class="modalFooter">
                                 <!-- 버튼 한개 사용 가능 -->
