@@ -76,10 +76,10 @@
             <input id="datepicker" type="text" placeholder="구매일을 선택해주세요(필수)">
           </div>
           <div class="input-box">
-            <input type="text" placeholder="성함을 입력해주세요(필수)">
+            <input id="name" type="text" placeholder="성함을 입력해주세요(필수)">
           </div>
           <div class="input-box">
-            <input type="text" placeholder="주문번호를 입력해주세요(필수)">
+            <input id="orderNumber" type="text" placeholder="주문번호를 입력해주세요(필수)">
             <p>구매하신 쇼핑몰의 주문내역에서 확인이 가능합니다.</p>
           </div>
           <div class="input-box">
@@ -95,16 +95,16 @@
             </div>
           </div>
           <div class="input-box">
-            <input type="text" placeholder="상품 금액을 입력해주세요(필수)">
+            <input id="productPrice" type="text" placeholder="상품 금액을 입력해주세요(필수)">
           </div>
           <div class="input-box">
-            <input type="text" placeholder="상품 수량을 입력해주세요(필수)">
+            <input id="productCnt" type="text" placeholder="상품 수량을 입력해주세요(필수)">
           </div>
           <div class="input-box">
-            <textarea rows="10" placeholder="문의하실 내용을 입력해주세요"></textarea>
+            <textarea id="content" rows="10" placeholder="문의하실 내용을 입력해주세요"></textarea>
           </div>
           <div class="input-box">
-            <input type="text" placeholder="이메일 주소를 입력해주세요(필수)">
+            <input id="email" type="text" placeholder="이메일 주소를 입력해주세요(필수)">
             <p>기재하시는 메일 주소로 안내 드립니다.</p>
           </div>
           <div class="input-box">
@@ -122,22 +122,22 @@
               개인정보 수집 및 이용에 대한 동의를 거부할 수 있으며, 이 경우 문의 접수가 제한 됩니다.
             </p>
           </div>
-          <a class="submit-btn on" href="javascript:void(0)" onclick="checkInquiaryData()">문의하기</a>
+          <a class="submit-btn on" href="javascript:void(0)" onclick="checkInquiryData()">문의하기</a>
         </div>
         <!-- 기타문의 -->
         <div id="form-box2" class="form-box">
           <div class="input-box">
-            <input type="text" placeholder="제목을 입력해주세요(필수)">
+            <input id="title" type="text" placeholder="제목을 입력해주세요(필수)">
           </div>
           <div class="input-box">
-            <textarea rows="10" placeholder="문의하실 내용을 입력해주세요(필수)"></textarea>
+            <textarea id="content2" rows="10" placeholder="문의하실 내용을 입력해주세요(필수)"></textarea>
             <p>적립누락은 누락문의로 접수해주셔야 처리됩니다.</p>
           </div>
           <div class="input-box">
-            <input type="text" placeholder="성함을 입력해주세요(필수)">
+            <input id="name2" type="text" placeholder="성함을 입력해주세요(필수)">
           </div>
           <div class="input-box">
-            <input type="text" placeholder="이메일 주소를 입력해주세요(필수)">
+            <input id="email2" type="text" placeholder="이메일 주소를 입력해주세요(필수)">
           </div>
           <div class="file-box">
             <p class="title">첨부 파일</p>
@@ -155,7 +155,7 @@
               <li>파일 첨부는 JPG / PNG / GIF / PDF 만 가능합니다.</li>
             </ul>
           </div>
-          <a class="submit-btn on" href="javascript:void(0)" onclick="checkInquiaryData()">문의하기</a>
+          <a class="submit-btn on" href="javascript:void(0)" onclick="checkInquiryData()">문의하기</a>
         </div>
       </div>
     </div>
@@ -344,75 +344,195 @@
   })
 
   // 입력값 검증
-  function checkInquiaryData() {
+  function checkInquiryData() {
     // 문의 종류
-    const inquiaryType = document.getElementById('ask-value').textContent;
+    const inquiryType = document.getElementById('select-list1').querySelector('.list.on .value').textContent;
 
-    if (inquiaryType === '누락문의') {
-      omissionInquiary();
-    } else if (inquiaryType === '기타문의') {
-      etcInquiary();
+    if (inquiryType === '누락문의') {
+      omissioninquiry();
+    } else if (inquiryType === '기타문의') {
+      etcinquiry();
     } else {
       alert('잘못된 접근입니다.');
     }
   }
 
   // 누락문의검증
-  function omissionInquiary() {
+  function omissioninquiry() {
     console.log('누락문의검증');
+
+    // 구매 쇼핑몰 
+    if (!document.getElementById('select-btn2').querySelector('p.value').classList.contains('on')) {
+      return alert('구매 쇼핑몰을 선택해주세요.');
+    }
+
+    // 문의 목적
+    if (!document.getElementById('select-btn3').querySelector('p.value').classList.contains('on')) {
+      return alert('문의 목적을 선택해주세요.');
+    }
+
+    // 구매일
+    if (!document.getElementById('datepicker').value) {
+      return alert('구매일을 선택해주세요.');
+    }
+
+    // 성함
+    if (!document.getElementById('name').value) {
+      return alert('성함을 입력해주세요.');
+    }
+
+    // 주문번호
+    if (!document.getElementById('orderNumber').value) {
+      return alert('주문번호를 입력해주세요.');
+    }
+
+    // 결제통화
+    if (!document.getElementById('select-btn4').querySelector('p.value').classList.contains('on')) {
+      return alert('문의 목적을 선택해주세요.');
+    }
+
+    // 결제수단
+    if (!document.getElementById('select-btn5').querySelector('p.value').classList.contains('on')) {
+      return alert('문의 목적을 선택해주세요.');
+    }
+
+    // 상품금액
+    if (!document.getElementById('productPrice').value) {
+      return alert('상품 금액을 입력해주세요.');
+    }
+
+    // 상품수량
+    if (!document.getElementById('productCnt').value) {
+      return alert('상품 수량을 입력해주세요.');
+    }
+
+    // 이메일
+    if (!document.getElementById('email').value) {
+      return alert('이메일을 입력해주세요.');
+    }
+
+    postinquiry('ommission');
   }
 
   // 기타문의검증
-  function etcInquiary() {
-    console.log('기타문의검증');
+  function etcinquiry() {
+    // 제목
+    if (!document.getElementById('title').value) {
+      return alert('제목을 입력해주세요');
+    }
+
+    // 내용
+    if (!document.getElementById('content2').value) {
+      return alert('문의하실 내용을 입력해주세요.');
+    }
+
+    // 성함
+    if (!document.getElementById('name2').value) {
+      return alert('성함을 입력해주세요.');
+    }
+
+    // 이메일
+    if (!document.getElementById('email2').value) {
+      return alert('이메일을 입력해주세요.');
+    }
+
+    if (document.querySelector('.file-list').childElementCount > 0) {
+      postFileUpload();
+    } else {
+      postinquiry('etc');
+    }
   }
 
   function postFileUpload() {
-    console.log('파일 업로드');
+    try {
+      const requestData = [];
+
+      $.ajax({
+        type: 'POST',
+        url: '/view/inquiry/file-upload.php',
+        contentType: 'application/json',
+        dataType: 'JSON',
+        data: JSON.stringify(requestData),
+        success: function(result) {
+          const fileList = result.datas;
+          postinquiry('etc', fileList);
+        },
+        error: function(request, status, error) {
+          console.error(`Error: ${error}`);
+        }
+      });
+    } catch (error) {
+      alert(error);
+    }
+
   }
 
-
-
-  function postInquiary(data) {
+  function postinquiry(type, fileList) {
     try {
-      postFileUpload.then((fileList) => {
-        const requestData = {
-          inquiryNum: data.inquiryNum,
-          note: data.note,
-          userId: "string",
-          inquiryType: data.inquiaryType,
-          campaignNum: data.campaignNum,
-          merchantId: "string",
-          purpose: data.purpose,
-          regDay: data.regDay,
-          userName: data.userName,
-          orderNo: data.orderNo,
-          productCode: data.productCode,
-          currency: data.currency,
-          payment: data.payment,
-          productPrice: data.productPrice,
-          productCnt: data.productCnt,
-          email: data.email,
-          information: data.information,
-          answerYn: data.answerYn,
-          inquiaryFileList: fileList
-        }
 
-        // AJAX 요청 수행
-        $.ajax({
-          type: 'POST',
-          url: 'http://192.168.101.156/api/view/inquiary',
-          contentType: 'application/json',
-          data: JSON.stringify(requestData),
-          success: function(result) {
-            console.log(result);
-            popupOn('#popup-wrap', '.popup1');
-          },
-          error: function(request, status, error) {
-            console.error(`Error: ${error}`);
-          }
-        });
-      })
+      let requestData = {
+        inquiryNum: 0,
+        note: '',
+        userId: 'dhhan',
+        inquiryType: '',
+        campaignNum: 0,
+        merchantId: '',
+        purpose: '',
+        regDay: 0,
+        userName: '',
+        orderNo: '',
+        productCode: '',
+        currency: '',
+        payment: '',
+        productPrice: 0,
+        productCnt: 0,
+        email: '',
+        information: 'N',
+        answerYn: '',
+        inquiryFileList: []
+      }
+
+      if (type === 'ommission') {
+        requestData.inquiryType = '누락문의';
+        requestData.merchantId = document.getElementById('shoppingMallList').querySelector('.list.on .value').getAttribute('data-id');
+        requestData.purpose = document.getElementById('select-btn3').querySelector('.value.on').textContent;
+        requestData.regDay = parseInt(document.getElementById('datepicker').value.replaceAll('-', ''));
+        requestData.userName = document.getElementById('name').value;
+        requestData.orderNo = document.getElementById('orderNumber').value;
+        requestData.currency = document.getElementById('select-list4').querySelector('.list.on .value').textContent;
+        requestData.payment = document.getElementById('select-list5').querySelector('.list.on .value').textContent;
+        requestData.productPrice = document.getElementById('productPrice').value;
+        requestData.productCnt = document.getElementById('productCnt').value;
+        requestData.note = document.getElementById('content').value;
+        requestData.email = document.getElementById('email').value;
+        requestData.information = document.getElementById('check_1').checked ? 'Y' : 'N';
+      } else if (type === 'etc') {
+        requestData.inquiryType = '기타문의';
+        requestData.purpose = document.getElementById('title').value;
+        requestData.note = document.getElementById('content2').value;
+        requestData.userName = document.getElementById('name2').value;
+        requestData.email = document.getElementById('email2').value;
+        requestData.inquiryFileList = fileList && fileList.length > 0 ? fileList : []
+      } else {
+        return alert('잘못된 접근입니다.');
+      }
+
+      // AJAX 요청 수행
+      $.ajax({
+        type: 'POST',
+        url: 'http://192.168.101.156/api/view/inquiry',
+        contentType: 'application/json',
+        data: JSON.stringify(requestData),
+        success: function(result) {
+          console.log(result);
+          if (result.resultCode !== '0000') return alert(result.resultMessage);
+          popupOn('#popup-wrap', '.popup1');
+        },
+        error: function(request, status, error) {
+          console.error(`Error: ${error}`);
+        }
+      });
+
     } catch (error) {
       alert(error);
     }
@@ -443,7 +563,7 @@
     data.forEach((item, index) => {
       list += `
               <li class="list list${index}">
-                <p class="value">${item.merchantName}</p>
+                <p class="value" data-id="${item.merchantId}">${item.merchantName}</p>
                 <div class="ico-check"></div>
               </li>
               `;
