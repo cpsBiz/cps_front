@@ -1,3 +1,14 @@
+<?
+$campaign = $_REQUEST['campaign'];
+if (!$campaign) {
+?>
+  <script>
+    alert('잘못된 접근입니다.');
+    location.back();
+  </script>
+<?
+}
+?>
 <!DOCTYPE html>
 <html lang="ko">
 
@@ -485,7 +496,7 @@
         note: '',
         userId: 'dhhan',
         inquiryType: '',
-        campaignNum: 0,
+        campaignNum: <?= $campaign; ?>,
         affliateId: 'moneyweather',
         merchantId: '',
         purpose: '',

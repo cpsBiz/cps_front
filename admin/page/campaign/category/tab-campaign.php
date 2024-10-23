@@ -35,6 +35,7 @@
                 FROM CPS_MEMBER
                 WHERE
                   TYPE = 'AFFLIATE'
+                ORDER BY MEMBER_ID ASC
                 ";
         $stmt = mysqli_stmt_init($con);
         if (mysqli_stmt_prepare($stmt, $sql)) {

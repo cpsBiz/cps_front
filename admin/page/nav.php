@@ -35,7 +35,10 @@ $menu_items = [
   ],
   'customer' => [
     'label' => '고객 관리',
-    'url' => '#'
+    'url' => '#',
+    'sub' => [
+      ['label' => '1:1문의 내역', 'url' => '/admin/page/customer/inquiryList.php']
+    ]
   ],
   'notice' => [
     'label' => '공지사항',

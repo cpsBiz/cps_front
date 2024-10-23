@@ -5,27 +5,6 @@ if (!$object) {
   header('Location: ' . $_SERVER['HTTP_REFERER']);
   exit;
 }
-
-
-// 'apiUrl' 이전의 파라미터만 추출
-$clickUrl = '';
-foreach ($params as $key => $value) {
-  if ($key == 'apiUrl') {
-    break; // 'apiUrl' 이후는 무시
-  }
-  $filteredParams[$key] = $value;
-  if ($key === 'clickUrl') {
-    $clickUrl .= $value;
-  } else {
-    $clickUrl .= $key . '=' . $value;
-  }
-}
-$apiUrl = $_REQUEST['apiUrl'];
-$campaignNum = $_REQUEST['campaignNum'];
-$merchantId = $_REQUEST['merchantId'];
-$agencyId = $_REQUEST['agencyId'];
-$affliateId = $_REQUEST['affliateId'];
-$site = $_REQUEST['site'];
 ?>
 <!DOCTYPE html>
 <html lang="ko">
@@ -68,7 +47,7 @@ $site = $_REQUEST['site'];
           <div id="campaignRewardDate" class="gray-box"></div>
         </div>
         <div class="box box3">
-          <a href="/view/inquiry/index.php">적립에 문제가 있다면 1:1 문의하기<span class="ico-arrow type1 right"></span></a>
+          <a href="javascript:goInquiry()">적립에 문제가 있다면 1:1 문의하기<span class="ico-arrow type1 right"></span></a>
         </div>
         <div class="box box4">
           <div id="accessProductArea">
@@ -84,9 +63,7 @@ $site = $_REQUEST['site'];
           <p>유의사항</p>
           <ul id="campaignNotice"></ul>
         </div>
-        <input type="hidden" id="apiUrl" value="<?= $apiUrl; ?>">
-        <input type="hidden" id="clickUrl" value="<?= $clickUrl; ?>">
-        <input type="hidden" id="campaignNum" value="<?= $campaignNum; ?>">
+        <input type="hidden" id="campaignNum" value="">
         <a id="buttonUrl" class="submit-btn on" href="">쇼핑하고 적립받기</a>
       </div>
     </div>
@@ -112,6 +89,7 @@ $site = $_REQUEST['site'];
     const apiUrl = object.apiUrl;
     const clickUrl = object.clickUrl;
     const campaignNum = object.campaignNum;
+    document.getElementById('campaignNum').value = campaignNum;
 
     if (apiUrl && clickUrl && campaignNum) {
       getClickRewardUrl(apiUrl, clickUrl, campaignNum);
@@ -226,17 +204,6 @@ $site = $_REQUEST['site'];
       $('#campaignRewardPer').append(rewardPer + '%');
     }
 
-    // 적립대상 -> 아직은 데이터가 없음
-    // const accessProduct = [{
-    //   category: '헤드폰 악세사리/인테리어',
-    //   per: '6.3%'
-    // }, {
-    //   category: 'PC 주변기기/태블릿',
-    //   per: '2.1%'
-    // }, {
-    //   category: '그 외 기타상품',
-    //   per: '4.9%'
-    // }];
     const accessProduct = [];
     if (accessProduct.length === 0) {
       $('#accessProductArea').css('display', 'none');
@@ -271,5 +238,11 @@ $site = $_REQUEST['site'];
       });
       $('#campaignNotice').append(noticeList);
     }
+  }
+
+  function goInquiry() {
+    const campaignNum = document.getElementById('campaignNum').value;
+    if (!campaignNum) return alert('잘못된 접근입니다.');
+    location.href = `/view/inquiry/index.php?campaign=${campaignNum}`;
   }
 </script>
