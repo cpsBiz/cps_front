@@ -425,10 +425,9 @@
 
         function successModifyCampaignRank() {
           const modal = `
-                          <div class="modalWrap md_alert" id="md_alert">
+                          <div class="modalWrap md_alert" id="md_alert" style="display:block;">
                             <div class="modalContainer">
                                 <div class="modalTitle">
-                                    <p>확인</p>
                                     <button class="close modalClose" onclick="location.reload()"></button>
                                 </div>
                                 <div class="modalContent">
