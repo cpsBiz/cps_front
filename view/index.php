@@ -239,7 +239,7 @@ $affliateId = $_REQUEST['affliateId'];
                 site: item.site,
             }
             const itemStr = base64Encode(JSON.stringify(params));
-            // 해야함 - 즐겨찾기 유무 데이터 처리 필요
+
             list += `
               <div class="list">
                 <p class="title"><span class="logo" style="background-image: url(${item.logo});"></span>${item.memberName}</p>
@@ -257,15 +257,24 @@ $affliateId = $_REQUEST['affliateId'];
         const apiUrl = 'http://192.168.101.156/api/clickCoupang/campaignClick';
         const commissionPer = getCommissionPer(item);
 
+        const params = {
+            clickUrl: getDevice() ? item.mobileClickUrl : item.clickUrl,
+            apiUrl,
+            campaignNum: item.campaignNum,
+            per: commissionPer,
+            affliateId: item.affliateId,
+            merchantId: item.merchantId,
+            agencyId: item.adminId,
+            site: item.site,
+        }
+
+        const itemStr = base64Encode(JSON.stringify(params));
+
         const area = `
                   <p class="title">쿠팡 검색 쇼핑하고 선물 받기</p>
                   <div class="info-wrap">
                     <a id="memberStick" class="candy type1" href="/view/history/stick.php"></a>
-                    <div class="coupang-search-wrap">
-                      <span class="logo">쿠팡</span>
-                      <input type="text" placeholder="쿠팡에서 쇼핑하기" disabled>
-                      <a href="/view/reward/campaign.php?clickUrl=${item.clickUrl}&apiUrl=${apiUrl}&campaignNum=${item.campaignNum}&per=${commissionPer}&affliateId=${item.affliateId}&merchantId=${item.merchantId}&agencyId=${item.adminId}&site=${item.site}">검색</a>
-                    </div>
+                    <a class="coupang-link" href="javascript:postToUrl('${itemStr}')"><span>쿠팡 쇼핑 GO!</span></a>
                   </div>
                   <div class="link-wrap">
                     <div class="link-box"><a href="/view/history/gifticon.php">당첨내역</a></div>
