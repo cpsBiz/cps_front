@@ -93,5 +93,6 @@ if ($tab == '' || $tab == 'category') {
 
 if ($tab == 'campaign') {
 	include_once $_SERVER['DOCUMENT_ROOT'] . "/admin/page/campaign/category/category-campaign-modify.php";
+	include_once $_SERVER['DOCUMENT_ROOT'] . "/admin/page/campaign/category/category-campaign-excel.php";
 }
 ?>

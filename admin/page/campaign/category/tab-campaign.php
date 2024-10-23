@@ -55,7 +55,7 @@
     </div>
     <div class="buttonBox">
       <button type="button" class="change" onclick="modifyCheckCampaign()">선택변경</button>
-      <button type="button" class="excelUpload">엑셀 업로드</button>
+      <button type="button" class="excelUpload" onclick="campaignExcelUpload()">엑셀 업로드</button>
       <button type="button" class="save" onclick="modifyCampaignRank()">변경사항 저장</button>
     </div>
   </div>
