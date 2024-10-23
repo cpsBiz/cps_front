@@ -181,7 +181,30 @@
           } catch (error) {
             alert(error);
           }
+        }
 
+        function successModifyCategoryRank() {
+          const modal = `
+                          <div class="modalWrap md_alert" id="md_alert">
+                            <div class="modalContainer">
+                                <div class="modalTitle">
+                                    <p>확인</p>
+                                    <button class="close modalClose" onclick="location.reload()"></button>
+                                </div>
+                                <div class="modalContent">
+                                    <div>
+                                        <p>순위 변경 사항이 저장 되었습니다.</p>
+                                    </div>
+                                </div>
+                                <div class="modalFooter">
+                                    <button type="button" class="confirm" onclick="location.reload()">확인</button>
+                                </div>
+                            </div>
+                            <div class="modalDim" onclick="location.reload()"></div>
+                        </div>
+                        `;
+          $('.wrap.modalView .modal').empty();
+          $('.wrap.modalView .modal').append(modal);
         }
       </script>
     <? } ?>
