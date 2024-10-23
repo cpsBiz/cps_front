@@ -412,7 +412,7 @@
               data: JSON.stringify(requestData),
               success: function(result) {
                 if (result.resultCode !== 'success') return alert(result.resultMessage);
-                location.reload();
+                successModifyCampaignRank();
               },
               error: function(request, status, error) {
                 console.error(`Error: ${error}`);

@@ -172,7 +172,7 @@
               data: JSON.stringify(requestData),
               success: function(result) {
                 if (result.resultCode !== '0000') return alert(result.resultMessage);
-                location.reload();
+                successModifyCategoryRank();
               },
               error: function(request, status, error) {
                 console.error(`Error: ${error}`);
