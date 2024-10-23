@@ -255,9 +255,15 @@
     window.location.href = url.toString();
   }
 
+  // 캠페인 체크 선택 카테고리 변경
   function modifyCheckCampaign() {
     const checkedBoxes = document.querySelectorAll('input[name="chk2"]:checked');
-    if (checkedBoxes.length === 0) return alert('선택된 캠페인이 없습니다.');
+
+    let checkedBoxesCnt = checkedBoxes.length;
+    if (checkedBoxesCnt === 0) return alert('선택된 캠페인이 없습니다.');
+    if (document.getElementById("chk2_all").checked) {
+      checkedBoxesCnt -= 1;
+    }
 
     const modal = `
                     <div class="modalWrap md_categoryChange" id="md_categoryChange" style="display:block;">
@@ -268,7 +274,7 @@
                             </div>
                             <div class="modalContent">
                                 <div class="categoryBox">
-                                    <p>총 ${checkedBoxes.length}개의 캠페인을 선택하셨습니다.</p>
+                                    <p>총 ${checkedBoxesCnt}개의 캠페인을 선택하셨습니다.</p>
                                     <select id="singleCategoryCampaign">
                                     <?
                                     $sql = "
@@ -303,11 +309,14 @@
     $('.wrap.modalView .modal').append(modal);
   }
 
+  // 캠페인 체크 선택 카테고리 변경 - 데이터 전송
   function postModifyCheckCampaign() {
     try {
       let campaignCategoryList = [];
       const checkedBoxes = document.querySelectorAll('input[name="chk2"]:checked');
       checkedBoxes.forEach(box => {
+        if (box.id === "chk2_all") return;
+
         const row = document.getElementById(box.value);
         const nowCategory = row.getAttribute('data-category');
         const campaignNum = row.getAttribute('data-campaign-num');
@@ -334,7 +343,7 @@
         data: JSON.stringify(requestData),
         success: function(result) {
           if (result.resultCode !== 'success') return alert(result.resultMessage);
-          location.reload();
+          successModifyCheckCampaign(result.successCnt);
         },
         error: function(request, status, error) {
           console.error(`Error: ${error}`);
@@ -343,6 +352,36 @@
     } catch (error) {
       alert(error);
     }
+  }
+
+  // 캠페인 체크 선택 카테고리 변경 - 성공시 
+  function successModifyCheckCampaign(successCnt) {
+
+    const categoryNameElement = document.getElementById('singleCategoryCampaign');
+    const categoryNameText = categoryNameElement.options[categoryNameElement.selectedIndex].text;
+
+    const modal = `
+                  <div class="modalWrap md_categoryRegister" id="md_categoryRegister" style="display:block;">
+                      <div class="modalContainer">
+                          <div class="modalTitle">
+                              <p>카테고리 목록 관리 / 선택변경</p>
+                              <button class="close modalClose" onclick="location.reload();"></button>
+                          </div>
+                          <div class="modalContent">
+                              <div class="categoryBox">
+                                  <p>${successCnt}개 캠페인</p>
+                                  <p>이 ${categoryNameText} 카테고리로 변경 되었습니다.</p>
+                              </div>
+                          </div>
+                          <div class="modalFooter">
+                              <button type="button" class="confirm" onclick="location.reload();">확인</button>
+                          </div>
+                      </div>
+                      <div class="modalDim" onclick="location.reload();"></div>
+                  </div>
+                  `;
+    $('.wrap.modalView .modal').empty();
+    $('.wrap.modalView .modal').append(modal);
   }
 
   function modifyCampaignRank() {

@@ -1,4 +1,5 @@
 <script>
+  // 캠페인 개별 카테고리 변경
   function modifySingleCategoryCampaign(campaignNum, campaignName, category, affliateId) {
     try {
       $.ajax({
@@ -49,6 +50,7 @@
     }
   }
 
+  // 캠페인 개별 카테고리 변경 - 데이터 전송
   function postModifyCategoryCampaign(campaignNum, campaignName, affliateId, nowCategory) {
     try {
       const requestData = {
@@ -80,6 +82,7 @@
     }
   }
 
+  // 캠페인 개별 카테고리 변경 - 변경 성공시
   function successModifyCategoryCampaign(campaignName) {
     const categoryNameElement = document.getElementById('singleCategoryCampaign');
     const categoryNameText = categoryNameElement.options[categoryNameElement.selectedIndex].text;
