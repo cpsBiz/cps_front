@@ -43,6 +43,7 @@ window.addEventListener('load', () => {
       $sub4AskValue.innerText = sub4AskText;
       $sub4FormBoxElms.forEach((elm) => elm.classList.remove('on'));
       $sub4FormBoxTarget.classList.add('on');
+      $sub4AskTarget.querySelector('.ico-check').classList.add('on');
     }
   }
 
@@ -97,32 +98,28 @@ window.addEventListener('load', () => {
   }
 });
 
-// input file
 if ($inputFile1) {
   const $fileSizeValue = document.querySelector('.file-info .size');
   const $fileList = document.querySelector('.file-list');
-  let fileData = sessionStorage.getItem('fileData')
-    ? JSON.parse(sessionStorage.getItem('fileData'))
-    : {};
-  let fileListIdx = sessionStorage.getItem('fileListIdx')
-    ? Number(sessionStorage.getItem('fileListIdx')) + 1
-    : 0;
-  let fileTotalSize = sessionStorage.getItem('fileTotalSize')
-    ? Number(sessionStorage.getItem('fileTotalSize'))
-    : 0;
-  let fileUnit = sessionStorage.getItem('fileUnit')
-    ? sessionStorage.getItem('fileUnit')
-    : 'Byte';
+  let fileData = {};
+  let fileListIdx = 0;
+  let fileTotalSize = 0;
+  let fileUnit = 'Byte';
+  const maxFiles = 5;
 
-  if (fileUnit === 'Byte') {
-    $fileSizeValue.innerText = (fileTotalSize * 1000000).toFixed(0) + fileUnit;
-  } else if (fileUnit === 'KB') {
-    $fileSizeValue.innerText = (fileTotalSize * 1000).toFixed(1) + fileUnit;
-  } else if (fileUnit === 'MB') {
-    $fileSizeValue.innerText = fileTotalSize.toFixed(1) + fileUnit;
+  function updateFileSizeDisplay() {
+    if (fileUnit === 'Byte') {
+      $fileSizeValue.innerText =
+        (fileTotalSize * 1000000).toFixed(0) + fileUnit;
+    } else if (fileUnit === 'KB') {
+      $fileSizeValue.innerText = (fileTotalSize * 1000).toFixed(1) + fileUnit;
+    } else if (fileUnit === 'MB') {
+      $fileSizeValue.innerText = fileTotalSize.toFixed(1) + fileUnit;
+    }
   }
 
-  if (Object.keys(fileData).length > 0) {
+  function renderFileList() {
+    $fileList.innerHTML = '';
     for (let i in fileData) {
       $fileList.innerHTML += `
         <div class="list">
@@ -131,139 +128,93 @@ if ($inputFile1) {
         </div>
       `;
     }
-  }
-
-  const $fileListsRemoveBtn = document.querySelectorAll(
-    `.file-list .list > button`,
-  );
-  $fileListsRemoveBtn.forEach((elm) => {
-    elm.addEventListener('click', () => fileListRemove(elm));
-  });
-
-  let imageType = {
-    'image/jpg': 'image/jpg',
-    'image/png': 'image/png',
-    'image/gif': 'image/gif',
-    'application/pdf': 'application/pdf',
-  };
-
-  let fileDataLengthCount = 0;
-  let duplicationCheckFlag = true;
-  $inputFile1.addEventListener('change', (e) => {
-    for (let i = 0; i < $inputFile1.files.length; i++) {
-      if ($inputFile1.files[i].type !== imageType[$inputFile1.files[i].type]) {
-        alert(
-          `파일 첨부는 JPG / PNG / GIF / PDF 만 가능합니다. ${
-            $inputFile1.files[i].name
-          }은/는 ${
-            $inputFile1.files[i].type.split('/')[1]
-          } 타입이므로 첨부 할 수 없습니다.`,
-        );
-      }
-      if ($inputFile1.files[i].type === imageType[$inputFile1.files[i].type]) {
-        if (Object.keys(fileData).length > 0) {
-          for (let j in fileData) {
-            fileDataLengthCount += 1;
-            if (fileData[j].name === $inputFile1.files[i].name)
-              duplicationCheckFlag = false;
-            if (fileDataLengthCount === Object.keys(fileData).length) {
-              if (duplicationCheckFlag) {
-                fileDataOnChangeEvent(e, i);
-              } else if (!duplicationCheckFlag) {
-                alert(
-                  `${$inputFile1.files[i].name}와/과 중복되는 이름의 파일이 첨부되어 있습니다. 다른 종류의 파일일 경우 파일명을 변경하여 재첨부 해 주시길 바랍니다.`,
-                );
-              }
-              duplicationCheckFlag = true;
-              fileDataLengthCount = 0;
-            }
-          }
-        } else if (Object.keys(fileData).length <= 0) {
-          fileDataOnChangeEvent(e, i);
-        }
-      }
-    }
-    sessionStorage.setItem('fileUnit', fileUnit);
-    sessionStorage.setItem('fileTotalSize', fileTotalSize);
-    sessionStorage.setItem('fileData', JSON.stringify(fileData));
-  });
-
-  function fileDataOnChangeEvent(e, i) {
-    if (fileTotalSize + $inputFile1.files[i].size * 0.000001 >= 10) {
-      alert(
-        `파일용량이 10MB를 초과 하였습니다. ${$inputFile1.files[i].name}은/는 첨부할 수 없습니다`,
-      );
-      return;
-    } else {
-      fileTotalSize += $inputFile1.files[i].size * 0.000001;
-    }
-
-    if (fileTotalSize >= 0.001 && fileTotalSize < 1) {
-      fileUnit = 'KB';
-    } else if (fileTotalSize >= 1) {
-      fileUnit = 'MB';
-    }
-
-    fileData[fileListIdx] = {
-      name: $inputFile1.files[i].name,
-      size: $inputFile1.files[i].size,
-      type: $inputFile1.files[i].type,
-    };
-
-    if (fileUnit === 'Byte') {
-      $fileSizeValue.innerText =
-        (fileTotalSize * 1000000).toFixed(0) + fileUnit;
-    } else if (fileUnit === 'KB') {
-      $fileSizeValue.innerText = (fileTotalSize * 1000).toFixed(1) + fileUnit;
-    } else if (fileUnit === 'MB') {
-      $fileSizeValue.innerText = fileTotalSize.toFixed(1) + fileUnit;
-    }
-
-    $fileList.innerHTML += `
-      <div class="list">
-        <p class="name">${fileData[fileListIdx].name}</p>
-        <button type="button" class="ico-close type2" data-idx="${fileListIdx}">삭제</button>
-      </div>
-    `;
-
     const $fileListsRemoveBtn = document.querySelectorAll(
       `.file-list .list > button`,
     );
     $fileListsRemoveBtn.forEach((elm) => {
-      elm.addEventListener('click', () => fileListRemove(elm, e));
+      elm.addEventListener('click', () => fileListRemove(elm));
     });
-
-    sessionStorage.setItem('fileListIdx', fileListIdx);
-    fileListIdx += 1;
   }
 
-  function fileListRemove(elm, e) {
-    fileTotalSize -= fileData[elm.dataset.idx].size * 0.000001;
-    if (Object.keys(fileData).length <= 1) fileTotalSize = 0;
+  $inputFile1.addEventListener('change', (e) => {
+    const currentFileCount = Object.keys(fileData).length;
+    const newFileCount = e.target.files.length;
+    if (currentFileCount + newFileCount > maxFiles) {
+      alert(`최대 ${maxFiles}개의 파일만 첨부할 수 있습니다.`);
+      return;
+    }
+
+    for (let i = 0; i < $inputFile1.files.length; i++) {
+      const file = $inputFile1.files[i];
+      const imageType = [
+        'image/jpg',
+        'image/png',
+        'image/gif',
+        'application/pdf',
+      ];
+
+      if (!imageType.includes(file.type)) {
+        alert(
+          `파일 첨부는 JPG / PNG / GIF / PDF 만 가능합니다. ${file.name}은/는 ${
+            file.type.split('/')[1]
+          } 타입이므로 첨부 할 수 없습니다.`,
+        );
+        continue;
+      }
+
+      if (
+        Object.keys(fileData).some((key) => fileData[key].name === file.name)
+      ) {
+        alert(`${file.name}와/과 중복되는 이름의 파일이 첨부되어 있습니다.`);
+        continue;
+      }
+
+      if (fileTotalSize + file.size * 0.000001 >= 10) {
+        alert(
+          `파일용량이 10MB를 초과 하였습니다. ${file.name}은/는 첨부할 수 없습니다`,
+        );
+        continue;
+      }
+
+      fileData[fileListIdx] = {
+        name: file.name,
+        size: file.size,
+        type: file.type,
+      };
+
+      fileTotalSize += file.size * 0.000001;
+
+      if (fileTotalSize < 1) {
+        fileUnit = 'KB';
+      } else if (fileTotalSize >= 1) {
+        fileUnit = 'MB';
+      }
+
+      updateFileSizeDisplay();
+      renderFileList();
+      fileListIdx += 1;
+    }
+  });
+
+  function fileListRemove(elm) {
+    const idx = elm.dataset.idx;
+    fileTotalSize -= fileData[idx].size * 0.000001;
+
+    delete fileData[idx];
+
+    if (Object.keys(fileData).length <= 0) {
+      fileTotalSize = 0;
+    }
 
     if (fileTotalSize < 0.001) {
       fileUnit = 'Byte';
-    } else if (fileTotalSize >= 0.001 && fileTotalSize < 1) {
+    } else if (fileTotalSize < 1) {
       fileUnit = 'KB';
-    } else if (fileTotalSize >= 1) {
+    } else {
       fileUnit = 'MB';
     }
 
-    if (fileUnit === 'Byte') {
-      $fileSizeValue.innerText =
-        (fileTotalSize * 1000000).toFixed(0) + fileUnit;
-    } else if (fileUnit === 'KB') {
-      $fileSizeValue.innerText = (fileTotalSize * 1000).toFixed(1) + fileUnit;
-    } else if (fileUnit === 'MB') {
-      $fileSizeValue.innerText = fileTotalSize.toFixed(1) + fileUnit;
-    }
-
-    delete fileData[elm.dataset.idx];
-    sessionStorage.setItem('fileUnit', fileUnit);
-    sessionStorage.setItem('fileTotalSize', fileTotalSize);
-    sessionStorage.setItem('fileData', JSON.stringify(fileData));
-    if (e) e.target.value = '';
-
-    elm.closest('.file-list .list').remove();
+    updateFileSizeDisplay();
+    renderFileList();
   }
 }

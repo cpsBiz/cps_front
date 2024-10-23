@@ -286,7 +286,7 @@
         <div class="box">
           <p>문의사항이<br>접수 되었습니다.</p>
           <div class="btn-box">
-            <button class="popup-btn" type="button" onclick="popupClose('#popup-wrap', '.popup1')">확인</button>
+            <button class="popup-btn" type="button" onclick="location.reload()">확인</button>
           </div>
         </div>
       </div>
@@ -296,7 +296,7 @@
         <div class="box">
           <p>문의사항이<br>접수 되었습니다.</p>
           <div class="btn-box">
-            <button class="popup-btn" type="button" onclick="popupClose('#popup-wrap', '.popup2')">확인</button>
+            <button class="popup-btn" type="button" onclick="location.reload()">확인</button>
           </div>
         </div>
       </div>
@@ -445,15 +445,26 @@
 
   function postFileUpload() {
     try {
-      const requestData = [];
+      const fileInput = document.getElementById('file-1');
+      const requestData = new FormData();
+
+      const files = fileInput.files;
+      for (let i = 0; i < files.length; i++) {
+        requestData.append('files[]', files[i]);
+      }
+
+      requestData.append('affliateId', 'moneyweather');
+      requestData.append('userId', 'dhhan');
 
       $.ajax({
         type: 'POST',
         url: '/view/inquiry/file-upload.php',
-        contentType: 'application/json',
+        data: requestData,
+        processData: false,
+        contentType: false,
         dataType: 'JSON',
-        data: JSON.stringify(requestData),
         success: function(result) {
+          if (result.resultCode !== 'success') return alert(result.resultMessage);
           const fileList = result.datas;
           postinquiry('etc', fileList);
         },
@@ -464,7 +475,6 @@
     } catch (error) {
       alert(error);
     }
-
   }
 
   function postinquiry(type, fileList) {
@@ -476,6 +486,7 @@
         userId: 'dhhan',
         inquiryType: '',
         campaignNum: 0,
+        affliateId: 'moneyweather',
         merchantId: '',
         purpose: '',
         regDay: 0,
@@ -489,7 +500,7 @@
         email: '',
         information: 'N',
         answerYn: '',
-        inquiryFileList: []
+        inqueryFileList: []
       }
 
       if (type === 'ommission') {
@@ -512,7 +523,7 @@
         requestData.note = document.getElementById('content2').value;
         requestData.userName = document.getElementById('name2').value;
         requestData.email = document.getElementById('email2').value;
-        requestData.inquiryFileList = fileList && fileList.length > 0 ? fileList : []
+        requestData.inqueryFileList = fileList && fileList.length > 0 ? fileList : []
       } else {
         return alert('잘못된 접근입니다.');
       }
