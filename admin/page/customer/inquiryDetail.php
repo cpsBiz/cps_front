@@ -2,7 +2,8 @@
   function getInquiryDetail(inquiryNum, type) {
     try {
       const requestData = {
-        inquiryNum
+        inquiryNum,
+        note: ""
       };
 
       $.ajax({
@@ -36,7 +37,7 @@
                     <div class="modalContainer">
                         <div class="modalTitle">
                             <p>1:1문의내역<span>상세보기</span></p>
-                            <button class="close modalClose"></button>
+                            <button class="close modalClose" onclick="location.reload()"></button>
                         </div>
                         <div class="modalContent">
                             <section class="sec_listT1">
@@ -114,7 +115,7 @@
                                                     <th>답변</th>
                                                     <td>
                                                         <div class="textareaBox">
-                                                            <textarea name="" id="" placeholder="답변을 입력해 주세요">${answer && answer.note}</textarea>
+                                                            <textarea name="" id="" placeholder="답변을 입력해 주세요">${answer ? answer.note : ''}</textarea>
                                                         </div>
                                                         <div class="sendBox">
                                                             <input type="text">
@@ -130,10 +131,10 @@
                         </div>
                         <div class="modalFooter">
                             <button type="button" class="save">저장</button>
-                            <button type="button" class="cancel">취소</button>
+                            <button type="button" class="cancel" onclick="location.reload()">취소</button>
                         </div>
                     </div>
-                    <div class="modalDim"></div>
+                    <div class="modalDim" onclick="location.reload()"></div>
                 </div>
                 `;
     $('.wrap.modalView .modal').empty();
@@ -141,16 +142,16 @@
   }
 
   function renderEtcInquiryDetail(result) {
-    const data = result.data;
-    const answer = result.cspAnswer;
-    const fileList = result.fileList;
+    const data = result.data.cpsInquiry;
+    const answer = result.data.cspAnswer;
+    const fileList = result.data.fileList.fileName || [];
 
     const modal = `
-                  <div class="modalWrap md_inquiryDetail" id="md_inquiryDetail">
+                  <div class="modalWrap md_inquiryDetail" id="md_inquiryDetail" style="display:block;">
                     <div class="modalContainer">
                         <div class="modalTitle">
                             <p>1:1문의내역<span>상세보기</span></p>
-                            <button class="close modalClose"></button>
+                            <button class="close modalClose" onclick="location.reload()"></button>
                         </div>
                         <div class="modalContent">
                             <section class="sec_listT2">
@@ -166,43 +167,45 @@
                                             <tbody>
                                                 <tr>
                                                     <th>작성일</th>
-                                                    <td>2024.09.05</td>
+                                                    <td>${data.regDate}</td>
                                                 </tr>
                                                 <tr>
                                                     <th>문의 유형</th>
-                                                    <td>기타문의</td>
+                                                    <td>${data.inquiryType}</td>
                                                 </tr>
                                                 <tr>
                                                     <th>제목</th>
-                                                    <td>쇼핑몰로 넘어가지 않아요</td>
+                                                    <td>${data.purpose}</td>
                                                 </tr>
                                                 <tr>
                                                     <th>내용</th>
-                                                    <td>쇼핑몰 상세 정보에서 클릭을 해도 쇼핑몰로 넘어가지 않아요. </td>
+                                                    <td>${data.note}</td>
                                                 </tr>
                                                 <tr>
                                                     <th>성명</th>
-                                                    <td>김고은</td>
+                                                    <td>${data.userName}</td>
                                                 </tr>
                                                 <tr>
                                                     <th>이메일 주소</th>
-                                                    <td>abcd1234@enliple.com</td>
+                                                    <td>${data.email}</td>
                                                 </tr>
-                                                <tr>
+                                                ${fileList.length > 0 ? 
+                                                `<tr>
                                                     <th>첨부파일</th>
                                                     <td>
-                                                        <button type="button" class="download">다운로드</button>
+                                                        <button type="button" class="download" onclick="downloadFileList(${JSON.stringify(fileList)})">다운로드</button>
                                                     </td>
-                                                </tr>
+                                                </tr>` 
+                                                : ''}
                                                 <tr>
                                                     <th>대응 현황</th>
-                                                    <td class="complete">회신완료</td>
+                                                    <td class="complete">${data.answerYn === 'N' ? '회신대기' : '회신완료'}</td>
                                                 </tr>
                                                 <tr>
                                                     <th>답변</th>
                                                     <td>
                                                         <div class="textareaBox">
-                                                            <textarea name="" id="" placeholder="답변을 입력해 주세요"></textarea>
+                                                            <textarea name="" id="" placeholder="답변을 입력해 주세요">${answer ? answer.note : ''}</textarea>
                                                         </div>
                                                         <div class="sendBox">
                                                             <input type="text">
@@ -218,12 +221,19 @@
                         </div>
                         <div class="modalFooter">
                             <button type="button" class="save">저장</button>
-                            <button type="button" class="cancel">취소</button>
+                            <button type="button" class="cancel" onclick="location.reload()">취소</button>
                         </div>
                     </div>
-                    <div class="modalDim"></div>
+                    <div class="modalDim" onclick="location.reload()"></div>
                 </div>
                 `;
+    $('.wrap.modalView .modal').empty();
+    $('.wrap.modalView .modal').append(modal);
+  }
+
+  // 첨부 파일 다운로드
+  function downloadFileList() {
+
   }
 
   // 답변 이메일로 보내기
