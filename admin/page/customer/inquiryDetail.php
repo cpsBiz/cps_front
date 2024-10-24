@@ -1,38 +1,38 @@
 <script>
-	function getInquiryDetail(inquiryNum, type) {
-		try {
-			const requestData = {
-				inquiryNum,
-				note: ""
-			};
+    function getInquiryDetail(inquiryNum, type) {
+        try {
+            const requestData = {
+                inquiryNum,
+                note: ""
+            };
 
-			$.ajax({
-				type: 'POST',
-				url: 'http://192.168.101.156/api/admin/inquiryDetail',
-				contentType: 'application/json',
-				data: JSON.stringify(requestData),
-				success: function(result) {
-					if (result.resultCode !== '0000') return alert(result.resultMessage);
-					if (type === '누락문의') {
-						renderOmmissionInquiryDetail(result)
-					} else if (type === '기타문의') {
-						renderEtcInquiryDetail(result)
-					}
-				},
-				error: function(request, status, error) {
-					console.error(`Error: ${error}`);
-				}
-			});
-		} catch (error) {
-			alert(error);
-		}
-	}
+            $.ajax({
+                type: 'POST',
+                url: 'http://192.168.101.156/api/admin/inquiryDetail',
+                contentType: 'application/json',
+                data: JSON.stringify(requestData),
+                success: function(result) {
+                    if (result.resultCode !== '0000') return alert(result.resultMessage);
+                    if (type === '누락문의') {
+                        renderOmmissionInquiryDetail(result)
+                    } else if (type === '기타문의') {
+                        renderEtcInquiryDetail(result)
+                    }
+                },
+                error: function(request, status, error) {
+                    console.error(`Error: ${error}`);
+                }
+            });
+        } catch (error) {
+            alert(error);
+        }
+    }
 
-	function renderOmmissionInquiryDetail(result) {
-		const data = result.data.cpsInquiry;
-		const answer = result.data.cpsAnswer;
+    function renderOmmissionInquiryDetail(result) {
+        const data = result.data.cpsInquiry;
+        const answer = result.data.cpsAnswer;
 
-		const modal = `
+        const modal = `
                   <div class="modalWrap md_inquiryDetail" id="md_inquiryDetail" style="display:block;">
                     <div class="modalContainer">
                         <div class="modalTitle">
@@ -105,7 +105,7 @@
                                                 </tr>
                                                 <tr>
                                                     <th>이메일 주소</th>
-                                                    <td>${data.email}</td>
+                                                    <td id="toEmail">${data.email}</td>
                                                 </tr>
                                                 <tr>
                                                     <th>대응 현황</th>
@@ -118,8 +118,8 @@
                                                             <textarea id="answer" placeholder="답변을 입력해 주세요">${answer && answer.note ? answer.note : ''}</textarea>
                                                         </div>
                                                         <div class="sendBox">
-                                                            <input type="text" value="webmaster@enliple.com" placeholder="발신하실 이메일을 입력해주세요.">
-                                                            <button type="button" class="send">보내기</button>
+                                                            <input id="fromEmail" type="text" value="webmaster@enliple.com" placeholder="발신하실 이메일을 입력해주세요.">
+                                                            <button type="button" class="send" onclick="sendInquiryAnswer()">보내기</button>
                                                         </div>
                                                     </td>
                                                 </tr>
@@ -137,16 +137,16 @@
                     <div class="modalDim" onclick="location.reload()"></div>
                 </div>
                 `;
-		$('.wrap.modalView .modal').empty();
-		$('.wrap.modalView .modal').append(modal);
-	}
+        $('.wrap.modalView .modal').empty();
+        $('.wrap.modalView .modal').append(modal);
+    }
 
-	function renderEtcInquiryDetail(result) {
-		const data = result.data.cpsInquiry;
-		const answer = result.data.cpsAnswer;
-		const fileList = result.data.fileList.fileName || [];
+    function renderEtcInquiryDetail(result) {
+        const data = result.data.cpsInquiry;
+        const answer = result.data.cpsAnswer;
+        const fileList = result.data.fileList.fileName || [];
 
-		const modal = `
+        const modal = `
                   <div class="modalWrap md_inquiryDetail" id="md_inquiryDetail" style="display:block;">
                     <div class="modalContainer">
                         <div class="modalTitle">
@@ -187,7 +187,7 @@
                                                 </tr>
                                                 <tr>
                                                     <th>이메일 주소</th>
-                                                    <td>${data.email}</td>
+                                                    <td id="toEmail">${data.email}</td>
                                                 </tr>
                                                 ${fileList.length > 0 ? 
                                                 `<tr>
@@ -208,8 +208,8 @@
                                                             <textarea id="answer" placeholder="답변을 입력해 주세요">${answer && answer.note ? answer.note : ''}</textarea>
                                                         </div>
                                                         <div class="sendBox">
-                                                            <input type="text" value="webmaster@enliple.com" placeholder="발신하실 이메일을 입력해주세요.">
-                                                            <button type="button" class="send">보내기</button>
+                                                            <input id="fromEmail" type="text" value="webmaster@enliple.com" placeholder="발신하실 이메일을 입력해주세요.">
+                                                            <button type="button" class="send" onclick="sendInquiryAnswer()">보내기</button>
                                                         </div>
                                                     </td>
                                                 </tr>
@@ -227,80 +227,108 @@
                     <div class="modalDim" onclick="location.reload()"></div>
                 </div>
                 `;
-		$('.wrap.modalView .modal').empty();
-		$('.wrap.modalView .modal').append(modal);
-	}
+        $('.wrap.modalView .modal').empty();
+        $('.wrap.modalView .modal').append(modal);
+    }
 
-	// 첨부 파일 다운로드
-	function downloadFileList(fileList) {
-		const data = decodeFromBase64(fileList);
-		if (data.length === 0) return alert('첨부 파일이 없습니다.');
+    // 첨부 파일 다운로드
+    function downloadFileList(fileList) {
+        const data = decodeFromBase64(fileList);
+        if (data.length === 0) return alert('첨부 파일이 없습니다.');
 
-		try {
-			$.ajax({
-				url: '/admin/page/customer/api/inquiry-file-download.php',
-				type: 'POST',
-				contentType: 'application/json',
-				data: JSON.stringify(data),
-				xhrFields: {
-					responseType: 'blob' // 바이너리 데이터를 받기 위한 설정
-				},
-				success: function(data) {
-					const blob = new Blob([data], {
-						type: 'application/zip'
-					});
-					const link = document.createElement('a');
-					link.href = window.URL.createObjectURL(blob);
-					link.download = 'download.zip';
-					document.body.appendChild(link);
-					link.click();
-					document.body.removeChild(link);
-				},
-				error: function(jqXHR, textStatus, errorThrown) {
-					console.error('Error: ' + textStatus + ' - ' + errorThrown);
-					alert('파일 다운로드 중 에러가 발생했습니다. 다시 시도해 주세요.');
-				}
-			});
-		} catch (error) {
-			alert('예외가 발생했습니다: ' + error.message);
-		}
-	}
+        try {
+            $.ajax({
+                url: '/admin/page/customer/api/inquiry-file-download.php',
+                type: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify(data),
+                xhrFields: {
+                    responseType: 'blob' // 바이너리 데이터를 받기 위한 설정
+                },
+                success: function(data) {
+                    const blob = new Blob([data], {
+                        type: 'application/zip'
+                    });
+                    const link = document.createElement('a');
+                    link.href = window.URL.createObjectURL(blob);
+                    link.download = 'download.zip';
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                    console.error('Error: ' + textStatus + ' - ' + errorThrown);
+                    alert('파일 다운로드 중 에러가 발생했습니다. 다시 시도해 주세요.');
+                }
+            });
+        } catch (error) {
+            alert('예외가 발생했습니다: ' + error.message);
+        }
+    }
 
-	// 답변 이메일로 보내기
-	function sendInquiryAnswer() {
+    // 답변 이메일로 보내기
+    function sendInquiryAnswer() {
+        try {
+            const requestData = {
+                to: document.getElementById('toEmail').textContent,
+                from: document.getElementById('fromEmail').value,
+                content: document.getElementById('answer').value
+            }
 
-	}
+            $.ajax({
+                type: 'POST',
+                url: '/admin/page/customer/api/inquiry-email.php',
+                contentType: 'application/json',
+                dataType: 'json',
+                data: JSON.stringify(requestData),
+                success: function(result) {
+                    if (result.resultCode !== 'success') {
+                        return alert(result.resultMessage);
+                    }
+                    alert('메일이 전송되었습니다.');
+                },
+                error: function(request, status, error) {
+                    console.error(`Error: ${error}`);
+                    alert('메일 전송 중 오류가 발생했습니다.'); // 사용자에게 오류 메시지 표시
+                }
+            });
 
-	// 답변 저장
-	function postInquiryAnswer(inquiryNum) {
-		try {
-			const note = document.getElementById('answer').value;
+        } catch (error) {
+            alert(error);
+        }
+    }
 
-			const requestData = {
-				inquiryNum,
-				note,
-			}
 
-			$.ajax({
-				type: 'POST',
-				url: 'http://192.168.101.156/api/admin/answer',
-				contentType: 'application/json',
-				data: JSON.stringify(requestData),
-				success: function(result) {
-					if (result.resultCode !== '0000') return alert(result.resultMessage);
-					successInquiryAnswer();
-				},
-				error: function(request, status, error) {
-					console.error(`Error: ${error}`);
-				}
-			});
-		} catch (error) {
-			alert(error);
-		}
-	}
+    // 답변 저장
+    function postInquiryAnswer(inquiryNum) {
+        try {
+            const note = document.getElementById('answer').value;
 
-	function successInquiryAnswer() {
-		const modal = `
+            const requestData = {
+                inquiryNum,
+                note,
+            }
+
+            $.ajax({
+                type: 'POST',
+                url: 'http://192.168.101.156/api/admin/answer',
+                contentType: 'application/json',
+                data: JSON.stringify(requestData),
+                success: function(result) {
+                    if (result.resultCode !== '0000') return alert(result.resultMessage);
+                    successInquiryAnswer();
+                },
+                error: function(request, status, error) {
+                    console.error(`Error: ${error}`);
+                }
+            });
+        } catch (error) {
+            alert(error);
+        }
+    }
+
+    function successInquiryAnswer() {
+        const modal = `
                   <div class="modalWrap md_alert" id="md_alert" style="display:block">
                       <div class="modalContainer">
                           <div class="modalTitle">
@@ -318,7 +346,7 @@
                       <div class="modalDim" onclick="location.reload()"></div>
                   </div>
                   `;
-		$('.wrap.modalView .modal').empty();
-		$('.wrap.modalView .modal').append(modal);
-	}
+        $('.wrap.modalView .modal').empty();
+        $('.wrap.modalView .modal').append(modal);
+    }
 </script>
