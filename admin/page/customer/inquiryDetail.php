@@ -246,18 +246,12 @@
 					responseType: 'blob' // 바이너리 데이터를 받기 위한 설정
 				},
 				success: function(data) {
-					// 서버에서 받은 데이터가 없을 때 처리
-					if (data.size === 0) {
-						alert('파일 다운로드 중 문제가 발생했습니다.');
-						return;
-					}
-
 					const blob = new Blob([data], {
 						type: 'application/zip'
 					});
 					const link = document.createElement('a');
 					link.href = window.URL.createObjectURL(blob);
-					link.download = 'files.zip';
+					link.download = 'download.zip';
 					document.body.appendChild(link);
 					link.click();
 					document.body.removeChild(link);

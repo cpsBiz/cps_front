@@ -1,46 +1,38 @@
 <?php
-// JSON으로 받은 파일 배열 처리
-$data = file_get_contents("php://input");
-$fileArray = json_decode($data, true);
+// 요청이 POST인지 확인
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+  // JSON 데이터를 받아서 배열로 변환
+  $files = json_decode(file_get_contents('php://input'), true);
 
-$zip = new ZipArchive();
-$zipFile = "downloads.zip";
+  // 압축할 파일의 경로 (수정 필요)
+  $filePath = '/var/www/html/uploads/inquiryFiles/'; // 파일들이 저장된 경로
 
-try {
-  // zip 파일 생성
-  if ($zip->open($zipFile, ZipArchive::CREATE | ZipArchive::OVERWRITE) === TRUE) {
-    foreach ($fileArray as $file) {
-      $filePath = "/var/www/html/uploads/inquiryFiles/" . $file;
-      if (file_exists($filePath)) {
-        error_log('Adding file: ' . $filePath);
-        $zip->addFile($filePath, basename($filePath));
-      } else {
-        error_log('File not found: ' . $filePath);
-        throw new Exception('File not found: ' . $filePath);
-      }
-    }
-    $zip->close();
+  $zip = new ZipArchive();
 
-    // 파일 다운로드 처리
-    if (file_exists($zipFile)) {
-      header('Content-Type: application/zip');
-      header('Content-Disposition: attachment; filename="files.zip"');
-      header('Content-Length: ' . filesize($zipFile));
+  // zip 아카이브 생성하기 위한 고유값
+  $zipName = '/var/www/html/tmp/' . date('ymdhis') . '-' . uniqid() . "zip";
 
-      readfile($zipFile);
-
-      // 임시 zip 파일 삭제
-      unlink($zipFile);
-    } else {
-      throw new Exception('다운로드 파일 생성에 실패했습니다.');
-    }
-  } else {
-    error_log('Zip file create failed');
-    throw new Exception('ZIP 파일 생성에 실패했습니다.');
+  // zip 아카이브 생성 여부 확인
+  if (!$zip->open($zipName, ZipArchive::CREATE)) {
+    exit("error");
   }
-} catch (Exception $e) {
-  // 에러 메시지 처리 및 로깅
-  error_log($e->getMessage());
-  http_response_code(500);
-  echo json_encode(['error' => $e->getMessage()]);
+
+  // addFile ( 파일이 존재하는 경로, 저장될 이름 )
+  foreach ($files as $fileName) {
+    $zip->addFile($filePath . $fileName, $fileName);
+  }
+
+  // 아카이브 닫아주기
+  $zip->close();
+
+  // 다운로드 될 zip 파일명
+  $downZipName = "download.zip";
+
+  // 생성한 zip 파일을 다운로드하기
+  header("Content-type: application/zip");
+  header("Content-Disposition: attachment; filename=$downZipName");
+  readfile($zipName);
+  unlink($zipName);
+} else {
+  echo json_encode(['error' => '잘못된 요청입니다.']);
 }
