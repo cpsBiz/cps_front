@@ -5,7 +5,7 @@ $per = 20;
 $total_page = 0;
 $total = 0;
 
-
+$paramKeyword = $_REQUEST['keyword'];
 ?>
 <!DOCTYPE html>
 <html lang="ko">
@@ -46,8 +46,8 @@ $total = 0;
         <section class="sec_list">
           <div class="tableHeader">
             <div class="searchBox">
-              <input type="text" placeholder="ID,회사명">
-              <button type="button" class="search">검색</button>
+              <input id="keyword" type="text" placeholder="ID,회사명">
+              <button type="button" class="search" onclick="search()">검색</button>
             </div>
             <button type="button" class="register">추가등록</button>
           </div>
@@ -86,13 +86,15 @@ $total = 0;
                             MANAGER_EMAIL,
                             MANAGER_NAME
                           FROM CPS_MEMBER   
+                          WHERE
+                           1 = 1
                           ";
                   if ($paramKeyword) {
-                    $sql .= " 
-                            AND (MEMBER_ID = ? OR MEMBER_NAME = ?)
+                    $sql .= "  
+                            AND (MEMBER_ID LIKE ? OR MEMBER_NAME LIKE ?)
                             ";
                     $types .= 'ss';
-                    array_push($values, $paramKeyword, $paramKeyword);
+                    array_push($values, '%' . $paramKeyword . '%', '%' . $paramKeyword . '%');
                   }
                   $sql .= "
                           ORDER BY MEMBER_ID ASC
@@ -230,3 +232,16 @@ $total = 0;
 </body>
 
 </html>
+<script>
+  function search() {
+    const keyword = document.getElementById('keyword').value;
+
+    const currentUrl = window.location.href;
+
+    const url = new URL(currentUrl);
+
+    if (keyword) url.searchParams.set('keyword', keyword);
+
+    window.location.href = url.toString();
+  }
+</script>
