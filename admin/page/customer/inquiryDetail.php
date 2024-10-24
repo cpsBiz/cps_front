@@ -30,7 +30,7 @@
 
   function renderOmmissionInquiryDetail(result) {
     const data = result.data.cpsInquiry;
-    const answer = result.data.cspAnswer;
+    const answer = result.data.cpsAnswer;
 
     const modal = `
                   <div class="modalWrap md_inquiryDetail" id="md_inquiryDetail" style="display:block;">
@@ -115,10 +115,10 @@
                                                     <th>답변</th>
                                                     <td>
                                                         <div class="textareaBox">
-                                                            <textarea name="" id="" placeholder="답변을 입력해 주세요">${answer ? answer.note : ''}</textarea>
+                                                            <textarea id="answer" placeholder="답변을 입력해 주세요">${answer && answer.note ? answer.note : ''}</textarea>
                                                         </div>
                                                         <div class="sendBox">
-                                                            <input type="text">
+                                                            <input type="text" value="webmaster@enliple.com" placeholder="발신하실 이메일을 입력해주세요.">
                                                             <button type="button" class="send">보내기</button>
                                                         </div>
                                                     </td>
@@ -130,7 +130,7 @@
                             </section>
                         </div>
                         <div class="modalFooter">
-                            <button type="button" class="save">저장</button>
+                            <button type="button" class="save" onclick="postInquiryAnswer(${data.inquiryNum})">저장</button>
                             <button type="button" class="cancel" onclick="location.reload()">취소</button>
                         </div>
                     </div>
@@ -143,7 +143,7 @@
 
   function renderEtcInquiryDetail(result) {
     const data = result.data.cpsInquiry;
-    const answer = result.data.cspAnswer;
+    const answer = result.data.cpsAnswer;
     const fileList = result.data.fileList.fileName || [];
 
     const modal = `
@@ -205,10 +205,10 @@
                                                     <th>답변</th>
                                                     <td>
                                                         <div class="textareaBox">
-                                                            <textarea name="" id="" placeholder="답변을 입력해 주세요">${answer ? answer.note : ''}</textarea>
+                                                            <textarea id="answer" placeholder="답변을 입력해 주세요">${answer && answer.note ? answer.note : ''}</textarea>
                                                         </div>
                                                         <div class="sendBox">
-                                                            <input type="text">
+                                                            <input type="text" value="webmaster@enliple.com" placeholder="발신하실 이메일을 입력해주세요.">
                                                             <button type="button" class="send">보내기</button>
                                                         </div>
                                                     </td>
@@ -220,7 +220,7 @@
                             </section>
                         </div>
                         <div class="modalFooter">
-                            <button type="button" class="save">저장</button>
+                            <button type="button" class="save" onclick="postInquiryAnswer(${data.inquiryNum})">저장</button>
                             <button type="button" class="cancel" onclick="location.reload()">취소</button>
                         </div>
                     </div>
@@ -242,7 +242,53 @@
   }
 
   // 답변 저장
-  function postInquiryAnswer() {
+  function postInquiryAnswer(inquiryNum) {
+    try {
+      const note = document.getElementById('answer').value;
 
+      const requestData = {
+        inquiryNum,
+        note,
+      }
+
+      $.ajax({
+        type: 'POST',
+        url: 'http://192.168.101.156/api/admin/answer',
+        contentType: 'application/json',
+        data: JSON.stringify(requestData),
+        success: function(result) {
+          if (result.resultCode !== '0000') return alert(result.resultMessage);
+          successInquiryAnswer();
+        },
+        error: function(request, status, error) {
+          console.error(`Error: ${error}`);
+        }
+      });
+    } catch (error) {
+      alert(error);
+    }
+  }
+
+  function successInquiryAnswer() {
+    const modal = `
+                  <div class="modalWrap md_alert" id="md_alert" style="display:block">
+                      <div class="modalContainer">
+                          <div class="modalTitle">
+                              <button class="close modalClose" onclick="location.reload()"></button>
+                          </div>
+                          <div class="modalContent">
+                              <div>
+                                  <p>저장되었습니다.</p>
+                              </div>
+                          </div>
+                          <div class="modalFooter">
+                              <button type="button" class="confirm" onclick="location.reload()">확인</button>
+                          </div>
+                      </div>
+                      <div class="modalDim" onclick="location.reload()"></div>
+                  </div>
+                  `;
+    $('.wrap.modalView .modal').empty();
+    $('.wrap.modalView .modal').append(modal);
   }
 </script>

@@ -204,6 +204,7 @@ $paramKeyword = $_REQUEST['keyword'];
                       $affliateId = $row['AFFLIATE_ID'];
                       $userName = $row['USER_NAME'];
                       $orderNo = $row['ORDER_NO'];
+                      $answerYN = $row['ANSWER_YN'];
                   ?>
                       <!-- 회신완료, 회신대기 complete, wait 클래스 추가-->
                       <tr>
