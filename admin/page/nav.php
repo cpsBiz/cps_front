@@ -29,8 +29,7 @@ $menu_items = [
     'label' => '계정 관리',
     'url' => '#',
     'sub' => [
-      ['label' => '회원', 'url' => '#'],
-      ['label' => '관리자', 'url' => '#']
+      ['label' => '회원', 'url' => '/admin/page/account/customer.php'],
     ]
   ],
   'customer' => [

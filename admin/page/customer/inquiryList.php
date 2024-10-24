@@ -129,7 +129,7 @@ $paramKeyword = $_REQUEST['keyword'];
                   $types = '';
                   $values = array();
                   $sql = "
-                          SELECT
+                          SELECT SQL_CALC_FOUND_ROWS
                             CAMPAIGN_NUM,
                             REG_DATE,
                             INQUIRY_NUM,
@@ -197,7 +197,6 @@ $paramKeyword = $_REQUEST['keyword'];
 
 
                     // 결과를 처리
-                    $i = $page_int + 1;
                     while ($row = mysqli_fetch_assoc($result)) {
                       $regDate = $row['REG_DATE'];
                       $inquiryType = $row['INQUIRY_TYPE'];
@@ -217,9 +216,7 @@ $paramKeyword = $_REQUEST['keyword'];
                         <td class="<?= $answerYN === 'Y' ? 'complete' : 'wait';  ?>"><?= $answerYN === 'Y' ? '회신완료' : '회신대기';  ?></td>
                       </tr>
                   <?
-                      $i++;
                     }
-
                     mysqli_stmt_close($stmt);
                   }
                   ?>
@@ -269,14 +266,6 @@ $paramKeyword = $_REQUEST['keyword'];
                   // 페이지 번호에 따라 요청을 보내는 방법 구현
                   // 예를 들어, 페이지를 새로 고치거나 AJAX 요청을 통해 페이지를 로드할 수 있습니다.
                   window.location.href = "?page=" + pageNumber; // 필요한 파라미터 추가
-                }
-
-                function getInquiryDetail(num) {
-                  try {
-
-                  } catch (error) {
-                    alert(error);
-                  }
                 }
               </script>
             <? } ?>

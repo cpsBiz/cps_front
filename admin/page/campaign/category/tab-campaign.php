@@ -87,7 +87,7 @@
           $types = '';
           $values = array();
           $sql = "
-                  SELECT 
+                  SELECT SQL_CALC_FOUND_ROWS
                     A.CATEGORY,
                     A.AFFLIATE_ID,
                     B.CAMPAIGN_NUM,
