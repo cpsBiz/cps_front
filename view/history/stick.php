@@ -256,6 +256,14 @@ $months = getLastYearMonths();
           break;
       }
 
+      let stickCnt = 0;
+      if (item.status === 210) {
+        stickCnt = item.cnt - item.stockCnt;
+      } else {
+        stickCnt = item.cnt;
+      }
+      stickCnt = stickCnt.toLocaleString();
+
       list += `
               <div class="list">
                 <div class="text-box text-box1">
@@ -271,10 +279,10 @@ $months = getLastYearMonths();
                   <p class="date">${formatDate(item.regDay)}</p>
                   ${(item.status === 210 || item.status === 310) ? `
                   <div class="state-box">
-                    <p class="state">${item.rewardCnt.toLocaleString()}개</p>
+                    <p class="state">${stickCnt}개</p>
                     <p class="state-info ${status.color}">${status.text}</p>
                   </div>`:
-                  `<p class="state">${item.rewardCnt.toLocaleString()}개</p>`
+                  `<p class="state">${stickCnt}개</p>`
                   }
                 </div>
               </div>
