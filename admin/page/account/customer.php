@@ -49,7 +49,10 @@ $paramKeyword = $_REQUEST['keyword'];
               <input id="keyword" type="text" placeholder="ID,회사명">
               <button type="button" class="search" onclick="search()">검색</button>
             </div>
-            <button type="button" class="register">추가등록</button>
+            <div class="buttonBox">
+              <button type="button" class="register" onclick="addCustomer()">회원 추가등록</button>
+              <button type="button" class="register" onclick="addMaster()">관리자 추가등록</button>
+            </div>
           </div>
           <!--// 내용이 없을 때 tableWrap & tableAreaDataNone 함께 사용 -->
           <!-- <div class="tableArea tableAreaDataNone"> -->
@@ -164,7 +167,7 @@ $paramKeyword = $_REQUEST['keyword'];
                         <td>
                           <div class="buttonBox">
                             <button type="button" class="login" title="로그인">로그인</button>
-                            <button type="button" class="modify" title="수정">수정</button>
+                            <button type="button" class="modify" title="수정" onclick="<?= $memberType == '관리자' ? 'modifyMaster()' : 'modifyCustomer()'; ?>">수정</button>
                             <button type="button" class="delete" title="삭제">삭제</button>
                           </div>
                         </td>
@@ -245,3 +248,7 @@ $paramKeyword = $_REQUEST['keyword'];
     window.location.href = url.toString();
   }
 </script>
+<? include_once $_SERVER['DOCUMENT_ROOT'] . "/admin/page/account/customer-add.php"; ?>
+<? include_once $_SERVER['DOCUMENT_ROOT'] . "/admin/page/account/master-add.php"; ?>
+<? if ($total > 0) include_once $_SERVER['DOCUMENT_ROOT'] . "/admin/page/account/customer-modify.php"; ?>
+<? if ($total > 0) include_once $_SERVER['DOCUMENT_ROOT'] . "/admin/page/account/master-modify.php"; ?>
