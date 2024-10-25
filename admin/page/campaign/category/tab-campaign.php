@@ -219,51 +219,54 @@
           <? } ?>
         </ul>
       </div>
-      <style>
-        .drag-handle {
-          cursor: grab;
-        }
-      </style>
-      <script>
-        $('#drag-drop').sortable({
-          handle: '.drag-handle'
-        })
+    <? } ?>
+  </div>
+</div>
+<style>
+  .drag-handle {
+    cursor: grab;
+  }
+</style>
+<script>
+  $('#drag-drop').sortable({
+    handle: '.drag-handle'
+  })
 
-        function selectCategory() {
-          const category = document.getElementById('selectCategory').value;
+  function selectCategory() {
+    const category = document.getElementById('selectCategory').value;
 
-          const currentUrl = window.location.href;
+    const currentUrl = window.location.href;
 
-          const url = new URL(currentUrl);
+    const url = new URL(currentUrl);
 
-          url.searchParams.set('category', category);
+    url.searchParams.set('category', category);
 
-          window.location.href = url.toString();
-        }
+    window.location.href = url.toString();
+  }
 
-        function selectAffliate() {
-          const affliate = document.getElementById('selectAffliate').value;
+  function selectAffliate() {
+    const affliate = document.getElementById('selectAffliate').value;
 
-          const currentUrl = window.location.href;
+    const currentUrl = window.location.href;
 
-          const url = new URL(currentUrl);
+    const url = new URL(currentUrl);
 
-          url.searchParams.set('affliate', affliate);
+    url.searchParams.set('affliate', affliate);
 
-          window.location.href = url.toString();
-        }
+    window.location.href = url.toString();
+  }
 
-        // 캠페인 체크 선택 카테고리 변경
-        function modifyCheckCampaign() {
-          const checkedBoxes = document.querySelectorAll('input[name="chk2"]:checked');
+  // 캠페인 체크 선택 카테고리 변경
+  function modifyCheckCampaign() {
+    const checkedBoxes = document.querySelectorAll('input[name="chk2"]:checked');
 
-          let checkedBoxesCnt = checkedBoxes.length;
-          if (checkedBoxesCnt === 0) return alert('선택된 캠페인이 없습니다.');
-          if (document.getElementById("chk2_all").checked) {
-            checkedBoxesCnt -= 1;
-          }
+    let checkedBoxesCnt = checkedBoxes.length;
+    if (checkedBoxesCnt === 0) return alert('선택된 캠페인이 없습니다.');
+    if (document.getElementById("chk2_all").checked) {
+      checkedBoxesCnt -= 1;
+    }
 
-          const modal = `
+    const modal = `
                     <div class="modalWrap md_categoryChange" id="md_categoryChange" style="display:block;">
                         <div class="modalContainer">
                             <div class="modalTitle">
@@ -303,62 +306,62 @@
                         <div class="modalDim" onclick="location.reload();"></div>
                     </div>
                     `;
-          $('#md_categoryChange').remove();
-          $('.wrap.modalView .modal').append(modal);
+    $('#md_categoryChange').remove();
+    $('.wrap.modalView .modal').append(modal);
+  }
+
+  // 캠페인 체크 선택 카테고리 변경 - 데이터 전송
+  function postModifyCheckCampaign() {
+    try {
+      let campaignCategoryList = [];
+      const checkedBoxes = document.querySelectorAll('input[name="chk2"]:checked');
+      checkedBoxes.forEach(box => {
+        if (box.id === "chk2_all") return;
+
+        const row = document.getElementById(box.value);
+        const nowCategory = row.getAttribute('data-category');
+        const campaignNum = row.getAttribute('data-campaign-num');
+        const affliateId = row.getAttribute('data-affliate-id');
+
+        campaignCategoryList.push({
+          nowCategory,
+          campaignNum,
+          affliateId,
+          category: document.getElementById('singleCategoryCampaign').value
+        });
+      });
+
+      const requestData = {
+        apiType: 'U',
+        campaignCategoryList
+      }
+
+      $.ajax({
+        type: 'POST',
+        url: '/admin/page/campaign/category/api/update-campaign-category.php',
+        contentType: 'application/json',
+        dataType: "JSON",
+        data: JSON.stringify(requestData),
+        success: function(result) {
+          if (result.resultCode !== 'success') return alert(result.resultMessage);
+          successModifyCheckCampaign(result.successCnt);
+        },
+        error: function(request, status, error) {
+          console.error(`Error: ${error}`);
         }
+      });
+    } catch (error) {
+      alert(error);
+    }
+  }
 
-        // 캠페인 체크 선택 카테고리 변경 - 데이터 전송
-        function postModifyCheckCampaign() {
-          try {
-            let campaignCategoryList = [];
-            const checkedBoxes = document.querySelectorAll('input[name="chk2"]:checked');
-            checkedBoxes.forEach(box => {
-              if (box.id === "chk2_all") return;
+  // 캠페인 체크 선택 카테고리 변경 - 성공시 
+  function successModifyCheckCampaign(successCnt) {
 
-              const row = document.getElementById(box.value);
-              const nowCategory = row.getAttribute('data-category');
-              const campaignNum = row.getAttribute('data-campaign-num');
-              const affliateId = row.getAttribute('data-affliate-id');
+    const categoryNameElement = document.getElementById('singleCategoryCampaign');
+    const categoryNameText = categoryNameElement.options[categoryNameElement.selectedIndex].text;
 
-              campaignCategoryList.push({
-                nowCategory,
-                campaignNum,
-                affliateId,
-                category: document.getElementById('singleCategoryCampaign').value
-              });
-            });
-
-            const requestData = {
-              apiType: 'U',
-              campaignCategoryList
-            }
-
-            $.ajax({
-              type: 'POST',
-              url: '/admin/page/campaign/category/api/update-campaign-category.php',
-              contentType: 'application/json',
-              dataType: "JSON",
-              data: JSON.stringify(requestData),
-              success: function(result) {
-                if (result.resultCode !== 'success') return alert(result.resultMessage);
-                successModifyCheckCampaign(result.successCnt);
-              },
-              error: function(request, status, error) {
-                console.error(`Error: ${error}`);
-              }
-            });
-          } catch (error) {
-            alert(error);
-          }
-        }
-
-        // 캠페인 체크 선택 카테고리 변경 - 성공시 
-        function successModifyCheckCampaign(successCnt) {
-
-          const categoryNameElement = document.getElementById('singleCategoryCampaign');
-          const categoryNameText = categoryNameElement.options[categoryNameElement.selectedIndex].text;
-
-          const modal = `
+    const modal = `
                   <div class="modalWrap md_categoryRegister" id="md_categoryRegister" style="display:block;">
                       <div class="modalContainer">
                           <div class="modalTitle">
@@ -378,75 +381,72 @@
                       <div class="modalDim" onclick="location.reload();"></div>
                   </div>
                   `;
-          $('.wrap.modalView .modal').empty();
-          $('.wrap.modalView .modal').append(modal);
+    $('.wrap.modalView .modal').empty();
+    $('.wrap.modalView .modal').append(modal);
+  }
+
+  function modifyCampaignRank() {
+    try {
+      let campaignList = [];
+      const target = document.getElementById('drag-drop');
+      for (let i = 0; i < target.childElementCount; i++) {
+        const row = target.children[i];
+        const category = row.getAttribute('data-category');
+        const affliateId = row.getAttribute('data-affliate-id');
+        const campaignNum = row.getAttribute('data-campaign-num');
+
+        campaignList.push({
+          category,
+          affliateId,
+          campaignNum,
+          campaignRank: <?= $page_int; ?> + i + 1
+        });
+      }
+
+      const requestData = {
+        apiType: 'U',
+        campaignList
+      }
+
+      $.ajax({
+        type: 'POST',
+        url: '/admin/page/campaign/category/api/update-campaign-rank.php',
+        contentType: 'application/json',
+        dataType: "JSON",
+        data: JSON.stringify(requestData),
+        success: function(result) {
+          if (result.resultCode !== 'success') return alert(result.resultMessage);
+          successModifyCampaignRank();
+        },
+        error: function(request, status, error) {
+          console.error(`Error: ${error}`);
         }
+      });
+    } catch (error) {
+      alert(error);
+    }
+  }
 
-        function modifyCampaignRank() {
-          try {
-            let campaignList = [];
-            const target = document.getElementById('drag-drop');
-            for (let i = 0; i < target.childElementCount; i++) {
-              const row = target.children[i];
-              const category = row.getAttribute('data-category');
-              const affliateId = row.getAttribute('data-affliate-id');
-              const campaignNum = row.getAttribute('data-campaign-num');
-
-              campaignList.push({
-                category,
-                affliateId,
-                campaignNum,
-                campaignRank: <?= $page_int; ?> + i + 1
-              });
-            }
-
-            const requestData = {
-              apiType: 'U',
-              campaignList
-            }
-
-            $.ajax({
-              type: 'POST',
-              url: '/admin/page/campaign/category/api/update-campaign-rank.php',
-              contentType: 'application/json',
-              dataType: "JSON",
-              data: JSON.stringify(requestData),
-              success: function(result) {
-                if (result.resultCode !== 'success') return alert(result.resultMessage);
-                successModifyCampaignRank();
-              },
-              error: function(request, status, error) {
-                console.error(`Error: ${error}`);
-              }
-            });
-          } catch (error) {
-            alert(error);
-          }
-        }
-
-        function successModifyCampaignRank() {
-          const modal = `
-                          <div class="modalWrap md_alert" id="md_alert" style="display:block;">
-                            <div class="modalContainer">
-                                <div class="modalTitle">
-                                    <button class="close modalClose" onclick="location.reload()"></button>
-                                </div>
-                                <div class="modalContent">
-                                    <div>
-                                        <p>변경 사항이 저장 되었습니다.</p>
-                                    </div>
-                                </div>
-                                <div class="modalFooter">
-                                    <button type="button" class="confirm" onclick="location.reload()">확인</button>
-                                </div>
-                            </div>
-                            <div class="modalDim" onclick="location.reload()"></div>
+  function successModifyCampaignRank() {
+    const modal = `
+                  <div class="modalWrap md_alert" id="md_alert" style="display:block;">
+                    <div class="modalContainer">
+                        <div class="modalTitle">
+                            <button class="close modalClose" onclick="location.reload()"></button>
                         </div>
-                        `;
-          $('.wrap.modalView .modal').empty();
-          $('.wrap.modalView .modal').append(modal);
-        }
-      </script>
-    <? } ?>
-  </div>
-</div>
+                        <div class="modalContent">
+                            <div>
+                                <p>변경 사항이 저장 되었습니다.</p>
+                            </div>
+                        </div>
+                        <div class="modalFooter">
+                            <button type="button" class="confirm" onclick="location.reload()">확인</button>
+                        </div>
+                    </div>
+                    <div class="modalDim" onclick="location.reload()"></div>
+                  </div>
+                  `;
+    $('.wrap.modalView .modal').empty();
+    $('.wrap.modalView .modal').append(modal);
+  }
+</script>

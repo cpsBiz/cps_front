@@ -134,78 +134,78 @@
           <? } ?>
         </ul>
       </div>
-      <style>
-        .drag-handle {
-          cursor: grab;
-        }
-      </style>
-      <script>
-        $('#drag-drop').sortable({
-          handle: '.drag-handle'
-        })
-
-        function modifyCategoryRank() {
-          try {
-            let categoryList = [];
-            const target = document.getElementById('drag-drop');
-            for (let i = 0; i < target.childElementCount; i++) {
-              const row = target.children[i];
-              const category = row.getAttribute('data-category');
-              const categoryName = row.getAttribute('data-category-name');
-
-              categoryList.push({
-                category: category,
-                categoryName: categoryName,
-                categoryRank: <?= $page_int; ?> + i + 1
-              });
-            }
-
-            const requestData = {
-              apiType: 'U',
-              categoryList
-            }
-
-            $.ajax({
-              type: 'POST',
-              url: 'http://192.168.101.156/api/admin/category',
-              contentType: 'application/json',
-              data: JSON.stringify(requestData),
-              success: function(result) {
-                if (result.resultCode !== '0000') return alert(result.resultMessage);
-                successModifyCategoryRank();
-              },
-              error: function(request, status, error) {
-                console.error(`Error: ${error}`);
-              }
-            });
-          } catch (error) {
-            alert(error);
-          }
-        }
-
-        function successModifyCategoryRank() {
-          const modal = `
-                          <div class="modalWrap md_alert" id="md_alert" style="display:block;">
-                            <div class="modalContainer">
-                                <div class="modalTitle">
-                                    <button class="close modalClose" onclick="location.reload()"></button>
-                                </div>
-                                <div class="modalContent">
-                                    <div>
-                                        <p>순위 변경 사항이 저장 되었습니다.</p>
-                                    </div>
-                                </div>
-                                <div class="modalFooter">
-                                    <button type="button" class="confirm" onclick="location.reload()">확인</button>
-                                </div>
-                            </div>
-                            <div class="modalDim" onclick="location.reload()"></div>
-                        </div>
-                        `;
-          $('.wrap.modalView .modal').empty();
-          $('.wrap.modalView .modal').append(modal);
-        }
-      </script>
     <? } ?>
   </div>
 </div>
+<style>
+  .drag-handle {
+    cursor: grab;
+  }
+</style>
+<script>
+  $('#drag-drop').sortable({
+    handle: '.drag-handle'
+  })
+
+  function modifyCategoryRank() {
+    try {
+      let categoryList = [];
+      const target = document.getElementById('drag-drop');
+      for (let i = 0; i < target.childElementCount; i++) {
+        const row = target.children[i];
+        const category = row.getAttribute('data-category');
+        const categoryName = row.getAttribute('data-category-name');
+
+        categoryList.push({
+          category: category,
+          categoryName: categoryName,
+          categoryRank: <?= $page_int; ?> + i + 1
+        });
+      }
+
+      const requestData = {
+        apiType: 'U',
+        categoryList
+      }
+
+      $.ajax({
+        type: 'POST',
+        url: 'http://192.168.101.156/api/admin/category',
+        contentType: 'application/json',
+        data: JSON.stringify(requestData),
+        success: function(result) {
+          if (result.resultCode !== '0000') return alert(result.resultMessage);
+          successModifyCategoryRank();
+        },
+        error: function(request, status, error) {
+          console.error(`Error: ${error}`);
+        }
+      });
+    } catch (error) {
+      alert(error);
+    }
+  }
+
+  function successModifyCategoryRank() {
+    const modal = `
+                  <div class="modalWrap md_alert" id="md_alert" style="display:block;">
+                    <div class="modalContainer">
+                        <div class="modalTitle">
+                            <button class="close modalClose" onclick="location.reload()"></button>
+                        </div>
+                        <div class="modalContent">
+                            <div>
+                                <p>순위 변경 사항이 저장 되었습니다.</p>
+                            </div>
+                        </div>
+                        <div class="modalFooter">
+                            <button type="button" class="confirm" onclick="location.reload()">확인</button>
+                        </div>
+                    </div>
+                    <div class="modalDim" onclick="location.reload()"></div>
+                  </div>
+                  `;
+    $('.wrap.modalView .modal').empty();
+    $('.wrap.modalView .modal').append(modal);
+  }
+</script>
