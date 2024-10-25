@@ -2,4 +2,4 @@
 nginx
 php-fpm
 telnet
-composer - phpmailer
+composer - phpmailer/phpmailer(메일발송), phpoffice/phpspreadsheet(엑셀데이터처리)
