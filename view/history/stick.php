@@ -258,7 +258,8 @@ $months = getLastYearMonths();
 
       let stickCnt = 0;
       if (item.status === 210) {
-        stickCnt = item.cnt - item.stockCnt;
+        const checkCnt = item.cnt - item.stockCnt;
+        stickCnt = checkCnt === 0 ? item.cnt : checkCnt;
       } else {
         stickCnt = item.cnt;
       }
