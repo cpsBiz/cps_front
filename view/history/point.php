@@ -181,7 +181,7 @@ $months = getLastYearMonths();
       // AJAX 요청 수행
       $.ajax({
         type: 'POST',
-        url: 'http://192.168.101.156/api/view/memberCommission',
+        url: 'http://app.shoplus.io/api/view/memberCommission',
         contentType: 'application/json',
         data: JSON.stringify(requestData),
         success: function(result) {
@@ -229,7 +229,7 @@ $months = getLastYearMonths();
       // AJAX 요청 수행
       $.ajax({
         type: 'POST',
-        url: 'http://192.168.101.156/api/view/memberCommissionList',
+        url: 'http://app.shoplus.io/api/view/memberCommissionList',
         contentType: 'application/json',
         data: JSON.stringify(requestData),
         success: function(result) {

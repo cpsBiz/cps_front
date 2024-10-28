@@ -170,7 +170,7 @@
 
       $.ajax({
         type: 'POST',
-        url: 'http://192.168.101.156/api/admin/category',
+        url: 'http://admin.shoplus.io/api/admin/category',
         contentType: 'application/json',
         data: JSON.stringify(requestData),
         success: function(result) {

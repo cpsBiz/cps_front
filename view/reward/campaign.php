@@ -162,7 +162,7 @@ if (!$object) {
       // AJAX 요청 수행
       $.ajax({
         type: 'POST',
-        url: 'http://192.168.101.156/api/admin/campaignList',
+        url: 'http://admin.shoplus.io/api/admin/campaignList',
         contentType: 'application/json',
         data: JSON.stringify(requestData),
         success: function(result) {

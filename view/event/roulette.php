@@ -118,7 +118,7 @@
       // AJAX 요청 수행
       $.ajax({
         type: 'POST',
-        url: 'http://192.168.101.156/api/view/coupangStick',
+        url: 'http://app.shoplus.io/api/view/coupangStick',
         contentType: 'application/json',
         data: JSON.stringify(requestData),
         success: function(result) {
@@ -148,7 +148,7 @@
       // AJAX 요청 수행
       $.ajax({
         type: 'POST',
-        url: 'http://192.168.101.156/api/view/giftBrandList',
+        url: 'http://app.shoplus.io/api/view/giftBrandList',
         contentType: 'application/json',
         data: JSON.stringify(requestData),
         success: function(result) {
@@ -196,7 +196,7 @@
       // AJAX 요청 수행
       $.ajax({
         type: 'POST',
-        url: 'http://192.168.101.156/api/view/giftProductList',
+        url: 'http://app.shoplus.io/api/view/giftProductList',
         contentType: 'application/json',
         data: JSON.stringify(requestData),
         success: function(result) {
@@ -289,7 +289,7 @@
       // AJAX 요청 수행
       $.ajax({
         type: 'POST',
-        url: 'http://192.168.101.156/api/giftCoupang/coupangGift',
+        url: 'http://app.shoplus.io/api/giftCoupang/coupangGift',
         contentType: 'application/json',
         data: JSON.stringify(requestData),
         success: function(result) {

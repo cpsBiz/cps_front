@@ -166,7 +166,7 @@ $months = getLastYearMonths();
 			// AJAX 요청 수행
 			$.ajax({
 				type: 'POST',
-				url: 'http://192.168.101.156/api/view/gifticonList',
+				url: 'http://app.shoplus.io/api/view/gifticonList',
 				contentType: 'application/json',
 				data: JSON.stringify(requestData),
 				success: function(result) {

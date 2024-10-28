@@ -98,7 +98,7 @@ $affliateId = $_REQUEST['affliateId'];
     //     // AJAX 요청 수행
     //     $.ajax({
     //       type: 'POST',
-    //       url: 'http://192.168.101.156/api/view/',
+    //       url: 'http://app.shoplus.io/api/view/',
     //       contentType: 'application/json',
     //       data: JSON.stringify(requestData),
     //       success: function(result) {
@@ -138,7 +138,7 @@ $affliateId = $_REQUEST['affliateId'];
             // AJAX 요청 수행
             $.ajax({
                 type: 'POST',
-                url: 'http://192.168.101.156/api/view/memberCommission',
+                url: 'http://app.shoplus.io/api/view/memberCommission',
                 contentType: 'application/json',
                 data: JSON.stringify(requestData),
                 success: function(result) {
@@ -186,7 +186,7 @@ $affliateId = $_REQUEST['affliateId'];
             // AJAX 요청 수행
             $.ajax({
                 type: 'POST',
-                url: 'http://192.168.101.156/api/view/campaignView',
+                url: 'http://app.shoplus.io/api/view/campaignView',
                 contentType: 'application/json',
                 data: JSON.stringify(requestData),
                 success: function(result) {
@@ -220,9 +220,9 @@ $affliateId = $_REQUEST['affliateId'];
             }
             let apiUrl = '';
             if (item.adminId === 'linkprice') {
-                apiUrl = 'http://192.168.101.156/api/clickLinkPrice/campaignClick';
+                apiUrl = 'http://app.shoplus.io/api/clickLinkPrice/campaignClick';
             } else if (item.adminId === 'dotpitch') {
-                apiUrl = 'http://192.168.101.156/api/clickDotPitch/campaignClick';
+                apiUrl = 'http://app.shoplus.io/api/clickDotPitch/campaignClick';
             }
 
             // 적립률
@@ -254,7 +254,7 @@ $affliateId = $_REQUEST['affliateId'];
     }
 
     function renderCoupangArea(item) {
-        const apiUrl = 'http://192.168.101.156/api/clickCoupang/campaignClick';
+        const apiUrl = 'http://app.shoplus.io/api/clickCoupang/campaignClick';
         const commissionPer = getCommissionPer(item);
 
         const params = {
@@ -309,7 +309,7 @@ $affliateId = $_REQUEST['affliateId'];
             // AJAX 요청 수행
             $.ajax({
                 type: 'POST',
-                url: 'http://192.168.101.156/api/view/coupangStick',
+                url: 'http://app.shoplus.io/api/view/coupangStick',
                 contentType: 'application/json',
                 data: JSON.stringify(requestData),
                 success: function(result) {
@@ -344,7 +344,7 @@ $affliateId = $_REQUEST['affliateId'];
             // AJAX 요청 수행
             $.ajax({
                 type: 'POST',
-                url: 'http://192.168.101.156/api/view/favorites',
+                url: 'http://app.shoplus.io/api/view/favorites',
                 contentType: 'application/json',
                 data: JSON.stringify(requestData),
                 success: function(result) {
