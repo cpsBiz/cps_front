@@ -542,7 +542,7 @@ if (!$campaign) {
       // AJAX 요청 수행
       $.ajax({
         type: 'POST',
-        url: 'http://app.shoplus.io/api/view/inquiry',
+        url: 'https://app.shoplus.io/api/view/inquiry',
         contentType: 'application/json',
         data: JSON.stringify(requestData),
         success: function(result) {
@@ -564,7 +564,7 @@ if (!$campaign) {
     try {
       $.ajax({
         type: 'POST',
-        url: 'http://app.shoplus.io/api/view/inquiryMerchantList',
+        url: 'https://app.shoplus.io/api/view/inquiryMerchantList',
         contentType: 'application/json',
         success: function(result) {
           renderShoppingMallList(result);

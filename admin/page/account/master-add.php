@@ -68,6 +68,20 @@
     const phone2 = document.getElementById('master-phone2').value;
     if (!phone2) return alert('연락처2를 입력해 주세요.');
 
+    const data = {
+      apiType: 'I',
+      memberId: id,
+      memberPw: pwd,
+      dept,
+      team,
+      managerName: name,
+      managerEmail: email,
+      phone: companyPhone,
+      phone2: companyPhone2,
+      type: 'MASTER'
+    }
+
+    postAddMaster(JSON.stringify(data));
   }
 
   function validatePassword(password) {
@@ -110,11 +124,50 @@
   }
 
   // 관리자 추가 요청
-  function postAddMaster() {
+  function postAddMaster(data) {
     try {
+      $.ajax({
+        type: 'GET',
+        url: 'https://admin.shoplus.io/api/admin/memberSignIn',
+        contentType: 'application/json',
+        dataType: 'JSON',
+        data: requestData,
+        success: function(result) {
+          alert(result.resultMessage);
+          if (result.resultCode !== 'success') return alert(result.resultMessage);
+          successAddMaster();
+        },
+        error: function(request, status, error) {
+          console.error(`Error: ${error}`);
+        }
+      });
 
     } catch (error) {
       alert(error);
     }
+  }
+
+  function successAddMaster() {
+    const modal = `
+                  <div class="modalWrap md_categoryRegister" id="md_categoryRegister" style="display:block;">
+                      <div class="modalContainer">
+                          <div class="modalTitle">
+                              <p>관리자 / 추가등록</p>
+                              <button class="close modalClose" onclick="location.reload();"></button>
+                          </div>
+                          <div class="modalContent">
+                              <div class="categoryBox">
+                                  <p>관리자 추가 등록이 완료되었습니다.</p>
+                              </div>
+                          </div>
+                          <div class="modalFooter">
+                              <button type="button" class="confirm" onclick="location.reload();">확인</button>
+                          </div>
+                      </div>
+                      <div class="modalDim" onclick="location.reload();"></div>
+                  </div>
+                  `;
+    $('.wrap.modalView .modal').empty();
+    $('.wrap.modalView .modal').append(modal);
   }
 </script>

@@ -237,7 +237,7 @@
 			// AJAX 요청 수행
 			$.ajax({
 				type: 'POST',
-				url: 'http://admin.shoplus.io/api/admin/summaryCount',
+				url: 'https://admin.shoplus.io/api/admin/summaryCount',
 				contentType: 'application/json',
 				data: JSON.stringify(requestData),
 				success: function(result) {

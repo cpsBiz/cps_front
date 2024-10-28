@@ -163,7 +163,7 @@ $months = getLastYearMonths();
       // AJAX 요청 수행
       $.ajax({
         type: 'POST',
-        url: 'http://app.shoplus.io/api/view/coupangStick',
+        url: 'https://app.shoplus.io/api/view/coupangStick',
         contentType: 'application/json',
         data: JSON.stringify(requestData),
         success: function(result) {
@@ -210,7 +210,7 @@ $months = getLastYearMonths();
       // AJAX 요청 수행
       $.ajax({
         type: 'POST',
-        url: 'http://app.shoplus.io/api/view/coupangStickList',
+        url: 'https://app.shoplus.io/api/view/coupangStickList',
         contentType: 'application/json',
         data: JSON.stringify(requestData),
         success: function(result) {
