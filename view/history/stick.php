@@ -1,3 +1,4 @@
+<? include_once $_SERVER['DOCUMENT_ROOT'] . "/view/header.php"; ?>
 <?
 // 현재 날짜를 기준으로 최근 1년의 월을 가져오는 함수
 function getLastYearMonths()
@@ -149,9 +150,9 @@ $months = getLastYearMonths();
   // 쿠팡 막대사탕 조회
   function getStick() {
     try {
-      const userId = 'dhhan';
+      const userId = '<?= $_SESSION["check_userId"]; ?>';
       const merchantId = 'coupang';
-      const affliateId = 'moneyweather';
+      const affliateId = '<?= $_SESSION["check_affliateId"]; ?>';
 
       // AJAX 요청 데이터 설정
       const requestData = {
@@ -193,9 +194,9 @@ $months = getLastYearMonths();
   // 막대사탕 리스트 조회
   function getStickList(status, date) {
     try {
-      const userId = "dhhan";
+      const userId = "<?= $_SESSION['check_userId']; ?>";
       const merchantId = "coupang";
-      const affliateId = "moneyweather";
+      const affliateId = "<?= $_SESSION["check_affliateId"]; ?>";
       const regYm = convertDate(date);
 
       // AJAX 요청 데이터 설정

@@ -1,3 +1,4 @@
+<? include_once $_SERVER['DOCUMENT_ROOT'] . "/view/header.php"; ?>
 <?
 // 현재 날짜를 기준으로 최근 1년의 월을 가져오는 함수
 function getLastYearMonths()
@@ -146,9 +147,9 @@ $months = getLastYearMonths();
 	// 기프티콘 리스트 조회
 	function getGifticonList(status, date) {
 		try {
-			const userId = "dhhan";
+			const userId = "<?= $_SESSION['check_userId']; ?>";
 			const merchantId = "coupang";
-			const affliateId = "moneyweather";
+			const affliateId = "<?= $_SESSION["check_affliateId"]; ?>";
 			const awardYm = convertDate(date);
 			// 사용가능 n, 완료/만료 y -> 응답에서 만료 v
 			const giftYn = status;

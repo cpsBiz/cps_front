@@ -1,3 +1,4 @@
+<? include_once $_SERVER['DOCUMENT_ROOT'] . "/view/header.php"; ?>
 <!DOCTYPE html>
 <html lang="ko">
 

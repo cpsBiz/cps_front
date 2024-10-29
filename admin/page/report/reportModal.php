@@ -196,10 +196,10 @@
 			let keyword = document.getElementById('detailBtnKeyword').value;
 
 			// 로그인 아이디 타입
-			const type = 'MASTER';
+			const type = '<?= $_SESSION['admin_login_type']; ?>';
 
 			// 로그인한 아이디
-			// const searchId = '';
+			const searchId = '<?= $_SESSION['admin_login_id']; ?>';
 
 			// 한 페이지에서 몇개의 데이터를 보여줄건지
 			const size = parseInt(document.getElementById('modal-size').value);

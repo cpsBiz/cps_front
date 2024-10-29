@@ -1,3 +1,4 @@
+<? include_once $_SERVER['DOCUMENT_ROOT'] . "/view/header.php"; ?>
 <?
 $campaign = $_REQUEST['campaign'];
 if (!$campaign) {
@@ -464,8 +465,8 @@ if (!$campaign) {
         requestData.append('files[]', files[i]);
       }
 
-      requestData.append('affliateId', 'moneyweather');
-      requestData.append('userId', 'dhhan');
+      requestData.append('affliateId', '<?= $_SESSION["check_affliateId"]; ?>');
+      requestData.append('userId', '<?= $_SESSION["check_userId"]; ?>');
 
       $.ajax({
         type: 'POST',
@@ -494,10 +495,10 @@ if (!$campaign) {
       let requestData = {
         inquiryNum: 0,
         note: '',
-        userId: 'dhhan',
+        userId: '<?= $_SESSION["check_userId"]; ?>',
         inquiryType: '',
         campaignNum: <?= $campaign; ?>,
-        affliateId: 'moneyweather',
+        affliateId: '<?= $_SESSION["check_affliateId"]; ?>',
         merchantId: '',
         purpose: '',
         regDay: 0,

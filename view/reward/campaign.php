@@ -1,5 +1,5 @@
+<? include_once $_SERVER['DOCUMENT_ROOT'] . "/view/header.php"; ?>
 <?
-
 $object = $_REQUEST['object'] ?? null; // null로 기본값 설정
 if (!$object) {
   header('Location: ' . $_SERVER['HTTP_REFERER']);
@@ -102,14 +102,14 @@ if (!$object) {
   function getClickRewardUrl(apiUrl, clickUrl, campaignNum) {
     try {
       const affliateId = object.affliateId;
-      const zoneId = 'zonedhhan';
+      const zoneId = '<?= $_SESSION["check_zoneId"]; ?>';
       const agencyId = object.agencyId;
       const merchantId = object.merchantId;
       const type = '';
       const site = object.site;
-      const os = 'aos';
-      const userId = 'dhhan';
-      const adId = '';
+      const os = getOs();
+      const userId = '<?= $_SESSION["check_userId"]; ?>';
+      const adId = '<?= $_SESSION["check_adId"]; ?>';
 
       // AJAX 요청 데이터 설정
       const requestData = {

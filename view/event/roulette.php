@@ -1,3 +1,4 @@
+<? include_once $_SERVER['DOCUMENT_ROOT'] . "/view/header.php"; ?>
 <!DOCTYPE html>
 <html lang="ko">
 
@@ -104,9 +105,9 @@
   // 쿠팡 막대사탕 조회
   function getMemberStick() {
     try {
-      const userId = 'dhhan';
+      const userId = '<?= $_SESSION["check_userId"]; ?>';
       const merchantId = 'coupang';
-      const affliateId = 'moneyweather';
+      const affliateId = '<?= $_SESSION["check_affliateId"]; ?>';
 
       // AJAX 요청 데이터 설정
       const requestData = {
@@ -140,7 +141,7 @@
   function getBrandList() {
     try {
       const requestData = {
-        affliateId: "moneyweather",
+        affliateId: "<?= $_SESSION["check_affliateId"]; ?>",
         brandType: "BRAND",
         merchantId: "coupang"
       }
@@ -188,7 +189,7 @@
 
     const requestData = {
       brandId,
-      affliateId: "moneyweather",
+      affliateId: "<?= $_SESSION["check_affliateId"]; ?>",
       merchantId: "coupang"
     }
 
@@ -279,9 +280,9 @@
       checkSpin = true;
       // AJAX 요청 데이터 설정
       const requestData = {
-        userId: "dhhan",
+        userId: "<?= $_SESSION["check_userId"]; ?>",
         merchantId: "coupang",
-        affliateId: "moneyweather",
+        affliateId: "<?= $_SESSION["check_affliateId"]; ?>",
         brandId,
         cnt: minCnt
       };

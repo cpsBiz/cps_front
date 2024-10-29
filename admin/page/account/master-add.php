@@ -14,8 +14,8 @@
                             <input id="master-id" type="text" placeholder="아이디 (6자리 이상)" />
                             <button onclick="searchMasterId()">조회</button>
                           </div>
-                          <input id="master-pwd" type="text" placeholder="비밀번호(영문, 숫자 조합 8자리 이상)" />
-                          <input id="master-pwd-re" type="text" placeholder="비밀번호 재입력" />
+                          <input id="master-pwd" type="password" placeholder="비밀번호(영문, 숫자 조합 8자리 이상)" />
+                          <input id="master-pwd-re" type="password" placeholder="비밀번호 재입력" />
                           <p>관리자 정보</p>
                           <input id="master-dept" type="text" placeholder="부서" />
                           <input id="master-team" type="text" placeholder="팀" />
@@ -76,8 +76,8 @@
       team,
       managerName: name,
       managerEmail: email,
-      phone: companyPhone,
-      phone2: companyPhone2,
+      companyPhone: phone,
+      companyPhoneSub: phone2,
       type: 'MASTER'
     }
 
@@ -133,8 +133,7 @@
         dataType: 'JSON',
         data: requestData,
         success: function(result) {
-          alert(result.resultMessage);
-          if (result.resultCode !== 'success') return alert(result.resultMessage);
+          if (result.resultCode !== '0000') return alert(result.resultMessage);
           successAddMaster();
         },
         error: function(request, status, error) {

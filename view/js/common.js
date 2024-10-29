@@ -211,6 +211,18 @@ function getDevice() {
   return Mobile;
 }
 
+function getOs() {
+  const userAgent = window.navigator.userAgent;
+
+  if (/iPhone|iPad|iPod/i.test(userAgent)) {
+    return 'IOS';
+  } else if (/Android/i.test(userAgent)) {
+    return 'AOS';
+  } else {
+    return 'PC';
+  }
+}
+
 function getCommissionPer(item) {
   // 적립률 - OS별로 PC,MOBILE 나눠서 계산필요
   const commission = getDevice() ? item.commissionMobile : item.commissionPc;

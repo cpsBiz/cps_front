@@ -9,13 +9,13 @@
 
       $.ajax({
         type: 'POST',
-        url: 'https://admin.shoplus.io/api/admin/memberDetail',
+        url: 'http://192.168.101.156/api/admin/memberDetail',
         contentType: 'application/json',
         dataType: 'JSON',
         data: JSON.stringify(requestData),
         success: function(result) {
-          if (result.resultCode !== 'success') return alert(result.resultMessage);
-          successAddMaster(JSON.stringify(result.data));
+          if (result.resultCode !== '0000') return alert(result.resultMessage);
+          renderModifyMaster(JSON.stringify(result.data));
         },
         error: function(request, status, error) {
           console.error(`Error: ${error}`);
@@ -39,15 +39,16 @@
                         <div class="modalContent">
                           <p>아이디 / 비밀번호</p>
                           <input id="master-id" type="text" placeholder="아이디 (6자리 이상)" value="${item.memberId}" disabled/>
-                          <input id="master-pwd" type="text" placeholder="비밀번호(영문, 숫자 조합 8자리 이상)" value="${item.memberPw}" />
-                          <input id="master-pwd-re" type="text" placeholder="비밀번호 재입력" value="${item.memberPw}" />
+                          <input id="master-pwd" type="password" placeholder="비밀번호(영문, 숫자 조합 8자리 이상)" value="${item.memberPw}" />
+                          <input id="master-pwd-re" type="password" placeholder="비밀번호 재입력" value="${item.memberPw}" />
                           <p>관리자 정보</p>
-                          <input id="master-dept" type="text" placeholder="부서" value="${item.dept}" />
-                          <input id="master-team" type="text" placeholder="팀" value="${item.team}" />
-                          <input id="master-name" type="text" placeholder="이름" value="${item.managerName}" />
-                          <input id="master-email" type="text" placeholder="이메일" value="${item.managerEmail}" />
-                          <input id="master-phone" type="text" placeholder="연락처1" value="${item.companyPhone}" />
-                          <input id="master-phone2" type="text" placeholder="연락처2" value="${item.companyPhone2}" />
+
+                          <input id="master-dept" type="text" placeholder="부서" value="${item.dept ? item.dept : ''}" />
+                          <input id="master-team" type="text" placeholder="팀" value="${item.team ? item.team : ''}" />
+                          <input id="master-name" type="text" placeholder="이름" value="${item.managerName ? item.managerName : ''}" />
+                          <input id="master-email" type="text" placeholder="이메일" value="${item.managerEmail ? item.managerEmail : ''}" />
+                          <input id="master-phone" type="text" placeholder="연락처1" value="${item.companyPhone ? item.companyPhone : ''}" />
+                          <input id="master-phone2" type="text" placeholder="연락처2" value="${item.companyPhoneSub ? item.companyPhoneSub: ''}" />
                         </div>
                         <div class="modalFooter">
                             <button type="button" class="save" onclick="validModifyMaster()">수정</button>
@@ -89,15 +90,15 @@
     if (!phone2) return alert('연락처2를 입력해 주세요.');
 
     const data = {
-      apiType: 'I',
+      apiType: 'U',
       memberId: id,
       memberPw: pwd,
       dept,
       team,
       managerName: name,
       managerEmail: email,
-      phone: companyPhone,
-      phone2: companyPhone2,
+      companyPhone: phone,
+      companyPhoneSub: phone2,
       type: 'MASTER'
     }
 
@@ -114,8 +115,7 @@
         dataType: 'JSON',
         data: requestData,
         success: function(result) {
-          alert(result.resultMessage);
-          if (result.resultCode !== 'success') return alert(result.resultMessage);
+          if (result.resultCode !== '0000') return alert(result.resultMessage);
           successModifyMaster();
         },
         error: function(request, status, error) {

@@ -1,3 +1,4 @@
+<? include_once $_SERVER['DOCUMENT_ROOT'] . "/view/header.php"; ?>
 <?
 $object = $_REQUEST['object'] ?? null; // null로 기본값 설정
 if (!$object) {

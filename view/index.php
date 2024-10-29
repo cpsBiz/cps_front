@@ -1,9 +1,4 @@
-<?
-// 로그인 유저 아이디
-$userId = $_REQUEST['userId'];
-// 매체 아이디
-$affliateId = $_REQUEST['affliateId'];
-?>
+<? include_once $_SERVER['DOCUMENT_ROOT'] . "/view/header.php"; ?>
 <!DOCTYPE html>
 <html lang="ko">
 
@@ -126,8 +121,8 @@ $affliateId = $_REQUEST['affliateId'];
     // 회원 적립금 조회
     function getMemberCommission() {
         try {
-            const userId = 'dhhan';
-            const affliateId = 'moneyweather';
+            const userId = '<?= $_SESSION["check_userId"]; ?>';
+            const affliateId = '<?= $_SESSION["check_affliateId"]; ?>';
 
             // AJAX 요청 데이터 설정
             const requestData = {
@@ -160,17 +155,17 @@ $affliateId = $_REQUEST['affliateId'];
     function getCampaignView(category) {
         try {
             // 매체 아이디
-            const affliateId = 'moneyweather';
+            const affliateId = '<?= $_SESSION["check_affliateId"]; ?>';
             // 지면 아이디
-            const zoneId = 'zonedhhan';
+            const zoneId = '<?= $_SESSION["check_zoneId"]; ?>';
             // 매체가 선택한 사이트
-            const site = 'moneyweather';
+            const site = '<?= $_SESSION["check_site"]; ?>';
             // 로그인 유저 아이디
-            const userId = 'dhhan';
+            const userId = '<?= $_SESSION["check_userId"]; ?>';
             // 광고 아이디
-            const adId = '';
+            const adId = '<?= $_SESSION["check_adId"]; ?>';
             // 기기 OS
-            const os = 'AOS';
+            const os = getOs();
 
             // AJAX 요청 데이터 설정
             const requestData = {
@@ -190,7 +185,7 @@ $affliateId = $_REQUEST['affliateId'];
                 contentType: 'application/json',
                 data: JSON.stringify(requestData),
                 success: function(result) {
-                    handelCampaingView(result);
+                    handleCampaingView(result);
                 },
                 error: function(request, status, error) {
                     console.error(`Error: ${error}`);
@@ -201,7 +196,7 @@ $affliateId = $_REQUEST['affliateId'];
         }
     }
 
-    function handelCampaingView(result) {
+    function handleCampaingView(result) {
         const data = result.datas;
 
         $('#campaign-list').empty();
@@ -295,9 +290,9 @@ $affliateId = $_REQUEST['affliateId'];
     // 쿠팡 막대사탕 조회
     function getMemberStick() {
         try {
-            const userId = 'dhhan';
+            const userId = '<?= $_SESSION["check_userId"]; ?>';
             const merchantId = 'coupang';
-            const affliateId = 'moneyweather';
+            const affliateId = '<?= $_SESSION["check_affliateId"]; ?>';
 
             // AJAX 요청 데이터 설정
             const requestData = {
@@ -329,8 +324,8 @@ $affliateId = $_REQUEST['affliateId'];
     // 캠페인 즐겨찾기 등록, 삭제
     function patchFavorites(campaignNum, favorites, dom) {
         try {
-            const userId = 'dhhan';
-            const affliateId = 'moneyweather';
+            const userId = '<?= $_SESSION["check_userId"]; ?>';
+            const affliateId = '<?= $_SESSION["check_affliateId"]; ?>';
             const apiType = favorites === 'NON_FAVORITE' ? 'I' : 'D';
 
             // AJAX 요청 데이터 설정

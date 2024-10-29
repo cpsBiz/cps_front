@@ -1,3 +1,4 @@
+<? include_once $_SERVER['DOCUMENT_ROOT'] . "/view/header.php"; ?>
 <?
 // 현재 날짜를 기준으로 최근 1년의 월을 가져오는 함수
 function getLastYearMonths()
@@ -169,8 +170,8 @@ $months = getLastYearMonths();
   // 회원 적립금 조회
   function getCommission() {
     try {
-      const userId = 'dhhan';
-      const affliateId = 'moneyweather';
+      const userId = '<?= $_SESSION["check_userId"]; ?>';
+      const affliateId = '<?= $_SESSION["check_affliateId"]; ?>';
 
       // AJAX 요청 데이터 설정
       const requestData = {
@@ -214,8 +215,8 @@ $months = getLastYearMonths();
   // 회원 적립금 리스트 조회
   function getCommissionList(status, date) {
     try {
-      const userId = "dhhan";
-      const affliateId = "moneyweather";
+      const userId = "<?= $_SESSION['check_userId']; ?>";
+      const affliateId = "<?= $_SESSION["check_affliateId"]; ?>";
       const regYm = convertDate(date);
 
       // AJAX 요청 데이터 설정

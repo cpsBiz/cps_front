@@ -8,16 +8,16 @@
 	<meta name="keywords" content="MOBON" />
 	<meta name="author" content="인라이플" />
 	<title>통합카트</title>
-	<link type="image/ico" rel="shortcut icon" href="../../image/favicon/favicon.ico">
-	<script type="text/javascript" src="../../js/lib/jquery-2.2.2.min.js"></script>
-	<script type="text/javascript" src="../../js/lib/jquery.easing.1.3.js"></script>
-	<script type="text/javascript" src="../../js/lib/jquery-ui.min.js"></script>
-	<script type="text/javascript" src="../../js/lib/moment.min.js"></script>
-	<script type="text/javascript" src="../../js/lib/daterangepicker_popup.js"></script>
-	<script type="text/javascript" src="../../js/ui.js"></script>
+	<link type="image/ico" rel="shortcut icon" href="/admin/image/favicon/favicon.ico">
+	<script type="text/javascript" src="/admin/js/lib/jquery-2.2.2.min.js"></script>
+	<script type="text/javascript" src="/admin/js/lib/jquery.easing.1.3.js"></script>
+	<script type="text/javascript" src="/admin/js/lib/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="/admin/js/lib/moment.min.js"></script>
+	<script type="text/javascript" src="/admin/js/lib/daterangepicker_popup.js"></script>
+	<script type="text/javascript" src="/admin/js/ui.js"></script>
 	<script type="text/javascript" src="./report.js"></script>
-	<link type="text/css" rel="stylesheet" href="../../css/lib/daterangepicker_popup.css" />
-	<link type="text/css" rel="stylesheet" href="../../css/common.css">
+	<link type="text/css" rel="stylesheet" href="/admin/css/lib/daterangepicker_popup.css" />
+	<link type="text/css" rel="stylesheet" href="/admin/css/common.css">
 </head>
 
 <body>
@@ -307,10 +307,10 @@
 			let keyword = document.getElementById('keyword').value;
 
 			// 로그인 아이디 타입
-			const type = 'MASTER';
+			const type = '<?= $_SESSION['admin_login_type']; ?>';
 
 			// 로그인한 아이디
-			// const searchId = '';
+			const searchId = '<?= $_SESSION['admin_login_id']; ?>';
 
 			// 한 페이지에서 몇개의 데이터를 보여줄건지
 			const size = parseInt(document.getElementById('size').value);
@@ -381,6 +381,7 @@
 				keywordType,
 				keyword,
 				type,
+				searchId,
 				page,
 				size,
 				orderBy,

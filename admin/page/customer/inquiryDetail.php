@@ -118,7 +118,7 @@
                                                             <textarea id="answer" placeholder="답변을 입력해 주세요">${answer && answer.note ? answer.note : ''}</textarea>
                                                         </div>
                                                         <div class="sendBox">
-                                                            <input id="fromEmail" type="text" value="webmaster@enliple.com" placeholder="발신하실 이메일을 입력해주세요.">
+                                                            <input id="fromEmail" type="text" value="shoplus@enliple.com" placeholder="발신하실 이메일을 입력해주세요.">
                                                             <button type="button" class="send" onclick="sendInquiryAnswer()">보내기</button>
                                                         </div>
                                                     </td>
@@ -208,7 +208,7 @@
                                                             <textarea id="answer" placeholder="답변을 입력해 주세요">${answer && answer.note ? answer.note : ''}</textarea>
                                                         </div>
                                                         <div class="sendBox">
-                                                            <input id="fromEmail" type="text" value="webmaster@enliple.com" placeholder="발신하실 이메일을 입력해주세요.">
+                                                            <input id="fromEmail" type="text" value="shoplus@enliple.com" placeholder="발신하실 이메일을 입력해주세요.">
                                                             <button type="button" class="send" onclick="sendInquiryAnswer()">보내기</button>
                                                         </div>
                                                     </td>
