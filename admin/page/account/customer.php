@@ -26,7 +26,6 @@ $paramKeyword = $_REQUEST['keyword'];
   <script type="text/javascript" src="/admin/js/ui.js"></script>
   <link type="text/css" rel="stylesheet" href="/admin/css/lib/daterangepicker_popup.css" />
   <link type="text/css" rel="stylesheet" href="/admin/css/common.css">
-  <link type="text/css" rel="stylesheet" href="/admin/css/test.css">
 </head>
 
 <body>
