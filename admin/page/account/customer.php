@@ -169,7 +169,7 @@ $paramKeyword = $_REQUEST['keyword'];
                           <div class="buttonBox">
                             <button type="button" class="login" title="로그인">로그인</button>
                             <button type="button" class="modify" title="수정" onclick="<?= $memberType == '관리자' ? 'modifyMaster()' : 'modifyCustomer()'; ?>">수정</button>
-                            <button type="button" class="delete" title="삭제">삭제</button>
+                            <button type="button" class="delete" title="삭제" onclick="postDeleteAccount('<?= $memberId; ?>', '<?= $memberType; ?>')">삭제</button>
                           </div>
                         </td>
                       </tr>
@@ -254,5 +254,9 @@ $paramKeyword = $_REQUEST['keyword'];
 </script>
 <? include_once $_SERVER['DOCUMENT_ROOT'] . "/admin/page/account/customer-add.php"; ?>
 <? include_once $_SERVER['DOCUMENT_ROOT'] . "/admin/page/account/master-add.php"; ?>
-<? if ($total > 0) include_once $_SERVER['DOCUMENT_ROOT'] . "/admin/page/account/customer-modify.php"; ?>
-<? if ($total > 0) include_once $_SERVER['DOCUMENT_ROOT'] . "/admin/page/account/master-modify.php"; ?>
+<? if ($total > 0) {
+  include_once $_SERVER['DOCUMENT_ROOT'] . "/admin/page/account/customer-modify.php";
+  include_once $_SERVER['DOCUMENT_ROOT'] . "/admin/page/account/master-modify.php";
+  include_once $_SERVER['DOCUMENT_ROOT'] . "/admin/page/account/account-delete.php";
+}
+?>

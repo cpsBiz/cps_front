@@ -127,7 +127,7 @@
   function postAddMaster(data) {
     try {
       $.ajax({
-        type: 'GET',
+        type: 'POST',
         url: 'https://admin.shoplus.io/api/admin/memberSignIn',
         contentType: 'application/json',
         dataType: 'JSON',
