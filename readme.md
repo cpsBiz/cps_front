@@ -2,7 +2,7 @@
 nginx
 php-fpm
 telnet
-composer - phpmailer/phpmailer(메일발송), phpoffice/phpspreadsheet(엑셀데이터처리)
+composer require phpmailer/phpmailer(메일발송), phpoffice/phpspreadsheet(엑셀데이터처리)
 
 #html 생성폴더
 /tmp - 파일업로드시 임시파일 저장
