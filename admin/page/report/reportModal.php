@@ -207,13 +207,34 @@
 			// 정렬 값
 			const orderBy = orderByData.orderBy;
 			checkOrderByDataModal.orderBy = orderBy;
-			let orderByName = '';
+			let orderByName = orderByData.orderByName;
 			if (!orderByName && (searchType === 'DAY' || dayType === 'EQDAY')) {
 				orderByName = 'regDay';
 			} else if (!orderByName && (searchType === 'MONTH' || dayType === 'EQMONTH')) {
 				orderByName = 'regYm';
 			} else if (orderByName) {
 				orderByName = orderByData.orderByName;
+			} else {
+				switch (searchType) {
+					case 'MERCHANT':
+						orderByName = 'memberName';
+						break;
+					case 'CAMPAIGN':
+						orderByName = 'campaignName';
+						break;
+					case "AFFLIATE":
+						orderByName = "affliateName";
+						break;
+					case "SITE":
+						orderByName = "site";
+						break;
+					case "MEMBERAGC":
+						orderByName = "agencyName";
+						break;
+					case "MEMBERAFF":
+						orderByName = "agencyName";
+						break;
+				}
 			}
 			checkOrderByDataModal.orderByName = orderByName;
 

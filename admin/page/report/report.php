@@ -336,6 +336,7 @@
 			}
 
 			// 정렬 값
+
 			const orderBy = orderByData.orderBy;
 			checkOrderByData.orderBy = orderBy;
 			let orderByName = orderByData.orderByName;
@@ -345,6 +346,27 @@
 				orderByName = 'regYm';
 			} else if (orderByName) {
 				orderByName = orderByData.orderByName;
+			} else {
+				switch (searchType) {
+					case 'MERCHANT':
+						orderByName = 'memberName';
+						break;
+					case 'CAMPAIGN':
+						orderByName = 'campaignName';
+						break;
+					case "AFFLIATE":
+						orderByName = "affliateName";
+						break;
+					case "SITE":
+						orderByName = "site";
+						break;
+					case "MEMBERAGC":
+						orderByName = "agencyName";
+						break;
+					case "MEMBERAFF":
+						orderByName = "agencyName";
+						break;
+				}
 			}
 			checkOrderByData.orderByName = orderByName;
 
@@ -368,7 +390,7 @@
 			// AJAX 요청 수행
 			$.ajax({
 				type: 'POST',
-				url: 'https://admin.shoplus.io/api/admin/summaryCount',
+				url: 'http://admin.shoplus.io/api/admin/summaryCount',
 				contentType: 'application/json',
 				data: JSON.stringify(requestData),
 				success: function(result) {
