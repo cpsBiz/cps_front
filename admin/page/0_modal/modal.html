@@ -80,8 +80,27 @@
                 <div class="modalDim"></div>
             </div>
             <!-- // modalWrap end-->
-            <p>카테고리 목록 관리/추가 등록(md_categoryRegister)</p>
-            <div class="modalWrap md_categoryRegister" id="md_categoryRegister">
+            <p>캠페인 관리 > 캠페인 카테고리 순위변경사항 저장(md_alert)</p>
+            <div class="modalWrap md_alert" id="md_alert">
+                <div class="modalContainer">
+                    <div class="modalTitle">
+                        <button class="close modalClose"></button>
+                    </div>
+                    <div class="modalContent">
+                        <div>
+                            <p>순위 변경 사항이<br>저장 되었습니다.</p>
+                        </div>
+                    </div>
+                    <div class="modalFooter">
+                        <!-- 버튼 한개 사용 가능 -->
+                        <button type="button" class="confirm">확인</button>
+                    </div>
+                </div>
+                <div class="modalDim"></div>
+            </div>
+            <!-- // modalWrap end-->
+            <p>카테고리 목록 관리/추가 등록(md_alert2)</p>
+            <div class="modalWrap md_alert2" id="md_alert2">
                 <div class="modalContainer">
                     <div class="modalTitle">
                         <p>카테고리 목록 관리/추가 등록</p>
@@ -100,8 +119,30 @@
                 <div class="modalDim"></div>
             </div>
             <!-- // modalWrap end-->
-            <p>카테고리 목록 관리/추가 등록(md_categoryRegister)</p>
-            <div class="modalWrap md_categoryRegister" id="md_categoryRegister">
+            <p>카테고리 목록 관리/추가 등록(md_alert2)</p>
+            <div class="modalWrap md_alert2" id="md_alert2">
+                <div class="modalContainer">
+                    <div class="modalTitle">
+                        <p>카테고리 목록 관리/추가 등록</p>
+                        <button class="close modalClose"></button>
+                    </div>
+                    <div class="modalContent">
+                        <div class="selectBox">
+                            <select name="" id="">
+                                <option value="">변경할 카테고리를 선택해 주세요.</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="modalFooter">
+                        <button type="button" class="confirm">선택 변경</button>
+                        <button type="button" class="cancel">취소</button>
+                    </div>
+                </div>
+                <div class="modalDim"></div>
+            </div>
+            <!-- // modalWrap end-->
+            <p>카테고리 목록 관리/추가 등록(md_alert2)</p>
+            <div class="modalWrap md_alert2" id="md_alert2">
                 <div class="modalContainer">
                     <div class="modalTitle">
                         <p>카테고리 목록 관리/추가 등록</p>
@@ -111,8 +152,8 @@
                         <!-- <div class="inputBox">
                             <input type="text" placeholder="신규 카테고리명을 입력해주세요">
                         </div> -->
-                        <div class="categoryBox">
-                            <p>도서/학문</p>
+                        <div class="textBox">
+                            <strong>도서/학문</strong>
                             <p>카테고리로 수정이 완료되었습니다.</p>
                         </div>
                     </div>
@@ -140,6 +181,33 @@
                     </div>
                     <div class="modalFooter">
                         <button type="button" class="confirm">변경</button>
+                        <button type="button" class="cancel">취소</button>
+                    </div>
+                </div>
+                <div class="modalDim"></div>
+            </div>
+            <!-- // modalWrap end-->
+            <p>카테고리 캠페인 관리/엑셀업로드(md_fileUpload)</p>
+            <div class="modalWrap md_fileUpload" id="md_fileUpload">
+                <div class="modalContainer">
+                    <div class="modalTitle">
+                        <p>카테고리 캠페인 관리/엑셀업로드</p>
+                        <button class="close modalClose"></button>
+                    </div>
+                    <div class="modalContent">
+                        <div class="guideBox">
+                            <p>현재 카테고리 엑셀 양식<span>다운로드</span></p>
+                            <p>전체 캠페인 리스트 입니다.</p>
+                            <p>다운로드 양식에서 순위 조정 후 아래에 업로드해 주세요.</p>
+                        </div>
+                        <div class="fileBox">
+                            <button type="button" class="close">닫기</button>
+                            <input type="file" name="fileUpload" id="fileUpload">
+                            <label for="fileUpload">파일을 끌어오세요</label>
+                        </div>
+                    </div>
+                    <div class="modalFooter">
+                        <button type="button" class="confirm">업로드</button>
                         <button type="button" class="cancel">취소</button>
                     </div>
                 </div>
@@ -326,6 +394,198 @@
                     </div>
                     <div class="modalFooter">
                         <button type="button" class="save">저장</button>
+                        <button type="button" class="cancel">취소</button>
+                    </div>
+                </div>
+                <div class="modalDim"></div>
+            </div>
+            <!-- // modalWrap end-->
+            <p>계정관리 > 관리자 > 관리자/추가등록 (md_managerRegister)</p>
+            <div class="modalWrap md_managerRegister" id="md_managerRegister">
+                <div class="modalContainer">
+                    <div class="modalTitle">
+                        <p>관리자/추가등록</p>
+                        <button class="close modalClose"></button>
+                    </div>
+                    <div class="modalContent">
+                        <section class="sec_list">
+                            <div>
+                                <p>아이디/비밀번호</p>
+                                <div class="idBox">
+                                    <!-- 아이디 수정의 경우 조회 버튼 삭제 후 사용하면 됩니다.-->
+                                    <input type="text" placeholder="아이디 (6자리 이상)">
+                                    <button type="button" class="search">조회</button>
+                                </div>
+                                <input type="password" placeholder="비밀번호(영문, 숫자 조합 8자리 이상)">
+                                <input type="password" placeholder="비밀번호 재입력">
+                            </div>
+                            <div>
+                                <p>관리자 정보</p>
+                                <input type="text" placeholder="부서">
+                                <input type="text" placeholder="팀">
+                                <input type="text" placeholder="이름">
+                                <input type="text" placeholder="이메일">
+                                <input type="text" placeholder="연락처1">
+                                <input type="text" placeholder="연락처2">
+                            </div>
+                        </section>
+                    </div>
+                    <div class="modalFooter">
+                        <button type="button" class="confirm">등록</button>
+                        <button type="button" class="cancel">취소</button>
+                    </div>
+                </div>
+                <div class="modalDim"></div>
+            </div>
+            <!-- // modalWrap end-->
+            <p>계정관리 > 회원 > 회원/추가등록 (md_customerRegister)</p>
+            <div class="modalWrap md_customerRegister" id="md_customerRegister">
+                <div class="modalContainer">
+                    <div class="modalTitle">
+                        <p>회원/추가등록</p>
+                        <button class="close modalClose"></button>
+                    </div>
+                    <div class="modalContent">
+                        <section class="sec_list">
+                            <div>
+                                <p>아이디/비밀번호</p>
+                                <div class="idBox">
+                                    <!-- 아이디 수정의 경우 조회 버튼 삭제 후 사용하면 됩니다.-->
+                                    <input type="text" placeholder="아이디 (6자리 이상)">
+                                    <button type="button" class="search">조회</button>
+                                </div>
+                                <input type="password" placeholder="비밀번호(영문, 숫자 조합 8자리 이상)">
+                                <input type="password" placeholder="비밀번호 재입력">
+                            </div>
+                            <div>
+                                <p>회원 유형</p>
+                                <select name="" id="">
+                                    <option value="">회원 유형1</option>
+                                </select>
+                                <select name="" id="">
+                                    <option value="">개인</option>
+                                </select>
+                            </div>
+                            <div>
+                                <p>대행사 선택</p>
+                                <div class="checkBox">
+                                    <input type="checkbox" name="" id="">
+                                    <label for="">*해당사항 없음</label>
+                                </div>
+                                <div class="searchBox">
+                                    <input type="text" placeholder="대행사명">
+                                    <button type="button" class="search">조회</button>
+                                </div>
+                            </div>
+                            <div>
+                                <p>개인 정보</p>
+                                <input type="text" placeholder="이름">
+                                <input type="text" placeholder="이메일">
+                                <input type="text" placeholder="연락처 (휴대폰)">
+                                <input type="text" placeholder="출생년도 (숫자 4자리)">
+                                <select name="" id="">
+                                    <option value="">성별</option>
+                                </select>
+                            </div>
+                            <div>
+                                <p>주민등록증 등록</p>
+                                <div class="fileBox">
+                                    <button type="button" class="close">닫기</button>
+                                    <input type="file" name="" id="">
+                                    <label for="">파일을 끌어오세요</label>
+                                    <span>0/100KB</span>
+                                </div>
+                            </div>
+                            <div>
+                                <p>은행정보</p>
+                                <div class="checkBox">
+                                    <input type="checkbox" name="" id="">
+                                    <label for="">*해당사항 없음</label>
+                                </div>
+                                <input type="text" placeholder="예금주명" disabled>
+                                <input type="text" placeholder="은행명">
+                            </div>
+                        </section>
+                    </div>
+                    <div class="modalFooter">
+                        <button type="button" class="confirm">등록</button>
+                        <button type="button" class="cancel">취소</button>
+                    </div>
+                </div>
+                <div class="modalDim"></div>
+            </div>
+            <!-- // modalWrap end-->
+            <p>계정관리 > 회원 > 매체회원/추가등록 (md_customerMdRegister)</p>
+            <div class="modalWrap md_customerMdRegister" id="md_customerMdRegister">
+                <div class="modalContainer">
+                    <div class="modalTitle">
+                        <p>회원/추가등록</p>
+                        <button class="close modalClose"></button>
+                    </div>
+                    <div class="modalContent">
+                        <section class="sec_list">
+                            <div>
+                                <p>아이디/비밀번호</p>
+                                <div class="idBox">
+                                    <!-- 아이디 수정의 경우 조회 버튼 삭제 후 사용하면 됩니다.-->
+                                    <input type="text" placeholder="아이디 (6자리 이상)">
+                                    <button type="button" class="search">조회</button>
+                                </div>
+                                <input type="password" placeholder="비밀번호(영문, 숫자 조합 8자리 이상)">
+                                <input type="password" placeholder="비밀번호 재입력">
+                            </div>
+                            <div>
+                                <p>회원 유형</p>
+                                <select name="" id="">
+                                    <option value="">매체</option>
+                                </select>
+                                <select name="" id="">
+                                    <option value="">회원 유형2</option>
+                                </select>
+                            </div>
+                            <div>
+                                <p>대행사 선택</p>
+                                <div class="checkBox">
+                                    <input type="checkbox" name="chk1" id="chk1">
+                                    <label for="chk1">*해당사항 없음</label>
+                                </div>
+                                <div class="searchBox">
+                                    <input type="text" placeholder="대행사명">
+                                    <button type="button" class="search">조회</button>
+                                </div>
+                            </div>
+                            <div>
+                                <p>은행정보</p>
+                                <div class="checkBox">
+                                    <input type="checkbox" name="" id="">
+                                    <label for="">*해당사항 없음</label>
+                                </div>
+                                <input type="text" placeholder="예금주명" disabled>
+                                <input type="text" placeholder="은행명">
+                            </div>
+                            <div>
+                                <p>사이트등록1</p>
+                                <input type="text" placeholder="사이트명">
+                                <input type="text" placeholder="URL">
+                                <select name="" id="">
+                                    <option value="">카테고리 선택</option>
+                                </select>
+                            </div>
+                            <div>
+                                <p>사이트등록2</p>
+                                <input type="text" placeholder="사이트명">
+                                <input type="text" placeholder="URL">
+                                <select name="" id="">
+                                    <option value="">카테고리 선택</option>
+                                </select>
+                            </div>
+                            <div>
+                                <button type="button" class="siteAdd">사이트 추가</button>
+                            </div>
+                        </section>
+                    </div>
+                    <div class="modalFooter">
+                        <button type="button" class="confirm">등록</button>
                         <button type="button" class="cancel">취소</button>
                     </div>
                 </div>

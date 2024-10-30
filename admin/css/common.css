@@ -1642,6 +1642,233 @@ Date   : 2024.07.30
   text-align: center;
 }
 
+.modalWrap.md_alert2 {
+  display: none;
+  z-index: 999;
+}
+.modalWrap.md_alert2.modalOn {
+  display: block;
+}
+.modalWrap.md_alert2 .modalContainer {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  overflow: hidden;
+  z-index: 999;
+  border-radius: 8px;
+  -webkit-box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.1);
+  background-color: #ffffff;
+  z-index: 999;
+}
+.modalWrap.md_alert2 .modalContainer .modalTitle {
+  height: 50px;
+  font-size: 18px;
+  margin: 0 25px;
+  padding: 15px 0px 0 0;
+}
+.modalWrap.md_alert2 .modalContainer .modalTitle p {
+  font-family: 'Pretendard_SemiBold';
+  display: inline-block;
+  padding: 6px 0 0 0;
+  font-size: 18px;
+}
+.modalWrap.md_alert2 .modalContainer .modalTitle button {
+  position: relative;
+  float: right;
+  right: -2px;
+  padding: 15px;
+}
+.modalWrap.md_alert2 .modalContainer .modalTitle button.close {
+  font-family: 'Pretendard_Regular';
+  font-weight: normal;
+  position: relative;
+  text-align: center;
+  border-radius: 4px;
+  cursor: pointer;
+  background: url('../image/component/ico_close.svg') no-repeat center;
+  width: 22px;
+  height: 22px;
+  font-size: 0;
+}
+.modalWrap.md_alert2 .modalContainer .modalTitle button.close:disabled {
+  color: #b3b3b3;
+  border: 1px solid #eceff1;
+  background-color: #eceff1;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  cursor: default;
+}
+.modalWrap.md_alert2 .modalContainer .modalContent {
+  position: relative;
+  width: calc(100% - 20px);
+  max-height: 650px;
+  margin: 10px 10px 0 10px;
+  padding: 10px 10px 20px 20px;
+  overflow-y: auto;
+}
+.modalWrap.md_alert2 .modalContainer .modalContent ::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+  background: transparent;
+}
+.modalWrap.md_alert2 .modalContainer .modalContent ::-webkit-scrollbar-thumb {
+  height: 15px;
+  border-radius: 5px;
+  background: #dedede;
+}
+.modalWrap.md_alert2 .modalContainer .modalFooter {
+  padding-top: 10px;
+  margin-top: 10px;
+  text-align: center;
+}
+.modalWrap.md_alert2 .modalContainer .modalFooter button {
+  font-family: 'Pretendard_Regular';
+  font-weight: normal;
+  position: relative;
+  text-align: center;
+  border-radius: 4px;
+  cursor: pointer;
+  min-width: 120px;
+  height: 40px;
+  margin-left: 8px;
+  border-radius: 4px;
+  font-size: 16px;
+}
+.modalWrap.md_alert2 .modalContainer .modalFooter button:disabled {
+  color: #b3b3b3;
+  border: 1px solid #eceff1;
+  background-color: #eceff1;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  cursor: default;
+}
+.modalWrap.md_alert2 .modalContainer .modalFooter button:first-child {
+  margin-left: 0;
+}
+.modalWrap.md_alert2 .modalContainer .modalFooter button.create,
+.modalWrap.md_alert2 .modalContainer .modalFooter button.modify,
+.modalWrap.md_alert2 .modalContainer .modalFooter button.confirm,
+.modalWrap.md_alert2 .modalContainer .modalFooter button.save {
+  color: #ffffff;
+  border: 1px solid #4664e6;
+  background-color: #4664e6;
+}
+.modalWrap.md_alert2 .modalContainer .modalFooter button.create:disabled,
+.modalWrap.md_alert2 .modalContainer .modalFooter button.modify:disabled,
+.modalWrap.md_alert2 .modalContainer .modalFooter button.confirm:disabled,
+.modalWrap.md_alert2 .modalContainer .modalFooter button.save:disabled {
+  color: #b3b3b3;
+  border: 1px solid #eceff1;
+  background-color: #eceff1;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+.modalWrap.md_alert2 .modalContainer .modalFooter button.cancel {
+  color: #ffffff;
+  border: 1px solid #c8c8c8;
+  background-color: #c8c8c8;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+.modalWrap.md_alert2 .modalContainer .modalFooter button.delete {
+  color: #ffffff;
+  border: 1px solid #f65a5a;
+  -webkit-box-shadow: 0 0 5px 0 #f65a5a;
+  box-shadow: 0 0 5px 0 #f65a5a;
+  background-color: #f65a5a;
+}
+.modalWrap.md_alert2 .modalDim {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: #000000;
+  opacity: 0.5;
+  z-index: 998;
+}
+.modalWrap.md_alert2 .modalContainer {
+  width: 460px;
+  height: 250px;
+}
+.modalWrap.md_alert2 .modalContainer .modalContent {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  gap: 10px;
+  height: 110px;
+}
+.modalWrap.md_alert2 .modalContainer .modalContent .inputBox input:only-child,
+.modalWrap.md_alert2 .modalContainer .modalContent .inputBox select:only-child,
+.modalWrap.md_alert2 .modalContainer .modalContent .selectBox input:only-child,
+.modalWrap.md_alert2
+  .modalContainer
+  .modalContent
+  .selectBox
+  select:only-child {
+  width: 260px;
+}
+.modalWrap.md_alert2 .modalContainer .modalContent .textBox {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  gap: 4px;
+}
+.modalWrap.md_alert2 .modalContainer .modalContent .textBox strong,
+.modalWrap.md_alert2 .modalContainer .modalContent .textBox p {
+  font-family: 'Pretendard_SemiBold';
+  position: relative;
+  text-align: center;
+  color: #000000;
+}
+.modalWrap.md_alert2 .modalContainer .modalContent .textBox strong {
+  font-size: 22px;
+}
+.modalWrap.md_alert2 .modalContainer .modalContent .textBox strong:before {
+  content: '';
+  position: absolute;
+  display: inline-block;
+  width: 100%;
+  height: 11px;
+  left: 0;
+  bottom: -2px;
+  background-color: #d8dcec;
+  z-index: -1;
+}
+.modalWrap.md_alert2 .modalContainer .modalContent .textBox strong + p {
+  margin-top: 6px;
+}
+.modalWrap.md_alert2 .modalContainer .modalContent .textBox p {
+  font-size: 18px;
+  line-height: 1.2;
+}
+.modalWrap.md_alert2 .modalContainer .modalContent .textBox p + strong {
+  margin-top: 6px;
+}
+
 .modalWrap.md_categoryRegister {
   display: none;
   z-index: 999;
@@ -8473,3 +8700,3981 @@ menu : 고객관리
 }
 
 /* 관리자등록모달끝 */
+
+.modalWrap.md_fileUpload {
+  display: none;
+  z-index: 999;
+}
+.modalWrap.md_fileUpload.modalOn {
+  display: block;
+}
+.modalWrap.md_fileUpload .modalContainer {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  overflow: hidden;
+  z-index: 999;
+  border-radius: 8px;
+  -webkit-box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.1);
+  background-color: #ffffff;
+  z-index: 999;
+}
+.modalWrap.md_fileUpload .modalContainer .modalTitle {
+  height: 50px;
+  font-size: 18px;
+  margin: 0 25px;
+  padding: 15px 0px 0 0;
+}
+.modalWrap.md_fileUpload .modalContainer .modalTitle p {
+  font-family: 'Pretendard_SemiBold';
+  display: inline-block;
+  padding: 6px 0 0 0;
+  font-size: 18px;
+}
+.modalWrap.md_fileUpload .modalContainer .modalTitle button {
+  position: relative;
+  float: right;
+  right: -2px;
+  padding: 15px;
+}
+.modalWrap.md_fileUpload .modalContainer .modalTitle button.close {
+  font-family: 'Pretendard_Regular';
+  font-weight: normal;
+  position: relative;
+  text-align: center;
+  border-radius: 4px;
+  cursor: pointer;
+  background: url('../image/component/ico_close.svg') no-repeat center;
+  width: 22px;
+  height: 22px;
+  font-size: 0;
+}
+.modalWrap.md_fileUpload .modalContainer .modalTitle button.close:disabled {
+  color: #b3b3b3;
+  border: 1px solid #eceff1;
+  background-color: #eceff1;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  cursor: default;
+}
+.modalWrap.md_fileUpload .modalContainer .modalContent {
+  position: relative;
+  width: calc(100% - 20px);
+  max-height: 650px;
+  margin: 10px 10px 0 10px;
+  padding: 10px 10px 20px 20px;
+  overflow-y: auto;
+}
+.modalWrap.md_fileUpload .modalContainer .modalContent ::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+  background: transparent;
+}
+.modalWrap.md_fileUpload
+  .modalContainer
+  .modalContent
+  ::-webkit-scrollbar-thumb {
+  height: 15px;
+  border-radius: 5px;
+  background: #dedede;
+}
+.modalWrap.md_fileUpload .modalContainer .modalFooter {
+  padding-top: 10px;
+  margin-top: 10px;
+  text-align: center;
+}
+.modalWrap.md_fileUpload .modalContainer .modalFooter button {
+  font-family: 'Pretendard_Regular';
+  font-weight: normal;
+  position: relative;
+  text-align: center;
+  border-radius: 4px;
+  cursor: pointer;
+  min-width: 120px;
+  height: 40px;
+  margin-left: 8px;
+  border-radius: 4px;
+  font-size: 16px;
+}
+.modalWrap.md_fileUpload .modalContainer .modalFooter button:disabled {
+  color: #b3b3b3;
+  border: 1px solid #eceff1;
+  background-color: #eceff1;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  cursor: default;
+}
+.modalWrap.md_fileUpload .modalContainer .modalFooter button:first-child {
+  margin-left: 0;
+}
+.modalWrap.md_fileUpload .modalContainer .modalFooter button.create,
+.modalWrap.md_fileUpload .modalContainer .modalFooter button.modify,
+.modalWrap.md_fileUpload .modalContainer .modalFooter button.confirm,
+.modalWrap.md_fileUpload .modalContainer .modalFooter button.save {
+  color: #ffffff;
+  border: 1px solid #4664e6;
+  background-color: #4664e6;
+}
+.modalWrap.md_fileUpload .modalContainer .modalFooter button.create:disabled,
+.modalWrap.md_fileUpload .modalContainer .modalFooter button.modify:disabled,
+.modalWrap.md_fileUpload .modalContainer .modalFooter button.confirm:disabled,
+.modalWrap.md_fileUpload .modalContainer .modalFooter button.save:disabled {
+  color: #b3b3b3;
+  border: 1px solid #eceff1;
+  background-color: #eceff1;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+.modalWrap.md_fileUpload .modalContainer .modalFooter button.cancel {
+  color: #ffffff;
+  border: 1px solid #c8c8c8;
+  background-color: #c8c8c8;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+.modalWrap.md_fileUpload .modalContainer .modalFooter button.delete {
+  color: #ffffff;
+  border: 1px solid #f65a5a;
+  -webkit-box-shadow: 0 0 5px 0 #f65a5a;
+  box-shadow: 0 0 5px 0 #f65a5a;
+  background-color: #f65a5a;
+}
+.modalWrap.md_fileUpload .modalDim {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: #000000;
+  opacity: 0.5;
+  z-index: 998;
+}
+.modalWrap.md_fileUpload .modalContainer {
+  width: 380px;
+  height: 360px;
+}
+.modalWrap.md_fileUpload .modalContainer .modalContent {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  gap: 10px;
+  height: 220px;
+}
+.modalWrap.md_fileUpload .modalContainer .modalContent .guideBox {
+  width: 240px;
+  text-align: left;
+  counter-reset: item;
+}
+.modalWrap.md_fileUpload .modalContainer .modalContent .guideBox p {
+  line-height: 22px;
+  font-size: 16px;
+}
+.modalWrap.md_fileUpload .modalContainer .modalContent .guideBox p:before {
+  content: attr(class);
+  content: counter(item) '. ';
+  counter-increment: item;
+}
+.modalWrap.md_fileUpload .modalContainer .modalContent .guideBox p span {
+  margin: 0 4px;
+  color: #ec3f3f;
+  text-decoration: underline;
+}
+.modalWrap.md_fileUpload .modalContainer .modalContent .guideBox p span:before,
+.modalWrap.md_fileUpload .modalContainer .modalContent .guideBox p span:after {
+  position: realtive;
+  display: inline-block;
+}
+.modalWrap.md_fileUpload .modalContainer .modalContent .guideBox p span:before {
+  content: '[';
+}
+.modalWrap.md_fileUpload .modalContainer .modalContent .guideBox p span:after {
+  content: ']';
+}
+.modalWrap.md_fileUpload .modalContainer .modalContent .fileBox {
+  position: relative;
+  width: 260px;
+  height: 110px;
+  border-radius: 4px;
+  background-color: #f8f8f8;
+  margin: 5px 0 0 0;
+}
+.modalWrap.md_fileUpload .modalContainer .modalContent .fileBox button.close {
+  content: '';
+  position: relative;
+  display: inline-block;
+  background-position: 0px 0px;
+  font-size: 0;
+  font-style: normal;
+  vertical-align: middle;
+  background: url('../image/component/ico_close2.svg') no-repeat center;
+  width: 22px;
+  height: 22px;
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  z-index: 1;
+}
+.modalWrap.md_fileUpload
+  .modalContainer
+  .modalContent
+  .fileBox
+  input[type='file'] {
+  display: none;
+}
+.modalWrap.md_fileUpload
+  .modalContainer
+  .modalContent
+  .fileBox
+  input[type='file']
+  + label {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  gap: 6px;
+  font-family: 'Pretendard_Medium';
+  font-weight: normal;
+  position: relative;
+  height: 100%;
+  color: #777777;
+  font-size: 14px;
+  text-align: center;
+}
+.modalWrap.md_fileUpload
+  .modalContainer
+  .modalContent
+  .fileBox
+  input[type='file']
+  + label:before {
+  content: '';
+  position: relative;
+  display: block;
+  background-position: 0px 0px;
+  font-size: 0;
+  font-style: normal;
+  vertical-align: middle;
+  background: url('../image/component/ico_plus.svg') no-repeat center;
+  width: 22px;
+  height: 22px;
+}
+
+.modalWrap.md_managerRegister,
+.modalWrap.md_customerRegister,
+.modalWrap.md_customerMdRegister {
+  display: none;
+  z-index: 999;
+}
+.modalWrap.md_managerRegister.modalOn,
+.modalWrap.md_customerRegister.modalOn,
+.modalWrap.md_customerMdRegister.modalOn {
+  display: block;
+}
+.modalWrap.md_managerRegister .modalContainer,
+.modalWrap.md_customerRegister .modalContainer,
+.modalWrap.md_customerMdRegister .modalContainer {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  overflow: hidden;
+  z-index: 999;
+  border-radius: 8px;
+  -webkit-box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.1);
+  background-color: #ffffff;
+  z-index: 999;
+}
+.modalWrap.md_managerRegister .modalContainer .modalTitle,
+.modalWrap.md_customerRegister .modalContainer .modalTitle,
+.modalWrap.md_customerMdRegister .modalContainer .modalTitle {
+  height: 50px;
+  font-size: 18px;
+  margin: 0 25px;
+  padding: 15px 0px 0 0;
+}
+.modalWrap.md_managerRegister .modalContainer .modalTitle p,
+.modalWrap.md_customerRegister .modalContainer .modalTitle p,
+.modalWrap.md_customerMdRegister .modalContainer .modalTitle p {
+  font-family: 'Pretendard_SemiBold';
+  display: inline-block;
+  padding: 6px 0 0 0;
+  font-size: 18px;
+}
+.modalWrap.md_managerRegister .modalContainer .modalTitle button,
+.modalWrap.md_customerRegister .modalContainer .modalTitle button,
+.modalWrap.md_customerMdRegister .modalContainer .modalTitle button {
+  position: relative;
+  float: right;
+  right: -2px;
+  padding: 15px;
+}
+.modalWrap.md_managerRegister .modalContainer .modalTitle button.close,
+.modalWrap.md_customerRegister .modalContainer .modalTitle button.close,
+.modalWrap.md_customerMdRegister .modalContainer .modalTitle button.close {
+  font-family: 'Pretendard_Regular';
+  font-weight: normal;
+  position: relative;
+  text-align: center;
+  border-radius: 4px;
+  cursor: pointer;
+  background: url('../image/component/ico_close.svg') no-repeat center;
+  width: 22px;
+  height: 22px;
+  font-size: 0;
+}
+.modalWrap.md_managerRegister .modalContainer .modalTitle button.close:disabled,
+.modalWrap.md_customerRegister
+  .modalContainer
+  .modalTitle
+  button.close:disabled,
+.modalWrap.md_customerMdRegister
+  .modalContainer
+  .modalTitle
+  button.close:disabled {
+  color: #b3b3b3;
+  border: 1px solid #eceff1;
+  background-color: #eceff1;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  cursor: default;
+}
+.modalWrap.md_managerRegister .modalContainer .modalContent,
+.modalWrap.md_customerRegister .modalContainer .modalContent,
+.modalWrap.md_customerMdRegister .modalContainer .modalContent {
+  position: relative;
+  width: calc(100% - 20px);
+  max-height: 650px;
+  margin: 10px 10px 0 10px;
+  padding: 10px 10px 20px 20px;
+  overflow-y: auto;
+}
+.modalWrap.md_managerRegister .modalContainer .modalContent ::-webkit-scrollbar,
+.modalWrap.md_customerRegister
+  .modalContainer
+  .modalContent
+  ::-webkit-scrollbar,
+.modalWrap.md_customerMdRegister
+  .modalContainer
+  .modalContent
+  ::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+  background: transparent;
+}
+.modalWrap.md_managerRegister
+  .modalContainer
+  .modalContent
+  ::-webkit-scrollbar-thumb,
+.modalWrap.md_customerRegister
+  .modalContainer
+  .modalContent
+  ::-webkit-scrollbar-thumb,
+.modalWrap.md_customerMdRegister
+  .modalContainer
+  .modalContent
+  ::-webkit-scrollbar-thumb {
+  height: 15px;
+  border-radius: 5px;
+  background: #dedede;
+}
+.modalWrap.md_managerRegister .modalContainer .modalFooter,
+.modalWrap.md_customerRegister .modalContainer .modalFooter,
+.modalWrap.md_customerMdRegister .modalContainer .modalFooter {
+  padding-top: 10px;
+  margin-top: 10px;
+  text-align: center;
+}
+.modalWrap.md_managerRegister .modalContainer .modalFooter button,
+.modalWrap.md_customerRegister .modalContainer .modalFooter button,
+.modalWrap.md_customerMdRegister .modalContainer .modalFooter button {
+  font-family: 'Pretendard_Regular';
+  font-weight: normal;
+  position: relative;
+  text-align: center;
+  border-radius: 4px;
+  cursor: pointer;
+  min-width: 120px;
+  height: 40px;
+  margin-left: 8px;
+  border-radius: 4px;
+  font-size: 16px;
+}
+.modalWrap.md_managerRegister .modalContainer .modalFooter button:disabled,
+.modalWrap.md_customerRegister .modalContainer .modalFooter button:disabled,
+.modalWrap.md_customerMdRegister .modalContainer .modalFooter button:disabled {
+  color: #b3b3b3;
+  border: 1px solid #eceff1;
+  background-color: #eceff1;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  cursor: default;
+}
+.modalWrap.md_managerRegister .modalContainer .modalFooter button:first-child,
+.modalWrap.md_customerRegister .modalContainer .modalFooter button:first-child,
+.modalWrap.md_customerMdRegister
+  .modalContainer
+  .modalFooter
+  button:first-child {
+  margin-left: 0;
+}
+.modalWrap.md_managerRegister .modalContainer .modalFooter button.create,
+.modalWrap.md_managerRegister .modalContainer .modalFooter button.modify,
+.modalWrap.md_managerRegister .modalContainer .modalFooter button.confirm,
+.modalWrap.md_managerRegister .modalContainer .modalFooter button.save,
+.modalWrap.md_customerRegister .modalContainer .modalFooter button.create,
+.modalWrap.md_customerRegister .modalContainer .modalFooter button.modify,
+.modalWrap.md_customerRegister .modalContainer .modalFooter button.confirm,
+.modalWrap.md_customerRegister .modalContainer .modalFooter button.save,
+.modalWrap.md_customerMdRegister .modalContainer .modalFooter button.create,
+.modalWrap.md_customerMdRegister .modalContainer .modalFooter button.modify,
+.modalWrap.md_customerMdRegister .modalContainer .modalFooter button.confirm,
+.modalWrap.md_customerMdRegister .modalContainer .modalFooter button.save {
+  color: #ffffff;
+  border: 1px solid #4664e6;
+  background-color: #4664e6;
+}
+.modalWrap.md_managerRegister
+  .modalContainer
+  .modalFooter
+  button.create:disabled,
+.modalWrap.md_managerRegister
+  .modalContainer
+  .modalFooter
+  button.modify:disabled,
+.modalWrap.md_managerRegister
+  .modalContainer
+  .modalFooter
+  button.confirm:disabled,
+.modalWrap.md_managerRegister .modalContainer .modalFooter button.save:disabled,
+.modalWrap.md_customerRegister
+  .modalContainer
+  .modalFooter
+  button.create:disabled,
+.modalWrap.md_customerRegister
+  .modalContainer
+  .modalFooter
+  button.modify:disabled,
+.modalWrap.md_customerRegister
+  .modalContainer
+  .modalFooter
+  button.confirm:disabled,
+.modalWrap.md_customerRegister
+  .modalContainer
+  .modalFooter
+  button.save:disabled,
+.modalWrap.md_customerMdRegister
+  .modalContainer
+  .modalFooter
+  button.create:disabled,
+.modalWrap.md_customerMdRegister
+  .modalContainer
+  .modalFooter
+  button.modify:disabled,
+.modalWrap.md_customerMdRegister
+  .modalContainer
+  .modalFooter
+  button.confirm:disabled,
+.modalWrap.md_customerMdRegister
+  .modalContainer
+  .modalFooter
+  button.save:disabled {
+  color: #b3b3b3;
+  border: 1px solid #eceff1;
+  background-color: #eceff1;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+.modalWrap.md_managerRegister .modalContainer .modalFooter button.cancel,
+.modalWrap.md_customerRegister .modalContainer .modalFooter button.cancel,
+.modalWrap.md_customerMdRegister .modalContainer .modalFooter button.cancel {
+  color: #ffffff;
+  border: 1px solid #c8c8c8;
+  background-color: #c8c8c8;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+.modalWrap.md_managerRegister .modalContainer .modalFooter button.delete,
+.modalWrap.md_customerRegister .modalContainer .modalFooter button.delete,
+.modalWrap.md_customerMdRegister .modalContainer .modalFooter button.delete {
+  color: #ffffff;
+  border: 1px solid #f65a5a;
+  -webkit-box-shadow: 0 0 5px 0 #f65a5a;
+  box-shadow: 0 0 5px 0 #f65a5a;
+  background-color: #f65a5a;
+}
+.modalWrap.md_managerRegister .modalDim,
+.modalWrap.md_customerRegister .modalDim,
+.modalWrap.md_customerMdRegister .modalDim {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: #000000;
+  opacity: 0.5;
+  z-index: 998;
+}
+.modalWrap.md_managerRegister .modalContainer,
+.modalWrap.md_customerRegister .modalContainer,
+.modalWrap.md_customerMdRegister .modalContainer {
+  width: 520px;
+  height: 800px;
+}
+.modalWrap.md_managerRegister .modalContainer .modalContent,
+.modalWrap.md_customerRegister .modalContainer .modalContent,
+.modalWrap.md_customerMdRegister .modalContainer .modalContent {
+  height: 650px;
+}
+.modalWrap.md_managerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div,
+.modalWrap.md_customerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div,
+.modalWrap.md_customerMdRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div {
+  position: relative;
+}
+.modalWrap.md_managerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .idBox,
+.modalWrap.md_customerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .idBox,
+.modalWrap.md_customerMdRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .idBox {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: initial;
+  -webkit-box-direction: initial;
+  -ms-flex-direction: initial;
+  flex-direction: initial;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  gap: 10px;
+  margin: 10px 0 0 0;
+}
+.modalWrap.md_managerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .idBox
+  input,
+.modalWrap.md_customerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .idBox
+  input,
+.modalWrap.md_customerMdRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .idBox
+  input {
+  width: 100%;
+}
+.modalWrap.md_managerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .idBox
+  button,
+.modalWrap.md_customerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .idBox
+  button,
+.modalWrap.md_customerMdRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .idBox
+  button {
+  font-family: 'Pretendard_Regular';
+  font-weight: normal;
+  position: relative;
+  min-width: 90px;
+  height: 36px;
+  text-align: center;
+  border-radius: 4px;
+  cursor: pointer;
+  color: #ffffff;
+  border: 1px solid #4664e6;
+  background-color: #4664e6;
+}
+.modalWrap.md_managerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .idBox
+  button:disabled,
+.modalWrap.md_customerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .idBox
+  button:disabled,
+.modalWrap.md_customerMdRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .idBox
+  button:disabled {
+  color: #b3b3b3;
+  border: 1px solid #eceff1;
+  background-color: #eceff1;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  cursor: default;
+}
+.modalWrap.md_managerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .idBox
+  button:disabled,
+.modalWrap.md_customerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .idBox
+  button:disabled,
+.modalWrap.md_customerMdRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .idBox
+  button:disabled {
+  color: #b3b3b3;
+  border: 1px solid #eceff1;
+  background-color: #eceff1;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+.modalWrap.md_managerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div:nth-child(n + 2),
+.modalWrap.md_customerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div:nth-child(n + 2),
+.modalWrap.md_customerMdRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div:nth-child(n + 2) {
+  margin: 20px 0 0 0;
+}
+.modalWrap.md_managerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  p,
+.modalWrap.md_customerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  p,
+.modalWrap.md_customerMdRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  p {
+  font-family: 'Pretendard_SemiBold';
+}
+.modalWrap.md_managerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  > input,
+.modalWrap.md_managerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  > select,
+.modalWrap.md_customerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  > input,
+.modalWrap.md_customerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  > select,
+.modalWrap.md_customerMdRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  > input,
+.modalWrap.md_customerMdRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  > select {
+  width: 100%;
+  margin: 10px 0 0 0;
+}
+.modalWrap.md_managerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .checkBox,
+.modalWrap.md_customerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .checkBox,
+.modalWrap.md_customerMdRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .checkBox {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+.modalWrap.md_managerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .checkBox
+  input[type='checkbox'],
+.modalWrap.md_customerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .checkBox
+  input[type='checkbox'],
+.modalWrap.md_customerMdRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .checkBox
+  input[type='checkbox'] {
+  display: none;
+}
+.modalWrap.md_managerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .checkBox
+  input[type='checkbox']
+  + label,
+.modalWrap.md_customerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .checkBox
+  input[type='checkbox']
+  + label,
+.modalWrap.md_customerMdRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .checkBox
+  input[type='checkbox']
+  + label {
+  position: relative;
+  display: block;
+  color: #333333;
+  cursor: pointer;
+}
+.modalWrap.md_managerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .checkBox
+  input[type='checkbox']
+  + label:before,
+.modalWrap.md_customerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .checkBox
+  input[type='checkbox']
+  + label:before,
+.modalWrap.md_customerMdRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .checkBox
+  input[type='checkbox']
+  + label:before {
+  display: none;
+}
+.modalWrap.md_managerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .checkBox
+  input[type='checkbox']
+  + label:after,
+.modalWrap.md_customerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .checkBox
+  input[type='checkbox']
+  + label:after,
+.modalWrap.md_customerMdRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .checkBox
+  input[type='checkbox']
+  + label:after {
+  content: '';
+  position: relative;
+  display: inline-block;
+  background-position: 0px 0px;
+  font-size: 0;
+  font-style: normal;
+  vertical-align: middle;
+  background: url('../image/component/ico_checkbox_off.svg') no-repeat center;
+  width: 22px;
+  height: 22px;
+  content: '';
+  width: 22px;
+  height: 22px;
+  margin-left: 6px;
+  vertical-align: middle;
+  background-size: contain;
+}
+.modalWrap.md_managerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .checkBox
+  input[type='checkbox']:checked
+  + label:after,
+.modalWrap.md_customerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .checkBox
+  input[type='checkbox']:checked
+  + label:after,
+.modalWrap.md_customerMdRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .checkBox
+  input[type='checkbox']:checked
+  + label:after {
+  content: '';
+  position: relative;
+  display: inline-block;
+  background-position: 0px 0px;
+  font-size: 0;
+  font-style: normal;
+  vertical-align: middle;
+  background: url('../image/component/ico_checkbox_on.svg') no-repeat center;
+  width: 22px;
+  height: 22px;
+  width: 22px;
+  height: 22px;
+  vertical-align: middle;
+  background-size: contain;
+}
+.modalWrap.md_managerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .checkBox
+  input[type='checkbox']:disabled
+  + label:after,
+.modalWrap.md_customerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .checkBox
+  input[type='checkbox']:disabled
+  + label:after,
+.modalWrap.md_customerMdRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .checkBox
+  input[type='checkbox']:disabled
+  + label:after {
+  content: '';
+  position: relative;
+  display: inline-block;
+  background-position: 0px 0px;
+  font-size: 0;
+  font-style: normal;
+  vertical-align: middle;
+  background: url('../image/component/ico_checkbox_disabled.svg') no-repeat
+    center;
+  width: 16px;
+  height: 16px;
+  width: 22px;
+  height: 22px;
+  vertical-align: middle;
+  background-size: contain;
+  cursor: default;
+}
+.modalWrap.md_managerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .checkBox
+  input[type='checkbox']
+  + label,
+.modalWrap.md_customerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .checkBox
+  input[type='checkbox']
+  + label,
+.modalWrap.md_customerMdRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .checkBox
+  input[type='checkbox']
+  + label {
+  font-family: 'Pretendard_Medium';
+  font-weight: normal;
+  font-size: 14px;
+  color: #4664e6;
+}
+.modalWrap.md_managerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .searchBox,
+.modalWrap.md_customerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .searchBox,
+.modalWrap.md_customerMdRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .searchBox {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-orient: initial;
+  -webkit-box-direction: initial;
+  -ms-flex-direction: initial;
+  flex-direction: initial;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  gap: 10px;
+  vertical-align: middle;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin: 10px 0 0 0;
+}
+.modalWrap.md_managerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .searchBox
+  input,
+.modalWrap.md_managerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .searchBox
+  button,
+.modalWrap.md_customerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .searchBox
+  input,
+.modalWrap.md_customerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .searchBox
+  button,
+.modalWrap.md_customerMdRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .searchBox
+  input,
+.modalWrap.md_customerMdRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .searchBox
+  button {
+  display: inline-block;
+  vertical-align: middle;
+}
+.modalWrap.md_managerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .searchBox
+  input[type='text'],
+.modalWrap.md_customerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .searchBox
+  input[type='text'],
+.modalWrap.md_customerMdRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .searchBox
+  input[type='text'] {
+  -webkit-box-flex: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+  width: 200px;
+  padding: 0 5px 0px 10px;
+  text-align: left;
+  font-size: 13px;
+  border: 1px solid #e6e6e6;
+  background-color: #ffffff;
+}
+.modalWrap.md_managerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .searchBox
+  button,
+.modalWrap.md_customerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .searchBox
+  button,
+.modalWrap.md_customerMdRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .searchBox
+  button {
+  font-family: 'Pretendard_Regular';
+  font-weight: normal;
+  position: relative;
+  text-align: center;
+  border-radius: 4px;
+  cursor: pointer;
+  color: #ffffff;
+  border: 1px solid #4664e6;
+  background-color: #4664e6;
+  min-width: 90px;
+  height: 36px;
+  vertical-align: middle;
+  font-size: 14px;
+}
+.modalWrap.md_managerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .searchBox
+  button:disabled,
+.modalWrap.md_customerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .searchBox
+  button:disabled,
+.modalWrap.md_customerMdRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .searchBox
+  button:disabled {
+  color: #b3b3b3;
+  border: 1px solid #eceff1;
+  background-color: #eceff1;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  cursor: default;
+}
+.modalWrap.md_managerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .searchBox
+  button:disabled,
+.modalWrap.md_customerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .searchBox
+  button:disabled,
+.modalWrap.md_customerMdRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .searchBox
+  button:disabled {
+  color: #b3b3b3;
+  border: 1px solid #eceff1;
+  background-color: #eceff1;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+.modalWrap.md_managerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .fileBox,
+.modalWrap.md_customerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .fileBox,
+.modalWrap.md_customerMdRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .fileBox {
+  position: relative;
+  width: 100%;
+  height: 150px;
+  border-radius: 4px;
+  background-color: #f8f8f8;
+  margin: 10px 0 0 0;
+}
+.modalWrap.md_managerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .fileBox
+  button.close,
+.modalWrap.md_customerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .fileBox
+  button.close,
+.modalWrap.md_customerMdRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .fileBox
+  button.close {
+  content: '';
+  position: relative;
+  display: inline-block;
+  background-position: 0px 0px;
+  font-size: 0;
+  font-style: normal;
+  vertical-align: middle;
+  background: url('../image/component/ico_close2.svg') no-repeat center;
+  width: 22px;
+  height: 22px;
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  z-index: 1;
+}
+.modalWrap.md_managerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .fileBox
+  input[type='file'],
+.modalWrap.md_customerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .fileBox
+  input[type='file'],
+.modalWrap.md_customerMdRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .fileBox
+  input[type='file'] {
+  display: none;
+}
+.modalWrap.md_managerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .fileBox
+  input[type='file']
+  + label,
+.modalWrap.md_customerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .fileBox
+  input[type='file']
+  + label,
+.modalWrap.md_customerMdRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .fileBox
+  input[type='file']
+  + label {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  gap: 6px;
+  font-family: 'Pretendard_Medium';
+  font-weight: normal;
+  position: relative;
+  height: 100%;
+  color: #777777;
+  font-size: 14px;
+  text-align: center;
+}
+.modalWrap.md_managerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .fileBox
+  input[type='file']
+  + label:before,
+.modalWrap.md_customerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .fileBox
+  input[type='file']
+  + label:before,
+.modalWrap.md_customerMdRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .fileBox
+  input[type='file']
+  + label:before {
+  content: '';
+  position: relative;
+  display: block;
+  background-position: 0px 0px;
+  font-size: 0;
+  font-style: normal;
+  vertical-align: middle;
+  background: url('../image/component/ico_plus.svg') no-repeat center;
+  width: 22px;
+  height: 22px;
+}
+.modalWrap.md_managerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .fileBox
+  span,
+.modalWrap.md_customerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .fileBox
+  span,
+.modalWrap.md_customerMdRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .fileBox
+  span {
+  position: absolute;
+  bottom: 6px;
+  right: 6px;
+  text-align: right;
+  color: #cccccc;
+  font-size: 12px;
+}
+.modalWrap.md_managerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  button.siteAdd,
+.modalWrap.md_customerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  button.siteAdd,
+.modalWrap.md_customerMdRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  button.siteAdd {
+  font-family: 'Pretendard_Regular';
+  font-weight: normal;
+  position: relative;
+  text-align: center;
+  border-radius: 4px;
+  cursor: pointer;
+  color: #000000;
+  border: 1px solid #d8dcec;
+  background-color: #d8dcec;
+  font-family: 'Pretendard_SemiBold';
+  width: 200px;
+  height: 46px;
+  display: block;
+  margin: 0 auto;
+}
+.modalWrap.md_managerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  button.siteAdd:disabled,
+.modalWrap.md_customerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  button.siteAdd:disabled,
+.modalWrap.md_customerMdRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  button.siteAdd:disabled {
+  color: #b3b3b3;
+  border: 1px solid #eceff1;
+  background-color: #eceff1;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  cursor: default;
+}
+.modalWrap.md_managerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  button.siteAdd:before,
+.modalWrap.md_customerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  button.siteAdd:before,
+.modalWrap.md_customerMdRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  button.siteAdd:before {
+  content: '+';
+  font-size: 16px;
+}
+
+.modalWrap.md_managerRegister,
+.modalWrap.md_customerRegister,
+.modalWrap.md_customerMdRegister {
+  display: none;
+  z-index: 999;
+}
+.modalWrap.md_managerRegister.modalOn,
+.modalWrap.md_customerRegister.modalOn,
+.modalWrap.md_customerMdRegister.modalOn {
+  display: block;
+}
+.modalWrap.md_managerRegister .modalContainer,
+.modalWrap.md_customerRegister .modalContainer,
+.modalWrap.md_customerMdRegister .modalContainer {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  overflow: hidden;
+  z-index: 999;
+  border-radius: 8px;
+  -webkit-box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.1);
+  background-color: #ffffff;
+  z-index: 999;
+}
+.modalWrap.md_managerRegister .modalContainer .modalTitle,
+.modalWrap.md_customerRegister .modalContainer .modalTitle,
+.modalWrap.md_customerMdRegister .modalContainer .modalTitle {
+  height: 50px;
+  font-size: 18px;
+  margin: 0 25px;
+  padding: 15px 0px 0 0;
+}
+.modalWrap.md_managerRegister .modalContainer .modalTitle p,
+.modalWrap.md_customerRegister .modalContainer .modalTitle p,
+.modalWrap.md_customerMdRegister .modalContainer .modalTitle p {
+  font-family: 'Pretendard_SemiBold';
+  display: inline-block;
+  padding: 6px 0 0 0;
+  font-size: 18px;
+}
+.modalWrap.md_managerRegister .modalContainer .modalTitle button,
+.modalWrap.md_customerRegister .modalContainer .modalTitle button,
+.modalWrap.md_customerMdRegister .modalContainer .modalTitle button {
+  position: relative;
+  float: right;
+  right: -2px;
+  padding: 15px;
+}
+.modalWrap.md_managerRegister .modalContainer .modalTitle button.close,
+.modalWrap.md_customerRegister .modalContainer .modalTitle button.close,
+.modalWrap.md_customerMdRegister .modalContainer .modalTitle button.close {
+  font-family: 'Pretendard_Regular';
+  font-weight: normal;
+  position: relative;
+  text-align: center;
+  border-radius: 4px;
+  cursor: pointer;
+  background: url('../image/component/ico_close.svg') no-repeat center;
+  width: 22px;
+  height: 22px;
+  font-size: 0;
+}
+.modalWrap.md_managerRegister .modalContainer .modalTitle button.close:disabled,
+.modalWrap.md_customerRegister
+  .modalContainer
+  .modalTitle
+  button.close:disabled,
+.modalWrap.md_customerMdRegister
+  .modalContainer
+  .modalTitle
+  button.close:disabled {
+  color: #b3b3b3;
+  border: 1px solid #eceff1;
+  background-color: #eceff1;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  cursor: default;
+}
+.modalWrap.md_managerRegister .modalContainer .modalContent,
+.modalWrap.md_customerRegister .modalContainer .modalContent,
+.modalWrap.md_customerMdRegister .modalContainer .modalContent {
+  position: relative;
+  width: calc(100% - 20px);
+  max-height: 650px;
+  margin: 10px 10px 0 10px;
+  padding: 10px 10px 20px 20px;
+  overflow-y: auto;
+}
+.modalWrap.md_managerRegister .modalContainer .modalContent ::-webkit-scrollbar,
+.modalWrap.md_customerRegister
+  .modalContainer
+  .modalContent
+  ::-webkit-scrollbar,
+.modalWrap.md_customerMdRegister
+  .modalContainer
+  .modalContent
+  ::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+  background: transparent;
+}
+.modalWrap.md_managerRegister
+  .modalContainer
+  .modalContent
+  ::-webkit-scrollbar-thumb,
+.modalWrap.md_customerRegister
+  .modalContainer
+  .modalContent
+  ::-webkit-scrollbar-thumb,
+.modalWrap.md_customerMdRegister
+  .modalContainer
+  .modalContent
+  ::-webkit-scrollbar-thumb {
+  height: 15px;
+  border-radius: 5px;
+  background: #dedede;
+}
+.modalWrap.md_managerRegister .modalContainer .modalFooter,
+.modalWrap.md_customerRegister .modalContainer .modalFooter,
+.modalWrap.md_customerMdRegister .modalContainer .modalFooter {
+  padding-top: 10px;
+  margin-top: 10px;
+  text-align: center;
+}
+.modalWrap.md_managerRegister .modalContainer .modalFooter button,
+.modalWrap.md_customerRegister .modalContainer .modalFooter button,
+.modalWrap.md_customerMdRegister .modalContainer .modalFooter button {
+  font-family: 'Pretendard_Regular';
+  font-weight: normal;
+  position: relative;
+  text-align: center;
+  border-radius: 4px;
+  cursor: pointer;
+  min-width: 120px;
+  height: 40px;
+  margin-left: 8px;
+  border-radius: 4px;
+  font-size: 16px;
+}
+.modalWrap.md_managerRegister .modalContainer .modalFooter button:disabled,
+.modalWrap.md_customerRegister .modalContainer .modalFooter button:disabled,
+.modalWrap.md_customerMdRegister .modalContainer .modalFooter button:disabled {
+  color: #b3b3b3;
+  border: 1px solid #eceff1;
+  background-color: #eceff1;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  cursor: default;
+}
+.modalWrap.md_managerRegister .modalContainer .modalFooter button:first-child,
+.modalWrap.md_customerRegister .modalContainer .modalFooter button:first-child,
+.modalWrap.md_customerMdRegister
+  .modalContainer
+  .modalFooter
+  button:first-child {
+  margin-left: 0;
+}
+.modalWrap.md_managerRegister .modalContainer .modalFooter button.create,
+.modalWrap.md_managerRegister .modalContainer .modalFooter button.modify,
+.modalWrap.md_managerRegister .modalContainer .modalFooter button.confirm,
+.modalWrap.md_managerRegister .modalContainer .modalFooter button.save,
+.modalWrap.md_customerRegister .modalContainer .modalFooter button.create,
+.modalWrap.md_customerRegister .modalContainer .modalFooter button.modify,
+.modalWrap.md_customerRegister .modalContainer .modalFooter button.confirm,
+.modalWrap.md_customerRegister .modalContainer .modalFooter button.save,
+.modalWrap.md_customerMdRegister .modalContainer .modalFooter button.create,
+.modalWrap.md_customerMdRegister .modalContainer .modalFooter button.modify,
+.modalWrap.md_customerMdRegister .modalContainer .modalFooter button.confirm,
+.modalWrap.md_customerMdRegister .modalContainer .modalFooter button.save {
+  color: #ffffff;
+  border: 1px solid #4664e6;
+  background-color: #4664e6;
+}
+.modalWrap.md_managerRegister
+  .modalContainer
+  .modalFooter
+  button.create:disabled,
+.modalWrap.md_managerRegister
+  .modalContainer
+  .modalFooter
+  button.modify:disabled,
+.modalWrap.md_managerRegister
+  .modalContainer
+  .modalFooter
+  button.confirm:disabled,
+.modalWrap.md_managerRegister .modalContainer .modalFooter button.save:disabled,
+.modalWrap.md_customerRegister
+  .modalContainer
+  .modalFooter
+  button.create:disabled,
+.modalWrap.md_customerRegister
+  .modalContainer
+  .modalFooter
+  button.modify:disabled,
+.modalWrap.md_customerRegister
+  .modalContainer
+  .modalFooter
+  button.confirm:disabled,
+.modalWrap.md_customerRegister
+  .modalContainer
+  .modalFooter
+  button.save:disabled,
+.modalWrap.md_customerMdRegister
+  .modalContainer
+  .modalFooter
+  button.create:disabled,
+.modalWrap.md_customerMdRegister
+  .modalContainer
+  .modalFooter
+  button.modify:disabled,
+.modalWrap.md_customerMdRegister
+  .modalContainer
+  .modalFooter
+  button.confirm:disabled,
+.modalWrap.md_customerMdRegister
+  .modalContainer
+  .modalFooter
+  button.save:disabled {
+  color: #b3b3b3;
+  border: 1px solid #eceff1;
+  background-color: #eceff1;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+.modalWrap.md_managerRegister .modalContainer .modalFooter button.cancel,
+.modalWrap.md_customerRegister .modalContainer .modalFooter button.cancel,
+.modalWrap.md_customerMdRegister .modalContainer .modalFooter button.cancel {
+  color: #ffffff;
+  border: 1px solid #c8c8c8;
+  background-color: #c8c8c8;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+.modalWrap.md_managerRegister .modalContainer .modalFooter button.delete,
+.modalWrap.md_customerRegister .modalContainer .modalFooter button.delete,
+.modalWrap.md_customerMdRegister .modalContainer .modalFooter button.delete {
+  color: #ffffff;
+  border: 1px solid #f65a5a;
+  -webkit-box-shadow: 0 0 5px 0 #f65a5a;
+  box-shadow: 0 0 5px 0 #f65a5a;
+  background-color: #f65a5a;
+}
+.modalWrap.md_managerRegister .modalDim,
+.modalWrap.md_customerRegister .modalDim,
+.modalWrap.md_customerMdRegister .modalDim {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: #000000;
+  opacity: 0.5;
+  z-index: 998;
+}
+.modalWrap.md_managerRegister .modalContainer,
+.modalWrap.md_customerRegister .modalContainer,
+.modalWrap.md_customerMdRegister .modalContainer {
+  width: 520px;
+  height: 800px;
+}
+.modalWrap.md_managerRegister .modalContainer .modalContent,
+.modalWrap.md_customerRegister .modalContainer .modalContent,
+.modalWrap.md_customerMdRegister .modalContainer .modalContent {
+  height: 650px;
+}
+.modalWrap.md_managerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div,
+.modalWrap.md_customerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div,
+.modalWrap.md_customerMdRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div {
+  position: relative;
+}
+.modalWrap.md_managerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .idBox,
+.modalWrap.md_customerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .idBox,
+.modalWrap.md_customerMdRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .idBox {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: initial;
+  -webkit-box-direction: initial;
+  -ms-flex-direction: initial;
+  flex-direction: initial;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  gap: 10px;
+  margin: 10px 0 0 0;
+}
+.modalWrap.md_managerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .idBox
+  input,
+.modalWrap.md_customerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .idBox
+  input,
+.modalWrap.md_customerMdRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .idBox
+  input {
+  width: 100%;
+}
+.modalWrap.md_managerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .idBox
+  button,
+.modalWrap.md_customerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .idBox
+  button,
+.modalWrap.md_customerMdRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .idBox
+  button {
+  font-family: 'Pretendard_Regular';
+  font-weight: normal;
+  position: relative;
+  min-width: 90px;
+  height: 36px;
+  text-align: center;
+  border-radius: 4px;
+  cursor: pointer;
+  color: #ffffff;
+  border: 1px solid #4664e6;
+  background-color: #4664e6;
+}
+.modalWrap.md_managerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .idBox
+  button:disabled,
+.modalWrap.md_customerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .idBox
+  button:disabled,
+.modalWrap.md_customerMdRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .idBox
+  button:disabled {
+  color: #b3b3b3;
+  border: 1px solid #eceff1;
+  background-color: #eceff1;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  cursor: default;
+}
+.modalWrap.md_managerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .idBox
+  button:disabled,
+.modalWrap.md_customerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .idBox
+  button:disabled,
+.modalWrap.md_customerMdRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .idBox
+  button:disabled {
+  color: #b3b3b3;
+  border: 1px solid #eceff1;
+  background-color: #eceff1;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+.modalWrap.md_managerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div:nth-child(n + 2),
+.modalWrap.md_customerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div:nth-child(n + 2),
+.modalWrap.md_customerMdRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div:nth-child(n + 2) {
+  margin: 20px 0 0 0;
+}
+.modalWrap.md_managerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  p,
+.modalWrap.md_customerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  p,
+.modalWrap.md_customerMdRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  p {
+  font-family: 'Pretendard_SemiBold';
+}
+.modalWrap.md_managerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  > input,
+.modalWrap.md_managerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  > select,
+.modalWrap.md_customerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  > input,
+.modalWrap.md_customerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  > select,
+.modalWrap.md_customerMdRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  > input,
+.modalWrap.md_customerMdRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  > select {
+  width: 100%;
+  margin: 10px 0 0 0;
+}
+.modalWrap.md_managerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .checkBox,
+.modalWrap.md_customerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .checkBox,
+.modalWrap.md_customerMdRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .checkBox {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+.modalWrap.md_managerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .checkBox
+  input[type='checkbox'],
+.modalWrap.md_customerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .checkBox
+  input[type='checkbox'],
+.modalWrap.md_customerMdRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .checkBox
+  input[type='checkbox'] {
+  display: none;
+}
+.modalWrap.md_managerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .checkBox
+  input[type='checkbox']
+  + label,
+.modalWrap.md_customerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .checkBox
+  input[type='checkbox']
+  + label,
+.modalWrap.md_customerMdRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .checkBox
+  input[type='checkbox']
+  + label {
+  position: relative;
+  display: block;
+  color: #333333;
+  cursor: pointer;
+}
+.modalWrap.md_managerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .checkBox
+  input[type='checkbox']
+  + label:before,
+.modalWrap.md_customerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .checkBox
+  input[type='checkbox']
+  + label:before,
+.modalWrap.md_customerMdRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .checkBox
+  input[type='checkbox']
+  + label:before {
+  display: none;
+}
+.modalWrap.md_managerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .checkBox
+  input[type='checkbox']
+  + label:after,
+.modalWrap.md_customerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .checkBox
+  input[type='checkbox']
+  + label:after,
+.modalWrap.md_customerMdRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .checkBox
+  input[type='checkbox']
+  + label:after {
+  content: '';
+  position: relative;
+  display: inline-block;
+  background-position: 0px 0px;
+  font-size: 0;
+  font-style: normal;
+  vertical-align: middle;
+  background: url('../image/component/ico_checkbox_off.svg') no-repeat center;
+  width: 22px;
+  height: 22px;
+  content: '';
+  width: 22px;
+  height: 22px;
+  margin-left: 6px;
+  vertical-align: middle;
+  background-size: contain;
+}
+.modalWrap.md_managerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .checkBox
+  input[type='checkbox']:checked
+  + label:after,
+.modalWrap.md_customerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .checkBox
+  input[type='checkbox']:checked
+  + label:after,
+.modalWrap.md_customerMdRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .checkBox
+  input[type='checkbox']:checked
+  + label:after {
+  content: '';
+  position: relative;
+  display: inline-block;
+  background-position: 0px 0px;
+  font-size: 0;
+  font-style: normal;
+  vertical-align: middle;
+  background: url('../image/component/ico_checkbox_on.svg') no-repeat center;
+  width: 22px;
+  height: 22px;
+  width: 22px;
+  height: 22px;
+  vertical-align: middle;
+  background-size: contain;
+}
+.modalWrap.md_managerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .checkBox
+  input[type='checkbox']:disabled
+  + label:after,
+.modalWrap.md_customerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .checkBox
+  input[type='checkbox']:disabled
+  + label:after,
+.modalWrap.md_customerMdRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .checkBox
+  input[type='checkbox']:disabled
+  + label:after {
+  content: '';
+  position: relative;
+  display: inline-block;
+  background-position: 0px 0px;
+  font-size: 0;
+  font-style: normal;
+  vertical-align: middle;
+  background: url('../image/component/ico_checkbox_disabled.svg') no-repeat
+    center;
+  width: 16px;
+  height: 16px;
+  width: 22px;
+  height: 22px;
+  vertical-align: middle;
+  background-size: contain;
+  cursor: default;
+}
+.modalWrap.md_managerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .checkBox
+  input[type='checkbox']
+  + label,
+.modalWrap.md_customerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .checkBox
+  input[type='checkbox']
+  + label,
+.modalWrap.md_customerMdRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .checkBox
+  input[type='checkbox']
+  + label {
+  font-family: 'Pretendard_Medium';
+  font-weight: normal;
+  font-size: 14px;
+  color: #4664e6;
+}
+.modalWrap.md_managerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .searchBox,
+.modalWrap.md_customerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .searchBox,
+.modalWrap.md_customerMdRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .searchBox {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-orient: initial;
+  -webkit-box-direction: initial;
+  -ms-flex-direction: initial;
+  flex-direction: initial;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  gap: 10px;
+  vertical-align: middle;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin: 10px 0 0 0;
+}
+.modalWrap.md_managerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .searchBox
+  input,
+.modalWrap.md_managerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .searchBox
+  button,
+.modalWrap.md_customerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .searchBox
+  input,
+.modalWrap.md_customerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .searchBox
+  button,
+.modalWrap.md_customerMdRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .searchBox
+  input,
+.modalWrap.md_customerMdRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .searchBox
+  button {
+  display: inline-block;
+  vertical-align: middle;
+}
+.modalWrap.md_managerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .searchBox
+  input[type='text'],
+.modalWrap.md_customerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .searchBox
+  input[type='text'],
+.modalWrap.md_customerMdRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .searchBox
+  input[type='text'] {
+  -webkit-box-flex: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+  width: 200px;
+  padding: 0 5px 0px 10px;
+  text-align: left;
+  font-size: 13px;
+  border: 1px solid #e6e6e6;
+  background-color: #ffffff;
+}
+.modalWrap.md_managerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .searchBox
+  button,
+.modalWrap.md_customerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .searchBox
+  button,
+.modalWrap.md_customerMdRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .searchBox
+  button {
+  font-family: 'Pretendard_Regular';
+  font-weight: normal;
+  position: relative;
+  text-align: center;
+  border-radius: 4px;
+  cursor: pointer;
+  color: #ffffff;
+  border: 1px solid #4664e6;
+  background-color: #4664e6;
+  min-width: 90px;
+  height: 36px;
+  vertical-align: middle;
+  font-size: 14px;
+}
+.modalWrap.md_managerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .searchBox
+  button:disabled,
+.modalWrap.md_customerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .searchBox
+  button:disabled,
+.modalWrap.md_customerMdRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .searchBox
+  button:disabled {
+  color: #b3b3b3;
+  border: 1px solid #eceff1;
+  background-color: #eceff1;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  cursor: default;
+}
+.modalWrap.md_managerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .searchBox
+  button:disabled,
+.modalWrap.md_customerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .searchBox
+  button:disabled,
+.modalWrap.md_customerMdRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .searchBox
+  button:disabled {
+  color: #b3b3b3;
+  border: 1px solid #eceff1;
+  background-color: #eceff1;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+.modalWrap.md_managerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .fileBox,
+.modalWrap.md_customerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .fileBox,
+.modalWrap.md_customerMdRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .fileBox {
+  position: relative;
+  width: 100%;
+  height: 150px;
+  border-radius: 4px;
+  background-color: #f8f8f8;
+  margin: 10px 0 0 0;
+}
+.modalWrap.md_managerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .fileBox
+  button.close,
+.modalWrap.md_customerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .fileBox
+  button.close,
+.modalWrap.md_customerMdRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .fileBox
+  button.close {
+  content: '';
+  position: relative;
+  display: inline-block;
+  background-position: 0px 0px;
+  font-size: 0;
+  font-style: normal;
+  vertical-align: middle;
+  background: url('../image/component/ico_close2.svg') no-repeat center;
+  width: 22px;
+  height: 22px;
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  z-index: 1;
+}
+.modalWrap.md_managerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .fileBox
+  input[type='file'],
+.modalWrap.md_customerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .fileBox
+  input[type='file'],
+.modalWrap.md_customerMdRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .fileBox
+  input[type='file'] {
+  display: none;
+}
+.modalWrap.md_managerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .fileBox
+  input[type='file']
+  + label,
+.modalWrap.md_customerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .fileBox
+  input[type='file']
+  + label,
+.modalWrap.md_customerMdRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .fileBox
+  input[type='file']
+  + label {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  gap: 6px;
+  font-family: 'Pretendard_Medium';
+  font-weight: normal;
+  position: relative;
+  height: 100%;
+  color: #777777;
+  font-size: 14px;
+  text-align: center;
+}
+.modalWrap.md_managerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .fileBox
+  input[type='file']
+  + label:before,
+.modalWrap.md_customerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .fileBox
+  input[type='file']
+  + label:before,
+.modalWrap.md_customerMdRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .fileBox
+  input[type='file']
+  + label:before {
+  content: '';
+  position: relative;
+  display: block;
+  background-position: 0px 0px;
+  font-size: 0;
+  font-style: normal;
+  vertical-align: middle;
+  background: url('../image/component/ico_plus.svg') no-repeat center;
+  width: 22px;
+  height: 22px;
+}
+.modalWrap.md_managerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .fileBox
+  span,
+.modalWrap.md_customerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .fileBox
+  span,
+.modalWrap.md_customerMdRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .fileBox
+  span {
+  position: absolute;
+  bottom: 6px;
+  right: 6px;
+  text-align: right;
+  color: #cccccc;
+  font-size: 12px;
+}
+.modalWrap.md_managerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  button.siteAdd,
+.modalWrap.md_customerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  button.siteAdd,
+.modalWrap.md_customerMdRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  button.siteAdd {
+  font-family: 'Pretendard_Regular';
+  font-weight: normal;
+  position: relative;
+  text-align: center;
+  border-radius: 4px;
+  cursor: pointer;
+  color: #000000;
+  border: 1px solid #d8dcec;
+  background-color: #d8dcec;
+  font-family: 'Pretendard_SemiBold';
+  width: 200px;
+  height: 46px;
+  display: block;
+  margin: 0 auto;
+}
+.modalWrap.md_managerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  button.siteAdd:disabled,
+.modalWrap.md_customerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  button.siteAdd:disabled,
+.modalWrap.md_customerMdRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  button.siteAdd:disabled {
+  color: #b3b3b3;
+  border: 1px solid #eceff1;
+  background-color: #eceff1;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  cursor: default;
+}
+.modalWrap.md_managerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  button.siteAdd:before,
+.modalWrap.md_customerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  button.siteAdd:before,
+.modalWrap.md_customerMdRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  button.siteAdd:before {
+  content: '+';
+  font-size: 16px;
+}
+
+.modalWrap.md_managerRegister,
+.modalWrap.md_customerRegister,
+.modalWrap.md_customerMdRegister {
+  display: none;
+  z-index: 999;
+}
+.modalWrap.md_managerRegister.modalOn,
+.modalWrap.md_customerRegister.modalOn,
+.modalWrap.md_customerMdRegister.modalOn {
+  display: block;
+}
+.modalWrap.md_managerRegister .modalContainer,
+.modalWrap.md_customerRegister .modalContainer,
+.modalWrap.md_customerMdRegister .modalContainer {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  overflow: hidden;
+  z-index: 999;
+  border-radius: 8px;
+  -webkit-box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.1);
+  background-color: #ffffff;
+  z-index: 999;
+}
+.modalWrap.md_managerRegister .modalContainer .modalTitle,
+.modalWrap.md_customerRegister .modalContainer .modalTitle,
+.modalWrap.md_customerMdRegister .modalContainer .modalTitle {
+  height: 50px;
+  font-size: 18px;
+  margin: 0 25px;
+  padding: 15px 0px 0 0;
+}
+.modalWrap.md_managerRegister .modalContainer .modalTitle p,
+.modalWrap.md_customerRegister .modalContainer .modalTitle p,
+.modalWrap.md_customerMdRegister .modalContainer .modalTitle p {
+  font-family: 'Pretendard_SemiBold';
+  display: inline-block;
+  padding: 6px 0 0 0;
+  font-size: 18px;
+}
+.modalWrap.md_managerRegister .modalContainer .modalTitle button,
+.modalWrap.md_customerRegister .modalContainer .modalTitle button,
+.modalWrap.md_customerMdRegister .modalContainer .modalTitle button {
+  position: relative;
+  float: right;
+  right: -2px;
+  padding: 15px;
+}
+.modalWrap.md_managerRegister .modalContainer .modalTitle button.close,
+.modalWrap.md_customerRegister .modalContainer .modalTitle button.close,
+.modalWrap.md_customerMdRegister .modalContainer .modalTitle button.close {
+  font-family: 'Pretendard_Regular';
+  font-weight: normal;
+  position: relative;
+  text-align: center;
+  border-radius: 4px;
+  cursor: pointer;
+  background: url('../image/component/ico_close.svg') no-repeat center;
+  width: 22px;
+  height: 22px;
+  font-size: 0;
+}
+.modalWrap.md_managerRegister .modalContainer .modalTitle button.close:disabled,
+.modalWrap.md_customerRegister
+  .modalContainer
+  .modalTitle
+  button.close:disabled,
+.modalWrap.md_customerMdRegister
+  .modalContainer
+  .modalTitle
+  button.close:disabled {
+  color: #b3b3b3;
+  border: 1px solid #eceff1;
+  background-color: #eceff1;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  cursor: default;
+}
+.modalWrap.md_managerRegister .modalContainer .modalContent,
+.modalWrap.md_customerRegister .modalContainer .modalContent,
+.modalWrap.md_customerMdRegister .modalContainer .modalContent {
+  position: relative;
+  width: calc(100% - 20px);
+  max-height: 650px;
+  margin: 10px 10px 0 10px;
+  padding: 10px 10px 20px 20px;
+  overflow-y: auto;
+}
+.modalWrap.md_managerRegister .modalContainer .modalContent ::-webkit-scrollbar,
+.modalWrap.md_customerRegister
+  .modalContainer
+  .modalContent
+  ::-webkit-scrollbar,
+.modalWrap.md_customerMdRegister
+  .modalContainer
+  .modalContent
+  ::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+  background: transparent;
+}
+.modalWrap.md_managerRegister
+  .modalContainer
+  .modalContent
+  ::-webkit-scrollbar-thumb,
+.modalWrap.md_customerRegister
+  .modalContainer
+  .modalContent
+  ::-webkit-scrollbar-thumb,
+.modalWrap.md_customerMdRegister
+  .modalContainer
+  .modalContent
+  ::-webkit-scrollbar-thumb {
+  height: 15px;
+  border-radius: 5px;
+  background: #dedede;
+}
+.modalWrap.md_managerRegister .modalContainer .modalFooter,
+.modalWrap.md_customerRegister .modalContainer .modalFooter,
+.modalWrap.md_customerMdRegister .modalContainer .modalFooter {
+  padding-top: 10px;
+  margin-top: 10px;
+  text-align: center;
+}
+.modalWrap.md_managerRegister .modalContainer .modalFooter button,
+.modalWrap.md_customerRegister .modalContainer .modalFooter button,
+.modalWrap.md_customerMdRegister .modalContainer .modalFooter button {
+  font-family: 'Pretendard_Regular';
+  font-weight: normal;
+  position: relative;
+  text-align: center;
+  border-radius: 4px;
+  cursor: pointer;
+  min-width: 120px;
+  height: 40px;
+  margin-left: 8px;
+  border-radius: 4px;
+  font-size: 16px;
+}
+.modalWrap.md_managerRegister .modalContainer .modalFooter button:disabled,
+.modalWrap.md_customerRegister .modalContainer .modalFooter button:disabled,
+.modalWrap.md_customerMdRegister .modalContainer .modalFooter button:disabled {
+  color: #b3b3b3;
+  border: 1px solid #eceff1;
+  background-color: #eceff1;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  cursor: default;
+}
+.modalWrap.md_managerRegister .modalContainer .modalFooter button:first-child,
+.modalWrap.md_customerRegister .modalContainer .modalFooter button:first-child,
+.modalWrap.md_customerMdRegister
+  .modalContainer
+  .modalFooter
+  button:first-child {
+  margin-left: 0;
+}
+.modalWrap.md_managerRegister .modalContainer .modalFooter button.create,
+.modalWrap.md_managerRegister .modalContainer .modalFooter button.modify,
+.modalWrap.md_managerRegister .modalContainer .modalFooter button.confirm,
+.modalWrap.md_managerRegister .modalContainer .modalFooter button.save,
+.modalWrap.md_customerRegister .modalContainer .modalFooter button.create,
+.modalWrap.md_customerRegister .modalContainer .modalFooter button.modify,
+.modalWrap.md_customerRegister .modalContainer .modalFooter button.confirm,
+.modalWrap.md_customerRegister .modalContainer .modalFooter button.save,
+.modalWrap.md_customerMdRegister .modalContainer .modalFooter button.create,
+.modalWrap.md_customerMdRegister .modalContainer .modalFooter button.modify,
+.modalWrap.md_customerMdRegister .modalContainer .modalFooter button.confirm,
+.modalWrap.md_customerMdRegister .modalContainer .modalFooter button.save {
+  color: #ffffff;
+  border: 1px solid #4664e6;
+  background-color: #4664e6;
+}
+.modalWrap.md_managerRegister
+  .modalContainer
+  .modalFooter
+  button.create:disabled,
+.modalWrap.md_managerRegister
+  .modalContainer
+  .modalFooter
+  button.modify:disabled,
+.modalWrap.md_managerRegister
+  .modalContainer
+  .modalFooter
+  button.confirm:disabled,
+.modalWrap.md_managerRegister .modalContainer .modalFooter button.save:disabled,
+.modalWrap.md_customerRegister
+  .modalContainer
+  .modalFooter
+  button.create:disabled,
+.modalWrap.md_customerRegister
+  .modalContainer
+  .modalFooter
+  button.modify:disabled,
+.modalWrap.md_customerRegister
+  .modalContainer
+  .modalFooter
+  button.confirm:disabled,
+.modalWrap.md_customerRegister
+  .modalContainer
+  .modalFooter
+  button.save:disabled,
+.modalWrap.md_customerMdRegister
+  .modalContainer
+  .modalFooter
+  button.create:disabled,
+.modalWrap.md_customerMdRegister
+  .modalContainer
+  .modalFooter
+  button.modify:disabled,
+.modalWrap.md_customerMdRegister
+  .modalContainer
+  .modalFooter
+  button.confirm:disabled,
+.modalWrap.md_customerMdRegister
+  .modalContainer
+  .modalFooter
+  button.save:disabled {
+  color: #b3b3b3;
+  border: 1px solid #eceff1;
+  background-color: #eceff1;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+.modalWrap.md_managerRegister .modalContainer .modalFooter button.cancel,
+.modalWrap.md_customerRegister .modalContainer .modalFooter button.cancel,
+.modalWrap.md_customerMdRegister .modalContainer .modalFooter button.cancel {
+  color: #ffffff;
+  border: 1px solid #c8c8c8;
+  background-color: #c8c8c8;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+.modalWrap.md_managerRegister .modalContainer .modalFooter button.delete,
+.modalWrap.md_customerRegister .modalContainer .modalFooter button.delete,
+.modalWrap.md_customerMdRegister .modalContainer .modalFooter button.delete {
+  color: #ffffff;
+  border: 1px solid #f65a5a;
+  -webkit-box-shadow: 0 0 5px 0 #f65a5a;
+  box-shadow: 0 0 5px 0 #f65a5a;
+  background-color: #f65a5a;
+}
+.modalWrap.md_managerRegister .modalDim,
+.modalWrap.md_customerRegister .modalDim,
+.modalWrap.md_customerMdRegister .modalDim {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: #000000;
+  opacity: 0.5;
+  z-index: 998;
+}
+.modalWrap.md_managerRegister .modalContainer,
+.modalWrap.md_customerRegister .modalContainer,
+.modalWrap.md_customerMdRegister .modalContainer {
+  width: 520px;
+  height: 800px;
+}
+.modalWrap.md_managerRegister .modalContainer .modalContent,
+.modalWrap.md_customerRegister .modalContainer .modalContent,
+.modalWrap.md_customerMdRegister .modalContainer .modalContent {
+  height: 650px;
+}
+.modalWrap.md_managerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div,
+.modalWrap.md_customerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div,
+.modalWrap.md_customerMdRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div {
+  position: relative;
+}
+.modalWrap.md_managerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .idBox,
+.modalWrap.md_customerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .idBox,
+.modalWrap.md_customerMdRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .idBox {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: initial;
+  -webkit-box-direction: initial;
+  -ms-flex-direction: initial;
+  flex-direction: initial;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  gap: 10px;
+  margin: 10px 0 0 0;
+}
+.modalWrap.md_managerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .idBox
+  input,
+.modalWrap.md_customerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .idBox
+  input,
+.modalWrap.md_customerMdRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .idBox
+  input {
+  width: 100%;
+}
+.modalWrap.md_managerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .idBox
+  button,
+.modalWrap.md_customerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .idBox
+  button,
+.modalWrap.md_customerMdRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .idBox
+  button {
+  font-family: 'Pretendard_Regular';
+  font-weight: normal;
+  position: relative;
+  min-width: 90px;
+  height: 36px;
+  text-align: center;
+  border-radius: 4px;
+  cursor: pointer;
+  color: #ffffff;
+  border: 1px solid #4664e6;
+  background-color: #4664e6;
+}
+.modalWrap.md_managerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .idBox
+  button:disabled,
+.modalWrap.md_customerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .idBox
+  button:disabled,
+.modalWrap.md_customerMdRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .idBox
+  button:disabled {
+  color: #b3b3b3;
+  border: 1px solid #eceff1;
+  background-color: #eceff1;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  cursor: default;
+}
+.modalWrap.md_managerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .idBox
+  button:disabled,
+.modalWrap.md_customerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .idBox
+  button:disabled,
+.modalWrap.md_customerMdRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .idBox
+  button:disabled {
+  color: #b3b3b3;
+  border: 1px solid #eceff1;
+  background-color: #eceff1;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+.modalWrap.md_managerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div:nth-child(n + 2),
+.modalWrap.md_customerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div:nth-child(n + 2),
+.modalWrap.md_customerMdRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div:nth-child(n + 2) {
+  margin: 20px 0 0 0;
+}
+.modalWrap.md_managerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  p,
+.modalWrap.md_customerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  p,
+.modalWrap.md_customerMdRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  p {
+  font-family: 'Pretendard_SemiBold';
+}
+.modalWrap.md_managerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  > input,
+.modalWrap.md_managerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  > select,
+.modalWrap.md_customerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  > input,
+.modalWrap.md_customerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  > select,
+.modalWrap.md_customerMdRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  > input,
+.modalWrap.md_customerMdRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  > select {
+  width: 100%;
+  margin: 10px 0 0 0;
+}
+.modalWrap.md_managerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .checkBox,
+.modalWrap.md_customerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .checkBox,
+.modalWrap.md_customerMdRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .checkBox {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+.modalWrap.md_managerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .checkBox
+  input[type='checkbox'],
+.modalWrap.md_customerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .checkBox
+  input[type='checkbox'],
+.modalWrap.md_customerMdRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .checkBox
+  input[type='checkbox'] {
+  display: none;
+}
+.modalWrap.md_managerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .checkBox
+  input[type='checkbox']
+  + label,
+.modalWrap.md_customerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .checkBox
+  input[type='checkbox']
+  + label,
+.modalWrap.md_customerMdRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .checkBox
+  input[type='checkbox']
+  + label {
+  position: relative;
+  display: block;
+  color: #333333;
+  cursor: pointer;
+}
+.modalWrap.md_managerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .checkBox
+  input[type='checkbox']
+  + label:before,
+.modalWrap.md_customerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .checkBox
+  input[type='checkbox']
+  + label:before,
+.modalWrap.md_customerMdRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .checkBox
+  input[type='checkbox']
+  + label:before {
+  display: none;
+}
+.modalWrap.md_managerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .checkBox
+  input[type='checkbox']
+  + label:after,
+.modalWrap.md_customerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .checkBox
+  input[type='checkbox']
+  + label:after,
+.modalWrap.md_customerMdRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .checkBox
+  input[type='checkbox']
+  + label:after {
+  content: '';
+  position: relative;
+  display: inline-block;
+  background-position: 0px 0px;
+  font-size: 0;
+  font-style: normal;
+  vertical-align: middle;
+  background: url('../image/component/ico_checkbox_off.svg') no-repeat center;
+  width: 22px;
+  height: 22px;
+  content: '';
+  width: 22px;
+  height: 22px;
+  margin-left: 6px;
+  vertical-align: middle;
+  background-size: contain;
+}
+.modalWrap.md_managerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .checkBox
+  input[type='checkbox']:checked
+  + label:after,
+.modalWrap.md_customerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .checkBox
+  input[type='checkbox']:checked
+  + label:after,
+.modalWrap.md_customerMdRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .checkBox
+  input[type='checkbox']:checked
+  + label:after {
+  content: '';
+  position: relative;
+  display: inline-block;
+  background-position: 0px 0px;
+  font-size: 0;
+  font-style: normal;
+  vertical-align: middle;
+  background: url('../image/component/ico_checkbox_on.svg') no-repeat center;
+  width: 22px;
+  height: 22px;
+  width: 22px;
+  height: 22px;
+  vertical-align: middle;
+  background-size: contain;
+}
+.modalWrap.md_managerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .checkBox
+  input[type='checkbox']:disabled
+  + label:after,
+.modalWrap.md_customerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .checkBox
+  input[type='checkbox']:disabled
+  + label:after,
+.modalWrap.md_customerMdRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .checkBox
+  input[type='checkbox']:disabled
+  + label:after {
+  content: '';
+  position: relative;
+  display: inline-block;
+  background-position: 0px 0px;
+  font-size: 0;
+  font-style: normal;
+  vertical-align: middle;
+  background: url('../image/component/ico_checkbox_disabled.svg') no-repeat
+    center;
+  width: 16px;
+  height: 16px;
+  width: 22px;
+  height: 22px;
+  vertical-align: middle;
+  background-size: contain;
+  cursor: default;
+}
+.modalWrap.md_managerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .checkBox
+  input[type='checkbox']
+  + label,
+.modalWrap.md_customerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .checkBox
+  input[type='checkbox']
+  + label,
+.modalWrap.md_customerMdRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .checkBox
+  input[type='checkbox']
+  + label {
+  font-family: 'Pretendard_Medium';
+  font-weight: normal;
+  font-size: 14px;
+  color: #4664e6;
+}
+.modalWrap.md_managerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .searchBox,
+.modalWrap.md_customerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .searchBox,
+.modalWrap.md_customerMdRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .searchBox {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-orient: initial;
+  -webkit-box-direction: initial;
+  -ms-flex-direction: initial;
+  flex-direction: initial;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  gap: 10px;
+  vertical-align: middle;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin: 10px 0 0 0;
+}
+.modalWrap.md_managerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .searchBox
+  input,
+.modalWrap.md_managerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .searchBox
+  button,
+.modalWrap.md_customerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .searchBox
+  input,
+.modalWrap.md_customerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .searchBox
+  button,
+.modalWrap.md_customerMdRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .searchBox
+  input,
+.modalWrap.md_customerMdRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .searchBox
+  button {
+  display: inline-block;
+  vertical-align: middle;
+}
+.modalWrap.md_managerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .searchBox
+  input[type='text'],
+.modalWrap.md_customerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .searchBox
+  input[type='text'],
+.modalWrap.md_customerMdRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .searchBox
+  input[type='text'] {
+  -webkit-box-flex: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+  width: 200px;
+  padding: 0 5px 0px 10px;
+  text-align: left;
+  font-size: 13px;
+  border: 1px solid #e6e6e6;
+  background-color: #ffffff;
+}
+.modalWrap.md_managerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .searchBox
+  button,
+.modalWrap.md_customerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .searchBox
+  button,
+.modalWrap.md_customerMdRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .searchBox
+  button {
+  font-family: 'Pretendard_Regular';
+  font-weight: normal;
+  position: relative;
+  text-align: center;
+  border-radius: 4px;
+  cursor: pointer;
+  color: #ffffff;
+  border: 1px solid #4664e6;
+  background-color: #4664e6;
+  min-width: 90px;
+  height: 36px;
+  vertical-align: middle;
+  font-size: 14px;
+}
+.modalWrap.md_managerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .searchBox
+  button:disabled,
+.modalWrap.md_customerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .searchBox
+  button:disabled,
+.modalWrap.md_customerMdRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .searchBox
+  button:disabled {
+  color: #b3b3b3;
+  border: 1px solid #eceff1;
+  background-color: #eceff1;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  cursor: default;
+}
+.modalWrap.md_managerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .searchBox
+  button:disabled,
+.modalWrap.md_customerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .searchBox
+  button:disabled,
+.modalWrap.md_customerMdRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .searchBox
+  button:disabled {
+  color: #b3b3b3;
+  border: 1px solid #eceff1;
+  background-color: #eceff1;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+.modalWrap.md_managerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .fileBox,
+.modalWrap.md_customerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .fileBox,
+.modalWrap.md_customerMdRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .fileBox {
+  position: relative;
+  width: 100%;
+  height: 150px;
+  border-radius: 4px;
+  background-color: #f8f8f8;
+  margin: 10px 0 0 0;
+}
+.modalWrap.md_managerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .fileBox
+  button.close,
+.modalWrap.md_customerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .fileBox
+  button.close,
+.modalWrap.md_customerMdRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .fileBox
+  button.close {
+  content: '';
+  position: relative;
+  display: inline-block;
+  background-position: 0px 0px;
+  font-size: 0;
+  font-style: normal;
+  vertical-align: middle;
+  background: url('../image/component/ico_close2.svg') no-repeat center;
+  width: 22px;
+  height: 22px;
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  z-index: 1;
+}
+.modalWrap.md_managerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .fileBox
+  input[type='file'],
+.modalWrap.md_customerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .fileBox
+  input[type='file'],
+.modalWrap.md_customerMdRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .fileBox
+  input[type='file'] {
+  display: none;
+}
+.modalWrap.md_managerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .fileBox
+  input[type='file']
+  + label,
+.modalWrap.md_customerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .fileBox
+  input[type='file']
+  + label,
+.modalWrap.md_customerMdRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .fileBox
+  input[type='file']
+  + label {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  gap: 6px;
+  font-family: 'Pretendard_Medium';
+  font-weight: normal;
+  position: relative;
+  height: 100%;
+  color: #777777;
+  font-size: 14px;
+  text-align: center;
+}
+.modalWrap.md_managerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .fileBox
+  input[type='file']
+  + label:before,
+.modalWrap.md_customerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .fileBox
+  input[type='file']
+  + label:before,
+.modalWrap.md_customerMdRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .fileBox
+  input[type='file']
+  + label:before {
+  content: '';
+  position: relative;
+  display: block;
+  background-position: 0px 0px;
+  font-size: 0;
+  font-style: normal;
+  vertical-align: middle;
+  background: url('../image/component/ico_plus.svg') no-repeat center;
+  width: 22px;
+  height: 22px;
+}
+.modalWrap.md_managerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .fileBox
+  span,
+.modalWrap.md_customerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .fileBox
+  span,
+.modalWrap.md_customerMdRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  .fileBox
+  span {
+  position: absolute;
+  bottom: 6px;
+  right: 6px;
+  text-align: right;
+  color: #cccccc;
+  font-size: 12px;
+}
+.modalWrap.md_managerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  button.siteAdd,
+.modalWrap.md_customerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  button.siteAdd,
+.modalWrap.md_customerMdRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  button.siteAdd {
+  font-family: 'Pretendard_Regular';
+  font-weight: normal;
+  position: relative;
+  text-align: center;
+  border-radius: 4px;
+  cursor: pointer;
+  color: #000000;
+  border: 1px solid #d8dcec;
+  background-color: #d8dcec;
+  font-family: 'Pretendard_SemiBold';
+  width: 200px;
+  height: 46px;
+  display: block;
+  margin: 0 auto;
+}
+.modalWrap.md_managerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  button.siteAdd:disabled,
+.modalWrap.md_customerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  button.siteAdd:disabled,
+.modalWrap.md_customerMdRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  button.siteAdd:disabled {
+  color: #b3b3b3;
+  border: 1px solid #eceff1;
+  background-color: #eceff1;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  cursor: default;
+}
+.modalWrap.md_managerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  button.siteAdd:before,
+.modalWrap.md_customerRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  button.siteAdd:before,
+.modalWrap.md_customerMdRegister
+  .modalContainer
+  .modalContent
+  section.sec_list
+  > div
+  button.siteAdd:before {
+  content: '+';
+  font-size: 16px;
+}
