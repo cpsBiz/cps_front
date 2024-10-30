@@ -126,7 +126,7 @@
 	                        <div class="event-popup on">
 	                          <div class="event-cont">
 	                            <div class="logo" style="background-image: url(${item.logo});"></div>
-	                            <p>${item.subject}<span>${item.notice}</span><span>기간 : ${item.bannerStart} ~ ${item.bannerEnd}</span></p>
+	                            <p>${item.subject}<span>${item.notice}</span><span>기간 : ${formatDate(item.bannerStart)} ~ ${formatDate(item.bannerEnd)}</span></p>
 	                          </div>
 	                          <a href="javascript:postToUrl('${itemStr}')"></a>
 	                          <button class="close" onclick="closeBanner('${item.affliateId}${item.bannerNum}')"></button>

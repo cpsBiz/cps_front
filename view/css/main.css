@@ -1873,7 +1873,7 @@ input[type='checkbox']:checked + label .ico-check.on {
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
-  background-color: transparent;
+  background-color: white;
   width: 36px;
   height: 36px;
   border-radius: 14px;
