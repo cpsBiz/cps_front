@@ -46,7 +46,7 @@
                               <button type="button" class="search">조회</button>
                             </div>
                           </div>
-                          <div id="personal-user" class="user-info-box">
+                          <div id="personal-user" class="user-info-box userType" style="display:none;">
                             <div>
                               <p>개인 정보</p>
                               <input type="text" placeholder="이름" />
@@ -68,7 +68,7 @@
                               </div>
                             </div>
                           </div>
-                          <div id="business-user" class="user-info-box">
+                          <div id="business-user" class="user-info-box userType" style="display:none;">
                             <div>
                               <p>사업자 정보</p>
                               <input type="text" placeholder="업체(법인)명" />
@@ -103,7 +103,7 @@
                             <input type="text" placeholder="예금주명" />
                             <input type="text" placeholder="은행명" />
                           </div>
-                          <div id="affliate-user" class="affliate-info-box">
+                          <div id="affliate-user" class="affliate-info-box" style="display:none;">
                             <div id="site-list" class="site-info-box">
                               <div>
                                 <p>사이트등록1</p>
@@ -153,11 +153,25 @@
 
   // 회원 유형1 선택시 영역
   function selectUserType1() {
+    const type = document.getElementById('selectUserType1').value;
 
+    $('#affliate-user').hide();
+
+    if (type === 'AFFLIATE') {
+      $('#affliate-user').show();
+    }
   }
 
   // 회원 유형2 선택시 영역
   function selectUserType2() {
+    const type = document.getElementById('selectUserType2').value;
 
+    $('.userType').hide();
+
+    if (type === 'PERSONAL') {
+      $('#personal-user').show();
+    } else if (type === 'BUSINESS') {
+      $('#business-user').show();
+    }
   }
 </script>
