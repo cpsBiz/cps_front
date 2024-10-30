@@ -150,9 +150,9 @@ $months = getLastYearMonths();
   // 쿠팡 막대사탕 조회
   function getStick() {
     try {
-      const userId = '<?= $_SESSION["check_userId"]; ?>';
+      const userId = '<?= $checkUserId; ?>'
       const merchantId = 'coupang';
-      const affliateId = '<?= $_SESSION["check_affliateId"]; ?>';
+      const affliateId = '<?= $checkAffliateId; ?>'
 
       // AJAX 요청 데이터 설정
       const requestData = {
@@ -164,7 +164,7 @@ $months = getLastYearMonths();
       // AJAX 요청 수행
       $.ajax({
         type: 'POST',
-        url: 'https://app.shoplus.io/api/view/coupangStick',
+        url: '<?= $appApiUrl; ?>/api/view/coupangStick',
         contentType: 'application/json',
         data: JSON.stringify(requestData),
         success: function(result) {
@@ -194,9 +194,9 @@ $months = getLastYearMonths();
   // 막대사탕 리스트 조회
   function getStickList(status, date) {
     try {
-      const userId = "<?= $_SESSION['check_userId']; ?>";
+      const userId = "<?= $checkUserId; ?>";
       const merchantId = "coupang";
-      const affliateId = "<?= $_SESSION["check_affliateId"]; ?>";
+      const affliateId = "<?= $checkAffliateId; ?>";
       const regYm = convertDate(date);
 
       // AJAX 요청 데이터 설정
@@ -211,7 +211,7 @@ $months = getLastYearMonths();
       // AJAX 요청 수행
       $.ajax({
         type: 'POST',
-        url: 'https://app.shoplus.io/api/view/coupangStickList',
+        url: '<?= $appApiUrl; ?>/api/view/coupangStickList',
         contentType: 'application/json',
         data: JSON.stringify(requestData),
         success: function(result) {

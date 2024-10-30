@@ -147,9 +147,9 @@ $months = getLastYearMonths();
 	// 기프티콘 리스트 조회
 	function getGifticonList(status, date) {
 		try {
-			const userId = "<?= $_SESSION['check_userId']; ?>";
+			const userId = "<?= $checkUserId; ?>";
 			const merchantId = "coupang";
-			const affliateId = "<?= $_SESSION["check_affliateId"]; ?>";
+			const affliateId = "<?= $checkAffliateId; ?>";
 			const awardYm = convertDate(date);
 			// 사용가능 n, 완료/만료 y -> 응답에서 만료 v
 			const giftYn = status;
@@ -167,7 +167,7 @@ $months = getLastYearMonths();
 			// AJAX 요청 수행
 			$.ajax({
 				type: 'POST',
-				url: 'https://app.shoplus.io/api/view/gifticonList',
+				url: '<?= $appApiUrl; ?>/api/view/gifticonList',
 				contentType: 'application/json',
 				data: JSON.stringify(requestData),
 				success: function(result) {

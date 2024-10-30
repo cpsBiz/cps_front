@@ -1,607 +1,653 @@
 <!DOCTYPE html>
 <html lang="ko">
-
-<head>
+  <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=Edge, chrome=1" />
     <meta name="description" content="MOBON" />
     <meta name="keywords" content="MOBON" />
     <meta name="author" content="인라이플" />
     <title>통합카트</title>
-    <link type="image/ico" rel="shortcut icon" href="../../image/favicon/favicon.ico">
-    <script type="text/javascript" src="../../js/lib/jquery-2.2.2.min.js"></script>
-    <script type="text/javascript" src="../../js/lib/jquery.easing.1.3.js"></script>
+    <link
+      type="image/ico"
+      rel="shortcut icon"
+      href="../../image/favicon/favicon.ico"
+    />
+    <script
+      type="text/javascript"
+      src="../../js/lib/jquery-2.2.2.min.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="../../js/lib/jquery.easing.1.3.js"
+    ></script>
     <script type="text/javascript" src="../../js/lib/jquery-ui.min.js"></script>
     <script type="text/javascript" src="../../js/lib/moment.min.js"></script>
-    <script type="text/javascript" src="../../js/lib/daterangepicker_popup.js"></script>
+    <script
+      type="text/javascript"
+      src="../../js/lib/daterangepicker_popup.js"
+    ></script>
     <script type="text/javascript" src="../../js/ui.js"></script>
-    <link type="text/css" rel="stylesheet" href="../../css/lib/daterangepicker_popup.css" />
-    <link type="text/css" rel="stylesheet" href="../../css/common.css">
+    <link
+      type="text/css"
+      rel="stylesheet"
+      href="../../css/lib/daterangepicker_popup.css"
+    />
+    <link type="text/css" rel="stylesheet" href="../../css/common.css" />
     <!-- modalTest.css 는 퍼블확인용이므로 개발시 제외하고 사용하시면 됩니다. -->
-    <link type="text/css" rel="stylesheet" href="../../css/modalTest.css">
-</head>
+    <link type="text/css" rel="stylesheet" href="../../css/modalTest.css" />
+  </head>
 
-<body>
+  <body>
     <!-- modal 디자인을 한눈에 보기 위해 제작한 페이지 입니다. -->
     <!-- 빠른 소스 확인을 위해 header, navigation 상세내용 제거하였음 -->
     <!-- 모달 닫아야 하는 버튼에 modalClose 추가 -->
     <!-- modalView 클래스는 퍼블 확인용으로 추가함 -->
     <div class="wrap modalView">
-        <header class="header">
-            <h1><a href="javascript:void(0);">통합카트</a></h1>
-            <button type="button" class="menuToggle"><span>메뉴접기버튼</span><i></i><i></i><i></i></button>
-        </header>
-        <nav class="navigation">
-            <ul class="lnb">
-                <li class="dashboard">
-                    <a href="#"><span>대시보드</span></a>
-                </li>
-            </ul>
-        </nav>
-        <div class="modal">
-            <strong>공통</strong>
-            <p>공통 > alert : 팝업 타이틀 없는 경우(md_alert)</p>
-            <div class="modalWrap md_alert" id="md_alert">
-                <div class="modalContainer">
-                    <div class="modalTitle">
-                        <button class="close modalClose"></button>
-                    </div>
-                    <div class="modalContent">
-                        <div>
-                            <p>저장하시겠습니까?</p>
-                        </div>
-                    </div>
-                    <div class="modalFooter">
-                        <!-- 버튼 한개 사용 가능 -->
-                        <button type="button" class="confirm">확인</button>
-                        <button type="button" class="cancel">취소</button>
-                    </div>
-                </div>
-                <div class="modalDim"></div>
+      <header class="header">
+        <h1><a href="javascript:void(0);">통합카트</a></h1>
+        <button type="button" class="menuToggle">
+          <span>메뉴접기버튼</span><i></i><i></i><i></i>
+        </button>
+      </header>
+      <nav class="navigation">
+        <ul class="lnb">
+          <li class="dashboard">
+            <a href="#"><span>대시보드</span></a>
+          </li>
+        </ul>
+      </nav>
+      <div class="modal">
+        <strong>공통</strong>
+        <p>공통 > alert : 팝업 타이틀 없는 경우(md_alert)</p>
+        <div class="modalWrap md_alert" id="md_alert">
+          <div class="modalContainer">
+            <div class="modalTitle">
+              <button class="close modalClose"></button>
             </div>
-            <!-- // modalWrap end-->
-            <div class="modalWrap md_alert" id="md_alert">
-                <div class="modalContainer">
-                    <div class="modalTitle">
-                        <p>확인</p>
-                        <button class="close modalClose"></button>
-                    </div>
-                    <div class="modalContent">
-                        <div>
-                            <p>저장하시겠습니까?</p>
-                        </div>
-                    </div>
-                    <div class="modalFooter">
-                        <!-- 버튼 한개 사용 가능 -->
-                        <button type="button" class="confirm">확인</button>
-                        <!-- <button type="button" class="cancel">취소</button> -->
-                    </div>
-                </div>
-                <div class="modalDim"></div>
+            <div class="modalContent">
+              <div>
+                <p>저장하시겠습니까?</p>
+              </div>
             </div>
-            <!-- // modalWrap end-->
-            <p>캠페인 관리 > 캠페인 카테고리 순위변경사항 저장(md_alert)</p>
-            <div class="modalWrap md_alert" id="md_alert">
-                <div class="modalContainer">
-                    <div class="modalTitle">
-                        <button class="close modalClose"></button>
-                    </div>
-                    <div class="modalContent">
-                        <div>
-                            <p>순위 변경 사항이<br>저장 되었습니다.</p>
-                        </div>
-                    </div>
-                    <div class="modalFooter">
-                        <!-- 버튼 한개 사용 가능 -->
-                        <button type="button" class="confirm">확인</button>
-                    </div>
-                </div>
-                <div class="modalDim"></div>
+            <div class="modalFooter">
+              <!-- 버튼 한개 사용 가능 -->
+              <button type="button" class="confirm">확인</button>
+              <button type="button" class="cancel">취소</button>
             </div>
-            <!-- // modalWrap end-->
-            <p>카테고리 목록 관리/추가 등록(md_alert2)</p>
-            <div class="modalWrap md_alert2" id="md_alert2">
-                <div class="modalContainer">
-                    <div class="modalTitle">
-                        <p>카테고리 목록 관리/추가 등록</p>
-                        <button class="close modalClose"></button>
-                    </div>
-                    <div class="modalContent">
-                        <div class="inputBox">
-                            <input type="text" placeholder="신규 카테고리명을 입력해주세요">
-                        </div>
-                    </div>
-                    <div class="modalFooter">
-                        <button type="button" class="confirm">등록</button>
-                        <button type="button" class="cancel">취소</button>
-                    </div>
-                </div>
-                <div class="modalDim"></div>
+          </div>
+          <div class="modalDim"></div>
+        </div>
+        <!-- // modalWrap end-->
+        <div class="modalWrap md_alert" id="md_alert">
+          <div class="modalContainer">
+            <div class="modalTitle">
+              <p>확인</p>
+              <button class="close modalClose"></button>
             </div>
-            <!-- // modalWrap end-->
-            <p>카테고리 목록 관리/추가 등록(md_alert2)</p>
-            <div class="modalWrap md_alert2" id="md_alert2">
-                <div class="modalContainer">
-                    <div class="modalTitle">
-                        <p>카테고리 목록 관리/추가 등록</p>
-                        <button class="close modalClose"></button>
-                    </div>
-                    <div class="modalContent">
-                        <div class="selectBox">
-                            <select name="" id="">
-                                <option value="">변경할 카테고리를 선택해 주세요.</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="modalFooter">
-                        <button type="button" class="confirm">선택 변경</button>
-                        <button type="button" class="cancel">취소</button>
-                    </div>
-                </div>
-                <div class="modalDim"></div>
+            <div class="modalContent">
+              <div>
+                <p>저장하시겠습니까?</p>
+              </div>
             </div>
-            <!-- // modalWrap end-->
-            <p>카테고리 목록 관리/추가 등록(md_alert2)</p>
-            <div class="modalWrap md_alert2" id="md_alert2">
-                <div class="modalContainer">
-                    <div class="modalTitle">
-                        <p>카테고리 목록 관리/추가 등록</p>
-                        <button class="close modalClose"></button>
-                    </div>
-                    <div class="modalContent">
-                        <!-- <div class="inputBox">
+            <div class="modalFooter">
+              <!-- 버튼 한개 사용 가능 -->
+              <button type="button" class="confirm">확인</button>
+              <!-- <button type="button" class="cancel">취소</button> -->
+            </div>
+          </div>
+          <div class="modalDim"></div>
+        </div>
+        <!-- // modalWrap end-->
+        <p>캠페인 관리 > 캠페인 카테고리 순위변경사항 저장(md_alert)</p>
+        <div class="modalWrap md_alert" id="md_alert">
+          <div class="modalContainer">
+            <div class="modalTitle">
+              <button class="close modalClose"></button>
+            </div>
+            <div class="modalContent">
+              <div>
+                <p>순위 변경 사항이<br />저장 되었습니다.</p>
+              </div>
+            </div>
+            <div class="modalFooter">
+              <!-- 버튼 한개 사용 가능 -->
+              <button type="button" class="confirm">확인</button>
+            </div>
+          </div>
+          <div class="modalDim"></div>
+        </div>
+        <!-- // modalWrap end-->
+        <p>카테고리 목록 관리/추가 등록(md_alert2)</p>
+        <div class="modalWrap md_alert2" id="md_alert2">
+          <div class="modalContainer">
+            <div class="modalTitle">
+              <p>카테고리 목록 관리/추가 등록</p>
+              <button class="close modalClose"></button>
+            </div>
+            <div class="modalContent">
+              <div class="inputBox">
+                <input
+                  type="text"
+                  placeholder="신규 카테고리명을 입력해주세요"
+                />
+              </div>
+            </div>
+            <div class="modalFooter">
+              <button type="button" class="confirm">등록</button>
+              <button type="button" class="cancel">취소</button>
+            </div>
+          </div>
+          <div class="modalDim"></div>
+        </div>
+        <!-- // modalWrap end-->
+        <p>카테고리 목록 관리/추가 등록(md_alert2)</p>
+        <div class="modalWrap md_alert2" id="md_alert2">
+          <div class="modalContainer">
+            <div class="modalTitle">
+              <p>카테고리 목록 관리/추가 등록</p>
+              <button class="close modalClose"></button>
+            </div>
+            <div class="modalContent">
+              <div class="selectBox">
+                <select name="" id="">
+                  <option value="">변경할 카테고리를 선택해 주세요.</option>
+                </select>
+              </div>
+            </div>
+            <div class="modalFooter">
+              <button type="button" class="confirm">선택 변경</button>
+              <button type="button" class="cancel">취소</button>
+            </div>
+          </div>
+          <div class="modalDim"></div>
+        </div>
+        <!-- // modalWrap end-->
+        <p>카테고리 목록 관리/추가 등록(md_alert2)</p>
+        <div class="modalWrap md_alert2" id="md_alert2">
+          <div class="modalContainer">
+            <div class="modalTitle">
+              <p>카테고리 목록 관리/추가 등록</p>
+              <button class="close modalClose"></button>
+            </div>
+            <div class="modalContent">
+              <!-- <div class="inputBox">
                             <input type="text" placeholder="신규 카테고리명을 입력해주세요">
                         </div> -->
-                        <div class="textBox">
-                            <strong>도서/학문</strong>
-                            <p>카테고리로 수정이 완료되었습니다.</p>
-                        </div>
-                    </div>
-                    <div class="modalFooter">
-                        <button type="button" class="confirm">확인</button>
-                    </div>
-                </div>
-                <div class="modalDim"></div>
+              <div class="textBox">
+                <strong>도서/학문</strong>
+                <p>카테고리로 수정이 완료되었습니다.</p>
+              </div>
             </div>
-            <!-- // modalWrap end-->
-            <p>카테고리 캠페인 관리/변경(md_categoryChange)</p>
-            <div class="modalWrap md_categoryChange" id="md_categoryChange">
-                <div class="modalContainer">
-                    <div class="modalTitle">
-                        <p>카테고리 캠페인 관리/변경</p>
-                        <button class="close modalClose"></button>
-                    </div>
-                    <div class="modalContent">
-                        <div class="categoryBox">
-                            <p><span>이마트</span>캠페인을 선택하셨습니다.</p>
-                            <select name="" id="">
-                                <option value="">변경할 카테고리를 선택해 주세요.</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="modalFooter">
-                        <button type="button" class="confirm">변경</button>
-                        <button type="button" class="cancel">취소</button>
-                    </div>
-                </div>
-                <div class="modalDim"></div>
+            <div class="modalFooter">
+              <button type="button" class="confirm">확인</button>
             </div>
-            <!-- // modalWrap end-->
-            <p>카테고리 캠페인 관리/엑셀업로드(md_fileUpload)</p>
-            <div class="modalWrap md_fileUpload" id="md_fileUpload">
-                <div class="modalContainer">
-                    <div class="modalTitle">
-                        <p>카테고리 캠페인 관리/엑셀업로드</p>
-                        <button class="close modalClose"></button>
-                    </div>
-                    <div class="modalContent">
-                        <div class="guideBox">
-                            <p>현재 카테고리 엑셀 양식<span>다운로드</span></p>
-                            <p>전체 캠페인 리스트 입니다.</p>
-                            <p>다운로드 양식에서 순위 조정 후 아래에 업로드해 주세요.</p>
-                        </div>
-                        <div class="fileBox">
-                            <button type="button" class="close">닫기</button>
-                            <input type="file" name="fileUpload" id="fileUpload">
-                            <label for="fileUpload">파일을 끌어오세요</label>
-                        </div>
-                    </div>
-                    <div class="modalFooter">
-                        <button type="button" class="confirm">업로드</button>
-                        <button type="button" class="cancel">취소</button>
-                    </div>
-                </div>
-                <div class="modalDim"></div>
-            </div>
-            <!-- // modalWrap end-->
-            <p>1:1문의내역 > 상세보기(유형 : 기타) (md_inquiryDetail)</p>
-            <p>상세보기 유형의 구분은 modalContent > sec_listT1, sec_listT2 로 구분합니다.</p>
-            <!-- 상세보기 유형의 구분은 modalContent > sec_listT1, sec_listT2 로 구분합니다. -->
-            <div class="modalWrap md_inquiryDetail" id="md_inquiryDetail">
-                <div class="modalContainer">
-                    <div class="modalTitle">
-                        <p>1:1문의내역<span>상세보기</span></p>
-                        <button class="close modalClose"></button>
-                    </div>
-                    <div class="modalContent">
-                        <section class="sec_listT1">
-                            <div class="tableArea">
-                                <div class="tableBox">
-                                    <table>
-                                        <thead>
-                                            <tr>
-                                                <th>구분</th>
-                                                <th>내용</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <th>작성일</th>
-                                                <td>2024.09.05</td>
-                                            </tr>
-                                            <tr>
-                                                <th>문의 유형</th>
-                                                <td>누락문의</td>
-                                            </tr>
-                                            <tr>
-                                                <th>쇼핑몰명</th>
-                                                <td>쿠팡</td>
-                                            </tr>
-                                            <tr>
-                                                <th>문의 목적</th>
-                                                <td>구매를 했는데, "적립 상세 내역"이 보이지 않아요</td>
-                                            </tr>
-                                            <tr>
-                                                <th>구매일</th>
-                                                <td>2024.08.26</td>
-                                            </tr>
-                                            <tr>
-                                                <th>성명</th>
-                                                <td>김고은</td>
-                                            </tr>
-                                            <tr>
-                                                <th>주문 번호</th>
-                                                <td>468152515</td>
-                                            </tr>
-                                            <tr>
-                                                <th>상품 번호</th>
-                                                <td>154331546</td>
-                                            </tr>
-                                            <tr>
-                                                <th>결제 통화</th>
-                                                <td>원화</td>
-                                            </tr>
-                                            <tr>
-                                                <th>결제 수단</th>
-                                                <td>신용카드</td>
-                                            </tr>
-                                            <tr>
-                                                <th>상품 금액</th>
-                                                <td>30,000</td>
-                                            </tr>
-                                            <tr>
-                                                <th>상품 수량</th>
-                                                <td>3</td>
-                                            </tr>
-                                            <tr>
-                                                <th>비고</th>
-                                                <td>빠른 처리 요망</td>
-                                            </tr>
-                                            <tr>
-                                                <th>이메일 주소</th>
-                                                <td>abcd1234@enliple.com</td>
-                                            </tr>
-                                            <tr>
-                                                <th>대응 현황</th>
-                                                <td class="wait">회신대기</td>
-                                            </tr>
-                                            <tr>
-                                                <th>답변</th>
-                                                <td>
-                                                    <div class="textareaBox">
-                                                        <textarea name="" id="" placeholder="답변을 입력해 주세요"></textarea>
-                                                    </div>
-                                                    <div class="sendBox">
-                                                        <input type="text">
-                                                        <button type="button" class="send">보내기</button>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </section>
-                    </div>
-                    <div class="modalFooter">
-                        <button type="button" class="save">저장</button>
-                        <button type="button" class="cancel">취소</button>
-                    </div>
-                </div>
-                <div class="modalDim"></div>
-            </div>
-            <!-- // modalWrap end-->
-            <p>1:1문의내역 > 상세보기(유형 : 기타) (md_inquiryDetail)</p>
-            <div class="modalWrap md_inquiryDetail" id="md_inquiryDetail">
-                <div class="modalContainer">
-                    <div class="modalTitle">
-                        <p>1:1문의내역<span>상세보기</span></p>
-                        <button class="close modalClose"></button>
-                    </div>
-                    <div class="modalContent">
-                        <section class="sec_listT2">
-                            <div class="tableArea">
-                                <div class="tableBox">
-                                    <table>
-                                        <thead>
-                                            <tr>
-                                                <th>구분</th>
-                                                <th>내용</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <th>작성일</th>
-                                                <td>2024.09.05</td>
-                                            </tr>
-                                            <tr>
-                                                <th>문의 유형</th>
-                                                <td>기타문의</td>
-                                            </tr>
-                                            <tr>
-                                                <th>제목</th>
-                                                <td>쇼핑몰로 넘어가지 않아요</td>
-                                            </tr>
-                                            <tr>
-                                                <th>내용</th>
-                                                <td>쇼핑몰 상세 정보에서 클릭을 해도 쇼핑몰로 넘어가지 않아요. </td>
-                                            </tr>
-                                            <tr>
-                                                <th>성명</th>
-                                                <td>김고은</td>
-                                            </tr>
-                                            <tr>
-                                                <th>이메일 주소</th>
-                                                <td>abcd1234@enliple.com</td>
-                                            </tr>
-                                            <tr>
-                                                <th>첨부파일</th>
-                                                <td>
-                                                    <button type="button" class="download">다운로드</button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <th>대응 현황</th>
-                                                <td class="complete">회신완료</td>
-                                            </tr>
-                                            <tr>
-                                                <th>답변</th>
-                                                <td>
-                                                    <div class="textareaBox">
-                                                        <textarea name="" id="" placeholder="답변을 입력해 주세요"></textarea>
-                                                    </div>
-                                                    <div class="sendBox">
-                                                        <input type="text">
-                                                        <button type="button" class="send">보내기</button>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </section>
-                    </div>
-                    <div class="modalFooter">
-                        <button type="button" class="save">저장</button>
-                        <button type="button" class="cancel">취소</button>
-                    </div>
-                </div>
-                <div class="modalDim"></div>
-            </div>
-            <!-- // modalWrap end-->
-            <p>계정관리 > 관리자 > 관리자/추가등록 (md_managerRegister)</p>
-            <div class="modalWrap md_managerRegister" id="md_managerRegister">
-                <div class="modalContainer">
-                    <div class="modalTitle">
-                        <p>관리자/추가등록</p>
-                        <button class="close modalClose"></button>
-                    </div>
-                    <div class="modalContent">
-                        <section class="sec_list">
-                            <div>
-                                <p>아이디/비밀번호</p>
-                                <div class="idBox">
-                                    <!-- 아이디 수정의 경우 조회 버튼 삭제 후 사용하면 됩니다.-->
-                                    <input type="text" placeholder="아이디 (6자리 이상)">
-                                    <button type="button" class="search">조회</button>
-                                </div>
-                                <input type="password" placeholder="비밀번호(영문, 숫자 조합 8자리 이상)">
-                                <input type="password" placeholder="비밀번호 재입력">
-                            </div>
-                            <div>
-                                <p>관리자 정보</p>
-                                <input type="text" placeholder="부서">
-                                <input type="text" placeholder="팀">
-                                <input type="text" placeholder="이름">
-                                <input type="text" placeholder="이메일">
-                                <input type="text" placeholder="연락처1">
-                                <input type="text" placeholder="연락처2">
-                            </div>
-                        </section>
-                    </div>
-                    <div class="modalFooter">
-                        <button type="button" class="confirm">등록</button>
-                        <button type="button" class="cancel">취소</button>
-                    </div>
-                </div>
-                <div class="modalDim"></div>
-            </div>
-            <!-- // modalWrap end-->
-            <p>계정관리 > 회원 > 회원/추가등록 (md_customerRegister)</p>
-            <div class="modalWrap md_customerRegister" id="md_customerRegister">
-                <div class="modalContainer">
-                    <div class="modalTitle">
-                        <p>회원/추가등록</p>
-                        <button class="close modalClose"></button>
-                    </div>
-                    <div class="modalContent">
-                        <section class="sec_list">
-                            <div>
-                                <p>아이디/비밀번호</p>
-                                <div class="idBox">
-                                    <!-- 아이디 수정의 경우 조회 버튼 삭제 후 사용하면 됩니다.-->
-                                    <input type="text" placeholder="아이디 (6자리 이상)">
-                                    <button type="button" class="search">조회</button>
-                                </div>
-                                <input type="password" placeholder="비밀번호(영문, 숫자 조합 8자리 이상)">
-                                <input type="password" placeholder="비밀번호 재입력">
-                            </div>
-                            <div>
-                                <p>회원 유형</p>
-                                <select name="" id="">
-                                    <option value="">회원 유형1</option>
-                                </select>
-                                <select name="" id="">
-                                    <option value="">개인</option>
-                                </select>
-                            </div>
-                            <div>
-                                <p>대행사 선택</p>
-                                <div class="checkBox">
-                                    <input type="checkbox" name="" id="">
-                                    <label for="">*해당사항 없음</label>
-                                </div>
-                                <div class="searchBox">
-                                    <input type="text" placeholder="대행사명">
-                                    <button type="button" class="search">조회</button>
-                                </div>
-                            </div>
-                            <div>
-                                <p>개인 정보</p>
-                                <input type="text" placeholder="이름">
-                                <input type="text" placeholder="이메일">
-                                <input type="text" placeholder="연락처 (휴대폰)">
-                                <input type="text" placeholder="출생년도 (숫자 4자리)">
-                                <select name="" id="">
-                                    <option value="">성별</option>
-                                </select>
-                            </div>
-                            <div>
-                                <p>주민등록증 등록</p>
-                                <div class="fileBox">
-                                    <button type="button" class="close">닫기</button>
-                                    <input type="file" name="" id="">
-                                    <label for="">파일을 끌어오세요</label>
-                                    <span>0/100KB</span>
-                                </div>
-                            </div>
-                            <div>
-                                <p>은행정보</p>
-                                <div class="checkBox">
-                                    <input type="checkbox" name="" id="">
-                                    <label for="">*해당사항 없음</label>
-                                </div>
-                                <input type="text" placeholder="예금주명" disabled>
-                                <input type="text" placeholder="은행명">
-                            </div>
-                        </section>
-                    </div>
-                    <div class="modalFooter">
-                        <button type="button" class="confirm">등록</button>
-                        <button type="button" class="cancel">취소</button>
-                    </div>
-                </div>
-                <div class="modalDim"></div>
-            </div>
-            <!-- // modalWrap end-->
-            <p>계정관리 > 회원 > 매체회원/추가등록 (md_customerMdRegister)</p>
-            <div class="modalWrap md_customerMdRegister" id="md_customerMdRegister">
-                <div class="modalContainer">
-                    <div class="modalTitle">
-                        <p>회원/추가등록</p>
-                        <button class="close modalClose"></button>
-                    </div>
-                    <div class="modalContent">
-                        <section class="sec_list">
-                            <div>
-                                <p>아이디/비밀번호</p>
-                                <div class="idBox">
-                                    <!-- 아이디 수정의 경우 조회 버튼 삭제 후 사용하면 됩니다.-->
-                                    <input type="text" placeholder="아이디 (6자리 이상)">
-                                    <button type="button" class="search">조회</button>
-                                </div>
-                                <input type="password" placeholder="비밀번호(영문, 숫자 조합 8자리 이상)">
-                                <input type="password" placeholder="비밀번호 재입력">
-                            </div>
-                            <div>
-                                <p>회원 유형</p>
-                                <select name="" id="">
-                                    <option value="">매체</option>
-                                </select>
-                                <select name="" id="">
-                                    <option value="">회원 유형2</option>
-                                </select>
-                            </div>
-                            <div>
-                                <p>대행사 선택</p>
-                                <div class="checkBox">
-                                    <input type="checkbox" name="chk1" id="chk1">
-                                    <label for="chk1">*해당사항 없음</label>
-                                </div>
-                                <div class="searchBox">
-                                    <input type="text" placeholder="대행사명">
-                                    <button type="button" class="search">조회</button>
-                                </div>
-                            </div>
-                            <div>
-                                <p>은행정보</p>
-                                <div class="checkBox">
-                                    <input type="checkbox" name="" id="">
-                                    <label for="">*해당사항 없음</label>
-                                </div>
-                                <input type="text" placeholder="예금주명" disabled>
-                                <input type="text" placeholder="은행명">
-                            </div>
-                            <div>
-                                <p>사이트등록1</p>
-                                <input type="text" placeholder="사이트명">
-                                <input type="text" placeholder="URL">
-                                <select name="" id="">
-                                    <option value="">카테고리 선택</option>
-                                </select>
-                            </div>
-                            <div>
-                                <p>사이트등록2</p>
-                                <input type="text" placeholder="사이트명">
-                                <input type="text" placeholder="URL">
-                                <select name="" id="">
-                                    <option value="">카테고리 선택</option>
-                                </select>
-                            </div>
-                            <div>
-                                <button type="button" class="siteAdd">사이트 추가</button>
-                            </div>
-                        </section>
-                    </div>
-                    <div class="modalFooter">
-                        <button type="button" class="confirm">등록</button>
-                        <button type="button" class="cancel">취소</button>
-                    </div>
-                </div>
-                <div class="modalDim"></div>
-            </div>
-            <!-- // modalWrap end-->
+          </div>
+          <div class="modalDim"></div>
         </div>
-        <div class="container">
-            <div class="title">
-                <!-- <p>모달</p> -->
+        <!-- // modalWrap end-->
+        <p>카테고리 캠페인 관리/변경(md_categoryChange)</p>
+        <div class="modalWrap md_categoryChange" id="md_categoryChange">
+          <div class="modalContainer">
+            <div class="modalTitle">
+              <p>카테고리 캠페인 관리/변경</p>
+              <button class="close modalClose"></button>
             </div>
-            <div class="content">
+            <div class="modalContent">
+              <div class="categoryBox">
+                <p><span>이마트</span>캠페인을 선택하셨습니다.</p>
+                <select name="" id="">
+                  <option value="">변경할 카테고리를 선택해 주세요.</option>
+                </select>
+              </div>
             </div>
+            <div class="modalFooter">
+              <button type="button" class="confirm">변경</button>
+              <button type="button" class="cancel">취소</button>
+            </div>
+          </div>
+          <div class="modalDim"></div>
         </div>
-        <!-- <footer id="footer"></footer> -->
+        <!-- // modalWrap end-->
+        <p>카테고리 캠페인 관리/엑셀업로드(md_fileUpload)</p>
+        <div class="modalWrap md_fileUpload" id="md_fileUpload">
+          <div class="modalContainer">
+            <div class="modalTitle">
+              <p>카테고리 캠페인 관리/엑셀업로드</p>
+              <button class="close modalClose"></button>
+            </div>
+            <div class="modalContent">
+              <div class="guideBox">
+                <p>현재 카테고리 엑셀 양식<span>다운로드</span></p>
+                <p>전체 캠페인 리스트 입니다.</p>
+                <p>다운로드 양식에서 순위 조정 후 아래에 업로드해 주세요.</p>
+              </div>
+              <div class="fileBox">
+                <button type="button" class="close">닫기</button>
+                <input type="file" name="fileUpload" id="fileUpload" />
+                <label for="fileUpload">파일을 끌어오세요</label>
+              </div>
+            </div>
+            <div class="modalFooter">
+              <button type="button" class="confirm">업로드</button>
+              <button type="button" class="cancel">취소</button>
+            </div>
+          </div>
+          <div class="modalDim"></div>
+        </div>
+        <!-- // modalWrap end-->
+        <p>1:1문의내역 > 상세보기(유형 : 기타) (md_inquiryDetail)</p>
+        <p>
+          상세보기 유형의 구분은 modalContent > sec_listT1, sec_listT2 로
+          구분합니다.
+        </p>
+        <!-- 상세보기 유형의 구분은 modalContent > sec_listT1, sec_listT2 로 구분합니다. -->
+        <div class="modalWrap md_inquiryDetail" id="md_inquiryDetail">
+          <div class="modalContainer">
+            <div class="modalTitle">
+              <p>1:1문의내역<span>상세보기</span></p>
+              <button class="close modalClose"></button>
+            </div>
+            <div class="modalContent">
+              <section class="sec_listT1">
+                <div class="tableArea">
+                  <div class="tableBox">
+                    <table>
+                      <thead>
+                        <tr>
+                          <th>구분</th>
+                          <th>내용</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <th>작성일</th>
+                          <td>2024.09.05</td>
+                        </tr>
+                        <tr>
+                          <th>문의 유형</th>
+                          <td>누락문의</td>
+                        </tr>
+                        <tr>
+                          <th>쇼핑몰명</th>
+                          <td>쿠팡</td>
+                        </tr>
+                        <tr>
+                          <th>문의 목적</th>
+                          <td>
+                            구매를 했는데, "적립 상세 내역"이 보이지 않아요
+                          </td>
+                        </tr>
+                        <tr>
+                          <th>구매일</th>
+                          <td>2024.08.26</td>
+                        </tr>
+                        <tr>
+                          <th>성명</th>
+                          <td>김고은</td>
+                        </tr>
+                        <tr>
+                          <th>주문 번호</th>
+                          <td>468152515</td>
+                        </tr>
+                        <tr>
+                          <th>상품 번호</th>
+                          <td>154331546</td>
+                        </tr>
+                        <tr>
+                          <th>결제 통화</th>
+                          <td>원화</td>
+                        </tr>
+                        <tr>
+                          <th>결제 수단</th>
+                          <td>신용카드</td>
+                        </tr>
+                        <tr>
+                          <th>상품 금액</th>
+                          <td>30,000</td>
+                        </tr>
+                        <tr>
+                          <th>상품 수량</th>
+                          <td>3</td>
+                        </tr>
+                        <tr>
+                          <th>비고</th>
+                          <td>빠른 처리 요망</td>
+                        </tr>
+                        <tr>
+                          <th>이메일 주소</th>
+                          <td>abcd1234@enliple.com</td>
+                        </tr>
+                        <tr>
+                          <th>대응 현황</th>
+                          <td class="wait">회신대기</td>
+                        </tr>
+                        <tr>
+                          <th>답변</th>
+                          <td>
+                            <div class="textareaBox">
+                              <textarea
+                                name=""
+                                id=""
+                                placeholder="답변을 입력해 주세요"
+                              ></textarea>
+                            </div>
+                            <div class="sendBox">
+                              <input type="text" />
+                              <button type="button" class="send">보내기</button>
+                            </div>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </section>
+            </div>
+            <div class="modalFooter">
+              <button type="button" class="save">저장</button>
+              <button type="button" class="cancel">취소</button>
+            </div>
+          </div>
+          <div class="modalDim"></div>
+        </div>
+        <!-- // modalWrap end-->
+        <p>1:1문의내역 > 상세보기(유형 : 기타) (md_inquiryDetail)</p>
+        <div class="modalWrap md_inquiryDetail" id="md_inquiryDetail">
+          <div class="modalContainer">
+            <div class="modalTitle">
+              <p>1:1문의내역<span>상세보기</span></p>
+              <button class="close modalClose"></button>
+            </div>
+            <div class="modalContent">
+              <section class="sec_listT2">
+                <div class="tableArea">
+                  <div class="tableBox">
+                    <table>
+                      <thead>
+                        <tr>
+                          <th>구분</th>
+                          <th>내용</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <th>작성일</th>
+                          <td>2024.09.05</td>
+                        </tr>
+                        <tr>
+                          <th>문의 유형</th>
+                          <td>기타문의</td>
+                        </tr>
+                        <tr>
+                          <th>제목</th>
+                          <td>쇼핑몰로 넘어가지 않아요</td>
+                        </tr>
+                        <tr>
+                          <th>내용</th>
+                          <td>
+                            쇼핑몰 상세 정보에서 클릭을 해도 쇼핑몰로 넘어가지
+                            않아요.
+                          </td>
+                        </tr>
+                        <tr>
+                          <th>성명</th>
+                          <td>김고은</td>
+                        </tr>
+                        <tr>
+                          <th>이메일 주소</th>
+                          <td>abcd1234@enliple.com</td>
+                        </tr>
+                        <tr>
+                          <th>첨부파일</th>
+                          <td>
+                            <button type="button" class="download">
+                              다운로드
+                            </button>
+                          </td>
+                        </tr>
+                        <tr>
+                          <th>대응 현황</th>
+                          <td class="complete">회신완료</td>
+                        </tr>
+                        <tr>
+                          <th>답변</th>
+                          <td>
+                            <div class="textareaBox">
+                              <textarea
+                                name=""
+                                id=""
+                                placeholder="답변을 입력해 주세요"
+                              ></textarea>
+                            </div>
+                            <div class="sendBox">
+                              <input type="text" />
+                              <button type="button" class="send">보내기</button>
+                            </div>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </section>
+            </div>
+            <div class="modalFooter">
+              <button type="button" class="save">저장</button>
+              <button type="button" class="cancel">취소</button>
+            </div>
+          </div>
+          <div class="modalDim"></div>
+        </div>
+        <!-- // modalWrap end-->
+        <p>계정관리 > 관리자 > 관리자/추가등록 (md_managerRegister)</p>
+        <div class="modalWrap md_managerRegister" id="md_managerRegister">
+          <div class="modalContainer">
+            <div class="modalTitle">
+              <p>관리자/추가등록</p>
+              <button class="close modalClose"></button>
+            </div>
+            <div class="modalContent">
+              <section class="sec_list">
+                <div>
+                  <p>아이디/비밀번호</p>
+                  <div class="idBox">
+                    <!-- 아이디 수정의 경우 조회 버튼 삭제 후 사용하면 됩니다.-->
+                    <input type="text" placeholder="아이디 (6자리 이상)" />
+                    <button type="button" class="search">조회</button>
+                  </div>
+                  <input
+                    type="password"
+                    placeholder="비밀번호(영문, 숫자 조합 8자리 이상)"
+                  />
+                  <input type="password" placeholder="비밀번호 재입력" />
+                </div>
+                <div>
+                  <p>관리자 정보</p>
+                  <input type="text" placeholder="부서" />
+                  <input type="text" placeholder="팀" />
+                  <input type="text" placeholder="이름" />
+                  <input type="text" placeholder="이메일" />
+                  <input type="text" placeholder="연락처1" />
+                  <input type="text" placeholder="연락처2" />
+                </div>
+              </section>
+            </div>
+            <div class="modalFooter">
+              <button type="button" class="confirm">등록</button>
+              <button type="button" class="cancel">취소</button>
+            </div>
+          </div>
+          <div class="modalDim"></div>
+        </div>
+        <!-- // modalWrap end-->
+        <p>계정관리 > 회원 > 회원/추가등록 (md_customerRegister)</p>
+        <div class="modalWrap md_customerRegister" id="md_customerRegister">
+          <div class="modalContainer">
+            <div class="modalTitle">
+              <p>회원/추가등록</p>
+              <button class="close modalClose"></button>
+            </div>
+            <div class="modalContent">
+              <section class="sec_list">
+                <div>
+                  <p>아이디/비밀번호</p>
+                  <div class="idBox">
+                    <!-- 아이디 수정의 경우 조회 버튼 삭제 후 사용하면 됩니다.-->
+                    <input type="text" placeholder="아이디 (6자리 이상)" />
+                    <button type="button" class="search">조회</button>
+                  </div>
+                  <input
+                    type="password"
+                    placeholder="비밀번호(영문, 숫자 조합 8자리 이상)"
+                  />
+                  <input type="password" placeholder="비밀번호 재입력" />
+                </div>
+                <div>
+                  <p>회원 유형</p>
+                  <select name="" id="">
+                    <option value="">회원 유형1</option>
+                  </select>
+                  <select name="" id="">
+                    <option value="">개인</option>
+                  </select>
+                </div>
+                <div>
+                  <p>대행사 선택</p>
+                  <div class="checkBox">
+                    <input type="checkbox" name="" id="" />
+                    <label for="">*해당사항 없음</label>
+                  </div>
+                  <div class="searchBox">
+                    <input type="text" placeholder="대행사명" />
+                    <button type="button" class="search">조회</button>
+                  </div>
+                </div>
+                <div>
+                  <p>개인 정보</p>
+                  <input type="text" placeholder="이름" />
+                  <input type="text" placeholder="이메일" />
+                  <input type="text" placeholder="연락처 (휴대폰)" />
+                  <input type="text" placeholder="출생년도 (숫자 4자리)" />
+                  <select name="" id="">
+                    <option value="">성별</option>
+                  </select>
+                </div>
+                <div>
+                  <p>주민등록증 등록</p>
+                  <div class="fileBox">
+                    <button type="button" class="close">닫기</button>
+                    <input type="file" name="" id="" />
+                    <label for="">파일을 끌어오세요</label>
+                    <span>0/100KB</span>
+                  </div>
+                </div>
+                <div>
+                  <p>은행정보</p>
+                  <div class="checkBox">
+                    <input type="checkbox" name="" id="" />
+                    <label for="">*해당사항 없음</label>
+                  </div>
+                  <input type="text" placeholder="예금주명" disabled />
+                  <input type="text" placeholder="은행명" />
+                </div>
+              </section>
+            </div>
+            <div class="modalFooter">
+              <button type="button" class="confirm">등록</button>
+              <button type="button" class="cancel">취소</button>
+            </div>
+          </div>
+          <div class="modalDim"></div>
+        </div>
+        <!-- // modalWrap end-->
+        <p>계정관리 > 회원 > 매체회원/추가등록 (md_customerMdRegister)</p>
+        <div class="modalWrap md_customerMdRegister" id="md_customerMdRegister">
+          <div class="modalContainer">
+            <div class="modalTitle">
+              <p>회원/추가등록</p>
+              <button class="close modalClose"></button>
+            </div>
+            <div class="modalContent">
+              <section class="sec_list">
+                <div>
+                  <p>아이디/비밀번호</p>
+                  <div class="idBox">
+                    <!-- 아이디 수정의 경우 조회 버튼 삭제 후 사용하면 됩니다.-->
+                    <input type="text" placeholder="아이디 (6자리 이상)" />
+                    <button type="button" class="search">조회</button>
+                  </div>
+                  <input
+                    type="password"
+                    placeholder="비밀번호(영문, 숫자 조합 8자리 이상)"
+                  />
+                  <input type="password" placeholder="비밀번호 재입력" />
+                </div>
+                <div>
+                  <p>회원 유형</p>
+                  <select name="" id="">
+                    <option value="">매체</option>
+                  </select>
+                  <select name="" id="">
+                    <option value="">회원 유형2</option>
+                  </select>
+                </div>
+                <div>
+                  <p>대행사 선택</p>
+                  <div class="checkBox">
+                    <input type="checkbox" name="chk1" id="chk1" />
+                    <label for="chk1">*해당사항 없음</label>
+                  </div>
+                  <div class="searchBox">
+                    <input type="text" placeholder="대행사명" />
+                    <button type="button" class="search">조회</button>
+                  </div>
+                </div>
+                <div>
+                  <p>은행정보</p>
+                  <div class="checkBox">
+                    <input type="checkbox" name="" id="" />
+                    <label for="">*해당사항 없음</label>
+                  </div>
+                  <input type="text" placeholder="예금주명" disabled />
+                  <input type="text" placeholder="은행명" />
+                </div>
+                <div>
+                  <p>사이트등록1</p>
+                  <input type="text" placeholder="사이트명" />
+                  <input type="text" placeholder="URL" />
+                  <select name="" id="">
+                    <option value="">카테고리 선택</option>
+                  </select>
+                </div>
+                <div>
+                  <p>사이트등록2</p>
+                  <input type="text" placeholder="사이트명" />
+                  <input type="text" placeholder="URL" />
+                  <select name="" id="">
+                    <option value="">카테고리 선택</option>
+                  </select>
+                </div>
+                <div>
+                  <button type="button" class="siteAdd">사이트 추가</button>
+                </div>
+              </section>
+            </div>
+            <div class="modalFooter">
+              <button type="button" class="confirm">등록</button>
+              <button type="button" class="cancel">취소</button>
+            </div>
+          </div>
+          <div class="modalDim"></div>
+        </div>
+        <!-- // modalWrap end-->
+      </div>
+      <div class="container">
+        <div class="title">
+          <!-- <p>모달</p> -->
+        </div>
+        <div class="content"></div>
+      </div>
+      <!-- <footer id="footer"></footer> -->
     </div>
-</body>
-
+  </body>
 </html>

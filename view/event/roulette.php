@@ -105,9 +105,9 @@
   // 쿠팡 막대사탕 조회
   function getMemberStick() {
     try {
-      const userId = '<?= $_SESSION["check_userId"]; ?>';
+      const userId = '<?= $checkUserId; ?>'
       const merchantId = 'coupang';
-      const affliateId = '<?= $_SESSION["check_affliateId"]; ?>';
+      const affliateId = '<?= $checkAffliateId; ?>'
 
       // AJAX 요청 데이터 설정
       const requestData = {
@@ -119,7 +119,7 @@
       // AJAX 요청 수행
       $.ajax({
         type: 'POST',
-        url: 'https://app.shoplus.io/api/view/coupangStick',
+        url: '<?= $appApiUrl; ?>/api/view/coupangStick',
         contentType: 'application/json',
         data: JSON.stringify(requestData),
         success: function(result) {
@@ -141,7 +141,7 @@
   function getBrandList() {
     try {
       const requestData = {
-        affliateId: "<?= $_SESSION["check_affliateId"]; ?>",
+        affliateId: "<?= $checkAffliateId; ?>",
         brandType: "BRAND",
         merchantId: "coupang"
       }
@@ -149,7 +149,7 @@
       // AJAX 요청 수행
       $.ajax({
         type: 'POST',
-        url: 'https://app.shoplus.io/api/view/giftBrandList',
+        url: '<?= $appApiUrl; ?>/api/view/giftBrandList',
         contentType: 'application/json',
         data: JSON.stringify(requestData),
         success: function(result) {
@@ -189,7 +189,7 @@
 
     const requestData = {
       brandId,
-      affliateId: "<?= $_SESSION["check_affliateId"]; ?>",
+      affliateId: "<?= $checkAffliateId; ?>",
       merchantId: "coupang"
     }
 
@@ -197,7 +197,7 @@
       // AJAX 요청 수행
       $.ajax({
         type: 'POST',
-        url: 'https://app.shoplus.io/api/view/giftProductList',
+        url: '<?= $appApiUrl; ?>/api/view/giftProductList',
         contentType: 'application/json',
         data: JSON.stringify(requestData),
         success: function(result) {
@@ -280,9 +280,9 @@
       checkSpin = true;
       // AJAX 요청 데이터 설정
       const requestData = {
-        userId: "<?= $_SESSION["check_userId"]; ?>",
+        userId: "<?= $checkUserId; ?>",
         merchantId: "coupang",
-        affliateId: "<?= $_SESSION["check_affliateId"]; ?>",
+        affliateId: "<?= $checkAffliateId; ?>",
         brandId,
         cnt: minCnt
       };
@@ -290,7 +290,7 @@
       // AJAX 요청 수행
       $.ajax({
         type: 'POST',
-        url: 'https://app.shoplus.io/api/giftCoupang/coupangGift',
+        url: '<?= $appApiUrl; ?>/api/giftCoupang/coupangGift',
         contentType: 'application/json',
         data: JSON.stringify(requestData),
         success: function(result) {

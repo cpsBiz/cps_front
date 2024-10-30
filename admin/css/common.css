@@ -12188,3 +12188,18 @@ menu : 고객관리
   content: '+';
   font-size: 16px;
 }
+
+/* 회원 추가등록 모달 css 추가 */
+.user-info-box,
+.affliate-info-box {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.user-info-box > div,
+.site-info-box > div {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}

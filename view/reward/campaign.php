@@ -102,15 +102,15 @@ if (!$object) {
 
   function getClickRewardUrl(apiUrl, clickUrl, campaignNum) {
     try {
-      const affliateId = '<?= $_SESSION['check_affliateId']; ?>';
-      const zoneId = '<?= $_SESSION["check_zoneId"]; ?>';
+      const affliateId = '<?= $checkAffliateId; ?>';
+      const zoneId = '<?= $checkZoneId; ?>'
       const agencyId = object.agencyId;
       const merchantId = object.merchantId;
       const type = 'MERCHANT';
-      const site = <?= $_SESSION['check_site']; ?>;
+      const site = '<?= $checkSite; ?>';
       const os = getOs();
-      const userId = '<?= $_SESSION["check_userId"]; ?>';
-      const adId = '<?= $_SESSION["check_adId"]; ?>';
+      const userId = '<?= $checkUserId; ?>'
+      const adId = '<?= $checkAdId; ?>'
 
       // AJAX 요청 데이터 설정
       const requestData = {
@@ -161,7 +161,7 @@ if (!$object) {
       // AJAX 요청 수행
       $.ajax({
         type: 'POST',
-        url: 'https://admin.shoplus.io/api/admin/campaignList',
+        url: '<?= $adminApiUrl; ?>/api/admin/campaignList',
         contentType: 'application/json',
         data: JSON.stringify(requestData),
         success: function(result) {

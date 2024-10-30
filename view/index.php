@@ -93,7 +93,7 @@
 	//     // AJAX 요청 수행
 	//     $.ajax({
 	//       type: 'POST',
-	//       url: 'https://app.shoplus.io/api/view/',
+	//       url: '<?= $appApiUrl; ?>/api/view/',
 	//       contentType: 'application/json',
 	//       data: JSON.stringify(requestData),
 	//       success: function(result) {
@@ -121,8 +121,8 @@
 	// 회원 적립금 조회
 	function getMemberCommission() {
 		try {
-			const userId = '<?= $_SESSION["check_userId"]; ?>';
-			const affliateId = '<?= $_SESSION["check_affliateId"]; ?>';
+			const userId = '<?= $checkUserId; ?>'
+			const affliateId = '<?= $checkAffliateId; ?>'
 
 			// AJAX 요청 데이터 설정
 			const requestData = {
@@ -133,7 +133,7 @@
 			// AJAX 요청 수행
 			$.ajax({
 				type: 'POST',
-				url: 'https://app.shoplus.io/api/view/memberCommission',
+				url: '<?= $appApiUrl; ?>/api/view/memberCommission',
 				contentType: 'application/json',
 				data: JSON.stringify(requestData),
 				success: function(result) {
@@ -155,15 +155,15 @@
 	function getCampaignView(category) {
 		try {
 			// 매체 아이디
-			const affliateId = '<?= $_SESSION["check_affliateId"]; ?>';
+			const affliateId = '<?= $checkAffliateId; ?>'
 			// 지면 아이디
-			const zoneId = '<?= $_SESSION["check_zoneId"]; ?>';
+			const zoneId = '<?= $checkZoneId; ?>'
 			// 매체가 선택한 사이트
-			const site = '<?= $_SESSION["check_site"]; ?>';
+			const site = '<?= $checkSite; ?>'
 			// 로그인 유저 아이디
-			const userId = '<?= $_SESSION["check_userId"]; ?>';
+			const userId = '<?= $checkUserId; ?>'
 			// 광고 아이디
-			const adId = '<?= $_SESSION["check_adId"]; ?>';
+			const adId = '<?= $checkAdId; ?>'
 			// 기기 OS
 			const os = getOs();
 
@@ -181,7 +181,7 @@
 			// AJAX 요청 수행
 			$.ajax({
 				type: 'POST',
-				url: 'https://app.shoplus.io/api/view/campaignView',
+				url: '<?= $appApiUrl; ?>/api/view/campaignView',
 				contentType: 'application/json',
 				data: JSON.stringify(requestData),
 				success: function(result) {
@@ -215,9 +215,9 @@
 			}
 			let apiUrl = '';
 			if (item.adminId === 'linkprice') {
-				apiUrl = 'https://app.shoplus.io/api/clickLinkPrice/campaignClick';
+				apiUrl = '<?= $appApiUrl; ?>/api/clickLinkPrice/campaignClick';
 			} else if (item.adminId === 'dotpitch') {
-				apiUrl = 'https://app.shoplus.io/api/clickDotPitch/campaignClick';
+				apiUrl = '<?= $appApiUrl; ?>/api/clickDotPitch/campaignClick';
 			}
 
 			// 적립률
@@ -228,13 +228,13 @@
 				apiUrl,
 				campaignNum: item.campaignNum,
 				per: commissionPer,
-				affliateId: '<?= $_SESSION['check_affliateId']; ?>',
+				affliateId: '<?= $checkAffliateId; ?>',
 				merchantId: item.merchantId,
 				agencyId: item.adminId,
-				site: '<?= $_SESSION['check_affliateId']; ?>',
-				zoneId: '<?= $_SESSION['check_zoneId']; ?>',
-				userId: '<?= $_SESSION['check_userId']; ?>',
-				adId: '<?= $_SESSION['check_adId']; ?>',
+				site: '<?= $checkAffliateId; ?>',
+				zoneId: '<?= $checkZoneId; ?>',
+				userId: '<?= $checkUserId; ?>',
+				adId: '<?= $checkAdId; ?>',
 				type: 'MERCHANT'
 			}
 			const itemStr = base64Encode(JSON.stringify(params));
@@ -253,7 +253,7 @@
 	}
 
 	function renderCoupangArea(item) {
-		const apiUrl = 'https://app.shoplus.io/api/clickCoupang/campaignClick';
+		const apiUrl = '<?= $appApiUrl; ?>/api/clickCoupang/campaignClick';
 		const commissionPer = getCommissionPer(item);
 
 		const params = {
@@ -294,9 +294,9 @@
 	// 쿠팡 막대사탕 조회
 	function getMemberStick() {
 		try {
-			const userId = '<?= $_SESSION["check_userId"]; ?>';
+			const userId = '<?= $checkUserId; ?>'
 			const merchantId = 'coupang';
-			const affliateId = '<?= $_SESSION["check_affliateId"]; ?>';
+			const affliateId = '<?= $checkAffliateId; ?>'
 
 			// AJAX 요청 데이터 설정
 			const requestData = {
@@ -308,7 +308,7 @@
 			// AJAX 요청 수행
 			$.ajax({
 				type: 'POST',
-				url: 'https://app.shoplus.io/api/view/coupangStick',
+				url: '<?= $appApiUrl; ?>/api/view/coupangStick',
 				contentType: 'application/json',
 				data: JSON.stringify(requestData),
 				success: function(result) {
@@ -328,8 +328,8 @@
 	// 캠페인 즐겨찾기 등록, 삭제
 	function patchFavorites(campaignNum, favorites, dom) {
 		try {
-			const userId = '<?= $_SESSION["check_userId"]; ?>';
-			const affliateId = '<?= $_SESSION["check_affliateId"]; ?>';
+			const userId = '<?= $checkUserId; ?>'
+			const affliateId = '<?= $checkAffliateId; ?>'
 			const apiType = favorites === 'NON_FAVORITE' ? 'I' : 'D';
 
 			// AJAX 요청 데이터 설정
@@ -343,7 +343,7 @@
 			// AJAX 요청 수행
 			$.ajax({
 				type: 'POST',
-				url: 'https://app.shoplus.io/api/view/favorites',
+				url: '<?= $appApiUrl; ?>/api/view/favorites',
 				contentType: 'application/json',
 				data: JSON.stringify(requestData),
 				success: function(result) {

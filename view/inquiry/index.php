@@ -465,8 +465,8 @@ if (!$campaign) {
         requestData.append('files[]', files[i]);
       }
 
-      requestData.append('affliateId', '<?= $_SESSION["check_affliateId"]; ?>');
-      requestData.append('userId', '<?= $_SESSION["check_userId"]; ?>');
+      requestData.append('affliateId', '<?= $checkAffliateId; ?>');
+      requestData.append('userId', '<?= $checkUserId; ?>');
 
       $.ajax({
         type: 'POST',
@@ -495,10 +495,10 @@ if (!$campaign) {
       let requestData = {
         inquiryNum: 0,
         note: '',
-        userId: '<?= $_SESSION["check_userId"]; ?>',
+        userId: '<?= $checkUserId; ?>',
         inquiryType: '',
         campaignNum: <?= $campaign; ?>,
-        affliateId: '<?= $_SESSION["check_affliateId"]; ?>',
+        affliateId: '<?= $checkAffliateId; ?>',
         merchantId: '',
         purpose: '',
         regDay: 0,
@@ -543,7 +543,7 @@ if (!$campaign) {
       // AJAX 요청 수행
       $.ajax({
         type: 'POST',
-        url: 'https://app.shoplus.io/api/view/inquiry',
+        url: '<?= $appApiUrl; ?>/api/view/inquiry',
         contentType: 'application/json',
         data: JSON.stringify(requestData),
         success: function(result) {
@@ -565,7 +565,7 @@ if (!$campaign) {
     try {
       $.ajax({
         type: 'POST',
-        url: 'https://app.shoplus.io/api/view/inquiryMerchantList',
+        url: '<?= $appApiUrl; ?>/api/view/inquiryMerchantList',
         contentType: 'application/json',
         success: function(result) {
           renderShoppingMallList(result);

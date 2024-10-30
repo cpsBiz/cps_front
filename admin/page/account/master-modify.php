@@ -33,15 +33,17 @@
                   <div class="modalWrap md_managerRegister" id="md_managerRegister" style="display:block;">
                     <div class="modalContainer">
                         <div class="modalTitle">
-                            <p>회원 / 관리자 수정</p>
+                            <p>관리자 / 수정</p>
                             <button class="close modalClose" onclick="location.reload()"></button>
                         </div>
                         <div class="modalContent">
                           <section class="sec_list">
                             <div>
                               <p>아이디 / 비밀번호</p>
-                              <input id="master-id" type="text" placeholder="아이디 (6자리 이상)" value="${item.memberId}" disabled/>
-                              <input id="master-pwd" type="password" placeholder="비밀번호(영문, 숫자 조합 8자리 이상)" value="${item.memberPw}" />
+                              <div class="idBox">
+                                <input id="master-id" type="text" placeholder="아이디 (6자리 이상)" value="${item.memberId}" disabled/>
+                              </div>
+                              <input id="master-pwd" type="password" placeholder="비밀번호 (영문, 숫자 조합 8자리 이상)" value="${item.memberPw}" />
                               <input id="master-pwd-re" type="password" placeholder="비밀번호 재입력" value="${item.memberPw}" />
                             </div>
                             <div>
@@ -138,7 +140,7 @@
                   <div class="modalWrap md_categoryRegister" id="md_categoryRegister" style="display:block;">
                       <div class="modalContainer">
                           <div class="modalTitle">
-                              <p>회원 / 관리자 수정</p>
+                              <p>관리자 / 수정</p>
                               <button class="close modalClose" onclick="location.reload();"></button>
                           </div>
                           <div class="modalContent">

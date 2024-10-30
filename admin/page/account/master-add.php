@@ -5,7 +5,7 @@
                   <div class="modalWrap md_managerRegister" id="md_managerRegister" style="display:block;">
                     <div class="modalContainer">
                         <div class="modalTitle">
-                            <p>회원 / 관리자 추가등록</p>
+                            <p>관리자 / 추가등록</p>
                             <button class="close modalClose" onclick="location.reload()"></button>
                         </div>
                         <div class="modalContent">
@@ -16,7 +16,7 @@
                                 <input id="master-id" type="text" placeholder="아이디 (6자리 이상)" />
                                 <button class="search" onclick="searchMasterId()">조회</button>
                               </div>
-                              <input id="master-pwd" type="password" placeholder="비밀번호(영문, 숫자 조합 8자리 이상)" />
+                              <input id="master-pwd" type="password" placeholder="비밀번호 (영문, 숫자 조합 8자리 이상)" />
                               <input id="master-pwd-re" type="password" placeholder="비밀번호 재입력" />
                             </div>
                             <div>
@@ -157,7 +157,7 @@
                   <div class="modalWrap md_categoryRegister" id="md_categoryRegister" style="display:block;">
                       <div class="modalContainer">
                           <div class="modalTitle">
-                              <p>회원 / 관리자 추가등록</p>
+                              <p>관리자 / 추가등록</p>
                               <button class="close modalClose" onclick="location.reload();"></button>
                           </div>
                           <div class="modalContent">

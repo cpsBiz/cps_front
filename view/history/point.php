@@ -170,8 +170,8 @@ $months = getLastYearMonths();
   // 회원 적립금 조회
   function getCommission() {
     try {
-      const userId = '<?= $_SESSION["check_userId"]; ?>';
-      const affliateId = '<?= $_SESSION["check_affliateId"]; ?>';
+      const userId = '<?= $checkUserId; ?>'
+      const affliateId = '<?= $checkAffliateId; ?>'
 
       // AJAX 요청 데이터 설정
       const requestData = {
@@ -182,7 +182,7 @@ $months = getLastYearMonths();
       // AJAX 요청 수행
       $.ajax({
         type: 'POST',
-        url: 'https://app.shoplus.io/api/view/memberCommission',
+        url: '<?= $appApiUrl; ?>/api/view/memberCommission',
         contentType: 'application/json',
         data: JSON.stringify(requestData),
         success: function(result) {
@@ -215,8 +215,8 @@ $months = getLastYearMonths();
   // 회원 적립금 리스트 조회
   function getCommissionList(status, date) {
     try {
-      const userId = "<?= $_SESSION['check_userId']; ?>";
-      const affliateId = "<?= $_SESSION["check_affliateId"]; ?>";
+      const userId = "<?= $checkUserId; ?>";
+      const affliateId = "<?= $checkAffliateId; ?>";
       const regYm = convertDate(date);
 
       // AJAX 요청 데이터 설정
@@ -230,7 +230,7 @@ $months = getLastYearMonths();
       // AJAX 요청 수행
       $.ajax({
         type: 'POST',
-        url: 'https://app.shoplus.io/api/view/memberCommissionList',
+        url: '<?= $appApiUrl; ?>/api/view/memberCommissionList',
         contentType: 'application/json',
         data: JSON.stringify(requestData),
         success: function(result) {
