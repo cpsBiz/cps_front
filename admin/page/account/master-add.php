@@ -2,27 +2,33 @@
   // 관리자 추가 팝업 
   function addMaster() {
     const modal = `
-                  <div class="modalWrap md_masterAdd" id="md_masterAdd" style="display:block;">
+                  <div class="modalWrap md_managerRegister" id="md_managerRegister" style="display:block;">
                     <div class="modalContainer">
                         <div class="modalTitle">
-                            <p>관리자 / 추가등록</p>
+                            <p>회원 / 관리자 추가등록</p>
                             <button class="close modalClose" onclick="location.reload()"></button>
                         </div>
                         <div class="modalContent">
-                          <p>아이디 / 비밀번호</p>
-                          <div class="search-id-box">
-                            <input id="master-id" type="text" placeholder="아이디 (6자리 이상)" />
-                            <button onclick="searchMasterId()">조회</button>
-                          </div>
-                          <input id="master-pwd" type="password" placeholder="비밀번호(영문, 숫자 조합 8자리 이상)" />
-                          <input id="master-pwd-re" type="password" placeholder="비밀번호 재입력" />
-                          <p>관리자 정보</p>
-                          <input id="master-dept" type="text" placeholder="부서" />
-                          <input id="master-team" type="text" placeholder="팀" />
-                          <input id="master-name" type="text" placeholder="이름" />
-                          <input id="master-email" type="text" placeholder="이메일" />
-                          <input id="master-phone" type="text" placeholder="연락처1" />
-                          <input id="master-phone2" type="text" placeholder="연락처2" />
+                          <section class="sec_list">
+                            <div>
+                              <p>아이디 / 비밀번호</p>
+                              <div class="idBox">
+                                <input id="master-id" type="text" placeholder="아이디 (6자리 이상)" />
+                                <button class="search" onclick="searchMasterId()">조회</button>
+                              </div>
+                              <input id="master-pwd" type="password" placeholder="비밀번호(영문, 숫자 조합 8자리 이상)" />
+                              <input id="master-pwd-re" type="password" placeholder="비밀번호 재입력" />
+                            </div>
+                            <div>
+                              <p>관리자 정보</p>
+                              <input id="master-dept" type="text" placeholder="부서" />
+                              <input id="master-team" type="text" placeholder="팀" />
+                              <input id="master-name" type="text" placeholder="이름" />
+                              <input id="master-email" type="text" placeholder="이메일" />
+                              <input id="master-phone" type="text" placeholder="연락처1" />
+                              <input id="master-phone2" type="text" placeholder="연락처2" />
+                            </div>
+                          </section>
                         </div>
                         <div class="modalFooter">
                             <button type="button" class="save" onclick="validAddMaster()">등록</button>
@@ -151,7 +157,7 @@
                   <div class="modalWrap md_categoryRegister" id="md_categoryRegister" style="display:block;">
                       <div class="modalContainer">
                           <div class="modalTitle">
-                              <p>관리자 / 추가등록</p>
+                              <p>회원 / 관리자 추가등록</p>
                               <button class="close modalClose" onclick="location.reload();"></button>
                           </div>
                           <div class="modalContent">

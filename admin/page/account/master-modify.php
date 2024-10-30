@@ -30,25 +30,30 @@
     const item = JSON.parse(data);
 
     const modal = `
-                  <div class="modalWrap md_masterAdd" id="md_masterAdd" style="display:block;">
+                  <div class="modalWrap md_managerRegister" id="md_managerRegister" style="display:block;">
                     <div class="modalContainer">
                         <div class="modalTitle">
-                            <p>관리자 / 수정</p>
+                            <p>회원 / 관리자 수정</p>
                             <button class="close modalClose" onclick="location.reload()"></button>
                         </div>
                         <div class="modalContent">
-                          <p>아이디 / 비밀번호</p>
-                          <input id="master-id" type="text" placeholder="아이디 (6자리 이상)" value="${item.memberId}" disabled/>
-                          <input id="master-pwd" type="password" placeholder="비밀번호(영문, 숫자 조합 8자리 이상)" value="${item.memberPw}" />
-                          <input id="master-pwd-re" type="password" placeholder="비밀번호 재입력" value="${item.memberPw}" />
-                          <p>관리자 정보</p>
-
-                          <input id="master-dept" type="text" placeholder="부서" value="${item.dept ? item.dept : ''}" />
-                          <input id="master-team" type="text" placeholder="팀" value="${item.team ? item.team : ''}" />
-                          <input id="master-name" type="text" placeholder="이름" value="${item.managerName ? item.managerName : ''}" />
-                          <input id="master-email" type="text" placeholder="이메일" value="${item.managerEmail ? item.managerEmail : ''}" />
-                          <input id="master-phone" type="text" placeholder="연락처1" value="${item.companyPhone ? item.companyPhone : ''}" />
-                          <input id="master-phone2" type="text" placeholder="연락처2" value="${item.companyPhoneSub ? item.companyPhoneSub: ''}" />
+                          <section class="sec_list">
+                            <div>
+                              <p>아이디 / 비밀번호</p>
+                              <input id="master-id" type="text" placeholder="아이디 (6자리 이상)" value="${item.memberId}" disabled/>
+                              <input id="master-pwd" type="password" placeholder="비밀번호(영문, 숫자 조합 8자리 이상)" value="${item.memberPw}" />
+                              <input id="master-pwd-re" type="password" placeholder="비밀번호 재입력" value="${item.memberPw}" />
+                            </div>
+                            <div>
+                              <p>관리자 정보</p>
+                              <input id="master-dept" type="text" placeholder="부서" value="${item.dept ? item.dept : ''}" />
+                              <input id="master-team" type="text" placeholder="팀" value="${item.team ? item.team : ''}" />
+                              <input id="master-name" type="text" placeholder="이름" value="${item.managerName ? item.managerName : ''}" />
+                              <input id="master-email" type="text" placeholder="이메일" value="${item.managerEmail ? item.managerEmail : ''}" />
+                              <input id="master-phone" type="text" placeholder="연락처1" value="${item.companyPhone ? item.companyPhone : ''}" />
+                              <input id="master-phone2" type="text" placeholder="연락처2" value="${item.companyPhoneSub ? item.companyPhoneSub: ''}" />
+                            </div>
+                          </section>
                         </div>
                         <div class="modalFooter">
                             <button type="button" class="save" onclick="validModifyMaster()">수정</button>
@@ -133,7 +138,7 @@
                   <div class="modalWrap md_categoryRegister" id="md_categoryRegister" style="display:block;">
                       <div class="modalContainer">
                           <div class="modalTitle">
-                              <p>관리자 / 수정</p>
+                              <p>회원 / 관리자 수정</p>
                               <button class="close modalClose" onclick="location.reload();"></button>
                           </div>
                           <div class="modalContent">
