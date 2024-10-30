@@ -2,16 +2,18 @@
   // 엑셀 업로드 팝업
   function campaignExcelUpload() {
     const modal = `
-                  <div class="modalWrap md_excelUpload" id="md_excelUpload" style="display:block;">
+                  <div class="modalWrap md_fileUpload" id="md_fileUpload" style="display:block;">
                     <div class="modalContainer">
                       <div class="modalTitle">
                         <p>카테고리 캠페인 관리 / 엑셀업로드</p>
                         <button class="close modalClose" onclick="location.reload();"></button>
                       </div>
                       <div class="modalContent">
-                        <span>1. 현재 카테고리 엑셀 양식 <a href="#">[다운로드]</a></span>
-                        <span>2. 전체 캠페인 리스트 입니다.</span>
-                        <span>3. 다운로드 양식에서 순위 조정 후 아래에 업로드해 주세요.</span>
+                        <div class="guideBox">
+                            <p>현재 카테고리 엑셀 양식<span>다운로드</span></p>
+                            <p>전체 캠페인 리스트 입니다.</p>
+                            <p>다운로드 양식에서 순위 조정 후 아래에 업로드해 주세요.</p>
+                        </div>
                         <div class="file-box">
                           <div class="file-info">
                             <input type="file" id="excelFile" accept=".xls, .xlsx" style="display:none;">
@@ -21,7 +23,7 @@
                         </div>
                       </div>
                       <div class="modalFooter">
-                        <button type="button" class="confirm" onclick="postCampaignExcelUpload();">등록</button>
+                        <button type="button" class="confirm" onclick="postCampaignExcelUpload();">업로드</button>
                         <button type="button" class="cancel" onclick="location.reload();">취소</button>
                       </div>
                     </div>
