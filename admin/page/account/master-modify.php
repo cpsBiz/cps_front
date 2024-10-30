@@ -9,7 +9,7 @@
 
       $.ajax({
         type: 'POST',
-        url: 'http://192.168.101.156/api/admin/memberDetail',
+        url: 'https://admin.shoplus.io/api/admin/memberDetail',
         contentType: 'application/json',
         dataType: 'JSON',
         data: JSON.stringify(requestData),

@@ -3,239 +3,243 @@
 <html lang="ko">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="format-detection" content="telephone=no">
-    <title>쇼핑적립</title>
-    <link rel="icon" type="image/x-icon" href="/view/images/favicon.ico">
-    <script type="text/javascript" src="/admin/js/lib/jquery-2.2.2.min.js"></script>
-    <script type="text/javascript" src="/admin/js/lib/jquery.easing.1.3.js"></script>
-    <script type="text/javascript" src="/admin/js/lib/jquery-ui.min.js"></script>
-    <!-- style -->
-    <link rel="stylesheet" href="/view/css/style.css">
-    <link rel="stylesheet" href="/view/css/index.css">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="format-detection" content="telephone=no">
+	<title>쇼핑적립</title>
+	<link rel="icon" type="image/x-icon" href="/view/images/favicon.ico">
+	<script type="text/javascript" src="/admin/js/lib/jquery-2.2.2.min.js"></script>
+	<script type="text/javascript" src="/admin/js/lib/jquery.easing.1.3.js"></script>
+	<script type="text/javascript" src="/admin/js/lib/jquery-ui.min.js"></script>
+	<!-- style -->
+	<link rel="stylesheet" href="/view/css/style.css">
+	<link rel="stylesheet" href="/view/css/index.css">
 </head>
 
 <body>
-    <div class="wrap">
-        <!-- header -->
-        <header>
-            <h1>쇼핑적립</h1>
-            <div class="btn-list">
-                <a href="javascript:history.back()" class="ico-arrow type1 left">이전</a>
-                <a href="/view/index.php" class="ico-home">홈</a>
-            </div>
-        </header>
-        <!-- main -->
-        <!-- hana class 추가 시 시그니처 컬러 변경 -->
-        <div class="main">
-            <div id="event-popup1" class="event-popup on">
-                <div class="event-cont">
-                    <div class="logo" style="background-image: url(/view/images/test/지마켓.png);"></div>
-                    <p>지마켓 수수료 2% 상향 이벤트<span>기간 : 10/1 ~ 10/30</span></p>
-                </div>
-                <a href="javascript:void(0)"></a>
-                <button class="close" onclick="eventPopupClose('#event-popup1')"></button>
-            </div>
-            <div class="point-info-wrap">
-                <div class="point-info">
-                    <div class="text-box">
-                        <p class="title">총 적립 포인트</p>
-                        <p id="userCommission" class="point"></p>
-                    </div>
-                    <a href="/view/history/point.php"></a>
-                </div>
-            </div>
-            <div class="tab-box-wrap">
-                <div class="tab-box">
-                    <div class="tab tab1 on"><a href="javascript:getCampaignView('C0014')">인기순</a></div>
-                    <div class="tab tab2"><a href="javascript:getCampaignView('C0001')">종합몰</a></div>
-                    <div class="tab tab3"><a href="javascript:getCampaignView('C0003')">패션</a></div>
-                    <div class="tab tab4"><a href="javascript:getCampaignView('C0002')">뷰티</a></div>
-                    <div class="tab tab5"><a href="javascript:getCampaignView('favorites')">즐겨찾기</a></div>
-                </div>
-            </div>
-            <div class="list-wrap type1">
-                <div id="coupangArea" class="list list1 type1"></div>
-                <div class="campaign-list" id="campaign-list"></div>
-            </div>
-        </div>
-        <div class="bottom-menu-wrap">
-            <a class="menu" href="javascript:void(0)"><span class="ico-cart">카트</span></a>
-            <a class="menu on" href="/view/index.php"><span class="ico-save">적립</span></a>
-            <a class="menu" href="javascript:void(0)"><span class="ico-trend">트렌드</span></a>
-            <a class="menu" href="javascript:void(0)"><span class="ico-delivery">배송</span></a>
-            <a class="menu" href="/view/history/point.php"><span class="ico-breakDown">내역</span></a>
-        </div>
-    </div>
+	<div class="wrap">
+		<!-- header -->
+		<header>
+			<h1>쇼핑적립</h1>
+			<div class="btn-list">
+				<a href="javascript:history.back()" class="ico-arrow type1 left">이전</a>
+				<a href="/view/index.php" class="ico-home">홈</a>
+			</div>
+		</header>
+		<!-- main -->
+		<!-- hana class 추가 시 시그니처 컬러 변경 -->
+		<div class="main">
+			<div id="event-popup1" class="event-popup on">
+				<div class="event-cont">
+					<div class="logo" style="background-image: url(/view/images/test/지마켓.png);"></div>
+					<p>지마켓 수수료 2% 상향 이벤트<span>기간 : 10/1 ~ 10/30</span></p>
+				</div>
+				<a href="javascript:void(0)"></a>
+				<button class="close" onclick="eventPopupClose('#event-popup1')"></button>
+			</div>
+			<div class="point-info-wrap">
+				<div class="point-info">
+					<div class="text-box">
+						<p class="title">총 적립 포인트</p>
+						<p id="userCommission" class="point"></p>
+					</div>
+					<a href="/view/history/point.php"></a>
+				</div>
+			</div>
+			<div class="tab-box-wrap">
+				<div class="tab-box">
+					<div class="tab tab1 on"><a href="javascript:getCampaignView('C0014')">인기순</a></div>
+					<div class="tab tab2"><a href="javascript:getCampaignView('C0001')">종합몰</a></div>
+					<div class="tab tab3"><a href="javascript:getCampaignView('C0003')">패션</a></div>
+					<div class="tab tab4"><a href="javascript:getCampaignView('C0002')">뷰티</a></div>
+					<div class="tab tab5"><a href="javascript:getCampaignView('favorites')">즐겨찾기</a></div>
+				</div>
+			</div>
+			<div class="list-wrap type1">
+				<div id="coupangArea" class="list list1 type1"></div>
+				<div class="campaign-list" id="campaign-list"></div>
+			</div>
+		</div>
+		<div class="bottom-menu-wrap">
+			<a class="menu" href="javascript:void(0)"><span class="ico-cart">카트</span></a>
+			<a class="menu on" href="/view/index.php"><span class="ico-save">적립</span></a>
+			<a class="menu" href="javascript:void(0)"><span class="ico-trend">트렌드</span></a>
+			<a class="menu" href="javascript:void(0)"><span class="ico-delivery">배송</span></a>
+			<a class="menu" href="/view/history/point.php"><span class="ico-breakDown">내역</span></a>
+		</div>
+	</div>
 
 </body>
 <script type="text/javascript" src="/view/js/common.js"></script>
 
 </html>
 <script>
-    $(function() {
-        // getBanner();
-        getMemberCommission();
-        getCampaignView('C0014');
-    })
+	$(function() {
+		// getBanner();
+		getMemberCommission();
+		getCampaignView('C0014');
+	})
 
-    // 배너 조회
-    // function getBanner() {
-    //   return console.log('배너 조회 호출');
+	// 배너 조회
+	// function getBanner() {
+	//   return console.log('배너 조회 호출');
 
-    //   try {
-    //     // AJAX 요청 데이터 설정
-    //     const requestData = {
+	//   try {
+	//     // AJAX 요청 데이터 설정
+	//     const requestData = {
 
-    //     };
+	//     };
 
-    //     // AJAX 요청 수행
-    //     $.ajax({
-    //       type: 'POST',
-    //       url: 'https://app.shoplus.io/api/view/',
-    //       contentType: 'application/json',
-    //       data: JSON.stringify(requestData),
-    //       success: function(result) {
-    //         const banner = `
-    //                         <div id="event-popup1" class="event-popup on">
-    //                           <div class="event-cont">
-    //                             <div class="logo" style="background-image: url(./images/test/지마켓.png);"></div>
-    //                             <p>지마켓 수수료 2% 상향 이벤트<span>기간 : 10/1 ~ 10/30</span></p>
-    //                           </div>
-    //                           <a href="javascript:void(0)"></a>
-    //                           <button class="close" onclick="eventPopupClose('#event-popup1')"></button>
-    //                         </div>
-    //                         `;
-    //         $('.main').prepend(banner);
-    //       },
-    //       error: function(request, status, error) {
-    //         console.error(`Error: ${error}`);
-    //       }
-    //     });
-    //   } catch (error) {
-    //     alert(error.message);
-    //   }
-    // }
+	//     // AJAX 요청 수행
+	//     $.ajax({
+	//       type: 'POST',
+	//       url: 'https://app.shoplus.io/api/view/',
+	//       contentType: 'application/json',
+	//       data: JSON.stringify(requestData),
+	//       success: function(result) {
+	//         const banner = `
+	//                         <div id="event-popup1" class="event-popup on">
+	//                           <div class="event-cont">
+	//                             <div class="logo" style="background-image: url(./images/test/지마켓.png);"></div>
+	//                             <p>지마켓 수수료 2% 상향 이벤트<span>기간 : 10/1 ~ 10/30</span></p>
+	//                           </div>
+	//                           <a href="javascript:void(0)"></a>
+	//                           <button class="close" onclick="eventPopupClose('#event-popup1')"></button>
+	//                         </div>
+	//                         `;
+	//         $('.main').prepend(banner);
+	//       },
+	//       error: function(request, status, error) {
+	//         console.error(`Error: ${error}`);
+	//       }
+	//     });
+	//   } catch (error) {
+	//     alert(error.message);
+	//   }
+	// }
 
-    // 회원 적립금 조회
-    function getMemberCommission() {
-        try {
-            const userId = '<?= $_SESSION["check_userId"]; ?>';
-            const affliateId = '<?= $_SESSION["check_affliateId"]; ?>';
+	// 회원 적립금 조회
+	function getMemberCommission() {
+		try {
+			const userId = '<?= $_SESSION["check_userId"]; ?>';
+			const affliateId = '<?= $_SESSION["check_affliateId"]; ?>';
 
-            // AJAX 요청 데이터 설정
-            const requestData = {
-                userId,
-                affliateId
-            };
+			// AJAX 요청 데이터 설정
+			const requestData = {
+				userId,
+				affliateId
+			};
 
-            // AJAX 요청 수행
-            $.ajax({
-                type: 'POST',
-                url: 'https://app.shoplus.io/api/view/memberCommission',
-                contentType: 'application/json',
-                data: JSON.stringify(requestData),
-                success: function(result) {
-                    const userCommission = parseInt(result.data.userCommission).toLocaleString();
-                    const appendCommission =
-                        `<span class="ico-point"></span>${userCommission}<span class="ico-arrow type2 right"></span>`;
-                    $('#userCommission').append(appendCommission);
-                },
-                error: function(request, status, error) {
-                    console.error(`Error: ${error}`);
-                }
-            });
-        } catch (error) {
-            alert(error.message);
-        }
-    }
+			// AJAX 요청 수행
+			$.ajax({
+				type: 'POST',
+				url: 'https://app.shoplus.io/api/view/memberCommission',
+				contentType: 'application/json',
+				data: JSON.stringify(requestData),
+				success: function(result) {
+					const userCommission = parseInt(result.data.userCommission).toLocaleString();
+					const appendCommission =
+						`<span class="ico-point"></span>${userCommission}<span class="ico-arrow type2 right"></span>`;
+					$('#userCommission').append(appendCommission);
+				},
+				error: function(request, status, error) {
+					console.error(`Error: ${error}`);
+				}
+			});
+		} catch (error) {
+			alert(error.message);
+		}
+	}
 
-    // 캠페인 영역
-    function getCampaignView(category) {
-        try {
-            // 매체 아이디
-            const affliateId = '<?= $_SESSION["check_affliateId"]; ?>';
-            // 지면 아이디
-            const zoneId = '<?= $_SESSION["check_zoneId"]; ?>';
-            // 매체가 선택한 사이트
-            const site = '<?= $_SESSION["check_site"]; ?>';
-            // 로그인 유저 아이디
-            const userId = '<?= $_SESSION["check_userId"]; ?>';
-            // 광고 아이디
-            const adId = '<?= $_SESSION["check_adId"]; ?>';
-            // 기기 OS
-            const os = getOs();
+	// 캠페인 영역
+	function getCampaignView(category) {
+		try {
+			// 매체 아이디
+			const affliateId = '<?= $_SESSION["check_affliateId"]; ?>';
+			// 지면 아이디
+			const zoneId = '<?= $_SESSION["check_zoneId"]; ?>';
+			// 매체가 선택한 사이트
+			const site = '<?= $_SESSION["check_site"]; ?>';
+			// 로그인 유저 아이디
+			const userId = '<?= $_SESSION["check_userId"]; ?>';
+			// 광고 아이디
+			const adId = '<?= $_SESSION["check_adId"]; ?>';
+			// 기기 OS
+			const os = getOs();
 
-            // AJAX 요청 데이터 설정
-            const requestData = {
-                affliateId,
-                zoneId,
-                site,
-                userId,
-                adId,
-                os,
-                category: category ? category : ''
-            };
+			// AJAX 요청 데이터 설정
+			const requestData = {
+				affliateId,
+				zoneId,
+				site,
+				userId,
+				adId,
+				os,
+				category: category ? category : ''
+			};
 
-            // AJAX 요청 수행
-            $.ajax({
-                type: 'POST',
-                url: 'https://app.shoplus.io/api/view/campaignView',
-                contentType: 'application/json',
-                data: JSON.stringify(requestData),
-                success: function(result) {
-                    handleCampaingView(result);
-                },
-                error: function(request, status, error) {
-                    console.error(`Error: ${error}`);
-                }
-            });
-        } catch (error) {
-            alert(error.message);
-        }
-    }
+			// AJAX 요청 수행
+			$.ajax({
+				type: 'POST',
+				url: 'https://app.shoplus.io/api/view/campaignView',
+				contentType: 'application/json',
+				data: JSON.stringify(requestData),
+				success: function(result) {
+					handleCampaingView(result);
+				},
+				error: function(request, status, error) {
+					console.error(`Error: ${error}`);
+				}
+			});
+		} catch (error) {
+			alert(error.message);
+		}
+	}
 
-    function handleCampaingView(result) {
-        const data = result.datas;
+	function handleCampaingView(result) {
+		const data = result.datas;
 
-        $('#campaign-list').empty();
-        if (!data || data.length === 0) {
-            removeCoupangArea();
-            return;
-        }
+		$('#campaign-list').empty();
+		if (!data || data.length === 0) {
+			removeCoupangArea();
+			return;
+		}
 
-        let list = '';
-        let checkCoupang = false;
-        data.forEach(item => {
-            if (item.memberName === '쿠팡') {
-                checkCoupang = true;
-                renderCoupangArea(item);
-                return
-            }
-            let apiUrl = '';
-            if (item.adminId === 'linkprice') {
-                apiUrl = 'https://app.shoplus.io/api/clickLinkPrice/campaignClick';
-            } else if (item.adminId === 'dotpitch') {
-                apiUrl = 'https://app.shoplus.io/api/clickDotPitch/campaignClick';
-            }
+		let list = '';
+		let checkCoupang = false;
+		data.forEach(item => {
+			if (item.memberName === '쿠팡') {
+				checkCoupang = true;
+				renderCoupangArea(item);
+				return
+			}
+			let apiUrl = '';
+			if (item.adminId === 'linkprice') {
+				apiUrl = 'https://app.shoplus.io/api/clickLinkPrice/campaignClick';
+			} else if (item.adminId === 'dotpitch') {
+				apiUrl = 'https://app.shoplus.io/api/clickDotPitch/campaignClick';
+			}
 
-            // 적립률
-            const commissionPer = getCommissionPer(item);
+			// 적립률
+			const commissionPer = getCommissionPer(item);
 
-            const params = {
-                clickUrl: getDevice() ? item.mobileClickUrl : item.clickUrl,
-                apiUrl,
-                campaignNum: item.campaignNum,
-                per: commissionPer,
-                affliateId: item.affliateId,
-                merchantId: item.merchantId,
-                agencyId: item.adminId,
-                site: item.site,
-            }
-            const itemStr = base64Encode(JSON.stringify(params));
+			const params = {
+				clickUrl: getDevice() ? item.mobileClickUrl : item.clickUrl,
+				apiUrl,
+				campaignNum: item.campaignNum,
+				per: commissionPer,
+				affliateId: '<?= $_SESSION['check_affliateId']; ?>',
+				merchantId: item.merchantId,
+				agencyId: item.adminId,
+				site: '<?= $_SESSION['check_affliateId']; ?>',
+				zoneId: '<?= $_SESSION['check_zoneId']; ?>',
+				userId: '<?= $_SESSION['check_userId']; ?>',
+				adId: '<?= $_SESSION['check_adId']; ?>',
+				type: 'MERCHANT'
+			}
+			const itemStr = base64Encode(JSON.stringify(params));
 
-            list += `
+			list += `
               <div class="list">
                 <p class="title"><span class="logo" style="background-image: url(${item.logo});"></span>${item.memberName}</p>
                 <p class="percent"><span class="ico-point"></span>${commissionPer}%</p>
@@ -243,29 +247,29 @@
                 <button class="ico-heart ${item.favorites === 'FAVORITE' ? 'on' : ''}" type="button" onclick="patchFavorites(${item.campaignNum}, '${item.favorites}', this)">즐겨찾기</button>
               </div>
             `;
-        });
-        if (!checkCoupang) removeCoupangArea();
-        $('#campaign-list').append(list);
-    }
+		});
+		if (!checkCoupang) removeCoupangArea();
+		$('#campaign-list').append(list);
+	}
 
-    function renderCoupangArea(item) {
-        const apiUrl = 'https://app.shoplus.io/api/clickCoupang/campaignClick';
-        const commissionPer = getCommissionPer(item);
+	function renderCoupangArea(item) {
+		const apiUrl = 'https://app.shoplus.io/api/clickCoupang/campaignClick';
+		const commissionPer = getCommissionPer(item);
 
-        const params = {
-            clickUrl: getDevice() ? item.mobileClickUrl : item.clickUrl,
-            apiUrl,
-            campaignNum: item.campaignNum,
-            per: commissionPer,
-            affliateId: item.affliateId,
-            merchantId: item.merchantId,
-            agencyId: item.adminId,
-            site: item.site,
-        }
+		const params = {
+			clickUrl: getDevice() ? item.mobileClickUrl : item.clickUrl,
+			apiUrl,
+			campaignNum: item.campaignNum,
+			per: commissionPer,
+			affliateId: item.affliateId,
+			merchantId: item.merchantId,
+			agencyId: item.adminId,
+			site: item.site,
+		}
 
-        const itemStr = base64Encode(JSON.stringify(params));
+		const itemStr = base64Encode(JSON.stringify(params));
 
-        const area = `
+		const area = `
                   <p class="title">쿠팡 검색 쇼핑하고 선물 받기</p>
                   <div class="info-wrap">
                     <a id="memberStick" class="candy type1" href="/view/history/stick.php"></a>
@@ -278,106 +282,106 @@
                   </div>
                   <button class="ico-heart ${item.favorites === 'FAVORITE' ? 'on' : ''}" type="button" onclick="patchFavorites(${item.campaignNum}, '${item.favorites}', this)"></button>
                   `;
-        removeCoupangArea();
-        $('#coupangArea').append(area);
-        getMemberStick();
-    }
+		removeCoupangArea();
+		$('#coupangArea').append(area);
+		getMemberStick();
+	}
 
-    function removeCoupangArea() {
-        $('#coupangArea').hide();
-    }
+	function removeCoupangArea() {
+		$('#coupangArea').hide();
+	}
 
-    // 쿠팡 막대사탕 조회
-    function getMemberStick() {
-        try {
-            const userId = '<?= $_SESSION["check_userId"]; ?>';
-            const merchantId = 'coupang';
-            const affliateId = '<?= $_SESSION["check_affliateId"]; ?>';
+	// 쿠팡 막대사탕 조회
+	function getMemberStick() {
+		try {
+			const userId = '<?= $_SESSION["check_userId"]; ?>';
+			const merchantId = 'coupang';
+			const affliateId = '<?= $_SESSION["check_affliateId"]; ?>';
 
-            // AJAX 요청 데이터 설정
-            const requestData = {
-                userId,
-                merchantId,
-                affliateId
-            };
+			// AJAX 요청 데이터 설정
+			const requestData = {
+				userId,
+				merchantId,
+				affliateId
+			};
 
-            // AJAX 요청 수행
-            $.ajax({
-                type: 'POST',
-                url: 'https://app.shoplus.io/api/view/coupangStick',
-                contentType: 'application/json',
-                data: JSON.stringify(requestData),
-                success: function(result) {
-                    const memberStick = parseInt(result.data.cnt - result.data.stockCnt).toLocaleString();
-                    const appendStick = `${memberStick}개`;
-                    $('#memberStick').append(appendStick);
-                },
-                error: function(request, status, error) {
-                    console.error(`Error: ${error}`);
-                }
-            });
-        } catch (error) {
-            alert(error.message);
-        }
-    }
+			// AJAX 요청 수행
+			$.ajax({
+				type: 'POST',
+				url: 'https://app.shoplus.io/api/view/coupangStick',
+				contentType: 'application/json',
+				data: JSON.stringify(requestData),
+				success: function(result) {
+					const memberStick = parseInt(result.data.cnt - result.data.stockCnt).toLocaleString();
+					const appendStick = `${memberStick}개`;
+					$('#memberStick').append(appendStick);
+				},
+				error: function(request, status, error) {
+					console.error(`Error: ${error}`);
+				}
+			});
+		} catch (error) {
+			alert(error.message);
+		}
+	}
 
-    // 캠페인 즐겨찾기 등록, 삭제
-    function patchFavorites(campaignNum, favorites, dom) {
-        try {
-            const userId = '<?= $_SESSION["check_userId"]; ?>';
-            const affliateId = '<?= $_SESSION["check_affliateId"]; ?>';
-            const apiType = favorites === 'NON_FAVORITE' ? 'I' : 'D';
+	// 캠페인 즐겨찾기 등록, 삭제
+	function patchFavorites(campaignNum, favorites, dom) {
+		try {
+			const userId = '<?= $_SESSION["check_userId"]; ?>';
+			const affliateId = '<?= $_SESSION["check_affliateId"]; ?>';
+			const apiType = favorites === 'NON_FAVORITE' ? 'I' : 'D';
 
-            // AJAX 요청 데이터 설정
-            const requestData = {
-                userId,
-                affliateId,
-                campaignNum,
-                apiType,
-            };
+			// AJAX 요청 데이터 설정
+			const requestData = {
+				userId,
+				affliateId,
+				campaignNum,
+				apiType,
+			};
 
-            // AJAX 요청 수행
-            $.ajax({
-                type: 'POST',
-                url: 'https://app.shoplus.io/api/view/favorites',
-                contentType: 'application/json',
-                data: JSON.stringify(requestData),
-                success: function(result) {
-                    if (result.resultCode === '0000') {
-                        let domClass = dom.classList;
-                        domClass.value.includes('on') ? domClass.remove('on') : domClass.add('on');
-                    } else {
-                        alert(result.resultMessage);
-                    }
-                },
-                error: function(request, status, error) {
-                    console.error(`Error: ${error}`);
-                }
-            });
-        } catch (error) {
-            alert(error.message);
-        }
-    }
+			// AJAX 요청 수행
+			$.ajax({
+				type: 'POST',
+				url: 'https://app.shoplus.io/api/view/favorites',
+				contentType: 'application/json',
+				data: JSON.stringify(requestData),
+				success: function(result) {
+					if (result.resultCode === '0000') {
+						let domClass = dom.classList;
+						domClass.value.includes('on') ? domClass.remove('on') : domClass.add('on');
+					} else {
+						alert(result.resultMessage);
+					}
+				},
+				error: function(request, status, error) {
+					console.error(`Error: ${error}`);
+				}
+			});
+		} catch (error) {
+			alert(error.message);
+		}
+	}
 
-    function postToUrl(item) {
-        // 동적으로 form 생성
-        const form = document.createElement('form');
-        form.action = '/view/reward/campaign.php'; // 제출할 URL
-        form.method = 'POST'; // POST 방식
+	function postToUrl(item) {
+		// 동적으로 form 생성
+		const form = document.createElement('form');
+		form.action = '/view/reward/campaign.php'; // 제출할 URL
+		form.method = 'POST'; // POST 방식
 
-        // hidden input 생성 및 데이터 설정
-        const input = document.createElement('input');
-        input.type = 'hidden';
-        input.name = 'object';
-        input.value = item;
+		// hidden input 생성 및 데이터 설정
+		const input = document.createElement('input');
+		input.type = 'hidden';
+		input.name = 'object';
+		input.value = item;
 
-        // form에 input 추가
-        form.appendChild(input);
+		// form에 input 추가
+		form.appendChild(input);
 
-        // form을 body에 추가
-        document.body.appendChild(form);
+		// form을 body에 추가
+		document.body.appendChild(form);
 
-        // form 제출
-        form.submit();
-    }
+		// form 제출
+		form.submit();
+	}
 </script>

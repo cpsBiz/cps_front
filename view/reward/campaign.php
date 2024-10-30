@@ -92,7 +92,8 @@ if (!$object) {
     document.getElementById('campaignNum').value = campaignNum;
 
     if (apiUrl && clickUrl && campaignNum) {
-      getClickRewardUrl(apiUrl, clickUrl, campaignNum);
+      getCampaignData(campaignNum);
+      $('#buttonUrl').attr('href', `javascript:getClickRewardUrl('${apiUrl}', '${clickUrl}', ${campaignNum})`);
     } else {
       alert('잘못된 접근입니다.')
       history.back();
@@ -101,12 +102,12 @@ if (!$object) {
 
   function getClickRewardUrl(apiUrl, clickUrl, campaignNum) {
     try {
-      const affliateId = object.affliateId;
+      const affliateId = '<?= $_SESSION['check_affliateId']; ?>';
       const zoneId = '<?= $_SESSION["check_zoneId"]; ?>';
       const agencyId = object.agencyId;
       const merchantId = object.merchantId;
-      const type = '';
-      const site = object.site;
+      const type = 'MERCHANT';
+      const site = <?= $_SESSION['check_site']; ?>;
       const os = getOs();
       const userId = '<?= $_SESSION["check_userId"]; ?>';
       const adId = '<?= $_SESSION["check_adId"]; ?>';
@@ -139,9 +140,7 @@ if (!$object) {
             history.back();
             return;
           }
-          $('#buttonUrl').attr('href', buttonUrl);
-
-          getCampaignData(campaignNum);
+          location.href = buttonUrl;
         },
         error: function(request, status, error) {
           console.error(`Error: ${error}`);
