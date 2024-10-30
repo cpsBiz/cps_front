@@ -2020,10 +2020,11 @@ input[type='checkbox']:checked + label .ico-check.on {
 }
 .event-popup .event-cont {
   display: flex;
+  align-items: center;
   gap: 12px;
 }
 .event-popup .event-cont .logo {
-  background-size: cover;
+  background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
   background-color: transparent;
@@ -3960,10 +3961,11 @@ input[type='checkbox']:checked + label .ico-check.on {
 }
 .event-popup .event-cont {
   display: flex;
+  align-items: center;
   gap: 12px;
 }
 .event-popup .event-cont .logo {
-  background-size: cover;
+  background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
   background-color: transparent;

@@ -100,7 +100,7 @@
                               <input type="checkbox" name="" id="" />
                               <label for="">*해당사항 없음</label>
                             </div>
-                            <input type="text" placeholder="예금주명" disabled />
+                            <input type="text" placeholder="예금주명" />
                             <input type="text" placeholder="은행명" />
                           </div>
                           <div id="affliate-user" class="affliate-info-box">

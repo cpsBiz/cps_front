@@ -29,14 +29,7 @@
 		<!-- main -->
 		<!-- hana class 추가 시 시그니처 컬러 변경 -->
 		<div class="main">
-			<div id="event-popup1" class="event-popup on">
-				<div class="event-cont">
-					<div class="logo" style="background-image: url(/view/images/test/지마켓.png);"></div>
-					<p>지마켓 수수료 2% 상향 이벤트<span>기간 : 10/1 ~ 10/30</span></p>
-				</div>
-				<a href="javascript:void(0)"></a>
-				<button class="close" onclick="eventPopupClose('#event-popup1')"></button>
-			</div>
+			<div id="banner"></div>
 			<div class="point-info-wrap">
 				<div class="point-info">
 					<div class="text-box">
@@ -75,48 +68,86 @@
 </html>
 <script>
 	$(function() {
-		// getBanner();
+		getBanner();
 		getMemberCommission();
 		getCampaignView('C0014');
 	})
 
 	// 배너 조회
-	// function getBanner() {
-	//   return console.log('배너 조회 호출');
+	function getBanner() {
+		try {
+			// AJAX 요청 데이터 설정
+			const requestData = {
+				affliateId: '<?= $checkAffliateId; ?>'
+			};
 
-	//   try {
-	//     // AJAX 요청 데이터 설정
-	//     const requestData = {
+			// AJAX 요청 수행
+			$.ajax({
+				type: 'POST',
+				url: '<?= $appApiUrl; ?>/api/view/bannerView',
+				contentType: 'application/json',
+				data: JSON.stringify(requestData),
+				success: function(result) {
+					if (!result.data || result.data == null) return;
 
-	//     };
+					const item = result.data;
 
-	//     // AJAX 요청 수행
-	//     $.ajax({
-	//       type: 'POST',
-	//       url: '<?= $appApiUrl; ?>/api/view/',
-	//       contentType: 'application/json',
-	//       data: JSON.stringify(requestData),
-	//       success: function(result) {
-	//         const banner = `
-	//                         <div id="event-popup1" class="event-popup on">
-	//                           <div class="event-cont">
-	//                             <div class="logo" style="background-image: url(./images/test/지마켓.png);"></div>
-	//                             <p>지마켓 수수료 2% 상향 이벤트<span>기간 : 10/1 ~ 10/30</span></p>
-	//                           </div>
-	//                           <a href="javascript:void(0)"></a>
-	//                           <button class="close" onclick="eventPopupClose('#event-popup1')"></button>
-	//                         </div>
-	//                         `;
-	//         $('.main').prepend(banner);
-	//       },
-	//       error: function(request, status, error) {
-	//         console.error(`Error: ${error}`);
-	//       }
-	//     });
-	//   } catch (error) {
-	//     alert(error.message);
-	//   }
-	// }
+					if (localStorage.getItem(`bannerClosed${item.affliateId}${item.bannerNum}`)) return
+
+					if (item.bannerStatus === 'N') return;
+
+					let apiUrl = '';
+					if (item.adminId === 'linkprice') {
+						apiUrl = '<?= $appApiUrl; ?>/api/clickLinkPrice/campaignClick';
+					} else if (item.adminId === 'dotpitch') {
+						apiUrl = '<?= $appApiUrl; ?>/api/clickDotPitch/campaignClick';
+					}
+
+					// 적립률
+					const commissionPer = getCommissionPer(item);
+
+					const params = {
+						clickUrl: getDevice() ? item.mobileClickUrl : item.clickUrl,
+						apiUrl,
+						campaignNum: item.campaignNum,
+						per: commissionPer,
+						affliateId: '<?= $checkAffliateId; ?>',
+						merchantId: item.merchantId,
+						agencyId: item.adminId,
+						site: '<?= $checkAffliateId; ?>',
+						zoneId: '<?= $checkZoneId; ?>',
+						userId: '<?= $checkUserId; ?>',
+						adId: '<?= $checkAdId; ?>',
+						type: 'MERCHANT'
+					}
+					const itemStr = base64Encode(JSON.stringify(params));
+
+					const banner = `
+	                        <div class="event-popup on">
+	                          <div class="event-cont">
+	                            <div class="logo" style="background-image: url(${item.logo});"></div>
+	                            <p>${item.subject}<span>${item.notice}</span><span>기간 : ${item.bannerStart} ~ ${item.bannerEnd}</span></p>
+	                          </div>
+	                          <a href="javascript:postToUrl('${itemStr}')"></a>
+	                          <button class="close" onclick="closeBanner('${item.affliateId}${item.bannerNum}')"></button>
+	                        </div>
+	                        `;
+					$('#banner').empty();
+					$('#banner').prepend(banner);
+				},
+				error: function(request, status, error) {
+					console.error(`Error: ${error}`);
+				}
+			});
+		} catch (error) {
+			alert(error.message);
+		}
+	}
+
+	function closeBanner(val) {
+		localStorage.setItem(`bannerClosed${val}`, 'true');
+		$('#banner').empty();
+	}
 
 	// 회원 적립금 조회
 	function getMemberCommission() {
