@@ -61,7 +61,7 @@ $total = 0;
 						<!-- tab 2 > 카테고리 캠페인 관리  -->
 						<? if ($tab == 'campaign') {
 							$paramCategory = !$_REQUEST['category'] ? 'C0001' : $_REQUEST['category'];
-							$paramAffliate = !$_REQUEST['affliate'] ? 'moneyweather' : $_REQUEST['affliate'];
+							$paramAffliate = !$_REQUEST['affliate'] ? 'donsee' : $_REQUEST['affliate'];
 							include_once $_SERVER['DOCUMENT_ROOT'] . "/admin/page/campaign/category/tab-campaign.php";
 						} ?>
 					</div>
