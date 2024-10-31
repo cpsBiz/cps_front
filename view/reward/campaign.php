@@ -192,8 +192,8 @@ if (!$object) {
     if (logo) $('#campaignLogo').css('background-image', `url(${logo})`);
 
     // 적립예정
-    const transReposition = `<p><span>적립예정</span>${data.transReposition}</p>`;
-    $('#campaignRewardDate').append(transReposition);
+    const whenTrans = `<p><span>적립예정</span>${data.whenTrans}</p>`;
+    $('#campaignRewardDate').append(whenTrans);
 
     // 적립확정
     const commissionPaymentStandard = `<p><span>적립확정</span>${data.commissionPaymentStandard}</p>`;

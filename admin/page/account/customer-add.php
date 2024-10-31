@@ -37,12 +37,12 @@
                           <div>
                             <p>대행사 선택</p>
                             <div class="checkBox">
-                              <input type="checkbox" name="" id="" />
-                              <label for="">*해당사항 없음</label>
+                              <input type="checkbox" id="agencyNone" onchange="checkedAgencyNone()" />
+                              <label for="agencyNone">*해당사항 없음</label>
                             </div>
                             <div class="searchBox">
-                              <input type="text" placeholder="대행사명" />
-                              <button type="button" class="search">조회</button>
+                              <input id="agencyName" type="text" placeholder="대행사명" />
+                              <button id="searchAgencyBtn" type="button" class="search">조회</button>
                             </div>
                           </div>
                           <div id="personal-user" class="user-info-box userType" style="display:none;">
@@ -96,8 +96,8 @@
                           <div>
                             <p>은행정보</p>
                             <div class="checkBox">
-                              <input type="checkbox" name="" id="" />
-                              <label for="">*해당사항 없음</label>
+                              <input type="checkbox" id="bankNone" onchange="checkedBankNone()"/>
+                              <label for="bankNone">*해당사항 없음</label>
                             </div>
                             <input id="depositor" type="text" placeholder="예금주명" disabled/>
                             <input id="bank" type="text" placeholder="은행명" />
@@ -181,6 +181,9 @@
     const userType = document.getElementById('selectUserType2').value;
     if (!userType) return;
 
+    const checkedBankNone = document.getElementById('bankNone').checked;
+    if (checkedBankNone) return;
+
     let name = '';
     if (userType === 'PERSONAL') {
       name = document.getElementById('customer-personal-name').value;
@@ -191,6 +194,38 @@
     }
 
     document.getElementById('depositor').value = name;
+  }
+
+  // 대행사 선택 해당없음
+  function checkedAgencyNone() {
+    const checked = document.getElementById('agencyNone').checked;
+    if (checked) {
+      // 대행사명 초기화 후 입력불가
+      document.getElementById('agencyName').value = '';
+      document.getElementById('agencyName').disabled = true;
+      // 대행사명 조회 버튼 클릭불가
+      document.getElementById('searchAgencyBtn').disabled = true;
+    } else {
+      // 대행사명 입력허용
+      document.getElementById('agencyName').disabled = false;
+      // 대항사명 조회 버튼 클릭허용
+      document.getElementById('searchAgencyBtn').disabled = false;
+    }
+  }
+
+  // 은행정보 해당없음
+  function checkedBankNone() {
+    const checked = document.getElementById('bankNone').checked;
+    if (checked) {
+      // 예금주명, 은행명 초기화
+      document.getElementById('depositor').value = '';
+      document.getElementById('bank').value = '';
+      // 은행명 입력불가
+      document.getElementById('bank').disabled = true;
+    } else {
+      // 은행명 입력허용
+      document.getElementById('bank').disabled = false;
+    }
   }
 
   // 매체 사이트 추가
@@ -257,6 +292,13 @@
     const type2 = document.getElementById('selectUserType2').value;
     if (!type2) return alert('회원유형2를 선택해 주세요.');
 
+    // 대행사 선택 검증
+    const agencyNone = document.getElementById('agencyNone').checked;
+    if (!agencyNone) {
+      const agency = document.getElementById('agencyName').value;
+      if (!agency) return alert('대행사명을 입력해 주세요.');
+    }
+
     if (type2 === 'PERSONAL') { // 개인 검증
       const name = document.getElementById('customer-personal-').value;
       if (!name) return alert('이름을 입력해 주세요.');
@@ -274,6 +316,9 @@
       if (!sex) return alert('성별을 선택해 주세요.');
 
       // 주민등록증 처리 필요
+      const personalDoc = '';
+      if (!personalDoc) return alert('주민등록증을 등록해 주세요.');
+
     } else if (type2 === 'BUSINESS') { // 사업자 검증
       const companyName = document.getElementById('cusotmer-business-company-name').value;
       if (!companyName) return alert('업체(법인)명을 입력해 주세요.');
@@ -306,6 +351,8 @@
       if (!huntingLine) return alert('대표전화를 입력해 주세요.');
 
       // 사업자등록증 처리 필요
+      const businessDoc = '';
+      if (!businessDoc) return alert('사업자등록증을 등록해 주세요.');
     }
 
     // 사이트 추가등록 검증
@@ -314,12 +361,14 @@
     }
 
     // 은행 검증
-    const depositor = document.getElementById('depositor').value;
-    if (!depositor) return alert('예금주명을 입력해 주세요.');
+    const bankNone = document.getElementById('bankNone').checked;
+    if (!bankNone) {
+      const depositor = document.getElementById('depositor').value;
+      if (!depositor) return alert('이름 또는 대표자명을 입력해 주세요.');
 
-    const bank = document.getElementById('bank').value;
-    if (!bank) return alert('은행명을 입력해 주세요.')
-
+      const bank = document.getElementById('bank').value;
+      if (!bank) return alert('은행명을 입력해 주세요.')
+    }
 
     return console.log('검증완료');
 
