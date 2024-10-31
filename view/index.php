@@ -49,7 +49,7 @@
 				</div>
 			</div>
 			<div class="list-wrap type1">
-				<div id="coupangArea" class="list list1 type1"></div>
+				<div id="coupangArea" class="list list1 type1" style="display:none;"></div>
 				<div class="campaign-list" id="campaign-list"></div>
 			</div>
 		</div>
