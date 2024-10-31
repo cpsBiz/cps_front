@@ -19,6 +19,4 @@ if ($isTest) {
   $adminApiUrl = 'https://admin.shoplus.io';
   $appApiUrl = 'https://app.shoplus.io';
 }
-
-header("Access-Control-Allow-Origin: https://app.shoplus.io");
 ?>
