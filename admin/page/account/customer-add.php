@@ -105,7 +105,7 @@
                           </div>
                           <div id="affliate-user" class="affliate-info-box" style="display:none;">
                             <div id="site-list" class="site-info-box">
-                              <div>
+                              <div id="site-card1">
                                 <p>사이트등록1</p>
                                 <input type="text" placeholder="사이트명" />
                                 <input type="text" placeholder="URL" />
@@ -114,7 +114,7 @@
                                 </select>
                               </div>
                             </div>
-                            <button type="button" class="siteAdd">사이트 추가</button>
+                            <button type="button" class="siteAdd" onclick="addAffliateSite()">사이트 추가</button>
                           </div>
                         </section>
                       </div>
@@ -173,5 +173,26 @@
     } else if (type === 'BUSINESS') {
       $('#business-user').show();
     }
+  }
+
+  // 매체 사이트 추가
+  function addAffliateSite() {
+    const cardId = document.getElementById('site-list').childElementCount + 1;
+    const card = `
+                  <div id="site-card${cardId}">
+                    <p>사이트등록${cardId}<button class="remove-site-btn" onclick="removeAffliateSite(${cardId})">삭제</button></p>
+                    <input type="text" placeholder="사이트명" />
+                    <input type="text" placeholder="URL" />
+                    <select name="" id="">
+                      <option value="" selected disabled>카테고리 선택</option>
+                    </select>
+                  </div>
+                  `;
+    $('#site-list').append(card);
+  }
+
+  // 매체 사이트 삭제
+  function removeAffliateSite(id) {
+    $(`#site-card${id}`).remove();
   }
 </script>

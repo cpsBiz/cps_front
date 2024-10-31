@@ -12197,9 +12197,20 @@ menu : 고객관리
   gap: 20px;
 }
 
+.site-info-box {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
 .user-info-box > div,
 .site-info-box > div {
   display: flex;
   flex-direction: column;
   gap: 10px;
+}
+
+.remove-site-btn {
+  margin-left: 10px;
+  color: red;
 }
