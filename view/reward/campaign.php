@@ -160,7 +160,7 @@ if (!$object) {
       // AJAX 요청 수행
       $.ajax({
         type: 'POST',
-        url: '<?= $adminApiUrl; ?>/api/admin/campaignList',
+        url: '<?= $appApiUrl; ?>/api/view/campaignList',
         contentType: 'application/json',
         data: JSON.stringify(requestData),
         success: function(result) {
