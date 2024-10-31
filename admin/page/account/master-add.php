@@ -43,13 +43,13 @@
   }
 
   // 관리자 추가 검증 및 데이터 객체 생성 
-  let checkSerachId = false;
+  let checkSerachMasterId = false;
 
   function validAddMaster() {
     const id = document.getElementById('master-id').value;
     if (!id) return alert('아이디를 입력해 주세요.');
     if (id.length < 6) return alert('아이디를 6자리 이상 입력해 주세요.');
-    if (!checkSerachId) return alert('아이디를 조회해 주세요.');
+    if (!checkSerachMasterId) return alert('아이디를 조회해 주세요.');
 
     const pwd = document.getElementById('master-pwd').value;
     if (!validatePassword(pwd)) return alert('비밀번호는 영문과 숫자를 포함하여 8자리 이상되어야 합니다.');
@@ -114,10 +114,10 @@
           if (result.resultCode !== 'success') {
             document.getElementById('master-id').value = '';
             $('#master-id').focus();
-            checkSerachId = false;
+            checkSerachMasterId = false;
             return;
           }
-          checkSerachId = true;
+          checkSerachMasterId = true;
         },
         error: function(request, status, error) {
           console.error(`Error: ${error}`);

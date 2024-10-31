@@ -17,7 +17,7 @@ $paramKeyword = $_REQUEST['keyword'];
   <meta name="keywords" content="MOBON" />
   <meta name="author" content="인라이플" />
   <title>통합카트</title>
-  <link type="image/ico" rel="shortcut icon" href="/admin/image/favicon/favicon.ico">
+  <link type="image/ico" rel="shortcut icon" href="/admin/image/favicon/app.png">
   <script type="text/javascript" src="/admin/js/lib/jquery-2.2.2.min.js"></script>
   <script type="text/javascript" src="/admin/js/lib/jquery.easing.1.3.js"></script>
   <script type="text/javascript" src="/admin/js/lib/jquery-ui.min.js"></script>
