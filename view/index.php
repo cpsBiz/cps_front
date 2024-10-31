@@ -328,7 +328,7 @@
 	}
 
 	function removeCoupangArea() {
-		$('#coupangArea').hide();
+		$('#coupangArea').empty();
 	}
 
 	// 쿠팡 막대사탕 조회
