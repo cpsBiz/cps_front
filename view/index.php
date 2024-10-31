@@ -311,7 +311,7 @@
 
 		const area = `
                   <p class="title">쿠팡 검색 쇼핑하고 선물 받기</p>
-                  <div class="info-wrap">
+                  <div class="info-wrap" style="justify-content:space-between;">
                     <a id="memberStick" class="candy type1" href="/view/history/stick.php"></a>
                     <a class="coupang-link" href="javascript:postToUrl('${itemStr}')"><span>쿠팡 쇼핑 GO!</span></a>
                   </div>
@@ -355,6 +355,7 @@
 					const memberStick = parseInt(result.data.cnt - result.data.stockCnt).toLocaleString();
 					const appendStick = `${memberStick}개`;
 					$('#memberStick').append(appendStick);
+					$('#coupangArea').show();
 				},
 				error: function(request, status, error) {
 					console.error(`Error: ${error}`);
