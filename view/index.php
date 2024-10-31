@@ -270,9 +270,10 @@
 			}
 			const itemStr = base64Encode(JSON.stringify(params));
 
-			if (item.logo.contains('http://')) {
-				item.logo.replace('http://', 'https://');
+			if (item.logo.includes('http://')) {
+				item.logo = item.logo.replace('http://', 'https://');
 			}
+
 
 			list += `
               <div class="list">
