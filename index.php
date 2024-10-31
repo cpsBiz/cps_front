@@ -12,7 +12,6 @@ if ($isTest) {
   $dataCheck = 'userId : ' . $userId . ', adId :' . $adId . ', affliateId :' . $affliateId . ', site : ' . $site . ', zoneId :' . $zoneId;
 ?>
   <?
-  exit;
   if ($userId && $adId && $affliateId && $site && $zoneId) {
     session_start();
     $_SESSION['check_userId'] = $userId;
