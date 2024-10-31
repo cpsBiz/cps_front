@@ -203,7 +203,7 @@ if (!$object) {
     $('#campaignRewardDate').append(commissionPaymentStandard);
 
     // 적립 퍼센트
-    const rewardPer = data.per;
+    const rewardPer = object.per;
     if (!rewardPer) {
       $('#rewardPerArea').css('display', 'none');
     } else {
