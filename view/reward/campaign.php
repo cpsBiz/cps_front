@@ -81,7 +81,7 @@ if (!$object) {
 
   function checkParam(object) {
     if (!object) {
-      alert('잘못된 접근입니다.');
+      alert('잘못된 접근입니다.1');
       history.back();
       return;
     }
@@ -94,7 +94,7 @@ if (!$object) {
       getCampaignData(campaignNum);
       $('#buttonUrl').attr('href', `javascript:getClickRewardUrl('${apiUrl}', '${clickUrl}', ${campaignNum})`);
     } else {
-      alert('잘못된 접근입니다.')
+      alert('잘못된 접근입니다.2')
       history.back();
     }
   }
@@ -135,7 +135,7 @@ if (!$object) {
         success: function(result) {
           const buttonUrl = result.data.clickUrl;
           if (!buttonUrl) {
-            alert('잘못된 접근입니다.');
+            alert('잘못된 접근입니다.3');
             history.back();
             return;
           }
