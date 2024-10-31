@@ -188,7 +188,10 @@ if (!$object) {
     $('#campaignName').append(name);
 
     // 로고
-    const logo = data.logo;
+    let logo = data.logo;
+    if (logo && logo.includes('http://')) {
+      logo = logo.replace('http://', 'https://');
+    }
     if (logo) $('#campaignLogo').css('background-image', `url(${logo})`);
 
     // 적립예정
