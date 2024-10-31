@@ -20,10 +20,5 @@ if ($isTest) {
   $appApiUrl = 'https://app.shoplus.io';
 }
 
-$origin = $_SERVER['HTTP_ORIGIN'];
-$allowed_origins = ['https://app.shoplus.io', 'https://admin.shoplus.io'];
-
-if (in_array($origin, $allowed_origins)) {
-  header("Access-Control-Allow-Origin: " . $origin);
-}
+header("Access-Control-Allow-Origin: https://app.shoplus.io");
 ?>
