@@ -74,8 +74,9 @@ if (!$object) {
 
 </html>
 <script>
+  const object = decodeFromBase64(`<?= $object ?>`);
+
   $(function() {
-    const object = decodeFromBase64(`<?= $object ?>`);
     checkParam(object);
   })
 
