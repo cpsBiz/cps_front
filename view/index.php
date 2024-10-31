@@ -270,6 +270,10 @@
 			}
 			const itemStr = base64Encode(JSON.stringify(params));
 
+			if (item.logo.contains('http://')) {
+				item.logo.replace('http://', 'https://');
+			}
+
 			list += `
               <div class="list">
                 <p class="title"><span class="logo" style="background-image: url('${item.logo}');"></span>${item.memberName}</p>
