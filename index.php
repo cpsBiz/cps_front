@@ -8,8 +8,6 @@ if ($isTest) {
   $affliateId = $_REQUEST['affliateId'];
   $site = $_REQUEST['site'];
   $zoneId = $_REQUEST['zoneId'];
-
-  $dataCheck = 'userId : ' . $userId . ', adId :' . $adId . ', affliateId :' . $affliateId . ', site : ' . $site . ', zoneId :' . $zoneId;
 ?>
   <?
   if ($userId && $adId && $affliateId && $site && $zoneId) {
@@ -24,7 +22,6 @@ if ($isTest) {
   } else {
   ?>
     <script>
-      alert('<?= $dataCheck; ?>');
       alert('필수 값이 없습니다. 종료 후 다시 시도해 주세요.');
     </script>
 <?
