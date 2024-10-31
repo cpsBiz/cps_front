@@ -309,10 +309,6 @@
 
 		const itemStr = base64Encode(JSON.stringify(params));
 
-		if (item.logo.includes('http://')) {
-			item.logo = item.logo.replace('http://', 'https://');
-		}
-
 		const area = `
                   <p class="title">쿠팡 검색 쇼핑하고 선물 받기</p>
                   <div class="info-wrap">
