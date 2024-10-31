@@ -191,8 +191,12 @@ if (!$object) {
     const logo = data.logo;
     if (logo) $('#campaignLogo').css('background-image', `url(${logo})`);
 
-    // 지급시점
-    const commissionPaymentStandard = `<p><span>지급시점</span>${data.commissionPaymentStandard}</p>`;
+    // 적립예정
+    const transReposition = `<p><span>적립예정</span>${data.transReposition}</p>`;
+    $('#campaignRewardDate').append(transReposition);
+
+    // 적립확정
+    const commissionPaymentStandard = `<p><span>적립확정</span>${data.commissionPaymentStandard}</p>`;
     $('#campaignRewardDate').append(commissionPaymentStandard);
 
     // 적립 퍼센트
