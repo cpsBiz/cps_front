@@ -1,6 +1,6 @@
 function moveHistory(param) {
   if (!param) return;
-  const url = `/view/history/${param}.php`;
+  const url = `/history/${param}.php`;
   location.href = `${url}`;
 }
 

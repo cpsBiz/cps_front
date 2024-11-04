@@ -249,6 +249,6 @@ if (!$object) {
   function goInquiry() {
     const campaignNum = document.getElementById('campaignNum').value;
     if (!campaignNum) return alert('잘못된 접근입니다.');
-    location.href = `/view/inquiry/index.php?campaign=${campaignNum}`;
+    location.href = `/inquiry/index.php?campaign=${campaignNum}`;
   }
 </script>

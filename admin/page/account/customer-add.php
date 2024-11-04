@@ -373,8 +373,8 @@
       if (!sex) return alert('성별을 선택해 주세요.');
 
       // 주민등록증 처리 필요
-      // const personalDoc = '';
-      // if (!personalDoc) return alert('주민등록증을 등록해 주세요.');
+      const personalDoc = '';
+      if (!personalDoc) return alert('주민등록증을 등록해 주세요.');
 
     } else if (type2 === 'BUSINESS') { // 사업자 검증
       const companyName = document.getElementById('cusotmer-business-company-name').value;
@@ -408,8 +408,10 @@
       if (!huntingLine) return alert('대표전화를 입력해 주세요.');
 
       // 사업자등록증 처리 필요
-      // const businessDoc = '';
-      // if (!businessDoc) return alert('사업자등록증을 등록해 주세요.');
+      const businessDoc = '';
+      if (!
+
+        businessDoc) return alert('사업자등록증을 등록해 주세요.');
     }
 
     // 은행 검증
