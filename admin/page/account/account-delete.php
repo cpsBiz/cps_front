@@ -6,7 +6,8 @@
       try {
         const requestData = {
           apiType: 'D',
-          memberId: id
+          memberId: id,
+          memberSiteList: []
         };
 
         $.ajax({
