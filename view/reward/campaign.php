@@ -207,7 +207,12 @@ if (!$object) {
     if (!rewardPer) {
       $('#rewardPerArea').css('display', 'none');
     } else {
-      $('#campaignRewardPer').append(rewardPer + '%');
+      if (data.memberName === '쿠팡') {
+        $('#rewardPerArea').empty();
+        $('#rewardPerArea').append('1만원당 막대사탕 1개');
+      } else {
+        $('#campaignRewardPer').append(rewardPer + '%');
+      }
     }
 
     const accessProduct = [];

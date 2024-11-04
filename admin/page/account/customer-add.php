@@ -42,6 +42,7 @@
                             </div>
                             <div class="searchBox">
                               <input id="agencyName" type="text" placeholder="대행사명" />
+                              <input id="agencyId" type="hidden" value=""/>
                               <button id="searchAgencyBtn" type="button" class="search" onclick="searchAgency()">조회</button>
                             </div>
                           </div>
@@ -334,18 +335,23 @@
   let checkSearchAgency = false;
 
   function validAddCustomer() {
+    let data = {};
+
     const id = document.getElementById('customer-id').value;
     if (!id) return alert('아이디를 입력해 주세요.');
     if (id.length < 6) return alert('아이디를 6자리 이상 입력해 주세요.');
     if (!checkSearchCustomerId) return alert('아이디를 조회해 주세요.');
+    data.memberId = id;
 
     const pwd = document.getElementById('customer-pwd').value;
     if (!validatePassword(pwd)) return alert('비밀번호는 영문과 숫자를 포함하여 8자리 이상되어야 합니다.');
     const pwdRe = document.getElementById('customer-pwd-re').value;
     if (pwd !== pwdRe) return alert('재입력한 비밀번호가 일치하지 않습니다.');
+    data.memberPw = pwd;
 
     const type1 = document.getElementById('selectUserType1').value;
     if (!type1) return alert('회원유형1을 선택해 주세요.');
+    data.type = type1;
 
     const type2 = document.getElementById('selectUserType2').value;
     if (!type2) return alert('회원유형2를 선택해 주세요.');
@@ -357,6 +363,9 @@
       if (!agency) return alert('대행사명을 입력해 주세요.');
       if (!checkSearchAgency) return alert('대행사를 조회해 주세요.');
     }
+    const agencyId = document.getElementById('agencyId').value;
+    if (!agencyId) return alert('대행사를 다시 조회해 주세요.');
+    data.agencyId = agencyId;
 
     if (type2 === 'PERSONAL') { // 개인 검증
       const name = document.getElementById('customer-personal-name').value;
@@ -441,11 +450,15 @@
 
     return console.log('검증완료');
 
-    const data = {
+    uploadDoc().then((result) => {
 
-    };
+      postAddCustomer(data);
+    })
+  }
 
-    postAddCustomer(data);
+  // 파일 업로드
+  function uploadDoc() {
+
   }
 
   // 회원 추가 요청
@@ -515,10 +528,12 @@
           alert(result.resultMessage);
           if (result.resultCode !== 'success') {
             document.getElementById('agencyName').value = '';
+            document.getElementById('agencyId').value = '';
             $('#agencyName').focus();
             checkSearchAgency = false;
             return;
           }
+          document.getElementById('agencyId').value = result.agencyId;
           checkSearchAgency = true;
         },
         error: function(request, status, error) {

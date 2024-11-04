@@ -10,24 +10,27 @@ if (!$agency) {
 
 $sql = "
         SELECT
-          COUNT(*) AS CNT
+          MEMBER_ID
         FROM CPS_MEMBER
         WHERE
-          MEMBER_NAME = ? AND TYPE = 'AGENCY'
+          MEMBER_NAME = ?
         ";
 $stmt = mysqli_stmt_init($con);
 if (mysqli_stmt_prepare($stmt, $sql)) {
   mysqli_stmt_bind_param($stmt, 's', $agency);
   mysqli_stmt_execute($stmt);
-  mysqli_stmt_bind_result($stmt, $cnt);
-  mysqli_stmt_fetch($stmt);
+  $result = mysqli_stmt_get_result($stmt);
+  while ($row = mysqli_fetch_assoc($result)) {
+    $agencyId = $row['MEMBER_ID'];
+  }
 
-  if ($cnt == 0) {
+  if (!$agencyId) {
     $json_data['resultCode'] = 'fail';
     $json_data['resultMessage'] = '존재하지 않는 대행사입니다.';
   } else {
     $json_data['resultCode'] = 'success';
     $json_data['resultMessage'] = '등록 가능한 대행사입니다.';
+    $json_data['agencyId'] = $agencyId;
   }
 
   echo json_encode($json_data);
