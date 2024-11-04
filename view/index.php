@@ -198,6 +198,18 @@
 					});
 					$('#category-tab').empty();
 					$('#category-tab').append(list);
+					const tabs = document.querySelectorAll('.tab');
+
+					// 각 탭에 클릭 이벤트 리스너 추가
+					tabs.forEach((tab) => {
+						tab.addEventListener('click', () => {
+							// 모든 탭에서 on 클래스 제거
+							tabs.forEach((t) => t.classList.remove('on'));
+
+							// 클릭된 탭에 on 클래스 추가
+							tab.classList.add('on');
+						});
+					});
 					getCampaignView(`${data[0].category}`);
 				},
 				error: function(request, status, error) {
