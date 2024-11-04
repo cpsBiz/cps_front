@@ -40,13 +40,7 @@
 				</div>
 			</div>
 			<div class="tab-box-wrap">
-				<div id="category-tab" class="tab-box">
-					<div class="tab tab1 on"><a href="javascript:getCampaignView('C0014')">인기순</a></div>
-					<div class="tab tab2"><a href="javascript:getCampaignView('C0001')">종합몰</a></div>
-					<div class="tab tab3"><a href="javascript:getCampaignView('C0003')">패션</a></div>
-					<div class="tab tab4"><a href="javascript:getCampaignView('C0002')">뷰티</a></div>
-					<div class="tab tab5"><a href="javascript:getCampaignView('favorites')">즐겨찾기</a></div>
-				</div>
+				<div id="category-tab" class="tab-box"></div>
 			</div>
 			<div class="list-wrap type1">
 				<div id="coupangArea" class="list list1 type1" style="display:none;"></div>
@@ -69,6 +63,7 @@
 <script>
 	$(function() {
 		getBanner();
+		getCategory();
 		getMemberCommission();
 	})
 
