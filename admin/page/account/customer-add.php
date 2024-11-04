@@ -30,8 +30,8 @@
                             </select>
                             <select id="selectUserType2" onchange="selectUserType2()">
                               <option value="" selected disabled>회원유형2</option>
-                              <option value="PERSONAL">개인</option>
-                              <option value="BUSINESS">사업자</option>
+                              <option value="P">개인</option>
+                              <option value="B">사업자</option>
                             </select>
                           </div>
                           <div>
@@ -172,13 +172,13 @@
 
     let fileInput, fileLabel, closeButton;
 
-    if (type === 'PERSONAL') {
+    if (type === 'P') {
       fileInput = document.getElementById('customer-personal-doc');
       fileLabel = document.getElementById('cpd-file-label');
       closeButton = document.getElementById('cpd-file-close');
 
       $('#personal-user').show();
-    } else if (type === 'BUSINESS') {
+    } else if (type === 'B') {
       fileInput = document.getElementById('customer-business-doc');
       fileLabel = document.getElementById('cbd-file-label');
       closeButton = document.getElementById('cbd-file-close');
@@ -226,9 +226,9 @@
     if (checkedBankNone) return;
 
     let name = '';
-    if (userType === 'PERSONAL') {
+    if (userType === 'P') {
       name = document.getElementById('customer-personal-name').value;
-    } else if (userType === 'BUSINESS') {
+    } else if (userType === 'B') {
       name = document.getElementById('customer-business-company-ceo-name').value;
     } else {
       return;
@@ -369,7 +369,7 @@
       data.agencyId = agencyId;
     }
 
-    if (type2 === 'PERSONAL') { // 개인 검증
+    if (type2 === 'P') { // 개인 검증
       const name = document.getElementById('customer-personal-name').value;
       if (!name) return alert('이름을 입력해 주세요.');
       data.ceoName = name;
@@ -488,12 +488,12 @@
         const type = document.getElementById('selectUserType2').value;
         let fileInput;
 
-        if (type === 'PERSONAL') {
+        if (type === 'P') {
           fileInput = document.getElementById('customer-personal-doc'); // value를 가져오는 것이 아니라 요소를 직접 가져옴
-        } else if (type === 'BUSINESS') {
+        } else if (type === 'B') {
           fileInput = document.getElementById('customer-business-doc'); // value를 가져오는 것이 아니라 요소를 직접 가져옴
         } else {
-          return alert('회원유형1을 선택해 주세요.');
+          return alert('회원유형2을 선택해 주세요.');
         }
 
         const requestData = new FormData();
