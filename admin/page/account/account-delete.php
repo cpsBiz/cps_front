@@ -18,7 +18,7 @@
           dataType: 'JSON',
           data: JSON.stringify(requestData),
           success: function(result) {
-            if (result.resultCode !== 'success') return alert(result.resultMessage);
+            if (result.resultCode !== '0000') return alert(result.resultMessage);
             location.reload();
           },
           error: function(request, status, error) {
