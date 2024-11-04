@@ -473,6 +473,7 @@
       if (!isValid) return alert('사이트 등록의 모든 값을 입력해 주세요.');
 
       data.memberSiteList = siteList;
+      data.apiType = 'I';
     }
 
     uploadDoc().then((result) => {
@@ -537,15 +538,23 @@
   // 회원 추가 요청
   function postAddCustomer(data) {
     try {
-      console.log(data);
+      $.ajax({
+        type: 'POST',
+        url: 'https://admin.shoplus.io/api/admin/memberSignIn',
+        contentType: 'application/json',
+        data: JSON.stringify(data),
+        success: function(result) {
+          if (result.resultCode !== '0000') return alert(result.resultMessage);
+          alert('회원 추가 등록이 처리되었습니다.');
+          location.reload();
+        },
+        error: function(request, status, error) {
+          console.error(`Error: ${error}`);
+        }
+      });
     } catch (error) {
       alert(error);
     }
-  }
-
-  // 회원 추가 성공시
-  function successAddCustomer() {
-
   }
 
   // 아이디 중복 조회
