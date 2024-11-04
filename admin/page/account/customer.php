@@ -168,7 +168,7 @@ $paramKeyword = $_REQUEST['keyword'];
                           <div class="buttonBox">
                             <button type="button" class="login" title="로그인">로그인</button>
                             <button type="button" class="modify" title="수정" onclick="<?= $memberType == '관리자' ? 'modifyMaster(`' . $memberId . '`)' : 'modifyCustomer()'; ?>">수정</button>
-                            <button type="button" class="delete" title="삭제" onclick="postDeleteAccount('<?= $memberId; ?>', '<?= $row['TYPE']; ?>')">삭제</button>
+                            <button type="button" class="delete" title="삭제" onclick="postDeleteAccount('<?= $memberId; ?>')">삭제</button>
                           </div>
                         </td>
                       </tr>
