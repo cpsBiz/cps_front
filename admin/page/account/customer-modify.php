@@ -27,6 +27,39 @@
   }
 
   function renderModifyCustomer(data) {
+    const siteListHtml = (data.siteList || []).map((item, index) => `
+        <div id="site-card${index + 1}">
+            <p>사이트등록${index + 1}</p>
+            <input type="text" placeholder="사이트명" value="${item.siteName}" />
+            <input type="text" placeholder="URL" value="${item.site}" />
+            <select name="" id="">
+                <option value="" disabled>카테고리 선택</option>
+                <?php
+                $sql = "
+                    SELECT
+                        A.CATEGORY,
+                        A.CATEGORY_NAME
+                    FROM CPS_CATEGORY A
+                    LEFT JOIN CPS_CAMPAIGN B ON B.CATEGORY = A.CATEGORY 
+                    GROUP BY A.CATEGORY
+                    ORDER BY CAST(CATEGORY_RANK AS UNSIGNED) ASC
+                ";
+
+                $stmt = mysqli_stmt_init($con);
+                if (mysqli_stmt_prepare($stmt, $sql)) {
+                  mysqli_stmt_execute($stmt);
+                  $result = mysqli_stmt_get_result($stmt);
+                  while ($row = mysqli_fetch_assoc($result)) {
+                ?>
+                <option value="<?= $row['CATEGORY']; ?>" ${item.category === "<?= $row['CATEGORY']; ?>" ? 'selected' : ''}><?= $row['CATEGORY_NAME']; ?></option>
+                <?php
+                  }
+                }
+                ?>
+            </select>
+        </div>
+    `).join('');
+
     const modal = `
                   <div class="modalWrap md_customerRegister" id="md_customerRegister" style="display:block;">
                     <div class="modalContainer">
@@ -130,38 +163,7 @@
                           </div>
                           <div id="affliate-user" class="affliate-info-box" style="display:none;">
                             <div id="site-list" class="site-info-box">
-                              ${data.siteList.map((item,index) => `
-                              <div id="site-card${index + 1}">
-                                <p>사이트등록${index + 1}</p>
-                                <input type="text" placeholder="사이트명" value="${item.siteName}"/>
-                                <input type="text" placeholder="URL" value="${item.site}"/>
-                                <select name="" id="">
-                                  <option value="" disabled>카테고리 선택</option>
-                                  <?
-                                  $sql = "
-                                          SELECT
-                                            A.CATEGORY,
-                                            A.CATEGORY_NAME
-                                          FROM CPS_CATEGORY A
-                                          LEFT JOIN CPS_CAMPAIGN B ON B.CATEGORY = A.CATEGORY 
-                                          GROUP BY A.CATEGORY
-                                          ORDER BY CAST(CATEGORY_RANK AS UNSIGNED) ASC
-                                          ";
-
-                                  $stmt = mysqli_stmt_init($con);
-                                  if (mysqli_stmt_prepare($stmt, $sql)) {
-                                    mysqli_stmt_execute($stmt);
-                                    $result = mysqli_stmt_get_result($stmt);
-                                    while ($row = mysqli_fetch_assoc($result)) {
-                                  ?>
-                                  <option value="<?= $row['CATEGORY']; ?>" ${item.category === "<?= $row['CATEGORY']; ?>" ? 'selected' : ''}><?= $row['CATEGORY_NAME']; ?></option>
-                                  <?
-                                    }
-                                  }
-                                  ?>
-                                </select>
-                              </div>
-                            `).join('')}
+                               ${siteListHtml}
                             </div>
                             <button type="button" class="siteAdd" onclick="addAffliateSite()">사이트 추가</button>
                           </div>
