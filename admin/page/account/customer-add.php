@@ -330,13 +330,14 @@
   }
 
   // 회원 추가 검증 및 데이터 객체 생성 
-  let checkSerachCustomerId = false;
+  let checkSearchCustomerId = false;
+  let checkSearchAgency = false;
 
   function validAddCustomer() {
     const id = document.getElementById('customer-id').value;
     if (!id) return alert('아이디를 입력해 주세요.');
     if (id.length < 6) return alert('아이디를 6자리 이상 입력해 주세요.');
-    if (!checkSerachCustomerId) return alert('아이디를 조회해 주세요.');
+    if (!checkSearchCustomerId) return alert('아이디를 조회해 주세요.');
 
     const pwd = document.getElementById('customer-pwd').value;
     if (!validatePassword(pwd)) return alert('비밀번호는 영문과 숫자를 포함하여 8자리 이상되어야 합니다.');
@@ -354,6 +355,7 @@
     if (!agencyNone) {
       const agency = document.getElementById('agencyName').value;
       if (!agency) return alert('대행사명을 입력해 주세요.');
+      if (!checkSearchAgency) return alert('대행사를 조회해 주세요.');
     }
 
     if (type2 === 'PERSONAL') { // 개인 검증
@@ -481,10 +483,43 @@
           if (result.resultCode !== 'success') {
             document.getElementById('customer-id').value = '';
             $('#customer-id').focus();
-            checkSerachCustomerId = false;
+            checkSearchCustomerId = false;
             return;
           }
-          checkSerachCustomerId = true;
+          checkSearchCustomerId = true;
+        },
+        error: function(request, status, error) {
+          console.error(`Error: ${error}`);
+        }
+      });
+    } catch (error) {
+      alert(error);
+    }
+  }
+
+  // 대행사 조회
+  function searchAgency() {
+    try {
+      const agency = document.getElementById('agencyName').value;
+      if (!agency) return alert('대행사명을 입력해 주세요.');
+
+      $.ajax({
+        type: 'GET',
+        url: '/page/account/api/select-search-agency.php',
+        contentType: 'application/json',
+        dataType: 'JSON',
+        data: {
+          agency
+        },
+        success: function(result) {
+          alert(result.resultMessage);
+          if (result.resultCode !== 'success') {
+            document.getElementById('agencyName').value = '';
+            $('#agencyName').focus();
+            checkSearchAgency = false;
+            return;
+          }
+          checkSearchAgency = true;
         },
         error: function(request, status, error) {
           console.error(`Error: ${error}`);
