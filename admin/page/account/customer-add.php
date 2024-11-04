@@ -63,7 +63,7 @@
                               <div class="fileBox">
                                 <button type="button" class="close">닫기</button>
                                 <input type="file" name="" id="customer-personal-doc" />
-                                <label for="">파일을 끌어오세요</label>
+                                <label for="customer-personal-doc">파일을 끌어오세요</label>
                               </div>
                             </div>
                           </div>
@@ -89,7 +89,7 @@
                               <div class="fileBox">
                                 <button type="button" class="close">닫기</button>
                                 <input type="file" id="customer-business-doc" />
-                                <label for="">파일을 끌어오세요</label>
+                                <label for="customer-business-doc">파일을 끌어오세요</label>
                               </div>
                             </div>
                           </div>
