@@ -2,7 +2,7 @@
 <?
 $object = $_REQUEST['object'] ?? null; // null로 기본값 설정
 if (!$object) {
-  header('Location: ' . $_SERVER['HTTP_REFERER']);
+  header('Location: /index.php');
   exit;
 }
 ?>
