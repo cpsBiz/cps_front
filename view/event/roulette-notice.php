@@ -37,8 +37,7 @@
               <p class="step">STEP 1</p>
               <p class="text">
                 <span>적립 메뉴</span>를 클릭<br>
-                제공되는 <span>쿠팡 검색창</span>에서<br>
-                상품 검색 후<br>
+                제공되는 <span>쿠팡 쇼핑 GO!</span>에서<br>
                 쿠팡으로 이동해주세요.
               </p>
               <div class="img-box">

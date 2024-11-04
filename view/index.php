@@ -310,7 +310,7 @@
 		const itemStr = base64Encode(JSON.stringify(params));
 
 		const area = `
-                  <p class="title">쿠팡 검색 쇼핑하고 선물 받기</p>
+                  <p class="title">쿠팡 쇼핑하고 선물 받기</p>
                   <div class="info-wrap" style="justify-content:space-between;">
                     <a id="memberStick" class="candy type1" href="/history/stick.php"></a>
                     <a class="coupang-link" href="javascript:postToUrl('${itemStr}')"><span>쿠팡 쇼핑 GO!</span></a>
