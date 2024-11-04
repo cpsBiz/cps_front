@@ -394,7 +394,7 @@
       const personalDoc = document.getElementById('customer-personal-doc').value;
       if (!personalDoc) return alert('주민등록증 파일을 첨부해 주세요.');
 
-    } else if (type2 === 'BUSINESS') { // 사업자 검증
+    } else if (type2 === 'B') { // 사업자 검증
       const companyName = document.getElementById('customer-business-company-name').value;
       if (!companyName) return alert('업체(법인)명을 입력해 주세요.');
       data.memberName = companyName;
