@@ -62,7 +62,7 @@
                               <p>주민등록증 등록</p>
                               <div class="fileBox">
                                 <button type="button" class="close" id="cpd-file-close">닫기</button>
-                                <input type="file" name="" id="customer-personal-doc" />
+                                <input type="file" id="customer-personal-doc" />
                                 <label for="customer-personal-doc" id="cpd-file-label">파일을 끌어오세요</label>
                               </div>
                             </div>
