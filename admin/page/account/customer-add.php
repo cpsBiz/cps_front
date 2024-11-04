@@ -486,16 +486,23 @@
     try {
       const type = document.getElementById('selectUserType2').value;
       let fileInput;
+
       if (type === 'PERSONAL') {
-        fileInput = document.getElementById('customer-personal-doc').value;
+        fileInput = document.getElementById('customer-personal-doc'); // value를 가져오는 것이 아니라 요소를 직접 가져옴
       } else if (type === 'BUSINESS') {
-        fileInput = document.getElementById('customer-business-doc').value;
+        fileInput = document.getElementById('customer-business-doc'); // value를 가져오는 것이 아니라 요소를 직접 가져옴
       } else {
         return alert('회원유형1을 선택해 주세요.');
       }
 
       const requestData = new FormData();
       const files = fileInput.files;
+
+      // 파일이 선택되었는지 확인
+      if (!files.length) {
+        return alert('파일을 선택해 주세요.');
+      }
+
       for (let i = 0; i < files.length; i++) {
         requestData.append('files[]', files[i]);
       }
@@ -512,7 +519,7 @@
         success: function(result) {
           if (result.resultCode !== 'success') return alert(result.resultMessage);
           const fileList = result.datas;
-          return fileList[0].fileName;
+          return fileList[0].fileName; // 반환 값을 여기서 사용하면 안됨
         },
         error: function(request, status, error) {
           console.error(`Error: ${error}`);
@@ -523,6 +530,7 @@
       alert(error);
     }
   }
+
 
   // 회원 추가 요청
   function postAddCustomer(data) {
