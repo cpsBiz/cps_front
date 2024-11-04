@@ -83,7 +83,7 @@
                 </td>
                 <td>
                   <div class="buttonBox">
-                    <img class="drag-handle" src="/admin/image/component/ico_hamburger.svg" alt="">
+                    <img class="drag-handle" src="/image/component/ico_hamburger.svg" alt="">
                   </div>
                 </td>
               </tr>
