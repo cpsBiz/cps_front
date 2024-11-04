@@ -42,7 +42,7 @@
                             </div>
                             <div class="searchBox">
                               <input id="agencyName" type="text" placeholder="대행사명" />
-                              <button id="searchAgencyBtn" type="button" class="search">조회</button>
+                              <button id="searchAgencyBtn" type="button" class="search" onclick="searchAgency()">조회</button>
                             </div>
                           </div>
                           <div id="personal-user" class="user-info-box userType" style="display:none;">
