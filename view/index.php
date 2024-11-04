@@ -192,7 +192,7 @@
 					data.forEach((item, index) => {
 						list += `
 											<div class="tab tab${index + 1} ${index === 0 ? 'on' : ''}">
-												<a href="javascript:getCampaginView('${item.category}')">${item.categoryName}</a>
+												<a href="javascript:getCampaignView('${item.category}')">${item.categoryName}</a>
 											</div>
 										`;
 					});
