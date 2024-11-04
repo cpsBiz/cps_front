@@ -1,6 +1,6 @@
 <script>
   function postDeleteAccount(id) {
-    if (!id || !type) return alert('잘못된 접근입니다.');
+    if (!id) return alert('잘못된 접근입니다.');
 
     if (confirm('선택하신 계정을 삭제하시겠습니까?')) {
       try {
