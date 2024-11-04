@@ -280,7 +280,7 @@ $paramKeyword = $_REQUEST['keyword'];
     <div class="modal"></div>
   </div>
 </body>
-<script src="/view/js/common.js"></script>
+<script src="/js/common.js"></script>
 
 </html>
 <script>

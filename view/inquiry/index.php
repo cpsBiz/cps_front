@@ -1,4 +1,4 @@
-<? include_once $_SERVER['DOCUMENT_ROOT'] . "/view/header.php"; ?>
+<? include_once $_SERVER['DOCUMENT_ROOT'] . "/header.php"; ?>
 <?
 $campaign = $_REQUEST['campaign'];
 if (!$campaign) {
@@ -18,9 +18,9 @@ if (!$campaign) {
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="format-detection" content="telephone=no">
   <title>1:1 문의하기</title>
-  <link rel="icon" type="image/x-icon" href="/view/images/favicon.ico">
+  <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
   <!-- style -->
-  <link rel="stylesheet" href="/view/css/style.css">
+  <link rel="stylesheet" href="/css/style.css">
   <script type="text/javascript" src="/js/lib/jquery-2.2.2.min.js"></script>
   <script type="text/javascript" src="/js/lib/jquery.easing.1.3.js"></script>
   <script type="text/javascript" src="/js/lib/jquery-ui.min.js"></script>
@@ -315,8 +315,8 @@ if (!$campaign) {
     </div>
   </div>
 </body>
-<script src="/view/js/common.js"></script>
-<script src="/view/js/page.js"></script>
+<script src="/js/common.js"></script>
+<script src="/js/page.js"></script>
 
 </html>
 <script>
@@ -470,7 +470,7 @@ if (!$campaign) {
 
       $.ajax({
         type: 'POST',
-        url: '/view/inquiry/file-upload.php',
+        url: '/inquiry/file-upload.php',
         data: requestData,
         processData: false,
         contentType: false,

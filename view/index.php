@@ -1,4 +1,4 @@
-<? include_once $_SERVER['DOCUMENT_ROOT'] . "/view/header.php"; ?>
+<? include_once $_SERVER['DOCUMENT_ROOT'] . "/header.php"; ?>
 <!DOCTYPE html>
 <html lang="ko">
 
@@ -7,13 +7,13 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="format-detection" content="telephone=no">
 	<title>쇼핑적립</title>
-	<link rel="icon" type="image/x-icon" href="/view/images/favicon.ico">
+	<link rel="icon" type="image/x-icon" href="/images/favicon.ico">
 	<script type="text/javascript" src="/js/lib/jquery-2.2.2.min.js"></script>
 	<script type="text/javascript" src="/js/lib/jquery.easing.1.3.js"></script>
 	<script type="text/javascript" src="/js/lib/jquery-ui.min.js"></script>
 	<!-- style -->
-	<link rel="stylesheet" href="/view/css/style.css">
-	<link rel="stylesheet" href="/view/css/index.css">
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/index.css">
 </head>
 
 <body>
@@ -23,7 +23,7 @@
 			<h1>쇼핑적립</h1>
 			<div class="btn-list">
 				<a href="javascript:HybridApp.close()" class="ico-arrow type1 left">이전</a>
-				<a href="/view/index.php" class="ico-home">홈</a>
+				<a href="/index.php" class="ico-home">홈</a>
 			</div>
 		</header>
 		<!-- main -->
@@ -36,7 +36,7 @@
 						<p class="title">총 적립 포인트</p>
 						<p id="userCommission" class="point"></p>
 					</div>
-					<a href="/view/history/point.php"></a>
+					<a href="/history/point.php"></a>
 				</div>
 			</div>
 			<div class="tab-box-wrap">
@@ -55,15 +55,15 @@
 		</div>
 		<div class="bottom-menu-wrap">
 			<a class="menu" href="javascript:void(0)"><span class="ico-cart">카트</span></a>
-			<a class="menu on" href="/view/index.php"><span class="ico-save">적립</span></a>
+			<a class="menu on" href="/index.php"><span class="ico-save">적립</span></a>
 			<a class="menu" href="javascript:void(0)"><span class="ico-trend">트렌드</span></a>
 			<a class="menu" href="javascript:void(0)"><span class="ico-delivery">배송</span></a>
-			<a class="menu" href="/view/history/point.php"><span class="ico-breakDown">내역</span></a>
+			<a class="menu" href="/history/point.php"><span class="ico-breakDown">내역</span></a>
 		</div>
 	</div>
 
 </body>
-<script type="text/javascript" src="/view/js/common.js"></script>
+<script type="text/javascript" src="/js/common.js"></script>
 
 </html>
 <script>
@@ -312,13 +312,13 @@
 		const area = `
                   <p class="title">쿠팡 검색 쇼핑하고 선물 받기</p>
                   <div class="info-wrap" style="justify-content:space-between;">
-                    <a id="memberStick" class="candy type1" href="/view/history/stick.php"></a>
+                    <a id="memberStick" class="candy type1" href="/history/stick.php"></a>
                     <a class="coupang-link" href="javascript:postToUrl('${itemStr}')"><span>쿠팡 쇼핑 GO!</span></a>
                   </div>
                   <div class="link-wrap">
-                    <div class="link-box"><a href="/view/history/gifticon.php">당첨내역</a></div>
-                    <div class="link-box"><a href="/view/event/roulette.php">행운의룰렛 GO</a></div>
-                    <div class="link-box"><a href="/view/event/roulette-notice.php">이벤트 안내</a></div>
+                    <div class="link-box"><a href="/history/gifticon.php">당첨내역</a></div>
+                    <div class="link-box"><a href="/event/roulette.php">행운의룰렛 GO</a></div>
+                    <div class="link-box"><a href="/event/roulette-notice.php">이벤트 안내</a></div>
                   </div>
                   <button class="ico-heart ${item.favorites === 'FAVORITE' ? 'on' : ''}" type="button" onclick="patchFavorites(${item.campaignNum}, '${item.favorites}', this)"></button>
                   `;
@@ -408,7 +408,7 @@
 	function postToUrl(item) {
 		// 동적으로 form 생성
 		const form = document.createElement('form');
-		form.action = '/view/reward/campaign.php'; // 제출할 URL
+		form.action = '/reward/campaign.php'; // 제출할 URL
 		form.method = 'POST'; // POST 방식
 
 		// hidden input 생성 및 데이터 설정

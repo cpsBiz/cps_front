@@ -1,4 +1,4 @@
-<? include_once $_SERVER['DOCUMENT_ROOT'] . "/view/header.php"; ?>
+<? include_once $_SERVER['DOCUMENT_ROOT'] . "/header.php"; ?>
 <!DOCTYPE html>
 <html lang="ko">
 
@@ -7,9 +7,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="format-detection" content="telephone=no">
   <title>행운의 룰렛</title>
-  <link rel="icon" type="image/x-icon" href="/view/images/favicon.ico">
+  <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
   <!-- style -->
-  <link rel="stylesheet" href="/view/css/style.css">
+  <link rel="stylesheet" href="/css/style.css">
   <script type="text/javascript" src="/js/lib/jquery-2.2.2.min.js"></script>
   <script type="text/javascript" src="/js/lib/jquery.easing.1.3.js"></script>
   <script type="text/javascript" src="/js/lib/jquery-ui.min.js"></script>
@@ -38,7 +38,7 @@
     <header>
       <h1>행운의 룰렛</h1>
       <div class="btn-list">
-        <a href="/view/index.php" class="ico-arrow type1 left">이전</a>
+        <a href="/index.php" class="ico-arrow type1 left">이전</a>
       </div>
     </header>
     <!-- main -->
@@ -51,7 +51,7 @@
       <div class="candy-link-wrap">
         <p class="title">내 막대사탕</p>
         <p class="candy-count"></p>
-        <a href="/view/history/stick.php"></a>
+        <a href="/history/stick.php"></a>
       </div>
       <div class="list-wrap type4"></div>
     </div>
@@ -84,7 +84,7 @@
           <p>🎉당첨을 축하드립니다!</p>
           <div class="goods-box"></div>
           <div class="btn-box">
-            <a href="/view/history/gifticon.php" class="popup-btn" onclick="popupClose('#popup-wrap', '.popup2')">당첨내역 보러가기</a>
+            <a href="/history/gifticon.php" class="popup-btn" onclick="popupClose('#popup-wrap', '.popup2')">당첨내역 보러가기</a>
           </div>
         </div>
         <button class="ico-close type1" type="button" onclick="popupClose('#popup-wrap', '.popup2')">닫기</button>
@@ -92,8 +92,8 @@
     </div>
   </div>
 </body>
-<script src="/view/js/common.js"></script>
-<script src="/view/js/page.js"></script>
+<script src="/js/common.js"></script>
+<script src="/js/page.js"></script>
 
 </html>
 <script>

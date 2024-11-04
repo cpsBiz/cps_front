@@ -1,4 +1,4 @@
-<? include_once $_SERVER['DOCUMENT_ROOT'] . "/view/header.php"; ?>
+<? include_once $_SERVER['DOCUMENT_ROOT'] . "/header.php"; ?>
 <!DOCTYPE html>
 <html lang="ko">
 
@@ -7,12 +7,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="format-detection" content="telephone=no">
   <title>쿠팡 이벤트 안내</title>
-  <link rel="icon" type="image/x-icon" href="/view/images/favicon.ico">
+  <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
   <!-- style -->
-  <link rel="stylesheet" href="/view/css/style.css">
+  <link rel="stylesheet" href="/css/style.css">
   <!-- swiper -->
-  <link rel="stylesheet" href="/view/css/swiper-min.css">
-  <script src="/view/js/swiper.js"></script>
+  <link rel="stylesheet" href="/css/swiper-min.css">
+  <script src="/js/swiper.js"></script>
 </head>
 
 <body>
@@ -21,14 +21,14 @@
     <header>
       <h1>쿠팡 이벤트 안내</h1>
       <div class="btn-list">
-        <a href="/view/index.php" class="ico-arrow type1 left">이전</a>
+        <a href="/index.php" class="ico-arrow type1 left">이전</a>
       </div>
     </header>
     <!-- main -->
     <!-- hana 클래스 추가 시 시그니처 컬러 변경 -->
     <div class="sub sub-2-4">
       <div class="img-box">
-        <img src="/view/images/coupang-event.png" alt="쿠팡 쇼핑하면 행운의룰렛이 무료!, 쿠팡 구매금액 1만원당 막대사탕 1개, 최소 7개부터 100%당첨 행운의 룰렛 GO! GO!">
+        <img src="/images/coupang-event.png" alt="쿠팡 쇼핑하면 행운의룰렛이 무료!, 쿠팡 구매금액 1만원당 막대사탕 1개, 최소 7개부터 100%당첨 행운의 룰렛 GO! GO!">
       </div>
       <div class="swiper coupang-swiper">
         <div class="swiper-wrapper">
@@ -93,8 +93,8 @@
       },
     });
   </script>
-  <script src="/view/js/common.js"></script>
-  <script src="/view/js/page.js"></script>
+  <script src="/js/common.js"></script>
+  <script src="/js/page.js"></script>
 </body>
 
 </html>

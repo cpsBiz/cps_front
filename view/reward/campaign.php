@@ -1,4 +1,4 @@
-<? include_once $_SERVER['DOCUMENT_ROOT'] . "/view/header.php"; ?>
+<? include_once $_SERVER['DOCUMENT_ROOT'] . "/header.php"; ?>
 <?
 $object = $_REQUEST['object'] ?? null; // null로 기본값 설정
 if (!$object) {
@@ -14,9 +14,9 @@ if (!$object) {
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="format-detection" content="telephone=no">
   <title>쇼핑적립 상세정보</title>
-  <link rel="icon" type="image/x-icon" href="/view/images/favicon.ico">
+  <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
   <!-- style -->
-  <link rel="stylesheet" href="/view/css/style.css">
+  <link rel="stylesheet" href="/css/style.css">
   <script type="text/javascript" src="/js/lib/jquery-2.2.2.min.js"></script>
   <script type="text/javascript" src="/js/lib/jquery.easing.1.3.js"></script>
   <script type="text/javascript" src="/js/lib/jquery-ui.min.js"></script>
@@ -28,7 +28,7 @@ if (!$object) {
     <header>
       <h1>쇼핑적립 상세정보</h1>
       <div class="btn-list">
-        <a href="/view/index.php" class="ico-arrow type1 left">이전</a>
+        <a href="/index.php" class="ico-arrow type1 left">이전</a>
       </div>
     </header>
     <!-- main -->
@@ -69,8 +69,8 @@ if (!$object) {
     </div>
   </div>
 </body>
-<script src="/view/js/common.js"></script>
-<script src="/view/js/page.js"></script>
+<script src="/js/common.js"></script>
+<script src="/js/page.js"></script>
 
 </html>
 <script>

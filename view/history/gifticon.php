@@ -1,4 +1,4 @@
-<? include_once $_SERVER['DOCUMENT_ROOT'] . "/view/header.php"; ?>
+<? include_once $_SERVER['DOCUMENT_ROOT'] . "/header.php"; ?>
 <?
 // 현재 날짜를 기준으로 최근 1년의 월을 가져오는 함수
 function getLastYearMonths()
@@ -23,9 +23,9 @@ $months = getLastYearMonths();
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="format-detection" content="telephone=no">
 	<title>내역</title>
-	<link rel="icon" type="image/x-icon" href="/view/images/favicon.ico">
+	<link rel="icon" type="image/x-icon" href="/images/favicon.ico">
 	<!-- style -->
-	<link rel="stylesheet" href="/view/css/style.css">
+	<link rel="stylesheet" href="/css/style.css">
 	<script type="text/javascript" src="/js/lib/jquery-2.2.2.min.js"></script>
 	<script type="text/javascript" src="/js/lib/jquery.easing.1.3.js"></script>
 	<script type="text/javascript" src="/js/lib/jquery-ui.min.js"></script>
@@ -37,7 +37,7 @@ $months = getLastYearMonths();
 		<header>
 			<h1>내역</h1>
 			<div class="btn-list">
-				<a href="/view/index.php" class="ico-arrow type1 left">이전</a>
+				<a href="/index.php" class="ico-arrow type1 left">이전</a>
 			</div>
 		</header>
 		<!-- main -->
@@ -62,7 +62,7 @@ $months = getLastYearMonths();
 				</div>
 			</div>
 			<div class="line line1">
-				<a href="/view/notice/gifticon.php">[필독] 꼭 읽어보세요! (기프티콘)<span class="ico-arrow type1 right"></span></a>
+				<a href="/notice/gifticon.php">[필독] 꼭 읽어보세요! (기프티콘)<span class="ico-arrow type1 right"></span></a>
 			</div>
 			<!-- 기프티콘 당첨내역 -->
 			<div class="cont cont3">
@@ -116,16 +116,16 @@ $months = getLastYearMonths();
 		</div>
 		<div class="bottom-menu-wrap">
 			<a class="menu" href="javascript:void(0)"><span class="ico-cart">카트</span></a>
-			<a class="menu" href="/view/index.php"><span class="ico-save">적립</span></a>
+			<a class="menu" href="/index.php"><span class="ico-save">적립</span></a>
 			<a class="menu" href="javascript:void(0)"><span class="ico-trend">트렌드</span></a>
 			<a class="menu" href="javascript:void(0)"><span class="ico-delivery">배송</span></a>
-			<a class="menu on" href="/view/history/point.php"><span class="ico-breakDown">내역</span></a>
+			<a class="menu on" href="/history/point.php"><span class="ico-breakDown">내역</span></a>
 		</div>
 	</div>
 </body>
-<script src="/view/js/common.js"></script>
-<script src="/view/js/page.js"></script>
-<script src="/view/js/history.js"></script>
+<script src="/js/common.js"></script>
+<script src="/js/page.js"></script>
+<script src="/js/history.js"></script>
 
 </html>
 
@@ -231,7 +231,7 @@ $months = getLastYearMonths();
 	function postToUrl(item) {
 		// 동적으로 form 생성
 		const form = document.createElement('form');
-		form.action = '/view/history/gifticon-detail.php'; // 제출할 URL
+		form.action = '/history/gifticon-detail.php'; // 제출할 URL
 		form.method = 'POST'; // POST 방식
 
 		// hidden input 생성 및 데이터 설정
