@@ -52,7 +52,7 @@
                               <input id="customer-personal-name" type="text" placeholder="이름" onchange="insertDepositor()"/>
                               <input id="customer-personal-email" type="text" placeholder="이메일" />
                               <input id="customer-personal-phone" type="text" placeholder="연락처 (휴대폰)" />
-                              <input id="customer-personal-birth" type="number" maxlength="4" placeholder="출생년도 (숫자 4자리)" />
+                              <input id="customer-personal-birth" type="number" max="4" placeholder="출생년도 (숫자 4자리)" />
                               <select id="customer-personal-sex">
                                 <option value="" selected disabled>성별</option>
                                 <option value="M">남</option>
