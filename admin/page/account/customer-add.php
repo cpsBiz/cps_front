@@ -483,7 +483,7 @@
   // 파일 업로드
   function uploadDoc() {
     try {
-      const type = document.getElementById('selectUserType1').value;
+      const type = document.getElementById('selectUserType2').value;
       let fileInput;
       if (type === 'PERSONAL') {
         file = document.getElementById('customer-personal-doc').value;
