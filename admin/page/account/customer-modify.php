@@ -101,7 +101,7 @@
                               <label for="agencyNone">*해당사항 없음</label>
                             </div>
                             <div class="searchBox">
-                              <input id="agencyName" type="text" placeholder="대행사명" value="" />
+                              <input id="agencyName" type="text" placeholder="대행사명" value="" ${!item.agencyId ? 'disabled' : ''}/>
                               <input id="agencyId" type="hidden" value="${item.agencyId ? item.agencyId : ''}"/>
                               <button id="searchAgencyBtn" type="button" class="search" onclick="searchAgency()">조회</button>
                             </div>
@@ -161,7 +161,7 @@
                               <label for="bankNone">*해당사항 없음</label>
                             </div>
                             <input id="depositor" type="text" placeholder="예금주명" value="${item.accountName ? item.accountName : ''}" disabled/>
-                            <input id="bank" type="text" placeholder="은행명" value="${item.accountName ? item.accountName : ''}"/>
+                            <input id="bank" type="text" placeholder="은행명" value="${item.accountName ? item.accountName : ''}" ${!item.accountName ? 'disabled' : ''}/>
                           </div>
                           <div id="affliate-user" class="affliate-info-box" style="display:none;">
                             <div id="site-list" class="site-info-box">
