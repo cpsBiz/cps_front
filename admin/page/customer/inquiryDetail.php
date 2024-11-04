@@ -238,7 +238,7 @@
 
         try {
             $.ajax({
-                url: '/admin/page/customer/api/inquiry-file-download.php',
+                url: '/page/customer/api/inquiry-file-download.php',
                 type: 'POST',
                 contentType: 'application/json',
                 data: JSON.stringify(data),
@@ -277,7 +277,7 @@
 
             $.ajax({
                 type: 'POST',
-                url: '/admin/page/customer/api/inquiry-email.php',
+                url: '/page/customer/api/inquiry-email.php',
                 contentType: 'application/json',
                 dataType: 'json',
                 data: JSON.stringify(requestData),

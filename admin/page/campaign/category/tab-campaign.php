@@ -168,7 +168,7 @@
                 </td>
                 <td>
                   <div class="buttonBox">
-                    <img class="drag-handle" src="/admin/image/component/ico_hamburger.svg" alt="">
+                    <img class="drag-handle" src="/image/component/ico_hamburger.svg" alt="">
                   </div>
                 </td>
               </tr>
@@ -338,7 +338,7 @@
 
       $.ajax({
         type: 'POST',
-        url: '/admin/page/campaign/category/api/update-campaign-category.php',
+        url: '/page/campaign/category/api/update-campaign-category.php',
         contentType: 'application/json',
         dataType: "JSON",
         data: JSON.stringify(requestData),
@@ -410,7 +410,7 @@
 
       $.ajax({
         type: 'POST',
-        url: '/admin/page/campaign/category/api/update-campaign-rank.php',
+        url: '/page/campaign/category/api/update-campaign-rank.php',
         contentType: 'application/json',
         dataType: "JSON",
         data: JSON.stringify(requestData),

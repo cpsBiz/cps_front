@@ -17,15 +17,15 @@ $paramKeyword = $_REQUEST['keyword'];
   <meta name="keywords" content="MOBON" />
   <meta name="author" content="인라이플" />
   <title>통합카트</title>
-  <link type="image/ico" rel="shortcut icon" href="/admin/image/favicon/app.png">
-  <script type="text/javascript" src="/admin/js/lib/jquery-2.2.2.min.js"></script>
-  <script type="text/javascript" src="/admin/js/lib/jquery.easing.1.3.js"></script>
-  <script type="text/javascript" src="/admin/js/lib/jquery-ui.min.js"></script>
-  <script type="text/javascript" src="/admin/js/lib/moment.min.js"></script>
-  <script type="text/javascript" src="/admin/js/lib/daterangepicker_popup.js"></script>
-  <script type="text/javascript" src="/admin/js/ui.js"></script>
-  <link type="text/css" rel="stylesheet" href="/admin/css/lib/daterangepicker_popup.css" />
-  <link type="text/css" rel="stylesheet" href="/admin/css/common.css">
+  <link type="image/ico" rel="shortcut icon" href="/image/favicon/app.png">
+  <script type="text/javascript" src="/js/lib/jquery-2.2.2.min.js"></script>
+  <script type="text/javascript" src="/js/lib/jquery.easing.1.3.js"></script>
+  <script type="text/javascript" src="/js/lib/jquery-ui.min.js"></script>
+  <script type="text/javascript" src="/js/lib/moment.min.js"></script>
+  <script type="text/javascript" src="/js/lib/daterangepicker_popup.js"></script>
+  <script type="text/javascript" src="/js/ui.js"></script>
+  <link type="text/css" rel="stylesheet" href="/css/lib/daterangepicker_popup.css" />
+  <link type="text/css" rel="stylesheet" href="/css/common.css">
 </head>
 
 <body>
@@ -33,8 +33,8 @@ $paramKeyword = $_REQUEST['keyword'];
   <!-- ic_accountCustomer 클래스는 해당 페이지를 구분하는 id 값으로 사용하는 클래스입니다. 
              다른 페이지에는 사용을 지양해주시기 바랍니다.(추후 유지보수때 css 수정 어려움) -->
   <div class="wrap ic_accountCustomer">
-    <? include_once $_SERVER['DOCUMENT_ROOT'] . '/admin/page/header.php'; ?>
-    <? include_once $_SERVER['DOCUMENT_ROOT'] . '/admin/page/nav.php'; ?>
+    <? include_once $_SERVER['DOCUMENT_ROOT'] . '/page/header.php'; ?>
+    <? include_once $_SERVER['DOCUMENT_ROOT'] . '/page/nav.php'; ?>
     <section class="container">
       <div class="title">
         <p>회원</p>
@@ -251,11 +251,11 @@ $paramKeyword = $_REQUEST['keyword'];
     window.location.href = url.toString();
   }
 </script>
-<? include_once $_SERVER['DOCUMENT_ROOT'] . "/admin/page/account/customer-add.php"; ?>
-<? include_once $_SERVER['DOCUMENT_ROOT'] . "/admin/page/account/master-add.php"; ?>
+<? include_once $_SERVER['DOCUMENT_ROOT'] . "/page/account/customer-add.php"; ?>
+<? include_once $_SERVER['DOCUMENT_ROOT'] . "/page/account/master-add.php"; ?>
 <? if ($total > 0) {
-  include_once $_SERVER['DOCUMENT_ROOT'] . "/admin/page/account/customer-modify.php";
-  include_once $_SERVER['DOCUMENT_ROOT'] . "/admin/page/account/master-modify.php";
-  include_once $_SERVER['DOCUMENT_ROOT'] . "/admin/page/account/account-delete.php";
+  include_once $_SERVER['DOCUMENT_ROOT'] . "/page/account/customer-modify.php";
+  include_once $_SERVER['DOCUMENT_ROOT'] . "/page/account/master-modify.php";
+  include_once $_SERVER['DOCUMENT_ROOT'] . "/page/account/account-delete.php";
 }
 ?>

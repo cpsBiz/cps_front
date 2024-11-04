@@ -4,7 +4,7 @@
     try {
       $.ajax({
         type: 'GET',
-        url: '/admin/page/campaign/category/api/select-campaign-category.php',
+        url: '/page/campaign/category/api/select-campaign-category.php',
         contentType: 'application/json',
         dataType: "JSON",
         data: {
@@ -65,7 +65,7 @@
 
       $.ajax({
         type: 'POST',
-        url: '/admin/page/campaign/category/api/update-campaign-category.php',
+        url: '/page/campaign/category/api/update-campaign-category.php',
         contentType: 'application/json',
         dataType: 'JSON',
         data: JSON.stringify(requestData),

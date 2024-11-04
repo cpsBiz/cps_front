@@ -17,15 +17,15 @@ $total = 0;
 	<meta name="keywords" content="MOBON" />
 	<meta name="author" content="인라이플" />
 	<title>통합카트</title>
-	<link type="image/ico" rel="shortcut icon" href="/admin/image/favicon/app.png">
-	<script type="text/javascript" src="/admin/js/lib/jquery-2.2.2.min.js"></script>
-	<script type="text/javascript" src="/admin/js/lib/jquery.easing.1.3.js"></script>
-	<script type="text/javascript" src="/admin/js/lib/jquery-ui.min.js"></script>
-	<script type="text/javascript" src="/admin/js/lib/moment.min.js"></script>
-	<script type="text/javascript" src="/admin/js/lib/daterangepicker_popup.js"></script>
-	<script type="text/javascript" src="/admin/js/ui.js"></script>
-	<link type="text/css" rel="stylesheet" href="/admin/css/lib/daterangepicker_popup.css" />
-	<link type="text/css" rel="stylesheet" href="/admin/css/common.css">
+	<link type="image/ico" rel="shortcut icon" href="/image/favicon/app.png">
+	<script type="text/javascript" src="/js/lib/jquery-2.2.2.min.js"></script>
+	<script type="text/javascript" src="/js/lib/jquery.easing.1.3.js"></script>
+	<script type="text/javascript" src="/js/lib/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="/js/lib/moment.min.js"></script>
+	<script type="text/javascript" src="/js/lib/daterangepicker_popup.js"></script>
+	<script type="text/javascript" src="/js/ui.js"></script>
+	<link type="text/css" rel="stylesheet" href="/css/lib/daterangepicker_popup.css" />
+	<link type="text/css" rel="stylesheet" href="/css/common.css">
 </head>
 
 <body>
@@ -33,8 +33,8 @@ $total = 0;
 	<!-- ic_campaignCategory 클래스는 해당 페이지를 구분하는 id 값으로 사용하는 클래스입니다. 
              다른 페이지에는 사용을 지양해주시기 바랍니다.(추후 유지보수때 css 수정 어려움) -->
 	<div class="wrap ic_campaignCategory">
-		<? include_once $_SERVER['DOCUMENT_ROOT'] . '/admin/page/header.php'; ?>
-		<? include_once $_SERVER['DOCUMENT_ROOT'] . '/admin/page/nav.php'; ?>
+		<? include_once $_SERVER['DOCUMENT_ROOT'] . '/page/header.php'; ?>
+		<? include_once $_SERVER['DOCUMENT_ROOT'] . '/page/nav.php'; ?>
 		<section class="container">
 			<div class="title">
 				<p>캠페인 카테고리</p>
@@ -48,21 +48,21 @@ $total = 0;
 						<ul>
 							<!-- on 클래스로 탭 제어 -->
 							<li class="<? if ($tab == '' || $tab == 'category') echo 'on' ?>"
-								onclick="location.href='/admin/page/campaign/category.php?tab=category'">카테고리 목록 관리</li>
-							<li class="<? if ($tab == 'campaign') echo 'on' ?>" onclick="location.href='/admin/page/campaign/category.php?tab=campaign'">카테고리 캠페인 관리</li>
+								onclick="location.href='/page/campaign/category.php?tab=category'">카테고리 목록 관리</li>
+							<li class="<? if ($tab == 'campaign') echo 'on' ?>" onclick="location.href='/page/campaign/category.php?tab=campaign'">카테고리 캠페인 관리</li>
 						</ul>
 					</div>
 					<div class="tabView">
 						<!-- tab 1 > 카테고리 목록 관리 -->
 						<!--  show 클래스로 탭 제어 -->
 						<? if ($tab == '' || $tab == 'category') {
-							include_once $_SERVER['DOCUMENT_ROOT'] . "/admin/page/campaign/category/tab-category.php";
+							include_once $_SERVER['DOCUMENT_ROOT'] . "/page/campaign/category/tab-category.php";
 						} ?>
 						<!-- tab 2 > 카테고리 캠페인 관리  -->
 						<? if ($tab == 'campaign') {
 							$paramCategory = !$_REQUEST['category'] ? 'C0001' : $_REQUEST['category'];
 							$paramAffliate = !$_REQUEST['affliate'] ? 'donsee' : $_REQUEST['affliate'];
-							include_once $_SERVER['DOCUMENT_ROOT'] . "/admin/page/campaign/category/tab-campaign.php";
+							include_once $_SERVER['DOCUMENT_ROOT'] . "/page/campaign/category/tab-campaign.php";
 						} ?>
 					</div>
 				</section>
@@ -86,13 +86,13 @@ $total = 0;
 </script>
 <?
 if ($tab == '' || $tab == 'category') {
-	include_once $_SERVER['DOCUMENT_ROOT'] . "/admin/page/campaign/category/category-add.php";
-	include_once $_SERVER['DOCUMENT_ROOT'] . "/admin/page/campaign/category/category-modify.php";
-	include_once $_SERVER['DOCUMENT_ROOT'] . "/admin/page/campaign/category-delete.php";
+	include_once $_SERVER['DOCUMENT_ROOT'] . "/page/campaign/category/category-add.php";
+	include_once $_SERVER['DOCUMENT_ROOT'] . "/page/campaign/category/category-modify.php";
+	include_once $_SERVER['DOCUMENT_ROOT'] . "/page/campaign/category-delete.php";
 }
 
 if ($tab == 'campaign') {
-	include_once $_SERVER['DOCUMENT_ROOT'] . "/admin/page/campaign/category/category-campaign-modify.php";
-	include_once $_SERVER['DOCUMENT_ROOT'] . "/admin/page/campaign/category/category-campaign-excel.php";
+	include_once $_SERVER['DOCUMENT_ROOT'] . "/page/campaign/category/category-campaign-modify.php";
+	include_once $_SERVER['DOCUMENT_ROOT'] . "/page/campaign/category/category-campaign-excel.php";
 }
 ?>

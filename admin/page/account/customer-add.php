@@ -430,7 +430,7 @@
 
       $.ajax({
         type: 'GET',
-        url: '/admin/page/account/api/select-search-id.php',
+        url: '/page/account/api/select-search-id.php',
         contentType: 'application/json',
         dataType: 'JSON',
         data: {

@@ -8,22 +8,22 @@
 	<meta name="keywords" content="MOBON" />
 	<meta name="author" content="인라이플" />
 	<title>통합카트</title>
-	<link type="image/ico" rel="shortcut icon" href="/admin/image/favicon/app.png">
-	<script type="text/javascript" src="/admin/js/lib/jquery-2.2.2.min.js"></script>
-	<script type="text/javascript" src="/admin/js/lib/jquery.easing.1.3.js"></script>
-	<script type="text/javascript" src="/admin/js/lib/jquery-ui.min.js"></script>
-	<script type="text/javascript" src="/admin/js/lib/moment.min.js"></script>
-	<script type="text/javascript" src="/admin/js/lib/daterangepicker_popup.js"></script>
-	<script type="text/javascript" src="/admin/js/ui.js"></script>
+	<link type="image/ico" rel="shortcut icon" href="/image/favicon/app.png">
+	<script type="text/javascript" src="/js/lib/jquery-2.2.2.min.js"></script>
+	<script type="text/javascript" src="/js/lib/jquery.easing.1.3.js"></script>
+	<script type="text/javascript" src="/js/lib/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="/js/lib/moment.min.js"></script>
+	<script type="text/javascript" src="/js/lib/daterangepicker_popup.js"></script>
+	<script type="text/javascript" src="/js/ui.js"></script>
 	<script type="text/javascript" src="./report.js"></script>
-	<link type="text/css" rel="stylesheet" href="/admin/css/lib/daterangepicker_popup.css" />
-	<link type="text/css" rel="stylesheet" href="/admin/css/common.css">
+	<link type="text/css" rel="stylesheet" href="/css/lib/daterangepicker_popup.css" />
+	<link type="text/css" rel="stylesheet" href="/css/common.css">
 </head>
 
 <body>
 	<div class="wrap ic_reportPerformance">
-		<? include_once $_SERVER['DOCUMENT_ROOT'] . '/admin/page/header.php'; ?>
-		<? include_once $_SERVER['DOCUMENT_ROOT'] . '/admin/page/nav.php'; ?>
+		<? include_once $_SERVER['DOCUMENT_ROOT'] . '/page/header.php'; ?>
+		<? include_once $_SERVER['DOCUMENT_ROOT'] . '/page/nav.php'; ?>
 		<section class="container">
 			<div class="title">
 				<p>실적리포트</p>
@@ -632,4 +632,4 @@
 		});
 	});
 </script>
-<? include_once $_SERVER['DOCUMENT_ROOT'] . "/admin/page/report/reportModal.php"; ?>
+<? include_once $_SERVER['DOCUMENT_ROOT'] . "/page/report/reportModal.php"; ?>

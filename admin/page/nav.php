@@ -10,7 +10,7 @@ $menu_items = [
   ],
   'report' => [
     'label' => '리포트',
-    'url' => '/admin/page/report/report.php'
+    'url' => '/page/report/report.php'
   ],
   'campaign' => [
     'label' => '캠페인 관리',
@@ -18,7 +18,7 @@ $menu_items = [
     'sub' => [
       ['label' => '캠페인 생성', 'url' => '#'],
       ['label' => '캠페인 리스트', 'url' => '#'],
-      ['label' => '캠페인 카테고리', 'url' => '/admin/page/campaign/category.php']
+      ['label' => '캠페인 카테고리', 'url' => '/page/campaign/category.php']
     ]
   ],
   'menu' => [
@@ -29,14 +29,14 @@ $menu_items = [
     'label' => '계정 관리',
     'url' => '#',
     'sub' => [
-      ['label' => '회원', 'url' => '/admin/page/account/customer.php'],
+      ['label' => '회원', 'url' => '/page/account/customer.php'],
     ]
   ],
   'customer' => [
     'label' => '고객 관리',
     'url' => '#',
     'sub' => [
-      ['label' => '1:1문의 내역', 'url' => '/admin/page/customer/inquiryList.php']
+      ['label' => '1:1문의 내역', 'url' => '/page/customer/inquiryList.php']
     ]
   ],
   'notice' => [

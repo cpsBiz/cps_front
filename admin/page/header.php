@@ -2,7 +2,7 @@
 session_start();
 $admin_login = $_SESSION['admin_login'];
 if ($admin_login !== true) {
-  header('Location:/admin/page/login.php');
+  header('Location:/page/login.php');
 } else {
 ?>
   <header class="header">
@@ -14,7 +14,7 @@ if ($admin_login !== true) {
         <ul>
           <li><button type="button">권한정보</button></li>
           <li><button type="button">회원정보수정</button></li>
-          <li><button type="button" onclick="location.href='/admin/page/logout.php'">로그아웃</button></li>
+          <li><button type="button" onclick="location.href='/page/logout.php'">로그아웃</button></li>
         </ul>
       </div>
     </div>
