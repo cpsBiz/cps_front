@@ -487,9 +487,9 @@
       const type = document.getElementById('selectUserType2').value;
       let fileInput;
       if (type === 'PERSONAL') {
-        file = document.getElementById('customer-personal-doc').value;
+        fileInput = document.getElementById('customer-personal-doc').value;
       } else if (type === 'BUSINESS') {
-        file = document.getElementById('customer-business-doc').value;
+        fileInput = document.getElementById('customer-business-doc').value;
       } else {
         return alert('회원유형1을 선택해 주세요.');
       }
