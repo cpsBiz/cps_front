@@ -81,6 +81,7 @@ $paramKeyword = $_REQUEST['keyword'];
                   $sql = "
                           SELECT SQL_CALC_FOUND_ROWS
                             MEMBER_ID,
+                            MEMBER_PW,
                             MEMBER_NAME,
                             TYPE,
                             CEO_NAME,
@@ -133,6 +134,7 @@ $paramKeyword = $_REQUEST['keyword'];
                     // 결과를 처리
                     while ($row = mysqli_fetch_assoc($result)) {
                       $memberId = $row['MEMBER_ID'];
+                      $memberPw = $row['MEMBER_PW'];
                       $memberName = $row['MEMBER_NAME'];
                       $memberType = $row['TYPE'];
                       switch ($memberType) {
@@ -168,7 +170,7 @@ $paramKeyword = $_REQUEST['keyword'];
                           <div class="buttonBox">
                             <button type="button" class="login" title="로그인">로그인</button>
                             <button type="button" class="modify" title="수정" onclick="<?= $memberType == '관리자' ? 'modifyMaster(`' . $memberId . '`)' : 'modifyCustomer()'; ?>">수정</button>
-                            <button type="button" class="delete" title="삭제" onclick="postDeleteAccount('<?= $memberId; ?>')">삭제</button>
+                            <button type="button" class="delete" title="삭제" onclick="postDeleteAccount('<?= $memberId; ?>', '<?= $memberPw; ?>')">삭제</button>
                           </div>
                         </td>
                       </tr>

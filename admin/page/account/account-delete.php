@@ -1,5 +1,5 @@
 <script>
-  function postDeleteAccount(id) {
+  function postDeleteAccount(id, pw) {
     if (!id) return alert('잘못된 접근입니다.');
 
     if (confirm('선택하신 계정을 삭제하시겠습니까?')) {
@@ -7,6 +7,7 @@
         const requestData = {
           apiType: 'D',
           memberId: id,
+          memberPw: pw,
           memberSiteList: []
         };
 
