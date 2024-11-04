@@ -54,8 +54,8 @@
                               <input id="customer-personal-birth" type="number" maxlength="4" placeholder="출생년도 (숫자 4자리)" />
                               <select id="customer-personal-sex">
                                 <option value="" selected disabled>성별</option>
-                                <option value="">남</option>
-                                <option value="">여</option>
+                                <option value="M">남</option>
+                                <option value="W">여</option>
                               </select>
                             </div>
                             <div>
@@ -105,7 +105,7 @@
                           <div id="affliate-user" class="affliate-info-box" style="display:none;">
                             <div id="site-list" class="site-info-box">
                               <div id="site-card1">
-                                <p>사이트등록</p>
+                                <p>사이트등록1</p>
                                 <input type="text" placeholder="사이트명" />
                                 <input type="text" placeholder="URL" />
                                 <select name="" id="">
@@ -225,6 +225,7 @@
     } else {
       // 은행명 입력허용
       document.getElementById('bank').disabled = false;
+      insertDepositor();
     }
   }
 
@@ -233,7 +234,7 @@
     const cardId = document.getElementById('site-list').childElementCount + 1;
     const card = `
                   <div id="site-card${cardId}">
-                    <p>사이트등록<button class="remove-site-btn" onclick="removeAffliateSite(${cardId})">삭제</button></p>
+                    <p>사이트등록${cardId}<button class="remove-site-btn" onclick="removeAffliateSite(${cardId})">삭제</button></p>
                     <input type="text" placeholder="사이트명" />
                     <input type="text" placeholder="URL" />
                     <select id="site-category">
@@ -268,8 +269,24 @@
   }
 
   // 매체 사이트 삭제
-  function removeAffliateSite(id) {
-    $(`#site-card${id}`).remove();
+  function removeAffliateSite(cardNumber) {
+    const card = document.getElementById(`site-card${cardNumber}`);
+    if (card) {
+      card.remove(); // 카드 삭제
+      updateCardIds(); // 카드 ID 업데이트
+    }
+  }
+
+  function updateCardIds() {
+    const cards = document.querySelectorAll('#site-list > div[id^="site-card"]');
+    cardCount = 0; // 카드 수 초기화
+
+    cards.forEach((card, index) => {
+      cardCount++; // 카드 수 증가
+      card.id = `site-card${cardCount}`; // 새로운 ID 설정
+      const button = card.querySelector('.remove-site-btn');
+      button.setAttribute('onclick', `removeAffliateSite(${cardCount})`); // 버튼의 onclick 업데이트
+    });
   }
 
   // 회원 추가 검증 및 데이터 객체 생성 
@@ -300,7 +317,7 @@
     }
 
     if (type2 === 'PERSONAL') { // 개인 검증
-      const name = document.getElementById('customer-personal-').value;
+      const name = document.getElementById('customer-personal-name').value;
       if (!name) return alert('이름을 입력해 주세요.');
 
       const email = document.getElementById('customer-personal-email').value;
@@ -316,8 +333,8 @@
       if (!sex) return alert('성별을 선택해 주세요.');
 
       // 주민등록증 처리 필요
-      const personalDoc = '';
-      if (!personalDoc) return alert('주민등록증을 등록해 주세요.');
+      // const personalDoc = '';
+      // if (!personalDoc) return alert('주민등록증을 등록해 주세요.');
 
     } else if (type2 === 'BUSINESS') { // 사업자 검증
       const companyName = document.getElementById('cusotmer-business-company-name').value;
@@ -351,13 +368,8 @@
       if (!huntingLine) return alert('대표전화를 입력해 주세요.');
 
       // 사업자등록증 처리 필요
-      const businessDoc = '';
-      if (!businessDoc) return alert('사업자등록증을 등록해 주세요.');
-    }
-
-    // 사이트 추가등록 검증
-    if (type1 === 'AFFLIATE') {
-
+      // const businessDoc = '';
+      // if (!businessDoc) return alert('사업자등록증을 등록해 주세요.');
     }
 
     // 은행 검증
@@ -368,6 +380,21 @@
 
       const bank = document.getElementById('bank').value;
       if (!bank) return alert('은행명을 입력해 주세요.')
+    }
+
+    // 사이트 추가등록 검증
+    if (type1 === 'AFFLIATE') {
+      let isValid = true;
+      const cards = document.querySelectorAll('#site-list > div[id^="site-card"]');
+      cards.forEach((card, index) => {
+        const siteName = card.querySelector('input[type="text"]').value;
+        const url = card.querySelector('input[type="text"]:nth-of-type(2)').value;
+        const category = card.querySelector('select').value;
+
+        if (!siteName || !url || !category) isValid = false;
+      });
+
+      if (!isValid) return alert('사이트 등록의 모든 값을 입력해 주세요.');
     }
 
     return console.log('검증완료');
