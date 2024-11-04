@@ -40,7 +40,7 @@
 				</div>
 			</div>
 			<div class="tab-box-wrap">
-				<div class="tab-box">
+				<div id="category-tab" class="tab-box">
 					<div class="tab tab1 on"><a href="javascript:getCampaignView('C0014')">인기순</a></div>
 					<div class="tab tab2"><a href="javascript:getCampaignView('C0001')">종합몰</a></div>
 					<div class="tab tab3"><a href="javascript:getCampaignView('C0003')">패션</a></div>
@@ -70,7 +70,6 @@
 	$(function() {
 		getBanner();
 		getMemberCommission();
-		getCampaignView('C0014');
 	})
 
 	// 배너 조회
@@ -183,6 +182,35 @@
 			});
 		} catch (error) {
 			alert(error.message);
+		}
+	}
+
+	function getCategory() {
+		try {
+			$.ajax({
+				type: 'POST',
+				url: '<?= $appApiUrl; ?>/api/view/categoryView',
+				contentType: 'application/json',
+				success: function(result) {
+					const data = result.datas;
+					let list = '';
+					data.forEach((item, index) => {
+						list += `
+											<div class="tab tab${index + 1} ${index === 0 ? 'on' : ''}">
+												<a href="javascript:getCampaginView('${item.category}')">${item.categoryName}</a>
+											</div>
+										`;
+					});
+					$('#category-tab').empty();
+					$('#category-tab').append(list);
+					getCampaignView(`${data[0].category}`);
+				},
+				error: function(request, status, error) {
+					console.error(`Error: ${error}`);
+				}
+			});
+		} catch (error) {
+			alert(error)
 		}
 	}
 

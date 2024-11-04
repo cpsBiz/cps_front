@@ -363,10 +363,11 @@
       const agency = document.getElementById('agencyName').value;
       if (!agency) return alert('대행사명을 입력해 주세요.');
       if (!checkSearchAgency) return alert('대행사를 조회해 주세요.');
+
+      const agencyId = document.getElementById('agencyId').value;
+      if (!agencyId) return alert('대행사를 다시 조회해 주세요.');
+      data.agencyId = agencyId;
     }
-    const agencyId = document.getElementById('agencyId').value;
-    if (!agencyId) return alert('대행사를 다시 조회해 주세요.');
-    data.agencyId = agencyId;
 
     if (type2 === 'PERSONAL') { // 개인 검증
       const name = document.getElementById('customer-personal-name').value;
