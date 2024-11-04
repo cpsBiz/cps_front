@@ -87,9 +87,9 @@
                             <div>
                               <p>사업자등록증 등록</p>
                               <div class="fileBox">
-                                <button type="button" class="close">닫기</button>
+                                <button type="button" class="close" id="cbd-file-close">닫기</button>
                                 <input type="file" id="customer-business-doc" />
-                                <label for="customer-business-doc">파일을 끌어오세요</label>
+                                <label for="customer-business-doc" id="cbd-file-label">파일을 끌어오세요</label>
                               </div>
                             </div>
                           </div>
@@ -172,6 +172,40 @@
     if (type === 'PERSONAL') {
       $('#personal-user').show();
     } else if (type === 'BUSINESS') {
+      const fileInput = document.getElementById('customer-business-doc');
+      const fileLabel = document.getElementById('cbd-file-label');
+      const closeButton = document.getElementById('cbd-file-close');
+
+      // 드래그 앤 드롭 이벤트 핸들러
+      fileLabel.addEventListener('dragover', (event) => {
+        event.preventDefault();
+        event.stopPropagation();
+      });
+
+      fileLabel.addEventListener('drop', (event) => {
+        event.preventDefault();
+        event.stopPropagation();
+
+        if (event.dataTransfer.files.length) {
+          const file = event.dataTransfer.files[0];
+          fileInput.files = event.dataTransfer.files; // 파일 입력에 파일 추가
+          fileLabel.textContent = file.name; // 라벨 텍스트를 파일명으로 변경
+        }
+      });
+
+      // 파일 선택 시 라벨 변경
+      fileInput.addEventListener('change', () => {
+        if (fileInput.files.length) {
+          fileLabel.textContent = fileInput.files[0].name; // 라벨 텍스트를 파일명으로 변경
+        }
+      });
+
+      // 닫기 버튼 클릭 시 초기화
+      closeButton.addEventListener('click', () => {
+        fileInput.value = ''; // 파일 입력 초기화
+        fileLabel.textContent = '파일을 끌어오세요'; // 라벨 초기화
+      });
+
       $('#business-user').show();
     }
   }
