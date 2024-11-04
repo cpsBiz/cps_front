@@ -395,43 +395,43 @@
       if (!personalDoc) return alert('주민등록증 파일을 첨부해 주세요.');
 
     } else if (type2 === 'BUSINESS') { // 사업자 검증
-      const companyName = document.getElementById('cusotmer-business-company-name').value;
+      const companyName = document.getElementById('customer-business-company-name').value;
       if (!companyName) return alert('업체(법인)명을 입력해 주세요.');
       data.memberName = companyName;
 
-      const companyCeoName = document.getElementById('cusotmer-business-company-ceo-name').value;
+      const companyCeoName = document.getElementById('customer-business-company-ceo-name').value;
       if (!companyCeoName) return alert('대표자명을 입력해 주세요.');
       data.ceoName = companyCeoName;
 
-      const companyLicense = document.getElementById('cusotmer-business-company-license').value;
+      const companyLicense = document.getElementById('customer-business-company-license').value;
       if (!companyLicense) return alert('사업자등록번호를 입력해 주세요.');
       data.businessNumber = companyLicense;
 
-      const companyLocation = document.getElementById('cusotmer-business-company-location').value;
+      const companyLocation = document.getElementById('customer-business-company-location').value;
       if (!companyLocation) return alert('사업장 소재지 (사업자등록증 기준)를 입력해 주세요.');
       data.companyAddress = companyLocation;
 
-      const companyType1 = document.getElementById('cusotmer-business-company-type1').value;
+      const companyType1 = document.getElementById('customer-business-company-type1').value;
       if (!companyType1) return alert('업태를 입력해 주세요.');
       data.businessCategory = companyType1;
 
-      const companyType2 = document.getElementById('cusotmer-business-company-type2').value;
+      const companyType2 = document.getElementById('customer-business-company-type2').value;
       if (!companyType2) return alert('종목을 입력해 주세요.');
       data.businessSector = companyType2;
 
-      const managerName = document.getElementById('cusotmer-business-manager-name').value;
+      const managerName = document.getElementById('customer-business-manager-name').value;
       if (!managerName) return alert('담당자명을 입력해 주세요.');
       data.managerName = managerName;
 
-      const managerEmail = document.getElementById('cusotmer-business-manager-email').value;
+      const managerEmail = document.getElementById('customer-business-manager-email').value;
       if (!managerEmail) return alert('담당자 이메일을 입력해 주세요.');
       data.managerEmail = managerEmail;
 
-      const managerPhone = document.getElementById('cusotmer-business-manager-phone').value;
+      const managerPhone = document.getElementById('customer-business-manager-phone').value;
       if (!managerPhone) return alert('담당자 연락처 (휴대폰)를 입력해 주세요.');
       data.managerPhone = managerPhone;
 
-      const huntingLine = document.getElementById('cusotmer-business-hunting-line').value;
+      const huntingLine = document.getElementById('customer-business-hunting-line').value;
       if (!huntingLine) return alert('대표전화를 입력해 주세요.');
       data.companyPhone = huntingLine;
 
