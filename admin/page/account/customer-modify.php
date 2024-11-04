@@ -102,19 +102,19 @@
                             </div>
                             <div class="searchBox">
                               <input id="agencyName" type="text" placeholder="대행사명" value="" />
-                              <input id="agencyId" type="hidden" value="${item.agencyId}"/>
+                              <input id="agencyId" type="hidden" value="${item.agencyId ? item.agencyId : ''}"/>
                               <button id="searchAgencyBtn" type="button" class="search" onclick="searchAgency()">조회</button>
                             </div>
                           </div>
-                          <div id="personal-user" class="user-info-box userType" style="${item.businessType === 'P' ? 'display:none;' : ''}">
+                          <div id="personal-user" class="user-info-box userType" style="${item.businessType !== 'P' ? 'display:none;' : ''}">
                             <div>
                               <p>개인 정보</p>
-                              <input id="customer-personal-name" type="text" placeholder="이름" onchange="insertDepositor()" value="${item.ceoName}"/>
-                              <input id="customer-personal-email" type="text" placeholder="이메일" value="${item.managerEmail}"/>
-                              <input id="customer-personal-phone" type="text" placeholder="연락처 (휴대폰)" value="${item.companyPhone}"/>
-                              <input id="customer-personal-birth" type="text" placeholder="출생년도 (숫자 4자리)" pattern="^\d{4}$" value="${item.birthYear}"/>
+                              <input id="customer-personal-name" type="text" placeholder="이름" onchange="insertDepositor()" value="${item.ceoName ? item.ceoName : ''}"/>
+                              <input id="customer-personal-email" type="text" placeholder="이메일" value="${item.managerEmail ? item.managerEmail : ''}"/>
+                              <input id="customer-personal-phone" type="text" placeholder="연락처 (휴대폰)" value="${item.companyPhone ? item.companyPhone : ''}"/>
+                              <input id="customer-personal-birth" type="text" placeholder="출생년도 (숫자 4자리)" pattern="^\d{4}$" value="${item.birthYear ? item.birthYear : ''}"/>
                               <select id="customer-personal-sex">
-                                <option value="" disabled>성별</option>
+                                <option value="" ${!item.sex ? 'selected' : ''} disabled>성별</option>
                                 <option value="M" ${item.sex === 'M' ? 'selected' : ''}>남</option>
                                 <option value="W" ${item.sex === 'W' ? 'selected' : ''}>여</option>
                               </select>
@@ -128,22 +128,22 @@
                               </div>
                             </div>
                           </div>
-                          <div id="business-user" class="user-info-box userType" style="${item.businessType === 'B' ? 'display:none;' : ''}">
+                          <div id="business-user" class="user-info-box userType" style="${item.businessType !== 'B' ? 'display:none;' : ''}">
                             <div>
                               <p>사업자 정보</p>
-                              <input id="customer-business-company-name" type="text" placeholder="업체(법인)명" value="${item.memberName}"/>
-                              <input id="customer-business-company-ceo-name" type="text" placeholder="대표자명" onchange="insertDepositor()" value="${item.ceoName}" />
-                              <input id="customer-business-company-license" type="text" placeholder="사업자등록번호" value="${item.businessNumber}" />
-                              <input id="customer-business-company-location" type="text" placeholder="사업장 소재지 (사업자등록증 기준)" value="${item.businessAddress}"/>
-                              <input id="customer-business-company-type1" type="text" placeholder="업태" value="${item.businessCategory}"/>
-                              <input id="customer-business-company-type2" type="text" placeholder="종목" value="${item.businessSector}"/>
+                              <input id="customer-business-company-name" type="text" placeholder="업체(법인)명" value="${item.memberName ? item.memberName : ''}"/>
+                              <input id="customer-business-company-ceo-name" type="text" placeholder="대표자명" onchange="insertDepositor()" value="${item.ceoName ? item.ceoName : ''}" />
+                              <input id="customer-business-company-license" type="text" placeholder="사업자등록번호" value="${item.businessNumber ? item.businessNumber : ''}" />
+                              <input id="customer-business-company-location" type="text" placeholder="사업장 소재지 (사업자등록증 기준)" value="${item.businessAddress ? item.businessAddress : ''}"/>
+                              <input id="customer-business-company-type1" type="text" placeholder="업태" value="${item.businessCategory ? item.businessCategory : ''}"/>
+                              <input id="customer-business-company-type2" type="text" placeholder="종목" value="${item.businessSector ? item.businessSector : ''}"/>
                             </div>
                             <div>
                               <p>담당자 정보</p>
-                              <input id="customer-business-manager-name" type="text" placeholder="담당자명" value="${item.managerName}" />
-                              <input id="customer-business-manager-email" type="text" placeholder="담당자 이메일" value="${item.managerEmail}" />
-                              <input id="customer-business-manager-phone" type="text" placeholder="담당자 연락처 (휴대폰)" value="${item.managerPhone}" />
-                              <input id="customer-business-hunting-line" type="text" placeholder="대표전화" value="${item.companyPhone}" />
+                              <input id="customer-business-manager-name" type="text" placeholder="담당자명" value="${item.managerName ? item.managerName : ''}" />
+                              <input id="customer-business-manager-email" type="text" placeholder="담당자 이메일" value="${item.managerEmail ? item.managerEmail : ''}" />
+                              <input id="customer-business-manager-phone" type="text" placeholder="담당자 연락처 (휴대폰)" value="${item.managerPhone ? item.managerPhone : ''}" />
+                              <input id="customer-business-hunting-line" type="text" placeholder="대표전화" value="${item.companyPhone ? item.companyPhone : ''}" />
                             </div>
                             <div>
                               <p>사업자등록증 등록</p>
@@ -160,8 +160,8 @@
                               <input type="checkbox" id="bankNone" onchange="checkedBankNone()" ${!item.accountName ? 'checked' : ''}/>
                               <label for="bankNone">*해당사항 없음</label>
                             </div>
-                            <input id="depositor" type="text" placeholder="예금주명" value="${item.accountName}" disabled/>
-                            <input id="bank" type="text" placeholder="은행명" value="${item.accountName}"/>
+                            <input id="depositor" type="text" placeholder="예금주명" value="${item.accountName ? item.accountName : ''}" disabled/>
+                            <input id="bank" type="text" placeholder="은행명" value="${item.accountName ? item.accountName : ''}"/>
                           </div>
                           <div id="affliate-user" class="affliate-info-box" style="display:none;">
                             <div id="site-list" class="site-info-box">
