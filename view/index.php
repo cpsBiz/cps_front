@@ -22,7 +22,7 @@
 		<header>
 			<h1>쇼핑적립</h1>
 			<div class="btn-list">
-				<a href="javascript:history.back()" class="ico-arrow type1 left">이전</a>
+				<a href="javascript:HybridApp.close()" class="ico-arrow type1 left">이전</a>
 				<a href="/view/index.php" class="ico-home">홈</a>
 			</div>
 		</header>
