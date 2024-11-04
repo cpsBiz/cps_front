@@ -4,6 +4,8 @@ $admin_login = $_SESSION['admin_login'];
 if ($admin_login !== true) {
   header('Location:/page/login.php');
 } else {
+  include_once $_SERVER['DOCUMENT_ROOT'] . "/db_config.php";
+  include_once $_SERVER['DOCUMENT_ROOT'] . "/common.php";
 ?>
   <header class="header">
     <h1><a href="javascript:void(0);">통합카트</a></h1>
