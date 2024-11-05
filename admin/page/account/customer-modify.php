@@ -174,7 +174,7 @@
                               <input id="customer-business-company-name" type="text" placeholder="업체(법인)명" value="${item.memberName ? item.memberName : ''}"/>
                               <input id="customer-business-company-ceo-name" type="text" placeholder="대표자명" onchange="insertDepositor()" value="${item.ceoName ? item.ceoName : ''}" />
                               <input id="customer-business-company-license" type="text" placeholder="사업자등록번호" value="${item.businessNumber ? item.businessNumber : ''}" />
-                              <input id="customer-business-company-location" type="text" placeholder="사업장 소재지 (사업자등록증 기준)" value="${item.businessAddress ? item.businessAddress : ''}"/>
+                              <input id="customer-business-company-location" type="text" placeholder="사업장 소재지 (사업자등록증 기준)" value="${item.companyAddress ? item.companyAddress : ''}"/>
                               <input id="customer-business-company-type1" type="text" placeholder="업태" value="${item.businessCategory ? item.businessCategory : ''}"/>
                               <input id="customer-business-company-type2" type="text" placeholder="종목" value="${item.businessSector ? item.businessSector : ''}"/>
                             </div>
