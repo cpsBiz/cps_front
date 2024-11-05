@@ -44,6 +44,7 @@
 			</div>
 			<div class="list-wrap type1">
 				<div id="coupangArea" class="list list1 type1" style="display:none;"></div>
+				<div id="none-campaign" class="none-campaign" style="display: none;">적립 가능한 캠페인이 없습니다.</div>
 				<div class="campaign-list" id="campaign-list"></div>
 			</div>
 		</div>
@@ -271,9 +272,11 @@
 
 		$('#campaign-list').empty();
 		if (!data || data.length === 0) {
+			$('#none-campaign').show();
 			removeCoupangArea();
 			return;
 		}
+		$('#none-campaign').hide();
 
 		let list = '';
 		let checkCoupang = false;
