@@ -280,7 +280,7 @@ $months = getLastYearMonths();
 
       list += `
               <div class="list ${status.color}">
-                <p class="title">${item.campaignName}</p>
+                <p class="title">${item.memberName}</p>
                 <div class="text-box">
                   <p class="text text1">${item.productName}</p>
                   <p class="text text2">${item.productPrice.toLocaleString()}원</p>
