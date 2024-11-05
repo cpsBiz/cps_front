@@ -555,7 +555,7 @@
           } else if (data.apiType === 'U') {
             alert('회원 수정이 처리되었습니다.');
           }
-          location.reload();
+          // location.reload();
         },
         error: function(request, status, error) {
           console.error(`Error: ${error}`);
