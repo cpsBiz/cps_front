@@ -233,15 +233,11 @@
   }
 
   function excelDownload() {
-    const data = ['campaign-excel.xlsx'];
-    if (data.length === 0) return alert('첨부 파일이 없습니다.');
-
     try {
       $.ajax({
         url: '/page/campaign/category/api/download-excel.php',
-        type: 'POST',
+        type: 'GET',
         contentType: 'application/json',
-        data: JSON.stringify(data),
         xhrFields: {
           responseType: 'blob' // 바이너리 데이터를 받기 위한 설정
         },
