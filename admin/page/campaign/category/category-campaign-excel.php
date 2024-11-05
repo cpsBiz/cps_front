@@ -231,4 +231,38 @@
         console.error('There has been a problem with your fetch operation:', error);
       });
   }
+
+  function excelDownload() {
+    const data = ['campaign-excel.xlsx'];
+    if (data.length === 0) return alert('첨부 파일이 없습니다.');
+
+    try {
+      $.ajax({
+        url: '/page/campaign/category/api/download-excel.php',
+        type: 'POST',
+        contentType: 'application/json',
+        data: JSON.stringify(data),
+        xhrFields: {
+          responseType: 'blob' // 바이너리 데이터를 받기 위한 설정
+        },
+        success: function(data) {
+          const blob = new Blob([data], {
+            type: 'application/zip'
+          });
+          const link = document.createElement('a');
+          link.href = window.URL.createObjectURL(blob);
+          link.download = 'download.zip';
+          document.body.appendChild(link);
+          link.click();
+          document.body.removeChild(link);
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+          console.error('Error: ' + textStatus + ' - ' + errorThrown);
+          alert('파일 다운로드 중 에러가 발생했습니다. 다시 시도해 주세요.');
+        }
+      });
+    } catch (error) {
+      alert('예외가 발생했습니다: ' + error.message);
+    }
+  }
 </script>
