@@ -550,7 +550,11 @@
         data: JSON.stringify(data),
         success: function(result) {
           if (result.resultCode !== '0000') return alert(result.resultMessage);
-          alert('회원 추가 등록이 처리되었습니다.');
+          if (data.apiType === 'I') {
+            alert('회원 추가 등록이 처리되었습니다.');
+          } else if (data.apiType === 'U') {
+            alert('회원 수정이 처리되었습니다.');
+          }
           location.reload();
         },
         error: function(request, status, error) {
