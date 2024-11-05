@@ -97,7 +97,7 @@
                           <div>
                             <p>대행사 선택</p>
                             <div class="checkBox">
-                              <input type="checkbox" id="agencyNone" onchange="checkedAgencyNone()" ${item.agencyId ? 'checked' : ''}/>
+                              <input type="checkbox" id="agencyNone" onchange="checkedAgencyNone()" ${!item.agencyId ? 'checked' : ''}/>
                               <label for="agencyNone">*해당사항 없음</label>
                             </div>
                             <div class="searchBox">

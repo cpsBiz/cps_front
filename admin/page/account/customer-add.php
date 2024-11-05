@@ -474,6 +474,7 @@
 
       data.memberSiteList = siteList;
       data.apiType = 'I';
+      data.status = 'Y';
     }
 
     uploadDoc().then((result) => {
@@ -490,9 +491,9 @@
         let fileInput;
 
         if (type === 'P') {
-          fileInput = document.getElementById('customer-personal-doc'); // value를 가져오는 것이 아니라 요소를 직접 가져옴
+          fileInput = document.getElementById('customer-personal-doc');
         } else if (type === 'B') {
-          fileInput = document.getElementById('customer-business-doc'); // value를 가져오는 것이 아니라 요소를 직접 가져옴
+          fileInput = document.getElementById('customer-business-doc');
         } else {
           return alert('회원유형2을 선택해 주세요.');
         }
@@ -521,7 +522,7 @@
           success: function(result) {
             if (result.resultCode !== 'success') reject(result.resultMessage);
             const fileList = result.datas;
-            resolve(fileList[0].fileName); // 반환 값을 여기서 사용하면 안됨
+            resolve(fileList[0].fileName);
           },
           error: function(request, status, error) {
             console.error(`Error: ${error}`);
