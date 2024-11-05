@@ -163,6 +163,7 @@
                               <div class="fileBox">
                                 <button type="button" class="close" id="cpd-file-close">닫기</button>
                                 <input type="file" id="customer-personal-doc" />
+                                <input type="hidden" id="cpd-modify" value="${item.businessType === 'P' ? item.license : ''}" />
                                 <label for="customer-personal-doc" id="cpd-file-label">${item.license ? item.license : '파일을 끌어오세요'}</label>
                               </div>
                             </div>
@@ -189,6 +190,7 @@
                               <div class="fileBox">
                                 <button type="button" class="close" id="cbd-file-close">닫기</button>
                                 <input type="file" id="customer-business-doc" />
+                                <input type="hidden" id="cbd-modify" value="${item.businessType === 'B' ? item.license : ''}" />
                                 <label for="customer-business-doc" id="cbd-file-label">${item.license ? item.license : '파일을 끌어오세요'}</label>
                               </div>
                             </div>
@@ -202,7 +204,7 @@
                             <input id="depositor" type="text" placeholder="예금주명" value="${item.accountName ? item.accountName : ''}" disabled/>
                             <input id="bank" type="text" placeholder="은행명" value="${item.accountName ? item.accountName : ''}" ${!item.accountName ? 'disabled' : ''}/>
                           </div>
-                          <div id="affliate-user" class="affliate-info-box" style="${item.type === 'AFFLIATE' && item.siteList === null ? '' : 'display:none;'}">
+                          <div id="affliate-user" class="affliate-info-box" style="${data.type === 'AFFLIATE' && data.siteList === null ? '' : 'display:none;'}">
                             <div id="site-list" class="site-info-box">
                               ${siteListHtml}
                             </div>
@@ -211,7 +213,7 @@
                         </section>
                       </div>
                       <div class="modalFooter">
-                        <button type="button" class="confirm" onclick="validAddCustomer()">등록</button>
+                        <button type="button" class="confirm" onclick="validModifyCustomer()">수정</button>
                         <button type="button" class="cancel" onclick="location.reload()">취소</button>
                       </div>
                     </div>
@@ -220,5 +222,170 @@
                   `;
     $('.wrap.modalView .modal').empty();
     $('.wrap.modalView .modal').append(modal);
+    selectUserType2();
+  }
+
+  // 회원 추가 검증 및 데이터 객체 생성 
+  let checkSearchAgency = false;
+
+  function validModifyCustomer() {
+    let data = {};
+
+    const id = document.getElementById('customer-id').value;
+    data.memberId = id;
+
+    const pwd = document.getElementById('customer-pwd').value;
+    if (!validatePassword(pwd)) return alert('비밀번호는 영문과 숫자를 포함하여 8자리 이상되어야 합니다.');
+    const pwdRe = document.getElementById('customer-pwd-re').value;
+    if (pwd !== pwdRe) return alert('재입력한 비밀번호가 일치하지 않습니다.');
+    data.memberPw = pwd;
+
+    const type1 = document.getElementById('selectUserType1').value;
+    if (!type1) return alert('회원유형1을 선택해 주세요.');
+    data.type = type1;
+
+    const type2 = document.getElementById('selectUserType2').value;
+    if (!type2) return alert('회원유형2를 선택해 주세요.');
+    data.businessType = type2;
+
+    // 대행사 선택 검증
+    const agencyNone = document.getElementById('agencyNone').checked;
+    if (!agencyNone) {
+      const agency = document.getElementById('agencyName').value;
+      if (!agency) return alert('대행사명을 입력해 주세요.');
+      if (!checkSearchAgency) return alert('대행사를 조회해 주세요.');
+
+      const agencyId = document.getElementById('agencyId').value;
+      if (!agencyId) return alert('대행사를 다시 조회해 주세요.');
+      data.agencyId = agencyId;
+    }
+
+    let modifyLicense;
+    if (data.type === 'P') {
+      modifyLicense = document.getElementById('cpd-modify').value;
+    } else if (data.type === 'B') {
+      modifyLicense = document.getElementById('cbd-modify').value;
+    }
+
+    if (type2 === 'P') { // 개인 검증
+      const name = document.getElementById('customer-personal-name').value;
+      if (!name) return alert('이름을 입력해 주세요.');
+      data.ceoName = name;
+
+      const email = document.getElementById('customer-personal-email').value;
+      if (!email) return alert('이메일을 입력해 주세요.');
+      data.managerEmail = email;
+
+      const phone = document.getElementById('customer-personal-phone').value;
+      if (!phone) return alert('연락처 (휴대폰)을 입력해 주세요.');
+      data.companyPhone = phone;
+
+      const birth = document.getElementById('customer-personal-birth').value;
+      if (!birth || birth.length !== 4) return alert('출생년도 (숫자 4자리)를 입력해 주세요.');
+      data.birthYear = birth;
+
+      const sex = document.getElementById('customer-personal-sex').value;
+      if (!sex) return alert('성별을 선택해 주세요.');
+      data.sex = sex;
+
+      // 주민등록증 처리 필요
+      if (!modifyLicense || document.getElementById('cpd-file-label').innerHTML === '파일을 끌어오세요') {
+        return alert('주민등록증 파일을 첨부해 주세요.');
+      }
+    } else if (type2 === 'B') { // 사업자 검증
+      const companyName = document.getElementById('customer-business-company-name').value;
+      if (!companyName) return alert('업체(법인)명을 입력해 주세요.');
+      data.memberName = companyName;
+
+      const companyCeoName = document.getElementById('customer-business-company-ceo-name').value;
+      if (!companyCeoName) return alert('대표자명을 입력해 주세요.');
+      data.ceoName = companyCeoName;
+
+      const companyLicense = document.getElementById('customer-business-company-license').value;
+      if (!companyLicense) return alert('사업자등록번호를 입력해 주세요.');
+      data.businessNumber = companyLicense;
+
+      const companyLocation = document.getElementById('customer-business-company-location').value;
+      if (!companyLocation) return alert('사업장 소재지 (사업자등록증 기준)를 입력해 주세요.');
+      data.companyAddress = companyLocation;
+
+      const companyType1 = document.getElementById('customer-business-company-type1').value;
+      if (!companyType1) return alert('업태를 입력해 주세요.');
+      data.businessCategory = companyType1;
+
+      const companyType2 = document.getElementById('customer-business-company-type2').value;
+      if (!companyType2) return alert('종목을 입력해 주세요.');
+      data.businessSector = companyType2;
+
+      const managerName = document.getElementById('customer-business-manager-name').value;
+      if (!managerName) return alert('담당자명을 입력해 주세요.');
+      data.managerName = managerName;
+
+      const managerEmail = document.getElementById('customer-business-manager-email').value;
+      if (!managerEmail) return alert('담당자 이메일을 입력해 주세요.');
+      data.managerEmail = managerEmail;
+
+      const managerPhone = document.getElementById('customer-business-manager-phone').value;
+      if (!managerPhone) return alert('담당자 연락처 (휴대폰)를 입력해 주세요.');
+      data.managerPhone = managerPhone;
+
+      const huntingLine = document.getElementById('customer-business-hunting-line').value;
+      if (!huntingLine) return alert('대표전화를 입력해 주세요.');
+      data.companyPhone = huntingLine;
+
+      // 사업자등록증 처리 필요
+      if (!modifyLicense || document.getElementById('cbd-file-label').innerHTML === '파일을 끌어오세요') {
+        return alert('사업자등록증 파일을 첨부해 주세요.');
+      }
+    }
+
+    // 은행 검증
+    const bankNone = document.getElementById('bankNone').checked;
+    if (!bankNone) {
+      const depositor = document.getElementById('depositor').value;
+      if (!depositor) return alert('이름 또는 대표자명을 입력해 주세요.');
+      data.accountName = depositor;
+
+      const bank = document.getElementById('bank').value;
+      if (!bank) return alert('은행명을 입력해 주세요.')
+      data.bank = bank;
+    }
+
+    // 사이트 추가등록 검증
+    if (type1 === 'AFFLIATE') {
+      let isValid = true;
+      let siteList = [];
+      const cards = document.querySelectorAll('#site-list > div[id^="site-card"]');
+      cards.forEach((card, index) => {
+        const siteName = card.querySelector('input[type="text"]').value;
+        const url = card.querySelector('input[type="text"]:nth-of-type(2)').value;
+        const category = card.querySelector('select').value;
+
+        if (!siteName || !url || !category) isValid = false;
+        siteList.push({
+          siteName: siteName,
+          site: url,
+          category: category
+        })
+      });
+
+      if (!isValid) return alert('사이트 등록의 모든 값을 입력해 주세요.');
+
+      data.memberSiteList = siteList;
+      data.apiType = 'I';
+      data.status = 'Y';
+    }
+
+
+
+    if (!modifyLicense) {
+      uploadDoc().then((result) => {
+        data.license = result;
+        postAddCustomer(data);
+      })
+    } else {
+      data.license = modifyLicense;
+      postAddCustomer(data);
+    }
   }
 </script>

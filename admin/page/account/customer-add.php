@@ -64,6 +64,7 @@
                               <div class="fileBox">
                                 <button type="button" class="close" id="cpd-file-close">닫기</button>
                                 <input type="file" id="customer-personal-doc" />
+                                <input type="hidden" id="cpd-modify" value="" />
                                 <label for="customer-personal-doc" id="cpd-file-label">파일을 끌어오세요</label>
                               </div>
                             </div>
@@ -90,6 +91,7 @@
                               <div class="fileBox">
                                 <button type="button" class="close" id="cbd-file-close">닫기</button>
                                 <input type="file" id="customer-business-doc" />
+                                <input type="hidden" id="cbd-modify" value="" />
                                 <label for="customer-business-doc" id="cbd-file-label">파일을 끌어오세요</label>
                               </div>
                             </div>
@@ -170,19 +172,19 @@
 
     $('.userType').hide();
 
-    let fileInput, fileLabel, closeButton;
+    let fileInput, fileLabel, closeButton, modifyFile;
 
     if (type === 'P') {
       fileInput = document.getElementById('customer-personal-doc');
       fileLabel = document.getElementById('cpd-file-label');
       closeButton = document.getElementById('cpd-file-close');
-
+      modifyFile = document.getElementById('cpd-modify');
       $('#personal-user').show();
     } else if (type === 'B') {
       fileInput = document.getElementById('customer-business-doc');
       fileLabel = document.getElementById('cbd-file-label');
       closeButton = document.getElementById('cbd-file-close');
-
+      modifyFile = document.getElementById('cbd-modify');
       $('#business-user').show();
     }
 
@@ -207,6 +209,7 @@
     fileInput.addEventListener('change', () => {
       if (fileInput.files.length) {
         fileLabel.textContent = fileInput.files[0].name; // 라벨 텍스트를 파일명으로 변경
+        modifyFile.value = '';
       }
     });
 
