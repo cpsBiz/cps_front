@@ -10,7 +10,7 @@
                       </div>
                       <div class="modalContent">
                         <div class="guideBox">
-                            <p>현재 카테고리 엑셀 양식<span>다운로드</span></p>
+                            <p>현재 카테고리 엑셀 양식<span onclick="excelDownload()">다운로드</span></p>
                             <p>전체 캠페인 리스트 입니다.</p>
                             <p>다운로드 양식에서 순위 조정 후 아래에 업로드해 주세요.</p>
                         </div>
@@ -205,5 +205,30 @@
         }
       });
     }
+  }
+
+
+
+  function excelDownload() {
+    fetch('/page/campaign/files/campaign_excel.xlsx')
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.blob(); // 파일을 blob으로 변환
+      })
+      .then(blob => {
+        const url = window.URL.createObjectURL(blob); // blob URL 생성
+        const a = document.createElement('a');
+        a.style.display = 'none';
+        a.href = url;
+        a.download = filename; // 다운로드할 파일 이름 지정
+        document.body.appendChild(a);
+        a.click(); // 다운로드 클릭 이벤트 발생
+        window.URL.revokeObjectURL(url); // blob URL 해제
+      })
+      .catch(error => {
+        console.error('There has been a problem with your fetch operation:', error);
+      });
   }
 </script>
