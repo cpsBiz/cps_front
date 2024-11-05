@@ -258,13 +258,6 @@
       data.agencyId = agencyId;
     }
 
-    let modifyLicense;
-    if (data.type === 'P') {
-      modifyLicense = document.getElementById('cpd-modify').value;
-    } else if (data.type === 'B') {
-      modifyLicense = document.getElementById('cbd-modify').value;
-    }
-
     if (type2 === 'P') { // 개인 검증
       const name = document.getElementById('customer-personal-name').value;
       if (!name) return alert('이름을 입력해 주세요.');
@@ -288,9 +281,11 @@
 
       // 주민등록증 처리 필요
       const personalDoc = document.getElementById('customer-personal-doc').value;
-      if (!modifyLicense && !personalDoc) {
-        console.log(modifyLicense, personalDoc);
+      const cpdm = document.getElementById('cpd-modify').value;
+      if (!cpdm && !personalDoc) {
         return alert('주민등록증 파일을 첨부해 주세요.');
+      } else if (cpdm && !personalDoc) {
+        data.license = cpdm;
       }
     } else if (type2 === 'B') { // 사업자 검증
       const companyName = document.getElementById('customer-business-company-name').value;
@@ -335,8 +330,11 @@
 
       // 사업자등록증 처리 필요
       const businessDoc = document.getElementById('customer-business-doc').value;
-      if (!modifyLicense && !businessDoc) {
-        return alert('사업자등록증 파일을 첨부해 주세요.');
+      const cbdm = document.getElementById('cbd-modify').value;
+      if (!cbdm && !businessDoc) {
+        return alert('주민등록증 파일을 첨부해 주세요.');
+      } else if (cbdm && !personalDoc) {
+        data.license = cbdm;
       }
     }
 
@@ -384,7 +382,6 @@
         postAddCustomer(data);
       })
     } else {
-      data.license = modifyLicense;
       postAddCustomer(data);
     }
   }
