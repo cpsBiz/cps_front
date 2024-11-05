@@ -29,7 +29,45 @@
   function renderModifyCustomer(data) {
     const item = JSON.parse(data);
 
-    const siteListHtml = (data.siteList || []).map((site, index) => `
+    const siteListHtml = (() => {
+      if (data.type === 'AFFLIATE' && data.siteList === null) {
+        // AFFLIATE 타입이고 siteList가 null인 경우 기본 사이트 정보를 렌더링
+        return `
+            <div id="site-card1">
+                <p>사이트등록1</p>
+                <input type="text" placeholder="사이트명" value="" />
+                <input type="text" placeholder="URL" value="" />
+                <select name="" id="">
+                    <option value="" selected disabled>카테고리 선택</option>
+                    <?php
+                    $sql = "
+                        SELECT
+                            A.CATEGORY,
+                            A.CATEGORY_NAME
+                        FROM CPS_CATEGORY A
+                        LEFT JOIN CPS_CAMPAIGN B ON B.CATEGORY = A.CATEGORY 
+                        GROUP BY A.CATEGORY
+                        ORDER BY CAST(CATEGORY_RANK AS UNSIGNED) ASC
+                    ";
+
+                    $stmt = mysqli_stmt_init($con);
+                    if (mysqli_stmt_prepare($stmt, $sql)) {
+                      mysqli_stmt_execute($stmt);
+                      $result = mysqli_stmt_get_result($stmt);
+                      while ($row = mysqli_fetch_assoc($result)) {
+                    ?>
+                    <option value="<?= $row['CATEGORY']; ?>"><?= $row['CATEGORY_NAME']; ?></option>
+                    <?php
+                      }
+                    }
+                    ?>
+                </select>
+            </div>
+        `;
+      }
+
+      // 기본적으로 siteList가 있을 때 렌더링
+      return (data.siteList || []).map((site, index) => `
         <div id="site-card${index + 1}">
             <p>사이트등록${index + 1}</p>
             <input type="text" placeholder="사이트명" value="${site.siteName}" />
@@ -61,6 +99,7 @@
             </select>
         </div>
     `).join('');
+    })();
 
     const modal = `
                   <div class="modalWrap md_customerRegister" id="md_customerRegister" style="display:block;">
@@ -165,7 +204,7 @@
                           </div>
                           <div id="affliate-user" class="affliate-info-box" style="display:none;">
                             <div id="site-list" class="site-info-box">
-                               ${siteListHtml}
+                              ${siteListHtml}
                             </div>
                             <button type="button" class="siteAdd" onclick="addAffliateSite()">사이트 추가</button>
                           </div>
