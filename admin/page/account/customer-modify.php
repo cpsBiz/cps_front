@@ -202,7 +202,7 @@
                             <input id="depositor" type="text" placeholder="예금주명" value="${item.accountName ? item.accountName : ''}" disabled/>
                             <input id="bank" type="text" placeholder="은행명" value="${item.accountName ? item.accountName : ''}" ${!item.accountName ? 'disabled' : ''}/>
                           </div>
-                          <div id="affliate-user" class="affliate-info-box" style="display:none;">
+                          <div id="affliate-user" class="affliate-info-box" style="${data.type === 'AFFLIATE' && data.siteList === null ? '' : 'display:none;'}">
                             <div id="site-list" class="site-info-box">
                               ${siteListHtml}
                             </div>
