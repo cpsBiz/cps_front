@@ -289,6 +289,7 @@
       // 주민등록증 처리 필요
       const personalDoc = document.getElementById('customer-personal-doc').value;
       if (!modifyLicense && !personalDoc) {
+        console.log(modifyLicense, personalDoc);
         return alert('주민등록증 파일을 첨부해 주세요.');
       }
     } else if (type2 === 'B') { // 사업자 검증
