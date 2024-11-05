@@ -163,9 +163,9 @@
                               <div class="fileBox">
                                 <button type="button" class="close" id="cpd-file-close">닫기</button>
                                 <input type="file" id="customer-personal-doc" />
-                                <input type="hidden" id="cpd-modify" value="${item.businessType === 'P' ? item.license : ''}" />
                                 <label for="customer-personal-doc" id="cpd-file-label">${item.license ? item.license : '파일을 끌어오세요'}</label>
                               </div>
+                              <input type="hidden" id="cpd-modify" value="${item.businessType === 'P' ? item.license : ''}" />
                             </div>
                           </div>
                           <div id="business-user" class="user-info-box userType" style="${item.businessType !== 'B' ? 'display:none;' : ''}">
@@ -190,9 +190,9 @@
                               <div class="fileBox">
                                 <button type="button" class="close" id="cbd-file-close">닫기</button>
                                 <input type="file" id="customer-business-doc" />
-                                <input type="hidden" id="cbd-modify" value="${item.businessType === 'B' ? item.license : ''}" />
                                 <label for="customer-business-doc" id="cbd-file-label">${item.license ? item.license : '파일을 끌어오세요'}</label>
                               </div>
+                              <input type="hidden" id="cbd-modify" value="${item.businessType === 'B' ? item.license : ''}" />
                             </div>
                           </div>
                           <div>
