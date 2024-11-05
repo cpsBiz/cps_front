@@ -38,7 +38,7 @@
     <header>
       <h1>행운의 룰렛</h1>
       <div class="btn-list">
-        <a href="/index.php" class="ico-arrow type1 left">이전</a>
+        <a href="javscript:history.back()" class="ico-arrow type1 left">이전</a>
       </div>
     </header>
     <!-- main -->

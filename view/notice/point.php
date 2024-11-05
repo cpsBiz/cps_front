@@ -18,7 +18,7 @@
     <header>
       <h1>꼭 읽어보세요 (포인트)</h1>
       <div class="btn-list">
-        <a href="/history/point.php" class="ico-arrow type1 left">이전</a>
+        <a href="javscript:history.back()" class="ico-arrow type1 left">이전</a>
       </div>
     </header>
     <!-- main -->
