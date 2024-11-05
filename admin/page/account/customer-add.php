@@ -477,9 +477,10 @@
       if (!isValid) return alert('사이트 등록의 모든 값을 입력해 주세요.');
 
       data.memberSiteList = siteList;
-      data.apiType = 'I';
-      data.status = 'Y';
     }
+
+    data.apiType = 'I';
+    data.status = 'Y';
 
     uploadDoc().then((result) => {
       data.license = result;
