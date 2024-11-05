@@ -378,6 +378,8 @@
       data.apiType = 'U';
     }
 
+    return console.log(data);
+
     if (!modifyLicense) {
       uploadDoc().then((result) => {
         data.license = result;
