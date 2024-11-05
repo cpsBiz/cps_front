@@ -22,7 +22,7 @@
 		<header>
 			<h1>쇼핑적립</h1>
 			<div class="btn-list">
-				<a href="javascript:HybridApp.close()" class="ico-arrow type1 left">이전</a>
+				<a href="javascript:appClose()" class="ico-arrow type1 left">이전</a>
 				<a href="/index.php" class="ico-home">홈</a>
 			</div>
 		</header>
@@ -457,5 +457,11 @@
 
 		// form 제출
 		form.submit();
+	}
+
+	function appClose() {
+		if (confirm('쇼핑적립을 종료하시겠습니까?')) {
+			HybridApp.close()
+		}
 	}
 </script>
