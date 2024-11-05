@@ -4,3 +4,11 @@
   flex-wrap: wrap;
   gap: 10px;
 }
+
+.none-campaign {
+  font-family: 'Pretendard-Regular';
+  margin: auto;
+  font-size: 16px;
+  padding: 100px 0;
+  text-align: center;
+}
