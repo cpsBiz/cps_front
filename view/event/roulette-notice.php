@@ -21,7 +21,7 @@
     <header>
       <h1>쿠팡 이벤트 안내</h1>
       <div class="btn-list">
-        <a href="javscript:history.back()" class="ico-arrow type1 left">이전</a>
+        <a href="javascript:history.back()" class="ico-arrow type1 left">이전</a>
       </div>
     </header>
     <!-- main -->

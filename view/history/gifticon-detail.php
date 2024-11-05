@@ -39,7 +39,7 @@ if (!$object) {
 		<header>
 			<h1>기프티콘 상세정보</h1>
 			<div class="btn-list">
-				<a href="javscript:history.back()" class="ico-arrow type1 left">이전</a>
+				<a href="javascript:history.back()" class="ico-arrow type1 left">이전</a>
 			</div>
 		</header>
 		<!-- main -->
