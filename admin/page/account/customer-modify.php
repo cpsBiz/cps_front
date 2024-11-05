@@ -226,6 +226,8 @@
   }
 
   // 회원 추가 검증 및 데이터 객체 생성 
+  let modifyLicense = false;
+
   function validModifyCustomer() {
     let data = {};
 
@@ -286,6 +288,7 @@
         return alert('주민등록증 파일을 첨부해 주세요.');
       } else if (cpdm && !personalDoc) {
         data.license = cpdm;
+        modifyLicense = true;
       }
     } else if (type2 === 'B') { // 사업자 검증
       const companyName = document.getElementById('customer-business-company-name').value;
@@ -335,6 +338,7 @@
         return alert('주민등록증 파일을 첨부해 주세요.');
       } else if (cbdm && !personalDoc) {
         data.license = cbdm;
+        modifyLicense = true;
       }
     }
 
@@ -373,8 +377,6 @@
       data.memberSiteList = siteList;
       data.apiType = 'U';
     }
-
-
 
     if (!modifyLicense) {
       uploadDoc().then((result) => {
