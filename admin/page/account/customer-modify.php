@@ -226,8 +226,6 @@
   }
 
   // 회원 추가 검증 및 데이터 객체 생성 
-  let checkSearchAgency = false;
-
   function validModifyCustomer() {
     let data = {};
 
