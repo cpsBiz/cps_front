@@ -30,7 +30,7 @@
     const item = JSON.parse(data);
 
     const siteListHtml = (() => {
-      if (data.type === 'AFFLIATE' && data.siteList === null) {
+      if (item.type === 'AFFLIATE' && item.siteList === null) {
         // AFFLIATE 타입이고 siteList가 null인 경우 기본 사이트 정보를 렌더링
         return `
             <div id="site-card1">
@@ -39,7 +39,7 @@
                 <input type="text" placeholder="URL" value="" />
                 <select name="" id="">
                     <option value="" selected disabled>카테고리 선택</option>
-                    <?php
+                    <?
                     $sql = "
                         SELECT
                             A.CATEGORY,
@@ -57,7 +57,7 @@
                       while ($row = mysqli_fetch_assoc($result)) {
                     ?>
                     <option value="<?= $row['CATEGORY']; ?>"><?= $row['CATEGORY_NAME']; ?></option>
-                    <?php
+                    <?
                       }
                     }
                     ?>
@@ -67,14 +67,14 @@
       }
 
       // 기본적으로 siteList가 있을 때 렌더링
-      return (data.siteList || []).map((site, index) => `
+      return (item.siteList || []).map((site, index) => `
         <div id="site-card${index + 1}">
             <p>사이트등록${index + 1}</p>
             <input type="text" placeholder="사이트명" value="${site.siteName}" />
             <input type="text" placeholder="URL" value="${site.site}" />
             <select name="" id="">
                 <option value="" disabled>카테고리 선택</option>
-                <?php
+                <?
                 $sql = "
                     SELECT
                         A.CATEGORY,
@@ -92,7 +92,7 @@
                   while ($row = mysqli_fetch_assoc($result)) {
                 ?>
                 <option value="<?= $row['CATEGORY']; ?>" ${site.category === "<?= $row['CATEGORY']; ?>" ? 'selected' : ''}><?= $row['CATEGORY_NAME']; ?></option>
-                <?php
+                <?
                   }
                 }
                 ?>
@@ -202,7 +202,7 @@
                             <input id="depositor" type="text" placeholder="예금주명" value="${item.accountName ? item.accountName : ''}" disabled/>
                             <input id="bank" type="text" placeholder="은행명" value="${item.accountName ? item.accountName : ''}" ${!item.accountName ? 'disabled' : ''}/>
                           </div>
-                          <div id="affliate-user" class="affliate-info-box" style="${data.type === 'AFFLIATE' && data.siteList === null ? '' : 'display:none;'}">
+                          <div id="affliate-user" class="affliate-info-box" style="${item.type === 'AFFLIATE' && item.siteList === null ? '' : 'display:none;'}">
                             <div id="site-list" class="site-info-box">
                               ${siteListHtml}
                             </div>
