@@ -492,6 +492,7 @@ body.scrollNone {
   display: block;
   width: 100%;
   text-align: center;
+  padding: 0 10px;
 }
 .list-wrap.type1 .list .percent {
   font-family: 'Pretendard-ExtraBold';
