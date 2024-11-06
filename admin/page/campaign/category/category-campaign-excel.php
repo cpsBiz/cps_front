@@ -101,10 +101,10 @@
 
   function initializeFileUpload() {
     const $excelFile = document.querySelector('#excelFile');
-    const $fileList = document.querySelector('.file-list');
     const $fileLabel = document.querySelector('#fileLabel'); // label 요소 참조
+    const $excelClose = document.getElementById('excelClose');
 
-    if ($excelFile) {
+    if ($excelFile && $fileLabel && $excelClose) {
       let fileData = null; // 단일 파일 저장
 
       $excelFile.addEventListener('change', (e) => {
@@ -112,19 +112,15 @@
 
         if (file) {
           const validExtensions = ['.xls', '.xlsx'];
-          const fileExtension = file.name
-            .substring(file.name.lastIndexOf('.'))
-            .toLowerCase();
+          const fileExtension = file.name.substring(file.name.lastIndexOf('.')).toLowerCase();
 
           if (!validExtensions.includes(fileExtension)) {
-            alert(
-              `파일 첨부는 XLS 또는 XLSX만 가능합니다. ${file.name}은/는 ${fileExtension} 타입이므로 첨부할 수 없습니다.`
-            );
+            alert(`파일 첨부는 XLS 또는 XLSX만 가능합니다. ${file.name}은/는 ${fileExtension} 타입이므로 첨부할 수 없습니다.`);
             $excelFile.value = ''; // 유효하지 않은 경우 input 초기화
             return; // 유효하지 않은 경우 함수 종료
           }
 
-          document.getElementById('fileLabel').innerHTML = file.name;
+          $fileLabel.innerHTML = file.name;
 
           // 새로운 파일 선택 시 기존 파일 정보 초기화
           fileData = {
@@ -156,14 +152,10 @@
           const file = files[0]; // 첫 번째 파일만 처리
 
           const validExtensions = ['.xls', '.xlsx'];
-          const fileExtension = file.name
-            .substring(file.name.lastIndexOf('.'))
-            .toLowerCase();
+          const fileExtension = file.name.substring(file.name.lastIndexOf('.')).toLowerCase();
 
           if (!validExtensions.includes(fileExtension)) {
-            alert(
-              `파일 첨부는 XLS 또는 XLSX만 가능합니다. ${file.name}은/는 ${fileExtension} 타입이므로 첨부할 수 없습니다.`
-            );
+            alert(`파일 첨부는 XLS 또는 XLSX만 가능합니다. ${file.name}은/는 ${fileExtension} 타입이므로 첨부할 수 없습니다.`);
             return; // 유효하지 않은 경우 함수 종료
           }
 
@@ -178,16 +170,21 @@
           const dataTransfer = new DataTransfer();
           dataTransfer.items.add(file);
           $excelFile.files = dataTransfer.files; // input 파일에 설정
+
+          // 라벨에 파일 이름 표시
+          $fileLabel.innerHTML = file.name;
         }
       });
-    }
 
-    document.getElementById('excelClose').addEventListener('click', () => {
-      fileData = null; // 파일 데이터 초기화
-      $excelFile.value = ''; // 파일 input 초기화
-      document.getElementById('fileLabel').innerHTML = '파일을 끌어오세요'
-    });
+      // 파일 제거 버튼 이벤트
+      $excelClose.addEventListener('click', () => {
+        fileData = null; // 파일 데이터 초기화
+        $excelFile.value = ''; // 파일 input 초기화
+        $fileLabel.innerHTML = '파일을 끌어오세요'; // 라벨 초기화
+      });
+    }
   }
+
 
   function excelDownload() {
     try {
