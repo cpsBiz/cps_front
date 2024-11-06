@@ -34,7 +34,7 @@ if ($isTest) {
     bottom: 0;
     left: 0;
     background: rgba(0, 0, 0, 0.7);
-    z-index: 9999;
+    z-index: 99999;
   }
 
   .loadingBg p:before {
