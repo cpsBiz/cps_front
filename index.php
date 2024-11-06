@@ -1,7 +1,7 @@
 <? include_once $_SERVER['DOCUMENT_ROOT'] . '/isTest.php'; ?>
 <?
 if ($isTest) {
-  header('location:/index.php');
+  header('location:/main.php');
 } else {
   $userId = $_REQUEST['userId'];
   $adId = $_REQUEST['adId'];
@@ -18,7 +18,7 @@ if ($isTest) {
     $_SESSION['check_site'] = $site;
     $_SESSION['check_zoneId'] = $zoneId;
 
-    header('location:/index.php');
+    header('location:/main.php');
   } else {
   ?>
     <script>

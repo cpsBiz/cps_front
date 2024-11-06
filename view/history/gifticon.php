@@ -37,7 +37,7 @@ $months = getLastYearMonths();
 		<header>
 			<h1>내역</h1>
 			<div class="btn-list">
-				<a href="/index.php" class="ico-arrow type1 left">이전</a>
+				<a href="javascript:history.back()" class="ico-arrow type1 left">이전</a>
 			</div>
 		</header>
 		<!-- main -->
