@@ -14,13 +14,11 @@
                             <p>전체 캠페인 리스트 입니다.</p>
                             <p>다운로드 양식에서 순위 조정 후 아래에 업로드해 주세요.</p>
                         </div>
-                        <div class="file-box">
-                          <div class="file-info">
-                            <input type="file" id="excelFile" accept=".xls, .xlsx" style="display:none;">
-                            <label for="excelFile" id="fileLabel">파일을 끌어오세요 +</label>
+                        <div class="fileBox">
+                            <button type="button" class="close" id="excelClose">닫기</button>
+                            <input type="file" id="excelFile" accept=".xls, .xlsx" style="display:none;" />
+                            <label for="excelFile" id="fileLabel">파일을 끌어오세요</label>
                           </div>
-                          <div class="file-list"></div>
-                        </div>
                       </div>
                       <div class="modalFooter">
                         <button type="button" class="confirm" onclick="postCampaignExcelUpload();">업로드</button>
@@ -109,26 +107,6 @@
     if ($excelFile) {
       let fileData = null; // 단일 파일 저장
 
-      function renderFileName() {
-        $fileList.innerHTML = ''; // 파일 리스트 초기화
-        if (fileData) {
-          $fileList.innerHTML = `
-                <div class="list">
-                    <p class="name">${fileData.name}</p>
-                    <button type="button" class="ico-close type2">X</button>
-                </div>
-            `;
-
-          // 삭제 버튼 클릭 이벤트
-          const $deleteButton = $fileList.querySelector('.ico-close');
-          $deleteButton.addEventListener('click', () => {
-            fileData = null; // 파일 데이터 초기화
-            $excelFile.value = ''; // 파일 input 초기화
-            renderFileName(); // 파일 리스트 업데이트
-          });
-        }
-      }
-
       $excelFile.addEventListener('change', (e) => {
         const file = e.target.files[0]; // 단일 파일 선택
 
@@ -146,14 +124,14 @@
             return; // 유효하지 않은 경우 함수 종료
           }
 
+          document.getElementById('fileLabel').innerHTML = file.name;
+
           // 새로운 파일 선택 시 기존 파일 정보 초기화
           fileData = {
             name: file.name,
             size: file.size,
             type: file.type,
           };
-
-          renderFileName(); // 파일 이름 및 삭제 버튼 표시
         }
       });
 
@@ -196,8 +174,6 @@
             type: file.type,
           };
 
-          renderFileName(); // 파일 이름 및 삭제 버튼 표시
-
           // input 요소에 파일 설정
           const dataTransfer = new DataTransfer();
           dataTransfer.items.add(file);
@@ -205,31 +181,12 @@
         }
       });
     }
-  }
 
-
-
-  function excelDownload() {
-    fetch('/page/campaign/files/campaign_excel.xlsx')
-      .then(response => {
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
-        }
-        return response.blob(); // 파일을 blob으로 변환
-      })
-      .then(blob => {
-        const url = window.URL.createObjectURL(blob); // blob URL 생성
-        const a = document.createElement('a');
-        a.style.display = 'none';
-        a.href = url;
-        a.download = filename; // 다운로드할 파일 이름 지정
-        document.body.appendChild(a);
-        a.click(); // 다운로드 클릭 이벤트 발생
-        window.URL.revokeObjectURL(url); // blob URL 해제
-      })
-      .catch(error => {
-        console.error('There has been a problem with your fetch operation:', error);
-      });
+    document.getElementById('excelClose').addEventListener('click', () => {
+      fileData = null; // 파일 데이터 초기화
+      $excelFile.value = ''; // 파일 input 초기화
+      document.getElementById('fileLabel').innerHTML = '파일을 끌어오세요'
+    });
   }
 
   function excelDownload() {
