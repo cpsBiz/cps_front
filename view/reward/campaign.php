@@ -1,11 +1,11 @@
+<? include_once $_SERVER['DOCUMENT_ROOT'] . "/header.php"; ?>
 <?
 $object = $_REQUEST['object'] ?? null; // null로 기본값 설정
 if (!$object) {
-  header('Location: /index.php');
+  header('Location: /main.php');
   exit;
 }
 ?>
-<? include_once $_SERVER['DOCUMENT_ROOT'] . "/header.php"; ?>
 <!DOCTYPE html>
 <html lang="ko">
 
