@@ -15,6 +15,11 @@
     <script src="../js/swiper.js"></script>
     <script src="../js/swiper-bundle.min.js.map"></script>
 </head>
+<style>
+  .swiper-wrapper {
+    max-height: 330px;
+  }
+</style>
 
 <body>
   <div class="wrap">
