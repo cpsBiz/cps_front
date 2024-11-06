@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="../css/swiper-min.css">
     <script src="../js/swiper.js"></script>
     <script src="../js/swiper-bundle.min.js"></script>
+
 </head>
 
 <body>
