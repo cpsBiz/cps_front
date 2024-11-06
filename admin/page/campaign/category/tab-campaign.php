@@ -69,6 +69,7 @@
         <thead>
           <tr>
             <th>순서</th>
+            <th>캠페인번호</th>
             <th>캠페인명</th>
             <th>카테고리 변경</th>
             <th>
@@ -154,6 +155,7 @@
           ?>
               <tr id="campaignList<?= $i; ?>" data-category="<?= $category; ?>" data-campaign-num="<?= $campaignNum; ?>" data-affliate-id="<?= $affliateId; ?>">
                 <td><?= $i; ?></td>
+                <td><?= $campaignNum; ?></td>
                 <td><?= $campaignName; ?></td>
                 <td>
                   <div class="buttonBox">

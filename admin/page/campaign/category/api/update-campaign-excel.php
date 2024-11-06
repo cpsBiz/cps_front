@@ -1,26 +1,57 @@
+<? include_once $_SERVER['DOCUMENT_ROOT'] . "/db_config.php"; ?>
 <?
+require 'vendor/autoload.php';
 
 use PhpOffice\PhpSpreadsheet\IOFactory;
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
 
-require $_SERVER['DOCUMENT_ROOT'] . '/vendor/autoload.php';
+$response = ['resultCode' => false, 'resultMessage' => ''];
 
-// 파일 업로드 처리
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['excel_file'])) {
-  $file = $_FILES['excel_file']['tmp_name'];
+if ($_FILES['excelFile']['error'] == UPLOAD_ERR_OK) {
+  try {
+    $inputFileType = IOFactory::identify($_FILES['excelFile']['tmp_name']);
+    $reader = IOFactory::createReader($inputFileType);
+    $spreadsheet = $reader->load($_FILES['excelFile']['tmp_name']);
 
-  // 엑셀 파일 읽기
-  $spreadsheet = IOFactory::load($file);
-  $sheet = $spreadsheet->getActiveSheet();
-  $data = $sheet->toArray();
+    $worksheet = $spreadsheet->getActiveSheet();
+    foreach ($worksheet->getRowIterator(6) as $row) {
+      //캠페인번호
+      $a = $worksheet->getCell('A' . $row->getRowIndex())->getValue();
+      //카테고리코드
+      $b = $worksheet->getCell('B' . $row->getRowIndex())->getValue();
+      //매체아이디
+      $c = $worksheet->getCell('C' . $row->getRowIndex())->getValue();
+      //순위
+      $d = $worksheet->getCell('D' . $row->getRowIndex())->getValue();
 
-  // 데이터베이스 수정
-  foreach ($data as $row) {
-    // 예를 들어, 첫 번째 열에 ID, 두 번째 열에 수정할 값이 있다고 가정
-    $id = $row[0];
-    $value = $row[1];
+      // A 열 값이 비어 있으면 더 이상 데이터가 없다고 가정하고 중단
+      if (empty($a) || empty($b) || empty($c) || empty($d)) {
+        break;
+      }
 
-    // 데이터베이스 연결 및 수정 쿼리 실행
-    $stmt = $pdo->prepare("UPDATE your_table SET your_column = ? WHERE id = ?");
-    $stmt->execute([$value, $id]);
+      $sql = "
+              INSERT INTO CPS_CAMPAIGN_RANK
+              (CAMPAIGN_NUM, CATEGORY, AFFLIATE_ID, CAMPAIGN_RANK)
+              VALUES
+              (?, ?, ?, ?)
+              ON DUPLICATE KEY UPDATE
+              CATEGORY = ?,
+              CAMPAIGN_RANK = ?
+              ";
+      $stmt = mysqli_stmt_init($con);
+      if (mysqli_stmt_prepare($stmt, $sql)) {
+        mysqli_stmt_bind_param($stmt, 'issisi', $a, $b, $c, $d, $b, $d);
+        mysqli_stmt_execute($stmt);
+      }
+    }
+
+    $response['resultCode'] = true;
+  } catch (Exception $e) {
+    $response['resultMessage'] = '데이터 처리중 문제가 발생했습니다. 다시 시도해 주세요.';
   }
+} else {
+  $response['resultMessage'] = '파일을 재 첨부하여 다시 시도해 주세요.';
 }
+
+echo json_encode($response);
+?>

@@ -39,8 +39,36 @@
   // 엑셀 데이터 전송
   function postCampaignExcelUpload() {
     try {
-      failCampaignExcelUpload();
-      // successCampaignExcelUpload();
+      const formData = new FormData();
+      const excelFile = $('#excelFile')[0].files[0]; // jQuery로 파일 요소 선택
+
+      if (!excelFile) {
+        alert('파일을 첨부해 주세요.');
+        return;
+      }
+
+      formData.append('excelFile', excelFile);
+
+      $.ajax({
+        url: '/page/campaign/category/api/update-campaign-excel.php',
+        type: 'POST',
+        data: formData,
+        processData: false,
+        contentType: false,
+        success: function(response) {
+          const data = JSON.parse(response);
+          if (data.resultCode) {
+            successCampaignExcelUpload();
+          } else {
+            failCampaignExcelUpload(`${data.resultMessage}`);
+          }
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+          console.error('Error:', textStatus, errorThrown);
+        }
+      });
+
+
     } catch (error) {
       alert(error);
     }
@@ -57,8 +85,7 @@
                           </div>
                           <div class="modalContent">
                               <div class="categoryBox">
-                                  <p>"@@@.xls"</p>
-                                  <p>파일이 정상적으로 업로드 되었습니다.</p>
+                                  <p>엑셀 데이터가 정상적으로 처리되었습니다.</p>
                               </div>
                           </div>
                           <div class="modalFooter">
@@ -73,7 +100,7 @@
   }
 
   // 엑셀 업로드 실패시
-  function failCampaignExcelUpload() {
+  function failCampaignExcelUpload(result) {
     const modal = `
                   <div class="modalWrap md_categoryRegister" id="md_excelUpload" style="display:block;">
                       <div class="modalContainer">
@@ -84,7 +111,7 @@
                           <div class="modalContent">
                               <div class="categoryBox">
                                   <span>파일 업로드에 실패 하였습니다.</span>
-                                  <span>사유 : #############</span>
+                                  <span>사유 : ${result}</span>
                               </div>
                           </div>
                           <div class="modalFooter">
