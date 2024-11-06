@@ -19,7 +19,7 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
 // Composer의 autoloader 로드
-require $_SERVER['DOCUMENT_ROOT'] . '/vendor/autoload.php';
+require '/var/www/html/vendor/autoload.php';
 
 // PHPMailer 객체 생성
 $mail = new PHPMailer(true);
