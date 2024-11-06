@@ -21,5 +21,5 @@ if ($isTest) {
   $appApiUrl = 'https://app.shoplus.io';
 }
 
-echo $checkUserId . ',' . $checkAdId . ',' . $checkAffliateId . ',' . $checkSite . ',' . $checkZoneId . ',' . $appApiUrl;
+echo "<script>alert('" . $checkUserId . ',' . $checkAdId . ',' . $checkAffliateId . ',' . $checkSite . ',' . $checkZoneId . ',' . $appApiUrl . "');</script>";
 ?>
