@@ -438,7 +438,7 @@
 
   function appClose() {
     if (confirm('쇼핑적립을 종료하시겠습니까?')) {
-      HybridApp.close()
+      HybridApp.close();
     }
   }
 </script>

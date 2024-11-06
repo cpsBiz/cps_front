@@ -22,7 +22,8 @@ if ($isTest) {
 	} else {
 	?>
 		<script>
-			alert('필수 값이 없습니다. 종료 후 다시 시도해 주세요.');
+			alert('필수 값이 없습니다. 다시 시도해 주세요.');
+			HybridApp.close();
 		</script>
 <?
 		exit;
