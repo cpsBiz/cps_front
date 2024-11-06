@@ -21,10 +21,10 @@ if ($isTest) {
   $appApiUrl = 'https://app.shoplus.io';
 }
 ?>
-<link rel="icon" type="image/x-icon" href="/images/favicon.ico">
-<script type="text/javascript" src="/js/lib/jquery-2.2.2.min.js"></script>
-<script type="text/javascript" src="/js/lib/jquery.easing.1.3.js"></script>
-<script type="text/javascript" src="/js/lib/jquery-ui.min.js"></script>
+<link rel="icon" type="image/x-icon" href="https://app.shoplus.io/images/favicon.ico">
+<script type="text/javascript" src="https://app.shoplus.io/js/lib/jquery-2.2.2.min.js"></script>
+<script type="text/javascript" src="https://app.shoplus.io/js/lib/jquery.easing.1.3.js"></script>
+<script type="text/javascript" src="https://app.shoplus.io/js/lib/jquery-ui.min.js"></script>
 <style>
   .loadingBg {
     position: fixed;
@@ -45,7 +45,7 @@ if ($isTest) {
     font-size: 0;
     font-style: normal;
     vertical-align: middle;
-    background: url(images/loading/ico_loadingCircle.gif) no-repeat center;
+    background: url(https://app.shoplus.io/images/loading/ico_loadingCircle.gif) no-repeat center;
     content: '';
     display: block;
     width: 100px;
