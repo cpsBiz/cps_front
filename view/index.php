@@ -438,7 +438,7 @@
 	}
 
 	function postToUrl(item) {
-		location.replace(`/reward/campaign.php?obejct=${item}`);
+		location.replace(`/reward/campaign.php?object=${item}`);
 	}
 
 	function appClose() {
