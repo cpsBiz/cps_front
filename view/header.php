@@ -45,7 +45,7 @@ if ($isTest) {
     font-size: 0;
     font-style: normal;
     vertical-align: middle;
-    background: url(image/loading/ico_loadingCircle.gif) no-repeat center;
+    background: url(images/loading/ico_loadingCircle.gif) no-repeat center;
     content: '';
     display: block;
     width: 100px;
