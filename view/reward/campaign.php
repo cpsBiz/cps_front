@@ -142,6 +142,7 @@ if (!$object) {
             history.back();
             return;
           }
+          return console.log(buttonUrl);
           location.href = buttonUrl;
         },
         error: function(request, status, error) {
