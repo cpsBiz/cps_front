@@ -491,6 +491,7 @@ body.scrollNone {
   text-overflow: ellipsis;
   display: block;
   width: 100%;
+  text-align: center;
 }
 .list-wrap.type1 .list .percent {
   font-family: 'Pretendard-ExtraBold';
