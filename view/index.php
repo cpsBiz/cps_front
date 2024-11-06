@@ -438,25 +438,7 @@
 	}
 
 	function postToUrl(item) {
-		// 동적으로 form 생성
-		const form = document.createElement('form');
-		form.action = '/reward/campaign.php'; // 제출할 URL
-		form.method = 'POST'; // POST 방식
-
-		// hidden input 생성 및 데이터 설정
-		const input = document.createElement('input');
-		input.type = 'hidden';
-		input.name = 'object';
-		input.value = item;
-
-		// form에 input 추가
-		form.appendChild(input);
-
-		// form을 body에 추가
-		document.body.appendChild(form);
-
-		// form 제출
-		form.submit();
+		location.replace(`/reward/campaign.php?obejct=${item}`);
 	}
 
 	function appClose() {
