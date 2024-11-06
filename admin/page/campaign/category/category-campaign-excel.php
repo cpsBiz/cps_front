@@ -47,6 +47,14 @@
         return;
       }
 
+      const validExtensions = ['.xls', '.xlsx'];
+      const fileExtension = excelFile.name.substring(excelFile.name.lastIndexOf('.')).toLowerCase();
+
+      if (!validExtensions.includes(fileExtension)) {
+        alert('XLS 또는 XLSX 파일만 업로드 가능합니다.');
+        return;
+      }
+
       formData.append('excelFile', excelFile);
 
       $.ajax({
@@ -67,8 +75,6 @@
           console.error('Error:', textStatus, errorThrown);
         }
       });
-
-
     } catch (error) {
       alert(error);
     }

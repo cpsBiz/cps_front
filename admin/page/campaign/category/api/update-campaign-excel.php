@@ -1,5 +1,5 @@
-<?php
-include_once $_SERVER['DOCUMENT_ROOT'] . "/db_config.php";
+<? include_once $_SERVER['DOCUMENT_ROOT'] . "/db_config.php"; ?>
+<?
 require 'vendor/autoload.php';
 
 use PhpOffice\PhpSpreadsheet\IOFactory;
@@ -8,6 +8,14 @@ $response = ['resultCode' => false, 'resultMessage' => ''];
 
 if ($_FILES['excelFile']['error'] == UPLOAD_ERR_OK) {
   try {
+    // 파일 형식 검사
+    $allowedMimeTypes = ['application/vnd.ms-excel', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'];
+    if (!in_array($_FILES['excelFile']['type'], $allowedMimeTypes)) {
+      $response['resultMessage'] = '엑셀 파일만 업로드 가능합니다.';
+      echo json_encode($response);
+      exit;
+    }
+
     $inputFileType = IOFactory::identify($_FILES['excelFile']['tmp_name']);
     $reader = IOFactory::createReader($inputFileType);
     $spreadsheet = $reader->load($_FILES['excelFile']['tmp_name']);
@@ -40,6 +48,7 @@ if ($_FILES['excelFile']['error'] == UPLOAD_ERR_OK) {
 
       $stmt = mysqli_stmt_init($con);
       if (mysqli_stmt_prepare($stmt, $sql)) {
+        // 매개변수 타입을 ssisi로 수정
         mysqli_stmt_bind_param($stmt, 'issisi', $a, $b, $c, $d, $b, $d);
         if (!mysqli_stmt_execute($stmt)) {
           throw new Exception('MySQL execute error: ' . mysqli_stmt_error($stmt));
@@ -58,3 +67,4 @@ if ($_FILES['excelFile']['error'] == UPLOAD_ERR_OK) {
 }
 
 echo json_encode($response);
+?>
