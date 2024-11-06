@@ -603,6 +603,7 @@ body.scrollNone {
   color: #fff;
   padding-left: 24px;
   position: relative;
+  width: 100%;
 }
 .list-wrap.type1 .list.type1 .info-wrap .coupang-link span::before {
   background-size: cover;
