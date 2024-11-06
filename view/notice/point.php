@@ -7,9 +7,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="format-detection" content="telephone=no">
   <title>꼭 읽어보세요 (포인트)</title>
-  <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
-  <!-- style -->
-  <link rel="stylesheet" href="/css/style.css">
+  <
+    <!-- style -->
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 
 <body>
