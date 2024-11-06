@@ -20,6 +20,4 @@ if ($isTest) {
   $adminApiUrl = 'https://admin.shoplus.io';
   $appApiUrl = 'https://app.shoplus.io';
 }
-
-echo "<script>alert('" . $checkUserId . ',' . $checkAdId . ',' . $checkAffliateId . ',' . $checkSite . ',' . $checkZoneId . ',' . $appApiUrl . "');</script>";
 ?>
