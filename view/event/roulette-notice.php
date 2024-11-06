@@ -9,9 +9,9 @@
   <title>쿠팡 이벤트 안내</title>
   <
     <!-- style -->
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="../css/style.css">
     <!-- swiper -->
-    <link rel="stylesheet" href="/css/swiper-min.css">
+    <link rel="stylesheet" href="../css/swiper-min.css">
     <script src="/js/swiper.js"></script>
 </head>
 

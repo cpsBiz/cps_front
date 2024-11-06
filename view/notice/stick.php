@@ -9,7 +9,7 @@
   <title>꼭 읽어보세요 (막대사탕)</title>
   <
     <!-- style -->
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="../css/style.css">
 </head>
 
 <body>
