@@ -313,7 +313,7 @@
 
       list += `
               <div class="list">
-                <p class="title"><span class="logo" style="background-image: url('${item.logo}');"></span>${item.memberName}</p>
+                <p class="title"><span class="logo" style="background-image: url('${item.logo}');"></span><span class="name">${item.memberName}</span></p>
                 <p class="percent"><span class="ico-point"></span>${commissionPer}%</p>
                 <a href="javascript:postToUrl('${itemStr}')">바로가기</a>
                 <button class="ico-heart ${item.favorites === 'FAVORITE' ? 'on' : ''}" type="button" onclick="patchFavorites(${item.campaignNum}, '${item.favorites}', this)">즐겨찾기</button>
