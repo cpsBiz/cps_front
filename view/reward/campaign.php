@@ -64,7 +64,9 @@ if (!$object) {
           <ul id="campaignNotice"></ul>
         </div>
         <input type="hidden" id="campaignNum" value="">
-        <a id="buttonUrl" class="submit-btn on fixed-bottom" href="">쇼핑하고 적립받기</a>
+        <div class="fixed-bottom">
+          <a id="buttonUrl" class="submit-btn on" href="">쇼핑하고 적립받기</a>
+        </div>
       </div>
     </div>
   </div>
