@@ -12,7 +12,7 @@
   <script type="text/javascript" src="/js/lib/jquery.easing.1.3.js"></script>
   <script type="text/javascript" src="/js/lib/jquery-ui.min.js"></script>
   <!-- style -->
-  <link rel="stylesheet" href="/css/style.css?20241106">
+  <link rel="stylesheet" href="/css/style.css?202411061">
   <link rel="stylesheet" href="/css/index.css?ver=20241106">
 </head>
 
