@@ -88,8 +88,8 @@
     </div>
   </div>
 </body>
-<script src="/js/common.js"></script>
-<script src="/js/page.js"></script>
+<script src="../js/common.js"></script>
+<script src="../js/page.js"></script>
 
 </html>
 <script>

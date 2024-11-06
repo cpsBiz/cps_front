@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="../css/style.css">
     <!-- swiper -->
     <link rel="stylesheet" href="../css/swiper-min.css">
-    <script src="/js/swiper.js"></script>
+    <script src="../js/swiper.js"></script>
 </head>
 
 <body>
@@ -92,8 +92,8 @@
       },
     });
   </script>
-  <script src="/js/common.js"></script>
-  <script src="/js/page.js"></script>
+  <script src="../js/common.js"></script>
+  <script src="../js/page.js"></script>
 </body>
 
 </html>
