@@ -18,12 +18,8 @@ if (!$campaign) {
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="format-detection" content="telephone=no">
   <title>1:1 문의하기</title>
-  <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
   <!-- style -->
   <link rel="stylesheet" href="/css/style.css">
-  <script type="text/javascript" src="/js/lib/jquery-2.2.2.min.js"></script>
-  <script type="text/javascript" src="/js/lib/jquery.easing.1.3.js"></script>
-  <script type="text/javascript" src="/js/lib/jquery-ui.min.js"></script>
   <script type="text/javascript" src="/js/lib/moment.min.js"></script>
   <script type="text/javascript" src="/js/lib/daterangepicker_popup.js"></script>
   <link type="text/css" rel="stylesheet" href="/css/lib/daterangepicker_popup.css" />

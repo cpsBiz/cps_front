@@ -7,11 +7,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="format-detection" content="telephone=no">
   <title>쇼핑적립</title>
-  <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
-  <script type="text/javascript" src="/js/lib/jquery-2.2.2.min.js"></script>
-  <script type="text/javascript" src="/js/lib/jquery.easing.1.3.js"></script>
-  <script type="text/javascript" src="/js/lib/jquery-ui.min.js"></script>
-  <!-- style -->
   <link rel="stylesheet" href="/css/style.css?202411061">
   <link rel="stylesheet" href="/css/index.css?ver=20241106">
 </head>

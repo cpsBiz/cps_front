@@ -21,6 +21,10 @@ if ($isTest) {
   $appApiUrl = 'https://app.shoplus.io';
 }
 ?>
+<link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+<script type="text/javascript" src="/js/lib/jquery-2.2.2.min.js"></script>
+<script type="text/javascript" src="/js/lib/jquery.easing.1.3.js"></script>
+<script type="text/javascript" src="/js/lib/jquery-ui.min.js"></script>
 <style>
   .loadingBg {
     position: fixed;
