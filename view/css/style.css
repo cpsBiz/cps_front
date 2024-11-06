@@ -4741,8 +4741,9 @@ input[type='checkbox']:checked + label .ico-check.on {
 
 .fixed-bottom {
   position: fixed;
+  left: 0;
   bottom: 0;
-  left: 10px;
-  width: calc(100% - 20px);
-  margin-bottom: 11px;
+  width: 100%;
+  padding: 10px;
+  background: white;
 }
