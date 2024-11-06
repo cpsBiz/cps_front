@@ -133,18 +133,14 @@
 
       // 드래그 앤 드롭 이벤트 처리
       $fileLabel.addEventListener('dragover', (e) => {
-        e.preventDefault(); // 기본 동작 방지
-        e.dataTransfer.dropEffect = 'copy'; // 드래그 효과 설정
-        $fileLabel.classList.add('drag-over'); // 드래그 오버 시 스타일 변경
+        e.preventDefault();
+        e.stopPropagation();
       });
 
-      $fileLabel.addEventListener('dragleave', () => {
-        $fileLabel.classList.remove('drag-over'); // 드래그 아웃 시 스타일 복원
-      });
 
       $fileLabel.addEventListener('drop', (e) => {
-        e.preventDefault(); // 기본 동작 방지
-        $fileLabel.classList.remove('drag-over'); // 드래그 아웃 시 스타일 복원
+        e.preventDefault();
+        e.stopPropagation();
 
         const files = e.dataTransfer.files; // 드래그 앤 드롭된 파일들
 
