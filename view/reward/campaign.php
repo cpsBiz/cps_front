@@ -249,6 +249,8 @@ if (!$object) {
       });
       $('#campaignNotice').append(noticeList);
     }
+
+    history.replaceState(null, null, '/reward/campaign.php');
   }
 
   function goInquiry() {
