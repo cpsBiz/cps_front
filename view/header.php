@@ -25,7 +25,7 @@ if ($isTest) {
 <script type="text/javascript" src="https://app.shoplus.io/js/lib/jquery-2.2.2.min.js"></script>
 <script type="text/javascript" src="https://app.shoplus.io/js/lib/jquery.easing.1.3.js"></script>
 <script type="text/javascript" src="https://app.shoplus.io/js/lib/jquery-ui.min.js"></script>
-<style>
+<!-- <style>
   .loadingBg {
     position: fixed;
     display: block;
@@ -85,4 +85,4 @@ if ($isTest) {
   $(document).ajaxStop(function() {
     $('#loading-spinner').hide();
   });
-</script>
+</script> -->
