@@ -7,7 +7,7 @@ if ($isTest) {
   $checkSite = 'test';
   $checkZoneId =  'test';
 
-  $apiUrl = 'http://192.168.101.156';
+  $appApiUrl = 'http://192.168.101.156';
 } else {
   session_start();
 
@@ -17,8 +17,16 @@ if ($isTest) {
   $checkSite = $_SESSION['check_site'];
   $checkZoneId =  $_SESSION['check_zoneId'];
 
-  $adminApiUrl = 'https://admin.shoplus.io';
   $appApiUrl = 'https://app.shoplus.io';
+}
+
+if (!$checkUserId || !$checkAdId || !$checkAffliateId || !$checkSite || !$checkZoneId) {
+?>
+  <script>
+    alert('필수 값이 없습니다. 다시 시도해 주세요.');
+    HybridApp.close();
+  </script>
+<?
 }
 ?>
 <link rel="icon" type="image/x-icon" href="https://app.shoplus.io/images/favicon.ico">
