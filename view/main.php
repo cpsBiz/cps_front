@@ -242,6 +242,7 @@
       $.ajax({
         type: 'POST',
         url: '<?= $appApiUrl; ?>/api/view/campaignView',
+        async: false,
         contentType: 'application/json',
         data: JSON.stringify(requestData),
         success: function(result) {
