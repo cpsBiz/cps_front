@@ -7,8 +7,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="format-detection" content="telephone=no">
   <title>쇼핑적립</title>
-  <link rel="stylesheet" href="/css/style.css?202411061">
-  <link rel="stylesheet" href="/css/index.css?ver=20241106">
+  <link rel="stylesheet" href="/css/style.css?version=<?= $cacheVersion; ?>">
+  <link rel="stylesheet" href="/css/index.css?version=<?= $cacheVersion; ?>">
 </head>
 
 <body>
@@ -47,7 +47,7 @@
   </div>
 
 </body>
-<script type="text/javascript" src="/js/common.js"></script>
+<script type="text/javascript" src="/js/common.js?version=<?= $cacheVersion; ?>"></script>
 
 </html>
 <script>

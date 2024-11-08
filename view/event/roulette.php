@@ -8,7 +8,7 @@
   <meta name="format-detection" content="telephone=no">
   <title>행운의 룰렛</title>
   <!-- style -->
-  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/style.css?version=<?= $cacheVersion; ?>">
 </head>
 <style>
   .itemBrand {
@@ -88,8 +88,8 @@
     </div>
   </div>
 </body>
-<script src="../js/common.js"></script>
-<script src="../js/page.js"></script>
+<script src="../js/common?version=<?= $cacheVersion; ?>"></script>
+<script src="../js/page.js?version=<?= $cacheVersion; ?>"></script>
 
 </html>
 <script>

@@ -24,7 +24,7 @@ $months = getLastYearMonths();
   <meta name="format-detection" content="telephone=no">
   <title>내역</title>
   <!-- style -->
-  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/style.css?version=<?= $cacheVersion; ?>">
 </head>
 
 <body>
@@ -145,9 +145,9 @@ $months = getLastYearMonths();
     <? include_once $_SERVER['DOCUMENT_ROOT'] . "/footer.php"; ?>
   </div>
 </body>
-<script src="../js/common.js"></script>
-<script src="../js/page.js"></script>
-<script src="../js/history.js"></script>
+<script src="../js/common.js?version=<?= $cacheVersion; ?>"></script>
+<script src="../js/page.js?version=<?= $cacheVersion; ?>"></script>
+<script src="../js/history.js?version=<?= $cacheVersion; ?>"></script>
 
 </html>
 <script>
