@@ -67,8 +67,8 @@ if (!$object) {
     </div>
   </div>
 </body>
-<script src="../js/common.js"></script>
-<script src="../js/page.js"></script>
+<script src="https://app.shoplus.io/js/common.js"></script>
+<script src="https://app.shoplus.io/js/page.js"></script>
 
 </html>
 <script>

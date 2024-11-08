@@ -9,11 +9,11 @@
   <title>쿠팡 이벤트 안내</title>
   <
     <!-- style -->
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://app.shoplus.io/css/style.css">
     <!-- swiper -->
-    <link rel="stylesheet" href="../css/swiper-min.css">
-    <script src="../js/swiper.js"></script>
-    <script src="../js/swiper-bundle.min.js.map"></script>
+    <link rel="stylesheet" href="https://app.shoplus.io/css/swiper-min.css">
+    <script src="https://app.shoplus.io/js/swiper.js"></script>
+    <script src="https://app.shoplus.io/js/swiper-bundle.min.js.map"></script>
 </head>
 <style>
   .swiper-wrapper {
@@ -98,8 +98,8 @@
       },
     });
   </script>
-  <script src="../js/common.js"></script>
-  <script src="../js/page.js"></script>
+  <script src="https://app.shoplus.io/js/common.js"></script>
+  <script src="https://app.shoplus.io/js/page.js"></script>
 </body>
 
 </html>
