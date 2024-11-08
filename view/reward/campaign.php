@@ -139,7 +139,7 @@ if (!$object) {
             return;
           }
           // return console.log(buttonUrl);
-          location.href = buttonUrl;
+          location.replace(`${buttonUrl}`);
         },
         error: function(request, status, error) {
           console.error(`Error: ${error}`);
@@ -249,7 +249,7 @@ if (!$object) {
       $('#campaignNotice').append(noticeList);
     }
 
-    history.replaceState(null, null, '/reward/campaign.php');
+    // history.replaceState(null, null, '/reward/campaign.php');
   }
 
   function goInquiry() {
