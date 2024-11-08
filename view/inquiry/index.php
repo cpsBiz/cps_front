@@ -20,9 +20,9 @@ if (!$campaign) {
   <title>1:1 문의하기</title>
   <!-- style -->
   <link rel="stylesheet" href="../css/style.css">
-  <script type="text/javascript" src="../js/lib/moment.min.js"></script>
-  <script type="text/javascript" src="../js/lib/daterangepicker_popup.js"></script>
-  <link type="text/css" rel="stylesheet" src="../css/lib/daterangepicker_popup.css" />
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 </head>
 
 <body>
