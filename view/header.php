@@ -20,11 +20,6 @@ if ($isTest) {
   $appApiUrl = 'https://app.shoplus.io';
 }
 
-if (!$checkUserId || !$checkAdId || !$checkAffliateId || !$checkSite || !$checkZoneId) {
-?>
-
-<?
-}
 ?>
 <link rel="icon" type="image/x-icon" href="https://app.shoplus.io/images/favicon.ico">
 <script type="text/javascript" src="https://app.shoplus.io/js/lib/jquery-2.2.2.min.js"></script>
