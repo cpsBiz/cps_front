@@ -17,7 +17,7 @@
     <header>
       <h1>쇼핑적립</h1>
       <div class="btn-list">
-        <a href="javascript:appClose()" class="ico-arrow type1 left">이전</a>
+        <a href="javascript:HybridApp.close();" class="ico-arrow type1 left">이전</a>
         <!-- <a href="/index.php" class="ico-home">홈</a> -->
       </div>
     </header>
