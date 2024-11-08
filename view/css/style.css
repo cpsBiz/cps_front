@@ -4574,7 +4574,7 @@ input[type='checkbox']:checked + label .ico-check.on {
 .sub.sub-5-3-2 .box.box1 {
   padding: 0 20px;
 }
-
+/* 
 .daterangepicker {
   padding: 4px 4px 4px 4px;
   border: 1px solid #d6d6d6;
@@ -4756,4 +4756,4 @@ input[type='checkbox']:checked + label .ico-check.on {
   width: 100%;
   padding: 10px;
   background: white;
-}
+} */

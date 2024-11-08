@@ -22,6 +22,7 @@ if (!$campaign) {
   <link rel="stylesheet" href="../css/style.css">
   <script type="text/javascript" src="../js/lib/moment.min.js"></script>
   <script type="text/javascript" src="../js/lib/daterangepicker_popup.js"></script>
+  <link type="text/css" rel="stylesheet" src="../css/lib/daterangepicker_popup.css" />
 </head>
 
 <body>
