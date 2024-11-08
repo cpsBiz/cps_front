@@ -15,7 +15,7 @@ if (!$object) {
   <meta name="format-detection" content="telephone=no">
   <title>쇼핑적립 상세정보</title>
   <!-- style -->
-  <link rel="stylesheet" href="/css/style.css?version=<?= $cacheVersion; ?>">
+  <link rel="stylesheet" href="/css/style.css?ver=202411061">
 </head>
 
 <body>
@@ -67,8 +67,8 @@ if (!$object) {
     </div>
   </div>
 </body>
-<script src="../js/common.js?version=<?= $cacheVersion; ?>"></script>
-<script src="../js/page.js?version=<?= $cacheVersion; ?>"></script>
+<script src="../js/common.js"></script>
+<script src="../js/page.js"></script>
 
 </html>
 <script>

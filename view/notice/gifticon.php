@@ -9,7 +9,7 @@
   <title>꼭 읽어보세요 (기프티콘)</title>
   <
     <!-- style -->
-    <link rel="stylesheet" href="../css/style.css?version=<?= $cacheVersion; ?>">
+    <link rel="stylesheet" href="../css/style.css">
 </head>
 
 <body>
@@ -42,8 +42,8 @@
       </div>
     </div>
   </div>
-  <script src="../js/common.js?version=<?= $cacheVersion; ?>"></script>
-  <script src="../js/page.js?version=<?= $cacheVersion; ?>"></script>
+  <script src="../js/common.js"></script>
+  <script src="../js/page.js"></script>
 </body>
 
 </html>

@@ -124,9 +124,9 @@ $months = getLastYearMonths();
     <? include_once $_SERVER['DOCUMENT_ROOT'] . "/footer.php"; ?>
   </div>
 </body>
-<script src="../js/common.js?version=<?= $cacheVersion; ?>"></script>
-<script src="../js/page.js?version=<?= $cacheVersion; ?>"></script>
-<script src="../js/history.js?version=<?= $cacheVersion; ?>"></script>
+<script src="../js/common.js"></script>
+<script src="../js/page.js"></script>
+<script src="../js/history.js"></script>
 
 </html>
 

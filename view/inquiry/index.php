@@ -19,10 +19,10 @@ if (!$campaign) {
   <meta name="format-detection" content="telephone=no">
   <title>1:1 문의하기</title>
   <!-- style -->
-  <link rel="stylesheet" href="../css/style.css?version=<?= $cacheVersion; ?>">
-  <script type="text/javascript" src="../js/lib/moment.min.js?version=<?= $cacheVersion; ?>"></script>
-  <script type="text/javascript" src="../js/lib/daterangepicker_popup.js?version=<?= $cacheVersion; ?>"></script>
-  <link type="text/css" rel="stylesheet" href="../css/lib/daterangepicker_popup.css?version=<?= $cacheVersion; ?>" />
+  <link rel="stylesheet" href="../css/style.css">
+  <script type="text/javascript" src="../js/lib/moment.min.js"></script>
+  <script type="text/javascript" src="../js/lib/daterangepicker_popup.js"></script>
+  <link type="text/css" rel="stylesheet" href="../css/lib/daterangepicker_popup.css" />
 </head>
 
 <body>
@@ -311,8 +311,8 @@ if (!$campaign) {
     </div>
   </div>
 </body>
-<script src="../js/common.js?version=<?= $cacheVersion; ?>"></script>
-<script src="../js/page.js?version=<?= $cacheVersion; ?>"></script>
+<script src="../js/common.js"></script>
+<script src="../js/page.js"></script>
 
 </html>
 <script>

@@ -28,13 +28,11 @@ if (!$checkUserId || !$checkAdId || !$checkAffliateId || !$checkSite || !$checkZ
   </script>
 <?
 }
-
-$cacheVersion = 1.0;
 ?>
 <link rel="icon" type="image/x-icon" href="https://app.shoplus.io/images/favicon.ico">
-<script type="text/javascript" src="https://app.shoplus.io/js/lib/jquery-2.2.2.min.js?version=<?= $cacheVersion; ?>"></script>
-<script type="text/javascript" src="https://app.shoplus.io/js/lib/jquery.easing.1.3.js?version=<?= $cacheVersion; ?>"></script>
-<script type="text/javascript" src="https://app.shoplus.io/js/lib/jquery-ui.min.js?version=<?= $cacheVersion; ?>"></script>
+<script type="text/javascript" src="https://app.shoplus.io/js/lib/jquery-2.2.2.min.js"></script>
+<script type="text/javascript" src="https://app.shoplus.io/js/lib/jquery.easing.1.3.js"></script>
+<script type="text/javascript" src="https://app.shoplus.io/js/lib/jquery-ui.min.js"></script>
 <!-- <style>
   .loadingBg {
     position: fixed;

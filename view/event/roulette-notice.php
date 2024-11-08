@@ -9,11 +9,11 @@
   <title>쿠팡 이벤트 안내</title>
   <
     <!-- style -->
-    <link rel="stylesheet" href="../css/style.css?version=<?= $cacheVersion; ?>">
+    <link rel="stylesheet" href="../css/style.css">
     <!-- swiper -->
-    <link rel="stylesheet" href="../css/swiper-min.css?version=<?= $cacheVersion; ?>">
-    <script src="../js/swiper.js?version=<?= $cacheVersion; ?>"></script>
-    <script src="../js/swiper-bundle.min.js.map?version=<?= $cacheVersion; ?>"></script>
+    <link rel="stylesheet" href="../css/swiper-min.css">
+    <script src="../js/swiper.js"></script>
+    <script src="../js/swiper-bundle.min.js.map"></script>
 </head>
 <style>
   .swiper-wrapper {
@@ -98,8 +98,8 @@
       },
     });
   </script>
-  <script src="../js/common.js?version=<?= $cacheVersion; ?>"></script>
-  <script src="../js/page.js?version=<?= $cacheVersion; ?>"></script>
+  <script src="../js/common.js"></script>
+  <script src="../js/page.js"></script>
 </body>
 
 </html>
