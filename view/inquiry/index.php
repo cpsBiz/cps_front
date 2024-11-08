@@ -20,6 +20,7 @@ if (!$campaign) {
   <title>1:1 문의하기</title>
   <!-- style -->
   <link rel="stylesheet" src="https://app.shoplus.io/css/style.css">
+  <link rel="stylesheet" src="https://app.shoplus.io/view/css/style.css">
   <script type="text/javascript" src="https://admin.shoplus.io/js/lib/moment.min.js"></script>
   <script type="text/javascript" src="https://admin.shoplus.io/js/lib/daterangepicker_popup.js"></script>
   <link type="text/css" rel="stylesheet" src="https://admin.shoplus.io/css/lib/daterangepicker_popup.css" />
