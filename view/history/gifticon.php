@@ -113,9 +113,9 @@ $months = getLastYearMonths();
 		<? include_once $_SERVER['DOCUMENT_ROOT'] . "/footer.php"; ?>
 	</div>
 </body>
-<script src="https://app.shoplus.io/js/common.js"></script>
-<script src="https://app.shoplus.io/js/page.js"></script>
-<script src="https://app.shoplus.io/js/history.js"></script>
+<script src="../js/common.js"></script>
+<script src="../js/page.js"></script>
+<script src="../js/history.js"></script>
 
 </html>
 

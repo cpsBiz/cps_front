@@ -21,10 +21,10 @@ if ($isTest) {
 }
 
 ?>
-<link rel="icon" type="image/x-icon" href="https://app.shoplus.io/images/favicon.ico">
-<script type="text/javascript" src="https://app.shoplus.io/js/lib/jquery-2.2.2.min.js"></script>
-<script type="text/javascript" src="https://app.shoplus.io/js/lib/jquery.easing.1.3.js"></script>
-<script type="text/javascript" src="https://app.shoplus.io/js/lib/jquery-ui.min.js"></script>
+<link rel="icon" type="image/x-icon" src="../images/favicon.ico">
+<script type="text/javascript" src="../js/lib/jquery-2.2.2.min.js"></script>
+<script type="text/javascript" src="../js/lib/jquery.easing.1.3.js"></script>
+<script type="text/javascript" src="../js/lib/jquery-ui.min.js"></script>
 <!-- <style>
   .loadingBg {
     position: fixed;
