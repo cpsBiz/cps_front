@@ -22,10 +22,10 @@ if ($isTest) {
 
 if (!$checkUserId || !$checkAdId || !$checkAffliateId || !$checkSite || !$checkZoneId) {
 ?>
-  <script>
+  <!-- <script>
     alert('필수 값이 없습니다. 다시 시도해 주세요.');
     HybridApp.close();
-  </script>
+  </script> -->
 <?
 }
 ?>
