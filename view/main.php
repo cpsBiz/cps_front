@@ -102,7 +102,6 @@
             zoneId: '<?= $checkZoneId; ?>',
             userId: '<?= $checkUserId; ?>',
             adId: '<?= $checkAdId; ?>',
-            type: 'MERCHANT'
           }
           const itemStr = base64Encode(JSON.stringify(params));
 
@@ -297,7 +296,6 @@
         zoneId: '<?= $checkZoneId; ?>',
         userId: '<?= $checkUserId; ?>',
         adId: '<?= $checkAdId; ?>',
-        type: 'MERCHANT'
       }
       const itemStr = base64Encode(JSON.stringify(params));
 

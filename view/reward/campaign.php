@@ -104,7 +104,6 @@ if (!$object) {
       const zoneId = '<?= $checkZoneId; ?>'
       const agencyId = object.agencyId;
       const merchantId = object.merchantId;
-      const type = 'MERCHANT';
       const site = '<?= $checkSite; ?>';
       const os = getOs();
       const userId = '<?= $checkUserId; ?>'
