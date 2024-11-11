@@ -7,13 +7,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="format-detection" content="telephone=no">
   <title>쿠팡 이벤트 안내</title>
-  <
-    <!-- style -->
-    <link rel="stylesheet" src="../css/style.css?version=<?= $cacheVersion; ?>">
-    <!-- swiper -->
-    <link rel="stylesheet" src="../css/swiper-min.css?version=<?= $cacheVersion; ?>">
-    <script src="../js/swiper.js?version=<?= $cacheVersion; ?>"></script>
-    <script src="../js/swiper-bundle.min.js.map?version=<?= $cacheVersion; ?>"></script>
+  <!-- style -->
+  <link rel="stylesheet" src="../css/style.css?version=<?= $cacheVersion; ?>">
+  <!-- swiper -->
+  <link rel="stylesheet" src="../css/swiper-min.css?version=<?= $cacheVersion; ?>">
+  <script src="../js/swiper.js?version=<?= $cacheVersion; ?>"></script>
+  <script src="../js/swiper-bundle.min.js.map?version=<?= $cacheVersion; ?>"></script>
 </head>
 <style>
   .swiper-wrapper {
