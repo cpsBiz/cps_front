@@ -26,7 +26,7 @@ $cacheVersion = 1.0;
 <script type="text/javascript" src="https://app.shoplus.io/js/lib/jquery-2.2.2.min.js?version=<?= $cacheVersion; ?>"></script>
 <script type="text/javascript" src="https://app.shoplus.io/js/lib/jquery.easing.1.3.js?version=<?= $cacheVersion; ?>"></script>
 <script type="text/javascript" src="https://app.shoplus.io/js/lib/jquery-ui.min.js?version=<?= $cacheVersion; ?>"></script>
-<!-- <style>
+<style>
   .loadingBg {
     position: fixed;
     display: block;
@@ -34,49 +34,13 @@ $cacheVersion = 1.0;
     right: 0;
     bottom: 0;
     left: 0;
-    background: rgba(0, 0, 0, 0.7);
+    background: rgba(0, 0, 0, 0);
     z-index: 99999;
-  }
-
-  .loadingBg p:before {
-    content: '';
-    position: relative;
-    display: inline-block;
-    background-position: 0px 0px;
-    font-size: 0;
-    font-style: normal;
-    vertical-align: middle;
-    background: url(https://app.shoplus.io/images/loading/ico_loadingCircle.gif) no-repeat center;
-    content: '';
-    display: block;
-    width: 100px;
-    height: 80px;
-    margin: 0 auto 40px;
-    background-size: 100px 80px;
-    -webkit-animation: rotationLoading 1.2s infinite steps(9);
-    animation: rotationLoading 1.2s infinite steps(9);
-  }
-
-  .loadingBg p {
-    position: absolute;
-    top: calc(50% - 70px);
     width: 100%;
-    text-align: center;
-    font-size: 18px;
-    line-height: 1.5;
-    color: #ffffff;
-    z-index: 9999;
-  }
-
-  .loadingBg p b {
-    display: block;
-    margin-bottom: 10px;
-    font-size: 18px;
+    height: 100%;
   }
 </style>
-<div id="loading-spinner" class="loadingBg" style="display: none;">
-  <p><b>Loading</b>잠시만 기다려 주세요.</p>
-</div>
+<div id="loading-spinner" class="loadingBg" style="display: none;"></div>
 <script>
   $(document).ajaxStart(function() {
     $('#loading-spinner').show();
@@ -86,4 +50,4 @@ $cacheVersion = 1.0;
   $(document).ajaxStop(function() {
     $('#loading-spinner').hide();
   });
-</script> -->
+</script>
