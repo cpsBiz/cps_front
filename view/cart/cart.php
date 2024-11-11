@@ -434,13 +434,6 @@
         </ul>
       </div>
     </div>
-    <div class="bottom-menu-wrap">
-      <a class="menu on" href="./sub-1.html"><span class="ico-cart">카트</span></a>
-      <a class="menu" href="./index.html"><span class="ico-save">적립</span></a>
-      <a class="menu" href="javascript:void(0)"><span class="ico-trend">트렌드</span></a>
-      <a class="menu" href="javascript:void(0)"><span class="ico-delivery">배송</span></a>
-      <a class="menu" href="./sub-5.html"><span class="ico-breakDown">내역</span></a>
-    </div>
     <div id="bottom-cart-menu1" class="bottom-cart-menu-wrap type1">
       <button type="button" onclick="bottomCartCancel('#bottom-cart-menu1', '#cart-list-wrap1', '#select-text1', '#cart-alarm1')"><span class="ico-b-cart-cancel"></span>취소</button>
       <button id="cart-alarm1" type="button" onclick="bottomCartAlarm('#cart-alarm1', '#cart-list-wrap1', '#select-text1', '#tost2', '#tost3')"><span class="ico-b-cart-alarm on"></span>알림 켜기</button>
@@ -457,8 +450,62 @@
         <button type="button" class="blue" onclick="bottomCartRemove('#cart-list-wrap1', '#bottom-popup1', '#bottom-cart-menu1', '#select-text1', '#tost5')">확인</button>
       </div>
     </div>
+    <? include_once $_SERVER['DOCUMENT_ROOT'] . "/footer.php"; ?>
   </div>
-  <script src="../js/common.js?version=<?= $cacheVersion; ?>"></script>
 </body>
+<script src="../js/common.js?version=<?= $cacheVersion; ?>"></script>
 
 </html>
+<script>
+  function initLongPress(element, callback, duration = 2000) {
+    let timer;
+    let isPressed = false;
+
+    // 터치 이벤트 처리
+    element.addEventListener('touchstart', (e) => {
+      isPressed = true;
+      timer = setTimeout(() => {
+        if (isPressed) {
+          callback(e);
+        }
+      }, duration);
+    });
+
+    element.addEventListener('touchend', () => {
+      isPressed = false;
+      clearTimeout(timer);
+    });
+
+    element.addEventListener('touchcancel', () => {
+      isPressed = false;
+      clearTimeout(timer);
+    });
+
+    // 마우스 이벤트 처리
+    element.addEventListener('mousedown', (e) => {
+      isPressed = true;
+      timer = setTimeout(() => {
+        if (isPressed) {
+          callback(e);
+        }
+      }, duration);
+    });
+
+    element.addEventListener('mouseup', () => {
+      isPressed = false;
+      clearTimeout(timer);
+    });
+
+    element.addEventListener('mouseleave', () => {
+      isPressed = false;
+      clearTimeout(timer);
+    });
+  }
+
+  // 사용 예시
+  const button = document.querySelectorAll('.img-box');
+  initLongPress(button, (e) => {
+    console.log('2초 동안 눌렸습니다!');
+    // 여기에 실행하고 싶은 함수 호출
+  }, 2000);
+</script>
