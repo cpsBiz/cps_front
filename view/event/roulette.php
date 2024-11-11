@@ -88,7 +88,7 @@
     </div>
   </div>
 </body>
-<script src="../js/common.j?version=<?= $cacheVersion; ?>s"></script>
+<script src="../js/common.js?version=<?= $cacheVersion; ?>s"></script>
 <script src="../js/page.js?version=<?= $cacheVersion; ?>"></script>
 
 </html>
