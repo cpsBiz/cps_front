@@ -495,7 +495,7 @@
   // 사용 예시
   $(document).ready(function() {
     // 버튼에 롱 프레스 이벤트 추가
-    initLongPress($('.list > a'), function(e) {
+    initLongPress($('.img-box'), function(e) {
       console.log('2초 동안 눌렸습니다!');
       // 실행할 함수 내용
     });
