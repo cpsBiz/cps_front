@@ -29,7 +29,7 @@ $cacheVersion = 1.0;
 <style>
   .loadingBg {
     position: fixed;
-    display: block;
+    display: none;
     top: 0;
     right: 0;
     bottom: 0;
@@ -40,7 +40,7 @@ $cacheVersion = 1.0;
     height: 100%;
   }
 </style>
-<div id="loading-spinner" class="loadingBg" style="display: none;"></div>
+<div id="loading-spinner" class="loadingBg"></div>
 <script>
   $(document).ajaxStart(function() {
     $('#loading-spinner').show();
