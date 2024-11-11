@@ -503,9 +503,11 @@
   }
 
   // 사용 예시
-  const button = document.querySelectorAll('.img-box');
-  initLongPress(button, (e) => {
-    console.log('2초 동안 눌렸습니다!');
-    // 여기에 실행하고 싶은 함수 호출
-  }, 2000);
+  $(function() {
+    const button = document.querySelectorAll('.img-box');
+    initLongPress(button, (e) => {
+      console.log('2초 동안 눌렸습니다!');
+      // 여기에 실행하고 싶은 함수 호출
+    }, 2000);
+  })
 </script>
