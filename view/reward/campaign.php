@@ -116,7 +116,6 @@ if (!$object) {
         zoneId,
         agencyId,
         merchantId,
-        type,
         site,
         clickUrl,
         os,
