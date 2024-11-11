@@ -457,47 +457,28 @@
 
 </html>
 <script>
-  function initLongPress($element, callback, duration = 2000) {
-    let timer;
-    let isPressed = false;
+  const onlongclick = ($target, duration, callback) => {
+    $target.onmousedown = () => {
+      const timer = setTimeout(callback, duration);
 
-    // 터치 이벤트
-    $element.on('touchstart', function(e) {
-      isPressed = true;
-      timer = setTimeout(() => {
-        if (isPressed) {
-          callback(e);
-        }
-      }, duration);
-    });
+      $target.onmouseup = () => {
+        clearTimeout(timer);
+      };
+    };
 
-    $element.on('touchend touchcancel', function() {
-      isPressed = false;
-      clearTimeout(timer);
-    });
+    $target.ontouchstart = () => {
+      const timer = setTimeout(callback, duration);
 
-    // 마우스 이벤트
-    $element.on('mousedown', function(e) {
-      isPressed = true;
-      timer = setTimeout(() => {
-        if (isPressed) {
-          callback(e);
-        }
-      }, duration);
-    });
-
-    $element.on('mouseup mouseleave', function() {
-      isPressed = false;
-      clearTimeout(timer);
-    });
+      $target.ontouchend = () => {
+        clearTimeout(timer);
+      };
+    };
   }
 
-  // 사용 예시
-  $(document).ready(function() {
-    // 버튼에 롱 프레스 이벤트 추가
-    initLongPress($('.img-box'), function(e) {
-      console.log('2초 동안 눌렸습니다!');
-      // 실행할 함수 내용
-    });
+  // 함수 사용예시
+  const $target = document.querySelector('.img-box');
+
+  onlongclick($target, 2000, () => {
+    alert('Long Click');
   });
 </script>
