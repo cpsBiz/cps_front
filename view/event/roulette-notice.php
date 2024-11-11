@@ -10,7 +10,7 @@
   <!-- style -->
   <link rel="stylesheet" href="../css/style.css?version=<?= $cacheVersion; ?>">
   <!-- swiper -->
-  <link rel="stylesheet" src="../css/swiper-min.css?version=<?= $cacheVersion; ?>">
+  <link rel="stylesheet" href="../css/swiper-min.css?version=<?= $cacheVersion; ?>">
   <script src="../js/swiper.js?version=<?= $cacheVersion; ?>"></script>
   <script src="../js/swiper-bundle.min.js.map?version=<?= $cacheVersion; ?>"></script>
 </head>
