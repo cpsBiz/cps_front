@@ -457,12 +457,12 @@
 
 </html>
 <script>
-  function initLongPress(element, callback, duration = 2000) {
+  function initLongPress($element, callback, duration = 2000) {
     let timer;
     let isPressed = false;
 
-    // 터치 이벤트 처리
-    element.addEventListener('touchstart', (e) => {
+    // 터치 이벤트
+    $element.on('touchstart', function(e) {
       isPressed = true;
       timer = setTimeout(() => {
         if (isPressed) {
@@ -471,18 +471,13 @@
       }, duration);
     });
 
-    element.addEventListener('touchend', () => {
+    $element.on('touchend touchcancel', function() {
       isPressed = false;
       clearTimeout(timer);
     });
 
-    element.addEventListener('touchcancel', () => {
-      isPressed = false;
-      clearTimeout(timer);
-    });
-
-    // 마우스 이벤트 처리
-    element.addEventListener('mousedown', (e) => {
+    // 마우스 이벤트
+    $element.on('mousedown', function(e) {
       isPressed = true;
       timer = setTimeout(() => {
         if (isPressed) {
@@ -491,23 +486,18 @@
       }, duration);
     });
 
-    element.addEventListener('mouseup', () => {
-      isPressed = false;
-      clearTimeout(timer);
-    });
-
-    element.addEventListener('mouseleave', () => {
+    $element.on('mouseup mouseleave', function() {
       isPressed = false;
       clearTimeout(timer);
     });
   }
 
   // 사용 예시
-  $(function() {
-    const button = document.querySelector('.img-box');
-    initLongPress(button, (e) => {
+  $(document).ready(function() {
+    // 버튼에 롱 프레스 이벤트 추가
+    initLongPress($('.list > a'), function(e) {
       console.log('2초 동안 눌렸습니다!');
-      // 여기에 실행하고 싶은 함수 호출
-    }, 2000);
-  })
+      // 실행할 함수 내용
+    });
+  });
 </script>
