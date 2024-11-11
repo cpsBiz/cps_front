@@ -459,7 +459,7 @@
       </div>
     </div>
   </div>
-  <script src="./js/common.js?version=<?= $cacheVersion; ?>"></script>
+  <script src="../js/common.js?version=<?= $cacheVersion; ?>"></script>
 </body>
 
 </html>
