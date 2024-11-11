@@ -260,8 +260,8 @@ $months = getLastYearMonths();
                 <div class="text-box text-box1">
                   <div class="text text1">
                     <p>${item.productName}</p>
-                    ${item.cnt > 1 ? 
-                    `<span>외 ${item.cnt - 1}건</span>` : ''
+                    ${item.rewardCnt > 1 ? 
+                    `<span>외 ${item.rewardCnt - 1}건</span>` : ''
                     }
                   </div>
                   <p class="text text2">${item.totalPrice.toLocaleString()}원</p>
