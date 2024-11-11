@@ -67,8 +67,8 @@ if (!$object) {
     </div>
   </div>
 </body>
-<script src="../js/common.js"></script>
-<script src="../js/page.js"></script>
+<script src="../js/common.js?version=<?= $cacheVersion; ?>"></script>
+<script src="../js/page.js?version=<?= $cacheVersion; ?>"></script>
 
 </html>
 <script>

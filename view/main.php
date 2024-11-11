@@ -47,7 +47,7 @@
   </div>
 
 </body>
-<script type="text/javascript" src="/js/common.js"></script>
+<script type="text/javascript" src="/js/common.js?version=<?= $cacheVersion; ?>"></script>
 
 </html>
 <script>
