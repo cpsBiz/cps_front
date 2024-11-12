@@ -461,26 +461,43 @@
     getMemberCommission();
     getMemberStick();
 
+    // 모든 a태그 선택
     const links = document.querySelectorAll('.list > a');
-    let pressTimer;
+    const eventOptions = {
+      passive: false
+    };
 
     links.forEach(link => {
-      // 터치 이벤트
+      let pressTimer;
+      let isLongPress = false;
+
+      // 터치 이벤트 (모바일)
       link.addEventListener('touchstart', (e) => {
-        e.preventDefault();
+        isLongPress = false;
         pressTimer = setTimeout(() => {
-          console.log('long press on:', link.textContent);
+          isLongPress = true;
+          // 롱클릭 시 실행할 코드
+          console.log('long press activated on:', link.textContent);
+          // 여기에 원하는 롱클릭 동작 추가
         }, 1500);
-      });
+      }, eventOptions);
 
-      link.addEventListener('touchend', () => {
+      link.addEventListener('touchend', (e) => {
         clearTimeout(pressTimer);
-      });
+        // 롱클릭일 때만 기본 동작 막기
+        if (isLongPress) {
+          e.preventDefault();
+        }
+      }, eventOptions);
 
-      // 마우스 이벤트
+      // 마우스 이벤트 (데스크톱)
       link.addEventListener('mousedown', (e) => {
+        isLongPress = false;
         pressTimer = setTimeout(() => {
-          console.log('long press on:', link.textContent);
+          isLongPress = true;
+          // 롱클릭 시 실행할 코드
+          console.log('long press activated on:', link.textContent);
+          // 여기에 원하는 롱클릭 동작 추가
         }, 1500);
       });
 
@@ -490,6 +507,15 @@
 
       link.addEventListener('mouseleave', () => {
         clearTimeout(pressTimer);
+        isLongPress = false;
+      });
+
+      // 클릭 이벤트
+      link.addEventListener('click', (e) => {
+        // 롱클릭일 때만 기본 동작 막기
+        if (isLongPress) {
+          e.preventDefault();
+        }
       });
     });
   });
