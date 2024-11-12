@@ -460,6 +460,38 @@
   $(function() {
     getMemberCommission();
     getMemberStick();
+
+    const links = document.querySelectorAll('.box-img');
+    let pressTimer;
+
+    links.forEach(link => {
+      // 터치 이벤트
+      link.addEventListener('touchstart', (e) => {
+        e.preventDefault();
+        pressTimer = setTimeout(() => {
+          console.log('long press on:', link.textContent);
+        }, 1500);
+      });
+
+      link.addEventListener('touchend', () => {
+        clearTimeout(pressTimer);
+      });
+
+      // 마우스 이벤트
+      link.addEventListener('mousedown', (e) => {
+        pressTimer = setTimeout(() => {
+          console.log('long press on:', link.textContent);
+        }, 1500);
+      });
+
+      link.addEventListener('mouseup', () => {
+        clearTimeout(pressTimer);
+      });
+
+      link.addEventListener('mouseleave', () => {
+        clearTimeout(pressTimer);
+      });
+    });
   });
 
   function getMemberCommission() {
