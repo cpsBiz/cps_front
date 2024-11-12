@@ -245,12 +245,7 @@ function eventPopupClose(popup) {
 }
 
 // select box
-function selectListOn(
-  selectBtn,
-  selectWrap,
-  selectList,
-  onFunction = () => {},
-) {
+function selectListOn(selectBtn, selectWrap, selectList) {
   const $selectBtnValue = document.querySelector(`${selectBtn} .value`);
   const $selectLists = document.querySelectorAll(`${selectList} .list`);
   document.body.classList.add('scrollNone');
@@ -267,7 +262,6 @@ function selectListOn(
         selectBtn,
         selectWrap,
         selectList,
-        onFunction,
       ),
     ),
   );
@@ -280,7 +274,6 @@ function selectListsCheck(
   selectBtn,
   selectWrap,
   selectList,
-  onFunction,
 ) {
   $selectLists.forEach((elm) => elm.classList.remove('on'));
   $selectList.classList.add('on');
@@ -292,7 +285,6 @@ function selectListsCheck(
     $selectBtnValue.classList.add('on');
 
   selectListClose(selectBtn, selectWrap, selectList);
-  onFunction();
 }
 
 function selectListClose(selectBtn, selectWrap, selectList) {
