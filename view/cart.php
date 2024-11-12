@@ -461,7 +461,7 @@
     getMemberCommission();
     getMemberStick();
 
-    const links = document.querySelectorAll('.box-img');
+    const links = document.querySelectorAll('.list > a');
     let pressTimer;
 
     links.forEach(link => {
