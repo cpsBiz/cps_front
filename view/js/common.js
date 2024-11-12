@@ -574,6 +574,7 @@ function bottomCartAlarm(alarmBtn, cartWrap, textBtn, tost1, tost2) {
     '#cart-list-wrap1',
     '#select-text1',
     '#cart-alarm1',
+    '#cart-heart1',
   );
 }
 
@@ -637,6 +638,7 @@ function bottomCartFavorites(heartBtn, cartWrap, textBtn, tost1, tost2) {
     '#cart-list-wrap1',
     '#select-text1',
     '#cart-alarm1',
+    '#cart-heart1',
   );
 }
 
@@ -748,6 +750,14 @@ function bottomCartRemove(cartWrap, popup, bottomCartMenu, textBtn, tost) {
     $textBtn.classList.remove('on');
     $textBtn.innerText = '선택';
   }
+
+  bottomCartCancel(
+    '#bottom-cart-menu1',
+    '#cart-list-wrap1',
+    '#select-text1',
+    '#cart-alarm1',
+    '#cart-heart1',
+  );
 }
 
 // cartList organize
