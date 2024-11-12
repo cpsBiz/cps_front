@@ -254,8 +254,7 @@ function selectListOn(selectBtn, selectWrap, selectList, callback) {
   document.querySelector(selectList).classList.add('on');
 
   $selectLists.forEach((elm) => {
-    elm.removeEventListener('click');
-    elm.addEventListener('click', () =>
+    const listenerFn = () =>
       selectListsCheck(
         $selectLists,
         elm,
@@ -264,8 +263,11 @@ function selectListOn(selectBtn, selectWrap, selectList, callback) {
         selectWrap,
         selectList,
         callback,
-      ),
-    );
+      );
+
+    // 기존 리스너 제거 후 새로운 리스너 추가
+    elm.removeEventListener('click', listenerFn);
+    elm.addEventListener('click', listenerFn);
   });
 }
 
