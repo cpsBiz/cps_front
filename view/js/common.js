@@ -255,12 +255,26 @@ function selectListOn(selectBtn, selectWrap, selectList) {
 
   $selectLists.forEach((elm) =>
     elm.addEventListener('click', () =>
-      selectListsCheck($selectLists, elm, $selectBtnValue),
+      selectListsCheck(
+        $selectLists,
+        elm,
+        $selectBtnValue,
+        selectBtn,
+        selectWrap,
+        selectList,
+      ),
     ),
   );
 }
 
-function selectListsCheck($selectLists, $selectList, $selectBtnValue) {
+function selectListsCheck(
+  $selectLists,
+  $selectList,
+  $selectBtnValue,
+  selectBtn,
+  selectWrap,
+  selectList,
+) {
   $selectLists.forEach((elm) => elm.classList.remove('on'));
   $selectList.classList.add('on');
   $selectList.querySelector('div').classList.add('on');
@@ -269,6 +283,8 @@ function selectListsCheck($selectLists, $selectList, $selectBtnValue) {
   }`;
   if (!$selectBtnValue.classList.contains('on'))
     $selectBtnValue.classList.add('on');
+
+  selectListClose(selectBtn, selectWrap, selectList);
 }
 
 function selectListClose(selectBtn, selectWrap, selectList) {
