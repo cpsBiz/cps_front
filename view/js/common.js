@@ -723,7 +723,14 @@ function bottomCartRemove(cartWrap, popup, bottomCartMenu, textBtn, tost) {
 }
 
 // cartList organize
-function cartListOrganizeOn(btn, cartWrap, bottomCartMenu, alarmBtn, flagElm) {
+function cartListOrganizeOn(
+  btn,
+  cartWrap,
+  bottomCartMenu,
+  alarmBtn,
+  flagElm,
+  heartBtn,
+) {
   const $btn = document.querySelector(btn);
   const $cartLists = document.querySelectorAll(`${cartWrap} .list`);
   const $cartCheckBox = document.querySelectorAll(`${cartWrap} .check-box`);
@@ -731,8 +738,10 @@ function cartListOrganizeOn(btn, cartWrap, bottomCartMenu, alarmBtn, flagElm) {
   const $alarmBtn = document.querySelector(alarmBtn);
   const $alarmBtnIco = document.querySelector(`${alarmBtn} .ico-b-cart-alarm`);
   const $flagElm = document.querySelector(flagElm);
+  const $heartBtn = document.querySelector(heartBtn);
+  const $heartBtnIco = document.querySelector(`${heartBtn} .ico-b-cart-heart`);
   let count = 0;
-
+  let heartCount = 0;
   if ($flagElm && $flagElm.classList.contains('on')) return;
   if ($cartLists.length === 0) return;
 
@@ -756,11 +765,19 @@ function cartListOrganizeOn(btn, cartWrap, bottomCartMenu, alarmBtn, flagElm) {
     $cartLists.forEach((elm) => {
       const $cartImgBg = elm.querySelector('.img-bg');
       const $alarmIco = elm.querySelector('.ico-alarm');
+      const $heartIco = elm.querySelector('.ico-heart');
       if (
         $cartImgBg.classList.contains('on') &&
         $alarmIco.classList.contains('on')
-      )
+      ) {
         count += 1;
+      }
+      if (
+        $cartImgBg.classList.contains('on') &&
+        $heartIco.classList.contains('on')
+      ) {
+        heartCount += 1;
+      }
     });
 
     if (count === 0) {
@@ -773,6 +790,20 @@ function cartListOrganizeOn(btn, cartWrap, bottomCartMenu, alarmBtn, flagElm) {
       if ($alarmBtnIco && $alarmBtnIco.classList.contains('on')) {
         $alarmBtn.innerHTML = '<span class="ico-b-cart-alarm"></span>알림 끄기';
         $alarmBtnIco.classList.remove('on');
+      }
+    }
+
+    if (heartCount === 0) {
+      if ($heartBtnIco && !$heartBtnIco.classList.contains('on')) {
+        $heartBtn.innerHTML =
+          '<span class="ico-b-cart-heart on"></span>즐겨찾기 설정';
+        $heartBtnIco.classList.add('on');
+      }
+    } else if (heartCount > 0) {
+      if ($heartBtnIco && $heartBtnIco.classList.contains('on')) {
+        $heartBtn.innerHTML =
+          '<span class="ico-b-cart-heart"></span>즐겨찾기 해제';
+        $heartBtnIco.classList.remove('on');
       }
     }
   } else if (
@@ -789,6 +820,12 @@ function cartListOrganizeOn(btn, cartWrap, bottomCartMenu, alarmBtn, flagElm) {
       $alarmBtn.innerHTML =
         '<span class="ico-b-cart-alarm on"></span>알림 켜기';
       $alarmBtnIco.classList.add('on');
+    }
+
+    if ($heartBtnIco && !$heartBtnIco.classList.contains('on')) {
+      $heartBtn.innerHTML =
+        '<span class="ico-b-cart-alarm on"></span>즐겨찾기 설정';
+      $heartBtnIco.classList.add('on');
     }
   }
 }
