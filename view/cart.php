@@ -113,7 +113,7 @@
         </div>
         <div class="stiky-wrap">
           <div class="cart-set-list">
-            <div id="select-btn1" class="select-btn type3" onclick="selectListOn('#select-btn1', '#select-wrap', '#select-list1', () => getCartList())">
+            <div id="select-btn1" class="select-btn type3" onclick="selectListOn('#select-btn1', '#select-wrap', '#select-list1')">
               <p class="value">최신순</p>
               <div class="ico-arrow type2 bottom"></div>
             </div>
@@ -557,8 +557,7 @@
   }
 
   // 카트 아이템 조회
-  function getCartList(orderBy) {
-    return console.log('콜백실행완료');
+  function getCartList() {
     try {
       const requestData = {};
     } catch (error) {
