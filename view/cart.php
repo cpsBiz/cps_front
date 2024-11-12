@@ -332,7 +332,8 @@
       <p id="tost2" class="tost-popup type2">알림 켜기가 설정 되었습니다.</p>
       <p id="tost3" class="tost-popup type2">알림 끄기가 설정 되었습니다.</p>
       <p id="tost4" class="tost-popup type2">즐겨찾기가 추가 되었습니다.</p>
-      <p id="tost5" class="tost-popup type2">상품이 삭제 되었습니다.</p>
+      <p id="tost5" class="tost-popup type2">즐겨찾기가 해제 되었습니다.</p>
+      <p id="tost6" class="tost-popup type2">상품이 삭제 되었습니다.</p>
     </div>
     <!-- 셀렉트 박스 -->
     <div id="select-wrap">
@@ -443,7 +444,7 @@
     <div id="bottom-cart-menu1" class="bottom-cart-menu-wrap type1">
       <button type="button" onclick="bottomCartCancel('#bottom-cart-menu1', '#cart-list-wrap1', '#select-text1', '#cart-alarm1')"><span class="ico-b-cart-cancel"></span>취소</button>
       <button id="cart-alarm1" type="button" onclick="bottomCartAlarm('#cart-alarm1', '#cart-list-wrap1', '#select-text1', '#tost2', '#tost3')"><span class="ico-b-cart-alarm on"></span>알림 켜기</button>
-      <button id="cart-heart1" type="button" onclick="bottomCartFavorites('#cart-list-wrap1', '#select-text1', '#tost4')"><span class="ico-b-cart-heart"></span>즐겨찾기 설정</button>
+      <button id="cart-heart1" type="button" onclick="bottomCartFavorites('#cart-heart1', '#cart-list-wrap1', '#select-text1', '#tost4', '#tost5')"><span class="ico-b-cart-heart"></span>즐겨찾기 설정</button>
       <button type="button" onclick="bottomPopupOn('#bottom-popup1', '#cart-list-wrap1')"><span class="ico-b-cart-remove"></span>삭제</button>
     </div>
     <div id="bottom-popup1" class="bottom-popup type1">
@@ -453,7 +454,7 @@
       </div>
       <div class="btn-box">
         <button type="button" class="gray" onclick="onOff('#bottom-popup1')">취소</button>
-        <button type="button" class="blue" onclick="bottomCartRemove('#cart-list-wrap1', '#bottom-popup1', '#bottom-cart-menu1', '#select-text1', '#tost5')">확인</button>
+        <button type="button" class="blue" onclick="bottomCartRemove('#cart-list-wrap1', '#bottom-popup1', '#bottom-cart-menu1', '#select-text1', '#tost6')">확인</button>
       </div>
     </div>
     <? include_once $_SERVER['DOCUMENT_ROOT'] . "/footer.php"; ?>

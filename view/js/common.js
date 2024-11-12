@@ -556,37 +556,59 @@ function bottomCartAlarm(alarmBtn, cartWrap, textBtn, tost1, tost2) {
   }
 }
 
-function bottomCartFavorites(cartWrap, textBtn, tost) {
+function bottomCartFavorites(heartBtn, cartWrap, textBtn, tost1, tost2) {
+  const $heartBtn = document.querySelector(heartBtn);
+  const $heartBtnIco = document.querySelector(`${heartBtn} .ico-b-cart-alarm`);
   const $cartLists = document.querySelectorAll(`${cartWrap} .list`);
   const $textBtn = document.querySelector(textBtn);
-  const $tost = document.querySelector(tost);
+  const $tost1 = document.querySelector(tost1);
+  const $tost2 = document.querySelector(tost2);
   let count = 0;
 
   $cartLists.forEach((elm) => {
     const $cartImgBg = elm.querySelector('.img-bg');
     const $cartIcoFavorites = elm.querySelector('.ico-heart');
 
-    if ($cartImgBg.classList.contains('on')) {
-      if (!$cartIcoFavorites.classList.contains('on')) {
-        $cartIcoFavorites.classList.add('on');
-        if (elm.classList.contains('none')) elm.classList.remove('none');
-        count += 1;
-      }
+    if ($cartImgBg.classList.contains('on')) count += 1;
 
-      $cartImgBg.classList.remove('on');
+    if ($cartIcoFavorites.classList.contains('on')) {
+      if ($cartImgBg.classList.contains('on')) {
+        $cartImgBg.classList.remove('on');
+        if (!$cartIcoFavorites.classList.contains('on'))
+          $cartIcoFavorites.classList.add('on');
+      }
+    } else if (!$cartIcoFavorites.classList.contains('on')) {
+      if ($cartImgBg.classList.contains('on')) {
+        $cartImgBg.classList.remove('on');
+        if ($cartIcoFavorites.classList.contains('on'))
+          $cartIcoFavorites.classList.remove('on');
+      }
     }
   });
 
-  if ($textBtn.classList.contains('selected')) {
-    $textBtn.classList.remove('selected');
-    $textBtn.innerText = '전체선택';
+  if (count > 0) {
+    if ($heartBtnIco.classList.contains('on')) {
+      if ($tost1 && !$tost1.classList.contains('on')) {
+        if ($tost2.classList.contains('on')) $tost2.classList.remove('on');
+        $tost1.classList.add('on');
+        setTimeout(() => $tost1.classList.remove('on'), 1000);
+      }
+    } else if (!$heartBtnIco.classList.contains('on')) {
+      if ($tost2 && !$tost2.classList.contains('on')) {
+        if ($tost1.classList.contains('on')) $tost1.classList.remove('on');
+        $tost2.classList.add('on');
+        setTimeout(() => $tost2.classList.remove('on'), 1000);
+      }
+    }
   }
 
-  if (count > 0) {
-    if ($tost && !$tost.classList.contains('on')) {
-      $tost.classList.add('on');
-      setTimeout(() => $tost.classList.remove('on'), 1000);
-    }
+  if ($textBtn.classList.contains('selected'))
+    $textBtn.classList.remove('selected');
+  $textBtn.innerText = '전체선택';
+  if (!$heartBtnIco.classList.contains('on')) {
+    $heartBtn.innerHTML =
+      '<span class="ico-b-cart-heart on"></span>즐겨찾기 설정';
+    $heartBtnIco.classList.add('on');
   }
 }
 
