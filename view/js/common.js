@@ -262,7 +262,7 @@ function selectListOn(selectBtn, selectWrap, selectList, callback) {
         selectBtn,
         selectWrap,
         selectList,
-        callback,
+        () => callback,
       ),
     ),
   );
