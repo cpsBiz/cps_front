@@ -571,13 +571,13 @@ function bottomCartFavorites(heartBtn, cartWrap, textBtn, tost1, tost2) {
 
     if ($cartImgBg.classList.contains('on')) count += 1;
 
-    if ($cartIcoFavorites.classList.contains('on')) {
+    if ($heartBtnIco.classList.contains('on')) {
       if ($cartImgBg.classList.contains('on')) {
         $cartImgBg.classList.remove('on');
         if (!$cartIcoFavorites.classList.contains('on'))
           $cartIcoFavorites.classList.add('on');
       }
-    } else if (!$cartIcoFavorites.classList.contains('on')) {
+    } else if (!$heartBtnIco.classList.contains('on')) {
       if ($cartImgBg.classList.contains('on')) {
         $cartImgBg.classList.remove('on');
         if ($cartIcoFavorites.classList.contains('on'))
