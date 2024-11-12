@@ -620,6 +620,37 @@ function bottomCartAlarmChangeCheck(alarmBtn, cartWrap) {
   }
 }
 
+function bottomCartHeartChangeCheck(heartBtn, cartWrap) {
+  const $heartBtn = document.querySelector(`${heartBtn}`);
+  const $heartBtnIco = document.querySelector(`${heartBtn} .ico-b-cart-heart`);
+  const $cartLists = document.querySelectorAll(`${cartWrap} .list`);
+  let count = 0;
+
+  $cartLists.forEach((elm) => {
+    const $cartImgBg = elm.querySelector('.img-bg');
+    const $heartIco = elm.querySelector('.ico-heart');
+    if (
+      $cartImgBg.classList.contains('on') &&
+      $heartIco.classList.contains('on')
+    )
+      count += 1;
+  });
+
+  if (count === 0) {
+    if ($heartBtnIco && !$heartBtnIco.classList.contains('on')) {
+      $heartBtn.innerHTML =
+        '<span class="ico-b-cart-heart on"></span>즐겨찾기 설정';
+      $heartBtnIco.classList.add('on');
+    }
+  } else if (count > 0) {
+    if ($heartBtnIco && $heartBtnIco.classList.contains('on')) {
+      $heartBtn.innerHTML =
+        '<span class="ico-b-cart-heart"></span>즐겨찾기 해제';
+      $heartBtnIco.classList.remove('on');
+    }
+  }
+}
+
 function bottomPopupOn(popup, cartWrap) {
   const $popup = document.querySelector(popup);
   const $popupCountText = document.querySelector(`${popup} .head > p`);

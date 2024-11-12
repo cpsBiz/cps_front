@@ -17,7 +17,7 @@
     <header>
       <h1>스마트 카트</h1>
       <div class="btn-list">
-        <a href="./" class="ico-arrow type1 left">이전</a>
+        <a href="javascript:history.back()" class="ico-arrow type1 left">이전</a>
         <div>
           <a href="./alarm.html" class="ico-head-alarm">알림</a>
           <a href="./setting.html" class="ico-setting">설정</a>
@@ -149,7 +149,8 @@
               onclick="
                 onOff('#list1 .check-box .img-bg', '#bottom-popup1'), 
                 cartListOrganizeCheck('#select-text1', '.cart-list-wrap'),
-                bottomCartAlarmChangeCheck('#cart-alarm1', '#cart-list-wrap1')
+                bottomCartAlarmChangeCheck('#cart-alarm1', '#cart-list-wrap1'),
+                bottomCartHeartChangeCheck('#cart-heart1', '#cart-list-wrap1')
               ">
               <div class="img-bg">
                 <span class="check"></span>
@@ -179,7 +180,8 @@
               onclick="
                 onOff('#list2 .check-box .img-bg', '#bottom-popup1'), 
                 cartListOrganizeCheck('#select-text1', '.cart-list-wrap'),
-                bottomCartAlarmChangeCheck('#cart-alarm1', '#cart-list-wrap1')
+                bottomCartAlarmChangeCheck('#cart-alarm1', '#cart-list-wrap1'),
+                bottomCartHeartChangeCheck('#cart-heart1', '#cart-list-wrap1')
               ">
               <div class="img-bg">
                 <span class="check"></span>
@@ -209,7 +211,8 @@
               onclick="
                 onOff('#list3 .check-box .img-bg', '#bottom-popup1'), 
                 cartListOrganizeCheck('#select-text1', '.cart-list-wrap'),
-                bottomCartAlarmChangeCheck('#cart-alarm1', '#cart-list-wrap1')
+                bottomCartAlarmChangeCheck('#cart-alarm1', '#cart-list-wrap1'),
+                bottomCartHeartChangeCheck('#cart-heart1', '#cart-list-wrap1')
               ">
               <div class="img-bg">
                 <span class="check"></span>
@@ -239,7 +242,8 @@
               onclick="
                 onOff('#list4 .check-box .img-bg', '#bottom-popup1'), 
                 cartListOrganizeCheck('#select-text1', '.cart-list-wrap'),
-                bottomCartAlarmChangeCheck('#cart-alarm1', '#cart-list-wrap1')
+                bottomCartAlarmChangeCheck('#cart-alarm1', '#cart-list-wrap1'),
+                bottomCartHeartChangeCheck('#cart-heart1', '#cart-list-wrap1')
               ">
               <div class="img-bg">
                 <span class="check"></span>
@@ -269,7 +273,8 @@
               onclick="
                 onOff('#list5 .check-box .img-bg', '#bottom-popup1'), 
                 cartListOrganizeCheck('#select-text1', '.cart-list-wrap'),
-                bottomCartAlarmChangeCheck('#cart-alarm1', '#cart-list-wrap1')
+                bottomCartAlarmChangeCheck('#cart-alarm1', '#cart-list-wrap1'),
+                bottomCartHeartChangeCheck('#cart-heart1', '#cart-list-wrap1')
               ">
               <div class="img-bg">
                 <span class="check"></span>
@@ -299,7 +304,8 @@
               onclick="
                 onOff('#list6 .check-box .img-bg', '#bottom-popup1'), 
                 cartListOrganizeCheck('#select-text1', '.cart-list-wrap'),
-                bottomCartAlarmChangeCheck('#cart-alarm1', '#cart-list-wrap1')
+                bottomCartAlarmChangeCheck('#cart-alarm1', '#cart-list-wrap1'),
+                bottomCartHeartChangeCheck('#cart-heart1', '#cart-list-wrap1')
               ">
               <div class="img-bg">
                 <span class="check"></span>
@@ -437,7 +443,7 @@
     <div id="bottom-cart-menu1" class="bottom-cart-menu-wrap type1">
       <button type="button" onclick="bottomCartCancel('#bottom-cart-menu1', '#cart-list-wrap1', '#select-text1', '#cart-alarm1')"><span class="ico-b-cart-cancel"></span>취소</button>
       <button id="cart-alarm1" type="button" onclick="bottomCartAlarm('#cart-alarm1', '#cart-list-wrap1', '#select-text1', '#tost2', '#tost3')"><span class="ico-b-cart-alarm on"></span>알림 켜기</button>
-      <button type="button" onclick="bottomCartFavorites('#cart-list-wrap1', '#select-text1', '#tost4')"><span class="ico-b-cart-heart"></span>즐겨찾기 설정</button>
+      <button id="cart-heart1" type="button" onclick="bottomCartFavorites('#cart-list-wrap1', '#select-text1', '#tost4')"><span class="ico-b-cart-heart"></span>즐겨찾기 설정</button>
       <button type="button" onclick="bottomPopupOn('#bottom-popup1', '#cart-list-wrap1')"><span class="ico-b-cart-remove"></span>삭제</button>
     </div>
     <div id="bottom-popup1" class="bottom-popup type1">
@@ -528,6 +534,51 @@
     }
   }
 
+  function orderByCartList() {
+    const orderBy = document.getElementById('').value;
+  }
+
+  // 폴더 리스트 조회 및 렌더링
+  function getFolderList() {
+
+  }
+
+  // 지금 구매하세요 영역 조회 및 렌더링
+  function getNowBuyingList() {
+
+  }
+
+  // 카트 아이템 조회
+  function getCartList() {
+
+  }
+
+  // 카트 아이템 렌더링
+  function renderCartList() {
+
+  }
+
+  // 카트 아이템 삭제
+  function deleteCartItem() {
+
+  }
+
+  // 카트 아이템 즐겨찾기 추가, 삭제
+  function patchCartItemFavorite() {
+
+  }
+
+  // 카트 아이템 알림 추가, 삭제
+  function patchCartItemAlarm() {
+
+  }
+
+  // 폴더 추가
+  function addForder() {
+
+  }
+
+  // 카트 아이템 롱클릭시 선택 레이아웃
   function addLongClickEvent() {
     const links = document.querySelectorAll('.list > a');
     const eventOptions = {
