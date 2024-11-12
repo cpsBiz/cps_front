@@ -558,7 +558,7 @@ function bottomCartAlarm(alarmBtn, cartWrap, textBtn, tost1, tost2) {
 
 function bottomCartFavorites(heartBtn, cartWrap, textBtn, tost1, tost2) {
   const $heartBtn = document.querySelector(heartBtn);
-  const $heartBtnIco = document.querySelector(`${heartBtn} .ico-b-cart-alarm`);
+  const $heartBtnIco = document.querySelector(`${heartBtn} .ico-b-cart-heart`);
   const $cartLists = document.querySelectorAll(`${cartWrap} .list`);
   const $textBtn = document.querySelector(textBtn);
   const $tost1 = document.querySelector(tost1);
