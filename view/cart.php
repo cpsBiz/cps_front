@@ -460,64 +460,7 @@
   $(function() {
     getMemberCommission();
     getMemberStick();
-
-    // 모든 a태그 선택
-    const links = document.querySelectorAll('.list > a');
-    const eventOptions = {
-      passive: false
-    };
-
-    links.forEach(link => {
-      let pressTimer;
-      let isLongPress = false;
-
-      // 터치 이벤트 (모바일)
-      link.addEventListener('touchstart', (e) => {
-        isLongPress = false;
-        pressTimer = setTimeout(() => {
-          isLongPress = true;
-          // 롱클릭 시 실행할 코드
-          console.log('long press activated on:', link.textContent);
-          // 여기에 원하는 롱클릭 동작 추가
-        }, 1500);
-      }, eventOptions);
-
-      link.addEventListener('touchend', (e) => {
-        clearTimeout(pressTimer);
-        // 롱클릭일 때만 기본 동작 막기
-        if (isLongPress) {
-          e.preventDefault();
-        }
-      }, eventOptions);
-
-      // 마우스 이벤트 (데스크톱)
-      link.addEventListener('mousedown', (e) => {
-        isLongPress = false;
-        pressTimer = setTimeout(() => {
-          isLongPress = true;
-          // 롱클릭 시 실행할 코드
-          console.log('long press activated on:', link.textContent);
-          // 여기에 원하는 롱클릭 동작 추가
-        }, 1500);
-      });
-
-      link.addEventListener('mouseup', () => {
-        clearTimeout(pressTimer);
-      });
-
-      link.addEventListener('mouseleave', () => {
-        clearTimeout(pressTimer);
-        isLongPress = false;
-      });
-
-      // 클릭 이벤트
-      link.addEventListener('click', (e) => {
-        // 롱클릭일 때만 기본 동작 막기
-        if (isLongPress) {
-          e.preventDefault();
-        }
-      });
-    });
+    addLongClickEvent();
   });
 
   function getMemberCommission() {
@@ -583,5 +526,55 @@
     } catch (error) {
       alert(error.message);
     }
+  }
+
+  function addLongClickEvent() {
+    const links = document.querySelectorAll('.list > a');
+    const eventOptions = {
+      passive: false
+    };
+
+    links.forEach(link => {
+      let pressTimer;
+      let isLongPress = false;
+
+      link.addEventListener('touchstart', (e) => {
+        isLongPress = false;
+        pressTimer = setTimeout(() => {
+          isLongPress = true;
+          cartListOrganizeOn('#select-text1', '.cart-list-wrap', '#bottom-cart-menu1', '#cart-alarm1', '#bottom-popup1')
+        }, 2000);
+      }, eventOptions);
+
+      link.addEventListener('touchend', (e) => {
+        clearTimeout(pressTimer);
+        if (isLongPress) {
+          e.preventDefault();
+        }
+      }, eventOptions);
+
+      link.addEventListener('mousedown', (e) => {
+        isLongPress = false;
+        pressTimer = setTimeout(() => {
+          isLongPress = true;
+          cartListOrganizeOn('#select-text1', '.cart-list-wrap', '#bottom-cart-menu1', '#cart-alarm1', '#bottom-popup1')
+        }, 2000);
+      });
+
+      link.addEventListener('mouseup', () => {
+        clearTimeout(pressTimer);
+      });
+
+      link.addEventListener('mouseleave', () => {
+        clearTimeout(pressTimer);
+        isLongPress = false;
+      });
+
+      link.addEventListener('click', (e) => {
+        if (isLongPress) {
+          e.preventDefault();
+        }
+      });
+    });
   }
 </script>
