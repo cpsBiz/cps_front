@@ -614,7 +614,7 @@
         pressTimer = setTimeout(() => {
           isLongPress = true;
           cartListOrganizeOn('#select-text1', '.cart-list-wrap', '#bottom-cart-menu1', '#cart-alarm1', '#bottom-popup1', '#cart-heart1')
-        }, 2000);
+        }, 1500);
       }, eventOptions);
 
       link.addEventListener('touchend', (e) => {
@@ -629,7 +629,7 @@
         pressTimer = setTimeout(() => {
           isLongPress = true;
           cartListOrganizeOn('#select-text1', '.cart-list-wrap', '#bottom-cart-menu1', '#cart-alarm1', '#bottom-popup1', '#cart-heart1')
-        }, 2000);
+        }, 1500);
       });
 
       link.addEventListener('mouseup', () => {
