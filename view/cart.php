@@ -457,6 +457,11 @@
 
 </html>
 <script>
+  $(function() {
+    getMemberCommission();
+    getMemberStick();
+  });
+
   function getMemberCommission() {
     try {
       const userId = '<?= $checkUserId; ?>'
