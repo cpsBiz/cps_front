@@ -55,8 +55,8 @@
               </div>
             </div>
             <div class="box box2">
-              <p class="point"><span class="ico-point"></span>1,230<span class="ico-arrow type2 right"></span></p>
-              <a href="javascript:void(0)"></a>
+              <p id="userCommission" class="point"></p>
+              <a href="/history/point.php"></a>
             </div>
           </div>
           <div class="text-box">
@@ -72,8 +72,8 @@
               </div>
             </div>
             <div class="box box2">
-              <p class="point"><span class="ico-candy"></span>17개<span class="ico-arrow type2 right"></span></p>
-              <a href="javascript:void(0)"></a>
+              <p id="memberStick" class="point"></p>
+              <a href="/history/stick.php"></a>
             </div>
           </div>
         </div>
@@ -457,28 +457,68 @@
 
 </html>
 <script>
-  const onlongclick = ($target, duration, callback) => {
-    $target.onmousedown = () => {
-      const timer = setTimeout(callback, duration);
+  function getMemberCommission() {
+    try {
+      const userId = '<?= $checkUserId; ?>'
+      const affliateId = '<?= $checkAffliateId; ?>'
 
-      $target.onmouseup = () => {
-        clearTimeout(timer);
+      // AJAX 요청 데이터 설정
+      const requestData = {
+        userId,
+        affliateId
       };
-    };
 
-    $target.ontouchstart = () => {
-      const timer = setTimeout(callback, duration);
-
-      $target.ontouchend = () => {
-        clearTimeout(timer);
-      };
-    };
+      // AJAX 요청 수행
+      $.ajax({
+        type: 'POST',
+        url: '<?= $appApiUrl; ?>/api/view/memberCommission',
+        contentType: 'application/json',
+        data: JSON.stringify(requestData),
+        success: function(result) {
+          const userCommission = parseInt(result.data.userCommission).toLocaleString();
+          const appendCommission =
+            `<span class="ico-point"></span>${userCommission}<span class="ico-arrow type2 right"></span>`;
+          $('#userCommission').append(appendCommission);
+        },
+        error: function(request, status, error) {
+          console.error(`Error: ${error}`);
+        }
+      });
+    } catch (error) {
+      alert(error.message);
+    }
   }
 
-  // 함수 사용예시
-  const $target = document.querySelector('.img-box');
+  function getMemberStick() {
+    try {
+      const userId = '<?= $checkUserId; ?>'
+      const merchantId = 'coupang';
+      const affliateId = '<?= $checkAffliateId; ?>'
 
-  onlongclick($target, 2000, () => {
-    alert('Long Click');
-  });
+      // AJAX 요청 데이터 설정
+      const requestData = {
+        userId,
+        merchantId,
+        affliateId
+      };
+
+      // AJAX 요청 수행
+      $.ajax({
+        type: 'POST',
+        url: '<?= $appApiUrl; ?>/api/view/coupangStick',
+        contentType: 'application/json',
+        data: JSON.stringify(requestData),
+        success: function(result) {
+          const memberStick = parseInt(result.data.cnt - result.data.stockCnt).toLocaleString();
+          const appendStick = `<span class="ico-candy"></span>${memberStick}개<span class="ico-arrow type2 right"></span>`;
+          $('#memberStick').append(appendStick);
+        },
+        error: function(request, status, error) {
+          console.error(`Error: ${error}`);
+        }
+      });
+    } catch (error) {
+      alert(error.message);
+    }
+  }
 </script>
