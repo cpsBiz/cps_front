@@ -253,7 +253,8 @@ function selectListOn(selectBtn, selectWrap, selectList, callback) {
   document.querySelector(selectWrap).classList.add('on');
   document.querySelector(selectList).classList.add('on');
 
-  $selectLists.forEach((elm) =>
+  $selectLists.forEach((elm) => {
+    elm.removeEventListener('click');
     elm.addEventListener('click', () =>
       selectListsCheck(
         $selectLists,
@@ -264,8 +265,8 @@ function selectListOn(selectBtn, selectWrap, selectList, callback) {
         selectList,
         callback,
       ),
-    ),
-  );
+    );
+  });
 }
 
 function selectListsCheck(
@@ -287,7 +288,7 @@ function selectListsCheck(
     $selectBtnValue.classList.add('on');
 
   selectListClose(selectBtn, selectWrap, selectList);
-
+  console.log('체크실행');
   if (callback && typeof callback === 'function') {
     console.log('콜백처리중');
     callback();
