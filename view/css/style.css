@@ -2134,24 +2134,6 @@ body.scrollNone {
   font-family: 'Pretendard-Bold';
   color: #000;
 }
-.history-link-wrap .link.on.point {
-  background: #fff6d9;
-}
-.history-link-wrap .link.on.candy {
-  background: #f6f9fe;
-}
-.history-link-wrap .link.on.gift {
-  background: #fff8f1;
-}
-.history-link-wrap .link.on.point .icon {
-  background-image: url(../images/icon/history-point-on.png);
-}
-.history-link-wrap .link.on.candy .icon {
-  background-image: url(../images/icon/history-candy-on.png);
-}
-.history-link-wrap .link.on.gift .icon {
-  background-image: url(../images/icon/history-gift-on.png);
-}
 
 .giftcon-info-wrap .goods-info-box {
   display: flex;
