@@ -207,8 +207,8 @@ body.scrollNone {
   display: block;
 }
 .ico-arrow.type1 {
-  width: 20px;
-  height: 20px;
+  width: 30px;
+  height: 30px;
   background-image: url(../images/icon/arrow-type1.png);
 }
 .ico-arrow.type1.top {
