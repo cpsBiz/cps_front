@@ -118,7 +118,7 @@
               <div class="ico-arrow type2 bottom"></div>
             </div>
             <div class="set-list">
-              <button type="button" id="select-text1" class="select-text" onclick="cartListOrganizeOn('#select-text1', '.cart-list-wrap', '#bottom-cart-menu1', '#cart-alarm1', '#bottom-popup1')">선택</button>
+              <button type="button" id="select-text1" class="select-text" onclick="cartListOrganizeOn('#select-text1', '.cart-list-wrap', '#bottom-cart-menu1', '#cart-alarm1', '#bottom-popup1', '#cart-heart1')">선택</button>
               <button type="button" class="ico-array one" onclick="cartListType('.cart-set-list .ico-array', '.cart-list-wrap')">정렬</button>
               <button type="button" id="main-heart" class="ico-heart" onclick="onOff('.cart-set-list .ico-heart'), favoritesList('#main-heart', '#cart-list-wrap1')">즐겨찾기</button>
             </div>
@@ -594,7 +594,7 @@
         isLongPress = false;
         pressTimer = setTimeout(() => {
           isLongPress = true;
-          cartListOrganizeOn('#select-text1', '.cart-list-wrap', '#bottom-cart-menu1', '#cart-alarm1', '#bottom-popup1')
+          cartListOrganizeOn('#select-text1', '.cart-list-wrap', '#bottom-cart-menu1', '#cart-alarm1', '#bottom-popup1', '#cart-heart1')
         }, 2000);
       }, eventOptions);
 
@@ -609,7 +609,7 @@
         isLongPress = false;
         pressTimer = setTimeout(() => {
           isLongPress = true;
-          cartListOrganizeOn('#select-text1', '.cart-list-wrap', '#bottom-cart-menu1', '#cart-alarm1', '#bottom-popup1')
+          cartListOrganizeOn('#select-text1', '.cart-list-wrap', '#bottom-cart-menu1', '#cart-alarm1', '#bottom-popup1', '#cart-heart1')
         }, 2000);
       });
 
