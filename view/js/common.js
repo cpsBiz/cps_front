@@ -245,7 +245,12 @@ function eventPopupClose(popup) {
 }
 
 // select box
-function selectListOn(selectBtn, selectWrap, selectList, onFunction) {
+function selectListOn(
+  selectBtn,
+  selectWrap,
+  selectList,
+  onFunction = () => {},
+) {
   const $selectBtnValue = document.querySelector(`${selectBtn} .value`);
   const $selectLists = document.querySelectorAll(`${selectList} .list`);
   document.body.classList.add('scrollNone');
