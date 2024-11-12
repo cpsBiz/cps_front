@@ -245,7 +245,7 @@ function eventPopupClose(popup) {
 }
 
 // select box
-function selectListOn(selectBtn, selectWrap, selectList) {
+function selectListOn(selectBtn, selectWrap, selectList, callback) {
   const $selectBtnValue = document.querySelector(`${selectBtn} .value`);
   const $selectLists = document.querySelectorAll(`${selectList} .list`);
   document.body.classList.add('scrollNone');
@@ -262,6 +262,7 @@ function selectListOn(selectBtn, selectWrap, selectList) {
         selectBtn,
         selectWrap,
         selectList,
+        callback,
       ),
     ),
   );
@@ -274,6 +275,7 @@ function selectListsCheck(
   selectBtn,
   selectWrap,
   selectList,
+  callback,
 ) {
   $selectLists.forEach((elm) => elm.classList.remove('on'));
   $selectList.classList.add('on');
@@ -285,6 +287,11 @@ function selectListsCheck(
     $selectBtnValue.classList.add('on');
 
   selectListClose(selectBtn, selectWrap, selectList);
+
+  if (callback && typeof callback === 'function') {
+    console.log('콜백처리중');
+    callback();
+  }
 }
 
 function selectListClose(selectBtn, selectWrap, selectList) {
