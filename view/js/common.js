@@ -262,7 +262,7 @@ function selectListOn(selectBtn, selectWrap, selectList, callback) {
         selectBtn,
         selectWrap,
         selectList,
-        () => callback,
+        callback,
       ),
     ),
   );
@@ -289,7 +289,8 @@ function selectListsCheck(
   selectListClose(selectBtn, selectWrap, selectList);
 
   if (callback && typeof callback === 'function') {
-    callback('콜백실행');
+    console.log('콜백실행');
+    callback();
   }
 }
 
