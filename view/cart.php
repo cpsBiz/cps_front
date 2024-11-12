@@ -442,7 +442,7 @@
       </div>
     </div>
     <div id="bottom-cart-menu1" class="bottom-cart-menu-wrap type1">
-      <button type="button" onclick="bottomCartCancel('#bottom-cart-menu1', '#cart-list-wrap1', '#select-text1', '#cart-alarm1')"><span class="ico-b-cart-cancel"></span>취소</button>
+      <button type="button" onclick="bottomCartCancel('#bottom-cart-menu1', '#cart-list-wrap1', '#select-text1', '#cart-alarm1', '#cart-heart1')"><span class="ico-b-cart-cancel"></span>취소</button>
       <button id="cart-alarm1" type="button" onclick="bottomCartAlarm('#cart-alarm1', '#cart-list-wrap1', '#select-text1', '#tost2', '#tost3')"><span class="ico-b-cart-alarm on"></span>알림 켜기</button>
       <button id="cart-heart1" type="button" onclick="bottomCartFavorites('#cart-heart1', '#cart-list-wrap1', '#select-text1', '#tost4', '#tost5')"><span class="ico-b-cart-heart"></span>즐겨찾기 설정</button>
       <button type="button" onclick="bottomPopupOn('#bottom-popup1', '#cart-list-wrap1')"><span class="ico-b-cart-remove"></span>삭제</button>
@@ -541,7 +541,14 @@
 
   // 폴더 리스트 조회 및 렌더링
   function getFolderList() {
-
+    try {
+      const requestData = {
+        userId: '',
+        affliateId: '',
+      };
+    } catch (error) {
+      alert(error);
+    }
   }
 
   // 지금 구매하세요 영역 조회 및 렌더링
@@ -551,7 +558,11 @@
 
   // 카트 아이템 조회
   function getCartList() {
-
+    try {
+      const requestData = {};
+    } catch (error) {
+      alert(error);
+    }
   }
 
   // 카트 아이템 렌더링
@@ -566,12 +577,20 @@
 
   // 카트 아이템 즐겨찾기 추가, 삭제
   function patchCartItemFavorite() {
-
+    try {
+      const requestData = {};
+    } catch (error) {
+      alert(error);
+    }
   }
 
   // 카트 아이템 알림 추가, 삭제
   function patchCartItemAlarm() {
-
+    try {
+      const requestData = {};
+    } catch (error) {
+      alert(error);
+    }
   }
 
   // 폴더 추가

@@ -475,12 +475,20 @@ function favoritesList(heart, cartWrap) {
   }
 }
 
-function bottomCartCancel(bottomCartMenu, cartWrap, selectBtn, alarmBtn) {
+function bottomCartCancel(
+  bottomCartMenu,
+  cartWrap,
+  selectBtn,
+  alarmBtn,
+  heartBtn,
+) {
   const $bottomCartMenu = document.querySelector(bottomCartMenu);
   const $cartCheckBoxs = document.querySelectorAll(`${cartWrap} .check-box`);
   const $selectBtn = document.querySelector(selectBtn);
   const $alarmBtn = document.querySelector(alarmBtn);
   const $alarmBtnIco = document.querySelector(`${alarmBtn} .ico-b-cart-alarm`);
+  const $heartBtn = document.querySelector(heartBtn);
+  const $heartBtnIco = document.querySelector(`${heartBtn} .ico-b-cart-heart`);
 
   $bottomCartMenu.classList.remove('on');
   $cartCheckBoxs.forEach((elm) => {
@@ -498,6 +506,12 @@ function bottomCartCancel(bottomCartMenu, cartWrap, selectBtn, alarmBtn) {
   if ($alarmBtnIco && !$alarmBtnIco.classList.contains('on')) {
     $alarmBtn.innerHTML = '<span class="ico-b-cart-alarm on"></span>알림 켜기';
     $alarmBtnIco.classList.add('on');
+  }
+
+  if ($heartBtnIco && !$heartBtnIco.classList.contains('on')) {
+    $heartBtn.innerHTML =
+      '<span class="ico-b-cart-heart on"></span>즐겨찾기 설정';
+    $heartBtnIco.classList.add('on');
   }
 }
 
@@ -554,6 +568,13 @@ function bottomCartAlarm(alarmBtn, cartWrap, textBtn, tost1, tost2) {
     $alarmBtn.innerHTML = '<span class="ico-b-cart-alarm on"></span>알림 켜기';
     $alarmBtnIco.classList.add('on');
   }
+
+  bottomCartCancel(
+    '#bottom-cart-menu1',
+    '#cart-list-wrap1',
+    '#select-text1',
+    '#cart-alarm1',
+  );
 }
 
 function bottomCartFavorites(heartBtn, cartWrap, textBtn, tost1, tost2) {
@@ -610,6 +631,13 @@ function bottomCartFavorites(heartBtn, cartWrap, textBtn, tost1, tost2) {
       '<span class="ico-b-cart-heart on"></span>즐겨찾기 설정';
     $heartBtnIco.classList.add('on');
   }
+
+  bottomCartCancel(
+    '#bottom-cart-menu1',
+    '#cart-list-wrap1',
+    '#select-text1',
+    '#cart-alarm1',
+  );
 }
 
 function bottomCartAlarmChangeCheck(alarmBtn, cartWrap) {
