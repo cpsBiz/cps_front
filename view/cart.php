@@ -113,7 +113,7 @@
         </div>
         <div class="stiky-wrap">
           <div class="cart-set-list">
-            <div id="select-btn1" class="select-btn type3" onclick="selectListOn('#select-btn1', '#select-wrap', '#select-list1')">
+            <div id="select-btn1" class="select-btn type3" onclick="selectListOn('#select-btn1', '#select-wrap', '#select-list1', getOrderBy())">
               <p class="value">최신순</p>
               <div class="ico-arrow type2 bottom"></div>
             </div>
@@ -647,5 +647,9 @@
         }
       });
     });
+  }
+
+  function getOrderBy() {
+    console.log('??');
   }
 </script>
