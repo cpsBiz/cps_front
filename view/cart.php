@@ -8,7 +8,7 @@
   <meta name="format-detection" content="telephone=no">
   <title>스마트 카트</title>
   <!-- style -->
-  <link rel="stylesheet" href="../css/style.css?version=<?= $cacheVersion; ?>">
+  <link rel="stylesheet" href="/css/style.css?version=<?= $cacheVersion; ?>">
 </head>
 
 <body>
@@ -103,8 +103,8 @@
                 <p>드디어<br>할인 시작!</p>
               </div>
               <div class="img-box">
-                <div class="img img1" style="background-image: url(../images/test/상품1.png);"></div>
-                <div class="img img2" style="background-image: url(../images/test/상품1.png);"></div>
+                <div class="img img1" style="background-image: url(/images/test/상품1.png);"></div>
+                <div class="img img2" style="background-image: url(/images/test/상품1.png);"></div>
                 <p class="count">2</p>
               </div>
               <a href="./sub-1-1.html"></a>
@@ -127,7 +127,7 @@
         <!-- 리스트 있을 경우 -->
         <div id="cart-list-wrap1" class="cart-list-wrap type1 one">
           <div id="list1" class="list">
-            <div class="img-box" style="background-image: url(../images/test/상품1.png);">
+            <div class="img-box" style="background-image: url(/images/test/상품1.png);">
               <div class="lowest-price">최저가</div>
               <button class="ico-heart" type="button"></button>
               <button class="ico-alarm" type="button"></button>
@@ -157,7 +157,7 @@
             </div>
           </div>
           <div id="list2" class="list">
-            <div class="img-box" style="background-image: url(../images/test/상품2.png);">
+            <div class="img-box" style="background-image: url(/images/test/상품2.png);">
               <div class="lowest-price">최저가</div>
               <button class="ico-heart" type="button"></button>
               <button class="ico-alarm" type="button"></button>
@@ -187,7 +187,7 @@
             </div>
           </div>
           <div id="list3" class="list">
-            <div class="img-box" style="background-image: url(../images/test/상품1.png);">
+            <div class="img-box" style="background-image: url(/images/test/상품1.png);">
               <div class="lowest-price">최저가</div>
               <button class="ico-heart" type="button"></button>
               <button class="ico-alarm" type="button"></button>
@@ -217,7 +217,7 @@
             </div>
           </div>
           <div id="list4" class="list">
-            <div class="img-box" style="background-image: url(../images/test/상품2.png);">
+            <div class="img-box" style="background-image: url(/images/test/상품2.png);">
               <div class="lowest-price">최저가</div>
               <button class="ico-heart" type="button"></button>
               <button class="ico-alarm" type="button"></button>
@@ -247,7 +247,7 @@
             </div>
           </div>
           <div id="list5" class="list">
-            <div class="img-box" style="background-image: url(../images/test/상품1.png);">
+            <div class="img-box" style="background-image: url(/images/test/상품1.png);">
               <div class="lowest-price">최저가</div>
               <button class="ico-heart" type="button"></button>
               <button class="ico-alarm" type="button"></button>
@@ -277,7 +277,7 @@
             </div>
           </div>
           <div id="list6" class="list">
-            <div class="img-box" style="background-image: url(../images/test/상품2.png);">
+            <div class="img-box" style="background-image: url(/images/test/상품2.png);">
               <div class="lowest-price">최저가</div>
               <button class="ico-heart" type="button"></button>
               <button class="ico-alarm" type="button"></button>
@@ -453,7 +453,7 @@
     <? include_once $_SERVER['DOCUMENT_ROOT'] . "/footer.php"; ?>
   </div>
 </body>
-<script src="../js/common.js?version=<?= $cacheVersion; ?>"></script>
+<script src="/js/common.js?version=<?= $cacheVersion; ?>"></script>
 
 </html>
 <script>
