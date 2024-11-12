@@ -824,7 +824,7 @@ function cartListOrganizeOn(
 
     if ($heartBtnIco && !$heartBtnIco.classList.contains('on')) {
       $heartBtn.innerHTML =
-        '<span class="ico-b-cart-alarm on"></span>즐겨찾기 설정';
+        '<span class="ico-b-cart-heart on"></span>즐겨찾기 설정';
       $heartBtnIco.classList.add('on');
     }
   }
