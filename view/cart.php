@@ -580,7 +580,9 @@
         productPrice: 26550,
         discount: 'down',
         per: 5,
-        badge: '최저가'
+        badge: '최저가',
+        alarm: false,
+        favorite: true
       },
       {
         productImage: '/images/test/상품2.png',
@@ -588,7 +590,9 @@
         productPrice: 30000,
         discount: 'up',
         per: 20,
-        badge: '카드'
+        badge: '카드',
+        alarm: false,
+        favorite: false
       },
       {
         productImage: '/images/test/상품1.png',
@@ -596,7 +600,9 @@
         productPrice: 12345,
         discount: 'down',
         per: 3,
-        badge: ''
+        badge: '',
+        alarm: true,
+        favorite: true
       },
     ]
     let list = '';
@@ -606,8 +612,8 @@
                 <div id="list1" class="list">
                   <div class="img-box" style="background-image: url(${item.productImage});">
                     ${badge}
-                    <button class="ico-heart" type="button"></button>
-                    <button class="ico-alarm" type="button"></button>
+                    <button class="ico-heart ${item.alarm ? 'on' : ''}" type="button"></button>
+                    <button class="ico-alarm ${item.favorite ? 'on' : ''}" type="button"></button>
                   </div>
                   <div class="text-box">
                     <div class="logo-box">
