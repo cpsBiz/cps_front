@@ -8,7 +8,7 @@
   <meta name="format-detection" content="telephone=no">
   <title>스마트 카트</title>
   <!-- style -->
-  <link rel="stylesheet" href="/css/style.css?version=<?= $cacheVersion; ?>">
+  <link rel="stylesheet" href="../css/style.css?version=<?= $cacheVersion; ?>">
 </head>
 
 <body>
@@ -56,7 +56,7 @@
             </div>
             <div class="box box2">
               <p id="userCommission" class="point"></p>
-              <a href="/history/point.php"></a>
+              <a href="../history/point.php"></a>
             </div>
           </div>
           <div class="text-box">
@@ -73,7 +73,7 @@
             </div>
             <div class="box box2">
               <p id="memberStick" class="point"></p>
-              <a href="/history/stick.php"></a>
+              <a href="../history/stick.php"></a>
             </div>
           </div>
         </div>
@@ -460,7 +460,7 @@
     <? include_once $_SERVER['DOCUMENT_ROOT'] . "/footer.php"; ?>
   </div>
 </body>
-<script src="/js/common.js?version=<?= $cacheVersion; ?>"></script>
+<script src="../js/common.js?version=<?= $cacheVersion; ?>"></script>
 
 </html>
 <script>
@@ -575,7 +575,7 @@
   // 카트 아이템 렌더링
   function renderCartList(data) {
     const exData = [{
-        productImage: '/images/test/상품1.png',
+        productImage: '../images/test/상품1.png',
         productName: '더리얼 비타민D 5000IU 180정',
         productPrice: 26550,
         discount: 'down',
@@ -585,7 +585,7 @@
         favorite: true
       },
       {
-        productImage: '/images/test/상품2.png',
+        productImage: '../images/test/상품2.png',
         productName: '상품1',
         productPrice: 30000,
         discount: 'up',
@@ -595,7 +595,7 @@
         favorite: false
       },
       {
-        productImage: '/images/test/상품1.png',
+        productImage: '../images/test/상품1.png',
         productName: '상품2',
         productPrice: 12345,
         discount: 'down',
