@@ -82,15 +82,9 @@ if ($type3Lists) {
   });
 }
 
+// cart list type1
 function cartListEvent() {
-  const $type1Lists = document.querySelectorAll('.list-wrap.type1 .list');
-  const $type1ListsIcoHeart = document.querySelectorAll(
-    '.list-wrap.type1 .ico-heart',
-  );
-  const $type1ListsIcoAlarm = document.querySelectorAll(
-    '.list-wrap.type1 .ico-alarm',
-  );
-
+  // cart list type1
   const $type1CartLists = document.querySelectorAll(
     '.cart-list-wrap.type1 .list',
   );
@@ -100,28 +94,6 @@ function cartListEvent() {
   const $type1CartListsIcoalarm = document.querySelectorAll(
     '.cart-list-wrap.type1 .ico-alarm',
   );
-
-  if ($type1Lists) {
-    $type1ListsIcoHeart.forEach((elm) => {
-      elm.addEventListener('click', () => {
-        if (!elm.classList.contains('on')) {
-          elm.classList.add('on');
-        } else if (elm.classList.contains('on')) {
-          elm.classList.remove('on');
-        }
-      });
-    });
-
-    $type1ListsIcoAlarm.forEach((elm) => {
-      elm.addEventListener('click', () => {
-        if (!elm.classList.contains('on')) {
-          elm.classList.add('on');
-        } else if (elm.classList.contains('on')) {
-          elm.classList.remove('on');
-        }
-      });
-    });
-  }
 
   if ($type1CartLists) {
     $type1CartListsIcoHeart.forEach((elm) => {
