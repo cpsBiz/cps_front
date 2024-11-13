@@ -288,7 +288,7 @@ function selectListsCheck(
     $selectBtnValue.classList.add('on');
 
   selectListClose(selectBtn, selectWrap, selectList);
-  if (callback === 'getCartList') {
+  if (callback && typeof callback === 'function') {
     getCartList(`${selectValue}`);
   }
 }
