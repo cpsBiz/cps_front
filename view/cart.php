@@ -467,7 +467,6 @@
   $(function() {
     getMemberCommission();
     getMemberStick();
-    addLongClickEvent();
     getCartList();
   });
 
@@ -629,8 +628,8 @@
     });
     $('#cart-list-wrap1').empty();
     $('#cart-list-wrap1').append(list);
-    cartListEvent()
-
+    cartListEvent();
+    addLongClickEvent();
   }
 
   // 카트 아이템 삭제
@@ -667,56 +666,5 @@
     } catch (error) {
       alert(error);
     }
-  }
-
-  // 카트 아이템 롱클릭시 선택 레이아웃
-  function addLongClickEvent() {
-    const links = document.querySelectorAll('.list > a');
-    const eventOptions = {
-      passive: false
-    };
-
-    links.forEach(link => {
-      let pressTimer;
-      let isLongPress = false;
-
-      link.addEventListener('touchstart', (e) => {
-        isLongPress = false;
-        pressTimer = setTimeout(() => {
-          isLongPress = true;
-          cartListOrganizeOn('#select-text1', '.cart-list-wrap', '#bottom-cart-menu1', '#cart-alarm1', '#bottom-popup1', '#cart-heart1')
-        }, 1500);
-      }, eventOptions);
-
-      link.addEventListener('touchend', (e) => {
-        clearTimeout(pressTimer);
-        if (isLongPress) {
-          e.preventDefault();
-        }
-      }, eventOptions);
-
-      link.addEventListener('mousedown', (e) => {
-        isLongPress = false;
-        pressTimer = setTimeout(() => {
-          isLongPress = true;
-          cartListOrganizeOn('#select-text1', '.cart-list-wrap', '#bottom-cart-menu1', '#cart-alarm1', '#bottom-popup1', '#cart-heart1')
-        }, 1500);
-      });
-
-      link.addEventListener('mouseup', () => {
-        clearTimeout(pressTimer);
-      });
-
-      link.addEventListener('mouseleave', () => {
-        clearTimeout(pressTimer);
-        isLongPress = false;
-      });
-
-      link.addEventListener('click', (e) => {
-        if (isLongPress) {
-          e.preventDefault();
-        }
-      });
-    });
   }
 </script>
