@@ -629,7 +629,6 @@
     $('#cart-list-wrap1').empty();
     $('#cart-list-wrap1').append(list);
     cartListEvent();
-    addLongClickEvent();
   }
 
   // 카트 아이템 삭제
