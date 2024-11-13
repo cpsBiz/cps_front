@@ -606,10 +606,10 @@
       },
     ]
     let list = '';
-    exData.forEach(item => {
+    exData.forEach((item, index) => {
       const badge = item.badge ? `<div class="lowest-price">${item.badge}</div>` : '';
       list += `
-                <div id="list1" class="list">
+                <div id="list${index}" class="list">
                   <div class="img-box" style="background-image: url(${item.productImage});">
                     ${badge}
                     <button class="ico-heart ${item.alarm ? 'on' : ''}" type="button"></button>
@@ -630,7 +630,7 @@
                   <div
                     class="check-box"
                     onclick="
-                      onOff('#list1 .check-box .img-bg', '#bottom-popup1'), 
+                      onOff('#list${index} .check-box .img-bg', '#bottom-popup1'), 
                       cartListOrganizeCheck('#select-text1', '.cart-list-wrap'),
                       bottomCartAlarmChangeCheck('#cart-alarm1', '#cart-list-wrap1'),
                       bottomCartHeartChangeCheck('#cart-heart1', '#cart-list-wrap1')
