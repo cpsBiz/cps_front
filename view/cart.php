@@ -558,7 +558,7 @@
 
   // 카트 아이템 조회
   function getCartList(orderBy) {
-    return console.log('콜백실행완료');
+    return console.log(`${orderBy}`);
     try {
       const requestData = {};
     } catch (error) {
