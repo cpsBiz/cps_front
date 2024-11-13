@@ -12,12 +12,6 @@ tabs.forEach((tab) => {
   });
 });
 
-// list type1
-const $type1Lists = document.querySelectorAll('.list-wrap.type1 .list');
-const $type1ListsIcoHeart = document.querySelectorAll(
-  '.list-wrap.type1 .ico-heart',
-);
-
 // list type3
 const $type3Lists = document.querySelectorAll('.list-wrap.type3 .list');
 const $type3ListsTop = document.querySelectorAll(
@@ -32,19 +26,6 @@ const $type3ListsBottomContent = document.querySelectorAll(
 
 // file
 const $inputFile1 = document.querySelector('#file-1');
-
-// list type1
-if ($type1Lists) {
-  $type1ListsIcoHeart.forEach((elm) => {
-    elm.addEventListener('click', () => {
-      if (!elm.classList.contains('on')) {
-        elm.classList.add('on');
-      } else if (elm.classList.contains('on')) {
-        elm.classList.remove('on');
-      }
-    });
-  });
-}
 
 function historyPointEvent() {
   // list type2
@@ -101,9 +82,12 @@ if ($type3Lists) {
   });
 }
 
-// cart list type1
 function cartListEvent() {
-  // cart list type1
+  const $type1Lists = document.querySelectorAll('.list-wrap.type1 .list');
+  const $type1ListsIcoHeart = document.querySelectorAll(
+    '.list-wrap.type1 .ico-heart',
+  );
+
   const $type1CartLists = document.querySelectorAll(
     '.cart-list-wrap.type1 .list',
   );
@@ -113,6 +97,18 @@ function cartListEvent() {
   const $type1CartListsIcoalarm = document.querySelectorAll(
     '.cart-list-wrap.type1 .ico-alarm',
   );
+
+  if ($type1Lists) {
+    $type1ListsIcoHeart.forEach((elm) => {
+      elm.addEventListener('click', () => {
+        if (!elm.classList.contains('on')) {
+          elm.classList.add('on');
+        } else if (elm.classList.contains('on')) {
+          elm.classList.remove('on');
+        }
+      });
+    });
+  }
 
   if ($type1CartLists) {
     $type1CartListsIcoHeart.forEach((elm) => {
