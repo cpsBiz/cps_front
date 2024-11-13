@@ -314,11 +314,11 @@
           </div>
         </div>
         <!-- 전체보기에서 등록된 상품 없을 경우 -->
-        <div class="list-none-box">
+        <div class="list-none-box" style="display: none;">
           <p><span class="ico-nonecart"></span>등록된 상품이 없습니다.</p>
         </div>
         <!-- 폴더에 등록된 상품 없을 경우 -->
-        <div class="list-none-box folder">
+        <div class="list-none-box folder" style="display: none;">
           <div class="center">
             <p id="folderItemNone"><span class="ico-nonefolder"></span>[전자기기]<br>폴더가 비어있어요.</p>
             <a href="javascript:void(0)">사용법 보러가기</a>
