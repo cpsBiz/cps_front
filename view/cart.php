@@ -313,14 +313,14 @@
             </div>
           </div>
         </div>
-        <!-- 등록된 상품 없을 경우 -->
+        <!-- 전체보기에서 등록된 상품 없을 경우 -->
         <div class="list-none-box">
           <p><span class="ico-nonecart"></span>등록된 상품이 없습니다.</p>
         </div>
-        <!-- 등록된 폴더 없을 경우 -->
+        <!-- 폴더에 등록된 상품 없을 경우 -->
         <div class="list-none-box folder">
           <div class="center">
-            <p><span class="ico-nonefolder"></span>[전자기기]<br>폴더가 비어있어요.</p>
+            <p id="folderItemNone"><span class="ico-nonefolder"></span>[전자기기]<br>폴더가 비어있어요.</p>
             <a href="javascript:void(0)">사용법 보러가기</a>
           </div>
         </div>
@@ -468,6 +468,7 @@
     getMemberCommission();
     getMemberStick();
     addLongClickEvent();
+    getCartList();
   });
 
   function getMemberCommission() {
@@ -535,9 +536,9 @@
     }
   }
 
-  function orderByCartList() {
-    const orderBy = document.getElementById('').value;
-  }
+  // 정렬순, 폴더선택 변수
+  let checkOrderBy = '';
+  let checkFolder = '';
 
   // 폴더 리스트 조회 및 렌더링
   function getFolderList() {
@@ -553,12 +554,6 @@
 
   // 지금 구매하세요 영역 조회 및 렌더링
   function getNowBuyingList() {
-
-  }
-
-  // 카트 아이템 조회
-  function getCartList(orderBy) {
-    return console.log(`${orderBy}`);
     try {
       const requestData = {};
     } catch (error) {
@@ -566,14 +561,83 @@
     }
   }
 
-  // 카트 아이템 렌더링
-  function renderCartList() {
+  // 카트 아이템 조회
+  function getCartList(orderBy) {
+    if (orderBy) checkOrderBy = orderBy;
+    try {
+      const requestData = {};
 
+      renderCartList();
+    } catch (error) {
+      alert(error);
+    }
+  }
+
+  // 카트 아이템 렌더링
+  function renderCartList(data) {
+    const exData = [{
+        productImage: '/images/test/상품1.png',
+        productName: '더리얼 비타민D 5000IU 180정',
+        productPrice: 26550,
+      },
+      {
+        productImage: '/images/test/상품2.png',
+        productName: '상품1',
+        productPrice: 30000,
+      },
+      {
+        productImage: '/images/test/상품1.png',
+        productName: '상품2',
+        productPrice: 12345,
+      },
+    ]
+    let list = '';
+    exData.forEach(item => {
+      list += `
+                <div id="list1" class="list">
+                  <div class="img-box" style="background-image: url(${item.productImage});">
+                    <div class="lowest-price">최저가</div>
+                    <button class="ico-heart" type="button"></button>
+                    <button class="ico-alarm" type="button"></button>
+                  </div>
+                  <div class="text-box">
+                    <div class="logo-box">
+                      <div class="logo coupang"></div>
+                      <p class="logo-title">쿠팡</p>
+                    </div>
+                    <p class="title">${item.productName}</p>
+                    <div class="price-box">
+                      <p class="price">${item.productPrice.toLocaleString()}</p>
+                      <div class="up-down up">24%</div>
+                    </div>
+                  </div>
+                  <a href="./sub-1-2.html"></a>
+                  <div
+                    class="check-box"
+                    onclick="
+                      onOff('#list1 .check-box .img-bg', '#bottom-popup1'), 
+                      cartListOrganizeCheck('#select-text1', '.cart-list-wrap'),
+                      bottomCartAlarmChangeCheck('#cart-alarm1', '#cart-list-wrap1'),
+                      bottomCartHeartChangeCheck('#cart-heart1', '#cart-list-wrap1')
+                    ">
+                    <div class="img-bg">
+                      <span class="check"></span>
+                    </div>
+                  </div>
+                </div>
+              `;
+    });
+    $('#cart-list-wrap1').empty();
+    $('#cart-list-wrap1').append(list);
   }
 
   // 카트 아이템 삭제
   function deleteCartItem() {
-
+    try {
+      const requestData = {};
+    } catch (error) {
+      alert(error);
+    }
   }
 
   // 카트 아이템 즐겨찾기 추가, 삭제
@@ -596,7 +660,11 @@
 
   // 폴더 추가
   function addForder() {
-
+    try {
+      const requstData = {};
+    } catch (error) {
+      alert(error);
+    }
   }
 
   // 카트 아이템 롱클릭시 선택 레이아웃
