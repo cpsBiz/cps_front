@@ -444,7 +444,7 @@
     <div id="bottom-cart-menu1" class="bottom-cart-menu-wrap type1">
       <button type="button" onclick="bottomCartCancel('#bottom-cart-menu1', '#cart-list-wrap1', '#select-text1', '#cart-alarm1', '#cart-heart1')"><span class="ico-b-cart-cancel"></span>취소</button>
       <button id="cart-alarm1" type="button" onclick="bottomCartAlarm('#cart-alarm1', '#cart-list-wrap1', '#select-text1', '#tost2', '#tost3')"><span class="ico-b-cart-alarm on"></span>알림 켜기</button>
-      <button id="cart-heart1" type="button" onclick="bottomCartFavorites('#cart-heart1', '#cart-list-wrap1', '#select-text1', '#tost4', '#tost5')"><span class="ico-b-cart-heart"></span>즐겨찾기 설정</button>
+      <button id="cart-heart1" type="button" onclick="bottomCartFavorites('#cart-heart1', '#cart-list-wrap1', '#select-text1', '#tost4', '#tost5')"><span class="ico-b-cart-heart on"></span>즐겨찾기 설정</button>
       <button type="button" onclick="bottomPopupOn('#bottom-popup1', '#cart-list-wrap1')"><span class="ico-b-cart-remove"></span>삭제</button>
     </div>
     <div id="bottom-popup1" class="bottom-popup type1">
