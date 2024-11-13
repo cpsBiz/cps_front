@@ -602,8 +602,6 @@
           console.error(`Error: ${error}`);
         }
       });
-
-
     } catch (error) {
       alert(error);
     }

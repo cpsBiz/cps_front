@@ -7,7 +7,7 @@ if ($isTest) {
   $checkSite = 'test';
   $checkZoneId =  'test';
 
-  $appApiUrl = 'http://192.168.101.156';
+  $appApiUrl = 'https://testapp.shoplus.io';
 } else {
   session_start();
 
