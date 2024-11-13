@@ -218,8 +218,6 @@ $months = getLastYearMonths();
 
   // 막대사탕 리스트 렌더링
   function renderStickList(data) {
-    console.log(data);
-
     $('.list-none-box').css('display', 'none');
     $('.list-wrap.type5').empty();
 

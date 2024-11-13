@@ -342,7 +342,7 @@ function selectListsCheck(
 
   selectListClose(selectBtn, selectWrap, selectList);
   if (callback && typeof callback === 'function') {
-    getCartList(`${selectValue}`);
+    getCartList();
   }
 }
 

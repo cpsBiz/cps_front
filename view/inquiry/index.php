@@ -367,8 +367,6 @@ if (!$campaign) {
 
   // 누락문의검증
   function omissioninquiry() {
-    console.log('누락문의검증');
-
     // 구매 쇼핑몰 
     if (!document.getElementById('select-btn2').querySelector('p.value').classList.contains('on')) {
       return alert('구매 쇼핑몰을 선택해주세요.');
@@ -543,7 +541,6 @@ if (!$campaign) {
         contentType: 'application/json',
         data: JSON.stringify(requestData),
         success: function(result) {
-          console.log(result);
           if (result.resultCode !== '0000') return alert(result.resultMessage);
           popupOn('#popup-wrap', '.popup1');
         },

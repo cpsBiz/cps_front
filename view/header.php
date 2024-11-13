@@ -18,6 +18,9 @@ if ($isTest) {
   $checkZoneId =  $_SESSION['check_zoneId'];
 
   $appApiUrl = 'https://app.shoplus.io';
+  if (strpos($_SERVER['REQUEST_URI'], 'cart') !== false) {
+    $appApiUrl = 'http://192.168.101.156';
+  }
 }
 
 $cacheVersion = 1.2;

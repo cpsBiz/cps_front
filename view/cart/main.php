@@ -314,11 +314,11 @@
           </div>
         </div>
         <!-- 전체보기에서 등록된 상품 없을 경우 -->
-        <div class="list-none-box" style="display: none;">
+        <div id="all-cart-list-none" class="list-none-box" style="display: none;">
           <p><span class="ico-nonecart"></span>등록된 상품이 없습니다.</p>
         </div>
         <!-- 폴더에 등록된 상품 없을 경우 -->
-        <div class="list-none-box folder" style="display: none;">
+        <div id="folder-cart-list-none" class="list-none-box folder" style="display: none;">
           <div class="center">
             <p id="folderItemNone"><span class="ico-nonefolder"></span>[전자기기]<br>폴더가 비어있어요.</p>
             <a href="javascript:void(0)">사용법 보러가기</a>
@@ -536,19 +536,33 @@
   }
 
   // 정렬순, 폴더선택 변수
-  let checkOrderBy = '';
-  let checkFolder = '';
+  let checkOrderBy, checkFolder, checkFavorite = '';
 
   // 폴더 리스트 조회 및 렌더링
   function getFolderList() {
     try {
-      const requestData = {
-        userId: '',
-        affliateId: '',
-      };
+      const requestData = {};
+
+      $.ajax({
+        type: 'POST',
+        url: '<?= $appApiUrl; ?>/api/cart/',
+        contentType: 'application/json',
+        data: JSON.stringify(requestData),
+        success: function(result) {
+          if (result.resultCode !== '0000') return alert(result.resultMessage);
+
+        },
+        error: function(request, status, error) {
+          console.error(`Error: ${error}`);
+        }
+      });
     } catch (error) {
       alert(error);
     }
+  }
+
+  function renderFolderList(data) {
+
   }
 
   // 지금 구매하세요 영역 조회 및 렌더링
@@ -561,12 +575,35 @@
   }
 
   // 카트 아이템 조회
-  function getCartList(orderBy) {
-    if (orderBy) checkOrderBy = orderBy;
+  function getCartList() {
     try {
-      const requestData = {};
+      const requestData = {
+        userId: '<?= $checkUserId; ?>',
+        affliateId: '<?= $checkAffliateId; ?>',
+        merchantId: '',
+        producetCode: '',
+        optionCode: '',
+        orderbyName: checkOrderBy,
+        favorites: checkFavorite,
+        folderNum: checkFolder
+      };
 
-      renderCartList();
+      $.ajax({
+        type: 'POST',
+        url: '<?= $appApiUrl; ?>/api/cart/',
+        contentType: 'application/json',
+        data: JSON.stringify(requestData),
+        success: function(result) {
+          if (result.resultCode !== '0000') return alert(result.resultMessage);
+
+          // renderCartList(result.datas);
+        },
+        error: function(request, status, error) {
+          console.error(`Error: ${error}`);
+        }
+      });
+
+
     } catch (error) {
       alert(error);
     }
@@ -574,6 +611,12 @@
 
   // 카트 아이템 렌더링
   function renderCartList(data) {
+    if (!data || data === null || data.length === 0) {
+      $('#').hide();
+      $('#').show();
+      return;
+    }
+
     const exData = [{
         productImage: '../images/test/상품1.png',
         productName: '더리얼 비타민D 5000IU 180정',
@@ -642,6 +685,8 @@
                 </div>
               `;
     });
+    $('#all-cart-list-none').hide();
+    $('#folder-cart-list-none').hide();
     $('#cart-list-wrap1').empty();
     $('#cart-list-wrap1').append(list);
     cartListEvent();
