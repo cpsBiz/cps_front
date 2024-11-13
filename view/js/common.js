@@ -254,7 +254,7 @@ function selectListOn(selectBtn, selectWrap, selectList, callback) {
   document.querySelector(selectList).classList.add('on');
 
   $selectLists.forEach((elm) => {
-    const listenerFn = () =>
+    elm.addEventListener('click', () =>
       selectListsCheck(
         $selectLists,
         elm,
@@ -263,11 +263,8 @@ function selectListOn(selectBtn, selectWrap, selectList, callback) {
         selectWrap,
         selectList,
         callback,
-      );
-
-    // 기존 리스너 제거 후 새로운 리스너 추가
-    elm.removeEventListener('click', listenerFn);
-    elm.addEventListener('click', listenerFn);
+      ),
+    );
   });
 }
 
@@ -283,17 +280,14 @@ function selectListsCheck(
   $selectLists.forEach((elm) => elm.classList.remove('on'));
   $selectList.classList.add('on');
   $selectList.querySelector('div').classList.add('on');
-  $selectBtnValue.innerText = `${
-    $selectList.querySelector('.value').innerText
-  }`;
+  const selectValue = $selectList.querySelector('.value').innerText;
+  $selectBtnValue.innerText = selectValue;
   if (!$selectBtnValue.classList.contains('on'))
     $selectBtnValue.classList.add('on');
 
   selectListClose(selectBtn, selectWrap, selectList);
-  console.log('체크실행');
-  if (callback && typeof callback === 'function') {
-    console.log('콜백처리중');
-    callback();
+  if (callback === 'getCartList') {
+    getCartList(`${selectValue}`);
   }
 }
 
