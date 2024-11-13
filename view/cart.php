@@ -331,7 +331,7 @@
       <p id="tost1" class="tost-popup">폴더가 추가 되었습니다.</p>
       <p id="tost2" class="tost-popup type2">알림 켜기가 설정 되었습니다.</p>
       <p id="tost3" class="tost-popup type2">알림 끄기가 설정 되었습니다.</p>
-      <p id="tost4" class="tost-popup type2">즐겨찾기가 추가 되었습니다.</p>
+      <p id="tost4" class="tost-popup type2">즐겨찾기가 설정 되었습니다.</p>
       <p id="tost5" class="tost-popup type2">즐겨찾기가 해제 되었습니다.</p>
       <p id="tost6" class="tost-popup type2">상품이 삭제 되었습니다.</p>
     </div>
@@ -578,24 +578,34 @@
         productImage: '/images/test/상품1.png',
         productName: '더리얼 비타민D 5000IU 180정',
         productPrice: 26550,
+        discount: 'down',
+        per: 5,
+        badge: '최저가'
       },
       {
         productImage: '/images/test/상품2.png',
         productName: '상품1',
         productPrice: 30000,
+        discount: 'up',
+        per: 20,
+        badge: '카드'
       },
       {
         productImage: '/images/test/상품1.png',
         productName: '상품2',
         productPrice: 12345,
+        discount: 'down',
+        per: 3,
+        badge: ''
       },
     ]
     let list = '';
     exData.forEach(item => {
+      const badge = item.badge ? `<div class="lowest-price">${item.badge}</div>` : '';
       list += `
                 <div id="list1" class="list">
                   <div class="img-box" style="background-image: url(${item.productImage});">
-                    <div class="lowest-price">최저가</div>
+                    ${badge}
                     <button class="ico-heart" type="button"></button>
                     <button class="ico-alarm" type="button"></button>
                   </div>
@@ -607,7 +617,7 @@
                     <p class="title">${item.productName}</p>
                     <div class="price-box">
                       <p class="price">${item.productPrice.toLocaleString()}</p>
-                      <div class="up-down up">24%</div>
+                      <div class="up-down ${item.discount}">${item.per}%</div>
                     </div>
                   </div>
                   <a href="./sub-1-2.html"></a>
