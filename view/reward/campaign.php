@@ -100,7 +100,7 @@ if (!$object) {
 
   function getClickRewardUrl(apiUrl, clickUrl, campaignNum) {
     try {
-      document.getElementById('buttonUrl').disabled = true;
+      $('#buttonUrl').attr('href', '');
 
       const affliateId = '<?= $checkAffliateId; ?>';
       const zoneId = '<?= $checkZoneId; ?>'
