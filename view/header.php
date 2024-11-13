@@ -36,6 +36,8 @@ $cacheVersion = 1.2;
     left: 0;
     background: rgba(0, 0, 0, 0);
     z-index: 99999;
+    width: 100%;
+    height: 100%;
   }
 </style>
 <div id="loading-spinner" class="loadingBg"></div>
