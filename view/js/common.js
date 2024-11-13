@@ -248,24 +248,26 @@ function eventPopupClose(popup) {
 function selectListOn(selectBtn, selectWrap, selectList, callback) {
   const $selectBtnValue = document.querySelector(`${selectBtn} .value`);
   const $selectLists = document.querySelectorAll(`${selectList} .list`);
+  const $selectListContainer = document.querySelector(selectList);
   document.body.classList.add('scrollNone');
   document.querySelector(selectBtn).classList.add('on');
   document.querySelector(selectWrap).classList.add('on');
   document.querySelector(selectList).classList.add('on');
 
-  $selectLists.forEach((elm) => {
-    elm.addEventListener('click', () =>
+  $selectListContainer.onclick = (e) => {
+    const listItem = e.target.closest('.list');
+    if (listItem) {
       selectListsCheck(
         $selectLists,
-        elm,
+        listItem,
         $selectBtnValue,
         selectBtn,
         selectWrap,
         selectList,
         callback,
-      ),
-    );
-  });
+      );
+    }
+  };
 }
 
 function selectListsCheck(
