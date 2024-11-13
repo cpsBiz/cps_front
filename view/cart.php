@@ -629,28 +629,8 @@
     });
     $('#cart-list-wrap1').empty();
     $('#cart-list-wrap1').append(list);
+    cartListEvent()
 
-    if ($type1CartLists) {
-      $type1CartListsIcoHeart.forEach((elm) => {
-        elm.addEventListener('click', () => {
-          if (!elm.classList.contains('on')) {
-            elm.classList.add('on');
-          } else if (elm.classList.contains('on')) {
-            elm.classList.remove('on');
-          }
-        });
-      });
-
-      $type1CartListsIcoalarm.forEach((elm) => {
-        elm.addEventListener('click', () => {
-          if (!elm.classList.contains('on')) {
-            elm.classList.add('on');
-          } else if (elm.classList.contains('on')) {
-            elm.classList.remove('on');
-          }
-        });
-      });
-    }
   }
 
   // 카트 아이템 삭제
