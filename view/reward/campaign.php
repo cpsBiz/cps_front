@@ -140,6 +140,7 @@ if (!$object) {
           }
 
           location.href = buttonUrl;
+          $('#buttonUrl').attr('href', `javascript:getClickRewardUrl('${apiUrl}', '${clickUrl}', ${campaignNum})`);
         },
         error: function(request, status, error) {
           console.error(`Error: ${error}`);
