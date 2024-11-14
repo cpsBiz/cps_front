@@ -178,17 +178,18 @@
         success: function(result) {
           const data = result.datas;
           let list = '';
+          const rewardCategory = localStorage.getItem('rewardCategory');
           data.forEach((item, index) => {
             list += `
-											<div class="tab tab${index + 1} ${index === 0 ? 'on' : ''}">
+											<div id="rewardCategory${item.category}" class="tab tab${index + 1} ${rewardCategory && rewardCategory === item.category ? 'on' : index === 0 ? 'on' : ''}">
 												<a href="javascript:getCampaignView('${item.category}')">${item.categoryName}</a>
 											</div>
 										`;
           });
           $('#category-tab').empty();
           $('#category-tab').append(list);
-          const tabs = document.querySelectorAll('.tab');
 
+          const tabs = document.querySelectorAll('.tab');
           // 각 탭에 클릭 이벤트 리스너 추가
           tabs.forEach((tab) => {
             tab.addEventListener('click', () => {
@@ -199,7 +200,7 @@
               tab.classList.add('on');
             });
           });
-          const rewardCategory = localStorage.getItem('rewardCategory');
+
           getCampaignView(`${rewardCategory ? rewardCategory : data[0].category}`);
         },
         error: function(request, status, error) {
