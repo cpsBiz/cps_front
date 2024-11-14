@@ -181,7 +181,7 @@
           const rewardCategory = localStorage.getItem('rewardCategory');
           data.forEach((item, index) => {
             list += `
-											<div id="rewardCategory${item.category}" class="tab tab${index + 1} ${rewardCategory && rewardCategory === item.category ? 'on' : index === 0 ? 'on' : ''}">
+											<div id="rewardCategory${item.category}" class="tab tab${index + 1} ${rewardCategory && rewardCategory === item.category ? 'on' : !rewardCategory && index === 0 ? 'on' : ''}">
 												<a href="javascript:getCampaignView('${item.category}')">${item.categoryName}</a>
 											</div>
 										`;
