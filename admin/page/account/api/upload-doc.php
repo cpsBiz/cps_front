@@ -1,4 +1,11 @@
 <?
+session_start();
+$admin_login = $_SESSION['admin_login'];
+if (!$admin_login) {
+  echo json_encode(['resultCode' => 'fail', 'resultMessage' => '잘못된 접근입니다.']);
+  exit;
+}
+
 $userId = $_POST['userId'];
 if (!$userId) {
   echo json_encode(['resultCode' => 'fail', 'resultMessage' => '잘못된 접근입니다.']);

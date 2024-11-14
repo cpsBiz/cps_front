@@ -1,4 +1,12 @@
 <?
+session_start();
+$admin_login = $_SESSION['admin_login'];
+if (!$admin_login) {
+  $json_data['resultCode'] = 'fail';
+  $json_data['resultMessage'] = '메일 전송 실패';
+  echo json_encode($json_data);
+  exit;
+}
 $inputData = file_get_contents("php://input");
 
 $data = json_decode($inputData, true);

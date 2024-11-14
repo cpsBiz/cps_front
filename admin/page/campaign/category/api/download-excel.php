@@ -1,4 +1,8 @@
 <?
+session_start();
+$admin_login = $_SESSION['admin_login'];
+if (!$admin_login) exit;
+
 // 압축할 파일의 경로 (수정 필요)
 $filePath = '/var/www/html/admin/page/campaign/files/'; // 파일들이 저장된 경로
 

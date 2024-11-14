@@ -1,4 +1,11 @@
 <?php
+session_start();
+$admin_login = $_SESSION['admin_login'];
+if (!$admin_login) {
+  echo json_encode(['error' => '잘못된 요청입니다.']);
+  exit;
+}
+
 // 요청이 POST인지 확인
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   // JSON 데이터를 받아서 배열로 변환
