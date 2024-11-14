@@ -199,7 +199,8 @@
               tab.classList.add('on');
             });
           });
-          getCampaignView(`${data[0].category}`);
+          const rewardCategory = localStorage.getItem('rewardCategory');
+          getCampaignView(`${rewardCategory ? rewardCategory : data[0].category}`);
         },
         error: function(request, status, error) {
           console.error(`Error: ${error}`);
@@ -244,6 +245,8 @@
         contentType: 'application/json',
         data: JSON.stringify(requestData),
         success: function(result) {
+          if (category) localStorage.setItem('rewardCategory', category);
+
           handleCampaingView(result);
         },
         error: function(request, status, error) {
