@@ -96,23 +96,15 @@ function cartListEvent() {
   );
 
   if ($type1CartLists) {
-    $type1CartListsIcoHeart.forEach((elm) => {
+    $type1CartListsIcoHeart.forEach((elm, index) => {
       elm.addEventListener('click', () => {
-        if (!elm.classList.contains('on')) {
-          elm.classList.add('on');
-        } else if (elm.classList.contains('on')) {
-          elm.classList.remove('on');
-        }
+        updateCartFavorites($type1CartLists[index]);
       });
     });
 
-    $type1CartListsIcoalarm.forEach((elm) => {
+    $type1CartListsIcoalarm.forEach((elm, index) => {
       elm.addEventListener('click', () => {
-        if (!elm.classList.contains('on')) {
-          elm.classList.add('on');
-        } else if (elm.classList.contains('on')) {
-          elm.classList.remove('on');
-        }
+        updateCartAlarm($type1CartLists[index]);
       });
     });
 
@@ -342,6 +334,20 @@ function selectListsCheck(
 
   selectListClose(selectBtn, selectWrap, selectList);
   if (callback && typeof callback === 'function') {
+    switch (selectValue) {
+      case '최신순':
+        checkOrderBy = 'modDateDesc';
+        break;
+      case '할인율순':
+        checkOrderBy = 'discount';
+        break;
+      case '오래된순':
+        checkOrderBy = 'modDateAsc';
+        break;
+      case '이름순':
+        checkOrderBy = 'productName';
+        break;
+    }
     getCartList();
   }
 }
@@ -590,133 +596,6 @@ function bottomCartCancel(
   }
 }
 
-function bottomCartAlarm(alarmBtn, cartWrap, textBtn, tost1, tost2) {
-  const $alarmBtn = document.querySelector(alarmBtn);
-  const $alarmBtnIco = document.querySelector(`${alarmBtn} .ico-b-cart-alarm`);
-  const $cartLists = document.querySelectorAll(`${cartWrap} .list`);
-  const $textBtn = document.querySelector(textBtn);
-  const $tost1 = document.querySelector(tost1);
-  const $tost2 = document.querySelector(tost2);
-  let count = 0;
-
-  $cartLists.forEach((elm) => {
-    const $cartImgBg = elm.querySelector('.img-bg');
-    const $cartIcoAlarm = elm.querySelector('.ico-alarm');
-
-    if ($cartImgBg.classList.contains('on')) count += 1;
-
-    if ($alarmBtnIco.classList.contains('on')) {
-      if ($cartImgBg.classList.contains('on')) {
-        $cartImgBg.classList.remove('on');
-        if (!$cartIcoAlarm.classList.contains('on'))
-          $cartIcoAlarm.classList.add('on');
-      }
-    } else if (!$alarmBtnIco.classList.contains('on')) {
-      if ($cartImgBg.classList.contains('on')) {
-        $cartImgBg.classList.remove('on');
-        if ($cartIcoAlarm.classList.contains('on'))
-          $cartIcoAlarm.classList.remove('on');
-      }
-    }
-  });
-
-  if (count > 0) {
-    if ($alarmBtnIco.classList.contains('on')) {
-      if ($tost1 && !$tost1.classList.contains('on')) {
-        if ($tost2.classList.contains('on')) $tost2.classList.remove('on');
-        $tost1.classList.add('on');
-        setTimeout(() => $tost1.classList.remove('on'), 1000);
-      }
-    } else if (!$alarmBtnIco.classList.contains('on')) {
-      if ($tost2 && !$tost2.classList.contains('on')) {
-        if ($tost1.classList.contains('on')) $tost1.classList.remove('on');
-        $tost2.classList.add('on');
-        setTimeout(() => $tost2.classList.remove('on'), 1000);
-      }
-    }
-  }
-
-  if ($textBtn.classList.contains('selected'))
-    $textBtn.classList.remove('selected');
-  $textBtn.innerText = '전체선택';
-  if (!$alarmBtnIco.classList.contains('on')) {
-    $alarmBtn.innerHTML = '<span class="ico-b-cart-alarm on"></span>알림 켜기';
-    $alarmBtnIco.classList.add('on');
-  }
-
-  bottomCartCancel(
-    '#bottom-cart-menu1',
-    '#cart-list-wrap1',
-    '#select-text1',
-    '#cart-alarm1',
-    '#cart-heart1',
-  );
-}
-
-function bottomCartFavorites(heartBtn, cartWrap, textBtn, tost1, tost2) {
-  const $heartBtn = document.querySelector(heartBtn);
-  const $heartBtnIco = document.querySelector(`${heartBtn} .ico-b-cart-heart`);
-  const $cartLists = document.querySelectorAll(`${cartWrap} .list`);
-  const $textBtn = document.querySelector(textBtn);
-  const $tost1 = document.querySelector(tost1);
-  const $tost2 = document.querySelector(tost2);
-  let count = 0;
-
-  $cartLists.forEach((elm) => {
-    const $cartImgBg = elm.querySelector('.img-bg');
-    const $cartIcoFavorites = elm.querySelector('.ico-heart');
-
-    if ($cartImgBg.classList.contains('on')) count += 1;
-
-    if ($heartBtnIco.classList.contains('on')) {
-      if ($cartImgBg.classList.contains('on')) {
-        $cartImgBg.classList.remove('on');
-        if (!$cartIcoFavorites.classList.contains('on'))
-          $cartIcoFavorites.classList.add('on');
-      }
-    } else if (!$heartBtnIco.classList.contains('on')) {
-      if ($cartImgBg.classList.contains('on')) {
-        $cartImgBg.classList.remove('on');
-        if ($cartIcoFavorites.classList.contains('on'))
-          $cartIcoFavorites.classList.remove('on');
-      }
-    }
-  });
-
-  if (count > 0) {
-    if ($heartBtnIco.classList.contains('on')) {
-      if ($tost1 && !$tost1.classList.contains('on')) {
-        if ($tost2.classList.contains('on')) $tost2.classList.remove('on');
-        $tost1.classList.add('on');
-        setTimeout(() => $tost1.classList.remove('on'), 1000);
-      }
-    } else if (!$heartBtnIco.classList.contains('on')) {
-      if ($tost2 && !$tost2.classList.contains('on')) {
-        if ($tost1.classList.contains('on')) $tost1.classList.remove('on');
-        $tost2.classList.add('on');
-        setTimeout(() => $tost2.classList.remove('on'), 1000);
-      }
-    }
-  }
-
-  if ($textBtn.classList.contains('selected'))
-    $textBtn.classList.remove('selected');
-  $textBtn.innerText = '전체선택';
-  if (!$heartBtnIco.classList.contains('on')) {
-    $heartBtn.innerHTML =
-      '<span class="ico-b-cart-heart on"></span>즐겨찾기 설정';
-    $heartBtnIco.classList.add('on');
-  }
-
-  bottomCartCancel(
-    '#bottom-cart-menu1',
-    '#cart-list-wrap1',
-    '#select-text1',
-    '#cart-alarm1',
-    '#cart-heart1',
-  );
-}
-
 function bottomCartAlarmChangeCheck(alarmBtn, cartWrap) {
   const $alarmBtn = document.querySelector(`${alarmBtn}`);
   const $alarmBtnIco = document.querySelector(`${alarmBtn} .ico-b-cart-alarm`);
@@ -793,46 +672,6 @@ function bottomPopupOn(popup, cartWrap) {
   if (count === 0) return;
   $popupCountText.innerText = `${count}개 상품을 삭제할까요?`;
   $popup.classList.add('on');
-}
-
-function bottomCartRemove(cartWrap, popup, bottomCartMenu, textBtn, tost) {
-  const $cartListBefore = document.querySelectorAll(`${cartWrap} .list`);
-  const $popup = document.querySelector(popup);
-  const $bottomCartMenu = document.querySelector(bottomCartMenu);
-  const $textBtn = document.querySelector(textBtn);
-  const $tost = document.querySelector(tost);
-
-  $cartListBefore.forEach((elm) => {
-    const $cartImgBg = elm.querySelector('.img-bg');
-
-    if ($cartImgBg.classList.contains('on')) {
-      elm.remove();
-    }
-  });
-
-  $popup.classList.remove('on');
-
-  if ($tost && !$tost.classList.contains('on')) {
-    $tost.classList.add('on');
-    setTimeout(() => $tost.classList.remove('on'), 1000);
-  }
-
-  const $cartListAfter = document.querySelectorAll(`${cartWrap} .list`);
-  if ($cartListAfter.length === 0) {
-    $bottomCartMenu.classList.remove('on');
-    if ($textBtn.classList.contains('selected'))
-      $textBtn.classList.remove('selected');
-    $textBtn.classList.remove('on');
-    $textBtn.innerText = '선택';
-  }
-
-  bottomCartCancel(
-    '#bottom-cart-menu1',
-    '#cart-list-wrap1',
-    '#select-text1',
-    '#cart-alarm1',
-    '#cart-heart1',
-  );
 }
 
 // cartList organize

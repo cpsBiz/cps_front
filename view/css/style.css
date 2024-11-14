@@ -1478,6 +1478,19 @@ body.scrollNone {
   width: 110px;
   height: 110px;
 }
+.cart-list-wrap.type1.one .list .img-box .sale {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.3);
+  border-radius: 8px;
+  font-family: 'Pretendard-Regular';
+  color: #fff;
+}
 .cart-list-wrap.type1.one .list .img-box .ico-heart {
   width: 14px;
   height: 14px;

@@ -120,203 +120,19 @@
             <div class="set-list">
               <button type="button" id="select-text1" class="select-text" onclick="cartListOrganizeOn('#select-text1', '.cart-list-wrap', '#bottom-cart-menu1', '#cart-alarm1', '#bottom-popup1', '#cart-heart1')">선택</button>
               <button type="button" class="ico-array one" onclick="cartListType('.cart-set-list .ico-array', '.cart-list-wrap')">정렬</button>
-              <button type="button" id="main-heart" class="ico-heart" onclick="onOff('.cart-set-list .ico-heart'), favoritesList('#main-heart', '#cart-list-wrap1')">즐겨찾기</button>
+              <button type="button" id="main-heart" class="ico-heart" onclick="onOff('.cart-set-list .ico-heart'), favoritesList('#main-heart', '#cart-list-wrap1'), getFavotiesList()">즐겨찾기</button>
             </div>
           </div>
         </div>
+
         <!-- 리스트 있을 경우 -->
-        <div id="cart-list-wrap1" class="cart-list-wrap type1 one">
-          <div id="list1" class="list">
-            <div class="img-box" style="background-image: url(/images/test/상품1.png);">
-              <div class="lowest-price">최저가</div>
-              <button class="ico-heart" type="button"></button>
-              <button class="ico-alarm" type="button"></button>
-            </div>
-            <div class="text-box">
-              <div class="logo-box">
-                <div class="logo coupang"></div>
-                <p class="logo-title">쿠팡</p>
-              </div>
-              <p class="title">더리얼 비타민D 5000IU, 180정, 더리얼 비타민D 5000IU 더리얼 비타민D 5000IU, 180정, 더리얼 비타민D 5000IU</p>
-              <div class="price-box">
-                <p class="price">26,550</p>
-                <div class="up-down up">24%</div>
-              </div>
-            </div>
-            <a href="./sub-1-2.html"></a>
-            <div
-              class="check-box"
-              onclick="
-                onOff('#list1 .check-box .img-bg', '#bottom-popup1'), 
-                cartListOrganizeCheck('#select-text1', '.cart-list-wrap'),
-                bottomCartAlarmChangeCheck('#cart-alarm1', '#cart-list-wrap1'),
-                bottomCartHeartChangeCheck('#cart-heart1', '#cart-list-wrap1')
-              ">
-              <div class="img-bg">
-                <span class="check"></span>
-              </div>
-            </div>
-          </div>
-          <div id="list2" class="list">
-            <div class="img-box" style="background-image: url(/images/test/상품2.png);">
-              <div class="lowest-price">최저가</div>
-              <button class="ico-heart" type="button"></button>
-              <button class="ico-alarm" type="button"></button>
-            </div>
-            <div class="text-box">
-              <div class="logo-box">
-                <div class="logo coupang"></div>
-                <p class="logo-title">쿠팡</p>
-              </div>
-              <p class="title">더리얼 비타민D 5000IU, 180정, 더리얼 비타민D 5000IU 더리얼 비타민D 5000IU, 180정, 더리얼 비타민D 5000IU</p>
-              <div class="price-box">
-                <p class="price">26,550</p>
-                <div class="up-down down">24%</div>
-              </div>
-            </div>
-            <a href="./sub-1-2.html"></a>
-            <div
-              class="check-box"
-              onclick="
-                onOff('#list2 .check-box .img-bg', '#bottom-popup1'), 
-                cartListOrganizeCheck('#select-text1', '.cart-list-wrap'),
-                bottomCartAlarmChangeCheck('#cart-alarm1', '#cart-list-wrap1'),
-                bottomCartHeartChangeCheck('#cart-heart1', '#cart-list-wrap1')
-              ">
-              <div class="img-bg">
-                <span class="check"></span>
-              </div>
-            </div>
-          </div>
-          <div id="list3" class="list">
-            <div class="img-box" style="background-image: url(/images/test/상품1.png);">
-              <div class="lowest-price">최저가</div>
-              <button class="ico-heart" type="button"></button>
-              <button class="ico-alarm" type="button"></button>
-            </div>
-            <div class="text-box">
-              <div class="logo-box">
-                <div class="logo coupang"></div>
-                <p class="logo-title">쿠팡</p>
-              </div>
-              <p class="title">더리얼 비타민D 5000IU, 180정, 더리얼 비타민D 5000IU 더리얼 비타민D 5000IU, 180정, 더리얼 비타민D 5000IU</p>
-              <div class="price-box">
-                <p class="price">26,550</p>
-                <div class="up-down up">24%</div>
-              </div>
-            </div>
-            <a href="./sub-1-2.html"></a>
-            <div
-              class="check-box"
-              onclick="
-                onOff('#list3 .check-box .img-bg', '#bottom-popup1'), 
-                cartListOrganizeCheck('#select-text1', '.cart-list-wrap'),
-                bottomCartAlarmChangeCheck('#cart-alarm1', '#cart-list-wrap1'),
-                bottomCartHeartChangeCheck('#cart-heart1', '#cart-list-wrap1')
-              ">
-              <div class="img-bg">
-                <span class="check"></span>
-              </div>
-            </div>
-          </div>
-          <div id="list4" class="list">
-            <div class="img-box" style="background-image: url(/images/test/상품2.png);">
-              <div class="lowest-price">최저가</div>
-              <button class="ico-heart" type="button"></button>
-              <button class="ico-alarm" type="button"></button>
-            </div>
-            <div class="text-box">
-              <div class="logo-box">
-                <div class="logo coupang"></div>
-                <p class="logo-title">쿠팡</p>
-              </div>
-              <p class="title">더리얼 비타민D 5000IU, 180정, 더리얼 비타민D 5000IU 더리얼 비타민D 5000IU, 180정, 더리얼 비타민D 5000IU</p>
-              <div class="price-box">
-                <p class="price">26,550</p>
-                <div class="up-down down">24%</div>
-              </div>
-            </div>
-            <a href="./sub-1-2.html"></a>
-            <div
-              class="check-box"
-              onclick="
-                onOff('#list4 .check-box .img-bg', '#bottom-popup1'), 
-                cartListOrganizeCheck('#select-text1', '.cart-list-wrap'),
-                bottomCartAlarmChangeCheck('#cart-alarm1', '#cart-list-wrap1'),
-                bottomCartHeartChangeCheck('#cart-heart1', '#cart-list-wrap1')
-              ">
-              <div class="img-bg">
-                <span class="check"></span>
-              </div>
-            </div>
-          </div>
-          <div id="list5" class="list">
-            <div class="img-box" style="background-image: url(/images/test/상품1.png);">
-              <div class="lowest-price">최저가</div>
-              <button class="ico-heart" type="button"></button>
-              <button class="ico-alarm" type="button"></button>
-            </div>
-            <div class="text-box">
-              <div class="logo-box">
-                <div class="logo coupang"></div>
-                <p class="logo-title">쿠팡</p>
-              </div>
-              <p class="title">더리얼 비타민D 5000IU, 180정, 더리얼 비타민D 5000IU 더리얼 비타민D 5000IU, 180정, 더리얼 비타민D 5000IU</p>
-              <div class="price-box">
-                <p class="price">26,550</p>
-                <div class="up-down up">24%</div>
-              </div>
-            </div>
-            <a href="./sub-1-2.html"></a>
-            <div
-              class="check-box"
-              onclick="
-                onOff('#list5 .check-box .img-bg', '#bottom-popup1'), 
-                cartListOrganizeCheck('#select-text1', '.cart-list-wrap'),
-                bottomCartAlarmChangeCheck('#cart-alarm1', '#cart-list-wrap1'),
-                bottomCartHeartChangeCheck('#cart-heart1', '#cart-list-wrap1')
-              ">
-              <div class="img-bg">
-                <span class="check"></span>
-              </div>
-            </div>
-          </div>
-          <div id="list6" class="list">
-            <div class="img-box" style="background-image: url(/images/test/상품2.png);">
-              <div class="lowest-price">최저가</div>
-              <button class="ico-heart" type="button"></button>
-              <button class="ico-alarm" type="button"></button>
-            </div>
-            <div class="text-box">
-              <div class="logo-box">
-                <div class="logo coupang"></div>
-                <p class="logo-title">쿠팡</p>
-              </div>
-              <p class="title">더리얼 비타민D 5000IU, 180정, 더리얼 비타민D 5000IU 더리얼 비타민D 5000IU, 180정, 더리얼 비타민D 5000IU</p>
-              <div class="price-box">
-                <p class="price">26,550</p>
-                <div class="up-down down">24%</div>
-              </div>
-            </div>
-            <a href="./sub-1-2.html"></a>
-            <div
-              class="check-box"
-              onclick="
-                onOff('#list6 .check-box .img-bg', '#bottom-popup1'), 
-                cartListOrganizeCheck('#select-text1', '.cart-list-wrap'),
-                bottomCartAlarmChangeCheck('#cart-alarm1', '#cart-list-wrap1'),
-                bottomCartHeartChangeCheck('#cart-heart1', '#cart-list-wrap1')
-              ">
-              <div class="img-bg">
-                <span class="check"></span>
-              </div>
-            </div>
-          </div>
-        </div>
+        <div id="cart-list-wrap1" class="cart-list-wrap type1 one"></div>
+
         <!-- 전체보기에서 등록된 상품 없을 경우 -->
         <div id="all-cart-list-none" class="list-none-box" style="display: none;">
           <p><span class="ico-nonecart"></span>등록된 상품이 없습니다.</p>
         </div>
+
         <!-- 폴더에 등록된 상품 없을 경우 -->
         <div id="folder-cart-list-none" class="list-none-box folder" style="display: none;">
           <div class="center">
@@ -324,6 +140,7 @@
             <a href="javascript:void(0)">사용법 보러가기</a>
           </div>
         </div>
+
       </div>
       <!-- 카트 상품추가 버튼 -->
       <button class="ico-cart-add" type="button" onclick="selectBasicOn('#select-wrap', '#select-list3')">카트 상품추가</button>
@@ -357,10 +174,6 @@
             <div class="ico-check on"></div>
           </li>
           <li class="list list4">
-            <p class="value">즐겨찾기순</p>
-            <div class="ico-check on"></div>
-          </li>
-          <li class="list list5">
             <p class="value">이름순</p>
             <div class="ico-check on"></div>
           </li>
@@ -470,6 +283,23 @@
     getCartList();
   });
 
+  const scrollManager = {
+    save: function(key) {
+      localStorage.setItem(key, window.scrollY);
+    },
+    restore: function(key) {
+      const position = localStorage.getItem(key);
+      if (position) {
+        window.scrollTo(0, parseInt(position));
+      }
+    },
+  };
+
+  // 사용 예시
+  window.addEventListener('scroll', () => {
+    scrollManager.save('cartMainPageScroll');
+  });
+
   function getMemberCommission() {
     try {
       const userId = '<?= $checkUserId; ?>'
@@ -536,7 +366,9 @@
   }
 
   // 정렬순, 폴더선택 변수
-  let checkOrderBy, checkFolder, checkFavorite = '';
+  let checkOrderBy = 'modDateDesc';
+  let checkFolder = 0;
+  let checkFavorite = '';
 
   // 폴더 리스트 조회 및 렌더링
   function getFolderList() {
@@ -580,8 +412,8 @@
       const requestData = {
         userId: '<?= $checkUserId; ?>',
         affliateId: '<?= $checkAffliateId; ?>',
-        merchantId: '',
-        producetCode: '',
+        adId: '<?= $checkAdId; ?>',
+        productCode: '',
         optionCode: '',
         orderbyName: checkOrderBy,
         favorites: checkFavorite,
@@ -590,13 +422,13 @@
 
       $.ajax({
         type: 'POST',
-        url: '<?= $appApiUrl; ?>/api/cart/',
+        url: '<?= $appApiUrl; ?>/api/cart/cartSearch',
         contentType: 'application/json',
         data: JSON.stringify(requestData),
         success: function(result) {
           if (result.resultCode !== '0000') return alert(result.resultMessage);
 
-          // renderCartList(result.datas);
+          renderCartList(result.datas);
         },
         error: function(request, status, error) {
           console.error(`Error: ${error}`);
@@ -615,59 +447,44 @@
       return;
     }
 
-    const exData = [{
-        productImage: '../images/test/상품1.png',
-        productName: '더리얼 비타민D 5000IU 180정',
-        productPrice: 26550,
-        discount: 'down',
-        per: 5,
-        badge: '최저가',
-        alarm: false,
-        favorite: true
-      },
-      {
-        productImage: '../images/test/상품2.png',
-        productName: '상품1',
-        productPrice: 30000,
-        discount: 'up',
-        per: 20,
-        badge: '카드',
-        alarm: false,
-        favorite: false
-      },
-      {
-        productImage: '../images/test/상품1.png',
-        productName: '상품2',
-        productPrice: 12345,
-        discount: 'down',
-        per: 3,
-        badge: '',
-        alarm: true,
-        favorite: true
-      },
-    ]
     let list = '';
-    exData.forEach((item, index) => {
+    data.forEach((item, index) => {
+      const productPrice = parseInt(item.productPrice);
+      const cartPrice = parseInt(item.cartPrice);
+      const priceChange = calculatePriceChange(cartPrice, productPrice);
       const badge = item.badge ? `<div class="lowest-price">${item.badge}</div>` : '';
+      const saleStatus = item.saleStatus === '310' ? '<span class="sale">품절</span>' : '';
       list += `
-                <div id="list${index}" class="list">
+                <div 
+                    id="list${index}" 
+                    class="list" 
+                    data-merchantId="${item.merchantId}" 
+                    data-productCode="${item.productCode}"
+                    data-optionCode="${item.optionCode}"
+                    data-favorites="${item.favorites}"
+                    data-cartPrice="${item.cartPrice}"
+                    data-wantPrice="${item.wantPrice}"
+                    data-alarm="${item.alarm}"
+                    data-returnalarm="${item.returnAlarm}"
+                  >
                   <div class="img-box" style="background-image: url(${item.productImage});">
                     ${badge}
-                    <button class="ico-heart ${item.alarm ? 'on' : ''}" type="button"></button>
-                    <button class="ico-alarm ${item.favorite ? 'on' : ''}" type="button"></button>
+                    ${saleStatus}
+                    <button class="ico-heart ${item.favorites === 'Y' ? 'on' : ''}" type="button"></button>
+                    <button class="ico-alarm ${item.alarm === 'Y' ? 'on' : ''}" type="button"></button>
                   </div>
                   <div class="text-box">
                     <div class="logo-box">
-                      <div class="logo coupang"></div>
-                      <p class="logo-title">쿠팡</p>
+                      <div class="logo" style="background-image: url(<?= $appApiUrl; ?>/cart/images/merchant/${item.merchantId}.png)"></div>
+                      <p class="logo-title">${item.memberName}</p>
                     </div>
                     <p class="title">${item.productName}</p>
                     <div class="price-box">
-                      <p class="price">${item.productPrice.toLocaleString()}</p>
-                      <div class="up-down ${item.discount}">${item.per}%</div>
+                      <p class="price">${productPrice.toLocaleString()}</p>
+                      <div class="up-down ${priceChange.type}">${priceChange.rate}</div>
                     </div>
                   </div>
-                  <a href="./sub-1-2.html"></a>
+                  <a href="${item.productUrl}"></a>
                   <div
                     class="check-box"
                     onclick="
@@ -688,30 +505,369 @@
     $('#cart-list-wrap1').empty();
     $('#cart-list-wrap1').append(list);
     cartListEvent();
+    scrollManager.restore('cartMainPageScroll');
   }
 
   // 카트 아이템 삭제
-  function deleteCartItem() {
+  function bottomCartRemove(cartWrap, popup, bottomCartMenu, textBtn, tost) {
+    const $cartListBefore = document.querySelectorAll(`${cartWrap} .list`);
+    const $popup = document.querySelector(popup);
+    const $bottomCartMenu = document.querySelector(bottomCartMenu);
+    const $textBtn = document.querySelector(textBtn);
+    const $tost = document.querySelector(tost);
+
+    let removeList = [];
+    $cartListBefore.forEach((elm) => {
+      const $cartImgBg = elm.querySelector('.img-bg');
+      if ($cartImgBg.classList.contains('on')) {
+        const obj = {
+          merchantId: elm.getAttribute('data-merchantId'),
+          productCode: elm.getAttribute('data-productCode'),
+          optionCode: elm.getAttribute('data-optionCode'),
+          favorites: elm.getAttribute('data-favorites'),
+          cartPrice: elm.getAttribute('data-cartPrice'),
+          wantPrice: elm.getAttribute('data-wantPrice'),
+          alarm: elm.getAttribute('data-alarm'),
+          returnalarm: elm.getAttribute('data-returnalarm'),
+        };
+        removeList.push(obj);
+      }
+    });
+
     try {
-      const requestData = {};
+      const requestData = {
+        userId: '<?= $checkUserId; ?>',
+        affliateId: '<?= $checkAffliateId; ?>',
+        adId: '<?= $checkAdId; ?>',
+        apiType: 'D',
+        productList: removeList
+      };
+
+      $.ajax({
+        type: 'POST',
+        url: '<?= $appApiUrl; ?>/api/cart/cartProduct',
+        contentType: 'application/json',
+        data: JSON.stringify(requestData),
+        success: function(result) {
+          if (result.resultCode !== '0000') {
+            alert(result.resultMessage);
+            location.reload();
+            return
+          }
+          getCartList();
+        },
+        error: function(request, status, error) {
+          console.error(`Error: ${error}`);
+        },
+      });
     } catch (error) {
       alert(error);
     }
+
+    $popup.classList.remove('on');
+
+    if ($tost && !$tost.classList.contains('on')) {
+      $tost.classList.add('on');
+      setTimeout(() => $tost.classList.remove('on'), 1000);
+    }
+
+    const $cartListAfter = document.querySelectorAll(`${cartWrap} .list`);
+    if ($cartListAfter.length === 0) {
+      $bottomCartMenu.classList.remove('on');
+      if ($textBtn.classList.contains('selected'))
+        $textBtn.classList.remove('selected');
+      $textBtn.classList.remove('on');
+      $textBtn.innerText = '선택';
+    }
+
+    bottomCartCancel(
+      '#bottom-cart-menu1',
+      '#cart-list-wrap1',
+      '#select-text1',
+      '#cart-alarm1',
+      '#cart-heart1',
+    );
   }
 
   // 카트 아이템 즐겨찾기 추가, 삭제
-  function patchCartItemFavorite() {
+  function bottomCartFavorites(heartBtn, cartWrap, textBtn, tost1, tost2) {
+    const $heartBtn = document.querySelector(heartBtn);
+    const $heartBtnIco = document.querySelector(`${heartBtn} .ico-b-cart-heart`);
+    const $cartLists = document.querySelectorAll(`${cartWrap} .list`);
+    const $textBtn = document.querySelector(textBtn);
+    const $tost1 = document.querySelector(tost1);
+    const $tost2 = document.querySelector(tost2);
+    let count = 0;
+    let favoritesList = [];
+    $cartLists.forEach((elm) => {
+      const $cartImgBg = elm.querySelector('.img-bg');
+      const $cartIcoFavorites = elm.querySelector('.ico-heart');
+
+      if ($cartImgBg.classList.contains('on')) count += 1;
+
+      if ($cartImgBg.classList.contains('on')) {
+        const obj = {
+          merchantId: elm.getAttribute('data-merchantId'),
+          productCode: elm.getAttribute('data-productCode'),
+          optionCode: elm.getAttribute('data-optionCode'),
+          favorites: !$cartIcoFavorites.classList.contains('on') ? 'Y' : 'N',
+          cartPrice: elm.getAttribute('data-cartPrice'),
+          wantPrice: elm.getAttribute('data-wantPrice'),
+          alarm: elm.getAttribute('data-alarm'),
+          returnalarm: elm.getAttribute('data-returnalarm'),
+        };
+        favoritesList.push(obj);
+      }
+    });
+
     try {
-      const requestData = {};
+      const requestData = {
+        userId: '<?= $checkUserId; ?>',
+        affliateId: '<?= $checkAffliateId; ?>',
+        adId: '<?= $checkAdId; ?>',
+        apiType: 'U',
+        productList: favoritesList
+      };
+
+      $.ajax({
+        type: 'POST',
+        url: '<?= $appApiUrl; ?>/api/cart/cartProduct',
+        contentType: 'application/json',
+        data: JSON.stringify(requestData),
+        success: function(result) {
+          if (result.resultCode !== '0000') {
+            alert(result.resultMessage);
+            location.reload();
+            return
+          }
+
+          if (count > 0) {
+            if ($heartBtnIco.classList.contains('on')) {
+              if ($tost1 && !$tost1.classList.contains('on')) {
+                if ($tost2.classList.contains('on')) $tost2.classList.remove('on');
+                $tost1.classList.add('on');
+                setTimeout(() => $tost1.classList.remove('on'), 1000);
+              }
+            } else if (!$heartBtnIco.classList.contains('on')) {
+              if ($tost2 && !$tost2.classList.contains('on')) {
+                if ($tost1.classList.contains('on')) $tost1.classList.remove('on');
+                $tost2.classList.add('on');
+                setTimeout(() => $tost2.classList.remove('on'), 1000);
+              }
+            }
+          }
+
+          getCartList();
+        },
+        error: function(request, status, error) {
+          console.error(`Error: ${error}`);
+        },
+      });
+    } catch (error) {
+      alert(error);
+    }
+
+    if ($textBtn.classList.contains('selected'))
+      $textBtn.classList.remove('selected');
+    $textBtn.innerText = '전체선택';
+    if (!$heartBtnIco.classList.contains('on')) {
+      $heartBtn.innerHTML =
+        '<span class="ico-b-cart-heart on"></span>즐겨찾기 설정';
+      $heartBtnIco.classList.add('on');
+    }
+
+    bottomCartCancel(
+      '#bottom-cart-menu1',
+      '#cart-list-wrap1',
+      '#select-text1',
+      '#cart-alarm1',
+      '#cart-heart1',
+    );
+  }
+
+  // 카트 아이템 알림 추가, 삭제
+  function bottomCartAlarm(alarmBtn, cartWrap, textBtn, tost1, tost2) {
+    const $alarmBtn = document.querySelector(alarmBtn);
+    const $alarmBtnIco = document.querySelector(`${alarmBtn} .ico-b-cart-alarm`);
+    const $cartLists = document.querySelectorAll(`${cartWrap} .list`);
+    const $textBtn = document.querySelector(textBtn);
+    const $tost1 = document.querySelector(tost1);
+    const $tost2 = document.querySelector(tost2);
+    let count = 0;
+    let alarmList = [];
+    $cartLists.forEach((elm) => {
+      const $cartImgBg = elm.querySelector('.img-bg');
+      const $cartIcoAlarm = elm.querySelector('.ico-alarm');
+
+      if ($cartImgBg.classList.contains('on')) count += 1;
+
+      if ($cartImgBg.classList.contains('on')) {
+        const obj = {
+          merchantId: elm.getAttribute('data-merchantId'),
+          productCode: elm.getAttribute('data-productCode'),
+          optionCode: elm.getAttribute('data-optionCode'),
+          favorites: elm.getAttribute('data-favorites'),
+          cartPrice: elm.getAttribute('data-cartPrice'),
+          wantPrice: elm.getAttribute('data-wantPrice'),
+          alarm: !$cartIcoAlarm.classList.contains('on') ? 'Y' : 'N',
+          returnalarm: elm.getAttribute('data-returnalarm'),
+        };
+        alarmList.push(obj);
+      }
+    });
+
+    try {
+      const requestData = {
+        userId: '<?= $checkUserId; ?>',
+        affliateId: '<?= $checkAffliateId; ?>',
+        adId: '<?= $checkAdId; ?>',
+        apiType: 'U',
+        productList: alarmList
+      };
+
+      $.ajax({
+        type: 'POST',
+        url: '<?= $appApiUrl; ?>/api/cart/cartProduct',
+        contentType: 'application/json',
+        data: JSON.stringify(requestData),
+        success: function(result) {
+          if (result.resultCode !== '0000') {
+            alert(result.resultMessage);
+            location.reload();
+            return
+          }
+
+          if (count > 0) {
+            if ($alarmBtnIco.classList.contains('on')) {
+              if ($tost1 && !$tost1.classList.contains('on')) {
+                if ($tost2.classList.contains('on')) $tost2.classList.remove('on');
+                $tost1.classList.add('on');
+                setTimeout(() => $tost1.classList.remove('on'), 1000);
+              }
+            } else if (!$alarmBtnIco.classList.contains('on')) {
+              if ($tost2 && !$tost2.classList.contains('on')) {
+                if ($tost1.classList.contains('on')) $tost1.classList.remove('on');
+                $tost2.classList.add('on');
+                setTimeout(() => $tost2.classList.remove('on'), 1000);
+              }
+            }
+          }
+
+          getCartList();
+        },
+        error: function(request, status, error) {
+          console.error(`Error: ${error}`);
+        },
+      });
+    } catch (error) {
+      alert(error);
+    }
+
+    if ($textBtn.classList.contains('selected'))
+      $textBtn.classList.remove('selected');
+    $textBtn.innerText = '전체선택';
+    if (!$alarmBtnIco.classList.contains('on')) {
+      $alarmBtn.innerHTML = '<span class="ico-b-cart-alarm on"></span>알림 켜기';
+      $alarmBtnIco.classList.add('on');
+    }
+
+    bottomCartCancel(
+      '#bottom-cart-menu1',
+      '#cart-list-wrap1',
+      '#select-text1',
+      '#cart-alarm1',
+      '#cart-heart1',
+    );
+  }
+
+  // 즐겨찾기 단일 설정
+  function updateCartFavorites(elm) {
+
+    try {
+      let favoritesList = [];
+      const obj = {
+        merchantId: elm.getAttribute('data-merchantId'),
+        productCode: elm.getAttribute('data-productCode'),
+        optionCode: elm.getAttribute('data-optionCode'),
+        favorites: elm.getAttribute('data-favorites') === 'Y' ? 'N' : 'Y',
+        cartPrice: elm.getAttribute('data-cartPrice'),
+        wantPrice: elm.getAttribute('data-wantPrice'),
+        alarm: elm.getAttribute('data-alarm'),
+        returnalarm: elm.getAttribute('data-returnalarm'),
+      };
+      favoritesList.push(obj);
+
+      const requestData = {
+        userId: '<?= $checkUserId; ?>',
+        affliateId: '<?= $checkAffliateId; ?>',
+        adId: '<?= $checkAdId; ?>',
+        apiType: 'U',
+        productList: favoritesList
+      };
+
+      $.ajax({
+        type: 'POST',
+        url: '<?= $appApiUrl; ?>/api/cart/cartProduct',
+        contentType: 'application/json',
+        data: JSON.stringify(requestData),
+        success: function(result) {
+          if (result.resultCode !== '0000') {
+            alert(result.resultMessage);
+            location.reload();
+            return
+          }
+          getCartList();
+        },
+        error: function(request, status, error) {
+          console.error(`Error: ${error}`);
+        },
+      });
     } catch (error) {
       alert(error);
     }
   }
 
-  // 카트 아이템 알림 추가, 삭제
-  function patchCartItemAlarm() {
+  // 알림 단일 설정
+  function updateCartAlarm(elm) {
     try {
-      const requestData = {};
+      let alarmList = [];
+      const obj = {
+        merchantId: elm.getAttribute('data-merchantId'),
+        productCode: elm.getAttribute('data-productCode'),
+        optionCode: elm.getAttribute('data-optionCode'),
+        favorites: elm.getAttribute('data-favorites'),
+        cartPrice: elm.getAttribute('data-cartPrice'),
+        wantPrice: elm.getAttribute('data-wantPrice'),
+        alarm: elm.getAttribute('data-alarm') === 'Y' ? 'N' : 'Y',
+        returnalarm: elm.getAttribute('data-returnalarm'),
+      };
+      alarmList.push(obj);
+
+      const requestData = {
+        userId: '<?= $checkUserId; ?>',
+        affliateId: '<?= $checkAffliateId; ?>',
+        adId: '<?= $checkAdId; ?>',
+        apiType: 'U',
+        productList: alarmList
+      };
+
+      $.ajax({
+        type: 'POST',
+        url: '<?= $appApiUrl; ?>/api/cart/cartProduct',
+        contentType: 'application/json',
+        data: JSON.stringify(requestData),
+        success: function(result) {
+          if (result.resultCode !== '0000') {
+            alert(result.resultMessage);
+            location.reload();
+            return
+          }
+          getCartList();
+        },
+        error: function(request, status, error) {
+          console.error(`Error: ${error}`);
+        },
+      });
     } catch (error) {
       alert(error);
     }
@@ -724,5 +880,30 @@
     } catch (error) {
       alert(error);
     }
+  }
+
+  function calculatePriceChange(cartPrice, productPrice) {
+    if (cartPrice === productPrice || cartPrice === 0 || productPrice === 0) {
+      return {
+        type: '',
+        rate: ''
+      };
+    }
+
+    const isIncrease = cartPrice < productPrice;
+    const basePrice = isIncrease ? cartPrice : productPrice;
+    const comparePrice = isIncrease ? productPrice : cartPrice;
+
+    const rate = Math.round(((comparePrice - basePrice) / basePrice) * 100);
+
+    return {
+      type: isIncrease ? 'up' : 'down',
+      rate: `${rate}%`
+    };
+  }
+
+  function getFavotiesList() {
+    checkFavorite === '' ? checkFavorite = 'Y' : checkFavorite = '';
+    getCartList();
   }
 </script>
