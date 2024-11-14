@@ -65,7 +65,7 @@
     restore: function(key) {
       const position = localStorage.getItem(key);
       if (position) {
-        window.scrollTo(0, parseInt(position) > 156 ? parseInt(position) - 156 : parseInt(position));
+        window.scrollTo(0, parseInt(position));
       }
     },
   };
