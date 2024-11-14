@@ -339,12 +339,7 @@
     if (!checkCoupang) removeCoupangArea();
     $('#campaign-list').append(list);
 
-    if (window.performance) {
-      const navigation = performance.getEntriesByType('navigation')[0];
-      if (navigation.type === 'back_forward') {
-        scrollManager.restore('mainPageScroll');
-      }
-    }
+    scrollManager.restore('mainPageScroll');
   }
 
   function renderCoupangArea(item) {
