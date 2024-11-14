@@ -339,9 +339,7 @@
     if (!checkCoupang) removeCoupangArea();
     $('#campaign-list').append(list);
 
-    window.addEventListener('load', () => {
-      scrollManager.restore('mainPageScroll');
-    });
+    scrollManager.restore('mainPageScroll');
   }
 
   function renderCoupangArea(item) {
