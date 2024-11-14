@@ -479,7 +479,7 @@
       const requestData = {
         userId: '<?= $checkUserId; ?>',
         affliateId: '<?= $checkAffliateId; ?>',
-        adId: '<?= $checkAdId; ?>'
+        adId: ''
       };
 
       $.ajax({
@@ -522,7 +522,7 @@
       const requestData = {
         userId: '<?= $checkUserId; ?>',
         affliateId: '<?= $checkAffliateId; ?>',
-        adId: '<?= $checkAdId; ?>',
+        adId: '',
         productCode: '',
         optionCode: '',
         orderbyName: checkOrderBy,
@@ -653,7 +653,7 @@
       const requestData = {
         userId: '<?= $checkUserId; ?>',
         affliateId: '<?= $checkAffliateId; ?>',
-        adId: '<?= $checkAdId; ?>',
+        adId: '',
         apiType: 'D',
         productList: removeList
       };
@@ -739,7 +739,7 @@
       const requestData = {
         userId: '<?= $checkUserId; ?>',
         affliateId: '<?= $checkAffliateId; ?>',
-        adId: '<?= $checkAdId; ?>',
+        adId: '',
         apiType: 'U',
         productList: favoritesList
       };
@@ -835,7 +835,7 @@
       const requestData = {
         userId: '<?= $checkUserId; ?>',
         affliateId: '<?= $checkAffliateId; ?>',
-        adId: '<?= $checkAdId; ?>',
+        adId: '',
         apiType: 'U',
         productList: alarmList
       };
@@ -915,7 +915,7 @@
       const requestData = {
         userId: '<?= $checkUserId; ?>',
         affliateId: '<?= $checkAffliateId; ?>',
-        adId: '<?= $checkAdId; ?>',
+        adId: '',
         apiType: 'U',
         productList: favoritesList
       };
@@ -961,7 +961,7 @@
       const requestData = {
         userId: '<?= $checkUserId; ?>',
         affliateId: '<?= $checkAffliateId; ?>',
-        adId: '<?= $checkAdId; ?>',
+        adId: '',
         apiType: 'U',
         productList: alarmList
       };
