@@ -57,6 +57,26 @@
     getMemberCommission();
   })
 
+  const scrollManager = {
+    save: function(key) {
+      localStorage.setItem(key, window.scrollY);
+    },
+
+    restore: function(key) {
+      const position = localStorage.getItem(key);
+      if (position) {
+        window.scrollTo(0, parseInt(position));
+      }
+    },
+  };
+
+  // 사용 예시
+  window.addEventListener('scroll', () => {
+    scrollManager.save('mainPageScroll');
+  });
+
+
+
   // 배너 조회
   function getBanner() {
     try {
@@ -307,7 +327,6 @@
         item.logo = item.logo.replace('http://', 'https://');
       }
 
-
       list += `
               <div class="list">
                 <p class="title"><span class="logo" style="background-image: url('${item.logo}');"></span><span class="name">${item.memberName}</span></p>
@@ -319,6 +338,10 @@
     });
     if (!checkCoupang) removeCoupangArea();
     $('#campaign-list').append(list);
+
+    window.addEventListener('load', () => {
+      scrollManager.restore('mainPageScroll');
+    });
   }
 
   function renderCoupangArea(item) {
