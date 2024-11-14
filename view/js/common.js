@@ -230,28 +230,6 @@ function topDowmBoxOnOff(topDownBtn, topDownBox) {
   }
 }
 
-function addFolderList(input, tabListWrap, selectWrap, selectList, btn, tost) {
-  const $input = document.querySelector(input);
-  const $tabListWrap = document.querySelector(tabListWrap);
-  const $tost = document.querySelector(tost);
-  if ($input.value.length <= 0) return;
-
-  const $tab = document.createElement('div');
-  $tab.setAttribute('class', `tab tab${$tabListWrap.children.length + 1}`);
-  $tab.innerHTML = `<a href="javascript:void(0)">${$input.value}</a>`;
-  $tabListWrap.appendChild($tab);
-  $input.value = '';
-  document.body.classList.remove('scrollNone');
-  document.querySelector(selectWrap).classList.remove('on');
-  document.querySelector(selectList).classList.remove('on');
-  document.querySelector(btn).classList.remove('on');
-
-  if ($tost && !$tost.classList.contains('on')) {
-    $tost.classList.add('on');
-    setTimeout(() => $tost.classList.remove('on'), 1000);
-  }
-}
-
 // cart input value check
 function inputValueCheck(input, btn) {
   const $input = document.querySelector(input);

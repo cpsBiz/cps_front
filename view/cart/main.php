@@ -81,18 +81,14 @@
       <!-- 카트 리스트 -->
       <div class="cont cont1">
         <div class="tab-box-wrap type2">
-          <div class="tab-box">
-            <div class="tab tab1 on"><a href="javascript:void(0)">전체보기</a></div>
-            <div class="tab tab2"><a href="javascript:void(0)">전자기기</a></div>
-            <div class="tab tab3"><a href="javascript:void(0)">과자</a></div>
-          </div>
+          <div id="folder-list" class="tab-box"></div>
           <button id="select-btn2" class="folder" type="button" onclick="selectInputOn('#select-wrap', '#select-list2')">폴더</button>
         </div>
         <div class="cart-link-list">
           <div class="top">
             <p><span>지금</span> 구매하세요!</p>
             <div id="top-down-btn1" class="select-btn type4" onclick="topDowmBoxOnOff('#top-down-btn1', '.cart-link-list > .bottom')">
-              <p class="value">2개</p>
+              <p class="value"></p>
               <div class="ico-arrow type2 bottom"></div>
             </div>
           </div>
@@ -102,11 +98,7 @@
                 <span></span>
                 <p>드디어<br>할인 시작!</p>
               </div>
-              <div class="img-box">
-                <div class="img img1" style="background-image: url(/images/test/상품1.png);"></div>
-                <div class="img img2" style="background-image: url(/images/test/상품1.png);"></div>
-                <p class="count">2</p>
-              </div>
+              <div class="img-box"></div>
               <a href="./sub-1-1.html"></a>
             </div>
           </div>
@@ -280,6 +272,8 @@
   $(function() {
     getMemberCommission();
     getMemberStick();
+    getFolderList();
+    getNowBuyingList();
     getCartList();
   });
 
@@ -373,16 +367,19 @@
   // 폴더 리스트 조회 및 렌더링
   function getFolderList() {
     try {
-      const requestData = {};
+      const requestData = {
+        userId: '<?= $checkUserId; ?>',
+        affliateId: '<?= $checkAffliateId ?>'
+      };
 
       $.ajax({
         type: 'POST',
-        url: '<?= $appApiUrl; ?>/api/cart/',
+        url: '<?= $appApiUrl; ?>/api/cart/folderSearch',
         contentType: 'application/json',
         data: JSON.stringify(requestData),
         success: function(result) {
-          if (result.resultCode !== '0000') return alert(result.resultMessage);
-
+          if (result.resultCode !== '0000' && result.resultCode !== '3001') return alert(result.resultMessage);
+          renderFolderList(result.datas);
         },
         error: function(request, status, error) {
           console.error(`Error: ${error}`);
@@ -394,16 +391,129 @@
   }
 
   function renderFolderList(data) {
+    let list = `<div id="folderNum0" class="tab tab1 ${checkFolder === 0 ? 'on' : ''}"><a href="javascript:getFolderCartList(0)">전체보기</a></div>`;
+    data.forEach((item, index) => {
+      list += `
+              <div id="folderNum${item.folderNum}" class="tab tab${index + 2} ${checkFolder === item.folderNum ? 'on' : ''}">
+                <a href="javascript:getFolderCartList(${item.folderNum}, '${item.folderName}')">${item.folderName}</a>
+              </div>
+              `;
+    });
+    $('#folder-list').empty();
+    $('#folder-list').append(list);
+    addFolderEvent();
+  }
+
+  function getFolderCartList(num, name) {
+    checkFolder = num;
+    if (name) {
+      const noneTitle = `
+                      <span class="ico-nonefolder"></span>[${name}]<br>폴더가 비어있어요.
+                      `;
+      $('#folderItemNone').empty()
+      $('#folderItemNone').append(noneTitle);
+    }
+    getCartList();
+  }
+
+  function addFolderEvent() {
+    const folders = document.querySelectorAll('#folder-list.tab-box .tab');
+    folders.forEach(elm => {
+      elm.addEventListener('click', () => {
+        folders.forEach(tab => tab.classList.remove('on'));
+        elm.classList.add('on');
+      });
+    });
+  }
+
+  function addFolderList(input, tabListWrap, selectWrap, selectList, btn, tost) {
+    const $input = document.querySelector(input);
+    const $tabListWrap = document.querySelector(tabListWrap);
+    const $tost = document.querySelector(tost);
+    if ($input.value.length <= 0) return;
+
+    try {
+      const requestData = {
+        folderNum: 0,
+        userId: '<?= $checkUserId; ?>',
+        affliateId: '<?= $checkAffliateId; ?>',
+        folderName: $input.value,
+        apiType: 'I'
+      }
+
+      $.ajax({
+        type: 'POST',
+        url: '<?= $appApiUrl; ?>/api/cart/folder',
+        contentType: 'application/json',
+        data: JSON.stringify(requestData),
+        success: function(result) {
+          if (result.resultCode !== '0000') return alert(result.resultMessage);
+
+          $input.value = '';
+          document.body.classList.remove('scrollNone');
+          document.querySelector(selectWrap).classList.remove('on');
+          document.querySelector(selectList).classList.remove('on');
+          document.querySelector(btn).classList.remove('on');
+
+          if ($tost && !$tost.classList.contains('on')) {
+            $tost.classList.add('on');
+            setTimeout(() => $tost.classList.remove('on'), 1000);
+          }
+
+          getFolderList();
+        },
+        error: function(request, status, error) {
+          console.error(`Error: ${error}`);
+        }
+      });
+    } catch (error) {
+      alert(error);
+    }
+
 
   }
 
   // 지금 구매하세요 영역 조회 및 렌더링
   function getNowBuyingList() {
     try {
-      const requestData = {};
+      const requestData = {
+        userId: '<?= $checkUserId; ?>',
+        affliateId: '<?= $checkAffliateId; ?>',
+        adId: '<?= $checkAdId; ?>'
+      };
+
+      $.ajax({
+        type: 'POST',
+        url: '<?= $appApiUrl; ?>/api/cart/cartSaleSearch',
+        contentType: 'application/json',
+        data: JSON.stringify(requestData),
+        success: function(result) {
+          if (result.datas === null) {
+            $('.cart-link-list').hide();
+            return;
+          }
+          renderNowBuyingList(result.datas);
+        },
+        error: function(request, status, error) {
+          console.error(`Error: ${error}`);
+        }
+      });
     } catch (error) {
       alert(error);
     }
+  }
+
+  function renderNowBuyingList(data) {
+    let list = '';
+    data.forEach((item, index) => {
+      list += `
+              <div class="img img${index + 1}" style="background-image: url(${item.productImage});"></div>
+              `;
+    });
+    list += `<p class="count">${data.length}</p>`;
+    document.querySelector('#top-down-btn1 .value').innerHTML = data.length + '개'
+    $('.cart-link-list .img-box').empty();
+    $('.cart-link-list .img-box').append(list);
   }
 
   // 카트 아이템 조회
@@ -426,6 +536,16 @@
         contentType: 'application/json',
         data: JSON.stringify(requestData),
         success: function(result) {
+          if (result.datas === null) {
+            $('#cart-list-wrap1').hide();
+            if (checkFolder === 0) {
+              $('#all-cart-list-none').show();
+            } else {
+              $('#folder-cart-list-none').show();
+            }
+            return;
+          }
+
           if (result.resultCode !== '0000') return alert(result.resultMessage);
 
           renderCartList(result.datas);
@@ -441,12 +561,6 @@
 
   // 카트 아이템 렌더링
   function renderCartList(data) {
-    if (!data || data === null || data.length === 0) {
-      $('#').hide();
-      $('#').show();
-      return;
-    }
-
     let list = '';
     data.forEach((item, index) => {
       const productPrice = parseInt(item.productPrice);
@@ -504,6 +618,7 @@
     $('#folder-cart-list-none').hide();
     $('#cart-list-wrap1').empty();
     $('#cart-list-wrap1').append(list);
+    $('#cart-list-wrap1').show();
     cartListEvent();
     scrollManager.restore('cartMainPageScroll');
   }
