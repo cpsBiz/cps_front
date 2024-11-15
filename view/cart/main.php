@@ -270,6 +270,23 @@
 </html>
 <script>
   $(function() {
+    if (!localStorage.getItem('checkOrderBy')) {
+      localStorage.setItem('checkOrderBy', 'modDateDesc');
+    }
+    if (!localStorage.getItem('checkFolder')) {
+      localStorage.setItem('checkFolder', 0);
+    }
+    if (!localStorage.getItem('checkFavorite')) {
+      localStorage.setItem('checkFavorite', '');
+    }
+    if (localStorage.getItem('checkListType')) {
+      const $btn = document.querySelector('.cart-set-list .ico-array');
+      const $cartList = document.querySelector('.cart-list-wrap');
+      $btn.classList.remove('one', 'two', 'three');
+      $cartList.classList.remove('one', 'two', 'three');
+      $btn.classList.add(localStorage.getItem('checkListType'));
+      $cartList.classList.add(localStorage.getItem('checkListType'));
+    }
     getMemberCommission();
     getMemberStick();
     getFolderList();
@@ -359,11 +376,6 @@
     }
   }
 
-  // 정렬순, 폴더선택 변수
-  let checkOrderBy = 'modDateDesc';
-  let checkFolder = 0;
-  let checkFavorite = '';
-
   // 폴더 리스트 조회 및 렌더링
   function getFolderList() {
     try {
@@ -391,6 +403,7 @@
   }
 
   function renderFolderList(data) {
+    const checkFolder = parseInt(localStorage.getItem('checkFolder'));
     let list = `<div id="folderNum0" class="tab tab1 ${checkFolder === 0 ? 'on' : ''}"><a href="javascript:getFolderCartList(0)">전체보기</a></div>`;
     data.forEach((item, index) => {
       list += `
@@ -405,7 +418,8 @@
   }
 
   function getFolderCartList(num, name) {
-    checkFolder = num;
+    localStorage.setItem('checkFolder', num);
+    localStorage.setItem('checkFolderName', name);
     if (name) {
       const noneTitle = `
                       <span class="ico-nonefolder"></span>[${name}]<br>폴더가 비어있어요.
@@ -424,6 +438,14 @@
         elm.classList.add('on');
       });
     });
+
+    const activeTab = document.querySelector('#folder-list .tab.on');
+    if (activeTab) {
+      activeTab.scrollIntoView({
+        inline: 'center'
+      });
+
+    }
   }
 
   function addFolderList(input, tabListWrap, selectWrap, selectList, btn, tost) {
@@ -525,9 +547,9 @@
         adId: '',
         productCode: '',
         optionCode: '',
-        orderbyName: checkOrderBy,
-        favorites: checkFavorite,
-        folderNum: checkFolder
+        orderbyName: localStorage.getItem('checkOrderBy'),
+        favorites: localStorage.getItem('checkFavorite'),
+        folderNum: localStorage.getItem('checkFolder')
       };
 
       $.ajax({
@@ -538,9 +560,14 @@
         success: function(result) {
           if (result.datas === null) {
             $('#cart-list-wrap1').hide();
-            if (checkFolder === 0) {
+            if (localStorage.getItem('checkFolder') === 0) {
               $('#all-cart-list-none').show();
             } else {
+              const noneTitle = `
+                      <span class="ico-nonefolder"></span>[${localStorage.getItem('checkFolderName')}]<br>폴더가 비어있어요.
+                      `;
+              $('#folderItemNone').empty()
+              $('#folderItemNone').append(noneTitle);
               $('#folder-cart-list-none').show();
             }
             return;
@@ -1018,7 +1045,8 @@
   }
 
   function getFavotiesList() {
-    checkFavorite === '' ? checkFavorite = 'Y' : checkFavorite = '';
+    const checkFavorite = localStorage.getItem('checkFavorite');
+    localStorage.setItem('checkFavorite', checkFavorite === '' ? 'Y' : '');
     getCartList();
   }
 </script>

@@ -199,21 +199,40 @@ function cartListType(btn, cartList) {
   const $btn = document.querySelector(btn);
   const $cartList = document.querySelector(cartList);
 
-  if ($btn.classList.contains('one')) {
-    $btn.classList.remove('one');
-    $cartList.classList.remove('one');
-    $btn.classList.add('two');
-    $cartList.classList.add('two');
-  } else if ($btn.classList.contains('two')) {
-    $btn.classList.remove('two');
-    $cartList.classList.remove('two');
-    $btn.classList.add('three');
-    $cartList.classList.add('three');
-  } else if ($btn.classList.contains('three')) {
-    $btn.classList.remove('three');
-    $cartList.classList.remove('three');
+  if (!localStorage.getItem('checkListType')) {
+    localStorage.setItem('checkListType', 'two');
+  } else {
+    const type = localStorage.getItem('checkListType');
+    switch (type) {
+      case 'one':
+        localStorage.setItem('checkListType', 'two');
+        break;
+      case 'two':
+        localStorage.setItem('checkListType', 'three');
+        break;
+      case 'three':
+        localStorage.setItem('checkListType', 'one');
+        break;
+    }
+  }
+
+  const type = localStorage.getItem('checkListType');
+
+  if (type === 'one') {
+    $btn.classList.remove('two', 'three');
+    $cartList.classList.remove('two', 'three');
     $btn.classList.add('one');
     $cartList.classList.add('one');
+  } else if (type === 'two') {
+    $btn.classList.remove('one', 'three');
+    $cartList.classList.remove('one', 'three');
+    $btn.classList.add('two');
+    $cartList.classList.add('two');
+  } else if (type === 'three') {
+    $btn.classList.remove('one', 'two');
+    $cartList.classList.remove('one', 'two');
+    $btn.classList.add('three');
+    $cartList.classList.add('three');
   }
 }
 
@@ -312,6 +331,7 @@ function selectListsCheck(
 
   selectListClose(selectBtn, selectWrap, selectList);
   if (callback && typeof callback === 'function') {
+    let checkOrderBy = '';
     switch (selectValue) {
       case '최신순':
         checkOrderBy = 'modDateDesc';
@@ -326,6 +346,7 @@ function selectListsCheck(
         checkOrderBy = 'productName';
         break;
     }
+    localStorage.setItem('checkOrderBy', checkOrderBy);
     getCartList();
   }
 }
