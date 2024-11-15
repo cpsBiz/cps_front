@@ -125,6 +125,11 @@
           <p><span class="ico-nonecart"></span>등록된 상품이 없습니다.</p>
         </div>
 
+        <!-- 즐겨찾기 상품 없을 경우 -->
+        <div id="favorite-cart-list-none" class="list-none-box" style="display: none;">
+          <p><span class="ico-nonecart"></span>즐겨찾기한 상품이 없습니다.</p>
+        </div>
+
         <!-- 폴더에 등록된 상품 없을 경우 -->
         <div id="folder-cart-list-none" class="list-none-box folder" style="display: none;">
           <div class="center">
@@ -304,6 +309,12 @@
 
     if (!localStorage.getItem('checkFavorite')) {
       localStorage.setItem('checkFavorite', '');
+    } else {
+      if (localStorage.getItem('checkFavorite') === '') {
+        document.getElementById('main-heart').classList.remove('on');
+      } else {
+        document.getElementById('main-heart').classList.add('on');
+      }
     }
 
     if (localStorage.getItem('checkListType')) {
@@ -588,7 +599,9 @@
         success: function(result) {
           if (result.datas === null) {
             $('#cart-list-wrap1').hide();
-            if (localStorage.getItem('checkFolder') === 0) {
+            if (localStorage.getItem('checkFavorite') === 'Y') {
+              $('#favorite-cart-list-none').show();
+            } else if (localStorage.getItem('checkFolder') === 0) {
               $('#all-cart-list-none').show();
             } else {
               const noneTitle = `
