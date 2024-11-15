@@ -128,7 +128,7 @@
         <!-- 폴더에 등록된 상품 없을 경우 -->
         <div id="folder-cart-list-none" class="list-none-box folder" style="display: none;">
           <div class="center">
-            <p id="folderItemNone"><span class="ico-nonefolder"></span>[전자기기]<br>폴더가 비어있어요.</p>
+            <p id="folderItemNone"></p>
             <a href="javascript:void(0)">사용법 보러가기</a>
           </div>
         </div>
@@ -153,19 +153,19 @@
           <button class="ico-close type1" type="button" onclick="selectListClose('#select-btn1', '#select-wrap', '#select-list1')">닫기</button>
         </div>
         <ul class="select-cont">
-          <li class="list list1 on">
+          <li id="orderByModDateDesc" class="list list1 on">
             <p class="value">최신순</p>
             <div class="ico-check on"></div>
           </li>
-          <li class="list list2">
+          <li id="orderByDiscount" class="list list2">
             <p class="value">할인율순</p>
             <div class="ico-check on"></div>
           </li>
-          <li class="list list3">
+          <li id="orderByModDateAsc" class="list list3">
             <p class="value">오래된순</p>
             <div class="ico-check on"></div>
           </li>
-          <li class="list list4">
+          <li id="orderByProductName" class="list list4">
             <p class="value">이름순</p>
             <div class="ico-check on"></div>
           </li>
@@ -272,13 +272,40 @@
   $(function() {
     if (!localStorage.getItem('checkOrderBy')) {
       localStorage.setItem('checkOrderBy', 'modDateDesc');
+    } else {
+      const orderBy = localStorage.getItem('checkOrderBy');
+      if (orderBy) {
+        let id = '';
+        switch (orderBy) {
+          case 'modDateDesc':
+            id = 'orderByModDateDesc';
+            break;
+          case 'discount':
+            id = 'orderByDiscount';
+            break;
+          case 'modDateASC':
+            id = 'orderByModDateAsc';
+            break;
+          case 'productName':
+            id = 'orderByProductName';
+            break;
+        }
+
+        const elm = document.querySelectorAll('#select-list1 .list');
+        elm.forEach((item) => item.classList.remove('on'));
+        document.getElementById(id).classList.add('on');
+        document.querySelector('#select-btn1 p.value').innerText = document.querySelector(`#${id} p.value`).innerText;
+      }
     }
+
     if (!localStorage.getItem('checkFolder')) {
       localStorage.setItem('checkFolder', 0);
     }
+
     if (!localStorage.getItem('checkFavorite')) {
       localStorage.setItem('checkFavorite', '');
     }
+
     if (localStorage.getItem('checkListType')) {
       const $btn = document.querySelector('.cart-set-list .ico-array');
       const $cartList = document.querySelector('.cart-list-wrap');
@@ -287,6 +314,7 @@
       $btn.classList.add(localStorage.getItem('checkListType'));
       $cartList.classList.add(localStorage.getItem('checkListType'));
     }
+
     getMemberCommission();
     getMemberStick();
     getFolderList();
