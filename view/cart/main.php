@@ -648,13 +648,8 @@
       const saleStatus = item.saleStatus === '310' ? '<span class="sale">품절</span>' : '';
 
       const params = {
-        userId: '<?= $checkUserId; ?>',
-        affliateId: '<?= $checkAffliateId; ?>',
         productCode: item.productCode,
         optionCode: item.optionCode,
-        orderbyName: '',
-        favorites: '',
-        folderNum: 0
       };
       const itemStr = base64Encode(JSON.stringify(params));
 
