@@ -246,7 +246,12 @@
           <button class="ico-close type1" type="button" onclick="selectInputClose('#select-wrap', '#select-list5')">닫기</button>
         </div>
         <ul class="select-cont">
-          <input type="text" placeholder="상품공유 클릭 후 복사한 링크를 붙여넣어주세요" oninput="inputValueCheck('#select-list5 .select-cont input', '#select-list5 .select-cont .folder-btn')">
+          <input
+            id="cartLink"
+            type="text"
+            placeholder="상품공유 클릭 후 복사한 링크를 붙여넣어주세요"
+            oninput="inputValueCheck('#select-list5 .select-cont input', '#select-list5 .select-cont .folder-btn')"
+            onclick="postCartLink()" />
           <button class="folder-btn" type="button">확인</button>
         </ul>
       </div>
@@ -466,6 +471,13 @@
       $('#folderItemNone').empty()
       $('#folderItemNone').append(noneTitle);
     }
+    bottomCartCancel(
+      '#bottom-cart-menu1',
+      '#cart-list-wrap1',
+      '#select-text1',
+      '#cart-alarm1',
+      '#cart-heart1',
+    );
     getCartList();
   }
 
@@ -634,6 +646,18 @@
       const priceChange = calculatePriceChange(cartPrice, productPrice);
       const badge = item.badge ? `<div class="lowest-price">${item.badge}</div>` : '';
       const saleStatus = item.saleStatus === '310' ? '<span class="sale">품절</span>' : '';
+
+      const params = {
+        userId: '<?= $checkUserId; ?>',
+        affliateId: '<?= $checkAffliateId; ?>',
+        productCode: item.productCode,
+        optionCode: item.optionCode,
+        orderbyName: '',
+        favorites: '',
+        folderNum: 0
+      };
+      const itemStr = base64Encode(JSON.stringify(params));
+
       list += `
                 <div 
                     id="list${index}" 
@@ -664,7 +688,7 @@
                       <div class="up-down ${priceChange.type}">${priceChange.rate}</div>
                     </div>
                   </div>
-                  <a href="${item.productUrl}"></a>
+                  <a href="javascript:postToUrl('${itemStr}')"></a>
                   <div
                     class="check-box"
                     onclick="
@@ -1054,18 +1078,46 @@
     }
   }
 
-  // 폴더 추가
-  function addForder() {
-    try {
-      const requstData = {};
-    } catch (error) {
-      alert(error);
-    }
-  }
-
   function getFavotiesList() {
     const checkFavorite = localStorage.getItem('checkFavorite');
     localStorage.setItem('checkFavorite', checkFavorite === '' ? 'Y' : '');
     getCartList();
+  }
+
+  function postToUrl(item) {
+    location.href = `detail.php?object=${item}`;
+  }
+
+  function postCartLink() {
+    try {
+      const url = document.getElementById('cartLink').value;
+      if (!url) return alert('링크를 붙여넣어주세요.');
+
+      const requestData = {
+        userId: '<?= $checkUserId; ?>',
+        affliateId: '<?= $checkAffliateId; ?>',
+      }
+
+      $.ajax({
+        type: 'POST',
+        url: '<?= $appApiUrl; ?>/api/cart/cartLink',
+        contentType: 'application/json',
+        data: JSON.stringify(requestData),
+        success: function(result) {
+          if (result.resultCode !== '0000') {
+            alert(result.resultMessage);
+          } else {
+            getCartList();
+          }
+          document.getElementById('cartLink').value = '';
+          selectInputClose('#select-wrap', '#select-list5');
+        },
+        error: function(request, status, error) {
+          console.error(`Error: ${error}`);
+        },
+      });
+    } catch (error) {
+      alert(error);
+    }
   }
 </script>

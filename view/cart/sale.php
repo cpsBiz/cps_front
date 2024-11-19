@@ -365,4 +365,97 @@
       '#cart-heart1',
     );
   }
+
+  // 즐겨찾기 단일 설정
+  function updateCartFavorites(elm) {
+
+    try {
+      let favoritesList = [];
+      const obj = {
+        merchantId: elm.getAttribute('data-merchantId'),
+        productCode: elm.getAttribute('data-productCode'),
+        optionCode: elm.getAttribute('data-optionCode'),
+        favorites: elm.getAttribute('data-favorites') === 'Y' ? 'N' : 'Y',
+        cartPrice: elm.getAttribute('data-cartPrice'),
+        wantPrice: elm.getAttribute('data-wantPrice'),
+        alarm: elm.getAttribute('data-alarm'),
+        returnalarm: elm.getAttribute('data-returnalarm'),
+      };
+      favoritesList.push(obj);
+
+      const requestData = {
+        userId: '<?= $checkUserId; ?>',
+        affliateId: '<?= $checkAffliateId; ?>',
+        adId: '',
+        apiType: 'U',
+        productList: favoritesList
+      };
+
+      $.ajax({
+        type: 'POST',
+        url: '<?= $appApiUrl; ?>/api/cart/cartProduct',
+        contentType: 'application/json',
+        data: JSON.stringify(requestData),
+        success: function(result) {
+          if (result.resultCode !== '0000') {
+            alert(result.resultMessage);
+            location.reload();
+            return
+          }
+          getSaleList();
+        },
+        error: function(request, status, error) {
+          console.error(`Error: ${error}`);
+        },
+      });
+    } catch (error) {
+      alert(error);
+    }
+  }
+
+  // 알림 단일 설정
+  function updateCartAlarm(elm) {
+    try {
+      let alarmList = [];
+      const obj = {
+        merchantId: elm.getAttribute('data-merchantId'),
+        productCode: elm.getAttribute('data-productCode'),
+        optionCode: elm.getAttribute('data-optionCode'),
+        favorites: elm.getAttribute('data-favorites'),
+        cartPrice: elm.getAttribute('data-cartPrice'),
+        wantPrice: elm.getAttribute('data-wantPrice'),
+        alarm: elm.getAttribute('data-alarm') === 'Y' ? 'N' : 'Y',
+        returnalarm: elm.getAttribute('data-returnalarm'),
+      };
+      alarmList.push(obj);
+
+      const requestData = {
+        userId: '<?= $checkUserId; ?>',
+        affliateId: '<?= $checkAffliateId; ?>',
+        adId: '',
+        apiType: 'U',
+        productList: alarmList
+      };
+
+      $.ajax({
+        type: 'POST',
+        url: '<?= $appApiUrl; ?>/api/cart/cartProduct',
+        contentType: 'application/json',
+        data: JSON.stringify(requestData),
+        success: function(result) {
+          if (result.resultCode !== '0000') {
+            alert(result.resultMessage);
+            location.reload();
+            return
+          }
+          getSaleList();
+        },
+        error: function(request, status, error) {
+          console.error(`Error: ${error}`);
+        },
+      });
+    } catch (error) {
+      alert(error);
+    }
+  }
 </script>
