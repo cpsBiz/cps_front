@@ -195,28 +195,34 @@ window.addEventListener('resize', () => {
 });
 
 // cart
-function cartListType(btn, cartList) {
+function cartListType(btn, cartList, page) {
   const $btn = document.querySelector(btn);
   const $cartList = document.querySelector(cartList);
 
-  if (!localStorage.getItem('checkListType')) {
-    localStorage.setItem('checkListType', 'two');
+  let pageType = '';
+  if (page === 'main') pageType = 'checkListType';
+  else if (page === 'cartSale') pageType = 'checkCartSaleListType';
+
+  if (!pageType) return;
+
+  if (!localStorage.getItem(pageType)) {
+    localStorage.setItem(pageType, 'two');
   } else {
-    const type = localStorage.getItem('checkListType');
+    const type = localStorage.getItem(pageType);
     switch (type) {
       case 'one':
-        localStorage.setItem('checkListType', 'two');
+        localStorage.setItem(pageType, 'two');
         break;
       case 'two':
-        localStorage.setItem('checkListType', 'three');
+        localStorage.setItem(pageType, 'three');
         break;
       case 'three':
-        localStorage.setItem('checkListType', 'one');
+        localStorage.setItem(pageType, 'one');
         break;
     }
   }
 
-  const type = localStorage.getItem('checkListType');
+  const type = localStorage.getItem(pageType);
 
   if (type === 'one') {
     $btn.classList.remove('two', 'three');
@@ -383,7 +389,8 @@ function selectInputClose(selectWrap, selectList) {
   document.querySelector(selectWrap).classList.remove('on');
   document.querySelector(selectList).classList.remove('on');
   if ($selectInput) $selectInput.value = '';
-  if ($selectBtn.classList.contains('on')) $selectBtn.classList.remove('on');
+  if ($selectBtn && $selectBtn.classList.contains('on'))
+    $selectBtn.classList.remove('on');
 }
 
 // select basic box
@@ -799,4 +806,24 @@ function cartListOrganizeCheck(btn, cartWrap, flagElm) {
       $btn.innerText = '전체해제';
     }
   });
+}
+
+function calculatePriceChange(cartPrice, productPrice) {
+  if (cartPrice === productPrice || cartPrice === 0 || productPrice === 0) {
+    return {
+      type: '',
+      rate: '',
+    };
+  }
+
+  const isIncrease = cartPrice < productPrice;
+  const basePrice = isIncrease ? cartPrice : productPrice;
+  const comparePrice = isIncrease ? productPrice : cartPrice;
+
+  const rate = Math.round(((comparePrice - basePrice) / basePrice) * 100);
+
+  return {
+    type: isIncrease ? 'up' : 'down',
+    rate: `${rate}%`,
+  };
 }

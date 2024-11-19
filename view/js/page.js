@@ -20,6 +20,17 @@ const $sub5_1ListWrapBoxListWrapLists = document.querySelectorAll(
   '.sub-5-1 .list-wrap-box .list-wrap .list',
 );
 
+// select-wrap > list-wrap-box
+const $selectWrapListWrapBox = document.querySelector(
+  '#select-wrap .list-wrap-box',
+);
+const $selectWrapListWrapBoxListWrap = document.querySelector(
+  '#select-wrap .list-wrap-box .list-wrap',
+);
+const $selectWrapListWrapBoxListWrapLists = document.querySelectorAll(
+  '#select-wrap .list-wrap-box .list-wrap .list',
+);
+
 window.addEventListener('load', () => {
   // $sub-4
   if ($sub4) {
@@ -95,6 +106,19 @@ window.addEventListener('load', () => {
         $sub5_1ListWrapBoxListWrap.style.height = `${listHeight}px`;
       }
     });
+  }
+
+  if ($selectWrapListWrapBox) {
+    let listHeight = 0;
+    $selectWrapListWrapBox.classList.add('on');
+    $selectWrapListWrapBoxListWrapLists.forEach((elm) => {
+      listHeight += Number(getComputedStyle(elm).height.replace(/[^0-9]/g, ''));
+    });
+    $selectWrapListWrapBoxListWrap.style.height = `${listHeight}px`;
+    setTimeout(() => {
+      $selectWrapListWrapBoxListWrap.style.height = '100%';
+      listHeight = 0;
+    }, 300);
   }
 });
 

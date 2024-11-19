@@ -19,8 +19,8 @@
       <div class="btn-list">
         <a href="javascript:history.back()" class="ico-arrow type1 left">이전</a>
         <div>
-          <a href="./alarm.html" class="ico-head-alarm">알림</a>
-          <a href="./setting.html" class="ico-setting">설정</a>
+          <a href="alarm.php" class="ico-head-alarm">알림</a>
+          <a href="setting.php" class="ico-setting">설정</a>
         </div>
       </div>
     </header>
@@ -99,7 +99,7 @@
                 <p>드디어<br>할인 시작!</p>
               </div>
               <div class="img-box"></div>
-              <a href="./sub-1-1.html"></a>
+              <a href="sale.php"></a>
             </div>
           </div>
         </div>
@@ -111,7 +111,7 @@
             </div>
             <div class="set-list">
               <button type="button" id="select-text1" class="select-text" onclick="cartListOrganizeOn('#select-text1', '.cart-list-wrap', '#bottom-cart-menu1', '#cart-alarm1', '#bottom-popup1', '#cart-heart1')">선택</button>
-              <button type="button" class="ico-array one" onclick="cartListType('.cart-set-list .ico-array', '.cart-list-wrap')">정렬</button>
+              <button type="button" class="ico-array one" onclick="cartListType('.cart-set-list .ico-array', '.cart-list-wrap', 'main')">정렬</button>
               <button type="button" id="main-heart" class="ico-heart" onclick="onOff('.cart-set-list .ico-heart'), favoritesList('#main-heart', '#cart-list-wrap1'), getFavotiesList()">즐겨찾기</button>
             </div>
           </div>
@@ -540,7 +540,6 @@
       const requestData = {
         userId: '<?= $checkUserId; ?>',
         affliateId: '<?= $checkAffliateId; ?>',
-        adId: ''
       };
 
       $.ajax({
@@ -583,7 +582,6 @@
       const requestData = {
         userId: '<?= $checkUserId; ?>',
         affliateId: '<?= $checkAffliateId; ?>',
-        adId: '',
         productCode: '',
         optionCode: '',
         orderbyName: localStorage.getItem('checkOrderBy'),
@@ -1063,26 +1061,6 @@
     } catch (error) {
       alert(error);
     }
-  }
-
-  function calculatePriceChange(cartPrice, productPrice) {
-    if (cartPrice === productPrice || cartPrice === 0 || productPrice === 0) {
-      return {
-        type: '',
-        rate: ''
-      };
-    }
-
-    const isIncrease = cartPrice < productPrice;
-    const basePrice = isIncrease ? cartPrice : productPrice;
-    const comparePrice = isIncrease ? productPrice : cartPrice;
-
-    const rate = Math.round(((comparePrice - basePrice) / basePrice) * 100);
-
-    return {
-      type: isIncrease ? 'up' : 'down',
-      rate: `${rate}%`
-    };
   }
 
   function getFavotiesList() {
