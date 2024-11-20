@@ -250,9 +250,8 @@
             id="cartLink"
             type="text"
             placeholder="상품공유 클릭 후 복사한 링크를 붙여넣어주세요"
-            oninput="inputValueCheck('#select-list5 .select-cont input', '#select-list5 .select-cont .folder-btn')"
-            onclick="postCartLink()" />
-          <button class="folder-btn" type="button">확인</button>
+            oninput="inputValueCheck('#select-list5 .select-cont input', '#select-list5 .select-cont .folder-btn')" />
+          <button class="folder-btn" type="button" onclick="postCartLink()">확인</button>
         </ul>
       </div>
     </div>
@@ -655,7 +654,7 @@
         cartPrice: item.cartPrice,
         wantPrice: item.wantPrice,
         alarm: item.alarm,
-        returnalarm: item.returnalarm,
+        returnalarm: item.returnAlarm,
         clickUrl: item.productUrl
       };
       const itemStr = base64Encode(JSON.stringify(params));
@@ -1092,17 +1091,19 @@
 
   function postCartLink() {
     try {
-      const url = document.getElementById('cartLink').value;
+      const url = document.getElementById('cartLink').value.match(/(https?:\/\/[^\s]+\.[\w]+\/[\w\/]+)/g)[0];;
       if (!url) return alert('링크를 붙여넣어주세요.');
 
       const requestData = {
         userId: '<?= $checkUserId; ?>',
         affliateId: '<?= $checkAffliateId; ?>',
+        adId: '<?= $checkAdId; ?>',
+        link: url
       }
 
       $.ajax({
         type: 'POST',
-        url: '<?= $appApiUrl; ?>/api/cart/cartLink',
+        url: '<?= $appApiUrl; ?>/api/schedule/productLink',
         contentType: 'application/json',
         data: JSON.stringify(requestData),
         success: function(result) {

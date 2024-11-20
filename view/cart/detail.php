@@ -38,7 +38,7 @@ if (!$object) {
             href="javascript:void(0)"
             id="ico-heart1"
             class="ico-heart type2"
-            onclick="onOff('#ico-heart1')">즐겨찾기</a>
+            onclick="onOff('#ico-heart1'), updateCartFavorites()">즐겨찾기</a>
         </div>
       </div>
     </header>
@@ -133,7 +133,7 @@ if (!$object) {
               onclick="selectListClose('#select-btn1', '#select-wrap', '#select-list1')">
               취소
             </button>
-            <button class="btn" type="button">삭제</button>
+            <button class="btn" type="button" onclick="deleteCart()">삭제</button>
           </div>
         </div>
       </div>
@@ -289,6 +289,8 @@ if (!$object) {
       document.querySelector('.alarm-set .link-box .price').innerHTML = `${data.wantPrice.toLocaleString()}원`;
       document.querySelector('#select-list2 .select-cont input').value = data.wantPrice;
     }
+
+    if (object.favorites === 'Y') document.getElementById('ico-heart1').classList.add('on');
   }
 
   function renderChart(result) {
@@ -482,7 +484,7 @@ if (!$object) {
         merchantId: object.merchantId,
         productCode: object.productCode,
         optionCode: object.optionCode,
-        favorites: object.favorites,
+        favorites: document.getElementById('ico-heart1').classList.contains('on') ? 'Y' : 'N',
         cartPrice: object.cartPrice,
         wantPrice: !wantPrice ? 0 : wantPrice,
         alarm: object.alarm,
@@ -573,6 +575,98 @@ if (!$object) {
       });
     } catch (error) {
       alert(error.message);
+    }
+  }
+
+  function updateCartFavorites() {
+    try {
+      let favoritesList = [];
+      let wantPrice = parseInt(document.querySelector('#select-list2 .select-cont input').value);
+
+      const obj = {
+        merchantId: object.merchantId,
+        productCode: object.productCode,
+        optionCode: object.optionCode,
+        favorites: document.getElementById('ico-heart1').classList.contains('on') ? 'Y' : 'N',
+        cartPrice: object.cartPrice,
+        wantPrice: !wantPrice ? 0 : wantPrice,
+        alarm: object.alarm,
+        returnalarm: object.returnalarm
+      };
+      favoritesList.push(obj);
+
+      const requestData = {
+        userId: '<?= $checkUserId; ?>',
+        affliateId: '<?= $checkAffliateId; ?>',
+        adId: '',
+        apiType: 'U',
+        productList: favoritesList
+      };
+
+      $.ajax({
+        type: 'POST',
+        url: '<?= $appApiUrl; ?>/api/cart/cartProduct',
+        contentType: 'application/json',
+        data: JSON.stringify(requestData),
+        success: function(result) {
+          if (result.resultCode !== '0000') {
+            alert(result.resultMessage);
+            location.reload();
+            return
+          }
+        },
+        error: function(request, status, error) {
+          console.error(`Error: ${error}`);
+        },
+      });
+    } catch (error) {
+      alert(error);
+    }
+  }
+
+  function deleteCart() {
+    try {
+      let List = [];
+
+      const obj = {
+        merchantId: object.merchantId,
+        productCode: object.productCode,
+        optionCode: object.optionCode,
+        favorites: '',
+        cartPrice: object.cartPrice,
+        wantPrice: 0,
+        alarm: object.alarm,
+        returnalarm: object.returnalarm
+      };
+      List.push(obj);
+
+      const requestData = {
+        userId: '<?= $checkUserId; ?>',
+        affliateId: '<?= $checkAffliateId; ?>',
+        adId: '',
+        apiType: 'D',
+        productList: List
+      };
+
+      $.ajax({
+        type: 'POST',
+        url: '<?= $appApiUrl; ?>/api/cart/cartProduct',
+        contentType: 'application/json',
+        data: JSON.stringify(requestData),
+        success: function(result) {
+          if (result.resultCode !== '0000') {
+            alert(result.resultMessage);
+            location.reload();
+            return
+          }
+          location.replace('/cart/main.php');
+        },
+        error: function(request, status, error) {
+          console.error(`Error: ${error}`);
+        },
+      });
+    } catch (error) {
+      alert(error);
     }
   }
 </script>
