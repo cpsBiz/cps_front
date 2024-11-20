@@ -15,8 +15,7 @@ if (!$object) {
   <meta name="format-detection" content="telephone=no" />
   <title>상품 가격정보</title>
   <!-- style -->
-  <link rel="stylesheet" href="style.css" />
-  <!-- <link rel="stylesheet" href="../css/style.css?version=<?= $cacheVersion; ?>"> -->
+  <link rel="stylesheet" href="../css/style.css?version=<?= $cacheVersion; ?>">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.8.0/chart.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-annotation/1.4.0/chartjs-plugin-annotation.min.js"></script>
 </head>
