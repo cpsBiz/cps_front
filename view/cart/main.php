@@ -614,7 +614,7 @@
             $('#cart-list-wrap1').hide();
             if (localStorage.getItem('checkFavorite') === 'Y') {
               $('#favorite-cart-list-none').show();
-            } else if (localStorage.getItem('checkFolder') === 0) {
+            } else if (parseInt(localStorage.getItem('checkFolder')) === 0) {
               $('#all-cart-list-none').show();
             } else {
               const noneTitle = `
