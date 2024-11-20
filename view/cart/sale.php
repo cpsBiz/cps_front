@@ -232,6 +232,20 @@
       const priceChange = calculatePriceChange(cartPrice, productPrice);
       const badge = item.badge ? `<div class="lowest-price">${item.badge}</div>` : '';
       const saleStatus = item.saleStatus === '310' ? '<span class="sale">품절</span>' : '';
+
+      const params = {
+        productCode: item.productCode,
+        optionCode: item.optionCode,
+        merchantId: item.merchantId,
+        favorites: item.favorites,
+        cartPrice: item.cartPrice,
+        wantPrice: item.wantPrice,
+        alarm: item.alarm,
+        returnalarm: item.returnalarm,
+        clickUrl: item.productUrl
+      };
+      const itemStr = base64Encode(JSON.stringify(params));
+
       list += `
                 <div 
                     id="list${index}" 
@@ -262,7 +276,7 @@
                       <div class="up-down ${priceChange.type}">${priceChange.rate}</div>
                     </div>
                   </div>
-                  <a href="${item.productUrl}"></a>
+                  <a href="javascript:postToUrl('${itemStr}')"></a>
                   <div
                     class="check-box"
                     onclick="
@@ -457,5 +471,9 @@
     } catch (error) {
       alert(error);
     }
+  }
+
+  function postToUrl(item) {
+    location.href = `detail.php?object=${item}`;
   }
 </script>
