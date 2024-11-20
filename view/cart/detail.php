@@ -295,7 +295,7 @@ if (!$object) {
 
   function renderChart(result) {
     const data = result.productGraphList;
-    if (!data || data.length === 0) {
+    if (!data || data.length <= 1) {
       $('.graph-set').show();
       $('#price-chart').hide();
       renderPriceInfo(result.cartPrice, 'all');

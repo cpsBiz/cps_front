@@ -293,7 +293,7 @@ function eventPopupClose(popup) {
 }
 
 // select box
-function selectListOn(selectBtn, selectWrap, selectList, callback) {
+function selectListOn(selectBtn, selectWrap, selectList, callback, type) {
   const $selectBtnValue = document.querySelector(`${selectBtn} .value`);
   const $selectLists = document.querySelectorAll(`${selectList} .list`);
   const $selectListContainer = document.querySelector(selectList);
@@ -313,6 +313,7 @@ function selectListOn(selectBtn, selectWrap, selectList, callback) {
         selectWrap,
         selectList,
         callback,
+        type,
       );
     }
   };
@@ -326,6 +327,7 @@ function selectListsCheck(
   selectWrap,
   selectList,
   callback,
+  type,
 ) {
   $selectLists.forEach((elm) => elm.classList.remove('on'));
   $selectList.classList.add('on');
@@ -352,8 +354,13 @@ function selectListsCheck(
         checkOrderBy = 'productName';
         break;
     }
-    localStorage.setItem('checkOrderBy', checkOrderBy);
-    getCartList();
+    if (type === 'main') {
+      localStorage.setItem('checkOrderBy', checkOrderBy);
+      getCartList();
+    } else if (type === 'sale') {
+      localStorage.setItem('checkCartSaleOrderBy', checkOrderBy);
+      getSaleList();
+    }
   }
 }
 

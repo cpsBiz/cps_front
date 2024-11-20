@@ -27,7 +27,7 @@
       <div class="cont cont1">
         <div class="stiky-wrap">
           <div class="cart-set-list">
-            <div id="select-btn1" class="select-btn type3" onclick="selectListOn('#select-btn1', '#select-wrap', '#select-list1', getSaleList)">
+            <div id="select-btn1" class="select-btn type3" onclick="selectListOn('#select-btn1', '#select-wrap', '#select-list1', getSaleList, 'sale')">
               <p class="value">최신순</p>
               <div class="ico-arrow type2 bottom"></div>
             </div>
@@ -196,7 +196,7 @@
       const requestData = {
         userId: '<?= $checkUserId; ?>',
         affliateId: '<?= $checkAffliateId; ?>',
-        orderbyName: localStorage.getItem('checkCartSaleOrderBy'),
+        // orderbyName: localStorage.getItem('checkCartSaleOrderBy'),
       };
 
       $.ajax({

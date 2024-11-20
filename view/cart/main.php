@@ -105,7 +105,7 @@
         </div>
         <div class="stiky-wrap">
           <div class="cart-set-list">
-            <div id="select-btn1" class="select-btn type3" onclick="selectListOn('#select-btn1', '#select-wrap', '#select-list1', getCartList)">
+            <div id="select-btn1" class="select-btn type3" onclick="selectListOn('#select-btn1', '#select-wrap', '#select-list1', getCartList, 'main')">
               <p class="value">최신순</p>
               <div class="ico-arrow type2 bottom"></div>
             </div>
@@ -577,9 +577,11 @@
   function renderNowBuyingList(data) {
     let list = '';
     data.forEach((item, index) => {
-      list += `
+      if (index < 2) {
+        list += `
               <div class="img img${index + 1}" style="background-image: url(${item.productImage});"></div>
               `;
+      }
     });
     list += `<p class="count">${data.length}</p>`;
     document.querySelector('#top-down-btn1 .value').innerHTML = data.length + '개'
