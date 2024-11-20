@@ -9,7 +9,7 @@
   <title>꼭 읽어보세요 (포인트)</title>
   <
     <!-- style -->
-    <link rel="stylesheet" href="../css/style.css?version=<?= $cacheVersion; ?>">
+
 </head>
 
 <body>

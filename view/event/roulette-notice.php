@@ -8,7 +8,7 @@
   <meta name="format-detection" content="telephone=no">
   <title>쿠팡 이벤트 안내</title>
   <!-- style -->
-  <link rel="stylesheet" href="../css/style.css?version=<?= $cacheVersion; ?>">
+
   <!-- swiper -->
   <link rel="stylesheet" href="../css/swiper-min.css?version=<?= $cacheVersion; ?>">
   <script src="../js/swiper.js?version=<?= $cacheVersion; ?>"></script>

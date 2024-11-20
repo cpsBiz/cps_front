@@ -8,7 +8,7 @@
   <meta name="format-detection" content="telephone=no" />
   <title>지금 구매하세요!</title>
   <!-- style -->
-  <link rel="stylesheet" href="../css/style.css?version=<?= $cacheVersion; ?>">
+
 </head>
 
 <body>

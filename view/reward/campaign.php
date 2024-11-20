@@ -14,8 +14,6 @@ if (!$object) {
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="format-detection" content="telephone=no">
   <title>쇼핑적립 상세정보</title>
-  <!-- style -->
-  <link rel="stylesheet" href="/css/style.css?version=<?= $cacheVersion; ?>">
 </head>
 
 <body>

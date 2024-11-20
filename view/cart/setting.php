@@ -8,7 +8,7 @@
   <meta name="format-detection" content="telephone=no">
   <title>설정</title>
   <!-- style -->
-  <link rel="stylesheet" href="../css/style.css?version=<?= $cacheVersion; ?>">
+
 </head>
 
 <body>

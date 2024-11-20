@@ -15,7 +15,7 @@ if (!$object) {
 	<meta name="format-detection" content="telephone=no">
 	<title>기프티콘 상세정보</title>
 	<!-- style -->
-	<link rel="stylesheet" href="../css/style.css?version=<?= $cacheVersion; ?>">
+
 	<script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.5/dist/JsBarcode.all.min.js?version=<?= $cacheVersion; ?>"></script>
 	<style>
 		.gifticon-notice-list li {

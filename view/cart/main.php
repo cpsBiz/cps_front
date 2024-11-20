@@ -8,7 +8,7 @@
   <meta name="format-detection" content="telephone=no">
   <title>스마트 카트</title>
   <!-- style -->
-  <link rel="stylesheet" href="../css/style.css?version=<?= $cacheVersion; ?>">
+
 </head>
 
 <body>

@@ -19,7 +19,7 @@ if (!$campaign) {
   <meta name="format-detection" content="telephone=no">
   <title>1:1 문의하기</title>
   <!-- style -->
-  <link rel="stylesheet" href="../css/style.css?version=<?= $cacheVersion; ?>">
+
   <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js?version=<?= $cacheVersion; ?>"></script>
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js?version=<?= $cacheVersion; ?>"></script>
   <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css?version=<?= $cacheVersion; ?>" />
