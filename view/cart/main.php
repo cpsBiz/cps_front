@@ -650,6 +650,13 @@
       const params = {
         productCode: item.productCode,
         optionCode: item.optionCode,
+        merchantId: item.merchantId,
+        favorites: item.favorites,
+        cartPrice: item.cartPrice,
+        wantPrice: item.wantPrice,
+        alarm: item.alarm,
+        returnalarm: item.returnalarm,
+        clickUrl: item.productUrl
       };
       const itemStr = base64Encode(JSON.stringify(params));
 

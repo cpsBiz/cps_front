@@ -196,7 +196,7 @@
       const requestData = {
         userId: '<?= $checkUserId; ?>',
         affliateId: '<?= $checkAffliateId; ?>',
-        // orderbyName: localStorage.getItem('checkCartSaleOrderBy'),
+        orderbyName: localStorage.getItem('checkCartSaleOrderBy'),
       };
 
       $.ajax({
