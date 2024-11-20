@@ -448,13 +448,15 @@
   function renderFolderList(data) {
     const checkFolder = parseInt(localStorage.getItem('checkFolder'));
     let list = `<div id="folderNum0" class="tab tab1 ${checkFolder === 0 ? 'on' : ''}"><a href="javascript:getFolderCartList(0)">전체보기</a></div>`;
-    data.forEach((item, index) => {
-      list += `
+    if (data.length > 1) {
+      data.forEach((item, index) => {
+        list += `
               <div id="folderNum${item.folderNum}" class="tab tab${index + 2} ${checkFolder === item.folderNum ? 'on' : ''}">
                 <a href="javascript:getFolderCartList(${item.folderNum}, '${item.folderName}')">${item.folderName}</a>
               </div>
               `;
-    });
+      });
+    }
     $('#folder-list').empty();
     $('#folder-list').append(list);
     addFolderEvent();
