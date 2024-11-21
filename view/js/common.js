@@ -609,11 +609,13 @@ function bottomCartCancel(
   }
 
   const $folderList = document.querySelector('#folder-list');
-  const $folders = $folderList.querySelectorAll('.tab .folderChangeWrap');
-  if ($folders.length > 0) {
-    $folders.forEach((elm) => {
-      elm.classList.remove('on');
-    });
+  if ($folderList) {
+    const $folders = $folderList.querySelectorAll('.tab .folderChangeWrap');
+    if ($folders.length > 0) {
+      $folders.forEach((elm) => {
+        elm.classList.remove('on');
+      });
+    }
   }
 }
 
@@ -803,12 +805,14 @@ function cartListOrganizeOn(
   }
 
   const $folderList = document.querySelector('#folder-list');
-  const $folders = $folderList.querySelectorAll('.tab .folderChangeWrap');
+  if ($folderList) {
+    const $folders = $folderList.querySelectorAll('.tab .folderChangeWrap');
 
-  if ($folders.length > 0) {
-    $folders.forEach((elm) => {
-      elm.classList.add('on');
-    });
+    if ($folders.length > 0) {
+      $folders.forEach((elm) => {
+        elm.classList.add('on');
+      });
+    }
   }
 }
 

@@ -663,12 +663,14 @@
     localStorage.setItem('checkFolderName', name);
 
     const $folderList = document.querySelector('#folder-list');
-    const $folders = $folderList.querySelectorAll('.tab');
-    if ($folders.length > 0) {
-      $folders.forEach((elm) => {
-        elm.classList.remove('on');
-      });
-      document.getElementById(`folderNum${num}`).classList.add('on');
+    if ($folderList) {
+      const $folders = $folderList.querySelectorAll('.tab');
+      if ($folders.length > 0) {
+        $folders.forEach((elm) => {
+          elm.classList.remove('on');
+        });
+        document.getElementById(`folderNum${num}`).classList.add('on');
+      }
     }
 
     if (name) {
