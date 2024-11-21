@@ -2087,7 +2087,7 @@ body.scrollNone {
   background: #fff;
   height: 104px;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   gap: 32px;
   padding: 0 20px 0 32px;
@@ -5928,7 +5928,7 @@ header .btn-list > div {
   background: #fff;
   height: 104px;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   gap: 32px;
   padding: 0 20px 0 32px;
