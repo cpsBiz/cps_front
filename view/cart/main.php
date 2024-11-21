@@ -504,7 +504,7 @@
                   <a href="javascript:getFolderCartList(0)">전체보기</a>
                 </div>
                 `;
-    if (data && data.length > 1) {
+    if (data && data.length > 0) {
       data.forEach((item, index) => {
         list += `
               <div id="folderNum${item.folderNum}" class="tab tab${index + 2} ${checkFolder === item.folderNum ? 'on' : ''}" data-num="${item.folderNum}">
@@ -664,7 +664,7 @@
 
     const $folderList = document.querySelector('#folder-list');
     const $folders = $folderList.querySelectorAll('.tab');
-    if ($folders.length > 1) {
+    if ($folders.length > 0) {
       $folders.forEach((elm) => {
         elm.classList.remove('on');
       });
