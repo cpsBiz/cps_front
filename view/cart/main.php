@@ -526,12 +526,77 @@
     addFolderEvent();
   }
 
-  function folderFixOpen() {
-    console.log('폴더수정');
+  function folderFixOpen(folderNum, folderName) {
+    document.getElementById('folderNameFix').value = folderName;
+    document.getElementById('folderNumFix').value = folderNum;
+
+    document.body.classList.add('scrollNone');
+    document.querySelector('#select-wrap').classList.add('on');
+    document.querySelector('#select-list6').classList.add('on');
   }
 
-  function folderFix() {
+  function updateFolder() {
+    try {
+      const requestData = {
+        userId: '<?= $checkUserId; ?>',
+        affliateId: '<?= $checkAffliateId; ?>',
+        folderNum: document.getElementById('folderNumFix').value,
+        folderName: document.getElementById('folderNameFix').value,
+        apiType: 'U'
+      }
+      $.ajax({
+        type: 'POST',
+        url: '<?= $appApiUrl; ?>/api/cart/folder',
+        contentType: 'application/json',
+        data: JSON.stringify(requestData),
+        success: function(result) {
+          if (result.resultCode !== '0000') alert(result.resultMessage);
+          getFolderList();
+          getFolderCartList(document.getElementById('folderNumFix').value, document.getElementById('folderNameFix').value);
+          document.getElementById('folderNameFix').value = '';
+          document.getElementById('folderNumFix').value = '';
+          selectBasicClose('#select-wrap', '#select-list6');
+        },
+        error: function(request, status, error) {
+          console.error(`Error: ${error}`);
+        }
+      });
+    } catch (error) {
+      alert(error);
+    }
 
+  }
+
+  function deleteFolder() {
+    try {
+      const requestData = {
+        userId: '<?= $checkUserId; ?>',
+        affliateId: '<?= $checkAffliateId; ?>',
+        folderNum: document.getElementById('folderNumFix').value,
+        folderName: document.getElementById('folderNameFix').value,
+        apiType: 'D'
+      }
+
+      $.ajax({
+        type: 'POST',
+        url: '<?= $appApiUrl; ?>/api/cart/folder',
+        contentType: 'application/json',
+        data: JSON.stringify(requestData),
+        success: function(result) {
+          if (result.resultCode !== '0000') alert(result.resultMessage);
+          getFolderList();
+          getFolderCartList(0);
+          document.getElementById('folderNameFix').value = '';
+          document.getElementById('folderNumFix').value = '';
+          selectBasicClose('#select-wrap', '#select-list6');
+        },
+        error: function(request, status, error) {
+          console.error(`Error: ${error}`);
+        }
+      });
+    } catch (error) {
+      alert(error);
+    }
   }
 
   function folderMove(folderNum, folderName) {
@@ -546,7 +611,6 @@
 
       if ($cartImgBg.classList.contains('on')) {
         const obj = {
-          folderNum,
           merchantId: elm.getAttribute('data-merchantId'),
           productCode: elm.getAttribute('data-productCode'),
           optionCode: elm.getAttribute('data-optionCode'),
@@ -562,17 +626,21 @@
     }
 
     let nowFolder = '';
+    let nowFolderNum = 0;
     const $folderList = document.querySelector('#folder-list');
     const $folders = $folderList.querySelectorAll('.tab');
     $folders.forEach((elm) => {
       if (elm.classList.contains('on')) {
         nowFolder = elm.getAttribute('id');
+        nowFolderNum = parseInt(elm.getAttribute('data-num'));
       }
     });
 
     const requestData = {
+      userId: '<?= $checkUserId; ?>',
+      affliateId: '<?= $checkAffliateId; ?>',
       folderNum,
-      apiType: nowFolder !== 'folderNum0' ? 'U' : 'I',
+      apiType: 'I',
       folderProductList: List
     }
 
@@ -891,7 +959,6 @@
           };
         } else {
           obj = {
-            folderNum,
             merchantId: elm.getAttribute('data-merchantId'),
             productCode: elm.getAttribute('data-productCode'),
             optionCode: elm.getAttribute('data-optionCode'),
@@ -913,6 +980,8 @@
         };
       } else {
         requestData = {
+          userId: '<?= $checkUserId; ?>',
+          affliateId: '<?= $checkAffliateId; ?>',
           folderNum,
           apiType: 'D',
           folderProductList: removeList
@@ -1293,7 +1362,7 @@
           if (result.resultCode !== '0000') {
             alert(result.resultMessage);
           } else {
-            getCartList();
+            getFolderCartList(0);
           }
           document.getElementById('cartLink').value = '';
           selectInputClose('#select-wrap', '#select-list5');

@@ -32,7 +32,7 @@
               <div class="circle"></div>
             </div>
           </div>
-          <div class="item type2">
+          <div class="item type2" style="display: none;">
             <p>카드 할인 알림<span class="ico-arrow type3 right"></span></p>
             <a href="javascript:void(0)" id="select-btn1" onclick="getCardList(), selectInputOn('#select-wrap', '#select-list1')"></a>
           </div>
@@ -55,7 +55,7 @@
               <div class="circle"></div>
             </div>
           </div>
-          <div class="item type1">
+          <div class="item type1" style="display: none;">
             <p>미개봉 반품 상품 알림</p>
             <div id="toggle-btn4" class="toggle-btn" onclick="onOff('#toggle-btn4'), postSettingData()">
               <div class="circle"></div>
@@ -79,11 +79,11 @@
             <p>자주 묻는 질문<span class="ico-arrow type3 right"></span></p>
             <a href="javascript:void(0)" id="select-btn6" onclick="selectInputOn('#select-wrap', '#select-list6')"></a>
           </div>
-          <div class="item type2">
+          <div class="item type2" style="display: none;">
             <p>이용약관<span class="ico-arrow type3 right"></span></p>
             <a href="javascript:void(0)"></a>
           </div>
-          <div class="item type2">
+          <div class="item type2" style="display: none;">
             <p>개인 정보 처리방침<span class="ico-arrow type3 right"></span></p>
             <a href="javascript:void(0)"></a>
           </div>
