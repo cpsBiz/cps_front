@@ -554,8 +554,8 @@
     const returnAlarmToggle = document.getElementById('toggle-btn4');
     data.returnAlarm === 'Y' ? returnAlarmToggle.classList.add('on') : returnAlarmToggle.classList.remove('on');
 
-    const coupangAgreeToggle = document.getElementById('toggle-btn5');
-    data.coupang === 'Y' ? coupangAgreeToggle.classList.add('on') : coupangAgreeToggle.classList.remove('on');
+    // const coupangAgreeToggle = document.getElementById('toggle-btn5');
+    // data.coupang === 'Y' ? coupangAgreeToggle.classList.add('on') : coupangAgreeToggle.classList.remove('on');
 
     // 알림 감도
     const priceAlarmPer = document.getElementById('priceAlarmPer');
@@ -628,7 +628,7 @@
         nightAlarm: document.getElementById('toggle-btn2').classList.contains('on') ? 'Y' : 'N',
         rocketAlarm: document.getElementById('toggle-btn3').classList.contains('on') ? 'Y' : 'N',
         returnAlarm: document.getElementById('toggle-btn4').classList.contains('on') ? 'Y' : 'N',
-        coupang: document.getElementById('toggle-btn5').classList.contains('on') ? 'Y' : 'N',
+        // coupang: document.getElementById('toggle-btn5').classList.contains('on') ? 'Y' : 'N',
         priceDiscount: document.querySelector('input[name="alarm-list1"]:checked').value,
         cardDiscount: document.querySelector('input[name="alarm-list2"]:checked').value,
         returnDiscount: document.querySelector('input[name="alarm-list3"]:checked').value,

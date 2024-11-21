@@ -1345,8 +1345,14 @@
 
   function postCartLink() {
     try {
-      const url = document.getElementById('cartLink').value.match(/(https?:\/\/[^\s]+\.[\w]+\/[\w\/]+)/g)[0];;
-      if (!url) return alert('링크를 붙여넣어주세요.');
+      const inputValue = document.getElementById('cartLink').value;
+      const matchedUrls = inputValue.match(/https?:\/\/[^\s]+\.[\w]+(\/[\w\/]*)?/g);
+
+      if (!matchedUrls || matchedUrls.length === 0) {
+        return alert('링크를 붙여넣어주세요.');
+      }
+
+      const url = matchedUrls[0];
 
       const requestData = {
         userId: '<?= $checkUserId; ?>',
