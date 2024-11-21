@@ -607,6 +607,14 @@ function bottomCartCancel(
       '<span class="ico-b-cart-heart on"></span>즐겨찾기 설정';
     $heartBtnIco.classList.add('on');
   }
+
+  const $folderList = document.querySelector('#folder-list');
+  const $folders = $folderList.querySelectorAll('.tab .folderChangeWrap');
+  if ($folders.length > 1) {
+    $folders.forEach((elm) => {
+      elm.classList.remove('on');
+    });
+  }
 }
 
 function bottomCartAlarmChangeCheck(alarmBtn, cartWrap) {
@@ -792,6 +800,15 @@ function cartListOrganizeOn(
         '<span class="ico-b-cart-heart on"></span>즐겨찾기 설정';
       $heartBtnIco.classList.add('on');
     }
+  }
+
+  const $folderList = document.querySelector('#folder-list');
+  const $folders = $folderList.querySelectorAll('.tab .folderChangeWrap');
+
+  if ($folders.length > 1) {
+    $folders.forEach((elm) => {
+      elm.classList.add('on');
+    });
   }
 }
 

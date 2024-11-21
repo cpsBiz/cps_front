@@ -10,6 +10,39 @@
   <!-- style -->
 
 </head>
+<style>
+  #folder-list .tab {
+    position: relative;
+  }
+
+
+  #folder-list .tab .folderChangeWrap {
+    display: none;
+  }
+
+  #folder-list .tab .folderChangeWrap.on {
+    display: block;
+  }
+
+  #folder-list .tab .folderChangeWrap .folderMove {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  #folder-list .tab .folderChangeWrap .folderFix {
+    position: absolute;
+    top: -1px;
+    right: -1px;
+    width: 15px;
+    height: 15px;
+  }
+</style>
 
 <body>
   <div class="wrap">
@@ -254,6 +287,25 @@
           <button class="folder-btn" type="button" onclick="postCartLink()">확인</button>
         </ul>
       </div>
+      <div id="select-list6" class="select-list type4">
+        <div class="select-head">
+          <p>폴더 관리</p>
+          <button
+            class="ico-close type1"
+            type="button"
+            onclick="selectInputClose('#select-wrap', '#select-list6')">
+            닫기
+          </button>
+        </div>
+        <div class="select-cont">
+          <input id="folderNameFix" type="text" placeholder="사용하실 폴더명을 입력해 주세요." />
+          <input id="folderNumFix" type="hidden">
+          <div class="btn-box">
+            <button class="btn" type="button" onclick="updateFolder()">수정</button>
+            <button class="btn" type="button" onclick="deleteFolder()">삭제</button>
+          </div>
+        </div>
+      </div>
     </div>
     <div id="bottom-cart-menu1" class="bottom-cart-menu-wrap type1">
       <button type="button" onclick="bottomCartCancel('#bottom-cart-menu1', '#cart-list-wrap1', '#select-text1', '#cart-alarm1', '#cart-heart1')"><span class="ico-b-cart-cancel"></span>취소</button>
@@ -447,12 +499,24 @@
 
   function renderFolderList(data) {
     const checkFolder = parseInt(localStorage.getItem('checkFolder'));
-    let list = `<div id="folderNum0" class="tab tab1 ${checkFolder === 0 ? 'on' : ''}"><a href="javascript:getFolderCartList(0)">전체보기</a></div>`;
+    let list = `
+                <div id="folderNum0" class="tab tab1 ${checkFolder === 0 ? 'on' : ''}" data-num="0">
+                  <a href="javascript:getFolderCartList(0)">전체보기</a>
+                </div>
+                `;
     if (data && data.length > 1) {
       data.forEach((item, index) => {
         list += `
-              <div id="folderNum${item.folderNum}" class="tab tab${index + 2} ${checkFolder === item.folderNum ? 'on' : ''}">
+              <div id="folderNum${item.folderNum}" class="tab tab${index + 2} ${checkFolder === item.folderNum ? 'on' : ''}" data-num="${item.folderNum}">
                 <a href="javascript:getFolderCartList(${item.folderNum}, '${item.folderName}')">${item.folderName}</a>
+                <div class="folderChangeWrap">
+                  <div class="folderMove" onclick="event.stopPropagation(), folderMove(${item.folderNum}, '${item.folderName}')"></div>
+                  <img 
+                    class="folderFix"
+                    src="../images/icon/folder.png" 
+                    onclick="event.stopPropagation(), folderFixOpen(${item.folderNum}, '${item.folderName}')"
+                  />
+                </div>
               </div>
               `;
       });
@@ -462,9 +526,83 @@
     addFolderEvent();
   }
 
+  function folderFixOpen() {
+    console.log('폴더수정');
+  }
+
+  function folderFix() {
+
+  }
+
+  function folderMove(folderNum, folderName) {
+    const $cartLists = document.querySelectorAll(`#cart-list-wrap1 .list`);
+
+    let count = 0;
+    let List = [];
+    $cartLists.forEach((elm) => {
+      const $cartImgBg = elm.querySelector('.img-bg');
+
+      if ($cartImgBg.classList.contains('on')) count += 1;
+
+      if ($cartImgBg.classList.contains('on')) {
+        const obj = {
+          folderNum,
+          merchantId: elm.getAttribute('data-merchantId'),
+          productCode: elm.getAttribute('data-productCode'),
+          optionCode: elm.getAttribute('data-optionCode'),
+        };
+        List.push(obj);
+      }
+
+
+    });
+
+    if (count === 0) {
+      return alert('상품을 선택해 주세요.');
+    }
+
+    let nowFolder = '';
+    const $folderList = document.querySelector('#folder-list');
+    const $folders = $folderList.querySelectorAll('.tab');
+    $folders.forEach((elm) => {
+      if (elm.classList.contains('on')) {
+        nowFolder = elm.getAttribute('id');
+      }
+    });
+
+    const requestData = {
+      folderNum,
+      apiType: nowFolder !== 'folderNum0' ? 'U' : 'I',
+      folderProductList: List
+    }
+
+    $.ajax({
+      type: 'POST',
+      url: '<?= $appApiUrl; ?>/api/cart/folderProduct',
+      contentType: 'application/json',
+      data: JSON.stringify(requestData),
+      success: function(result) {
+        getFolderCartList(folderNum, folderName);
+      },
+      error: function(request, status, error) {
+        console.error(`Error: ${error}`);
+      }
+    });
+  }
+
   function getFolderCartList(num, name) {
     localStorage.setItem('checkFolder', num);
     localStorage.setItem('checkFolderName', name);
+
+    const $folderList = document.querySelector('#folder-list');
+    const $folders = $folderList.querySelectorAll('.tab');
+    if ($folders.length > 1) {
+      $folders.forEach((elm) => {
+        elm.classList.remove('on');
+      });
+      document.getElementById(`folderNum${num}`).classList.add('on');
+    }
+
     if (name) {
       const noneTitle = `
                       <span class="ico-nonefolder"></span>[${name}]<br>폴더가 비어있어요.
@@ -628,7 +766,7 @@
           }
 
           if (result.resultCode !== '0000') return alert(result.resultMessage);
-
+          bottomCartCancel('#bottom-cart-menu1', '#cart-list-wrap1', '#select-text1', '#cart-alarm1', '#cart-heart1');
           renderCartList(result.datas);
         },
         error: function(request, status, error) {
@@ -726,36 +864,69 @@
     const $textBtn = document.querySelector(textBtn);
     const $tost = document.querySelector(tost);
 
+    const $folderList = document.querySelector('#folder-list');
+    const $folders = $folderList.querySelectorAll('.tab');
+    let folderNum = 0;
+    $folders.forEach((elm) => {
+      if (elm.classList.contains('on')) {
+        folderNum = parseInt(elm.getAttribute('data-num'));
+      }
+    });
+
     let removeList = [];
     $cartListBefore.forEach((elm) => {
       const $cartImgBg = elm.querySelector('.img-bg');
       if ($cartImgBg.classList.contains('on')) {
-        const obj = {
-          merchantId: elm.getAttribute('data-merchantId'),
-          productCode: elm.getAttribute('data-productCode'),
-          optionCode: elm.getAttribute('data-optionCode'),
-          favorites: elm.getAttribute('data-favorites'),
-          cartPrice: elm.getAttribute('data-cartPrice'),
-          wantPrice: elm.getAttribute('data-wantPrice'),
-          alarm: elm.getAttribute('data-alarm'),
-          returnalarm: elm.getAttribute('data-returnalarm'),
-        };
+        let obj = {};
+        if (folderNum === 0) {
+          obj = {
+            merchantId: elm.getAttribute('data-merchantId'),
+            productCode: elm.getAttribute('data-productCode'),
+            optionCode: elm.getAttribute('data-optionCode'),
+            favorites: elm.getAttribute('data-favorites'),
+            cartPrice: elm.getAttribute('data-cartPrice'),
+            wantPrice: elm.getAttribute('data-wantPrice'),
+            alarm: elm.getAttribute('data-alarm'),
+            returnalarm: elm.getAttribute('data-returnalarm'),
+          };
+        } else {
+          obj = {
+            folderNum,
+            merchantId: elm.getAttribute('data-merchantId'),
+            productCode: elm.getAttribute('data-productCode'),
+            optionCode: elm.getAttribute('data-optionCode'),
+          }
+        }
         removeList.push(obj);
       }
     });
 
     try {
-      const requestData = {
-        userId: '<?= $checkUserId; ?>',
-        affliateId: '<?= $checkAffliateId; ?>',
-        adId: '',
-        apiType: 'D',
-        productList: removeList
-      };
-
+      let requestData = {};
+      if (folderNum === 0) {
+        requestData = {
+          userId: '<?= $checkUserId; ?>',
+          affliateId: '<?= $checkAffliateId; ?>',
+          adId: '',
+          apiType: 'D',
+          productList: removeList
+        };
+      } else {
+        requestData = {
+          folderNum,
+          apiType: 'D',
+          folderProductList: removeList
+        }
+      }
+      let apiUrl = '';
+      if (folderNum === 0) {
+        apiUrl = '<?= $appApiUrl; ?>/api/cart/cartProduct';
+      } else {
+        apiUrl = '<?= $appApiUrl; ?>/api/cart/folderProduct';
+      }
       $.ajax({
         type: 'POST',
-        url: '<?= $appApiUrl; ?>/api/cart/cartProduct',
+        url: apiUrl,
         contentType: 'application/json',
         data: JSON.stringify(requestData),
         success: function(result) {
@@ -829,6 +1000,10 @@
         favoritesList.push(obj);
       }
     });
+
+    if (count === 0) {
+      return alert('상품을 선택해 주세요.');
+    }
 
     try {
       const requestData = {
@@ -925,6 +1100,10 @@
         alarmList.push(obj);
       }
     });
+
+    if (count === 0) {
+      return alert('상품을 선택해 주세요.');
+    }
 
     try {
       const requestData = {
