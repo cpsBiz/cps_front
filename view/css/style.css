@@ -921,6 +921,9 @@ body.scrollNone {
   background: #008cff;
   border-radius: 8px;
   max-width: 172px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .list-wrap.type1 .list.type1 .info-wrap .coupang-link span {
   font-family: 'Pretendard-Medium';
