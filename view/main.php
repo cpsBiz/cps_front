@@ -7,7 +7,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="format-detection" content="telephone=no">
   <title>쇼핑적립</title>
-  <link rel="stylesheet" href="/css/index.css?version=<?= $cacheVersion; ?>">
 </head>
 
 <body>
