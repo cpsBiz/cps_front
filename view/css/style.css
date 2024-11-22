@@ -930,6 +930,7 @@ body.scrollNone {
   padding-left: 24px;
   position: relative;
   width: 100%;
+  white-space: nowrap;
 }
 .list-wrap.type1 .list.type1 .info-wrap .coupang-link span::before {
   background-size: cover;
