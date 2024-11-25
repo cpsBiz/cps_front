@@ -214,6 +214,10 @@ function getSummarySearch($request)
       $groupBy = "GROUP BY A.AFFLIATE_ID";
     } else if ($request['searchType'] == 'SITE') {
       $groupBy = "GROUP BY A.SITE";
+    } else if ($request['searchType'] == 'MEMBERAGC') {
+      $groupBy = "GROUP BY A.AGENCY_ID";
+    } else if ($request['searchType'] == 'MEMBERAFF') {
+      $groupBy = "GROUP BY A.AGENCY_ID";
     }
     $sql .= " " . $groupBy;
   }
