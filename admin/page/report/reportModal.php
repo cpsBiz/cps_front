@@ -131,36 +131,45 @@
 		// 모달 데이터 리스트 처리
 		renderTableRows(data.data, true, modalSearchType);
 
-		// 모달 정렬 이벤트 추가
-		const sortableHeaders = document.querySelectorAll('th.modal-sort, th.modal-sortUp, th.modal-sortDown');
-		sortableHeaders.forEach(header => {
-			header.addEventListener('click', () => {
-				// 클릭된 요소를 제외하고 모든 요소를 'sort' 상태로 초기화
-				sortableHeaders.forEach(otherHeader => {
-					if (otherHeader !== header) {
-						otherHeader.classList.remove('modal-sortUp', 'modal-sortDown');
-						otherHeader.classList.add('modal-sort');
-					}
-				});
+		function getHeaders() {
+			return document.querySelectorAll('th.modal-sort, th.modal-sortUp, th.modal-sortDown');
+		}
 
-				// 클릭한 요소의 상태 변경
-				if (header.classList.contains('modal-sort')) {
-					// 'sort' 상태이면 'sortDown'으로 변경
-					header.classList.remove('modal-sort');
-					header.classList.add('modal-sortDown');
-				} else if (header.classList.contains('modal-sortUp')) {
-					// 'sortUp' 상태이면 'sort'으로 변경
-					header.classList.remove('modal-sortUp');
-					header.classList.add('modal-sort');
-				} else if (header.classList.contains('modal-sortDown')) {
-					// 'sortDown' 상태이면 'sortUp'로 변경
-					header.classList.remove('modal-sortDown');
-					header.classList.add('modal-sortUp');
+		function handleSortClick(header) {
+			// 현재 DOM의 모든 정렬 가능한 헤더를 가져옴
+			const currentHeaders = getHeaders();
+
+			// 클릭된 요소를 제외하고 모든 요소를 'sort' 상태로 초기화
+			currentHeaders.forEach(otherHeader => {
+				if (otherHeader !== header) {
+					otherHeader.classList.remove('modal-sortUp', 'modal-sortDown');
+					otherHeader.classList.add('modal-sort');
 				}
-
-				// 클래스가 변경될 때마다 함수를 호출합니다.
-				handleSort(header, true);
 			});
+
+			// 클릭한 요소의 상태 변경
+			if (header.classList.contains('modal-sort')) {
+				header.classList.remove('modal-sort');
+				header.classList.add('modal-sortDown');
+			} else if (header.classList.contains('modal-sortUp')) {
+				header.classList.remove('modal-sortUp');
+				header.classList.add('modal-sort');
+			} else if (header.classList.contains('modal-sortDown')) {
+				header.classList.remove('modal-sortDown');
+				header.classList.add('modal-sortUp');
+			}
+
+			handleSort(header, true);
+		}
+
+		// 초기 헤더들에 대한 이벤트 설정
+		getHeaders().forEach(header => {
+			// 기존에 등록된 모든 클릭 이벤트 제거
+			const oldElement = header.cloneNode(true);
+			header.parentNode.replaceChild(oldElement, header);
+
+			// 새로운 클릭 이벤트 등록
+			oldElement.addEventListener('click', () => handleSortClick(oldElement));
 		});
 
 		modal.style.display = "block";

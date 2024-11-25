@@ -275,10 +275,18 @@ function handleSort(header, modal = false) {
   }
 
   // 정렬순서
-  if (headerClassList === 'sortUp') {
-    orderBy = 'ASC';
-  } else if (headerClassList === 'sortDown') {
-    orderBy = 'DESC';
+  if (!modal) {
+    if (headerClassList === 'sortUp') {
+      orderBy = 'ASC';
+    } else if (headerClassList === 'sortDown') {
+      orderBy = 'DESC';
+    }
+  } else {
+    if (headerClassList === 'modal-sortUp') {
+      orderBy = 'ASC';
+    } else if (headerClassList === 'modal-sortDown') {
+      orderBy = 'DESC';
+    }
   }
 
   const orderByData = {

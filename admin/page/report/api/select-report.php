@@ -228,7 +228,11 @@ function getSummarySearch($request)
       'affliateName' => 'AFFLIATE_NAME',
       'site' => 'SITE',
       'agencyName' => 'AGENCY_NAME',
+    ];
+
+    $columnMap2 = [
       'cnt' => 'CNT',
+      'rewardRate' => 'REWARD_RATE',
       'clickCnt' => 'CLICK_CNT',
       'rewardCnt' => 'REWARD_CNT',
       'productPrice' => 'PRODUCT_PRICE',
@@ -237,8 +241,8 @@ function getSummarySearch($request)
 
     if (array_key_exists($request['orderByName'], $columnMap)) {
       $sql .= " ORDER BY A.{$columnMap[$request['orderByName']]} {$request['orderBy']}";
-    } else if ($request['orderByName'] == 'rewardRate') {
-      $sql .= " ORDER BY REWARD_RATE {$request['orderBy']}";
+    } else if (array_key_exists($request['orderByName'], $columnMap2)) {
+      $sql .= " ORDER BY {$columnMap2[$request['orderByName']]} {$request['orderBy']}";
     } else {
       $sql .= " ORDER BY SUM({$request['orderByName']}) {$request['orderBy']}";
     }
