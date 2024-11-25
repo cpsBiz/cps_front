@@ -52,71 +52,71 @@ function getSummarySearch($request)
 
   // 날짜 조건
   if ($request['dayType'] == 'MONTH') {
-    $where[] = "reg_ym BETWEEN ? AND ?";
+    $where[] = "REG_TM BETWEEN ? AND ?";
     $params[] = $request['regStart'];
     $params[] = $request['regEnd'];
     $types .= 'ss';
   } else if ($request['dayType'] == 'DAY') {
-    $where[] = "reg_day BETWEEN ? AND ?";
+    $where[] = "REG_DAY BETWEEN ? AND ?";
     $params[] = $request['regStart'];
     $params[] = $request['regEnd'];
     $types .= 'ss';
   } else if ($request['dayType'] == 'EQMONTH') {
-    $where[] = "reg_ym = ?";
+    $where[] = "REG_YM = ?";
     $params[] = $request['keyword'];
     $types .= 's';
   } else {
-    $where[] = "reg_day = ?";
+    $where[] = "REG_DAY = ?";
     $params[] = $request['keyword'];
     $types .= 's';
   }
 
   // OS 조건
   if ($request['os'] == 'PC') {
-    $where[] = "A.os = 'PC'";
+    $where[] = "A.OS = 'PC'";
   } else if ($request['os'] == 'MOBILE') {
-    $where[] = "A.os IN ('IOS', 'AOS')";
+    $where[] = "A.OS IN ('IOS', 'AOS')";
   }
 
   // 검색어 조건
   if (!empty($request['keyword'])) {
     if ($request['keywordType'] == 'MERCHANT' || $request['keywordType'] == 'ALL') {
-      $where[] = "(A.member_name LIKE ? OR A.merchant_id LIKE ?)";
+      $where[] = "(A.MEMBER_NAME LIKE ? OR A.MERCHANT_ID LIKE ?)";
       $params[] = "%{$request['keyword']}%";
       $params[] = "%{$request['keyword']}%";
       $types .= 'ss';
     }
     if ($request['keywordType'] == 'SITE' || $request['keywordType'] == 'ALL') {
-      $where[] = "A.site LIKE ?";
+      $where[] = "A.SITE LIKE ?";
       $params[] = "%{$request['keyword']}%";
       $types .= 's';
     }
     if ($request['keywordType'] == 'CAMPAIGN' || $request['keywordType'] == 'ALL') {
-      $where[] = "(A.campaign_name LIKE ? OR A.campaign_id LIKE ?)";
+      $where[] = "(A.CAMPAPIGN_NAME LIKE ? OR A.CAMPAIGN_ID LIKE ?)";
       $params[] = "%{$request['keyword']}%";
       $params[] = "%{$request['keyword']}%";
       $types .= 'ss';
     }
     if ($request['keywordType'] == 'AFFLIATE' || $request['keywordType'] == 'ALL') {
-      $where[] = "A.affliate_id LIKE ?";
+      $where[] = "A.AFFLIATE_ID LIKE ?";
       $params[] = "%{$request['keyword']}%";
       $types .= 's';
     }
 
     if ($request['keywordType'] == 'EQMERCHANT') {
-      $where[] = "A.merchant_id = ?";
+      $where[] = "A.MERCHANT_ID = ?";
       $params[] = $request['keyword'];
       $types .= 's';
     } else if ($request['keywordType'] == 'EQSITE') {
-      $where[] = "A.site = ?";
+      $where[] = "A.SITE = ?";
       $params[] = $request['keyword'];
       $types .= 's';
     } else if ($request['keywordType'] == 'EQCAMPAIGN') {
-      $where[] = "A.campaign_num = ?";
+      $where[] = "A.CAMPAIGN_NUM = ?";
       $params[] = $request['keyword'];
       $types .= 's';
     } else if ($request['keywordType'] == 'EQAFFLIATE') {
-      $where[] = "A.affliate_id = ?";
+      $where[] = "A.AFFLIATE_ID = ?";
       $params[] = $request['keyword'];
       $types .= 's';
     }
@@ -124,15 +124,15 @@ function getSummarySearch($request)
 
   // 타입별 검색
   if ($request['type'] == 'MERCHANT') {
-    $where[] = "A.merchant_id = ?";
+    $where[] = "A.MERCHANT_ID = ?";
     $params[] = $request['searchId'];
     $types .= 's';
   } else if ($request['type'] == 'AFFLIATE') {
-    $where[] = "A.affliate_id = ?";
+    $where[] = "A.AFFLIATE_ID = ?";
     $params[] = $request['searchId'];
     $types .= 's';
   } else if ($request['type'] == 'AGENCY') {
-    $where[] = "A.agency_id = ?";
+    $where[] = "A.AGENCY_ID = ?";
     $params[] = $request['searchId'];
     $types .= 's';
   }
@@ -164,21 +164,23 @@ function getSummarySearch($request)
                 AGENCY_NAME,
                 CLICK_CNT,
                 REWARD_CNT,
-                PRODUCT_PRICE,
-                COMMISSION,
-                COMMISSION_PROFIT,
-                AFFLIATE_COMMISSION,
-                USER_COMMISSION,
+                CONFIRM_REWARD_CNT,
                 CANCEL_REWARD_CNT,
+                PRODUCT_PRICE,
+                CONFIRM_PRODUCT_PRICE,
                 CANCEL_PRODUCT_PRICE,
-                CANCEL_COMMISSION,
-                CANCEL_COMMISSION_PROFIT,
-                CANCEL_AFFLIATE_COMMISSION,
-                CANCEL_USER_COMMISSION,
+                COMMISSION,
                 COMFIRM_COMMISSION,
+                CANCEL_COMMISSION,
+                COMMISSION_PROFIT,
                 COMFIRM_COMMISSION_PROFIT,
+                CANCEL_COMMISSION_PROFIT,
+                AFFLIATE_COMMISSION,
                 COMFIRM_AFFLIATE_COMMISSION,
-                COMFIRM_USER_COMMISSION
+                CANCEL_AFFLIATE_COMMISSION,
+                USER_COMMISSION,
+                COMFIRM_USER_COMMISSION,
+                CANCEL_USER_COMMISSION
               FROM 
                   SUMMARY_DAY
               WHERE 
@@ -190,27 +192,27 @@ function getSummarySearch($request)
   if ($request['searchType']) {
     $groupBy = "";
     if ($request['searchType'] == 'DAY') {
-      $groupBy = "GROUP BY A.reg_day";
+      $groupBy = "GROUP BY A.REG_DAY";
     } else if ($request['searchType'] == 'MONTH') {
-      $groupBy = "GROUP BY A.reg_ym";
+      $groupBy = "GROUP BY A.REG_YM";
     } else if ($request['searchType'] == 'MERCHANT') {
-      $groupBy = "GROUP BY A.merchant_id";
+      $groupBy = "GROUP BY A.MERCHANT_ID";
     } else if ($request['searchType'] == 'CAMPAIGN') {
-      $groupBy = "GROUP BY A.campaign_num";
+      $groupBy = "GROUP BY A.CAMPAIGN_NUM";
     } else if ($request['searchType'] == 'AFFLIATE') {
-      $groupBy = "GROUP BY A.affliate_id";
+      $groupBy = "GROUP BY A.AFFLIATE_ID";
     } else if ($request['searchType'] == 'SITE') {
-      $groupBy = "GROUP BY A.site";
+      $groupBy = "GROUP BY A.SITE";
     }
     $sql .= " " . $groupBy;
   }
 
   // 정렬 조건
   if ($request['orderByName']) {
-    if (in_array($request['orderByName'], ['reg_day', 'reg_ym', 'member_name', 'campaign_name', 'affliate_name', 'site', 'agency_name'])) {
+    if (in_array($request['orderByName'], ['regDay', 'regYm', 'memberName', 'campaignName', 'affliateName', 'site', 'agencyName'])) {
       $sql .= " ORDER BY A.{$request['orderByName']} {$request['orderBy']}";
-    } else if ($request['orderByName'] == 'reward_rate') {
-      $sql .= " ORDER BY (SUM(reward_cnt) / SUM(click_cnt)) {$request['orderBy']}";
+    } else if ($request['orderByName'] == 'rewardRate') {
+      $sql .= " ORDER BY (SUM(REWARD_CNT) / SUM(CLICK_CNT)) {$request['orderBy']}";
     } else {
       $sql .= " ORDER BY SUM({$request['orderByName']}) {$request['orderBy']}";
     }
@@ -232,19 +234,19 @@ function getSummarySearch($request)
     // 취소 여부에 따른 데이터 처리
     foreach ($data as &$row) {
       if ($request['cancelYn'] == 'Y') {
-        $row['reward_cnt'] = $row['cancel_reward_cnt'];
-        $row['product_price'] = $row['cancel_product_price'];
-        $row['commission'] = $row['cancel_commission'];
-        $row['commission_profit'] = $row['cancel_commission_profit'];
-        $row['affliate_commission'] = $row['cancel_affliate_commission'];
-        $row['user_commission'] = $row['cancel_user_commission'];
+        $row['REWARD_CNT'] = $row['CANCEL_REWARD_CNT'];
+        $row['PRODUCT_PRICE'] = $row['CANCEL_PRODUCT_PRICE'];
+        $row['COMMISSION'] = $row['CANCEL_COMMISSION'];
+        $row['COMMISSION_PROFIT'] = $row['CANCEL_COMMISSION_PROFIT'];
+        $row['AFFLIATE_COMMISSION'] = $row['CANCEL_AFFLIATE_COMMISSION'];
+        $row['USER_COMMISSION'] = $row['CANCEL_USER_COMMISSION'];
       } else if ($request['cancelYn'] == 'N') {
-        $row['reward_cnt'] = $row['confirm_reward_cnt'];
-        $row['product_price'] = $row['confirm_product_price'];
-        $row['commission'] = $row['confirm_commission'];
-        $row['commission_profit'] = $row['confirm_commission_profit'];
-        $row['affliate_commission'] = $row['confirm_affliate_commission'];
-        $row['user_commission'] = $row['confirm_user_commission'];
+        $row['REWARD_CNT'] = $row['COMFIRM_REWARD_CNT'];
+        $row['PRODUCT_PRICE'] = $row['COMFIRM_PRODUCT_PRICE'];
+        $row['COMMISSION'] = $row['COMFIRM_COMMISSION'];
+        $row['COMMISSION_PROFIT'] = $row['COMFIRM_COMMISSION_PROFIT'];
+        $row['AFFLIATE_COMMISSION'] = $row['COMFIRM_AFFLIATE_COMMISSION'];
+        $row['USER_COMMISSION'] = $row['COMFIRM_USER_COMMISSION'];
       }
     }
 
@@ -256,7 +258,63 @@ function getSummarySearch($request)
 }
 
 // 데이터 조회 함수 호출
-$result = getSummarySearch($request);
+try {
+  // 데이터 조회 함수 호출
+  $result = getSummarySearch($request);
+
+  if (empty($result)) {
+    $response = [
+      'resultCode' => '9001',
+      'resultMessage' => '조회된 데이터가 없습니다.',
+      'data' => null
+    ];
+  } else {
+    // 합계 계산
+    $totalCount = count($result);
+    $cnt = 0;
+    $clickCnt = 0;
+    $rewardCnt = 0;
+    $productPrice = 0;
+    $commission = 0;
+    $commissionProfit = 0;
+    $affliateCommission = 0;
+    $userCommission = 0;
+
+    foreach ($result as $row) {
+      $cnt += $row['CNT'];
+      $clickCnt += $row['CLICK_CNT'];
+      $rewardCnt += $row['REWARD_CNT'];
+      $productPrice += $row['PRODUCT_PRICE'];
+      $commission += $row['COMMISSION'];
+      $commissionProfit += $row['COMMISSION_PROFIT'];
+      $affliateCommission += $row['AFFLIATE_COMMISSION'];
+      $userCommission += $row['USER_COMMISSION'];
+    }
+
+    $response = [
+      'resultCode' => '0000',
+      'resultMessage' => '성공',
+      'totalCount' => $totalCount,
+      'cnt' => $cnt,
+      'clickCnt' => $clickCnt,
+      'rewardCnt' => $rewardCnt,
+      'productPrice' => $productPrice,
+      'commission' => $commission,
+      'commissionProfit' => $commissionProfit,
+      'affliateCommission' => $affliateCommission,
+      'userCommission' => $userCommission,
+      'data' => $result
+    ];
+  }
+} catch (Exception $e) {
+  $response = [
+    'resultCode' => '9999',
+    'resultMessage' => '조회 중 오류가 발생했습니다.',
+    'data' => null
+  ];
+  error_log("Summary Search Error - Request: " . json_encode($request) . ", Error: " . $e->getMessage());
+}
+
 
 // JSON 응답 반환
 header('Content-Type: application/json');
