@@ -262,6 +262,22 @@ function getSummarySearch($request)
   return $data;
 }
 
+function snakeToCamel($string)
+{
+  return lcfirst(str_replace('_', '', ucwords($string, '_')));
+}
+
+// 배열의 모든 키를 카멜케이스로 변환하는 함수
+function convertArrayKeysToCamel($array)
+{
+  $result = [];
+  foreach ($array as $key => $value) {
+    $newKey = snakeToCamel($key);
+    $result[$newKey] = is_array($value) ? convertArrayKeysToCamel($value) : $value;
+  }
+  return $result;
+}
+
 // 데이터 조회 함수 호출
 try {
   // 데이터 조회 함수 호출
@@ -274,6 +290,10 @@ try {
       'data' => null
     ];
   } else {
+    $camelResult = array_map(function ($row) {
+      return convertArrayKeysToCamel($row);
+    }, $result);
+
     // 합계 계산
     $totalCount = count($result);
     $cnt = 0;
@@ -308,7 +328,7 @@ try {
       'commissionProfit' => $commissionProfit,
       'affliateCommission' => $affliateCommission,
       'userCommission' => $userCommission,
-      'data' => $result
+      'data' => $camelResult
     ];
   }
 } catch (Exception $e) {
