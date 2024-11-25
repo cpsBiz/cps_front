@@ -245,11 +245,7 @@ function getSummarySearch($request)
         $row['USER_COMMISSION'] = $row['COMFIRM_USER_COMMISSION'];
       }
     }
-
-    mysqli_stmt_close($stmt);
   }
-
-  mysqli_close($con);
   return $data;
 }
 
