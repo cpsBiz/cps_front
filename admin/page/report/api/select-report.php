@@ -1,8 +1,4 @@
 <?
-error_reporting(E_ALL);
-ini_set("display_errors", 1);
-?>
-<?
 // JSON 요청 데이터 받기
 $inputData = json_decode(file_get_contents("php://input"), true);
 
@@ -318,9 +314,5 @@ try {
 
 // JSON 응답 반환
 header('Content-Type: application/json');
-echo json_encode([
-  'resultCode' => '0000',
-  'data' => $result
-]);
+echo json_encode($response);
 exit;
-?>
