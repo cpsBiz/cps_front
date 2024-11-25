@@ -179,7 +179,8 @@ function getSummarySearch($request)
                 CANCEL_AFFLIATE_COMMISSION,
                 USER_COMMISSION,
                 COMFIRM_USER_COMMISSION,
-                CANCEL_USER_COMMISSION
+                CANCEL_USER_COMMISSION,
+                {$request['keyword']}as keyWordName
               FROM 
                   SUMMARY_DAY
               WHERE 
