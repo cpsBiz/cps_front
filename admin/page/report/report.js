@@ -249,7 +249,7 @@ function handleSort(header, modal = false) {
         : (target = 'rewardCnt');
       break;
     case '전환율':
-      target = '';
+      target = 'rewardRate';
       break;
     case '구매액':
       cancelYn === 'N'

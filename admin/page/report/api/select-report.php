@@ -141,6 +141,21 @@ function getSummarySearch($request)
               A.*,
               COUNT(*) as CNT,
               SUM(CLICK_CNT) as CLICK_CNT,
+              CASE 
+                  WHEN ? = 'N' THEN SUM(CONFIRM_REWARD_CNT)
+                  WHEN ? = 'Y' THEN SUM(CANCEL_REWARD_CNT)
+                  ELSE SUM(REWARD_CNT)
+              END as REWARD_CNT,
+              CASE 
+                  WHEN SUM(CLICK_CNT) = 0 THEN 0
+                  ELSE ROUND(
+                      (CASE 
+                          WHEN ? = 'N' THEN SUM(CONFIRM_REWARD_CNT)
+                          WHEN ? = 'Y' THEN SUM(CANCEL_REWARD_CNT)
+                          ELSE SUM(REWARD_CNT)
+                      END / SUM(CLICK_CNT)) * 100, 2
+                  )
+              END as REWARD_RATE,
               SUM(REWARD_CNT) as REWARD_CNT,
               SUM(PRODUCT_PRICE) as PRODUCT_PRICE,
               SUM(COMMISSION) as COMMISSION,
@@ -184,7 +199,14 @@ function getSummarySearch($request)
               FROM 
                   SUMMARY_DAY
           ) A
-          " . (!empty($where) ? "WHERE " . implode(" AND ", $where) : "");
+          ";
+  $types .= 'ssss';
+  $params[] = $request['cancelYn'];
+  $params[] = $request['cancelYn'];
+  $params[] = $request['cancelYn'];
+  $params[] = $request['cancelYn'];
+
+  $sql .= (!empty($where) ? "WHERE " . implode(" AND ", $where) : "");
 
   // 그룹핑 설정
   if ($request['searchType']) {
@@ -214,7 +236,13 @@ function getSummarySearch($request)
       'campaignName' => 'CAMPAIGN_NAME',
       'affliateName' => 'AFFLIATE_NAME',
       'site' => 'SITE',
-      'agencyName' => 'AGENCY_NAME'
+      'agencyName' => 'AGENCY_NAME',
+      'cnt' => 'CNT',
+      'clickCnt' => 'CLICK_CNT',
+      'rewardRate' => 'REWARD_RATE',
+      'rewardCnt' => 'REWARD_CNT',
+      'productPrice' => 'PRODUCT_PRICE',
+      'commissionProfit' => 'COMMISSION_PROFIT'
     ];
 
     if (array_key_exists($request['orderByName'], $columnMap)) {
