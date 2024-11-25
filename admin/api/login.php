@@ -34,7 +34,7 @@ function callApi($url, $data)
   }
 }
 
-$url = $adminApiUrl . "/api/admin/memberLogin";
+$url = "https://admin.shoplus.io/api/admin/memberLogin";
 $data = [
   "memberId" => $id,
   "memberPw" => $pw
