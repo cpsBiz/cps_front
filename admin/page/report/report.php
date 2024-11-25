@@ -473,19 +473,19 @@
 	function renderSumRow(data, modal = false) {
 		const sumRow = document.createElement('tr');
 		sumRow.appendChild(createCell('th', '합계'));
-		sumRow.appendChild(createCell('th', commaLocale(data.cnt)));
-		sumRow.appendChild(createCell('th', commaLocale(data.clickCnt)));
-		sumRow.appendChild(createCell('th', commaLocale(data.rewardCnt)));
+		sumRow.appendChild(createCell('th', commaLocale(data.CNT)));
+		sumRow.appendChild(createCell('th', commaLocale(data.CLICK_CNT)));
+		sumRow.appendChild(createCell('th', commaLocale(data.REWARD_CNT)));
 		let rewardRate;
-		if (data.clickCnt === 0 || data.rewardCnt === 0) {
+		if (data.CLICK_CNT === 0 || data.REWARD_CNT === 0) {
 			rewardRate = '0%';
 		} else {
-			rewardRate = (data.rewardCnt / data.clickCnt * 100).toFixed(2) + '%';
+			rewardRate = (data.REWARD_CNT / data.CLICK_CNT * 100).toFixed(2) + '%';
 		}
 		sumRow.appendChild(createCell('th', rewardRate));
-		sumRow.appendChild(createCell('th', commaLocale(data.productPrice) + '원'));
-		sumRow.appendChild(createCell('th', commaLocale(data.commission) + '원'));
-		sumRow.appendChild(createCell('th', commaLocale(data.commissionProfit) + '원'));
+		sumRow.appendChild(createCell('th', commaLocale(data.PRODUCT_PRICE) + '원'));
+		sumRow.appendChild(createCell('th', commaLocale(data.COMMISSION) + '원'));
+		sumRow.appendChild(createCell('th', commaLocale(data.COMMISSION_PROFIT) + '원'));
 
 		if (!modal) {
 			const sumViewDetail = document.createElement('th');
@@ -514,15 +514,15 @@
 
 			// 데이터 열 생성
 			row.appendChild(createKeywordCell(item, searchType));
-			row.appendChild(createCell('td', commaLocale(item.cnt)));
-			row.appendChild(createCell('td', commaLocale(item.clickCnt)));
+			row.appendChild(createCell('td', commaLocale(item.CNT)));
+			row.appendChild(createCell('td', commaLocale(item.CLICK_CNT)));
 			row.appendChild(createCell('td', commaLocale(getRewardCount(item, cancelYn))));
 
 			let rewardRate;
-			if (item.clickCnt === 0 || getRewardCount(item, cancelYn) === 0) {
+			if (item.CLICK_CNT === 0 || getRewardCount(item, cancelYn) === 0) {
 				rewardRate = '0%';
 			} else {
-				rewardRate = (getRewardCount(item, cancelYn) / item.clickCnt * 100).toFixed(2) + '%';
+				rewardRate = (getRewardCount(item, cancelYn) / item.CLICK_CNT * 100).toFixed(2) + '%';
 			}
 			row.appendChild(createCell('td', rewardRate));
 			row.appendChild(createCell('td', commaLocale(getProductPrice(item, cancelYn)) + '원'));

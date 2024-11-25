@@ -133,37 +133,37 @@ function createKeywordCell(item, searchType) {
 // 건수 데이터
 function getRewardCount(item, cancelYn) {
   return cancelYn === 'N'
-    ? item.confirmRewardCnt
+    ? item.CONFIRM_REWARD_CNT
     : cancelYn === 'Y'
-    ? item.cancelRewardCnt
-    : item.rewardCnt;
+    ? item.CANCEL_REWARD_CNT
+    : item.REWARD_CNT;
 }
 
 // 구매액 데이터
 function getProductPrice(item, cancelYn) {
   return cancelYn === 'N'
-    ? item.confirmProductPrice
+    ? item.CONFIRM_PRODUCT_PRICE
     : cancelYn === 'Y'
-    ? item.cancelProductPrice
-    : item.productPrice;
+    ? item.CANCEL_PRODUCT_PRICE
+    : item.PRODUCT_PRICE;
 }
 
 // 커미션 매출 데이터
 function getCommission(item, cancelYn) {
   return cancelYn === 'N'
-    ? item.confirmCommission
+    ? item.COMFIRM_COMMISSION
     : cancelYn === 'Y'
-    ? item.cancelCommission
-    : item.commission;
+    ? item.CANCEL_COMMISSION
+    : item.COMMISSION;
 }
 
 // 커미션 이익 데이터
 function getCommissionProfit(item, cancelYn) {
   return cancelYn === 'N'
-    ? item.confirmCommissionProfit
+    ? item.COMFIRM_COMMISSION_PROFIT
     : cancelYn === 'Y'
-    ? item.cancelCommissionProfit
-    : item.commissionProfit;
+    ? item.CANCEL_COMMISSION_PROFIT
+    : item.COMMISSION_PROFIT;
 }
 
 // 버튼을 생성하는 함수
