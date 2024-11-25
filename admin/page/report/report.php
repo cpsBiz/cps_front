@@ -473,19 +473,19 @@
 	function renderSumRow(data, modal = false) {
 		const sumRow = document.createElement('tr');
 		sumRow.appendChild(createCell('th', '합계'));
-		sumRow.appendChild(createCell('th', commaLocale(data.CNT)));
-		sumRow.appendChild(createCell('th', commaLocale(data.CLICK_CNT)));
-		sumRow.appendChild(createCell('th', commaLocale(data.REWARD_CNT)));
+		sumRow.appendChild(createCell('th', commaLocale(data.cnt)));
+		sumRow.appendChild(createCell('th', commaLocale(data.clickCnt)));
+		sumRow.appendChild(createCell('th', commaLocale(data.rewardCnt)));
 		let rewardRate;
-		if (data.CLICK_CNT === 0 || data.REWARD_CNT === 0) {
+		if (data.clickCnt === 0 || data.rewardCnt === 0) {
 			rewardRate = '0%';
 		} else {
-			rewardRate = (data.REWARD_CNT / data.CLICK_CNT * 100).toFixed(2) + '%';
+			rewardRate = (data.rewardCnt / data.clickCnt * 100).toFixed(2) + '%';
 		}
 		sumRow.appendChild(createCell('th', rewardRate));
-		sumRow.appendChild(createCell('th', commaLocale(data.PRODUCT_PRICE) + '원'));
-		sumRow.appendChild(createCell('th', commaLocale(data.COMMISSION) + '원'));
-		sumRow.appendChild(createCell('th', commaLocale(data.COMMISSION_PROFIT) + '원'));
+		sumRow.appendChild(createCell('th', commaLocale(data.productPrice) + '원'));
+		sumRow.appendChild(createCell('th', commaLocale(data.commission) + '원'));
+		sumRow.appendChild(createCell('th', commaLocale(data.commissionProfit) + '원'));
 
 		if (!modal) {
 			const sumViewDetail = document.createElement('th');
