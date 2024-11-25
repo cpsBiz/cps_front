@@ -170,7 +170,7 @@
 
       $.ajax({
         type: 'POST',
-        url: 'https://admin.shoplus.io/api/admin/category',
+        url: '<?= $adminApiUrl; ?>/api/admin/category',
         contentType: 'application/json',
         data: JSON.stringify(requestData),
         success: function(result) {

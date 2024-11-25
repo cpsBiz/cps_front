@@ -548,7 +548,7 @@
     try {
       $.ajax({
         type: 'POST',
-        url: 'https://admin.shoplus.io/api/admin/memberSignIn',
+        url: '<?= $adminApiUrl; ?>/api/admin/memberSignIn',
         contentType: 'application/json',
         data: JSON.stringify(data),
         success: function(result) {

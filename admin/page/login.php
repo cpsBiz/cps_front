@@ -6,32 +6,32 @@
 <button onclick="login()">로그인</button>
 <script>
   function login() {
-    const id = document.getElementById('id').value;
-    const pw = document.getElementById('pw').value;
+    const id = document.getElementById('id').value.trim();
+    const pw = document.getElementById('pw').value.trim();
 
     if (!id) return alert('아이디를 입력해 주세요.');
     if (!pw) return alert('비밀번호를 입력해 주세요.');
 
-    try {
-      $.ajax({
-        type: 'POST',
-        url: '/api/login.php',
-        contentType: 'application/json',
-        dataType: 'JSON',
-        data: JSON.stringify({
-          id,
-          pw
-        }),
-        success: function(result) {
-          if (result.resultCode !== '0000') return alert(result.resultMessage);
+    $.ajax({
+      type: 'POST',
+      url: '/api/login.php',
+      contentType: 'application/json',
+      dataType: 'json',
+      data: JSON.stringify({
+        id,
+        pw
+      }),
+      success: function(result) {
+        if (result.resultCode === '0000') {
           location.href = '/page/report/report.php';
-        },
-        error: function(request, status, error) {
-          console.error(`Error: ${error}`);
+        } else {
+          alert(result.resultMessage);
         }
-      });
-    } catch (error) {
-      alert(error);
-    }
+      },
+      error: function(xhr, status, error) {
+        alert('로그인 처리 중 오류가 발생했습니다.');
+        console.error(error);
+      }
+    });
   }
 </script>

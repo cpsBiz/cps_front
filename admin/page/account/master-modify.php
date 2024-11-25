@@ -9,7 +9,7 @@
 
       $.ajax({
         type: 'POST',
-        url: 'https://admin.shoplus.io/api/admin/memberDetail',
+        url: '<?= $adminApiUrl; ?>/api/admin/memberDetail',
         contentType: 'application/json',
         dataType: 'JSON',
         data: JSON.stringify(requestData),
@@ -117,7 +117,7 @@
     try {
       $.ajax({
         type: 'POST',
-        url: 'https://admin.shoplus.io/api/admin/memberSignIn',
+        url: '<?= $adminApiUrl; ?>/api/admin/memberSignIn',
         contentType: 'application/json',
         dataType: 'JSON',
         data: requestData,

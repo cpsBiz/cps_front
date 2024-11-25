@@ -8,7 +8,7 @@
 
             $.ajax({
                 type: 'POST',
-                url: 'https://admin.shoplus.io/api/admin/inquiryDetail',
+                url: '<?= $adminApiUrl; ?>/api/admin/inquiryDetail',
                 contentType: 'application/json',
                 data: JSON.stringify(requestData),
                 success: function(result) {
@@ -311,7 +311,7 @@
 
             $.ajax({
                 type: 'POST',
-                url: 'https://admin.shoplus.io/api/admin/answer',
+                url: '<?= $adminApiUrl; ?>/api/admin/answer',
                 contentType: 'application/json',
                 data: JSON.stringify(requestData),
                 success: function(result) {

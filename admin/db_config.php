@@ -7,11 +7,17 @@ if (!$admin_login) {
 }
 
 // 데이터베이스 연결 정보
-$host = '192.168.3.15:3306';
-$username = 'CPS';
-$password = 'Emfla2017!@#';
-$database = 'CPS';
-
+if ($isTest) {
+  $host = '192.168.101.156:3306';
+  $username = 'CPS';
+  $password = 'Emfla2017!@#';
+  $database = 'CPS';
+} else {
+  $host = '192.168.3.15:3306';
+  $username = 'CPS';
+  $password = 'Emfla2017!@#';
+  $database = 'CPS';
+}
 // MySQL 데이터베이스 연결
 $con = mysqli_connect($host, $username, $password, $database);
 
