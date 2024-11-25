@@ -1,3 +1,7 @@
+<?
+error_reporting(E_ALL);
+ini_set("display_errors", 1);
+?>
 <? include_once $_SERVER['DOCUMENT_ROOT'] . "/db_config.php"; ?>
 <?
 // JSON 요청 데이터 받기
