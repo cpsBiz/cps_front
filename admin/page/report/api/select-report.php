@@ -1,4 +1,7 @@
 <?
+error_reporting(E_ALL);
+ini_set("display_erros", 1);
+
 // JSON 요청 데이터 받기
 $inputData = json_decode(file_get_contents("php://input"), true);
 
@@ -299,13 +302,11 @@ try {
     ];
   }
 } catch (Exception $e) {
-  $errorQuery = mysqli_info($con);
 
   $response = [
     'resultCode' => '9999',
     'resultMessage' => '조회 중 오류가 발생했습니다.',
     'data' => null,
-    'query' => $errorQuery
   ];
   error_log("Summary Search Error - Request: " . json_encode($request) . ", Error: " . $e->getMessage());
 }
