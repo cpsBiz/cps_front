@@ -48,7 +48,7 @@ function getSummarySearch($request)
 
   // 날짜 조건
   if ($request['dayType'] == 'MONTH') {
-    $where[] = "REG_TM BETWEEN ? AND ?";
+    $where[] = "REG_YM BETWEEN ? AND ?";
     $params[] = $request['regStart'];
     $params[] = $request['regEnd'];
     $types .= 'ss';
@@ -88,7 +88,7 @@ function getSummarySearch($request)
       $types .= 's';
     }
     if ($request['keywordType'] == 'CAMPAIGN' || $request['keywordType'] == 'ALL') {
-      $where[] = "(A.CAMPAPIGN_NAME LIKE ? OR A.CAMPAIGN_ID LIKE ?)";
+      $where[] = "(A.CAMPAIGN_NAME LIKE ? OR A.CAMPAIGN_ID LIKE ?)";
       $params[] = "%{$request['keyword']}%";
       $params[] = "%{$request['keyword']}%";
       $types .= 'ss';
