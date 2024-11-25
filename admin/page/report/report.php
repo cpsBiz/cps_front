@@ -450,7 +450,7 @@
 		renderSumRow(data);
 
 		// 데이터 테이블 렌더링
-		renderTableRows(data.datas);
+		renderTableRows(data.data);
 	}
 
 	// 첫번째 행 키워드 타이틀 설정 함수
