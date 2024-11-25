@@ -258,7 +258,7 @@
 			// AJAX 요청 수행
 			$.ajax({
 				type: 'POST',
-				url: '<?= $adminApiUrl; ?>/api/admin/summaryCount',
+				url: '/api/select-report.php',
 				contentType: 'application/json',
 				data: JSON.stringify(requestData),
 				success: function(result) {
