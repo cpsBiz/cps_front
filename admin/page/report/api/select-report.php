@@ -208,8 +208,18 @@ function getSummarySearch($request)
 
   // 정렬 조건
   if ($request['orderByName']) {
-    if (in_array($request['orderByName'], ['regDay', 'regYm', 'memberName', 'campaignName', 'affliateName', 'site', 'agencyName'])) {
-      $sql .= " ORDER BY A.{$request['orderByName']} {$request['orderBy']}";
+    $columnMap = [
+      'regDay' => 'REG_DAY',
+      'regYm' => 'REG_YM',
+      'memberName' => 'MEMBER_NAME',
+      'campaignName' => 'CAMPAIGN_NAME',
+      'affliateName' => 'AFFLIATE_NAME',
+      'site' => 'SITE',
+      'agencyName' => 'AGENCY_NAME'
+    ];
+
+    if (array_key_exists($request['orderByName'], $columnMap)) {
+      $sql .= " ORDER BY A.{$columnMap[$request['orderByName']]} {$request['orderBy']}";
     } else if ($request['orderByName'] == 'rewardRate') {
       $sql .= " ORDER BY (SUM(REWARD_CNT) / SUM(CLICK_CNT)) {$request['orderBy']}";
     } else {
