@@ -2,7 +2,6 @@
 error_reporting(E_ALL);
 ini_set("display_errors", 1);
 ?>
-<? include_once $_SERVER['DOCUMENT_ROOT'] . "/db_config.php"; ?>
 <?
 // JSON 요청 데이터 받기
 $inputData = json_decode(file_get_contents("php://input"), true);
@@ -44,7 +43,7 @@ $request = [
 
 function getSummarySearch($request)
 {
-  global $con;
+  include_once $_SERVER['DOCUMENT_ROOT'] . "/db_config.php";
 
   $where = [];
   $params = [];
