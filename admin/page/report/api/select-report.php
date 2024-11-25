@@ -141,22 +141,18 @@ function getSummarySearch($request)
               A.*,
               COUNT(*) as CNT,
               SUM(CLICK_CNT) as CLICK_CNT,
-              CASE 
-                  WHEN ? = 'N' THEN SUM(CONFIRM_REWARD_CNT)
-                  WHEN ? = 'Y' THEN SUM(CANCEL_REWARD_CNT)
-                  ELSE SUM(REWARD_CNT)
-              END as REWARD_CNT,
+              SUM(REWARD_CNT) as REWARD_CNT,
               CASE 
                   WHEN SUM(CLICK_CNT) = 0 THEN 0
                   ELSE ROUND(
                       (CASE 
-                          WHEN ? = 'N' THEN SUM(CONFIRM_REWARD_CNT)
-                          WHEN ? = 'Y' THEN SUM(CANCEL_REWARD_CNT)
+                          WHEN '{$request['cancelYn']}' = 'N' THEN SUM(CONFIRM_REWARD_CNT)
+                          WHEN '{$request['cancelYn']}' = 'Y' THEN SUM(CANCEL_REWARD_CNT)
                           ELSE SUM(REWARD_CNT)
-                      END / SUM(CLICK_CNT)) * 100, 2
+                      END / SUM(CLICK_CNT) * 100
+                      ), 2
                   )
               END as REWARD_RATE,
-              SUM(REWARD_CNT) as REWARD_CNT,
               SUM(PRODUCT_PRICE) as PRODUCT_PRICE,
               SUM(COMMISSION) as COMMISSION,
               SUM(COMMISSION_PROFIT) as COMMISSION_PROFIT,
@@ -200,11 +196,6 @@ function getSummarySearch($request)
                   SUMMARY_DAY
           ) A
           ";
-  $types .= 'ssss';
-  $params[] = $request['cancelYn'];
-  $params[] = $request['cancelYn'];
-  $params[] = $request['cancelYn'];
-  $params[] = $request['cancelYn'];
 
   $sql .= (!empty($where) ? "WHERE " . implode(" AND ", $where) : "");
 
@@ -239,7 +230,6 @@ function getSummarySearch($request)
       'agencyName' => 'AGENCY_NAME',
       'cnt' => 'CNT',
       'clickCnt' => 'CLICK_CNT',
-      'rewardRate' => 'REWARD_RATE',
       'rewardCnt' => 'REWARD_CNT',
       'productPrice' => 'PRODUCT_PRICE',
       'commissionProfit' => 'COMMISSION_PROFIT'
@@ -248,7 +238,7 @@ function getSummarySearch($request)
     if (array_key_exists($request['orderByName'], $columnMap)) {
       $sql .= " ORDER BY A.{$columnMap[$request['orderByName']]} {$request['orderBy']}";
     } else if ($request['orderByName'] == 'rewardRate') {
-      $sql .= " ORDER BY (SUM(REWARD_CNT) / SUM(CLICK_CNT)) {$request['orderBy']}";
+      $sql .= " ORDER BY REWARD_RATE {$request['orderBy']}";
     } else {
       $sql .= " ORDER BY SUM({$request['orderByName']}) {$request['orderBy']}";
     }
@@ -317,7 +307,8 @@ try {
     $response = [
       'resultCode' => '9001',
       'resultMessage' => '조회된 데이터가 없습니다.',
-      'data' => null
+      'datas' => [],
+      'totalCount' => 0
     ];
   } else {
     // 합계 계산
@@ -362,7 +353,8 @@ try {
   $response = [
     'resultCode' => '9999',
     'resultMessage' => '조회 중 오류가 발생했습니다.',
-    'data' => null,
+    'datas' => [],
+    'totalCount' => 0
   ];
   error_log("Summary Search Error - Request: " . json_encode($request) . ", Error: " . $e->getMessage());
 }
