@@ -305,7 +305,7 @@ try {
 } catch (Exception $e) {
   $errorQuery = mysqli_info($con);
 
-  $$response = [
+  $response = [
     'resultCode' => '9999',
     'resultMessage' => '조회 중 오류가 발생했습니다.',
     'data' => null,
