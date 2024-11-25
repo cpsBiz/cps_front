@@ -303,12 +303,17 @@ try {
     ];
   }
 } catch (Exception $e) {
+  $errorQuery = mysqli_info($con);
+
   $response = [
     'resultCode' => '9999',
     'resultMessage' => '조회 중 오류가 발생했습니다.',
-    'data' => null
+    'data' => null,
+    'query' => $errorQuery
   ];
-  error_log("Summary Search Error - Request: " . json_encode($request) . ", Error: " . $e->getMessage());
+  error_log("Summary Search Error - Request: " . json_encode($request) .
+    ", Query: " . $errorQuery .
+    ", Error: " . $e->getMessage());
 }
 
 
