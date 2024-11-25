@@ -391,7 +391,7 @@
 			// AJAX 요청 수행
 			$.ajax({
 				type: 'POST',
-				url: 'https://app.shoplus.io/api/schedule/summaryCount',
+				url: '<?= $adminApiUrl; ?>/api/schedule/summaryCount',
 				contentType: 'application/json',
 				data: JSON.stringify(requestData),
 				success: function(result) {
