@@ -503,6 +503,7 @@
 
 	// 테이블 행 렌더링 함수
 	function renderTableRows(tableData, modal = false, modalSearchType = '') {
+		console.log(tableData);
 		const reportData = document.getElementById(!modal ? 'reportData' : 'modal-reportData');
 		const searchType = !modalSearchType ? getSearchTypeValue() : modalSearchType;
 		const cancelYn = getCancelYnValue();

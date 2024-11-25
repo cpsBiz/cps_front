@@ -129,7 +129,7 @@
 		renderSumRow(data, true)
 
 		// 모달 데이터 리스트 처리
-		renderTableRows(data.datas, true, modalSearchType);
+		renderTableRows(data.data, true, modalSearchType);
 
 		// 모달 정렬 이벤트 추가
 		const sortableHeaders = document.querySelectorAll('th.modal-sort, th.modal-sortUp, th.modal-sortDown');
