@@ -51,23 +51,23 @@ function getSummarySearch($request)
 
   // 날짜 조건
   if ($request['dayType'] == 'MONTH') {
-    $where[] = "REG_YM BETWEEN ? AND ?";
-    $params[] = $request['regStart'];
-    $params[] = $request['regEnd'];
-    $types .= 'ss';
+    $where[] = "A.REG_YM BETWEEN ? AND ?";
+    $params[] = intval(substr($request['regStart'], 0, 6));
+    $params[] = intval(substr($request['regEnd'], 0, 6));
+    $types .= 'ii';
   } else if ($request['dayType'] == 'DAY') {
-    $where[] = "REG_DAY BETWEEN ? AND ?";
-    $params[] = $request['regStart'];
-    $params[] = $request['regEnd'];
-    $types .= 'ss';
+    $where[] = "A.REG_DAY BETWEEN ? AND ?";
+    $params[] = intval($request['regStart']);
+    $params[] = intval($request['regEnd']);
+    $types .= 'ii';
   } else if ($request['dayType'] == 'EQMONTH') {
-    $where[] = "REG_YM = ?";
-    $params[] = $request['keyword'];
-    $types .= 's';
+    $where[] = "A.REG_YM = ?";
+    $params[] = intval(substr($request['keyword'], 0, 6));
+    $types .= 'i';
   } else {
-    $where[] = "REG_DAY = ?";
-    $params[] = $request['keyword'];
-    $types .= 's';
+    $where[] = "A.REG_DAY = ?";
+    $params[] = intval($request['keyword']);
+    $types .= 'i';
   }
 
   // OS 조건
@@ -149,6 +149,7 @@ function getSummarySearch($request)
               SUM(USER_COMMISSION) as USER_COMMISSION
           FROM (
               SELECT 
+                REG_YM,
                 REG_DAY,
                 CAMPAIGN_NUM,
                 AFFLIATE_ID,
@@ -179,12 +180,9 @@ function getSummarySearch($request)
                 CANCEL_AFFLIATE_COMMISSION,
                 USER_COMMISSION,
                 COMFIRM_USER_COMMISSION,
-                CANCEL_USER_COMMISSION,
-                {$request['keyword']}as keyWordName
+                CANCEL_USER_COMMISSION
               FROM 
                   SUMMARY_DAY
-              WHERE 
-                  1=1
           ) A
           " . (!empty($where) ? "WHERE " . implode(" AND ", $where) : "");
 
@@ -257,6 +255,25 @@ function getSummarySearch($request)
         $row['COMMISSION_PROFIT'] = $row['COMFIRM_COMMISSION_PROFIT'];
         $row['AFFLIATE_COMMISSION'] = $row['COMFIRM_AFFLIATE_COMMISSION'];
         $row['USER_COMMISSION'] = $row['COMFIRM_USER_COMMISSION'];
+      }
+      if ($request['searchType'] == 'DAY') {
+        $row['keyWord'] = $row['REG_DAY'];
+        $row['keyWordName'] = $row['REG_DAY'];
+      } else if ($request['searchType'] == 'MONTH') {
+        $row['keyWord'] = $row['REG_YM'];
+        $row['keyWordName'] = $row['REG_YM'];
+      } else if ($request['searchType'] == 'MERCHANT') {
+        $row['keyWord'] = $row['MERCHANT_ID'];
+        $row['keyWordName'] = $row['MEMBER_NAME'];
+      } else if ($request['searchType'] == 'CAMPAIGN') {
+        $row['keyWord'] = $row['CAMPAIGN_NUM'];
+        $row['keyWordName'] = $row['CAMPAIGN_NAME'];
+      } else if ($request['searchType'] == 'AFFLIATE') {
+        $row['keyWord'] = $row['AFFLIATE_ID'];
+        $row['keyWordName'] = $row['AFFLIATE_NAME'];
+      } else if ($request['searchType'] == 'SITE') {
+        $row['keyWord'] = $row['SITE'];
+        $row['keyWordName'] = $row['SITE'];
       }
     }
   }

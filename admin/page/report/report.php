@@ -392,6 +392,7 @@
 			$.ajax({
 				type: 'POST',
 				url: './api/select-report.php',
+				// url: '<?= $adminApiUrl; ?>/api/schedule/summaryCount',
 				contentType: 'application/json',
 				data: JSON.stringify(requestData),
 				success: function(result) {
@@ -503,7 +504,6 @@
 
 	// 테이블 행 렌더링 함수
 	function renderTableRows(tableData, modal = false, modalSearchType = '') {
-		console.log(tableData);
 		const reportData = document.getElementById(!modal ? 'reportData' : 'modal-reportData');
 		const searchType = !modalSearchType ? getSearchTypeValue() : modalSearchType;
 		const cancelYn = getCancelYnValue();
@@ -523,7 +523,7 @@
 			if (item.CLICK_CNT === 0 || getRewardCount(item, cancelYn) === 0) {
 				rewardRate = '0%';
 			} else {
-				rewardRate = (getRewardCount(item, cancelYn) / item.CLICK_CNT * 100).toFixed(2) + '%';
+				rewardRate = (getRewardCount(item, cancelYn) / parseInt(item.CLICK_CNT) * 100).toFixed(2) + '%';
 			}
 			row.appendChild(createCell('td', rewardRate));
 			row.appendChild(createCell('td', commaLocale(getProductPrice(item, cancelYn)) + '원'));

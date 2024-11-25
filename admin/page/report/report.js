@@ -3,21 +3,21 @@ function formatAndCheckDate(dateStr) {
   let year, month, day;
   let formattedDate = '';
   let dayOfWeek = '';
-
+  const date = dateStr.toString();
   // 날짜 문자열 길이에 따라 연도, 월, 일을 파싱
-  if (dateStr.length === 6) {
+  if (date.length === 6) {
     // "YYYYMM" 형식
-    year = dateStr.substring(0, 4); // 연도
-    month = dateStr.substring(4, 6); // 월
+    year = date.substring(0, 4); // 연도
+    month = date.substring(4, 6); // 월
     formattedDate = `${year}.${month}`;
 
     // 해당 월의 첫날을 기준으로 요일 계산
     dayOfWeek = getDayOfWeek(new Date(year, month - 1, 1));
-  } else if (dateStr.length === 8) {
+  } else if (date.length === 8) {
     // "YYYYMMDD" 형식
-    year = dateStr.substring(0, 4); // 연도
-    month = dateStr.substring(4, 6); // 월
-    day = dateStr.substring(6, 8); // 일
+    year = date.substring(0, 4); // 연도
+    month = date.substring(4, 6); // 월
+    day = date.substring(6, 8); // 일
     formattedDate = `${year}.${month}.${day}`;
 
     // 해당 날짜로 요일 계산
@@ -133,37 +133,37 @@ function createKeywordCell(item, searchType) {
 // 건수 데이터
 function getRewardCount(item, cancelYn) {
   return cancelYn === 'N'
-    ? item.CONFIRM_REWARD_CNT
+    ? parseInt(item.CONFIRM_REWARD_CNT)
     : cancelYn === 'Y'
-    ? item.CANCEL_REWARD_CNT
-    : item.REWARD_CNT;
+    ? parseInt(item.CANCEL_REWARD_CNT)
+    : parseInt(item.REWARD_CNT);
 }
 
 // 구매액 데이터
 function getProductPrice(item, cancelYn) {
   return cancelYn === 'N'
-    ? item.CONFIRM_PRODUCT_PRICE
+    ? parseInt(item.CONFIRM_PRODUCT_PRICE)
     : cancelYn === 'Y'
-    ? item.CANCEL_PRODUCT_PRICE
-    : item.PRODUCT_PRICE;
+    ? parseInt(item.CANCEL_PRODUCT_PRICE)
+    : parseInt(item.PRODUCT_PRICE);
 }
 
 // 커미션 매출 데이터
 function getCommission(item, cancelYn) {
   return cancelYn === 'N'
-    ? item.COMFIRM_COMMISSION
+    ? parseInt(item.COMFIRM_COMMISSION)
     : cancelYn === 'Y'
-    ? item.CANCEL_COMMISSION
-    : item.COMMISSION;
+    ? parseInt(item.CANCEL_COMMISSION)
+    : parseInt(item.COMMISSION);
 }
 
 // 커미션 이익 데이터
 function getCommissionProfit(item, cancelYn) {
   return cancelYn === 'N'
-    ? item.COMFIRM_COMMISSION_PROFIT
+    ? parseInt(item.COMFIRM_COMMISSION_PROFIT)
     : cancelYn === 'Y'
-    ? item.CANCEL_COMMISSION_PROFIT
-    : item.COMMISSION_PROFIT;
+    ? parseInt(item.CANCEL_COMMISSION_PROFIT)
+    : parseInt(item.COMMISSION_PROFIT);
 }
 
 // 버튼을 생성하는 함수
