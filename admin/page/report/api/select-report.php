@@ -13,7 +13,7 @@ $keywordType = $inputData['keywordType'] ?? null;
 $keyword = $inputData['keyword'] ?? null;
 $type = $inputData['type'] ?? null;
 $searchId = $inputData['searchId'] ?? null;
-$page = $inputData['page'] ?? 0;
+$page = $inputData['page'] ?? 1;
 $size = $inputData['size'] ?? 40;
 $orderBy = $inputData['orderBy'] ?? 'DESC';
 $orderByName = $inputData['orderByName'] ?? null;
@@ -274,8 +274,13 @@ function getSummarySearch($request)
           )A
           LIMIT ?, ?
           ";
-  $params[] = ($request['page'] * ($request['size'] ?: 40));
-  $params[] = ($request['size'] ?: 40);
+
+  $page = (int)(isset($request['page']) ? $request['page'] : 1);
+  $per = $request['size'];
+  $page_int = ($page - 1) * $per;
+
+  $params[] = $page_int;
+  $params[] = $per;
   $types .= 'ii';
 
   $stmt = mysqli_stmt_init($con);

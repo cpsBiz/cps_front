@@ -90,6 +90,7 @@
 		tableDataNone.style.display = 'none';
 
 		// 데이터 렌더링 및 페이지네이션 설정
+		$('#modal-size').val(size).prop("selected", true);
 		reportModalOpen(data, modalSearchType, btn, refresh);
 		renderPagination(data.totalCount, size, page, true);
 	}

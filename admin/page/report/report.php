@@ -103,7 +103,7 @@
 							</div>
 							<div class="searchBox">
 								<input id="keyword" type="text" placeholder="ID/명/법인명">
-								<button type="button" class="search" onclick="getReport()">검색</button>
+								<button type="button" class="search" onclick="getReport('', false, '', '', true)">검색</button>
 							</div>
 						</div>
 					</div>
@@ -263,10 +263,10 @@
 	})
 
 	// 현재 페이지 초기화 변수
-	let page = 0;
+	let page = 1;
 
 	// 모달 페이지 초기화 변수
-	let modalPage = 0;
+	let modalPage = 1;
 
 	// 페이지이동시 정렬 유지 변수 
 	let checkOrderByData = {
@@ -281,8 +281,10 @@
 	function getReport(orderByData = {
 		orderBy: 'DESC',
 		orderByName: ''
-	}, detail = false, detailKeyword = '', btn = '') {
+	}, detail = false, detailKeyword = '', btn = '', reset = false) {
 		try {
+			if (reset) page = 1;
+			if (detail && reset) modalPage = 1;
 			// 상세보기 선택에서 월별은 제외한 나머지는 DAY
 			let dayType = document.querySelector('input[name="searchType"]:checked').value === 'MONTH' ? 'MONTH' : 'DAY';
 
@@ -529,7 +531,7 @@
 
 	// 페이지네이션 버튼 렌더링
 	function renderPagination(totalCount, size, page, modal = false) {
-		const currentPage = page === 0 ? 1 : page;
+		const currentPage = page;
 
 		// 총 페이지 수 계산
 		const totalPages = Math.ceil(totalCount / size);
@@ -548,7 +550,7 @@
 			prevPage.classList.add('disabled');
 			prevPage.innerHTML = `<a href="javascript:void(0);"></a>`;
 		} else {
-			prevPage.innerHTML = `<a href="javascript:pageLink(${Math.max(currentPage - 2, 1)}, ${modal});"></a>`;
+			prevPage.innerHTML = `<a href="javascript:pageLink(${Math.max(currentPage - 1, 1)}, ${modal});"></a>`;
 		}
 		paginationContainer.appendChild(prevPage);
 
@@ -558,7 +560,7 @@
 
 		for (let i = startPage; i <= endPage; i++) {
 			const pageItem = document.createElement('li');
-			pageItem.innerHTML = `<a href="javascript:pageLink(${i-1}, ${modal});">${i}</a>`;
+			pageItem.innerHTML = `<a href="javascript:pageLink(${i}, ${modal});">${i}</a>`;
 
 			// 현재 페이지에 `on` 클래스 추가
 			if (i === currentPage) {
@@ -576,14 +578,14 @@
 			nextPage.classList.add('disabled');
 			nextPage.innerHTML = `<a href="javascript:void(0);"></a>`;
 		} else {
-			nextPage.innerHTML = `<a href="javascript:pageLink(${Math.min(currentPage + 2, totalPages)}, ${modal});"></a>`;
+			nextPage.innerHTML = `<a href="javascript:pageLink(${Math.min(currentPage + 1, totalPages)}, ${modal});"></a>`;
 		}
 		paginationContainer.appendChild(nextPage);
 	}
 
 	// 상세보기 데이터 조회
 	function getViewDetailData(keyword, btn) {
-		getReport('', true, keyword, btn);
+		getReport('', true, keyword, btn, true);
 	}
 
 
