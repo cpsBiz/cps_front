@@ -114,10 +114,10 @@ function createCell(tag, textContent) {
 // 키워드 셀 생성 함수 (검색 타입에 따라 날짜 처리 포함)
 function createKeywordCell(item, searchType) {
   const keyword = document.createElement('td');
-  let keywordText = item.keyWordName;
+  let keywordText = item.KEYWORD_NAME;
 
   if (searchType === 'DAY' || searchType === 'MONTH') {
-    const [formattedDate, dayIndex] = formatAndCheckDate(item.keyWordName);
+    const [formattedDate, dayIndex] = formatAndCheckDate(item.KEYWORD_NAME);
     keywordText = formattedDate;
 
     if (searchType === 'DAY') {
@@ -128,42 +128,6 @@ function createKeywordCell(item, searchType) {
 
   keyword.textContent = keywordText;
   return keyword;
-}
-
-// 건수 데이터
-function getRewardCount(item, cancelYn) {
-  return cancelYn === 'N'
-    ? parseInt(item.CONFIRM_REWARD_CNT)
-    : cancelYn === 'Y'
-    ? parseInt(item.CANCEL_REWARD_CNT)
-    : parseInt(item.REWARD_CNT);
-}
-
-// 구매액 데이터
-function getProductPrice(item, cancelYn) {
-  return cancelYn === 'N'
-    ? parseInt(item.CONFIRM_PRODUCT_PRICE)
-    : cancelYn === 'Y'
-    ? parseInt(item.CANCEL_PRODUCT_PRICE)
-    : parseInt(item.PRODUCT_PRICE);
-}
-
-// 커미션 매출 데이터
-function getCommission(item, cancelYn) {
-  return cancelYn === 'N'
-    ? parseInt(item.COMFIRM_COMMISSION)
-    : cancelYn === 'Y'
-    ? parseInt(item.CANCEL_COMMISSION)
-    : parseInt(item.COMMISSION);
-}
-
-// 커미션 이익 데이터
-function getCommissionProfit(item, cancelYn) {
-  return cancelYn === 'N'
-    ? parseInt(item.COMFIRM_COMMISSION_PROFIT)
-    : cancelYn === 'Y'
-    ? parseInt(item.CANCEL_COMMISSION_PROFIT)
-    : parseInt(item.COMMISSION_PROFIT);
 }
 
 // 버튼을 생성하는 함수

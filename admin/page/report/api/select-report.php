@@ -1,7 +1,4 @@
 <?
-error_reporting(E_ALL);
-ini_set("display_erros", 1);
-
 // JSON 요청 데이터 받기
 $inputData = json_decode(file_get_contents("php://input"), true);
 
@@ -91,7 +88,7 @@ function getSummarySearch($request)
       $types .= 's';
     }
     if ($request['keywordType'] == 'CAMPAIGN' || $request['keywordType'] == 'ALL') {
-      $where[] = "(A.CAMPAIGN_NAME LIKE ? OR A.CAMPAIGN_ID LIKE ?)";
+      $where[] = "(A.CAMPAIGN_NAME LIKE ? OR A.CAMPAIGN_NUM LIKE ?)";
       $params[] = "%{$request['keyword']}%";
       $params[] = "%{$request['keyword']}%";
       $types .= 'ss';
@@ -136,94 +133,48 @@ function getSummarySearch($request)
     $types .= 's';
   }
 
-  $sql = "
-          SELECT 
-              A.*,
-              COUNT(*) as CNT,
-              SUM(CLICK_CNT) as CLICK_CNT,
-              SUM(REWARD_CNT) as REWARD_CNT,
-              CASE 
-                  WHEN SUM(CLICK_CNT) = 0 THEN 0
-                  ELSE ROUND(
-                      (CASE 
-                          WHEN '{$request['cancelYn']}' = 'N' THEN SUM(CONFIRM_REWARD_CNT)
-                          WHEN '{$request['cancelYn']}' = 'Y' THEN SUM(CANCEL_REWARD_CNT)
-                          ELSE SUM(REWARD_CNT)
-                      END / SUM(CLICK_CNT) * 100
-                      ), 2
-                  )
-              END as REWARD_RATE,
-              SUM(PRODUCT_PRICE) as PRODUCT_PRICE,
-              SUM(COMMISSION) as COMMISSION,
-              SUM(COMMISSION_PROFIT) as COMMISSION_PROFIT,
-              SUM(AFFLIATE_COMMISSION) as AFFLIATE_COMMISSION,
-              SUM(USER_COMMISSION) as USER_COMMISSION
-          FROM (
-              SELECT 
-                REG_YM,
-                REG_DAY,
-                CAMPAIGN_NUM,
-                AFFLIATE_ID,
-                MERCHANT_ID,
-                AGENCY_ID,
-                ZONE_ID,
-                SITE,
-                OS,
-                MEMBER_NAME,
-                CAMPAIGN_NAME,
-                AFFLIATE_NAME,
-                AGENCY_NAME,
-                CLICK_CNT,
-                REWARD_CNT,
-                CONFIRM_REWARD_CNT,
-                CANCEL_REWARD_CNT,
-                PRODUCT_PRICE,
-                CONFIRM_PRODUCT_PRICE,
-                CANCEL_PRODUCT_PRICE,
-                COMMISSION,
-                COMFIRM_COMMISSION,
-                CANCEL_COMMISSION,
-                COMMISSION_PROFIT,
-                COMFIRM_COMMISSION_PROFIT,
-                CANCEL_COMMISSION_PROFIT,
-                AFFLIATE_COMMISSION,
-                COMFIRM_AFFLIATE_COMMISSION,
-                CANCEL_AFFLIATE_COMMISSION,
-                USER_COMMISSION,
-                COMFIRM_USER_COMMISSION,
-                CANCEL_USER_COMMISSION
-              FROM 
-                  SUMMARY_DAY
-          ) A
-          ";
-
-  $sql .= (!empty($where) ? "WHERE " . implode(" AND ", $where) : "");
-
   // 그룹핑 설정
   if ($request['searchType']) {
     $groupBy = "";
     if ($request['searchType'] == 'DAY') {
-      $groupBy = "GROUP BY A.REG_DAY";
+      $groupBy = "A.REG_DAY";
+      $sqlKeyword = "A.REG_DAY";
+      $sqlKeywordName = "A.REG_DAY";
     } else if ($request['searchType'] == 'MONTH') {
-      $groupBy = "GROUP BY A.REG_YM";
+      $groupBy = "A.REG_YM";
+      $sqlKeyword = "A.REG_YM";
+      $sqlKeywordName = "A.REG_YM";
     } else if ($request['searchType'] == 'MERCHANT') {
-      $groupBy = "GROUP BY A.MERCHANT_ID";
+      $groupBy = "A.MERCHANT_ID";
+      $sqlKeyword = "A.MERCHANT_ID";
+      $sqlKeywordName = "A.MERCHANT_NAME";
     } else if ($request['searchType'] == 'CAMPAIGN') {
-      $groupBy = "GROUP BY A.CAMPAIGN_NUM";
+      $groupBy = "A.CAMPAIGN_NUM";
+      $sqlKeyword = "A.CAMPAIGN_NUM";
+      $sqlKeywordName = "A.CAMPAIGN_NAME";
     } else if ($request['searchType'] == 'AFFLIATE') {
-      $groupBy = "GROUP BY A.AFFLIATE_ID";
+      $groupBy = "A.AFFLIATE_ID";
+      $sqlKeyword = "A.AFFLIATE_ID";
+      $sqlKeywordName = "A.AFFLIATE_NAME";
     } else if ($request['searchType'] == 'SITE') {
-      $groupBy = "GROUP BY A.SITE";
+      $groupBy = "A.SITE";
+      $sqlKeyword = "A.SITE";
+      $sqlKeywordName = "A.SITE";
     } else if ($request['searchType'] == 'MEMBERAGC') {
-      $groupBy = "GROUP BY A.AGENCY_ID";
+      $groupBy = "A.AGENCY_ID";
+      $sqlKeyword = "A.AGENCY_ID";
+      $sqlKeywordName = "A.AGENCY_NAME";
     } else if ($request['searchType'] == 'MEMBERAFF') {
-      $groupBy = "GROUP BY A.AGENCY_ID";
+      $groupBy = "A.AGENCY_ID";
+      $sqlKeyword = "A.AGENCY_ID";
+      $sqlKeywordName = "A.AGENCY_NAME";
     }
-    $sql .= " " . $groupBy;
   }
 
   // 정렬 조건
   if ($request['orderByName']) {
+    $orderBy = "";
+
     $columnMap = [
       'regDay' => 'REG_DAY',
       'regYm' => 'REG_YM',
@@ -232,28 +183,97 @@ function getSummarySearch($request)
       'affliateName' => 'AFFLIATE_NAME',
       'site' => 'SITE',
       'agencyName' => 'AGENCY_NAME',
-    ];
-
-    $columnMap2 = [
       'cnt' => 'CNT',
       'rewardRate' => 'REWARD_RATE',
       'clickCnt' => 'CLICK_CNT',
       'rewardCnt' => 'REWARD_CNT',
       'productPrice' => 'PRODUCT_PRICE',
+      'commission' => 'COMMISSION',
       'commissionProfit' => 'COMMISSION_PROFIT'
     ];
 
     if (array_key_exists($request['orderByName'], $columnMap)) {
-      $sql .= " ORDER BY A.{$columnMap[$request['orderByName']]} {$request['orderBy']}";
-    } else if (array_key_exists($request['orderByName'], $columnMap2)) {
-      $sql .= " ORDER BY {$columnMap2[$request['orderByName']]} {$request['orderBy']}";
+      $orderBy = "A.{$columnMap[$request['orderByName']]} {$request['orderBy']}";
     } else {
-      $sql .= " ORDER BY SUM({$request['orderByName']}) {$request['orderBy']}";
+      $orderBy = "SUM({$request['orderByName']}) {$request['orderBy']}";
     }
   }
 
-  // 페이징
-  $sql .= " LIMIT ?, ?";
+  $sql = "
+          SELECT A.*
+          FROM(
+            SELECT 
+              {$sqlKeyword} AS KEYWORD, {$sqlKeywordName} AS KEYWORD_NAME,
+              A.CNT, A.CLICK_CNT, 
+              A.REWARD_CNT, A.PRODUCT_PRICE, A.COMMISSION, A.COMMISSION_PROFIT, A.AFFLIATE_COMMISSION, A.USER_COMMISSION, A.REWARD_RATE,
+              A.TOTAL_CNT,
+              SUM(A.CNT) OVER() AS TOTAL_VIEW_CNT,
+              SUM(A.CLICK_CNT) OVER() AS TOTAL_CLICK_CNT,
+              SUM(A.REWARD_CNT) OVER() AS TOTAL_REWARD_CNT,
+              SUM(A.PRODUCT_PRICE) OVER() AS TOTAL_PRODUCT_PRICE,
+              SUM(A.COMMISSION) OVER() AS TOTAL_COMMISSION,
+              SUM(A.COMMISSION_PROFIT) OVER() AS TOTAL_COMMISSION_PROFIT,
+              SUM(A.AFFLIATE_COMMISSION) OVER() AS TOTAL_AFFLIATE_COMMISSION,
+              SUM(A.USER_COMMISSION) OVER() AS TOTAL_USER_COMMISSION,
+              ROUND((SUM(A.REWARD_CNT) OVER() / SUM(A.CLICK_CNT) OVER() * 100), 2) AS TOTAL_REWARD_RATE
+            FROM(
+              SELECT
+                A.REG_DAY, A.REG_YM, A.CAMPAIGN_NUM,
+                A.AFFLIATE_ID, A.MERCHANT_ID, A.AGENCY_ID, A.ZONE_ID,
+                A.SITE, A.OS, 
+                A.MEMBER_NAME, A.CAMPAIGN_NAME, A.AFFLIATE_NAME, A.AGENCY_NAME,
+                COUNT(*) OVER() AS TOTAL_CNT,
+                SUM(A.CNT) AS CNT,
+                SUM(A.CLICK_CNT) AS CLICK_CNT, 
+                CASE 
+                  WHEN '{$request['cancelYn']}' = 'N' THEN SUM(A.CONFIRM_REWARD_CNT)
+                  WHEN '{$request['cancelYn']}' = 'Y' THEN SUM(A.CANCEL_REWARD_CNT)
+                  ELSE SUM(A.REWARD_CNT)
+                END AS REWARD_CNT,
+                CASE 
+                  WHEN '{$request['cancelYn']}' = 'N' THEN SUM(A.CONFIRM_PRODUCT_PRICE)
+                  WHEN '{$request['cancelYn']}' = 'Y' THEN SUM(A.CANCEL_PRODUCT_PRICE)
+                  ELSE SUM(A.PRODUCT_PRICE)
+                END AS PRODUCT_PRICE,
+                CASE 
+                  WHEN '{$request['cancelYn']}' = 'N' THEN SUM(A.COMFIRM_COMMISSION)
+                  WHEN '{$request['cancelYn']}' = 'Y' THEN SUM(A.CANCEL_COMMISSION)
+                  ELSE SUM(A.COMMISSION)
+                END AS COMMISSION,
+                CASE 
+                  WHEN '{$request['cancelYn']}' = 'N' THEN SUM(A.COMFIRM_COMMISSION_PROFIT)
+                  WHEN '{$request['cancelYn']}' = 'Y' THEN SUM(A.CANCEL_COMMISSION_PROFIT)
+                  ELSE SUM(A.COMMISSION_PROFIT)
+                END AS COMMISSION_PROFIT,
+                CASE 
+                  WHEN '{$request['cancelYn']}' = 'N' THEN SUM(A.COMFIRM_AFFLIATE_COMMISSION)
+                  WHEN '{$request['cancelYn']}' = 'Y' THEN SUM(A.CANCEL_AFFLIATE_COMMISSION)
+                  ELSE SUM(A.AFFLIATE_COMMISSION)
+                END AS AFFLIATE_COMMISSION,
+                CASE 
+                  WHEN '{$request['cancelYn']}' = 'N' THEN SUM(A.COMFIRM_USER_COMMISSION)
+                  WHEN '{$request['cancelYn']}' = 'Y' THEN SUM(A.CANCEL_USER_COMMISSION)
+                  ELSE SUM(A.USER_COMMISSION)
+                END AS USER_COMMISSION,
+                CASE 
+                  WHEN SUM(CLICK_CNT) = 0 THEN 0
+                  ELSE ROUND(
+                      (CASE 
+                          WHEN '{$request['cancelYn']}' = 'N' THEN SUM(A.CONFIRM_REWARD_CNT)
+                          WHEN '{$request['cancelYn']}' = 'Y' THEN SUM(A.CANCEL_REWARD_CNT)
+                          ELSE SUM(A.REWARD_CNT)
+                      END / SUM(A.CLICK_CNT) * 100
+                      ), 2
+                  )
+                END as REWARD_RATE
+              FROM SUMMARY_DAY A
+              " . (!empty($where) ? "WHERE " . implode(" AND ", $where) : "") . "
+              " . (!empty($groupBy) ? "GROUP BY " . $groupBy : "") . "
+            )A
+            " . (!empty($orderBy) ? "ORDER BY " . $orderBy : "") . "
+          )A
+          LIMIT ?, ?
+          ";
   $params[] = ($request['page'] * ($request['size'] ?: 40));
   $params[] = ($request['size'] ?: 40);
   $types .= 'ii';
@@ -264,44 +284,6 @@ function getSummarySearch($request)
     mysqli_stmt_execute($stmt);
     $result = mysqli_stmt_get_result($stmt);
     $data = mysqli_fetch_all($result, MYSQLI_ASSOC);
-
-    // 취소 여부에 따른 데이터 처리
-    foreach ($data as &$row) {
-      if ($request['cancelYn'] == 'Y') {
-        $row['REWARD_CNT'] = $row['CANCEL_REWARD_CNT'];
-        $row['PRODUCT_PRICE'] = $row['CANCEL_PRODUCT_PRICE'];
-        $row['COMMISSION'] = $row['CANCEL_COMMISSION'];
-        $row['COMMISSION_PROFIT'] = $row['CANCEL_COMMISSION_PROFIT'];
-        $row['AFFLIATE_COMMISSION'] = $row['CANCEL_AFFLIATE_COMMISSION'];
-        $row['USER_COMMISSION'] = $row['CANCEL_USER_COMMISSION'];
-      } else if ($request['cancelYn'] == 'N') {
-        $row['REWARD_CNT'] = $row['COMFIRM_REWARD_CNT'];
-        $row['PRODUCT_PRICE'] = $row['COMFIRM_PRODUCT_PRICE'];
-        $row['COMMISSION'] = $row['COMFIRM_COMMISSION'];
-        $row['COMMISSION_PROFIT'] = $row['COMFIRM_COMMISSION_PROFIT'];
-        $row['AFFLIATE_COMMISSION'] = $row['COMFIRM_AFFLIATE_COMMISSION'];
-        $row['USER_COMMISSION'] = $row['COMFIRM_USER_COMMISSION'];
-      }
-      if ($request['searchType'] == 'DAY') {
-        $row['keyWord'] = $row['REG_DAY'];
-        $row['keyWordName'] = $row['REG_DAY'];
-      } else if ($request['searchType'] == 'MONTH') {
-        $row['keyWord'] = $row['REG_YM'];
-        $row['keyWordName'] = $row['REG_YM'];
-      } else if ($request['searchType'] == 'MERCHANT') {
-        $row['keyWord'] = $row['MERCHANT_ID'];
-        $row['keyWordName'] = $row['MEMBER_NAME'];
-      } else if ($request['searchType'] == 'CAMPAIGN') {
-        $row['keyWord'] = $row['CAMPAIGN_NUM'];
-        $row['keyWordName'] = $row['CAMPAIGN_NAME'];
-      } else if ($request['searchType'] == 'AFFLIATE') {
-        $row['keyWord'] = $row['AFFLIATE_ID'];
-        $row['keyWordName'] = $row['AFFLIATE_NAME'];
-      } else if ($request['searchType'] == 'SITE') {
-        $row['keyWord'] = $row['SITE'];
-        $row['keyWordName'] = $row['SITE'];
-      }
-    }
   }
   return $data;
 }
@@ -320,26 +302,16 @@ try {
     ];
   } else {
     // 합계 계산
-    $totalCount = count($result);
-    $cnt = 0;
-    $clickCnt = 0;
-    $rewardCnt = 0;
-    $productPrice = 0;
-    $commission = 0;
-    $commissionProfit = 0;
-    $affliateCommission = 0;
-    $userCommission = 0;
-
-    foreach ($result as $row) {
-      $cnt += $row['CNT'];
-      $clickCnt += $row['CLICK_CNT'];
-      $rewardCnt += $row['REWARD_CNT'];
-      $productPrice += $row['PRODUCT_PRICE'];
-      $commission += $row['COMMISSION'];
-      $commissionProfit += $row['COMMISSION_PROFIT'];
-      $affliateCommission += $row['AFFLIATE_COMMISSION'];
-      $userCommission += $row['USER_COMMISSION'];
-    }
+    $totalCount = $result[0]['TOTAL_CNT'];
+    $cnt = $result[0]['TOTAL_VIEW_CNT'];
+    $clickCnt = $result[0]['TOTAL_CLICK_CNT'];
+    $rewardCnt = $result[0]['TOTAL_REWARD_CNT'];
+    $productPrice = $result[0]['TOTAL_PRODUCT_PRICE'];
+    $commission = $result[0]['TOTAL_COMMISSION'];
+    $commissionProfit = $result[0]['TOTAL_COMMISSION_PROFIT'];
+    $affliateCommission = $result[0]['TOTAL_AFFLIATE_COMMISSION'];
+    $userCommission = $result[0]['TOTAL_USER_COMMISSION'];
+    $rewardRate = $result[0]['TOTAL_REWARD_RATE'];
 
     $response = [
       'resultCode' => '0000',
@@ -353,6 +325,7 @@ try {
       'commissionProfit' => $commissionProfit,
       'affliateCommission' => $affliateCommission,
       'userCommission' => $userCommission,
+      'rewardRate' => $rewardRate,
       'data' => $result
     ];
   }
