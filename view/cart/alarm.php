@@ -23,7 +23,7 @@
     <div class="page-alarm">
       <div class="alarm-list-wrap type1"></div>
     </div>
-    <div id="alarm-list-none">받은 알림이 아직 없습니다.</div>
+    <div id="alarm-list-none" style="display: none;">받은 알림이 아직 없습니다.</div>
   </div>
   <script src="../js/common.js?version=<?= $cacheVersion; ?>"></script>
 </body>
@@ -58,8 +58,6 @@
           console.error(`Error: ${error}`);
         },
       });
-      renderAlarmList();
-
     } catch (error) {
       alert(error);
     }
