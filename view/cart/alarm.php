@@ -78,6 +78,7 @@
       list += `
               <div class="list blue" onclick="">
                 <div class="alarm-head">
+                  <p class="title"></p>
                   <p class="date">${formatDate(item.regDate)}</p>
                 </div>
                 <div class="alarm-cont">
