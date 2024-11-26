@@ -75,8 +75,19 @@
       const formatDate = (dateStr) => {
         return dateStr.replace(/-/g, '.').slice(0, -3);
       }
+
+      const params = {
+        userId: '<?= $checkUserId; ?>',
+        affliateId: '<?= $checkAffliateId; ?>',
+        merchantId: item.merchantId,
+        productCode: item.productCode,
+        optionCode: item.optionCode
+      }
+
+      const itemStr = base64Encode(JSON.stringify(params));
+
       list += `
-              <div class="list blue" onclick="">
+              <div class="list blue" onclick="postToUrl('${itemStr}')">
                 <div class="alarm-head">
                   <p class="title"></p>
                   <p class="date">${formatDate(item.regDate)}</p>
@@ -99,5 +110,9 @@
 
     $('.alarm-list-wrap').empty();
     $('.alarm-list-wrap').append(list);
+  }
+
+  function postToUrl(item) {
+    location.href = `detail.php?object=${item}`;
   }
 </script>
