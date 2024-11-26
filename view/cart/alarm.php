@@ -72,11 +72,13 @@
       const productPrice = item.productPrice;
       const price = calculatePriceChange(cartPrice, productPrice);
 
+      const formatDate = (dateStr) => {
+        return dateStr.replace(/-/g, '.').slice(0, -3);
+      }
       list += `
               <div class="list blue" onclick="">
                 <div class="alarm-head">
-                  <p class="title">[${item.type}]</p>
-                  <p class="date">${item.regDate}</p>
+                  <p class="date">${formatDate(item.regDate)}</p>
                 </div>
                 <div class="alarm-cont">
                   <div
