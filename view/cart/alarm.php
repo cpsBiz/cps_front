@@ -22,8 +22,8 @@
     <!-- hana class 추가 시 시그니처 컬러 변경 -->
     <div class="page-alarm">
       <div class="alarm-list-wrap type1"></div>
+      <div id="alarm-list-none" style="display: none;">받은 알림이 아직 없습니다.</div>
     </div>
-    <div id="alarm-list-none" style="display: none;">받은 알림이 아직 없습니다.</div>
   </div>
   <script src="../js/common.js?version=<?= $cacheVersion; ?>"></script>
 </body>
