@@ -33,37 +33,30 @@
     getAlarmList();
   })
 
-  const exData = [{
-    id: 1,
-    type: '가격하락 안내',
-    productName: '더리얼 비타민D 5000IU',
-    cartPrice: 18000,
-    productPrice: 13500,
-    regDate: '2024-11-20 18:00:00',
-    merchantId: '11st'
-  }, {
-    id: 2,
-    type: '가격하락 안내',
-    productName: '더리얼 비타민D 5000IU',
-    cartPrice: 18000,
-    productPrice: 13500,
-    regDate: '2024-11-20 18:00:00',
-    merchantId: '11st'
-  }, {
-    id: 3,
-    type: '가격하락 안내',
-    productName: '더리얼 비타민D 5000IU',
-    cartPrice: 18000,
-    productPrice: 13500,
-    regDate: '2024-11-20 18:00:00',
-    merchantId: '11st'
-  }, ]
-
   function getAlarmList() {
     try {
       const requestData = {
-
+        userId: '<?= $checkUserId; ?>',
+        affliateId: '<?= $checkAffliateId; ?>',
+        merchantId: 'coupang'
       };
+
+      $.ajax({
+        type: 'POST',
+        url: '<?= $appApiUrl; ?>/api/cart/pushList',
+        contentType: 'application/json',
+        data: JSON.stringify(requestData),
+        success: function(result) {
+          if (result.resultCode !== '0000') {
+            alert(result.resultMessage);
+            return
+          }
+          renderAlarmList(result.datas);
+        },
+        error: function(request, status, error) {
+          console.error(`Error: ${error}`);
+        },
+      });
       renderAlarmList();
 
     } catch (error) {
@@ -74,13 +67,13 @@
   function renderAlarmList(data) {
     let list = '';
 
-    exData.forEach(item => {
+    data.forEach(item => {
       const cartPrice = item.cartPrice;
       const productPrice = item.productPrice;
       const price = calculatePriceChange(cartPrice, productPrice);
 
       list += `
-              <div class="list blue" onclick="location.href='alarmDetail.php?id=${item.id}'">
+              <div class="list blue" onclick="">
                 <div class="alarm-head">
                   <p class="title">[${item.type}]</p>
                   <p class="date">${item.regDate}</p>
