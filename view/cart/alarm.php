@@ -23,6 +23,7 @@
     <div class="page-alarm">
       <div class="alarm-list-wrap type1"></div>
     </div>
+    <div id="alarm-list-none">받은 알림이 아직 없습니다.</div>
   </div>
   <script src="../js/common.js?version=<?= $cacheVersion; ?>"></script>
 </body>
@@ -47,11 +48,7 @@
         contentType: 'application/json',
         data: JSON.stringify(requestData),
         success: function(result) {
-          if (result.resultCode !== '0000') {
-            alert(result.resultMessage);
-            return
-          }
-          renderAlarmList(result.datas);
+          result.datas ? renderAlarmList(result.datas) : $('#alarm-list-none').show();
         },
         error: function(request, status, error) {
           console.error(`Error: ${error}`);
