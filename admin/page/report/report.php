@@ -477,8 +477,7 @@
 		sumRow.appendChild(createCell('th', commaLocale(data.cnt)));
 		sumRow.appendChild(createCell('th', commaLocale(data.clickCnt)));
 		sumRow.appendChild(createCell('th', commaLocale(data.rewardCnt)));
-		const rewardRate = !data.rewardRate || data.rewardRate === null || data.rewardRate === '0.00' ? 0 : data.rewardRate;
-		sumRow.appendChild(createCell('th', rewardRate + '%'));
+		sumRow.appendChild(createCell('th', data.rewardRate + '%'));
 		sumRow.appendChild(createCell('th', commaLocale(data.productPrice) + '원'));
 		sumRow.appendChild(createCell('th', commaLocale(data.commission) + '원'));
 		sumRow.appendChild(createCell('th', commaLocale(data.commissionProfit) + '원'));
@@ -513,8 +512,7 @@
 			row.appendChild(createCell('td', commaLocale(item.CNT)));
 			row.appendChild(createCell('td', commaLocale(item.CLICK_CNT)));
 			row.appendChild(createCell('td', commaLocale(item.REWARD_CNT)));
-			const rewardRate = !item.REWARD_RATE || item.REWARD_RATE === null || item.REWARD_RATE === '0.00' ? 0 : item.REWARD_RATE;
-			row.appendChild(createCell('td', rewardRate + '%'));
+			row.appendChild(createCell('td', item.REWARD_RATE === '0.00' ? 0 : item.REWARD_RATE + '%'));
 			row.appendChild(createCell('td', commaLocale(item.PRODUCT_PRICE) + '원'));
 			row.appendChild(createCell('td', commaLocale(item.COMMISSION) + '원'));
 			row.appendChild(createCell('td', commaLocale(item.COMMISSION_PROFIT) + '원'));

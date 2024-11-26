@@ -311,7 +311,7 @@ try {
     $commissionProfit = $result[0]['TOTAL_COMMISSION_PROFIT'];
     $affliateCommission = $result[0]['TOTAL_AFFLIATE_COMMISSION'];
     $userCommission = $result[0]['TOTAL_USER_COMMISSION'];
-    $rewardRate = $result[0]['TOTAL_REWARD_RATE'];
+    $rewardRate = $result[0]['TOTAL_REWARD_RATE'] ?? 0;
 
     $response = [
       'resultCode' => '0000',
