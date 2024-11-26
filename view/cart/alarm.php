@@ -48,7 +48,11 @@
         contentType: 'application/json',
         data: JSON.stringify(requestData),
         success: function(result) {
-          result.datas ? renderAlarmList(result.datas) : $('#alarm-list-none').show();
+          if (result.datas && result.resultCode === '0000') {
+            renderAlarmList(result.datas)
+          } else {
+            $('#alarm-list-none').show();
+          }
         },
         error: function(request, status, error) {
           console.error(`Error: ${error}`);
