@@ -1363,7 +1363,7 @@
 
       $.ajax({
         type: 'POST',
-        url: 'https://admin.shoplus.io/api/schedule/productLink',
+        url: '<?= $appApiUrl; ?>/api/schedule/productLink',
         contentType: 'application/json',
         data: JSON.stringify(requestData),
         success: function(result) {
