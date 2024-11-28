@@ -134,10 +134,10 @@
     try {
       $.ajax({
         type: 'POST',
-        url: '<?= $adminApiUrl; ?>/api/admin/memberSignIn',
+        url: '<?= $adminApiUrl; ?>/page/account/api/memberSignIn.php',
         contentType: 'application/json',
         dataType: 'JSON',
-        data: requestData,
+        data,
         success: function(result) {
           if (result.resultCode !== '0000') return alert(result.resultMessage);
           successAddMaster();

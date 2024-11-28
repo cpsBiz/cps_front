@@ -1,3 +1,4 @@
+<? include_once $_SERVER['DOCUMENT_ROOT'] . "/isTest.php"; ?>
 <?
 session_start();
 $admin_login = $_SESSION['admin_login'];
@@ -27,3 +28,102 @@ if (!$con) {
   header('Location:/500.php');
 }
 mysqli_set_charset($con, 'utf8');
+
+class ApiResponse
+{
+  public static function error($code, $message)
+  {
+    echo json_encode([
+      'resultCode' => $code,
+      'resultMessage' => $message
+    ]);
+    exit;
+  }
+
+  public static function success($data = null)
+  {
+    $response = [
+      'resultCode' => '0000',
+      'resultMessage' => 'Success'
+    ];
+    if ($data) {
+      $response['data'] = $data;
+    }
+    echo json_encode($response);
+    exit;
+  }
+}
+
+class DatabaseHandler
+{
+  private $con;
+  private $stmt;
+
+  public function __construct($connection)
+  {
+    $this->con = $connection;
+  }
+
+  public function executeQuery($sql, $types = '', $params = [])
+  {
+    $this->stmt = mysqli_stmt_init($this->con);
+
+    if (!mysqli_stmt_prepare($this->stmt, $sql)) {
+      throw new Exception('Database preparation failed');
+    }
+
+    if ($types && $params) {
+      mysqli_stmt_bind_param($this->stmt, $types, ...$params);
+    }
+
+    mysqli_stmt_execute($this->stmt);
+    return mysqli_stmt_get_result($this->stmt);
+  }
+
+  public function __destruct()
+  {
+    if ($this->stmt) {
+      mysqli_stmt_close($this->stmt);
+    }
+  }
+}
+
+class AESCipher
+{
+  private const AES_ALGORITHM = 'AES-128-ECB';
+  private const SECRET_KEY = 'CPS_REWORDSECRET';
+
+  public static function decrypt($encryptedText)
+  {
+    try {
+      $key = self::SECRET_KEY;
+      $decrypted = openssl_decrypt(
+        base64_decode($encryptedText),
+        self::AES_ALGORITHM,
+        $key,
+        OPENSSL_RAW_DATA
+      );
+      return $decrypted;
+    } catch (Exception $e) {
+      error_log($e->getMessage());
+      return null;
+    }
+  }
+
+  public static function encrypt($plainText)
+  {
+    try {
+      $key = self::SECRET_KEY;
+      $encrypted = openssl_encrypt(
+        $plainText,
+        self::AES_ALGORITHM,
+        $key,
+        OPENSSL_RAW_DATA
+      );
+      return base64_encode($encrypted);
+    } catch (Exception $e) {
+      error_log($e->getMessage());
+      return null;
+    }
+  }
+}

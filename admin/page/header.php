@@ -4,7 +4,6 @@ $admin_login = $_SESSION['admin_login'];
 if ($admin_login !== true) {
   header('Location:/page/login.php');
 } else {
-  include_once $_SERVER['DOCUMENT_ROOT'] . "/isTest.php";
   include_once $_SERVER['DOCUMENT_ROOT'] . "/db_config.php";
   include_once $_SERVER['DOCUMENT_ROOT'] . "/common.php";
 ?>

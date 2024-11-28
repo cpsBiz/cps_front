@@ -129,7 +129,7 @@
                             </select>
                             <select id="selectUserType2" onchange="selectUserType2()">
                               <option value="" disabled>회원유형2</option>
-                              <option value="P" ${item.businessType === 'P' ? 'selected' : ''}>개인</option>
+                              <option value="O" ${item.businessType === 'O' ? 'selected' : ''}>개인</option>
                               <option value="B" ${item.businessType === 'B' ? 'selected' : ''}>사업자</option>
                             </select>
                           </div>
@@ -145,7 +145,7 @@
                               <button id="searchAgencyBtn" type="button" class="search" onclick="searchAgency()">조회</button>
                             </div>
                           </div>
-                          <div id="personal-user" class="user-info-box userType" style="${item.businessType !== 'P' ? 'display:none;' : ''}">
+                          <div id="personal-user" class="user-info-box userType" style="${item.businessType !== 'O' ? 'display:none;' : ''}">
                             <div>
                               <p>개인 정보</p>
                               <input id="customer-personal-name" type="text" placeholder="이름" onchange="insertDepositor()" value="${item.ceoName ? item.ceoName : ''}"/>
@@ -165,7 +165,7 @@
                                 <input type="file" id="customer-personal-doc" />
                                 <label for="customer-personal-doc" id="cpd-file-label">${item.license ? item.license : '파일을 끌어오세요'}</label>
                               </div>
-                              <input type="hidden" id="cpd-modify" value="${item.businessType === 'P' ? item.license : ''}" />
+                              <input type="hidden" id="cpd-modify" value="${item.businessType === 'O' ? item.license : ''}" />
                             </div>
                           </div>
                           <div id="business-user" class="user-info-box userType" style="${item.businessType !== 'B' ? 'display:none;' : ''}">
@@ -260,7 +260,7 @@
       data.agencyId = agencyId;
     }
 
-    if (type2 === 'P') { // 개인 검증
+    if (type2 === 'O') { // 개인 검증
       const name = document.getElementById('customer-personal-name').value;
       if (!name) return alert('이름을 입력해 주세요.');
       data.ceoName = name;

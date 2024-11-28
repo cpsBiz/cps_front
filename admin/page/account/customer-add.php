@@ -30,7 +30,7 @@
                             </select>
                             <select id="selectUserType2" onchange="selectUserType2()">
                               <option value="" selected disabled>회원유형2</option>
-                              <option value="P">개인</option>
+                              <option value="O">개인</option>
                               <option value="B">사업자</option>
                             </select>
                           </div>
@@ -174,7 +174,7 @@
 
     let fileInput, fileLabel, closeButton, modifyFile;
 
-    if (type === 'P') {
+    if (type === 'O') {
       fileInput = document.getElementById('customer-personal-doc');
       fileLabel = document.getElementById('cpd-file-label');
       closeButton = document.getElementById('cpd-file-close');
@@ -230,7 +230,7 @@
     if (checkedBankNone) return;
 
     let name = '';
-    if (userType === 'P') {
+    if (userType === 'O') {
       name = document.getElementById('customer-personal-name').value;
     } else if (userType === 'B') {
       name = document.getElementById('customer-business-company-ceo-name').value;
@@ -373,7 +373,7 @@
       data.agencyId = agencyId;
     }
 
-    if (type2 === 'P') { // 개인 검증
+    if (type2 === 'O') { // 개인 검증
       const name = document.getElementById('customer-personal-name').value;
       if (!name) return alert('이름을 입력해 주세요.');
       data.ceoName = name;
@@ -497,7 +497,7 @@
         const type = document.getElementById('selectUserType2').value;
         let fileInput;
 
-        if (type === 'P') {
+        if (type === 'O') {
           fileInput = document.getElementById('customer-personal-doc');
         } else if (type === 'B') {
           fileInput = document.getElementById('customer-business-doc');
@@ -548,7 +548,7 @@
     try {
       $.ajax({
         type: 'POST',
-        url: '<?= $adminApiUrl; ?>/api/admin/memberSignIn',
+        url: '<?= $adminApiUrl; ?>/page/account/api/memberSignIn.php',
         contentType: 'application/json',
         data: JSON.stringify(data),
         success: function(result) {

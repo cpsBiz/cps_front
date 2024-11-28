@@ -7,13 +7,12 @@
         const requestData = {
           apiType: 'D',
           memberId: id,
-          memberPw: pw,
-          memberSiteList: []
+          memberPw: pw
         };
 
         $.ajax({
           type: 'POST',
-          url: '<?= $adminApiUrl; ?>/api/admin/memberSignIn',
+          url: '<?= $adminApiUrl; ?>/page/account/api/memberSignIn.php',
           contentType: 'application/json',
           dataType: 'JSON',
           data: JSON.stringify(requestData),
