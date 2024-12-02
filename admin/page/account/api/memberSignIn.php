@@ -12,7 +12,7 @@ try {
   }
 
   // MemberSignIn 클래스 초기화 및 처리
-  $memberSignIn = new MemberSignIn($con);
+  $memberSignIn = new memberSignIn($con);
   $result = $memberSignIn->process($requestData);
 
   // 결과 반환

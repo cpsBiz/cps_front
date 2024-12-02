@@ -1,5 +1,5 @@
 <?
-class MemberSignIn
+class memberSignIn
 {
   private $db;
 
