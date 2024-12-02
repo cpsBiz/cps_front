@@ -66,9 +66,10 @@ $LastCategoryRank = $result ? $result['CATEGORY_RANK'] + 1 : null;
 
       $.ajax({
         type: 'POST',
-        url: '<?= $adminApiUrl; ?>/api/admin/category',
+        url: '<?= $adminApiUrl; ?>/page/campaign/category/api/category.php',
         contentType: 'application/json',
         data: JSON.stringify(requestData),
+        dataType: 'JSON',
         success: function(result) {
           if (result.resultCode === '0000') {
             return successAddCategory(`${categoryList[0].categoryName}`);

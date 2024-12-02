@@ -88,7 +88,7 @@ $total = 0;
 if ($tab == '' || $tab == 'category') {
 	include_once $_SERVER['DOCUMENT_ROOT'] . "/page/campaign/category/category-add.php";
 	include_once $_SERVER['DOCUMENT_ROOT'] . "/page/campaign/category/category-modify.php";
-	include_once $_SERVER['DOCUMENT_ROOT'] . "/page/campaign/category-delete.php";
+	include_once $_SERVER['DOCUMENT_ROOT'] . "/page/campaign/category/category-delete.php";
 }
 
 if ($tab == 'campaign') {

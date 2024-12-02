@@ -170,8 +170,9 @@
 
       $.ajax({
         type: 'POST',
-        url: '<?= $adminApiUrl; ?>/api/admin/category',
+        url: '<?= $adminApiUrl; ?>/page/campaign/category/api/category.php',
         contentType: 'application/json',
+        dataType: 'JSON',
         data: JSON.stringify(requestData),
         success: function(result) {
           if (result.resultCode !== '0000') return alert(result.resultMessage);
