@@ -6,40 +6,58 @@ if (!$admin_login) {
   exit;
 }
 
-// 요청이 POST인지 확인
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-  // JSON 데이터를 받아서 배열로 변환
   $files = json_decode(file_get_contents('php://input'), true);
+  $filePath = '/var/www/html/uploads/inquiryFiles/';
 
-  // 압축할 파일의 경로 (수정 필요)
-  $filePath = '/var/www/html/uploads/inquiryFiles/'; // 파일들이 저장된 경로
+  // 파일 존재 여부 확인
+  $validFiles = [];
+  foreach ($files as $fileName) {
+    $fullPath = $filePath . $fileName;
+    if (file_exists($fullPath) && is_file($fullPath)) {
+      $validFiles[] = $fileName;
+    }
+  }
+
+  if (empty($validFiles)) {
+    echo json_encode(['error' => '압축할 파일이 없습니다.']);
+    exit;
+  }
 
   $zip = new ZipArchive();
+  $zipName = '/var/www/html/tmp/' . date('ymdhis') . '-' . uniqid() . '.zip'; // .zip 확장자 추가
 
-  // zip 아카이브 생성하기 위한 고유값
-  $zipName = '/var/www/html/tmp/' . date('ymdhis') . '-' . uniqid() . "zip";
-
-  // zip 아카이브 생성 여부 확인
-  if (!$zip->open($zipName, ZipArchive::CREATE)) {
-    exit("error");
+  if ($zip->open($zipName, ZipArchive::CREATE) !== TRUE) {
+    echo json_encode(['error' => 'ZIP 파일을 생성할 수 없습니다.']);
+    exit;
   }
 
-  // addFile ( 파일이 존재하는 경로, 저장될 이름 )
-  foreach ($files as $fileName) {
-    $zip->addFile($filePath . $fileName, $fileName);
+  // 유효한 파일만 압축
+  foreach ($validFiles as $fileName) {
+    $fullPath = $filePath . $fileName;
+    if (!$zip->addFile($fullPath, $fileName)) {
+      $zip->close();
+      unlink($zipName);
+      echo json_encode(['error' => '파일 압축 중 오류가 발생했습니다.']);
+      exit;
+    }
   }
 
-  // 아카이브 닫아주기
   $zip->close();
 
-  // 다운로드 될 zip 파일명
-  $downZipName = "download.zip";
+  if (file_exists($zipName) && filesize($zipName) > 0) {
+    $downZipName = "download.zip";
+    header("Content-type: application/zip");
+    header("Content-Length: " . filesize($zipName));
+    header("Content-Disposition: attachment; filename=$downZipName");
 
-  // 생성한 zip 파일을 다운로드하기
-  header("Content-type: application/zip");
-  header("Content-Disposition: attachment; filename=$downZipName");
-  readfile($zipName);
-  unlink($zipName);
+    ob_clean();
+    flush();
+    readfile($zipName);
+    unlink($zipName);
+  } else {
+    echo json_encode(['error' => 'ZIP 파일이 정상적으로 생성되지 않았습니다.']);
+  }
 } else {
   echo json_encode(['error' => '잘못된 요청입니다.']);
 }
