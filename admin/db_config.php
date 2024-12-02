@@ -1,12 +1,5 @@
 <? include_once $_SERVER['DOCUMENT_ROOT'] . "/isTest.php"; ?>
 <?
-session_start();
-$admin_login = $_SESSION['admin_login'];
-if (!$admin_login) {
-  header('Location:/500.php');
-  exit;
-}
-
 // 데이터베이스 연결 정보
 if ($isTest) {
   $host = '192.168.101.156:3306';

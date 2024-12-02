@@ -1,4 +1,4 @@
-<?php
+<?
 class Answer
 {
   private $db;
