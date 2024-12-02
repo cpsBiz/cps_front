@@ -77,7 +77,12 @@ class DatabaseHandler
     }
 
     mysqli_stmt_execute($this->stmt);
-    return mysqli_stmt_get_result($this->stmt);
+
+    if (stripos(trim($sql), 'SELECT') === 0) {
+      return mysqli_stmt_get_result($this->stmt);
+    }
+
+    return mysqli_stmt_affected_rows($this->stmt) > 0;
   }
 
   public function __destruct()

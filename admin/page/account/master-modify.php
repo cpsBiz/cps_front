@@ -9,7 +9,7 @@
 
       $.ajax({
         type: 'POST',
-        url: '<?= $adminApiUrl; ?>/api/admin/memberDetail',
+        url: '<?= $adminApiUrl; ?>/page/account/api/memberDetail.php',
         contentType: 'application/json',
         dataType: 'JSON',
         data: JSON.stringify(requestData),
@@ -120,7 +120,7 @@
         url: '<?= $adminApiUrl; ?>/page/account/api/memberSignIn.php',
         contentType: 'application/json',
         dataType: 'JSON',
-        data: requestData,
+        data,
         success: function(result) {
           if (result.resultCode !== '0000') return alert(result.resultMessage);
           successModifyMaster();

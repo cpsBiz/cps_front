@@ -1,5 +1,5 @@
 <script>
-  // 회원 추가 팝업 
+  // 회원 수정 팝업 
   function modifyCustomer(id) {
     if (!id) return alert('잘못된 접근입니다.');
     try {
@@ -9,7 +9,7 @@
 
       $.ajax({
         type: 'POST',
-        url: '<?= $adminApiUrl; ?>/api/admin/memberDetail',
+        url: '<?= $adminApiUrl; ?>/page/account/api/memberDetail.php',
         contentType: 'application/json',
         dataType: 'JSON',
         data: JSON.stringify(requestData),
@@ -222,6 +222,7 @@
                   `;
     $('.wrap.modalView .modal').empty();
     $('.wrap.modalView .modal').append(modal);
+    if (siteListHtml) $('#affliate-user').show();
     selectUserType2();
   }
 
@@ -335,8 +336,8 @@
       const businessDoc = document.getElementById('customer-business-doc').value;
       const cbdm = document.getElementById('cbd-modify').value;
       if (!cbdm && !businessDoc) {
-        return alert('주민등록증 파일을 첨부해 주세요.');
-      } else if (cbdm && !personalDoc) {
+        return alert('사업자등록증 파일을 첨부해 주세요.');
+      } else if (cbdm && !businessDoc) {
         data.license = cbdm;
         modifyLicense = true;
       }

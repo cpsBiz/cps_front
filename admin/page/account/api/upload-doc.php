@@ -35,8 +35,11 @@ if (isset($_FILES['files'])) {
       ];
     }
   }
-
-  echo json_encode(['resultCode' => 'success', 'datas' => $uploadedFiles]);
+  if (count($uploadedFiles) > 0) {
+    echo json_encode(['resultCode' => 'success', 'datas' => $uploadedFiles]);
+  } else {
+    echo json_encode(['resultCode' => 'fail', 'resultMessage' => '업로드된 파일이 없습니다. 다시 시도해 주세요.']);
+  }
 } else {
   echo json_encode(['resultCode' => 'fail', 'resultMessage' => '첨부된 파일이 없습니다.']);
 }
