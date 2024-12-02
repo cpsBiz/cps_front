@@ -550,6 +550,7 @@
         type: 'POST',
         url: '<?= $adminApiUrl; ?>/page/account/api/memberSignIn.php',
         contentType: 'application/json',
+        dataType: 'json',
         data: JSON.stringify(data),
         success: function(result) {
           if (result.resultCode !== '0000') return alert(result.resultMessage);
