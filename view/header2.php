@@ -23,7 +23,7 @@ if ($isTest) {
 $cacheVersion = '1.0.3';
 ?>
 <link rel="icon" type="image/x-icon" href="<?= $appApiUrl; ?>/images/favicon.ico">
-<!-- <link rel="stylesheet" href="<?= $appApiUrl; ?>/css/style.css?version=<?= $cacheVersion; ?>"> -->
+<link rel="stylesheet" href="<?= $appApiUrl; ?>/css/style.css?version=<?= $cacheVersion; ?>">
 <script type="text/javascript" src="<?= $appApiUrl; ?>/js/lib/jquery-2.2.2.min.js?version=<?= $cacheVersion; ?>"></script>
 <script type="text/javascript" src="<?= $appApiUrl; ?>/js/lib/jquery.easing.1.3.js?version=<?= $cacheVersion; ?>"></script>
 <script type="text/javascript" src="<?= $appApiUrl; ?>/js/lib/jquery-ui.min.js?version=<?= $cacheVersion; ?>"></script>
