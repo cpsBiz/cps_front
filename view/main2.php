@@ -1,4 +1,4 @@
-<? include_once $_SERVER['DOCUMENT_ROOT'] . "/header.php"; ?>
+<? include_once $_SERVER['DOCUMENT_ROOT'] . "/header2.php"; ?>
 <!DOCTYPE html>
 <html lang="ko">
 
@@ -7,7 +7,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="format-detection" content="telephone=no">
   <title>쇼핑적립</title>
-  <link rel="stylesheet" href="/css/index.css?version=<?= $cacheVersion; ?>">
+  <!-- <link rel="preload" href="/css/index.css?version=<?= $cacheVersion; ?>" as="style">
+  <link rel="stylesheet" href="/css/index.css?version=<?= $cacheVersion; ?>"> -->
 </head>
 
 <body>
@@ -46,7 +47,7 @@
   </div>
 
 </body>
-<script type="text/javascript" src="/js/common.js?version=<?= $cacheVersion; ?>"></script>
+<script defer type="text/javascript" src="/js/common.js?version=<?= $cacheVersion; ?>"></script>
 
 </html>
 <script>
