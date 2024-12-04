@@ -12,3 +12,26 @@
   padding: 100px 0;
   text-align: center;
 }
+
+#coupangArea {
+  border: 2px solid transparent;
+  background-image: linear-gradient(#fff, #fff),
+    linear-gradient(
+      114deg,
+      #a8e1ff -2%,
+      #25b1f9 12%,
+      #6277fe 27%,
+      #0f45bf 42%,
+      #06127a 57%,
+      #3545bd 72%,
+      #0f45bf 85%,
+      #25b1f9 100%
+    );
+  background-origin: border-box;
+  background-clip: content-box, border-box;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: stretch;
+}

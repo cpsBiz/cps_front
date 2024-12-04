@@ -189,9 +189,9 @@ body.scrollNone {
 
 :root {
   --color1: #202236;
-  --color2: #f2f3f5;
-  --color3: #383c5e;
-  --color4: #202236;
+  --color2: #e7e9ee;
+  --color3: #3e4370;
+  --color4: #3e4370;
   --color5: #3143b5;
   --color6: #3143b5;
 }
@@ -933,7 +933,7 @@ body.scrollNone {
 }
 .list-wrap.type1 .list.type1 .info-wrap .coupang-link {
   padding: 9px 34px;
-  background: #008cff;
+  background: #f3f3f3;
   border-radius: 8px;
   max-width: 172px;
   display: flex;
@@ -944,7 +944,7 @@ body.scrollNone {
   font-family: 'Pretendard-Medium';
   display: block;
   font-size: 14px;
-  color: #fff;
+  color: #000;
   padding-left: 24px;
   position: relative;
   width: 100%;
@@ -4033,9 +4033,9 @@ header .btn-list > div {
 
 :root {
   --color1: #202236;
-  --color2: #f2f3f5;
-  --color3: #383c5e;
-  --color4: #202236;
+  --color2: #e7e9ee;
+  --color3: #3e4370;
+  --color4: #3e4370;
   --color5: #3143b5;
   --color6: #3143b5;
 }
@@ -7656,7 +7656,7 @@ input[type='checkbox']:checked + label .ico-check.on {
 
 .main {
   padding: 20px 0 62px;
-  background: #fafafa;
+  background: #f3f3f3;
   min-height: 100%;
 }
 .main .event-popup {
