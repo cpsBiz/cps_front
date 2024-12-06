@@ -27,30 +27,25 @@
   font-family: 'Pretendard-Regular';
   src: url('https://app.shoplus.io/font/Pretendard-Regular.woff2')
     format('woff2');
-  font-display: swap;
 }
 @font-face {
   font-family: 'Pretendard-Medium';
   src: url('https://app.shoplus.io/font/Pretendard-Medium.woff2')
     format('woff2');
-  font-display: swap;
 }
 @font-face {
   font-family: 'Pretendard-SemiBold';
   src: url('https://app.shoplus.io/font/Pretendard-SemiBold.woff2')
     format('woff2');
-  font-display: swap;
 }
 @font-face {
   font-family: 'Pretendard-Bold';
   src: url('https://app.shoplus.io/font/Pretendard-Bold.woff2') format('woff2');
-  font-display: swap;
 }
 @font-face {
   font-family: 'Pretendard-ExtraBold';
   src: url('https://app.shoplus.io/font/Pretendard-ExtraBold.woff2')
     format('woff2');
-  font-display: swap;
 }
 html,
 body,
