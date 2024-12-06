@@ -16,10 +16,10 @@
   --color6: #00928f;
 }
 .hana .ico-heart.on {
-  background-image: url(../images/icon/heart-on_hana.png);
+  background-image: url(https://app.shoplus.io/images/icon/heart-on_hana.png);
 }
 .hana .ico-check.on {
-  background-image: url(../images/icon/check-on_hana.png);
+  background-image: url(https://app.shoplus.io/images/icon/check-on_hana.png);
 }
 
 .ico-arrow {
@@ -35,7 +35,7 @@
 .ico-arrow.type1 {
   width: 20px;
   height: 20px;
-  background-image: url(../images/icon/arrow-type1.png);
+  background-image: url(https://app.shoplus.io/images/icon/arrow-type1.png);
 }
 .ico-arrow.type1.top {
   transform: rotate(0deg);
@@ -52,7 +52,7 @@
 .ico-arrow.type2 {
   width: 14px;
   height: 14px;
-  background-image: url(../images/icon/arrow-type2.png);
+  background-image: url(https://app.shoplus.io/images/icon/arrow-type2.png);
 }
 .ico-arrow.type2.right {
   transform: rotate(0deg);
@@ -74,12 +74,12 @@
 .ico-close.type1 {
   width: 20px;
   height: 20px;
-  background-image: url(../images/icon/close-type1.png);
+  background-image: url(https://app.shoplus.io/images/icon/close-type1.png);
 }
 .ico-close.type2 {
   width: 14px;
   height: 14px;
-  background-image: url(../images/icon/close-type2.png);
+  background-image: url(https://app.shoplus.io/images/icon/close-type2.png);
 }
 
 .ico-home {
@@ -93,7 +93,7 @@
   display: block;
   width: 20px;
   height: 20px;
-  background-image: url(../images/icon/home.png);
+  background-image: url(https://app.shoplus.io/images/icon/home.png);
 }
 
 .ico-heart {
@@ -107,10 +107,10 @@
   display: block;
   width: 20px;
   height: 20px;
-  background-image: url(../images/icon/heart.png);
+  background-image: url(https://app.shoplus.io/images/icon/heart.png);
 }
 .ico-heart.on {
-  background-image: url(../images/icon/heart-on.png);
+  background-image: url(https://app.shoplus.io/images/icon/heart-on.png);
 }
 
 .ico-check {
@@ -124,10 +124,10 @@
   display: block;
   width: 20px;
   height: 20px;
-  background-image: url(../images/icon/check.png);
+  background-image: url(https://app.shoplus.io/images/icon/check.png);
 }
 .ico-check.on {
-  background-image: url(../images/icon/check-on.png);
+  background-image: url(https://app.shoplus.io/images/icon/check-on.png);
 }
 
 .ico-question {
@@ -141,7 +141,7 @@
   display: block;
   width: 14px;
   height: 14px;
-  background-image: url(../images/icon/question.png);
+  background-image: url(https://app.shoplus.io/images/icon/question.png);
 }
 
 .ico-point {
@@ -155,7 +155,7 @@
   display: block;
   width: 14px;
   height: 14px;
-  background-image: url(../images/icon/point.png);
+  background-image: url(https://app.shoplus.io/images/icon/point.png);
 }
 
 .ico-exclamation {
@@ -169,7 +169,7 @@
   display: block;
   width: 30px;
   height: 30px;
-  background-image: url(../images/icon/exclamation.png);
+  background-image: url(https://app.shoplus.io/images/icon/exclamation.png);
 }
 
 .bottom-menu-wrap {
@@ -215,34 +215,34 @@
   background-size: contain;
 }
 .bottom-menu-wrap .menu .ico-cart::before {
-  background-image: url(../images/icon/cart.png);
+  background-image: url(https://app.shoplus.io/images/icon/cart.png);
 }
 .bottom-menu-wrap .menu .ico-save::before {
-  background-image: url(../images/icon/save.png);
+  background-image: url(https://app.shoplus.io/images/icon/save.png);
 }
 .bottom-menu-wrap .menu .ico-trend::before {
-  background-image: url(../images/icon/trend.png);
+  background-image: url(https://app.shoplus.io/images/icon/trend.png);
 }
 .bottom-menu-wrap .menu .ico-delivery::before {
-  background-image: url(../images/icon/delivery.png);
+  background-image: url(https://app.shoplus.io/images/icon/delivery.png);
 }
 .bottom-menu-wrap .menu .ico-breakDown::before {
-  background-image: url(../images/icon/breakDown.png);
+  background-image: url(https://app.shoplus.io/images/icon/breakDown.png);
 }
 .bottom-menu-wrap .menu.on .ico-cart::before {
-  background-image: url(../images/icon/cart-on.png);
+  background-image: url(https://app.shoplus.io/images/icon/cart-on.png);
 }
 .bottom-menu-wrap .menu.on .ico-save::before {
-  background-image: url(../images/icon/save-on.png);
+  background-image: url(https://app.shoplus.io/images/icon/save-on.png);
 }
 .bottom-menu-wrap .menu.on .ico-trend::before {
-  background-image: url(../images/icon/trend-on.png);
+  background-image: url(https://app.shoplus.io/images/icon/trend-on.png);
 }
 .bottom-menu-wrap .menu.on .ico-delivery::before {
-  background-image: url(../images/icon/delivery-on.png);
+  background-image: url(https://app.shoplus.io/images/icon/delivery-on.png);
 }
 .bottom-menu-wrap .menu.on .ico-breakDown::before {
-  background-image: url(../images/icon/breakDown-on.png);
+  background-image: url(https://app.shoplus.io/images/icon/breakDown-on.png);
 }
 
 .list-wrap-box {
@@ -399,13 +399,13 @@
   width: 24px;
   height: 24px;
   left: 0;
-  background-image: url(../images/icon/candy.png);
+  background-image: url(https://app.shoplus.io/images/icon/candy.png);
 }
 .list-wrap.type1 .list.type1 .info-wrap .candy.type1::after {
   width: 14px;
   height: 14px;
   right: 0;
-  background-image: url(../images/icon/arrow-type2.png);
+  background-image: url(https://app.shoplus.io/images/icon/arrow-type2.png);
 }
 .list-wrap.type1 .list.type1 .info-wrap .coupang-search-wrap {
   width: 100%;
@@ -427,7 +427,7 @@
   left: 8px;
   width: 20px;
   height: 20px;
-  background-image: url(../images/icon/coupang.png);
+  background-image: url(https://app.shoplus.io/images/icon/coupang.png);
 }
 .list-wrap.type1
   .list.type1
@@ -461,7 +461,7 @@
   transform: translateY(-50%);
   width: 20px;
   height: 20px;
-  background-image: url(../images/icon/search.png);
+  background-image: url(https://app.shoplus.io/images/icon/search.png);
   background-size: contain;
   right: 10px;
 }
@@ -648,7 +648,7 @@
   display: block;
   width: 14px;
   height: 14px;
-  background-image: url(../images/icon/arrow-type2.png);
+  background-image: url(https://app.shoplus.io/images/icon/arrow-type2.png);
   top: 50%;
   transform: translateY(-50%);
   right: 5px;
@@ -693,7 +693,7 @@
   left: 0;
   top: 50%;
   transform: translateY(-50%);
-  background-image: url(../images/icon/candy.png);
+  background-image: url(https://app.shoplus.io/images/icon/candy.png);
 }
 .list-wrap.type4 .list a {
   position: absolute;
@@ -766,7 +766,7 @@
   top: 50%;
   transform: translateY(-50%);
   left: 0;
-  background-image: url(../images/icon/candy.png);
+  background-image: url(https://app.shoplus.io/images/icon/candy.png);
 }
 .list-wrap.type5.type5-1 .list .text-box.text-box1 {
   margin-bottom: 23px;
@@ -956,7 +956,7 @@
   left: 0;
   top: 50%;
   transform: translateY(-50%);
-  background-image: url(../images/icon/candy.png);
+  background-image: url(https://app.shoplus.io/images/icon/candy.png);
 }
 
 .tool-tip-box {
@@ -1063,14 +1063,14 @@
 .candy-link-wrap .candy-count::before {
   width: 20px;
   height: 20px;
-  background-image: url(../images/icon/candy.png);
+  background-image: url(https://app.shoplus.io/images/icon/candy.png);
   left: 0;
 }
 .candy-link-wrap .candy-count::after {
   right: 0;
   width: 14px;
   height: 14px;
-  background-image: url(../images/icon/arrow-type2.png);
+  background-image: url(https://app.shoplus.io/images/icon/arrow-type2.png);
 }
 .candy-link-wrap > a {
   position: absolute;
@@ -1118,26 +1118,26 @@
   transform: translate(-50%, -50%);
 }
 .history-link-wrap .link.point .icon {
-  background-image: url(../images/icon/history-point.png);
+  background-image: url(https://app.shoplus.io/images/icon/history-point.png);
 }
 .history-link-wrap .link.candy .icon {
-  background-image: url(../images/icon/history-candy.png);
+  background-image: url(https://app.shoplus.io/images/icon/history-candy.png);
 }
 .history-link-wrap .link.gift .icon {
-  background-image: url(../images/icon/history-gift.png);
+  background-image: url(https://app.shoplus.io/images/icon/history-gift.png);
 }
 .history-link-wrap .link.on p {
   font-family: 'Pretendard-Bold';
   color: #000;
 }
 .history-link-wrap .link.on.point .icon {
-  background-image: url(../images/icon/history-point-on.png);
+  background-image: url(https://app.shoplus.io/images/icon/history-point-on.png);
 }
 .history-link-wrap .link.on.candy .icon {
-  background-image: url(../images/icon/history-candy-on.png);
+  background-image: url(https://app.shoplus.io/images/icon/history-candy-on.png);
 }
 .history-link-wrap .link.on.gift .icon {
-  background-image: url(../images/icon/history-gift-on.png);
+  background-image: url(https://app.shoplus.io/images/icon/history-gift-on.png);
 }
 
 .giftcon-info-wrap .goods-info-box {
@@ -1300,7 +1300,7 @@
   background-repeat: no-repeat;
   background-position: center;
   background-color: transparent;
-  background-image: url(../images/icon/bg-roulette.png);
+  background-image: url(https://app.shoplus.io/images/icon/bg-roulette.png);
 }
 .roulette-wrap .roulette-box .item-roulette .item {
   background-size: cover;
@@ -1343,7 +1343,7 @@
   background-repeat: no-repeat;
   background-position: center;
   background-color: transparent;
-  background-image: url(../images/icon/fix-roulette.png);
+  background-image: url(https://app.shoplus.io/images/icon/fix-roulette.png);
 }
 
 .select-btn {
@@ -1830,7 +1830,7 @@ input[type='checkbox']:checked + label .ico-check.on {
   left: 0;
   top: 50%;
   transform: translateY(-50%);
-  background-image: url(../images/icon/candy.png);
+  background-image: url(https://app.shoplus.io/images/icon/candy.png);
 }
 #popup-wrap .roulette-popup .roulette-wrap {
   margin-bottom: 20px;
@@ -1902,7 +1902,7 @@ input[type='checkbox']:checked + label .ico-check.on {
   right: 8px;
   width: 20px;
   height: 20px;
-  background-image: url(../images/icon/close-type3.png);
+  background-image: url(https://app.shoplus.io/images/icon/close-type3.png);
 }
 .event-popup > a {
   position: absolute;
