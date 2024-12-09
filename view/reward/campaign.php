@@ -163,7 +163,7 @@ if (!$object) {
         contentType: 'application/json',
         data: JSON.stringify(requestData),
         success: function(result) {
-          const data = result.datas[0];
+          const data = result.data;
           if (!data) {
             alert('존재하지않는 캠페인입니다.')
             history.back();
