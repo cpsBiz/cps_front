@@ -1,4 +1,4 @@
-/* @font-face {
+@font-face {
   font-family: 'Pretendard-Regular';
   src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff')
     format('woff');
@@ -22,8 +22,8 @@
   font-family: 'Pretendard-ExtraBold';
   src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-ExtraBold.woff')
     format('woff');
-} */
-@font-face {
+}
+/* @font-face {
   font-family: 'Pretendard-Regular';
   src: url('https://cdn.shoplus.io/font/Pretendard-Regular.woff2')
     format('woff2');
@@ -51,7 +51,7 @@
   src: url('https://cdn.shoplus.io/font/Pretendard-ExtraBold.woff2')
     format('woff2');
   font-display: swap;
-}
+} */
 html,
 body,
 div,
