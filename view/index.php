@@ -17,6 +17,12 @@ if ($isTest) {
 		$_SESSION['check_affliateId'] = $affliateId;
 		$_SESSION['check_site'] = $site;
 		$_SESSION['check_zoneId'] = $zoneId;
+	?>
+		<script>
+			localStorage.removeItem('mainPageScroll');
+			localStorage.removeItem('cartSalePageScroll');
+		</script>
+	<?
 
 		header('location:/main.php');
 	} else {
