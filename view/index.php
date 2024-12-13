@@ -20,6 +20,7 @@ if ($isTest) {
 	?>
 		<script>
 			localStorage.removeItem('mainPageScroll');
+			localStorage.removeItem('cartMainPageScroll');
 			localStorage.removeItem('cartSalePageScroll');
 		</script>
 	<?
