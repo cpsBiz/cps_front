@@ -1,7 +1,14 @@
 <? include_once $_SERVER['DOCUMENT_ROOT'] . '/isTest.php'; ?>
 <?
 if ($isTest) {
-	header('location:/main.php');
+?>
+	<script type="text/javascript">
+		localStorage.removeItem('mainPageScroll');
+		localStorage.removeItem('cartMainPageScroll');
+		localStorage.removeItem('cartSalePageScroll');
+		location.replace('/main.php');
+	</script>
+<?
 } else {
 	$userId = $_REQUEST['userId'];
 	$adId = $_REQUEST['adId'];
@@ -18,14 +25,13 @@ if ($isTest) {
 		$_SESSION['check_site'] = $site;
 		$_SESSION['check_zoneId'] = $zoneId;
 	?>
-		<script>
+		<script type="text/javascript">
 			localStorage.removeItem('mainPageScroll');
 			localStorage.removeItem('cartMainPageScroll');
 			localStorage.removeItem('cartSalePageScroll');
+			location.replace('/main.php');
 		</script>
 	<?
-
-		header('location:/main.php');
 	} else {
 	?>
 		<script>
