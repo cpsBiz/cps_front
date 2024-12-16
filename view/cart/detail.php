@@ -301,7 +301,7 @@ if (!$object) {
       return;
     }
 
-    const useRocketPrice = result.data.rocketStatus === 'Y';
+    const useRocketPrice = result.rocketStatus === 'Y';
 
     const findExtremePrice = (data, type) => {
       // 날짜를 내림차순으로 정렬 (최신 날짜 우선)
