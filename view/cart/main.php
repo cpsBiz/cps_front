@@ -862,7 +862,11 @@
         productCode: item.productCode,
         optionCode: item.optionCode,
         merchantId: item.merchantId,
+        favorites: item.favorites,
         cartPrice: item.cartPrice,
+        wantPrice: item.wantPrice,
+        alarm: item.alarm,
+        returnalarm: item.returnAlarm,
         clickUrl: item.productUrl
       };
       const itemStr = base64Encode(JSON.stringify(params));
@@ -1061,6 +1065,8 @@
           favorites: !$cartIcoFavorites.classList.contains('on') ? 'Y' : 'N',
           cartPrice: elm.getAttribute('data-cartPrice'),
           wantPrice: elm.getAttribute('data-wantPrice'),
+          alarm: elm.getAttribute('data-alarm'),
+          returnalarm: elm.getAttribute('data-returnalarm'),
         };
         favoritesList.push(obj);
       }
