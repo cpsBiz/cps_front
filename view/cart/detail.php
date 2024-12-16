@@ -315,7 +315,7 @@ if (!$object) {
         return sortedData.find(item =>
           (useRocketPrice && item.rocketMaxPrice === maxPrice) ||
           (!useRocketPrice && item.maxPrice === maxPrice)
-        )[useRocketPrice ? 'rocketMaxPrice' : 'maxPrice'];
+        );
       } else {
         const prices = data.map(item =>
           useRocketPrice && item.rocketMinPrice ? item.rocketMinPrice : item.minPrice
@@ -324,7 +324,7 @@ if (!$object) {
         return sortedData.find(item =>
           (useRocketPrice && item.rocketMinPrice === minPrice) ||
           (!useRocketPrice && item.minPrice === minPrice)
-        )[useRocketPrice ? 'rocketMinPrice' : 'minPrice'];
+        );
       }
     };
 
