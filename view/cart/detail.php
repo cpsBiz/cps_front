@@ -305,7 +305,7 @@ if (!$object) {
     if (useRocketPrice) {
       data = data.filter(item => item.rocketMinPrice !== 0 && item.rocketMaxPrice !== 0);
     } else {
-      data = data;
+      data = data.filter(item => item.minPrice !== 0 && item.maxPrice !== 0);
     }
 
     const findExtremePrice = (data, type) => {
@@ -399,7 +399,7 @@ if (!$object) {
                   content: `역대최고가 ${historicalHigh.toLocaleString()}원`,
                   enabled: true,
                   position: 'end',
-                  yAdjust: -20,
+                  yAdjust: -25,
                   backgroundColor: 'transparent',
                   color: 'rgb(54, 162, 235)',
                   font: {
@@ -419,7 +419,7 @@ if (!$object) {
                   content: `역대최저가 ${historicalLow.toLocaleString()}원`,
                   enabled: true,
                   position: 'end',
-                  yAdjust: 20,
+                  yAdjust: 25,
                   backgroundColor: 'transparent',
                   color: 'rgb(255, 99, 132',
                   font: {
