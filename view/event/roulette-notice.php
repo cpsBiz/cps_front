@@ -10,9 +10,9 @@
   <!-- style -->
 
   <!-- swiper -->
-  <link rel="stylesheet" href="../css/swiper-min.css?version=<?= $cacheVersion; ?>">
-  <script src="../js/swiper.js?version=<?= $cacheVersion; ?>"></script>
-  <script src="../js/swiper-bundle.min.js.map?version=<?= $cacheVersion; ?>"></script>
+  <link rel="stylesheet" href="https://cdn.shoplus.io/css/swiper-min.css?version=<?= $cacheVersion; ?>">
+  <script src="https://cdn.shoplus.io/js/swiper.js?version=<?= $cacheVersion; ?>"></script>
+  <script src="https://cdn.shoplus.io/js/swiper-bundle.min.js.map?version=<?= $cacheVersion; ?>"></script>
 </head>
 <style>
   .swiper-wrapper {
