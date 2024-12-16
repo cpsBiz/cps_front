@@ -329,7 +329,7 @@
       const requestData = {
         userId: '<?= $checkUserId; ?>',
         affliateId: '<?= $checkAffliateId; ?>',
-        adId: '',
+        adId: '<?= $checkAdId; ?>',
         apiType: 'D',
         productList: removeList
       };
@@ -400,7 +400,7 @@
       const requestData = {
         userId: '<?= $checkUserId; ?>',
         affliateId: '<?= $checkAffliateId; ?>',
-        adId: '',
+        adId: '<?= $checkAdId; ?>',
         apiType: 'U',
         productList: favoritesList
       };
@@ -446,7 +446,7 @@
       const requestData = {
         userId: '<?= $checkUserId; ?>',
         affliateId: '<?= $checkAffliateId; ?>',
-        adId: '',
+        adId: '<?= $checkAdId; ?>',
         apiType: 'U',
         productList: alarmList
       };

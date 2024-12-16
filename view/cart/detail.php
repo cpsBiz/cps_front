@@ -499,7 +499,7 @@ if (!$object) {
       const requestData = {
         userId: '<?= $checkUserId; ?>',
         affliateId: '<?= $checkAffliateId; ?>',
-        adId: '',
+        adId: '<?= $checkAdId; ?>',
         apiType: 'U',
         productList: itemList
       };
@@ -602,7 +602,7 @@ if (!$object) {
       const requestData = {
         userId: '<?= $checkUserId; ?>',
         affliateId: '<?= $checkAffliateId; ?>',
-        adId: '',
+        adId: '<?= $checkAdId; ?>',
         apiType: 'U',
         productList: favoritesList
       };
@@ -647,7 +647,7 @@ if (!$object) {
       const requestData = {
         userId: '<?= $checkUserId; ?>',
         affliateId: '<?= $checkAffliateId; ?>',
-        adId: '',
+        adId: '<?= $checkAdId; ?>',
         apiType: 'D',
         productList: List
       };
