@@ -310,13 +310,11 @@ if (!$object) {
       if (type === 'max') {
         // 최고가 찾기
         const maxPrice = Math.max(...data.map(item => useRocketPrice ? item.rocketMaxPrice : item.maxPrice));
-        // 최고가와 동일한 가격 중 가장 최근 데이터 찾기
-        return sortedData.find(item => useRocketPrice ? (item.rocketMaxPrice === maxPrice) : (item.maxPrice === maxPrice)).maxPrice;
+        return maxPrice;
       } else {
         // 최저가 찾기
         const minPrice = Math.min(...data.map(item => useRocketPrice ? item.rocketMinPrice : item.minPrice));
-        // 최저가와 동일한 가격 중 가장 최근 데이터 찾기
-        return sortedData.find(item => useRocketPrice ? (item.rocketMinPrice === minPrice) : (item.minPrice === minPrice)).minPrice;
+        return minPrice;
       }
     };
 
