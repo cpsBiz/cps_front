@@ -289,7 +289,7 @@ if (!$object) {
       document.querySelector('#select-list2 .select-cont input').value = data.wantPrice;
     }
 
-    if (object.favorites === 'Y') document.getElementById('ico-heart1').classList.add('on');
+    if (data.favorites === 'Y') document.getElementById('ico-heart1').classList.add('on');
   }
 
   function renderChart(result) {
@@ -302,19 +302,27 @@ if (!$object) {
     }
 
     const findExtremePrice = (data, type) => {
-      // 날짜를 내림차순으로 정렬 (최신 날짜 우선)
       const sortedData = [...data].sort((a, b) => b.regDay - a.regDay);
+      const useRocketPrice = result.data.rocketStatus === 'Y';
 
       if (type === 'max') {
-        // 최고가 찾기
-        const maxPrice = Math.max(...data.map(item => item.maxPrice));
-        // 최고가와 동일한 가격 중 가장 최근 데이터 찾기
-        return sortedData.find(item => item.maxPrice === maxPrice).maxPrice;
+        const prices = data.map(item =>
+          useRocketPrice && item.rocketMaxPrice ? item.rocketMaxPrice : item.maxPrice
+        ).filter(price => price > 0);
+        const maxPrice = Math.max(...prices);
+        return sortedData.find(item =>
+          (useRocketPrice && item.rocketMaxPrice === maxPrice) ||
+          (!useRocketPrice && item.maxPrice === maxPrice)
+        )[useRocketPrice ? 'rocketMaxPrice' : 'maxPrice'];
       } else {
-        // 최저가 찾기
-        const minPrice = Math.min(...data.map(item => item.minPrice));
-        // 최저가와 동일한 가격 중 가장 최근 데이터 찾기
-        return sortedData.find(item => item.minPrice === minPrice).minPrice;
+        const prices = data.map(item =>
+          useRocketPrice && item.rocketMinPrice ? item.rocketMinPrice : item.minPrice
+        ).filter(price => price > 0);
+        const minPrice = Math.min(...prices);
+        return sortedData.find(item =>
+          (useRocketPrice && item.rocketMinPrice === minPrice) ||
+          (!useRocketPrice && item.minPrice === minPrice)
+        )[useRocketPrice ? 'rocketMinPrice' : 'minPrice'];
       }
     };
 
@@ -333,6 +341,7 @@ if (!$object) {
       return `${month}/${day}`;
     };
 
+    const useRocketPrice = result.data.rocketStatus === 'Y';
     const ctx = document.getElementById('price-chart').getContext('2d');
     const chart = new Chart(ctx, {
       type: 'line',
@@ -340,7 +349,7 @@ if (!$object) {
         labels: data.map(item => formatDate(item.regDay)),
         datasets: [{
             label: '최고가',
-            data: data.map(item => item.maxPrice),
+            data: data.map(item => useRocketPrice ? item.rocketMaxPrice || item.maxPrice : item.maxPrice),
             borderColor: 'rgb(54, 162, 235)',
             backgroundColor: 'rgba(255, 99, 132, 0.1)',
             pointHoverBackgroundColor: '#000',
@@ -349,7 +358,7 @@ if (!$object) {
           },
           {
             label: '최저가',
-            data: data.map(item => item.minPrice),
+            data: data.map(item => useRocketPrice ? item.rocketMinPrice || item.minPrice : item.minPrice),
             borderColor: 'rgb(255, 99, 132)',
             backgroundColor: 'rgba(54, 162, 235, 0.1)',
             pointHoverBackgroundColor: '#000',
