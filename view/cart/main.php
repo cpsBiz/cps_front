@@ -1061,8 +1061,6 @@
           favorites: !$cartIcoFavorites.classList.contains('on') ? 'Y' : 'N',
           cartPrice: elm.getAttribute('data-cartPrice'),
           wantPrice: elm.getAttribute('data-wantPrice'),
-          alarm: elm.getAttribute('data-alarm'),
-          returnalarm: elm.getAttribute('data-returnalarm'),
         };
         favoritesList.push(obj);
       }
