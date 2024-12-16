@@ -326,7 +326,7 @@
     <? include_once $_SERVER['DOCUMENT_ROOT'] . "/footer.php"; ?>
   </div>
 </body>
-<script src="../js/common.js?version=<?= $cacheVersion; ?>"></script>
+<script src="https://cdn.shoplus.io/js/common.js?version=<?= $cacheVersion; ?>"></script>
 
 </html>
 <script>

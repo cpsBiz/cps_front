@@ -46,7 +46,7 @@
   </div>
 
 </body>
-<script type="text/javascript" src="/js/common.js?version=<?= $cacheVersion; ?>"></script>
+<script src="https://cdn.shoplus.io/js/common.js?version=<?= $cacheVersion; ?>"></script>
 
 </html>
 <script>

@@ -412,8 +412,8 @@
       </div>
     </div>
   </div>
-  <script src="../js/common.js?version=<?= $cacheVersion; ?>"></script>
-  <script src="../js/page.js?version=<?= $cacheVersion; ?>"></script>
+  <script src="https://cdn.shoplus.io/js/common.js?version=<?= $cacheVersion; ?>"></script>
+  <script src="https://cdn.shoplus.io/js/page.js?version=<?= $cacheVersion; ?>"></script>
 </body>
 
 </html>
