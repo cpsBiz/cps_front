@@ -302,7 +302,7 @@ if (!$object) {
     }
 
     const useRocketPrice = result.rocketStatus === 'Y';
-    if (rocketStatus) {
+    if (useRocketPrice) {
       data = data.filter(item => item.rocketMinPrice !== 0 && item.rocketMaxPrice !== 0);
     } else {
       data = data;
