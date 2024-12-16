@@ -1361,6 +1361,8 @@
         link: url
       }
 
+      $('#loading-spinner').show();
+
       $.ajax({
         type: 'POST',
         url: '<?= $appApiUrl; ?>/api/crawling/productLink',
@@ -1374,6 +1376,7 @@
           }
           document.getElementById('cartLink').value = '';
           selectInputClose('#select-wrap', '#select-list5');
+          $('#loading-spinner').hide();
         },
         error: function(request, status, error) {
           console.error(`Error: ${error}`);
