@@ -293,7 +293,7 @@ if (!$object) {
   }
 
   function renderChart(result) {
-    const data = result.productGraphList;
+    let data = result.productGraphList;
     if (!data || data.length <= 1) {
       $('.graph-set').show();
       $('#price-chart').hide();
@@ -302,11 +302,10 @@ if (!$object) {
     }
 
     const useRocketPrice = result.rocketStatus === 'Y';
-    let filteredData;
-    if (useRocketPrice) {
-      filteredData = data.filter(item => item.rocketMinPrice !== 0 || item.rocketMaxPrice !== 0);
+    if (rocketStatus) {
+      data = data.filter(item => item.rocketMinPrice !== 0 && item.rocketMaxPrice !== 0);
     } else {
-      filteredData = data;
+      data = data;
     }
 
     const findExtremePrice = (data, type) => {
@@ -325,8 +324,8 @@ if (!$object) {
     };
 
     // 데이터에서 최고가와 최저가 추출
-    const historicalHigh = findExtremePrice(filteredData, 'max');
-    const historicalLow = findExtremePrice(filteredData, 'min');
+    const historicalHigh = findExtremePrice(data, 'max');
+    const historicalLow = findExtremePrice(data, 'min');
     renderPriceInfo(historicalHigh, 'max');
     renderPriceInfo(historicalLow, 'min');
     renderPriceInfo(result.cartPrice, 'now');
@@ -343,10 +342,10 @@ if (!$object) {
     const chart = new Chart(ctx, {
       type: 'line',
       data: {
-        labels: filteredData.map(item => formatDate(item.regDay)),
+        labels: data.map(item => formatDate(item.regDay)),
         datasets: [{
             label: '최고가',
-            data: filteredData.map(item => useRocketPrice ? item.rocketMaxPrice : item.maxPrice),
+            data: data.map(item => useRocketPrice ? item.rocketMaxPrice : item.maxPrice),
             borderColor: 'rgb(54, 162, 235)',
             backgroundColor: 'rgba(255, 99, 132, 0.1)',
             pointHoverBackgroundColor: '#000',
@@ -355,7 +354,7 @@ if (!$object) {
           },
           {
             label: '최저가',
-            data: filteredData.map(item => useRocketPrice ? item.rocketMinPrice : item.minPrice),
+            data: data.map(item => useRocketPrice ? item.rocketMinPrice : item.minPrice),
             borderColor: 'rgb(255, 99, 132)',
             backgroundColor: 'rgba(54, 162, 235, 0.1)',
             pointHoverBackgroundColor: '#000',
