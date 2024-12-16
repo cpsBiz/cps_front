@@ -294,6 +294,8 @@ if (!$object) {
 
   function renderChart(result) {
     const data = result.productGraphList;
+    const useRocketPrice = result.data.rocketStatus === 'Y';
+
     if (!data || data.length <= 1) {
       $('.graph-set').show();
       $('#price-chart').hide();
@@ -303,7 +305,6 @@ if (!$object) {
 
     const findExtremePrice = (data, type) => {
       const sortedData = [...data].sort((a, b) => b.regDay - a.regDay);
-      const useRocketPrice = result.data.rocketStatus === 'Y';
 
       if (type === 'max') {
         const prices = data.map(item =>
@@ -341,7 +342,6 @@ if (!$object) {
       return `${month}/${day}`;
     };
 
-    const useRocketPrice = result.data.rocketStatus === 'Y';
     const ctx = document.getElementById('price-chart').getContext('2d');
     const chart = new Chart(ctx, {
       type: 'line',
