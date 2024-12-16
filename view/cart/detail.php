@@ -294,7 +294,6 @@ if (!$object) {
 
   function renderChart(result) {
     const data = result.productGraphList;
-    const useRocketPrice = result.data.rocketStatus === 'Y';
 
     if (!data || data.length <= 1) {
       $('.graph-set').show();
@@ -302,6 +301,8 @@ if (!$object) {
       renderPriceInfo(result.cartPrice, 'all');
       return;
     }
+
+    const useRocketPrice = result.rocketStatus === 'Y';
 
     const findExtremePrice = (data, type) => {
       const sortedData = [...data].sort((a, b) => b.regDay - a.regDay);
