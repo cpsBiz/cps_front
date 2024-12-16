@@ -1363,8 +1363,8 @@
 
       $.ajax({
         type: 'POST',
-        url: '<?= $appApiUrl; ?>/api/crawl/productLink',
-        contentType: 'application/json',
+        // url: '<?= $appApiUrl; ?>/api/crawl/productLink',
+        url: 'http://192.168.101.157:9600/api/crawling/productLink',
         data: JSON.stringify(requestData),
         success: function(result) {
           if (result.resultCode !== '0000') {
