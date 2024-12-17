@@ -1051,18 +1051,21 @@
     const $tost2 = document.querySelector(tost2);
     let count = 0;
     let favoritesList = [];
+    let updateFavorite = 0;
     $cartLists.forEach((elm) => {
       const $cartImgBg = elm.querySelector('.img-bg');
       const $cartIcoFavorites = elm.querySelector('.ico-heart');
 
-      if ($cartImgBg.classList.contains('on')) count += 1;
+      if ($cartImgBg.classList.contains('on')) {
+        count += 1;
+        if ($cartIcoFavorites.classList.contains('on')) updateFavorite += 1;
+      }
 
       if ($cartImgBg.classList.contains('on')) {
         const obj = {
           merchantId: elm.getAttribute('data-merchantId'),
           productCode: elm.getAttribute('data-productCode'),
           optionCode: elm.getAttribute('data-optionCode'),
-          favorites: !$cartIcoFavorites.classList.contains('on') ? 'Y' : 'N',
           cartPrice: elm.getAttribute('data-cartPrice'),
           wantPrice: elm.getAttribute('data-wantPrice'),
           alarm: elm.getAttribute('data-alarm'),
@@ -1075,6 +1078,17 @@
     if (count === 0) {
       return alert('상품을 선택해 주세요.');
     }
+
+    let updateFavoriteValue = 'Y';
+    if (updateFavorite > 0) {
+      updateFavoriteValue = 'N';
+    }
+
+    favoritesList = favoritesList.map(item => ({
+      ...item,
+      favorites: updateFavoriteValue
+    }));
+
 
     try {
       const requestData = {
@@ -1151,11 +1165,15 @@
     const $tost2 = document.querySelector(tost2);
     let count = 0;
     let alarmList = [];
+    let updateAlarm = 0;
     $cartLists.forEach((elm) => {
       const $cartImgBg = elm.querySelector('.img-bg');
       const $cartIcoAlarm = elm.querySelector('.ico-alarm');
 
-      if ($cartImgBg.classList.contains('on')) count += 1;
+      if ($cartImgBg.classList.contains('on')) {
+        count += 1;
+        if ($cartIcoAlarm.classList.contains('on')) updateAlarm += 1;
+      }
 
       if ($cartImgBg.classList.contains('on')) {
         const obj = {
@@ -1165,7 +1183,6 @@
           favorites: elm.getAttribute('data-favorites'),
           cartPrice: elm.getAttribute('data-cartPrice'),
           wantPrice: elm.getAttribute('data-wantPrice'),
-          alarm: !$cartIcoAlarm.classList.contains('on') ? 'Y' : 'N',
           returnalarm: elm.getAttribute('data-returnalarm'),
         };
         alarmList.push(obj);
@@ -1175,6 +1192,16 @@
     if (count === 0) {
       return alert('상품을 선택해 주세요.');
     }
+
+    let updateAlarmValue = 'Y';
+    if (updateAlarm > 0) {
+      updateAlarmValue = 'N';
+    }
+
+    alarmList = alarmList.map(item => ({
+      ...item,
+      alarm: updateAlarmValue
+    }));
 
     try {
       const requestData = {
