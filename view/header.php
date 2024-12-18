@@ -6,6 +6,7 @@ if ($isTest) {
   $checkAffliateId = 'donsee';
   $checkSite = 'test';
   $checkZoneId =  'test';
+  $checkFcmToken = 'test';
 
   $appApiUrl = 'https://testapp.shoplus.io';
 } else {
@@ -16,6 +17,7 @@ if ($isTest) {
   $checkAffliateId = $_SESSION['check_affliateId'];
   $checkSite = $_SESSION['check_site'];
   $checkZoneId =  $_SESSION['check_zoneId'];
+  $checkFcmToken = $_SESSION['check_fcmToken'];
 
   $appApiUrl = 'https://app.shoplus.io';
 }
