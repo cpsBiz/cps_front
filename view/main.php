@@ -22,7 +22,7 @@
     </header>
     <!-- main -->
     <!-- hana class 추가 시 시그니처 컬러 변경 -->
-    <div class="main">
+    <div class="main <?= $checkAffliateId; ?>">
       <div id="banner"></div>
       <div class="point-info-wrap">
         <div class="point-info">
