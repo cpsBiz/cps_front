@@ -20,7 +20,7 @@ if ($isTest) {
   $appApiUrl = 'https://app.shoplus.io';
 }
 
-$cacheVersion = '1.0.3';
+$cacheVersion = '1.0.4';
 ?>
 <link rel="icon" type="image/x-icon" href="https://cdn.shoplus.io/images/favicon.ico">
 <link rel="stylesheet" href="https://cdn.shoplus.io/css/style.css?version=<?= $cacheVersion; ?>">
