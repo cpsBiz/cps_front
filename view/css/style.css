@@ -1762,6 +1762,9 @@ body.scrollNone {
 .alarm-list-wrap.type1 .list .alarm-cont .text-box .text span {
   margin-right: 4px;
 }
+.alarm-list-wrap.type1 .list .alarm-cont .text-box .pushMessage {
+  white-space: pre-line;
+}
 .alarm-list-wrap.type1 .list .alarm-cont .text-box .price {
   font-family: 'Pretendard-Bold';
   display: flex;
@@ -5602,6 +5605,9 @@ header .btn-list > div {
 }
 .alarm-list-wrap.type1 .list .alarm-cont .text-box .text span {
   margin-right: 4px;
+}
+.alarm-list-wrap.type1 .list .alarm-cont .text-box .pushMessage {
+  white-space: pre-line;
 }
 .alarm-list-wrap.type1 .list .alarm-cont .text-box .price {
   font-family: 'Pretendard-Bold';

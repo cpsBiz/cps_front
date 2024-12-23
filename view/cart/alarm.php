@@ -81,7 +81,8 @@
         affliateId: '<?= $checkAffliateId; ?>',
         merchantId: item.merchantId,
         productCode: item.productCode,
-        optionCode: item.optionCode
+        optionCode: item.optionCode,
+        clickUrl: item.productUrl
       }
 
       const itemStr = base64Encode(JSON.stringify(params));
@@ -95,13 +96,14 @@
                 <div class="alarm-cont">
                   <div
                     class="img"
-                    style="background-image: url(images/merchant/${item.merchantId}.png)"></div>
+                    style="background-image: url(${item.productImage})"></div>
                   <div class="text-box">
                     <p class="title type1">${item.productName}</p>
-                    <p class="text"><span>등록</span>${cartPrice.toLocaleString()}원</p>
+                    <p class="text pushMessage">${item.pushMessage}</p>
+                    <!--<p class="text"><span>등록</span>${cartPrice.toLocaleString()}원</p>
                     <p class="price">
                       <span>현재</span>${productPrice.toLocaleString()}원<span class="up-down ${price.type}">${price.rate}</span>
-                    </p>
+                    </p>-->
                   </div>
                 </div>
               </div>
