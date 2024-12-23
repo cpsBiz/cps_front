@@ -612,7 +612,10 @@ if (!$productCode || !$optionCode || !$merchantId) {
     try {
       let favoritesList = [];
       let wantPrice = parseInt(document.querySelector('#select-list2 .select-cont input').value);
-      console.log(object);
+
+      const newObject = object;
+      console.log(newObject);
+
       const obj = {
         merchantId: object.merchantId,
         productCode: object.productCode,
