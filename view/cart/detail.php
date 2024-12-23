@@ -616,9 +616,6 @@ if (!$productCode || !$optionCode || !$merchantId) {
       let favoritesList = [];
       let wantPrice = parseInt(document.querySelector('#select-list2 .select-cont input').value);
 
-      const newObject = object;
-      console.log(newObject);
-
       const obj = {
         merchantId: object.merchantId,
         productCode: object.productCode,
@@ -639,7 +636,7 @@ if (!$productCode || !$optionCode || !$merchantId) {
         apiType: 'U',
         productList: favoritesList
       };
-      return console.log(requestData);
+
       $.ajax({
         type: 'POST',
         url: '<?= $appApiUrl; ?>/api/cart/cartProduct',
