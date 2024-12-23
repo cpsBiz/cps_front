@@ -258,9 +258,9 @@ if (!$productCode || !$optionCode || !$merchantId) {
           document.getElementById('objectData').setAttribute('data-favorites', item.favorites);
           document.getElementById('objectData').setAttribute('data-cartPrice', item.cartPrice);
           document.getElementById('objectData').setAttribute('data-alarm', item.alarm);
-          document.getElementById('objectData').setAttribute('data-returnalarm', item.returnalarm);
+          document.getElementById('objectData').setAttribute('data-returnalarm', item.returnAlarm);
           document.getElementById('objectData').setAttribute('data-rocketCartPrice', item.rocketCartPrice);
-          document.getElementById('objectData').setAttribute('data-clickUrl', item.clickUrl);
+          document.getElementById('objectData').setAttribute('data-clickUrl', item.productUrl);
 
           renderItem(item);
           renderChart(result.data);
