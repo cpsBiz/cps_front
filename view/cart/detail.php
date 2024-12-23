@@ -258,7 +258,7 @@ if (!$productCode || !$optionCode || !$merchantId) {
             clickUrl: item.productUrl,
             rocketCartPrice: item.rocketCartPrice
           }
-          console.log(object);
+
           renderItem(item);
           renderChart(result.data);
         },
@@ -612,7 +612,7 @@ if (!$productCode || !$optionCode || !$merchantId) {
     try {
       let favoritesList = [];
       let wantPrice = parseInt(document.querySelector('#select-list2 .select-cont input').value);
-
+      console.log(object);
       const obj = {
         merchantId: object.merchantId,
         productCode: object.productCode,
