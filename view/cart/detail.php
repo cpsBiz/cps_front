@@ -1,8 +1,11 @@
 <? include_once $_SERVER['DOCUMENT_ROOT'] . "/header.php"; ?>
 <?
-$object = $_REQUEST['object'] ?? null; // null로 기본값 설정
-if (!$object) {
-  header('Location: /main.php');
+$productCode = $_REQUEST['productCode'];
+$optionCode = $_REQUEST['optionCode'];
+$merchantId = $_REQUEST['merchantId'];
+
+if (!$productCode || !$optionCode || !$merchantId) {
+  header('Location: /cart/main.php');
   exit;
 }
 ?>
@@ -195,7 +198,11 @@ if (!$object) {
 
 </html>
 <script>
-  const object = decodeFromBase64(`<?= $object ?>`);
+  let object = {
+    productCode: '<?= $productCode; ?>',
+    optionCode: '<?= $optionCode; ?>',
+    merchantId: '<?= $merchantId; ?>',
+  }
 
   $(function() {
     getItemData(object);
@@ -235,10 +242,24 @@ if (!$object) {
         success: function(result) {
           if (result.resultCode !== '0000') {
             alert(result.resultMessage);
-            location.back();
+            history.back();
             return;
           }
-          renderItem(result.data);
+
+          const item = result.data;
+
+          object = {
+            ...object,
+            favorites: item.favorites,
+            cartPrice: item.cartPrice,
+            wantPrice: item.wantPrice,
+            alarm: item.alarm,
+            returnalarm: item.returnalarm,
+            clickUrl: item.productUrl,
+            rocketCartPrice: item.rocketCartPrice
+          }
+          console.log(object);
+          renderItem(item);
           renderChart(result.data);
         },
         error: function(request, status, error) {
@@ -252,9 +273,9 @@ if (!$object) {
   }
 
   function renderItem(data) {
-    const productPrice = parseInt(data.rocketStatus === 'Y' ? data.rocketProductPrice : data.productPrice);
+    const productPrice = parseInt(data.rocketStatus === 'Y' && data.rocketProductPrice > 0 ? data.rocketProductPrice : data.productPrice);
     const cartPrice = parseInt(data.cartPrice);
-    const priceChange = calculatePriceChange(cartPrice, data.rocketStatus === 'Y' ? data.rocketProductPrice : data.productPrice);
+    const priceChange = calculatePriceChange(cartPrice, data.rocketStatus === 'Y' && data.rocketProductPrice > 0 ? data.rocketProductPrice : data.productPrice);
 
     const badge = data.badge ? `<p class="lowest-price">${data.badge}}</p>` : '';
     const currentDate = new Date();
@@ -294,6 +315,7 @@ if (!$object) {
 
   function renderChart(result) {
     let data = result.productGraphList;
+    let backupData = data;
     if (!data || data.length <= 1) {
       $('.graph-set').show();
       $('#price-chart').hide();
@@ -304,6 +326,9 @@ if (!$object) {
     const useRocketPrice = result.rocketStatus === 'Y';
     if (useRocketPrice) {
       data = data.filter(item => item.rocketMinPrice !== 0 && item.rocketMaxPrice !== 0);
+      if (data.length === 0) {
+        data = backupData.filter(item => item.minPrice !== 0 && item.maxPrice !== 0);
+      }
     } else {
       data = data.filter(item => item.minPrice !== 0 && item.maxPrice !== 0);
     }
@@ -314,11 +339,11 @@ if (!$object) {
 
       if (type === 'max') {
         // 최고가 찾기
-        const maxPrice = Math.max(...data.map(item => useRocketPrice ? item.rocketMaxPrice : item.maxPrice));
+        const maxPrice = Math.max(...data.map(item => useRocketPrice && item.rocketMaxPrice > 0 ? item.rocketMaxPrice : item.maxPrice));
         return maxPrice;
       } else {
         // 최저가 찾기
-        const minPrice = Math.min(...data.map(item => useRocketPrice ? item.rocketMinPrice : item.minPrice));
+        const minPrice = Math.min(...data.map(item => useRocketPrice && item.rocketMinPrice > 0 ? item.rocketMinPrice : item.minPrice));
         return minPrice;
       }
     };
@@ -345,7 +370,7 @@ if (!$object) {
         labels: data.map(item => formatDate(item.regDay)),
         datasets: [{
             label: '최고가',
-            data: data.map(item => useRocketPrice ? item.rocketMaxPrice : item.maxPrice),
+            data: data.map(item => useRocketPrice && item.rocketMaxPrice > 0 ? item.rocketMaxPrice : item.maxPrice),
             borderColor: 'rgb(54, 162, 235)',
             backgroundColor: 'rgba(255, 99, 132, 0.1)',
             pointHoverBackgroundColor: '#000',
@@ -354,7 +379,7 @@ if (!$object) {
           },
           {
             label: '최저가',
-            data: data.map(item => useRocketPrice ? item.rocketMinPrice : item.minPrice),
+            data: data.map(item => useRocketPrice && item.rocketMinPrice > 0 ? item.rocketMinPrice : item.minPrice),
             borderColor: 'rgb(255, 99, 132)',
             backgroundColor: 'rgba(54, 162, 235, 0.1)',
             pointHoverBackgroundColor: '#000',
@@ -492,7 +517,8 @@ if (!$object) {
         cartPrice: object.cartPrice,
         wantPrice: !wantPrice ? 0 : wantPrice,
         alarm: object.alarm,
-        returnalarm: object.returnalarm
+        returnalarm: object.returnalarm,
+        rocketCartPrice: object.rocketCartPrice
       };
       itemList.push(obj);
 
@@ -595,7 +621,8 @@ if (!$object) {
         cartPrice: object.cartPrice,
         wantPrice: !wantPrice ? 0 : wantPrice,
         alarm: object.alarm,
-        returnalarm: object.returnalarm
+        returnalarm: object.returnalarm,
+        rocketCartPrice: object.rocketCartPrice
       };
       favoritesList.push(obj);
 
@@ -640,7 +667,8 @@ if (!$object) {
         cartPrice: object.cartPrice,
         wantPrice: 0,
         alarm: object.alarm,
-        returnalarm: object.returnalarm
+        returnalarm: object.returnalarm,
+        rocketCartPrice: object.rocketCartPrice
       };
       List.push(obj);
 

@@ -858,19 +858,6 @@
       const badge = item.badge ? `<div class="lowest-price">${item.badge}</div>` : '';
       const saleStatus = item.saleStatus === '310' ? '<span class="sale">품절</span>' : '';
 
-      const params = {
-        productCode: item.productCode,
-        optionCode: item.optionCode,
-        merchantId: item.merchantId,
-        favorites: item.favorites,
-        cartPrice: item.cartPrice,
-        wantPrice: item.wantPrice,
-        alarm: item.alarm,
-        returnalarm: item.returnAlarm,
-        clickUrl: item.productUrl
-      };
-      const itemStr = base64Encode(JSON.stringify(params));
-
       list += `
                 <div 
                     id="list${index}" 
@@ -883,6 +870,7 @@
                     data-wantPrice="${item.wantPrice}"
                     data-alarm="${item.alarm}"
                     data-returnalarm="${item.returnAlarm}"
+                    data-rocketCartPrice="${item.rocketCartPrice}"
                   >
                   <div class="img-box" style="background-image: url(${item.productImage});">
                     ${badge}
@@ -901,7 +889,7 @@
                       <div class="up-down ${priceChange.type}">${priceChange.rate}</div>
                     </div>
                   </div>
-                  <a href="javascript:postToUrl('${itemStr}')"></a>
+                  <a href="/cart/detail.php?productCode=${item.productCode}&optionCode=${item.optionCode}&merchantId=${item.merchantId}"></a>
                   <div
                     class="check-box"
                     onclick="
@@ -958,6 +946,7 @@
             wantPrice: elm.getAttribute('data-wantPrice'),
             alarm: elm.getAttribute('data-alarm'),
             returnalarm: elm.getAttribute('data-returnalarm'),
+            rocketCartPrice: elm.getAttribute('data-rocketCartPrice'),
           };
         } else {
           obj = {
@@ -1070,6 +1059,7 @@
           wantPrice: elm.getAttribute('data-wantPrice'),
           alarm: elm.getAttribute('data-alarm'),
           returnalarm: elm.getAttribute('data-returnalarm'),
+          rocketCartPrice: elm.getAttribute('data-rocketCartPrice'),
         };
         favoritesList.push(obj);
       }
@@ -1184,6 +1174,7 @@
           cartPrice: elm.getAttribute('data-cartPrice'),
           wantPrice: elm.getAttribute('data-wantPrice'),
           returnalarm: elm.getAttribute('data-returnalarm'),
+          rocketCartPrice: elm.getAttribute('data-rocketCartPrice'),
         };
         alarmList.push(obj);
       }
@@ -1281,6 +1272,7 @@
         wantPrice: elm.getAttribute('data-wantPrice'),
         alarm: elm.getAttribute('data-alarm'),
         returnalarm: elm.getAttribute('data-returnalarm'),
+        rocketCartPrice: elm.getAttribute('data-rocketCartPrice'),
       };
       favoritesList.push(obj);
 
@@ -1327,6 +1319,7 @@
         wantPrice: elm.getAttribute('data-wantPrice'),
         alarm: elm.getAttribute('data-alarm') === 'Y' ? 'N' : 'Y',
         returnalarm: elm.getAttribute('data-returnalarm'),
+        rocketCartPrice: elm.getAttribute('data-rocketCartPrice'),
       };
       alarmList.push(obj);
 
@@ -1364,10 +1357,6 @@
     const checkFavorite = localStorage.getItem('checkFavorite');
     localStorage.setItem('checkFavorite', checkFavorite === '' ? 'Y' : '');
     getCartList();
-  }
-
-  function postToUrl(item) {
-    location.href = `detail.php?object=${item}`;
   }
 
   function postCartLink() {

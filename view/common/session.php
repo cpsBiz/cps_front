@@ -10,6 +10,10 @@ if (!$isTest) {
   $site = $_REQUEST['site'];
   $zoneId = $_REQUEST['zoneId'];
   $fcmToken = $_REQUEST['fcmToken'];
+  $type = $_REQUEST['type'];
+  $productCode = $_REQUEST['productCode'];
+  $optionCode = $_REQUEST['optionCode'];
+  $merchantId = $_REQUEST['merchantId'];
 
   if ($userId && $adId && $affliateId && $site && $zoneId) {
     session_start();
@@ -19,6 +23,10 @@ if (!$isTest) {
     $_SESSION['check_site'] = $site;
     $_SESSION['check_zoneId'] = $zoneId;
     $_SESSION['check_fcmToken'] = $fcmToken;
+
+    if ($type === 'push' && $productCode && $optionCode && $merchantId) {
+      header('Location:https://app.shoplus.io/cart/detail.php?productCode=' . $productCode . '&optionCode=' . $optionCode . '&merchantId=' . $merchantId);
+    }
 ?>
     <script type="text/javascript" src="https://cdn.shoplus.io/js/lib/jquery-2.2.2.min.js"></script>
     <script type="text/javascript" src="https://cdn.shoplus.io/js/lib/jquery.easing.1.3.js"></script>
