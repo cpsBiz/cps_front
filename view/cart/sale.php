@@ -463,8 +463,4 @@
       alert(error);
     }
   }
-
-  function postToUrl(item) {
-    location.href = `detail.php?object=${item}`;
-  }
 </script>
