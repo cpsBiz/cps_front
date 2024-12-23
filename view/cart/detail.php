@@ -76,9 +76,9 @@ if (!$productCode || !$optionCode || !$merchantId) {
             ">
         </canvas>
         <div class="price-info">
-          <p class="price up">최고가<span>2,052,000원</span></p>
-          <p class="price flat">등록가<span>1,957,337원</span></p>
-          <p class="price down">최저가<span>1,925,200원</span></p>
+          <p class="price up">최고가<span></span></p>
+          <p class="price flat">등록가<span></span></p>
+          <p class="price down">최저가<span></span></p>
         </div>
       </div>
       <div class="alarm-set">
@@ -106,6 +106,13 @@ if (!$productCode || !$optionCode || !$merchantId) {
         </div>
         <a id="buttonUrl" href="javascript:getClickRewardUrl()" class="c-btn blue">구매하러 가기</a>
       </div>
+      <div id="objectData"
+        data-favorites=""
+        data-cartPrice=""
+        data-alarm=""
+        data-returnalarm=""
+        data-rocketCartPrice=""
+        data-clickUrl=""></div>
       <!-- 토스트 팝업 -->
       <p id="tost1" class="tost-popup">즐겨찾기 설정 완료</p>
       <p id="tost2" class="tost-popup">즐겨찾기 설정 해제</p>
@@ -248,16 +255,12 @@ if (!$productCode || !$optionCode || !$merchantId) {
 
           const item = result.data;
 
-          object = {
-            ...object,
-            favorites: item.favorites,
-            cartPrice: item.cartPrice,
-            wantPrice: item.wantPrice,
-            alarm: item.alarm,
-            returnalarm: item.returnAlarm,
-            clickUrl: item.productUrl,
-            rocketCartPrice: item.rocketCartPrice
-          }
+          document.getElementById('objectData').setAttribute('data-favorites', item.favorites);
+          document.getElementById('objectData').setAttribute('data-cartPrice', item.cartPrice);
+          document.getElementById('objectData').setAttribute('data-alarm', item.alarm);
+          document.getElementById('objectData').setAttribute('data-returnalarm', item.returnalarm);
+          document.getElementById('objectData').setAttribute('data-rocketCartPrice', item.rocketCartPrice);
+          document.getElementById('objectData').setAttribute('data-clickUrl', item.clickUrl);
 
           renderItem(item);
           renderChart(result.data);
@@ -514,11 +517,11 @@ if (!$productCode || !$optionCode || !$merchantId) {
         productCode: object.productCode,
         optionCode: object.optionCode,
         favorites: document.getElementById('ico-heart1').classList.contains('on') ? 'Y' : 'N',
-        cartPrice: object.cartPrice,
+        cartPrice: document.getElementById('objectData').getAttribute('data-cartPrice'),
         wantPrice: !wantPrice ? 0 : wantPrice,
-        alarm: object.alarm,
-        returnalarm: object.returnalarm,
-        rocketCartPrice: object.rocketCartPrice
+        alarm: document.getElementById('objectData').getAttribute('data-alarm'),
+        returnalarm: document.getElementById('objectData').getAttribute('data-returnalarm'),
+        rocketCartPrice: document.getElementById('objectData').getAttribute('data-rocketCartPrice')
       };
       itemList.push(obj);
 
@@ -568,7 +571,7 @@ if (!$productCode || !$optionCode || !$merchantId) {
         userId: '<?= $checkUserId; ?>',
         affliateId: '<?= $checkAffliateId; ?>',
         merchantId: object.merchantId,
-        clickUrl: object.clickUrl,
+        clickUrl: document.getElementById('objectData').getAttribute('data-clickUrl'),
         zoneId: '<?= $checkZoneId; ?>',
         site: '<?= $checkSite; ?>',
         os: getOs(),
@@ -621,11 +624,11 @@ if (!$productCode || !$optionCode || !$merchantId) {
         productCode: object.productCode,
         optionCode: object.optionCode,
         favorites: document.getElementById('ico-heart1').classList.contains('on') ? 'Y' : 'N',
-        cartPrice: object.cartPrice,
+        cartPrice: document.getElementById('objectData').getAttribute('data-cartPrice'),
         wantPrice: !wantPrice ? 0 : wantPrice,
-        alarm: object.alarm,
-        returnalarm: object.returnalarm,
-        rocketCartPrice: object.rocketCartPrice
+        alarm: document.getElementById('objectData').getAttribute('data-alarm'),
+        returnalarm: document.getElementById('objectData').getAttribute('data-returnalarm'),
+        rocketCartPrice: document.getElementById('objectData').getAttribute('data-rocketCartPrice')
       };
       favoritesList.push(obj);
 
@@ -667,11 +670,11 @@ if (!$productCode || !$optionCode || !$merchantId) {
         productCode: object.productCode,
         optionCode: object.optionCode,
         favorites: '',
-        cartPrice: object.cartPrice,
+        cartPrice: document.getElementById('objectData').getAttribute('data-cartPrice'),
         wantPrice: 0,
-        alarm: object.alarm,
-        returnalarm: object.returnalarm,
-        rocketCartPrice: object.rocketCartPrice
+        alarm: document.getElementById('objectData').getAttribute('data-alarm'),
+        returnalarm: document.getElementById('objectData').getAttribute('data-returnalarm'),
+        rocketCartPrice: document.getElementById('objectData').getAttribute('data-rocketCartPrice')
       };
       List.push(obj);
 
