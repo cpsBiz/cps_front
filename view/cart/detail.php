@@ -254,7 +254,7 @@ if (!$productCode || !$optionCode || !$merchantId) {
             cartPrice: item.cartPrice,
             wantPrice: item.wantPrice,
             alarm: item.alarm,
-            returnalarm: item.returnalarm,
+            returnalarm: item.returnAlarm,
             clickUrl: item.productUrl,
             rocketCartPrice: item.rocketCartPrice
           }
