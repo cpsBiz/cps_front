@@ -633,7 +633,7 @@ if (!$productCode || !$optionCode || !$merchantId) {
         apiType: 'U',
         productList: favoritesList
       };
-
+      return console.log(requestData);
       $.ajax({
         type: 'POST',
         url: '<?= $appApiUrl; ?>/api/cart/cartProduct',
