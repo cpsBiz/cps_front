@@ -11,7 +11,7 @@ if (!$isTest) {
   $zoneId = $_REQUEST['zoneId'];
   $fcmToken = $_REQUEST['fcmToken'];
 
-  if ($userId && $adId && $affliateId && $site && $zoneId && $fcmToken) {
+  if ($userId && $adId && $affliateId && $site && $zoneId) {
     session_start();
     $_SESSION['check_userId'] = $userId;
     $_SESSION['check_adId'] = $adId;
@@ -25,6 +25,15 @@ if (!$isTest) {
     <script type="text/javascript" src="https://cdn.shoplus.io/js/lib/jquery-ui.min.js"></script>
     <script src="https://cdn.shoplus.io/js/common.js"></script>
     <script>
+      $(function() {
+        <? if ($fcmToken) { ?>
+          setToken();
+        <? } else { ?>
+          successToken('N');
+        <? } ?>
+      })
+
+
       function setToken() {
         try {
           const requestData = {
