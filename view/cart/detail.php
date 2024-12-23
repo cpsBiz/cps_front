@@ -252,9 +252,9 @@ if (!$object) {
   }
 
   function renderItem(data) {
-    const productPrice = parseInt(data.productPrice);
+    const productPrice = parseInt(data.rocketStatus === 'Y' ? data.rocketProductPrice : data.productPrice);
     const cartPrice = parseInt(data.cartPrice);
-    const priceChange = calculatePriceChange(cartPrice, productPrice);
+    const priceChange = calculatePriceChange(cartPrice, data.rocketStatus === 'Y' ? data.rocketProductPrice : data.productPrice);
 
     const badge = data.badge ? `<p class="lowest-price">${data.badge}}</p>` : '';
     const currentDate = new Date();
