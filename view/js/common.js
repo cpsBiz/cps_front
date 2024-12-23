@@ -851,7 +851,7 @@ function calculatePriceChange(cartPrice, productPrice) {
   const rate = Math.round(((comparePrice - basePrice) / basePrice) * 100);
 
   return {
-    type: isIncrease ? 'up' : 'down',
-    rate: `${rate}%`,
+    type: rate === 0 ? '' : isIncrease ? 'up' : 'down',
+    rate: rate === 0 ? '' : `${rate}%`,
   };
 }
