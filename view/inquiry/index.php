@@ -311,8 +311,8 @@ if (!$campaign) {
     </div>
   </div>
 </body>
-<script src="https://app.shoplus.io/js/common.js?version=<?= $cacheVersion; ?>"></script>
-<script src="https://app.shoplus.io/js/page.js?version=<?= $cacheVersion; ?>"></script>
+<script src="<?= $appApiUrl; ?>/js/common.js?version=<?= $cacheVersion; ?>"></script>
+<script src="<?= $appApiUrl; ?>/js/page.js?version=<?= $cacheVersion; ?>"></script>
 
 </html>
 <script>

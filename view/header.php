@@ -22,10 +22,10 @@ if ($isTest) {
   $appApiUrl = 'https://app.shoplus.io';
 }
 
-$cacheVersion = '1.0.12.23';
+$cacheVersion = '1.0.12.24';
 ?>
 <link rel="icon" type="image/x-icon" href="https://cdn.shoplus.io/images/favicon.ico">
-<link rel="stylesheet" href="https://app.shoplus.io/css/style.css?version=<?= $cacheVersion; ?>">
+<link rel="stylesheet" href="<?= $appApiUrl; ?>/css/style.css?version=<?= $cacheVersion; ?>">
 <script type="text/javascript" src="https://cdn.shoplus.io/js/lib/jquery-2.2.2.min.js?version=<?= $cacheVersion; ?>"></script>
 <script type="text/javascript" src="https://cdn.shoplus.io/js/lib/jquery.easing.1.3.js?version=<?= $cacheVersion; ?>"></script>
 <script type="text/javascript" src="https://cdn.shoplus.io/js/lib/jquery-ui.min.js?version=<?= $cacheVersion; ?>"></script>

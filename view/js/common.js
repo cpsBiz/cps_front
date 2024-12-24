@@ -845,13 +845,10 @@ function calculatePriceChange(cartPrice, productPrice) {
   }
 
   const isIncrease = cartPrice < productPrice;
-  const basePrice = isIncrease ? cartPrice : productPrice;
-  const comparePrice = isIncrease ? productPrice : cartPrice;
-
-  const rate = Math.round(((comparePrice - basePrice) / basePrice) * 100);
+  const rate = Math.round(((productPrice - cartPrice) / cartPrice) * 100);
 
   return {
     type: rate === 0 ? '' : isIncrease ? 'up' : 'down',
-    rate: rate === 0 ? '' : `${rate}%`,
+    rate: rate === 0 ? '' : `${Math.abs(rate)}%`,
   };
 }

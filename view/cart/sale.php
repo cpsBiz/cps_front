@@ -128,7 +128,7 @@
       </div>
     </div>
   </div>
-  <script src="https://app.shoplus.io/js/common.js?version=<?= $cacheVersion; ?>"></script>
+  <script src="<?= $appApiUrl; ?>/js/common.js?version=<?= $cacheVersion; ?>"></script>
 </body>
 
 </html>
