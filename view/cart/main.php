@@ -852,9 +852,9 @@
   function renderCartList(data) {
     let list = '';
     data.forEach((item, index) => {
-      const productPrice = parseInt(item.productPrice);
+      const productPrice = parseInt(item.rocketStatus === 'Y' && item.rocketProductPrice > 0 ? item.rocketProductPrice : item.productPrice);
       const cartPrice = parseInt(item.cartPrice);
-      const priceChange = calculatePriceChange(cartPrice, productPrice);
+      const priceChange = calculatePriceChange(cartPrice, item.rocketStatus === 'Y' && item.rocketProductPrice > 0 ? item.rocketProductPrice : item.productPrice);
       const badge = item.badge ? `<div class="lowest-price">${item.badge}</div>` : '';
       const saleStatus = item.saleStatus === '310' ? '<span class="sale">품절</span>' : '';
 
