@@ -29,7 +29,7 @@ if (!$productCode || !$optionCode || !$merchantId) {
     <header>
       <h1>상품 가격정보</h1>
       <div class="btn-list">
-        <a href="javascript:history.back();" class="ico-arrow type1 left">이전</a>
+        <a href="javascript:moveBack();" class="ico-arrow type1 left">이전</a>
         <div>
           <a
             href="javascript:void(0)"
@@ -219,7 +219,7 @@ if (!$productCode || !$optionCode || !$merchantId) {
     try {
       if (!object) {
         alert('잘못된 접근입니다.');
-        history.back();
+        moveBack();
         return;
       }
 
@@ -229,7 +229,7 @@ if (!$productCode || !$optionCode || !$merchantId) {
 
       if (!productCode || !optionCode) {
         alert('잘못된 접근입니다.')
-        history.back();
+        moveBack();
         return;
       }
 
@@ -249,7 +249,7 @@ if (!$productCode || !$optionCode || !$merchantId) {
         success: function(result) {
           if (result.resultCode !== '0000') {
             alert(result.resultMessage);
-            history.back();
+            moveBack();
             return;
           }
 
@@ -595,7 +595,7 @@ if (!$productCode || !$optionCode || !$merchantId) {
           const buttonUrl = result.data.clickUrl;
           if (!buttonUrl) {
             alert('잘못된 접근입니다.');
-            history.back();
+            moveBack();
             return;
           }
 
@@ -702,6 +702,14 @@ if (!$productCode || !$optionCode || !$merchantId) {
       });
     } catch (error) {
       alert(error);
+    }
+  }
+
+  function moveBack() {
+    if (!document.referrer || document.referrer === '') {
+      location.replace('/cart/main.php');
+    } else {
+      history.back();
     }
   }
 </script>
