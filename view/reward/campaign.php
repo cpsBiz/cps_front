@@ -65,8 +65,8 @@ if (!$object) {
     </div>
   </div>
 </body>
-<script src="https://cdn.shoplus.io/js/common.js?version=<?= $cacheVersion; ?>"></script>
-<script src="https://cdn.shoplus.io/js/page.js?version=<?= $cacheVersion; ?>"></script>
+<script src="https://app.shoplus.io/js/common.js?version=<?= $cacheVersion; ?>"></script>
+<script src="https://app.shoplus.io/js/page.js?version=<?= $cacheVersion; ?>"></script>
 
 </html>
 <script>

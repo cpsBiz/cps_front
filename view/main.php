@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="format-detection" content="telephone=no">
   <title>쇼핑적립</title>
-  <link rel="stylesheet" href="https://cdn.shoplus.io/css/index.css?version=<?= $cacheVersion; ?>">
+  <link rel="stylesheet" href="https://app.shoplus.io/css/index.css?version=<?= $cacheVersion; ?>">
 </head>
 
 <body>
@@ -46,7 +46,7 @@
   </div>
 
 </body>
-<script src="https://cdn.shoplus.io/js/common.js?version=<?= $cacheVersion; ?>"></script>
+<script src="https://app.shoplus.io/js/common.js?version=<?= $cacheVersion; ?>"></script>
 
 </html>
 <script>
