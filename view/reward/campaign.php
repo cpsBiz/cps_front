@@ -22,7 +22,7 @@ if (!$object) {
     <header>
       <h1>쇼핑적립 상세정보</h1>
       <div class="btn-list">
-        <a href="/main.php" class="ico-arrow type1 left">이전</a>
+        <a href="javascript:moveBack();" class="ico-arrow type1 left">이전</a>
       </div>
     </header>
     <!-- main -->
@@ -166,7 +166,7 @@ if (!$object) {
           const data = result.data;
           if (!data) {
             alert('존재하지않는 캠페인입니다.')
-            history.back();
+            window.close();
             return;
           }
           renderCampaignData(data);
@@ -255,5 +255,13 @@ if (!$object) {
     const campaignNum = document.getElementById('campaignNum').value;
     if (!campaignNum) return alert('잘못된 접근입니다.');
     location.href = `/inquiry/index.php?campaign=${campaignNum}`;
+  }
+
+  function moveBack() {
+    if (!document.referrer || document.referrer === '') {
+      window.close();
+    } else {
+      history.back();
+    }
   }
 </script>
