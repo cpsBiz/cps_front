@@ -455,7 +455,7 @@
   }
 
   function postToUrl(item) {
-    window.open(`/reward/campaign.php?object=${item}`, '_blank');
+    location.href = `/reward/campaign.php?object=${item}`;
   }
 
   function appClose() {

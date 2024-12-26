@@ -22,7 +22,7 @@ if (!$object) {
     <header>
       <h1>쇼핑적립 상세정보</h1>
       <div class="btn-list">
-        <a href="javascript:window.close();" class="ico-arrow type1 left">이전</a>
+        <a href="/main.php" class="ico-arrow type1 left">이전</a>
       </div>
     </header>
     <!-- main -->
@@ -166,7 +166,7 @@ if (!$object) {
           const data = result.data;
           if (!data) {
             alert('존재하지않는 캠페인입니다.')
-            window.close();
+            history.back();
             return;
           }
           renderCampaignData(data);
