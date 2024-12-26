@@ -26,6 +26,7 @@ if (!$isTest) {
 
     if ($type === 'push' && $productCode && $optionCode && $merchantId) {
       header('Location:https://app.shoplus.io/cart/detail.php?productCode=' . $productCode . '&optionCode=' . $optionCode . '&merchantId=' . $merchantId);
+      exit;
     }
 ?>
     <? include_once $_SERVER['DOCUMENT_ROOT'] . '/common/token.php'; ?>
