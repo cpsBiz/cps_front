@@ -41,7 +41,7 @@
     if (host.includes('/cart/index.php') && firstLogin === 'Y') {
       checkCartAgree();
     } else {
-      location.replace('https://testapp.shoplus.io/main.php');
+      location.replace('<?= $appApiUrl; ?>/main.php');
     }
   }
 </script>
