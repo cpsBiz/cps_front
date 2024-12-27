@@ -258,6 +258,10 @@ if (!$object) {
   }
 
   function moveBack() {
-    window.close();
+    if (!document.referrer || document.referrer === '') {
+      window.close();
+    } else {
+      history.back();
+    }
   }
 </script>
