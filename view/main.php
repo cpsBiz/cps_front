@@ -455,12 +455,7 @@
   }
 
   function postToUrl(item) {
-    location.href = `/reward/campaign.php?object=${item}`;
-  }
-
-  function appClose() {
-    if (confirm('쇼핑적립을 종료하시겠습니까?')) {
-      HybridApp.close();
-    }
+    // location.href = `/reward/campaign.php?object=${item}`;
+    window.open(`/reward/campaign.php?object=${item}`, '_blank');
   }
 </script>
