@@ -151,7 +151,7 @@
         </div>
 
         <!-- 리스트 있을 경우 -->
-        <div id="cart-list-wrap1" class="cart-list-wrap type1 one"></div>
+        <div id="cart-list-wrap1" class="cart-list-wrap type1 three"></div>
 
         <!-- 전체보기에서 등록된 상품 없을 경우 -->
         <div id="all-cart-list-none" class="list-none-box" style="display: none;">
