@@ -547,7 +547,7 @@
 
   function changeSettingData(data) {
     const wowToggle = document.getElementById('toggle-btn1');
-    data.wowStatus === 'Y' ? wowToggle.classList.add('on') : wowToggle.classList.remove('on');
+    data.rocketStatus === 'Y' ? wowToggle.classList.add('on') : wowToggle.classList.remove('on');
 
     const nightAlarmToggle = document.getElementById('toggle-btn2');
     data.nightAlarm === 'Y' ? nightAlarmToggle.classList.add('on') : nightAlarmToggle.classList.remove('on');
@@ -629,7 +629,7 @@
         userId: '<?= $checkUserId; ?>',
         affliateId: '<?= $checkAffliateId; ?>',
         site: '<?= $checkSite; ?>',
-        wowStatus: document.getElementById('toggle-btn1').classList.contains('on') ? 'Y' : 'N',
+        rocketStatus: document.getElementById('toggle-btn1').classList.contains('on') ? 'Y' : 'N',
         nightAlarm: document.getElementById('toggle-btn2').classList.contains('on') ? 'Y' : 'N',
         rocketAlarm: document.getElementById('toggle-btn3').classList.contains('on') ? 'Y' : 'N',
         returnAlarm: document.getElementById('toggle-btn4').classList.contains('on') ? 'Y' : 'N',
