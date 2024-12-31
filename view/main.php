@@ -463,7 +463,7 @@
   }
 
   function postToUrl(item) {
-    // location.href = `/reward/campaign.php?object=${item}`;
-    window.open(`/reward/campaign.php?object=${item}`, '_blank');
+    location.href = `/reward/campaign.php?object=${item}`;
+    // window.open(`/reward/campaign.php?object=${item}`, '_blank');
   }
 </script>

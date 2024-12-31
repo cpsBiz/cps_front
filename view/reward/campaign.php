@@ -258,6 +258,8 @@ if (!$object) {
   }
 
   function moveBack() {
+    history.back();
+    return
     try {
       // window.open으로 열린 창인 경우를 위한 처리
       if (window.opener) {
