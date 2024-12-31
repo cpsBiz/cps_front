@@ -101,15 +101,17 @@
   // 쿠팡 막대사탕 조회
   function getMemberStick() {
     try {
-      const userId = '<?= $checkUserId; ?>'
+      const userId = '<?= $checkUserId; ?>';
       const merchantId = 'coupang';
-      const affliateId = '<?= $checkAffliateId; ?>'
+      const affliateId = '<?= $checkAffliateId; ?>';
+      const site = '<?= $checkSite; ?>';
 
       // AJAX 요청 데이터 설정
       const requestData = {
         userId,
         merchantId,
-        affliateId
+        affliateId,
+        site
       };
 
       // AJAX 요청 수행
@@ -138,6 +140,7 @@
     try {
       const requestData = {
         affliateId: "<?= $checkAffliateId; ?>",
+        site: "<?= $checkSite; ?>",
         brandType: "BRAND",
         merchantId: "coupang"
       }
@@ -186,6 +189,7 @@
     const requestData = {
       brandId,
       affliateId: "<?= $checkAffliateId; ?>",
+      site: "<?= $checkSite; ?>",
       merchantId: "coupang"
     }
 
@@ -279,6 +283,7 @@
         userId: "<?= $checkUserId; ?>",
         merchantId: "coupang",
         affliateId: "<?= $checkAffliateId; ?>",
+        site: "<?= $checkSite; ?>",
         brandId,
         cnt: minCnt
       };

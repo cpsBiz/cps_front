@@ -3,8 +3,8 @@
 if ($isTest) {
   $checkUserId = 'test';
   $checkAdId = 'test';
-  $checkAffliateId = 'donsee';
-  $checkSite = 'test';
+  $checkAffliateId = 'ENLIPLE';
+  $checkSite = 'donsee';
   $checkZoneId =  'test';
   $checkFcmToken = 'test';
 

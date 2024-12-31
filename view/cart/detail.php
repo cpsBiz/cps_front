@@ -236,6 +236,7 @@ if (!$productCode || !$optionCode || !$merchantId) {
       const requestData = {
         userId: '<?= $checkUserId; ?>',
         affliateId: '<?= $checkAffliateId; ?>',
+        site: '<?= $checkSite; ?>',
         merchantId,
         productCode,
         optionCode,
@@ -528,6 +529,7 @@ if (!$productCode || !$optionCode || !$merchantId) {
       const requestData = {
         userId: '<?= $checkUserId; ?>',
         affliateId: '<?= $checkAffliateId; ?>',
+        site: '<?= $checkSite; ?>',
         adId: '<?= $checkAdId; ?>',
         apiType: 'U',
         productList: itemList
@@ -570,6 +572,7 @@ if (!$productCode || !$optionCode || !$merchantId) {
       const requestData = {
         userId: '<?= $checkUserId; ?>',
         affliateId: '<?= $checkAffliateId; ?>',
+        site: '<?= $checkSite; ?>',
         merchantId: object.merchantId,
         clickUrl: document.getElementById('objectData').getAttribute('data-clickUrl'),
         zoneId: '<?= $checkZoneId; ?>',
@@ -632,6 +635,7 @@ if (!$productCode || !$optionCode || !$merchantId) {
       const requestData = {
         userId: '<?= $checkUserId; ?>',
         affliateId: '<?= $checkAffliateId; ?>',
+        site: '<?= $checkSite; ?>',
         adId: '<?= $checkAdId; ?>',
         apiType: 'U',
         productList: favoritesList
@@ -678,6 +682,7 @@ if (!$productCode || !$optionCode || !$merchantId) {
       const requestData = {
         userId: '<?= $checkUserId; ?>',
         affliateId: '<?= $checkAffliateId; ?>',
+        site: '<?= $checkSite; ?>',
         adId: '<?= $checkAdId; ?>',
         apiType: 'D',
         productList: List

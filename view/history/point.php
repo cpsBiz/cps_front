@@ -4,11 +4,15 @@
 function getLastYearMonths()
 {
   $months = [];
-  // 현재 날짜로부터 12개월 전까지 반복
+  $currentDate = new DateTime();
+
   for ($i = 0; $i < 12; $i++) {
-    $month = date('Y년 n월', strtotime("-$i month")); // "-$i month"를 통해 과거 월을 계산
+    $date = clone $currentDate;
+    $date->modify("last day of -$i month"); // 각 월의 마지막 날을 기준으로 계산
+    $month = $date->format('Y년 n월');
     $months[] = $month;
   }
+
   return $months;
 }
 
@@ -147,7 +151,7 @@ $months = getLastYearMonths();
 </body>
 <script src="<?= $appApiUrl; ?>/js/common.js?version=<?= $cacheVersion; ?>"></script>
 <script src="<?= $appApiUrl; ?>/js/page.js?version=<?= $cacheVersion; ?>"></script>
-<script src="../js/history.js?version=<?= $cacheVersion; ?>"></script>
+<script src="<?= $appApiUrl; ?>/js/history.js?version=<?= $cacheVersion; ?>"></script>
 
 </html>
 <script>
@@ -159,13 +163,14 @@ $months = getLastYearMonths();
   // 회원 적립금 조회
   function getCommission() {
     try {
-      const userId = '<?= $checkUserId; ?>'
-      const affliateId = '<?= $checkAffliateId; ?>'
-
+      const userId = '<?= $checkUserId; ?>';
+      const affliateId = '<?= $checkAffliateId; ?>';
+      const site = '<?= $checkSite; ?>';
       // AJAX 요청 데이터 설정
       const requestData = {
         userId,
-        affliateId
+        affliateId,
+        site
       };
 
       // AJAX 요청 수행
@@ -206,12 +211,14 @@ $months = getLastYearMonths();
     try {
       const userId = "<?= $checkUserId; ?>";
       const affliateId = "<?= $checkAffliateId; ?>";
+      const site = "<?= $checkSite; ?>";
       const regYm = convertDate(date);
 
       // AJAX 요청 데이터 설정
       const requestData = {
         userId,
         affliateId,
+        site,
         regYm,
         status
       };

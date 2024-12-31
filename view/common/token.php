@@ -8,6 +8,7 @@
       const requestData = {
         userId: '<?= $userId; ?>',
         affliateId: '<?= $affliateId; ?>',
+        site: '<?= $site; ?>',
         adId: '<?= $adId; ?>',
         token: '<?= $fcmToken; ?>',
         os: getOs(),

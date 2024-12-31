@@ -16,6 +16,8 @@ if (!$isTest) {
   $merchantId = $_REQUEST['merchantId'];
 
   if ($userId && $adId && $affliateId && $site && $zoneId) {
+    if ($affliateId === 'donsee') $affliateId = 'ENLIPLE';
+
     session_start();
     $_SESSION['check_userId'] = $userId;
     $_SESSION['check_adId'] = $adId;
@@ -52,8 +54,9 @@ if (!$isTest) {
 } else {
   $userId = 'test';
   $adId = 'test';
-  $affliateId = 'donsee';
-  $fcmToken = 'test';
+  $affliateId = 'ENLIPLE';
+  $site = 'donsee';
+  $fcmToken = 'donsee';
   ?>
   <? include_once $_SERVER['DOCUMENT_ROOT'] . '/common/token.php'; ?>
   <script>

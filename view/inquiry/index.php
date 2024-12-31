@@ -460,6 +460,7 @@ if (!$campaign) {
       }
 
       requestData.append('affliateId', '<?= $checkAffliateId; ?>');
+      requestData.append('site', '<?= $checkSite; ?>');
       requestData.append('userId', '<?= $checkUserId; ?>');
 
       $.ajax({
@@ -493,6 +494,7 @@ if (!$campaign) {
         inquiryType: '',
         campaignNum: <?= $campaign; ?>,
         affliateId: '<?= $checkAffliateId; ?>',
+        site: '<?= $checkSite; ?>',
         merchantId: '',
         purpose: '',
         regDay: 0,

@@ -89,7 +89,7 @@
             </div>
             <div class="box box2">
               <p id="userCommission" class="point"></p>
-              <a href="../history/point.php"></a>
+              <a href="<?= $appApiUrl; ?>/history/point.php"></a>
             </div>
           </div>
           <div class="text-box">
@@ -106,7 +106,7 @@
             </div>
             <div class="box box2">
               <p id="memberStick" class="point"></p>
-              <a href="../history/stick.php"></a>
+              <a href="<?= $appApiUrl; ?>/history/stick.php"></a>
             </div>
           </div>
         </div>
@@ -408,13 +408,15 @@
 
   function getMemberCommission() {
     try {
-      const userId = '<?= $checkUserId; ?>'
-      const affliateId = '<?= $checkAffliateId; ?>'
+      const userId = '<?= $checkUserId; ?>';
+      const affliateId = '<?= $checkAffliateId; ?>';
+      const site = '<?= $checkSite; ?>';
 
       // AJAX 요청 데이터 설정
       const requestData = {
         userId,
-        affliateId
+        affliateId,
+        site
       };
 
       // AJAX 요청 수행
@@ -440,15 +442,17 @@
 
   function getMemberStick() {
     try {
-      const userId = '<?= $checkUserId; ?>'
+      const userId = '<?= $checkUserId; ?>';
       const merchantId = 'coupang';
-      const affliateId = '<?= $checkAffliateId; ?>'
+      const affliateId = '<?= $checkAffliateId; ?>';
+      const site = '<?= $checkSite; ?>';
 
       // AJAX 요청 데이터 설정
       const requestData = {
         userId,
         merchantId,
-        affliateId
+        affliateId,
+        site
       };
 
       // AJAX 요청 수행
@@ -476,7 +480,8 @@
     try {
       const requestData = {
         userId: '<?= $checkUserId; ?>',
-        affliateId: '<?= $checkAffliateId ?>'
+        affliateId: '<?= $checkAffliateId ?>',
+        site: '<?= $checkSite; ?>',
       };
 
       $.ajax({
@@ -540,6 +545,7 @@
       const requestData = {
         userId: '<?= $checkUserId; ?>',
         affliateId: '<?= $checkAffliateId; ?>',
+        site: '<?= $checkSite; ?>',
         folderNum: document.getElementById('folderNumFix').value,
         folderName: document.getElementById('folderNameFix').value,
         apiType: 'U'
@@ -572,6 +578,7 @@
       const requestData = {
         userId: '<?= $checkUserId; ?>',
         affliateId: '<?= $checkAffliateId; ?>',
+        site: '<?= $checkSite; ?>',
         folderNum: document.getElementById('folderNumFix').value,
         folderName: document.getElementById('folderNameFix').value,
         apiType: 'D'
@@ -639,6 +646,7 @@
     const requestData = {
       userId: '<?= $checkUserId; ?>',
       affliateId: '<?= $checkAffliateId; ?>',
+      site: '<?= $checkSite; ?>',
       folderNum,
       apiType: 'I',
       folderProductList: List
@@ -719,6 +727,7 @@
         folderNum: 0,
         userId: '<?= $checkUserId; ?>',
         affliateId: '<?= $checkAffliateId; ?>',
+        site: '<?= $checkSite; ?>',
         folderName: $input.value,
         apiType: 'I'
       }
@@ -761,6 +770,7 @@
       const requestData = {
         userId: '<?= $checkUserId; ?>',
         affliateId: '<?= $checkAffliateId; ?>',
+        site: '<?= $checkSite; ?>',
       };
 
       $.ajax({
@@ -805,6 +815,7 @@
       const requestData = {
         userId: '<?= $checkUserId; ?>',
         affliateId: '<?= $checkAffliateId; ?>',
+        site: '<?= $checkSite; ?>',
         productCode: '',
         optionCode: '',
         orderbyName: localStorage.getItem('checkOrderBy'),
@@ -965,6 +976,7 @@
         requestData = {
           userId: '<?= $checkUserId; ?>',
           affliateId: '<?= $checkAffliateId; ?>',
+          site: '<?= $checkSite; ?>',
           adId: '<?= $checkAdId; ?>',
           apiType: 'D',
           productList: removeList
@@ -973,6 +985,7 @@
         requestData = {
           userId: '<?= $checkUserId; ?>',
           affliateId: '<?= $checkAffliateId; ?>',
+          site: '<?= $checkSite; ?>',
           folderNum,
           apiType: 'D',
           folderProductList: removeList
@@ -1084,6 +1097,7 @@
       const requestData = {
         userId: '<?= $checkUserId; ?>',
         affliateId: '<?= $checkAffliateId; ?>',
+        site: '<?= $checkSite; ?>',
         adId: '<?= $checkAdId; ?>',
         apiType: 'U',
         productList: favoritesList
@@ -1198,6 +1212,7 @@
       const requestData = {
         userId: '<?= $checkUserId; ?>',
         affliateId: '<?= $checkAffliateId; ?>',
+        site: '<?= $checkSite; ?>',
         adId: '<?= $checkAdId; ?>',
         apiType: 'U',
         productList: alarmList
@@ -1279,6 +1294,7 @@
       const requestData = {
         userId: '<?= $checkUserId; ?>',
         affliateId: '<?= $checkAffliateId; ?>',
+        site: '<?= $checkSite; ?>',
         adId: '<?= $checkAdId; ?>',
         apiType: 'U',
         productList: favoritesList
@@ -1326,6 +1342,7 @@
       const requestData = {
         userId: '<?= $checkUserId; ?>',
         affliateId: '<?= $checkAffliateId; ?>',
+        site: '<?= $checkSite; ?>',
         adId: '<?= $checkAdId; ?>',
         apiType: 'U',
         productList: alarmList
@@ -1373,6 +1390,7 @@
       const requestData = {
         userId: '<?= $checkUserId; ?>',
         affliateId: '<?= $checkAffliateId; ?>',
+        site: '<?= $checkSite; ?>',
         adId: '<?= $checkAdId; ?>',
         link: url
       }

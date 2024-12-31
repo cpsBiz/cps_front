@@ -101,13 +101,13 @@ if (!$object) {
       $('#buttonUrl').attr('href', 'javascript:void(0)');
 
       const affliateId = '<?= $checkAffliateId; ?>';
-      const zoneId = '<?= $checkZoneId; ?>'
+      const zoneId = '<?= $checkZoneId; ?>';
       const agencyId = object.agencyId;
       const merchantId = object.merchantId;
       const site = '<?= $checkSite; ?>';
       const os = getOs();
-      const userId = '<?= $checkUserId; ?>'
-      const adId = '<?= $checkAdId; ?>'
+      const userId = '<?= $checkUserId; ?>';
+      const adId = '<?= $checkAdId; ?>';
 
       // AJAX 요청 데이터 설정
       const requestData = {
@@ -258,10 +258,22 @@ if (!$object) {
   }
 
   function moveBack() {
-    if (!document.referrer || document.referrer === '') {
-      window.close();
-    } else {
-      history.back();
+    try {
+      // window.open으로 열린 창인 경우를 위한 처리
+      if (window.opener) {
+        window.open('', '_self').close();
+        return;
+      }
+
+      // 이전 페이지가 있는 경우 뒤로가기
+      if (window.history.length > 1) {
+        window.history.back();
+      } else {
+        // 대체 URL로 리다이렉트
+        window.location.href = '/'; // 메인 페이지 등으로 이동
+      }
+    } catch (e) {
+      console.error('Navigation failed:', e);
     }
   }
 </script>

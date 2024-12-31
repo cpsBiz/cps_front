@@ -40,6 +40,7 @@
       const requestData = {
         userId: '<?= $checkUserId; ?>',
         affliateId: '<?= $checkAffliateId; ?>',
+        site: '<?= $checkSite; ?>',
         merchantId: 'coupang'
       };
 

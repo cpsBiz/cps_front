@@ -1,7 +1,8 @@
 <?
 $affliateId = $_POST['affliateId'];
+$site = $_POST['site'];
 $userId = $_POST['userId'];
-if (!$affliateId || !$userId) {
+if (!$affliateId || !$userId || !$site) {
   echo json_encode(['resultCode' => 'fail', 'resultMessage' => '잘못된 접근입니다.']);
   exit;
 }
@@ -27,7 +28,7 @@ if (isset($_FILES['files'])) {
     // 파일명 생성
     $fileBasename = basename($_FILES['files']['name'][$i]);
     $fileExtension = pathinfo($fileBasename, PATHINFO_EXTENSION); // 파일 확장자 추출
-    $fileName = date('ymd') . '-' . pathinfo($fileBasename, PATHINFO_FILENAME) . '-' . $affliateId . '-' . $userId . '-' . uniqid() . '.' . $fileExtension; // 파일명 구성
+    $fileName = date('ymd') . '-' . pathinfo($fileBasename, PATHINFO_FILENAME) . '-' . $affliateId . '-' . $site . '-' . $userId . '-' . uniqid() . '.' . $fileExtension; // 파일명 구성
     $uploadFile = $uploadDir . $fileName;
 
     // 각 파일을 업로드 디렉토리로 이동

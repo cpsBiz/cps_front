@@ -81,7 +81,8 @@
     try {
       // AJAX 요청 데이터 설정
       const requestData = {
-        affliateId: '<?= $checkAffliateId; ?>'
+        affliateId: '<?= $checkAffliateId; ?>',
+        site: '<?= $checkSite; ?>'
       };
 
       // AJAX 요청 수행
@@ -117,7 +118,7 @@
             affliateId: '<?= $checkAffliateId; ?>',
             merchantId: item.merchantId,
             agencyId: item.adminId,
-            site: '<?= $checkAffliateId; ?>',
+            site: '<?= $checkSite; ?>',
             zoneId: '<?= $checkZoneId; ?>',
             userId: '<?= $checkUserId; ?>',
             adId: '<?= $checkAdId; ?>',
@@ -158,13 +159,15 @@
   // 회원 적립금 조회
   function getMemberCommission() {
     try {
-      const userId = '<?= $checkUserId; ?>'
-      const affliateId = '<?= $checkAffliateId; ?>'
+      const userId = '<?= $checkUserId; ?>';
+      const affliateId = '<?= $checkAffliateId; ?>';
+      const site = '<?= $checkSite; ?>';
 
       // AJAX 요청 데이터 설정
       const requestData = {
         userId,
-        affliateId
+        affliateId,
+        site
       };
 
       // AJAX 요청 수행
@@ -315,7 +318,7 @@
         affliateId: '<?= $checkAffliateId; ?>',
         merchantId: item.merchantId,
         agencyId: item.adminId,
-        site: '<?= $checkAffliateId; ?>',
+        site: '<?= $checkSite; ?>',
         zoneId: '<?= $checkZoneId; ?>',
         userId: '<?= $checkUserId; ?>',
         adId: '<?= $checkAdId; ?>',
@@ -351,6 +354,7 @@
       campaignNum: item.campaignNum,
       per: commissionPer,
       affliateId: item.affliateId,
+      site: item.site,
       merchantId: item.merchantId,
       agencyId: item.adminId,
       site: item.site,
@@ -384,15 +388,17 @@
   // 쿠팡 막대사탕 조회
   function getMemberStick() {
     try {
-      const userId = '<?= $checkUserId; ?>'
+      const userId = '<?= $checkUserId; ?>';
       const merchantId = 'coupang';
-      const affliateId = '<?= $checkAffliateId; ?>'
+      const affliateId = '<?= $checkAffliateId; ?>';
+      const site = '<?= $checkSite; ?>';
 
       // AJAX 요청 데이터 설정
       const requestData = {
         userId,
         merchantId,
-        affliateId
+        affliateId,
+        site
       };
 
       // AJAX 요청 수행
@@ -419,14 +425,16 @@
   // 캠페인 즐겨찾기 등록, 삭제
   function patchFavorites(campaignNum, favorites, dom) {
     try {
-      const userId = '<?= $checkUserId; ?>'
-      const affliateId = '<?= $checkAffliateId; ?>'
+      const userId = '<?= $checkUserId; ?>';
+      const affliateId = '<?= $checkAffliateId; ?>';
+      const site = '<?= $checkSite; ?>';
       const apiType = favorites === 'NON_FAVORITE' ? 'I' : 'D';
 
       // AJAX 요청 데이터 설정
       const requestData = {
         userId,
         affliateId,
+        site,
         campaignNum,
         apiType,
       };

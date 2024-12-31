@@ -428,6 +428,7 @@
       const requestData = {
         userId: '<?= $checkUserId; ?>',
         affliateId: '<?= $checkAffliateId; ?>',
+        site: '<?= $checkSite; ?>'
       }
 
       $.ajax({
@@ -474,6 +475,7 @@
           cardList.push({
             userId: '<?= $checkUserId; ?>',
             affliateId: '<?= $checkAffliateId; ?>',
+            site: '<?= $checkSite; ?>',
             card: elm.getAttribute('data-code')
           })
         }
@@ -485,6 +487,7 @@
           cardList.push({
             userId: '<?= $checkUserId; ?>',
             affliateId: '<?= $checkAffliateId; ?>',
+            site: '<?= $checkSite; ?>',
             card: elm.getAttribute('data-code')
           })
         })
@@ -520,6 +523,7 @@
       const requestData = {
         userId: '<?= $checkUserId; ?>',
         affliateId: '<?= $checkAffliateId; ?>',
+        site: '<?= $checkSite; ?>'
       }
 
       $.ajax({
@@ -624,6 +628,7 @@
       const requestData = {
         userId: '<?= $checkUserId; ?>',
         affliateId: '<?= $checkAffliateId; ?>',
+        site: '<?= $checkSite; ?>',
         wowStatus: document.getElementById('toggle-btn1').classList.contains('on') ? 'Y' : 'N',
         nightAlarm: document.getElementById('toggle-btn2').classList.contains('on') ? 'Y' : 'N',
         rocketAlarm: document.getElementById('toggle-btn3').classList.contains('on') ? 'Y' : 'N',
@@ -646,8 +651,6 @@
         error: function(request, status, error) {
           console.error(`Error: ${error}`);
         }
-
-
       })
     } catch (error) {
       alert(error);

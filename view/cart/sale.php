@@ -196,6 +196,7 @@
       const requestData = {
         userId: '<?= $checkUserId; ?>',
         affliateId: '<?= $checkAffliateId; ?>',
+        site: '<?= $checkSite; ?>',
         // orderbyName: localStorage.getItem('checkCartSaleOrderBy'),
       };
 
@@ -318,6 +319,7 @@
       const requestData = {
         userId: '<?= $checkUserId; ?>',
         affliateId: '<?= $checkAffliateId; ?>',
+        site: '<?= $checkSite; ?>',
         adId: '<?= $checkAdId; ?>',
         apiType: 'D',
         productList: removeList
@@ -390,6 +392,7 @@
       const requestData = {
         userId: '<?= $checkUserId; ?>',
         affliateId: '<?= $checkAffliateId; ?>',
+        site: '<?= $checkSite; ?>',
         adId: '<?= $checkAdId; ?>',
         apiType: 'U',
         productList: favoritesList
@@ -437,6 +440,7 @@
       const requestData = {
         userId: '<?= $checkUserId; ?>',
         affliateId: '<?= $checkAffliateId; ?>',
+        site: '<?= $checkSite; ?>',
         adId: '<?= $checkAdId; ?>',
         apiType: 'U',
         productList: alarmList
