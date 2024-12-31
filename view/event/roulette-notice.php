@@ -24,7 +24,7 @@
   <div class="wrap">
     <!-- header -->
     <header>
-      <h1>쿠팡 이벤트 안내</h1>
+      <h1 onclick="location.href='/cart/main.php'">쿠팡 이벤트 안내</h1>
       <div class="btn-list">
         <a href="javascript:history.back()" class="ico-arrow type1 left">이전</a>
       </div>
