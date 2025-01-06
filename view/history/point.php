@@ -274,6 +274,16 @@ $months = getLastYearMonths();
           break;
       }
 
+      let eventType = '';
+      switch (item.eventType) {
+        case 'SHOPPING':
+          eventType = '쇼핑적립';
+          break;
+        case 'CART':
+          eventType = '카트공유';
+          break;
+      }
+
       list += `
               <div class="list ${status.color}">
                 <p class="title">${item.memberName}</p>
@@ -295,7 +305,9 @@ $months = getLastYearMonths();
                 </div>
                 <div class="info-box">
                   <p class="date">${formatDate(item.regDay)}</p>
-                  <!--<p class="state">쇼핑적립</p>-->
+                  ${eventType ? `
+                  <p class="state">${eventType}</p>
+                  ` : ''}
                 </div>
               </div>
               `;
