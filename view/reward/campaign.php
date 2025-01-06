@@ -157,6 +157,8 @@ if (!$object) {
       // AJAX 요청 데이터 설정
       const requestData = {
         campaignNum,
+        affliateId: '<?= $checkAffliateId; ?>',
+        site: '<?= $checkSite; ?>',
       };
 
       // AJAX 요청 수행
