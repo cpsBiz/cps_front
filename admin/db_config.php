@@ -2,7 +2,7 @@
 <?
 // 데이터베이스 연결 정보
 if ($isTest) {
-  $host = '192.168.101.156:3306';
+  $host = '192.168.150.80:3306';
   $username = 'CPS';
   $password = 'Emfla2017!@#';
   $database = 'CPS';
