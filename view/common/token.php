@@ -20,7 +20,7 @@
       $.ajax({
         async: false,
         type: 'POST',
-        url: '<?= $appApiUrl; ?>/api/common/cpsUser',
+        url: '<?= $appApiUrl; ?>/api/common/cpsUserToken',
         contentType: 'application/json',
         data: JSON.stringify(requestData),
         success: function(result) {
