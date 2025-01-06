@@ -12,6 +12,7 @@
         adId: '<?= $adId; ?>',
         token: '<?= $fcmToken; ?>',
         os: getOs(),
+        appYn: '<?= $appYn; ?>',
         userName: '',
         userEmail: '',
         userPhone: ''

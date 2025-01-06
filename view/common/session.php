@@ -14,6 +14,7 @@ if (!$isTest) {
   $productCode = $_REQUEST['productCode'];
   $optionCode = $_REQUEST['optionCode'];
   $merchantId = $_REQUEST['merchantId'];
+  $appYn = $_REQUEST['appYn'] ?? 'N';
 
   if ($userId && $adId && $affliateId && $site && $zoneId) {
     if ($affliateId === 'donsee') $affliateId = 'ENLIPLE';
@@ -25,6 +26,7 @@ if (!$isTest) {
     $_SESSION['check_site'] = $site;
     $_SESSION['check_zoneId'] = $zoneId;
     $_SESSION['check_fcmToken'] = $fcmToken;
+    $_SESSION['check_appYn'] = $appYn;
 
     if ($type === 'push' && $productCode && $optionCode && $merchantId) {
       header('Location:https://app.shoplus.io/cart/detail.php?productCode=' . $productCode . '&optionCode=' . $optionCode . '&merchantId=' . $merchantId);
@@ -57,6 +59,7 @@ if (!$isTest) {
   $affliateId = 'ENLIPLE';
   $site = 'donsee';
   $fcmToken = 'donsee';
+  $appYn = 'N';
   ?>
   <? include_once $_SERVER['DOCUMENT_ROOT'] . '/common/token.php'; ?>
   <script>
