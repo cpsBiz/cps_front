@@ -137,6 +137,9 @@ if (!$object) {
             return;
           }
 
+          // const cashbackRate = document.getElementById('campaignRewardPer').innerText;
+          // ShopPlusApp.showCashbackBanner(cashbackRate);
+
           location.href = buttonUrl;
           $('#buttonUrl').attr('href', `javascript:getClickRewardUrl('${apiUrl}', '${clickUrl}', ${campaignNum})`);
         },
@@ -165,8 +168,8 @@ if (!$object) {
         success: function(result) {
           const data = result.data;
           if (!data) {
-            alert('존재하지않는 캠페인입니다.')
-            window.close();
+            alert('존재하지않는 캠페인입니다.');
+            moveBack();
             return;
           }
           renderCampaignData(data);
@@ -258,8 +261,6 @@ if (!$object) {
   }
 
   function moveBack() {
-    history.back();
-    return
     try {
       // window.open으로 열린 창인 경우를 위한 처리
       if (window.opener) {
