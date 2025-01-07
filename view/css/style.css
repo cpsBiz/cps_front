@@ -1153,6 +1153,7 @@ body.scrollNone {
 .list-wrap.type4 .list {
   position: relative;
   display: flex;
+  flex-direction: column;
   align-items: center;
   gap: 8px;
   background: #fff;
@@ -1175,6 +1176,11 @@ body.scrollNone {
   transform: translateY(-50%);
   right: 5px;
 }
+.list-wrap.type4 .list .brandName {
+  font-family: 'Pretendard-Regular';
+  font-size: 15px;
+  color: #000;
+}
 .list-wrap.type4 .list .logo {
   text-indent: 100%;
   white-space: nowrap;
@@ -1186,19 +1192,18 @@ body.scrollNone {
   width: 42px;
   height: 42px;
   border-radius: 14px;
+  border: 1px solid #ddd;
 }
 .list-wrap.type4 .list .title {
-  font-family: 'Pretendard-SemiBold';
-  font-size: 14px;
-  color: #000;
+  margin-top: 14px;
 }
 .list-wrap.type4 .list .candy-info {
-  font-family: 'Pretendard-Regular';
+  font-family: 'Pretendard-Bold';
   display: block;
   position: relative;
-  font-size: 13px;
-  color: #777777;
-  padding-left: 16px;
+  font-size: 16px;
+  color: #000;
+  padding-left: 22px;
   line-height: 15px;
   margin-top: 3px;
 }
@@ -1210,8 +1215,8 @@ body.scrollNone {
   content: '';
   display: block;
   position: absolute;
-  width: 14px;
-  height: 14px;
+  width: 20px;
+  height: 20px;
   left: 0;
   top: 50%;
   transform: translateY(-50%);
@@ -5044,6 +5049,7 @@ header .btn-list > div {
   width: 42px;
   height: 42px;
   border-radius: 14px;
+  border: 1px solid #ddd;
 }
 .list-wrap.type4 .list .title {
   font-family: 'Pretendard-SemiBold';
@@ -5051,12 +5057,12 @@ header .btn-list > div {
   color: #000;
 }
 .list-wrap.type4 .list .candy-info {
-  font-family: 'Pretendard-Regular';
+  font-family: 'Pretendard-Bold';
   display: block;
   position: relative;
-  font-size: 13px;
-  color: #777777;
-  padding-left: 16px;
+  font-size: 16px;
+  color: #000;
+  padding-left: 22px;
   line-height: 15px;
   margin-top: 3px;
 }
@@ -5068,8 +5074,8 @@ header .btn-list > div {
   content: '';
   display: block;
   position: absolute;
-  width: 14px;
-  height: 14px;
+  width: 20px;
+  height: 20px;
   left: 0;
   top: 50%;
   transform: translateY(-50%);

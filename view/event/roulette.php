@@ -11,13 +11,8 @@
 
 </head>
 <style>
-  .itemBrand {
-    font-size: 9px;
-    text-align: center;
-  }
-
   .itemProduct {
-    font-size: 11px;
+    font-size: 13px;
     font-weight: bold;
     text-align: center;
   }
@@ -25,6 +20,8 @@
   .itemImage {
     width: 40px;
     height: 40px;
+    border-radius: 50%;
+    border: 1px solid #ddd;
   }
 </style>
 
@@ -171,8 +168,9 @@
       const itemStr = encodeURIComponent(JSON.stringify(item));
       list += `
               <div class="list list1">
-                <div class="logo" style="background-image: url(${item.brandLogo})">${item.brandName}</div>
-                <p class="title">${item.brandName}<span class="candy-info">${item.minCnt}개</span></p>
+                <div class="logo" style="background-image: url(${item.brandLogo})"></div>
+                <span class="brandName">${item.brandName}</span>
+                <p class="title"><span class="candy-info">${item.minCnt}개</span></p>
                 <a href="javascript:void(0)" onclick="getGifticonList('${item.brandId}', '${itemStr}')"></a>
               </div>
               `;
@@ -242,7 +240,6 @@
     data.forEach(item => {
       list += `
               <div class="item item${i}" style="width: 62px; height: 80px;">
-                <p class="itemBrand">${item.brandName}</p>
                 <p class="itemProduct">${item.productName}</p>
                 <img class="itemImage" src="${item.productImageS}"/>
               </div>
