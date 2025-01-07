@@ -7756,7 +7756,7 @@ input[type='checkbox']:checked + label .ico-check.on {
 }
 .sub.sub-1 {
   padding: 20px 0 0;
-  background: #fafafa;
+  background: #f3f3f3;
 }
 .sub.sub-1 .event-popup {
   width: calc(100% - 40px);
@@ -7838,7 +7838,7 @@ input[type='checkbox']:checked + label .ico-check.on {
   padding: 0 20px;
 }
 .sub.sub-1-2 {
-  background: #fafafa;
+  background: #f3f3f3;
 }
 .sub.sub-1-2 .cart-goods-price-info {
   margin-bottom: 10px;
@@ -8031,7 +8031,7 @@ input[type='checkbox']:checked + label .ico-check.on {
 }
 .sub.sub-2-3 {
   padding: 24px 20px;
-  background: #fafafa;
+  background: #f3f3f3;
 }
 .sub.sub-2-3 .title-box {
   margin-bottom: 23px;
@@ -8053,7 +8053,7 @@ input[type='checkbox']:checked + label .ico-check.on {
 }
 .sub.sub-2-4 {
   padding: 0 0 60px;
-  background: #fafafa;
+  background: #f3f3f3;
 }
 .sub.sub-2-4 > .img-box {
   display: flex;
@@ -8216,7 +8216,7 @@ input[type='checkbox']:checked + label .ico-check.on {
 }
 .sub.sub-5 {
   padding: 20px 0 52px;
-  background: #fafafa;
+  background: #f3f3f3;
 }
 .sub.sub-5 .history-link-wrap {
   margin-bottom: 20px;
