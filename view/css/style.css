@@ -3728,6 +3728,7 @@ input[type='checkbox']:checked + label .ico-check.on {
   height: 70px;
   background-size: contain;
   border-radius: 20px;
+  border: 1px solid #ddd;
 }
 #popup-wrap .roulette-popup .logo-box .text {
   font-family: 'Pretendard-Medium';
@@ -7379,6 +7380,7 @@ input[type='checkbox']:checked + label .ico-check.on {
   height: 70px;
   background-size: contain;
   border-radius: 20px;
+  border: 1px solid #ddd;
 }
 #popup-wrap .roulette-popup .logo-box .text {
   font-family: 'Pretendard-Medium';
