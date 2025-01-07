@@ -280,8 +280,8 @@ body.scrollNone {
   display: block;
 }
 .ico-close.type1 {
-  width: 20px;
-  height: 20px;
+  width: 24px;
+  height: 24px;
   background-image: url(https://cdn.shoplus.io/images/icon/close-type1.png);
 }
 .ico-close.type2 {
