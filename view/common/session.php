@@ -72,6 +72,8 @@ if (!$isTest) {
         }
       </script>
     <?
+
+      exit;
     }
     ?>
     <? include_once $_SERVER['DOCUMENT_ROOT'] . '/common/token.php'; ?>
@@ -151,6 +153,7 @@ if (!$isTest) {
       }
     </script>
   <?
+    exit;
   }
   ?>
   <? include_once $_SERVER['DOCUMENT_ROOT'] . '/common/token.php'; ?>
