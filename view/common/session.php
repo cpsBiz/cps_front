@@ -37,6 +37,9 @@ if (!$isTest) {
       exit;
     } elseif ($type === 'autoReward' && $object) {
 ?>
+      <script type="text/javascript" src="https://cdn.shoplus.io/js/lib/jquery-2.2.2.min.js"></script>
+      <script type="text/javascript" src="https://cdn.shoplus.io/js/lib/jquery.easing.1.3.js"></script>
+      <script type="text/javascript" src="https://cdn.shoplus.io/js/lib/jquery-ui.min.js"></script>
       <script src="https://app.shoplus.io/js/common.js"></script>
       <script>
         const object = decodeFromBase64(`<?= $object ?>`);
@@ -118,6 +121,9 @@ if (!$isTest) {
     exit;
   } elseif ($type === 'autoReward' && $object) {
   ?>
+    <script type="text/javascript" src="https://cdn.shoplus.io/js/lib/jquery-2.2.2.min.js"></script>
+    <script type="text/javascript" src="https://cdn.shoplus.io/js/lib/jquery.easing.1.3.js"></script>
+    <script type="text/javascript" src="https://cdn.shoplus.io/js/lib/jquery-ui.min.js"></script>
     <script src="https://testapp.shoplus.io/js/common.js"></script>
     <script>
       const object = decodeFromBase64(`<?= $object ?>`);
