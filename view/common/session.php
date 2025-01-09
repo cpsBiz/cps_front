@@ -15,6 +15,7 @@ if (!$isTest) {
   $optionCode = $_REQUEST['optionCode'];
   $merchantId = $_REQUEST['merchantId'];
   $appYn = $_REQUEST['appYn'] ?? 'N';
+  $object = $_REQUEST['object'];
 
   if ($userId && $adId && $affliateId && $site && $zoneId) {
     if ($affliateId === 'donsee') $affliateId = 'ENLIPLE';
@@ -31,8 +32,48 @@ if (!$isTest) {
     if ($type === 'push' && $productCode && $optionCode && $merchantId) {
       header('Location:https://app.shoplus.io/cart/detail.php?productCode=' . $productCode . '&optionCode=' . $optionCode . '&merchantId=' . $merchantId);
       exit;
-    }
+    } elseif ($type === 'share' && $productCode && $optionCode && $merchantId) {
+      header('Location:https://app.shoplus.io/cart/detail.php?productCode=' . $productCode . '&optionCode=' . $optionCode . '&merchantId=' . $merchantId . '&type=share');
+      exit;
+    } elseif ($type === 'autoReward' && $object) {
 ?>
+      <script src="https://app.shoplus.io/js/common.js"></script>
+      <script>
+        const object = decodeFromBase64(`<?= $object ?>`);
+        $(function() {
+          checkParam(object);
+        })
+
+        function checkParam(object) {
+          let item = object;
+
+          if (!item.apiUrl || !item.clickUrl || !item.campaignNum || !item.agencyId || !item.merchantId ||
+            !item.userCommissionShare || !item.affliateCommissionShare || !item.commissionMobile === 0) {
+            alert('필수 값이 없습니다. 다시 시도해 주세요.');
+            HybridApp.close();
+            return;
+          }
+
+          const per = (
+            (item.commissionMobile *
+              ((item.affliateCommissionShare * item.userCommissionShare) / 100)) /
+            100
+          ).toFixed(2);
+
+          item.per = per;
+
+          delete item.commissionMobile;
+          delete item.affliateCommissionShare;
+          delete item.userCommissionShare;
+
+          const itemStr = base64Encode(JSON.stringify(item));
+
+          location.href = `https://app.shoplus.io/reward/campaign.php?object=${item}&type=autoReward`;
+        }
+      </script>
+    <?
+    }
+    ?>
     <? include_once $_SERVER['DOCUMENT_ROOT'] . '/common/token.php'; ?>
     <script>
       $(function() {
@@ -60,6 +101,57 @@ if (!$isTest) {
   $site = 'donsee';
   $fcmToken = 'donsee';
   $appYn = 'N';
+
+  $type = $_REQUEST['type'];
+  $productCode = $_REQUEST['productCode'];
+  $optionCode = $_REQUEST['optionCode'];
+  $merchantId = $_REQUEST['merchantId'];
+  $object = $_REQUEST['object'];
+
+  if ($type === 'push' && $productCode && $optionCode && $merchantId) {
+    header('Location:https://testapp.shoplus.io/cart/detail.php?productCode=' . $productCode . '&optionCode=' . $optionCode . '&merchantId=' . $merchantId);
+    exit;
+  } elseif ($type === 'share' && $productCode && $optionCode && $merchantId) {
+    header('Location:https://testapp.shoplus.io/cart/detail.php?productCode=' . $productCode . '&optionCode=' . $optionCode . '&merchantId=' . $merchantId . '&type=share');
+    exit;
+  } elseif ($type === 'autoReward' && $object) {
+  ?>
+    <script src="https://testapp.shoplus.io/js/common.js"></script>
+    <script>
+      const object = decodeFromBase64(`<?= $object ?>`);
+      $(function() {
+        checkParam(object);
+      })
+
+      function checkParam(object) {
+        let item = object;
+
+        if (!item.apiUrl || !item.clickUrl || !item.campaignNum || !item.agencyId || !item.merchantId ||
+          !item.userCommissionShare || !item.affliateCommissionShare || !item.commissionMobile === 0) {
+          alert('필수 값이 없습니다. 다시 시도해 주세요.');
+          HybridApp.close();
+          return;
+        }
+
+        const per = (
+          (item.commissionMobile *
+            ((item.affliateCommissionShare * item.userCommissionShare) / 100)) /
+          100
+        ).toFixed(2);
+
+        item.per = per;
+
+        delete item.commissionMobile;
+        delete item.affliateCommissionShare;
+        delete item.userCommissionShare;
+
+        const itemStr = base64Encode(JSON.stringify(item));
+
+        location.href = `https://testapp.shoplus.io/reward/campaign.php?object=${item}&type=autoReward`;
+      }
+    </script>
+  <?
+  }
   ?>
   <? include_once $_SERVER['DOCUMENT_ROOT'] . '/common/token.php'; ?>
   <script>
