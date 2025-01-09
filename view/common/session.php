@@ -51,7 +51,7 @@ if (!$isTest) {
           let item = object;
 
           if (!item.apiUrl || !item.clickUrl || !item.campaignNum || !item.agencyId || !item.merchantId ||
-            !item.userCommissionShare || !item.affliateCommissionShare || !item.commissionMobile === 0) {
+            !item.userCommissionShare || !item.affliateCommissionShare || !item.commissionMobile) {
             alert('필수 값이 없습니다. 다시 시도해 주세요.');
             HybridApp.close();
             return;
@@ -71,7 +71,7 @@ if (!$isTest) {
 
           const itemStr = base64Encode(JSON.stringify(item));
 
-          location.href = `https://app.shoplus.io/reward/campaign.php?object=${item}&type=autoReward`;
+          location.href = `https://app.shoplus.io/reward/campaign.php?object=${itemStr}&type=autoReward`;
         }
       </script>
     <?
@@ -135,7 +135,7 @@ if (!$isTest) {
         let item = object;
 
         if (!item.apiUrl || !item.clickUrl || !item.campaignNum || !item.agencyId || !item.merchantId ||
-          !item.userCommissionShare || !item.affliateCommissionShare || !item.commissionMobile === 0) {
+          !item.userCommissionShare || !item.affliateCommissionShare || !item.commissionMobile) {
           alert('필수 값이 없습니다. 다시 시도해 주세요.');
           HybridApp.close();
           return;
@@ -155,7 +155,7 @@ if (!$isTest) {
 
         const itemStr = base64Encode(JSON.stringify(item));
 
-        location.href = `https://testapp.shoplus.io/reward/campaign.php?object=${item}&type=autoReward`;
+        location.href = `https://testapp.shoplus.io/reward/campaign.php?object=${itemStr}&type=autoReward`;
       }
     </script>
   <?
