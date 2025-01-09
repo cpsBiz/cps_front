@@ -37,8 +37,8 @@ try {
   $mail->isSMTP();                                      // SMTP 사용
   $mail->Host       = 'smtp.worksmobile.com';           // SMTP 서버 (예: smtp.gmail.com)
   $mail->SMTPAuth   = true;                             // SMTP 인증 사용
-  $mail->Username   = '';            // SMTP 사용자 이메일
-  $mail->Password   = '';                   // SMTP 비밀번호
+  $mail->Username   = 'shoplusadmin@enliple.com';            // SMTP 사용자 이메일
+  $mail->Password   = 'UTkqhcKSNYqo';                   // SMTP 비밀번호
   $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;   // TLS 암호화 사용
   $mail->Port       = 587;
   $mail->CharSet = 'UTF-8';
