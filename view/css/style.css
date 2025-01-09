@@ -645,6 +645,7 @@ body.scrollNone {
   overflow: hidden;
   border-radius: 16px 16px 0 0;
   box-shadow: 0 -2px 6px 0 rgba(0, 0, 0, 0.08);
+  justify-content: space-evenly;
 }
 .bottom-menu-wrap .menu {
   display: block;
@@ -4495,6 +4496,7 @@ header .btn-list > div {
   overflow: hidden;
   border-radius: 16px 16px 0 0;
   box-shadow: 0 -2px 6px 0 rgba(0, 0, 0, 0.08);
+  justify-content: space-evenly;
 }
 .bottom-menu-wrap .menu {
   display: block;
