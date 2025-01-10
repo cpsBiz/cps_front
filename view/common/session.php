@@ -14,6 +14,7 @@ if (!$isTest) {
   $productCode = $_REQUEST['productCode'];
   $optionCode = $_REQUEST['optionCode'];
   $merchantId = $_REQUEST['merchantId'];
+  $linkCase = $_REQUEST['linkCase'];
   $appYn = $_REQUEST['appYn'] ?? 'N';
   $object = $_REQUEST['object'];
 
@@ -32,8 +33,8 @@ if (!$isTest) {
     if ($type === 'push' && $productCode && $optionCode && $merchantId) {
       header('Location:https://app.shoplus.io/cart/detail.php?productCode=' . $productCode . '&optionCode=' . $optionCode . '&merchantId=' . $merchantId);
       exit;
-    } elseif ($type === 'share' && $productCode && $optionCode && $merchantId) {
-      header('Location:https://app.shoplus.io/cart/detail.php?productCode=' . $productCode . '&optionCode=' . $optionCode . '&merchantId=' . $merchantId . '&type=share');
+    } elseif ($type === 'share' && $productCode && $optionCode && $merchantId && $linkCase) {
+      header('Location:https://app.shoplus.io/cart/detail.php?productCode=' . $productCode . '&optionCode=' . $optionCode . '&merchantId=' . $merchantId . '&type=share&linkCase=' . $linkCase);
       exit;
     } elseif ($type === 'autoReward' && $object) {
 ?>
@@ -111,13 +112,14 @@ if (!$isTest) {
   $productCode = $_REQUEST['productCode'];
   $optionCode = $_REQUEST['optionCode'];
   $merchantId = $_REQUEST['merchantId'];
+  $linkCase = $_REQUEST['linkCase'];
   $object = $_REQUEST['object'];
 
   if ($type === 'push' && $productCode && $optionCode && $merchantId) {
     header('Location:https://testapp.shoplus.io/cart/detail.php?productCode=' . $productCode . '&optionCode=' . $optionCode . '&merchantId=' . $merchantId);
     exit;
-  } elseif ($type === 'share' && $productCode && $optionCode && $merchantId) {
-    header('Location:https://testapp.shoplus.io/cart/detail.php?productCode=' . $productCode . '&optionCode=' . $optionCode . '&merchantId=' . $merchantId . '&type=share');
+  } elseif ($type === 'share' && $productCode && $optionCode && $merchantId && $linkCase) {
+    header('Location:https://testapp.shoplus.io/cart/detail.php?productCode=' . $productCode . '&optionCode=' . $optionCode . '&merchantId=' . $merchantId . '&type=share&linkCase=' . $linkCase);
     exit;
   } elseif ($type === 'autoReward' && $object) {
   ?>
