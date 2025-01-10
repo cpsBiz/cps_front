@@ -3,6 +3,7 @@
 $productCode = $_REQUEST['productCode'];
 $optionCode = $_REQUEST['optionCode'];
 $merchantId = $_REQUEST['merchantId'];
+$type = $_REQUEST['type'];
 
 if (!$productCode || !$optionCode || !$merchantId) {
   header('Location: /cart/main.php');
@@ -113,6 +114,7 @@ if (!$productCode || !$optionCode || !$merchantId) {
         data-returnalarm=""
         data-rocketCartPrice=""
         data-clickUrl=""></div>
+      <input type="hidden" id="shareCase" value="">
       <!-- 토스트 팝업 -->
       <p id="tost1" class="tost-popup">즐겨찾기 설정 완료</p>
       <p id="tost2" class="tost-popup">즐겨찾기 설정 해제</p>
@@ -262,6 +264,10 @@ if (!$productCode || !$optionCode || !$merchantId) {
           document.getElementById('objectData').setAttribute('data-returnalarm', item.returnAlarm);
           document.getElementById('objectData').setAttribute('data-rocketCartPrice', item.rocketCartPrice);
           document.getElementById('objectData').setAttribute('data-clickUrl', item.productUrl);
+
+          <? if ($type === 'share') { ?>
+            cartEventCheck();
+          <? } ?>
 
           renderItem(item);
           renderChart(result.data);
@@ -578,7 +584,11 @@ if (!$productCode || !$optionCode || !$merchantId) {
         zoneId: '<?= $checkZoneId; ?>',
         site: '<?= $checkSite; ?>',
         os: getOs(),
-        adId: '<?= $checkAdId; ?>'
+        adId: '<?= $checkAdId; ?>',
+        linkCase: document.getElementById('shareCase').value,
+        productCode: "<?= $productCode; ?>",
+        optioncode: "<?= $optionCode; ?>",
+        eventType: "CART",
       };
 
       let apiUrl = '';
@@ -595,6 +605,8 @@ if (!$productCode || !$optionCode || !$merchantId) {
         contentType: 'application/json',
         data: JSON.stringify(requestData),
         success: function(result) {
+          //포인트 적립 실패 처리 필요
+
           const buttonUrl = result.data.clickUrl;
           if (!buttonUrl) {
             alert('잘못된 접근입니다.');
@@ -715,6 +727,39 @@ if (!$productCode || !$optionCode || !$merchantId) {
       location.replace('/cart/main.php');
     } else {
       history.back();
+    }
+  }
+
+  function cartEventCheck() {
+    try {
+      const requestData = {
+        userId: '<?= $checkUserId; ?>',
+        affliateId: '<?= $checkAffliateId; ?>',
+        merchantId: 'coupang',
+        site: '<?= $checkSite; ?>',
+      };
+
+      $.ajax({
+        type: 'POST',
+        url: '<?= $appApiUrl; ?>/api/cart/eventinfo',
+        contentType: 'application/json',
+        data: JSON.stringify(requestData),
+        success: function(result) {
+          if (result.resultCode !== '0000') return alert(result.resultMessage);
+          const data = result.data;
+          if (data.eventYn === 'Y' && data.count < 2) {
+            <? if ($linkCase === 'case1') { ?>
+              document.getElementById('shareCase').value = 'case1';
+            <? } ?>
+            $('#buttonUrl').text(`상품 페이지 다시 방문하면 포인트 지급!`);
+          }
+        },
+        error: function(request, status, error) {
+          console.error(`Error: ${error}`);
+        },
+      });
+    } catch (error) {
+      alert(error);
     }
   }
 </script>
