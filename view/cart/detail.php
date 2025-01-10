@@ -741,7 +741,7 @@ if (!$productCode || !$optionCode || !$merchantId) {
 
       $.ajax({
         type: 'POST',
-        url: '<?= $appApiUrl; ?>/api/cart/eventinfo',
+        url: '<?= $appApiUrl; ?>/api/cart/eventInfo',
         contentType: 'application/json',
         data: JSON.stringify(requestData),
         success: function(result) {
@@ -750,8 +750,8 @@ if (!$productCode || !$optionCode || !$merchantId) {
           if (data.eventYn === 'Y' && data.count < 2) {
             <? if ($linkCase === 'case1') { ?>
               document.getElementById('shareCase').value = 'case1';
+              $('#buttonUrl').text(`상품 페이지 다시 방문하면 포인트 지급!`);
             <? } ?>
-            $('#buttonUrl').text(`상품 페이지 다시 방문하면 포인트 지급!`);
           }
         },
         error: function(request, status, error) {
