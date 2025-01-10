@@ -4,6 +4,7 @@ $productCode = $_REQUEST['productCode'];
 $optionCode = $_REQUEST['optionCode'];
 $merchantId = $_REQUEST['merchantId'];
 $type = $_REQUEST['type'];
+$linkCase = $_REQUEST['linkCase'];
 
 if (!$productCode || !$optionCode || !$merchantId) {
   header('Location: /cart/main.php');
