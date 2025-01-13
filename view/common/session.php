@@ -4,18 +4,24 @@
 </script>
 <?
 if (!$isTest) {
+  // 필수 파라미터
   $userId = $_REQUEST['userId'];
   $adId = $_REQUEST['adId'];
   $affliateId = $_REQUEST['affliateId'];
   $site = $_REQUEST['site'];
   $zoneId = $_REQUEST['zoneId'];
+  $appYn = $_REQUEST['appYn'] ?? 'N';
   $fcmToken = $_REQUEST['fcmToken'];
+
+  // 분기처리 타입
   $type = $_REQUEST['type'];
+
   $productCode = $_REQUEST['productCode'];
   $optionCode = $_REQUEST['optionCode'];
   $merchantId = $_REQUEST['merchantId'];
   $linkCase = $_REQUEST['linkCase'];
-  $appYn = $_REQUEST['appYn'] ?? 'N';
+
+  // 자동 리워드
   $object = $_REQUEST['object'];
 
   if ($userId && $adId && $affliateId && $site && $zoneId) {

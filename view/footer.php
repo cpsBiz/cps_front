@@ -5,7 +5,8 @@ $footerIdList = [
   1114,
   1216,
   748,
-  994
+  994,
+  911
 ];
 //footerIdList에 $checkUserId가 포함되어 있는지 확인
 $checkFooterId = in_array($checkUserId, $footerIdList);
