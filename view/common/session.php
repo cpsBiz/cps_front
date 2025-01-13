@@ -1,3 +1,14 @@
+<?
+if (!$isTest) {
+  $appApiUrl = 'https://app.shoplus.io';
+} else {
+  $appApiUrl = 'https://testapp.shoplus.io';
+}
+?>
+<script type="text/javascript" src="https://cdn.shoplus.io/js/lib/jquery-2.2.2.min.js"></script>
+<script type="text/javascript" src="https://cdn.shoplus.io/js/lib/jquery.easing.1.3.js"></script>
+<script type="text/javascript" src="https://cdn.shoplus.io/js/lib/jquery-ui.min.js"></script>
+<script src="<?= $appApiUrl; ?>/js/common.js"></script>
 <script>
   const storageItems = ['mainPageScroll', 'cartMainPageScroll', 'cartSalePageScroll'];
   storageItems.forEach(item => localStorage.removeItem(item));
@@ -37,17 +48,13 @@ if (!$isTest) {
     $_SESSION['check_appYn'] = $appYn;
 
     if ($type === 'push' && $productCode && $optionCode && $merchantId) {
-      header('Location:https://app.shoplus.io/cart/detail.php?productCode=' . $productCode . '&optionCode=' . $optionCode . '&merchantId=' . $merchantId);
+      header('Location:' . $appApiUrl . '/cart/detail.php?productCode=' . $productCode . '&optionCode=' . $optionCode . '&merchantId=' . $merchantId);
       exit;
     } elseif ($type === 'share' && $productCode && $optionCode && $merchantId && $linkCase) {
-      header('Location:https://app.shoplus.io/cart/detail.php?productCode=' . $productCode . '&optionCode=' . $optionCode . '&merchantId=' . $merchantId . '&type=share&linkCase=' . $linkCase);
+      header('Location:' . $appApiUrl . '/cart/detail.php?productCode=' . $productCode . '&optionCode=' . $optionCode . '&merchantId=' . $merchantId . '&type=share&linkCase=' . $linkCase);
       exit;
     } elseif ($type === 'autoReward' && $object) {
 ?>
-      <script type="text/javascript" src="https://cdn.shoplus.io/js/lib/jquery-2.2.2.min.js"></script>
-      <script type="text/javascript" src="https://cdn.shoplus.io/js/lib/jquery.easing.1.3.js"></script>
-      <script type="text/javascript" src="https://cdn.shoplus.io/js/lib/jquery-ui.min.js"></script>
-      <script src="https://app.shoplus.io/js/common.js"></script>
       <script>
         const object = decodeFromBase64(`<?= $object ?>`);
         $(function() {
@@ -78,7 +85,7 @@ if (!$isTest) {
 
           const itemStr = base64Encode(JSON.stringify(item));
 
-          location.href = `https://app.shoplus.io/reward/campaign.php?object=${itemStr}&type=autoReward`;
+          location.href = `<?= $appApiUrl; ?>/reward/campaign.php?object=${itemStr}&type=autoReward`;
         }
       </script>
     <?
@@ -122,17 +129,13 @@ if (!$isTest) {
   $object = $_REQUEST['object'];
 
   if ($type === 'push' && $productCode && $optionCode && $merchantId) {
-    header('Location:https://testapp.shoplus.io/cart/detail.php?productCode=' . $productCode . '&optionCode=' . $optionCode . '&merchantId=' . $merchantId);
+    header('Location:' . $appApiUrl . '/cart/detail.php?productCode=' . $productCode . '&optionCode=' . $optionCode . '&merchantId=' . $merchantId);
     exit;
   } elseif ($type === 'share' && $productCode && $optionCode && $merchantId && $linkCase) {
-    header('Location:https://testapp.shoplus.io/cart/detail.php?productCode=' . $productCode . '&optionCode=' . $optionCode . '&merchantId=' . $merchantId . '&type=share&linkCase=' . $linkCase);
+    header('Location:' . $appApiUrl . '/cart/detail.php?productCode=' . $productCode . '&optionCode=' . $optionCode . '&merchantId=' . $merchantId . '&type=share&linkCase=' . $linkCase);
     exit;
   } elseif ($type === 'autoReward' && $object) {
   ?>
-    <script type="text/javascript" src="https://cdn.shoplus.io/js/lib/jquery-2.2.2.min.js"></script>
-    <script type="text/javascript" src="https://cdn.shoplus.io/js/lib/jquery.easing.1.3.js"></script>
-    <script type="text/javascript" src="https://cdn.shoplus.io/js/lib/jquery-ui.min.js"></script>
-    <script src="https://testapp.shoplus.io/js/common.js"></script>
     <script>
       const object = decodeFromBase64(`<?= $object ?>`);
       $(function() {
@@ -163,7 +166,7 @@ if (!$isTest) {
 
         const itemStr = base64Encode(JSON.stringify(item));
 
-        location.href = `https://testapp.shoplus.io/reward/campaign.php?object=${itemStr}&type=autoReward`;
+        location.href = `<?= $appApiUrl; ?>/reward/campaign.php?object=${itemStr}&type=autoReward`;
       }
     </script>
   <?
