@@ -1,16 +1,5 @@
 <?
-$footerIdList = [
-  10000,
-  1049,
-  1114,
-  1216,
-  748,
-  994,
-  911
-];
-//footerIdList에 $checkUserId가 포함되어 있는지 확인
-$checkFooterId = in_array($checkUserId, $footerIdList);
-if ($checkFooterId) { ?>
+if ($_SESSION['check_zoneId'] == 'shoplus') { ?>
   <div class="bottom-menu-wrap">
     <a class="menu" href="<?= $appApiUrl; ?>/cart/main.php"><span class="ico-cart">카트</span></a>
     <a class="menu" href="<?= $appApiUrl; ?>/main.php"><span class="ico-save">적립</span></a>

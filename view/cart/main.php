@@ -797,14 +797,6 @@
     }
   }
 
-  function appAgreeSetting() {
-    ShopPlusApp.requestUsagePermission('callbackFn');
-  }
-
-  function callbackFn(value) {
-    return value;
-  }
-
   function renderNowBuyingList(data) {
     let list = '';
     data.forEach((item, index) => {
