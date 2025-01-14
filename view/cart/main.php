@@ -334,6 +334,8 @@
 </html>
 <script>
   $(function() {
+    getSettingData();
+
     if (!localStorage.getItem('checkOrderBy')) {
       localStorage.setItem('checkOrderBy', 'modDateDesc');
     } else {
@@ -1527,5 +1529,31 @@
     const nextHour = new Date(now);
     nextHour.setHours(now.getHours() + 1, 0, 0, 0);
     return nextHour;
+  }
+
+  function getSettingData() {
+    try {
+      const requestData = {
+        userId: '<?= $checkUserId; ?>',
+        affliateId: '<?= $checkAffliateId; ?>',
+        site: '<?= $checkSite; ?>'
+      }
+
+      $.ajax({
+        type: 'POST',
+        url: '<?= $appApiUrl; ?>/api/cart/cartSettingSearch',
+        contentType: 'application/json',
+        data: JSON.stringify(requestData),
+        success: function(result) {
+          if (result.resultCode !== '0000') return alert(result.resultMessage);
+          if (!result.data) return location.href = '<?= $appApiUrl; ?>/cart/setting.php';
+        },
+        error: function(request, status, error) {
+          console.error(`Error: ${error}`);
+        }
+      });
+    } catch (error) {
+      alert(error)
+    }
   }
 </script>
