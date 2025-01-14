@@ -247,6 +247,9 @@
                     data-alarm="${item.alarm}"
                     data-returnalarm="${item.returnAlarm}"
                     data-rocketCartPrice="${item.rocketCartPrice}"
+                    data-regDay="${item.regDay}"
+                    data-regYm="${item.regYm}"
+                    data-regHour="${item.regHour}"
                   >
                   <div class="img-box" style="background-image: url(${item.productImage});">
                     ${badge}
@@ -310,6 +313,9 @@
           alarm: elm.getAttribute('data-alarm'),
           returnalarm: elm.getAttribute('data-returnalarm'),
           rocketCartPrice: elm.getAttribute('data-rocketCartPrice'),
+          regDay: elm.getAttribute('data-regDay'),
+          regYm: elm.getAttribute('data-regYm'),
+          regHour: elm.getAttribute('data-regHour'),
         };
         removeList.push(obj);
       }
@@ -386,6 +392,9 @@
         alarm: elm.getAttribute('data-alarm'),
         returnalarm: elm.getAttribute('data-returnalarm'),
         rocketCartPrice: elm.getAttribute('data-rocketCartPrice'),
+        regDay: elm.getAttribute('data-regDay'),
+        regYm: elm.getAttribute('data-regYm'),
+        regHour: elm.getAttribute('data-regHour'),
       };
       favoritesList.push(obj);
 
@@ -434,6 +443,9 @@
         alarm: elm.getAttribute('data-alarm') === 'Y' ? 'N' : 'Y',
         returnalarm: elm.getAttribute('data-returnalarm'),
         rocketCartPrice: elm.getAttribute('data-rocketCartPrice'),
+        regDay: elm.getAttribute('data-regDay'),
+        regYm: elm.getAttribute('data-regYm'),
+        regHour: elm.getAttribute('data-regHour'),
       };
       alarmList.push(obj);
 

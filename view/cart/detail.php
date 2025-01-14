@@ -265,6 +265,9 @@ if (!$productCode || !$optionCode || !$merchantId) {
           document.getElementById('objectData').setAttribute('data-returnalarm', item.returnAlarm);
           document.getElementById('objectData').setAttribute('data-rocketCartPrice', item.rocketCartPrice);
           document.getElementById('objectData').setAttribute('data-clickUrl', item.productUrl);
+          document.getElementById('objectData').setAttribute('data-regDay', item.regDay);
+          document.getElementById('objectData').setAttribute('data-regYm', item.regYm);
+          document.getElementById('objectData').setAttribute('data-regHour', item.regHour);
 
           <? if ($type === 'share') { ?>
             cartEventCheck();
@@ -529,7 +532,10 @@ if (!$productCode || !$optionCode || !$merchantId) {
         wantPrice: !wantPrice ? 0 : wantPrice,
         alarm: document.getElementById('objectData').getAttribute('data-alarm'),
         returnalarm: document.getElementById('objectData').getAttribute('data-returnalarm'),
-        rocketCartPrice: document.getElementById('objectData').getAttribute('data-rocketCartPrice')
+        rocketCartPrice: document.getElementById('objectData').getAttribute('data-rocketCartPrice'),
+        regDay: document.getElementById('objectData').getAttribute('data-regDay'),
+        regYm: document.getElementById('objectData').getAttribute('data-regYm'),
+        regHour: document.getElementById('objectData').getAttribute('data-regHour')
       };
       itemList.push(obj);
 
@@ -641,7 +647,10 @@ if (!$productCode || !$optionCode || !$merchantId) {
         wantPrice: !wantPrice ? 0 : wantPrice,
         alarm: document.getElementById('objectData').getAttribute('data-alarm'),
         returnalarm: document.getElementById('objectData').getAttribute('data-returnalarm'),
-        rocketCartPrice: document.getElementById('objectData').getAttribute('data-rocketCartPrice')
+        rocketCartPrice: document.getElementById('objectData').getAttribute('data-rocketCartPrice'),
+        regDay: document.getElementById('objectData').getAttribute('data-regDay'),
+        regYm: document.getElementById('objectData').getAttribute('data-regYm'),
+        regHour: document.getElementById('objectData').getAttribute('data-regHour')
       };
       favoritesList.push(obj);
 
@@ -688,7 +697,10 @@ if (!$productCode || !$optionCode || !$merchantId) {
         wantPrice: 0,
         alarm: document.getElementById('objectData').getAttribute('data-alarm'),
         returnalarm: document.getElementById('objectData').getAttribute('data-returnalarm'),
-        rocketCartPrice: document.getElementById('objectData').getAttribute('data-rocketCartPrice')
+        rocketCartPrice: document.getElementById('objectData').getAttribute('data-rocketCartPrice'),
+        regDay: document.getElementById('objectData').getAttribute('data-regDay'),
+        regYm: document.getElementById('objectData').getAttribute('data-regYm'),
+        regHour: document.getElementById('objectData').getAttribute('data-regHour')
       };
       List.push(obj);
 
