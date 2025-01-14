@@ -64,8 +64,8 @@
         <div class="event-cont">
           <div class="logo"></div>
           <div class="text-box">
-            <p class="text text1">쇼핑몰 방문 후 <span>카트 공유 등록</span>시마다 1포인트씩 하루 최대 3회 적립해 드려요.</p>
-            <p class="text text2">이용가이드</p>
+            <p class="text text1">시간당 2회, 카트에 상품을 추가하면 <span>100% 포인트를 적립</span>해 드려요.</p>
+            <p class="text text2">자세히보기</p>
           </div>
         </div>
         <a href="javascript:void(0)"></a>
@@ -173,7 +173,7 @@
 
       </div>
       <!-- 카트 상품추가 버튼 -->
-      <button class="ico-cart-add" type="button" onclick="selectBasicOn('#select-wrap', '#select-list3')">카트 상품추가</button>
+      <button class="ico-cart-add" type="button" onclick="cartEventCheck()">카트 상품추가</button>
       <!-- 토스트 팝업 -->
       <p id="tost1" class="tost-popup">폴더가 추가 되었습니다.</p>
       <p id="tost2" class="tost-popup type2">알림 켜기가 설정 되었습니다.</p>
@@ -235,6 +235,9 @@
         <div class="select-head">
           <p>리스트에 <span>상품</span>을 추가해보세요</p>
           <button class="ico-close type1" type="button" onclick="selectBasicClose('#select-wrap', '#select-list3')">닫기</button>
+        </div>
+        <div class="select-sub">
+          <p class="sub-title">1시간마다 2번 적립 가능해요</p>
         </div>
         <ul class="select-cont">
           <div class="link">
@@ -792,6 +795,14 @@
     } catch (error) {
       alert(error);
     }
+  }
+
+  function appAgreeSetting() {
+    ShopPlusApp.requestUsagePermission('callbackFn');
+  }
+
+  function callbackFn(value) {
+    return value;
   }
 
   function renderNowBuyingList(data) {
@@ -1416,5 +1427,71 @@
     } catch (error) {
       alert(error);
     }
+  }
+
+  function cartEventCheck() {
+    try {
+      const requestData = {
+        userId: '<?= $checkUserId; ?>',
+        affliateId: '<?= $checkAffliateId; ?>',
+        merchantId: 'coupang',
+        site: '<?= $checkSite; ?>',
+      };
+
+      $.ajax({
+        type: 'POST',
+        url: '<?= $appApiUrl; ?>/api/cart/eventinfo',
+        contentType: 'application/json',
+        data: JSON.stringify(requestData),
+        success: function(result) {
+          if (result.resultCode !== '0000') return alert(result.resultMessage);
+          renderCartEvent(result.data);
+        },
+        error: function(request, status, error) {
+          console.error(`Error: ${error}`);
+        },
+      });
+    } catch (error) {
+      alert(error);
+    }
+  }
+
+  function renderCartEvent(data) {
+    if (data.eventYn === 'Y') {
+      let eventText = '';
+      if (data.count < 2) {
+        eventText = `
+                    <div class="info-box type1">
+                      <p class="text">적립 <span>${data.count -1}회</span> 가능해요</p>
+                    </div>
+                    `;
+      } else {
+        const now = new Date();
+        const nextHour = getNextHour();
+        const diff = nextHour - now;
+
+        const hours = Math.floor(diff / (1000 * 60 * 60));
+        const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+        eventText = `
+                    <div class="info-box type2">
+                      <p class="text text1">${hours}:${minutes}:${seconds} 이후 적립 가능해요</p>
+                      <p class="text text2">상품 추가는 계속 할 수 있어요</p>
+                    </div>
+                    `;
+      }
+      $('.select-sub .info-box').remove();
+      $('.select-sub').append(eventText);
+    }
+
+    selectBasicOn('#select-wrap', '#select-list3');
+  }
+
+  function getNextHour() {
+    const now = new Date();
+    const nextHour = new Date(now);
+    nextHour.setHours(now.getHours() + 1, 0, 0, 0);
+    return nextHour;
   }
 </script>
