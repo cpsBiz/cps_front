@@ -3009,7 +3009,7 @@ body.scrollNone {
   padding-bottom: 20px;
 }
 #select-wrap .select-list.type3 .select-cont {
-  padding-top: 65px;
+  padding-top: 0;
   max-height: none;
 }
 #select-wrap .select-list.type3 .select-cont .link {
@@ -6927,7 +6927,7 @@ header .btn-list > div {
   padding-bottom: 20px;
 }
 #select-wrap .select-list.type3 .select-cont {
-  padding-top: 65px;
+  padding-top: 0;
   max-height: none;
 }
 #select-wrap .select-list.type3 .select-cont .link {

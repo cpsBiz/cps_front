@@ -1462,7 +1462,7 @@
       if (data.count < 2) {
         eventText = `
                     <div class="info-box type1">
-                      <p class="text">적립 <span>${data.count -1}회</span> 가능해요</p>
+                      <p class="text">적립 <span>${2 - data.count}회</span> 가능해요</p>
                     </div>
                     `;
       } else {
