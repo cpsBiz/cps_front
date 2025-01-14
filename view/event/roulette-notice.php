@@ -35,15 +35,18 @@
       <div class="img-box">
         <img src="/images/coupang-event.png" alt="쿠팡 쇼핑하면 행운의룰렛이 무료!, 쿠팡 구매금액 1만원당 막대사탕 1개, 최소 7개부터 100%당첨 행운의 룰렛 GO! GO!">
       </div>
+      <div class="text-box" onclick="scrollSwiper()">
+        <p class="text">꼭 읽어보세요!</p>
+        <div class="arrow"><i></i></div>
+      </div>
       <div class="swiper coupang-swiper">
         <div class="swiper-wrapper">
           <div class="swiper-slide">
             <div class="item item1">
               <p class="step">STEP 1</p>
               <p class="text">
-                <span>적립 메뉴</span>를 클릭<br>
-                제공되는 <span>쿠팡 쇼핑 GO!</span>에서<br>
-                쿠팡으로 이동해주세요.
+                <span>적립</span> 메뉴에서 <span>쿠팡 쇼핑 GO!</span><br>
+                를 눌러주세요.
               </p>
               <div class="img-box">
                 <div class="img"></div>
@@ -68,7 +71,7 @@
               <p class="step">STEP 3</p>
               <p class="text text1">
                 적립된 막대사탕을 사용해<br>
-                적립메뉴의 행운의 룰렛 GO! GO!
+                행운의 룰렛 GO! GO!
               </p>
               <p class="text text2"><span>100% 당첨</span>의 기회를 드립니다.</p>
               <div class="img-box">
@@ -96,6 +99,10 @@
         disableOnInteraction: false,
       },
     });
+
+    function scrollSwiper() {
+      document.querySelector(".swiper-wrapper").scrollIntoView();
+    }
   </script>
   <script src="<?= $appApiUrl; ?>/js/common.js?version=<?= $cacheVersion; ?>"></script>
   <script src="<?= $appApiUrl; ?>/js/page.js?version=<?= $cacheVersion; ?>"></script>

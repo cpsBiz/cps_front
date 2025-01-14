@@ -25,38 +25,66 @@
     <div class="page-setting">
       <div class="setting-list-wrap">
         <div class="box">
+          <p class="blue-title">적립</p>
+          <div class="item type2">
+            <div class="text-box">
+              <p class="title">사용정보 접근 설정<span class="ico-arrow type3 right"></span></p>
+            </div>
+            <a href="javascript:void(0)" id="select-btn1"></a>
+          </div>
+        </div>
+        <div class="box">
+          <p class="blue-title type2">카트</p>
           <p class="title">회원 정보</p>
           <div class="item type1">
-            <p>쿠팡 와우 멤버</p>
+            <div class="text-box">
+              <p class="title">쿠팡 와우 멤버</p>
+              <p class="text">와우 멤버 기준으로 가격 정보를 제공해요</p>
+            </div>
             <div id="toggle-btn1" class="toggle-btn" onclick="onOff('#toggle-btn1'), postSettingData()">
               <div class="circle"></div>
             </div>
           </div>
           <div class="item type2" style="display: none;">
-            <p>카드 할인 알림<span class="ico-arrow type3 right"></span></p>
+            <div class="text-box">
+              <p class="title">카드 할인 알림<span class="ico-arrow type3 right"></span></p>
+              <p class="text">보유한 카드를 설정해주시면 해당 카드 할인에 알려줘요</p>
+            </div>
             <a href="javascript:void(0)" id="select-btn1" onclick="getCardList(), selectInputOn('#select-wrap', '#select-list1')"></a>
           </div>
         </div>
         <div class="box">
           <p class="title">알림 설정</p>
           <div class="item type1">
-            <p>야간 알림 (24시 ~ 7시)</p>
+            <div class="text-box">
+              <p class="title">야간 알림 (24시 ~ 7시)</p>
+              <p class="text">새벽에도 푸시 알림메시지가 전송돼요</p>
+            </div>
             <div id="toggle-btn2" class="toggle-btn" onclick="onOff('#toggle-btn2'), postSettingData()">
               <div class="circle"></div>
             </div>
           </div>
           <div class="item type2">
-            <p>알림 감도 설정<span class="ico-arrow type3 right"></span></p>
+            <div class="text-box">
+              <p class="title">알림 감도 설정<span class="ico-arrow type3 right"></span></p>
+              <p class="text">각 항목 별 푸시 알림을 보내는 기준을 설정하세요</p>
+            </div>
             <a href="javascript:void(0)" id="select-btn2" onclick="selectInputOn('#select-wrap', '#select-list2')"></a>
           </div>
           <div class="item type1">
-            <p>로켓배송만 알림</p>
+            <div class="text-box">
+              <p class="title">로켓배송만 알림</p>
+              <p class="text">쿠팡 로켓배송 상품에 한해 가격 할인 알림을 받을 수 있어요</p>
+            </div>
             <div id="toggle-btn3" class="toggle-btn" onclick="onOff('#toggle-btn3'), postSettingData()">
               <div class="circle"></div>
             </div>
           </div>
           <div class="item type1" style="display: none;">
-            <p>미개봉 반품 상품 알림</p>
+            <div class="text-box">
+              <p class="title">반품 상품 알림</p>
+              <p class="text">새상품과 동일하지만 반품된 상품을 저렴하게 구매할 수 있어요</p>
+            </div>
             <div id="toggle-btn4" class="toggle-btn" onclick="onOff('#toggle-btn4'), postSettingData()">
               <div class="circle"></div>
             </div>
@@ -65,27 +93,25 @@
         <div class="box">
           <p class="title">서비스 설정</p>
           <div class="item type2">
-            <p>쿠팡 쇼핑 혜택 동의<span class="ico-arrow type3 right"></span></p>
+            <div class="text-box">
+              <p class="title">쿠팡 쇼핑 혜택 동의<span class="ico-arrow type3 right"></span></p>
+            </div>
             <a href="javascript:void(0)" id="select-btn4" onclick="selectInputOn('#select-wrap', '#select-list4')"></a>
           </div>
         </div>
         <div class="box">
           <p class="title">고객 센터</p>
           <div class="item type2">
-            <p>카트 메뉴 사용법<span class="ico-arrow type3 right"></span></p>
+            <div class="text-box">
+              <p class="title">카트 메뉴 사용법<span class="ico-arrow type3 right"></span></p>
+            </div>
             <a href="javascript:void(0)"></a>
           </div>
           <div class="item type2">
-            <p>자주 묻는 질문<span class="ico-arrow type3 right"></span></p>
+            <div class="text-box">
+              <p class="title">자주 묻는 질문<span class="ico-arrow type3 right"></span></p>
+            </div>
             <a href="javascript:void(0)" id="select-btn6" onclick="selectInputOn('#select-wrap', '#select-list6')"></a>
-          </div>
-          <div class="item type2" style="display: none;">
-            <p>이용약관<span class="ico-arrow type3 right"></span></p>
-            <a href="javascript:void(0)"></a>
-          </div>
-          <div class="item type2" style="display: none;">
-            <p>개인 정보 처리방침<span class="ico-arrow type3 right"></span></p>
-            <a href="javascript:void(0)"></a>
           </div>
         </div>
       </div>

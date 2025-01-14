@@ -68,7 +68,7 @@
             <p class="text text2">자세히보기</p>
           </div>
         </div>
-        <a href="javascript:void(0)"></a>
+        <a href="<?= $appApiUrl; ?>/cart/notice/point.php"></a>
         <button class="close" onclick="eventPopupClose('#event-popup1')"></button>
       </div>
       <div class="point-info-wrap">
@@ -893,6 +893,9 @@
                     data-alarm="${item.alarm}"
                     data-returnalarm="${item.returnAlarm}"
                     data-rocketCartPrice="${item.rocketCartPrice}"
+                    data-regDay="${item.regDay}"
+                    data-regYmd="${item.regYmd}"
+                    data-regHour="${item.regHour}"
                   >
                   <div class="img-box" style="background-image: url(${item.productImage});">
                     ${badge}
@@ -1461,28 +1464,52 @@
       let eventText = '';
       if (data.count < 2) {
         eventText = `
-                    <div class="info-box type1">
-                      <p class="text">적립 <span>${2 - data.count}회</span> 가능해요</p>
-                    </div>
-                    `;
+                <div class="info-box type1">
+                    <p class="text">적립 <span>${2 - data.count}회</span> 가능해요</p>
+                </div>
+            `;
+        $('.select-sub .info-box').remove();
+        $('.select-sub').append(eventText);
       } else {
-        const now = new Date();
-        const nextHour = getNextHour();
-        const diff = nextHour - now;
+        let countdownInterval;
 
-        const hours = Math.floor(diff / (1000 * 60 * 60));
-        const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+        const updateCountdown = () => {
+          const now = new Date();
+          const nextHour = getNextHour();
+          const diff = nextHour - now;
 
-        eventText = `
+          if (diff <= 0) {
+            // 카운트다운 종료
+            clearInterval(countdownInterval);
+            cartEventCheck();
+            return;
+          }
+
+          const hours = Math.floor(diff / (1000 * 60 * 60));
+          const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+          const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+          // 시간을 두 자리 수로 포맷팅
+          const formattedHours = String(hours).padStart(2, '0');
+          const formattedMinutes = String(minutes).padStart(2, '0');
+          const formattedSeconds = String(seconds).padStart(2, '0');
+
+          const eventText = `
                     <div class="info-box type2">
-                      <p class="text text1">${hours}:${minutes}:${seconds} 이후 적립 가능해요</p>
-                      <p class="text text2">상품 추가는 계속 할 수 있어요</p>
+                        <p class="text text1">${formattedHours}:${formattedMinutes}:${formattedSeconds} 이후 적립 가능해요</p>
+                        <p class="text text2">상품 추가는 계속 할 수 있어요</p>
                     </div>
-                    `;
+                `;
+
+          $('.select-sub .info-box').remove();
+          $('.select-sub').append(eventText);
+        };
+
+        // 초기 실행
+        updateCountdown();
+        // 1초마다 업데이트
+        countdownInterval = setInterval(updateCountdown, 1000);
       }
-      $('.select-sub .info-box').remove();
-      $('.select-sub').append(eventText);
     }
 
     selectBasicOn('#select-wrap', '#select-list3');
