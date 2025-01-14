@@ -1440,7 +1440,7 @@
 
       $.ajax({
         type: 'POST',
-        url: '<?= $appApiUrl; ?>/api/cart/eventinfo',
+        url: '<?= $appApiUrl; ?>/api/cart/eventInfo',
         contentType: 'application/json',
         data: JSON.stringify(requestData),
         success: function(result) {
