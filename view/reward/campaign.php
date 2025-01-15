@@ -5,6 +5,7 @@ if (!$object) {
   header('Location: /main.php');
   exit;
 }
+$type = $_REQUEST['type'];
 ?>
 <!DOCTYPE html>
 <html lang="ko">
@@ -73,10 +74,10 @@ if (!$object) {
   const object = decodeFromBase64(`<?= $object ?>`);
 
   $(function() {
-    checkParam(object);
+    checkParam(object, '<?= $type ?>');
   })
 
-  function checkParam(object) {
+  function checkParam(object, type) {
     if (!object) {
       alert('잘못된 접근입니다.');
       history.back();
@@ -90,6 +91,19 @@ if (!$object) {
     if (apiUrl && clickUrl && campaignNum) {
       getCampaignData(campaignNum);
       $('#buttonUrl').attr('href', `javascript:getClickRewardUrl('${apiUrl}', '${clickUrl}', ${campaignNum})`);
+
+      if (type === 'autoReward') {
+        let count = 5;
+        const interval = setInterval(() => {
+          count--;
+          if (count === 0) {
+            clearInterval(interval);
+            getClickRewardUrl(apiUrl, clickUrl, campaignNum);
+            return;
+          }
+          $('#buttonUrl').text(`${count}초 후 쇼핑하러 가기`);
+        }, 1000);
+      }
     } else {
       alert('잘못된 접근입니다.')
       history.back();
@@ -137,8 +151,10 @@ if (!$object) {
             return;
           }
 
-          // const cashbackRate = document.getElementById('campaignRewardPer').innerText;
-          // ShopPlusApp.showCashbackBanner(cashbackRate);
+          if (typeof ShopPlusApp !== 'undefined' && ShopPlusApp) {
+            const cashbackRate = document.getElementById('campaignRewardPer').innerText;
+            ShopPlusApp.showCashbackBanner(cashbackRate);
+          }
 
           location.href = buttonUrl;
           $('#buttonUrl').attr('href', `javascript:getClickRewardUrl('${apiUrl}', '${clickUrl}', ${campaignNum})`);
