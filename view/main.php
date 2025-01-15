@@ -535,6 +535,7 @@
   function appAgreeMove() {
     const checked = document.getElementById('check_1').checked;
     if (checked && typeof ShopPlusApp !== 'undefined' && ShopPlusApp) {
+      alert('이동');
       ShopPlusApp.requestUsagePermission('appPermissionCallBack');
     }
   }
