@@ -869,6 +869,20 @@ function checkedCheck(input, btn) {
   }
 }
 
+// tab menu event
+function tabMenuOnOff(tab, cont, tabs, conts) {
+  const $tab = document.querySelector(tab);
+  const $cont = document.querySelector(cont);
+  const $tabs = document.querySelectorAll(tabs);
+  const $conts = document.querySelectorAll(conts);
+
+  if ($tab.classList.contains('on')) return;
+  $tabs.forEach((elm) => elm.classList.remove('on'));
+  $conts.forEach((elm) => elm.classList.remove('on'));
+  $tab.classList.add('on');
+  $cont.classList.add('on');
+}
+
 // event banner touch event
 let selectListTouchStartY;
 let selectListTouchEndY;

@@ -105,7 +105,7 @@
             <div class="text-box">
               <p class="title">카트 메뉴 사용법<span class="ico-arrow type3 right"></span></p>
             </div>
-            <a href="javascript:void(0)"></a>
+            <a href="<?= $appApiUrl; ?>/cart/guide/cart.php"></a>
           </div>
           <div class="item type2">
             <div class="text-box">

@@ -68,7 +68,7 @@
             <p class="text text2">자세히보기</p>
           </div>
         </div>
-        <a href="<?= $appApiUrl; ?>/cart/notice/point.php"></a>
+        <a href="<?= $appApiUrl; ?>/cart/guide/point.php"></a>
         <button class="close" onclick="eventPopupClose('#event-popup1')"></button>
       </div>
       <div class="point-info-wrap">

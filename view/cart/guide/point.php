@@ -52,11 +52,6 @@
   </div>
   <script src="<?= $appApiUrl; ?>/js/common.js?version=<?= $cacheVersion; ?>"></script>
   <script src="<?= $appApiUrl; ?>/js/page.js?version=<?= $cacheVersion; ?>"></script>
-  <script>
-    function moveMain() {
-      location.href = '<?= $appApiUrl; ?>/cart/main.php';
-    }
-  </script>
 </body>
 
 </html>
