@@ -534,8 +534,11 @@
 
   function appAgreeMove() {
     const checked = document.getElementById('check_1').checked;
+    alert('동의하셨습니다.');
     if (checked && typeof ShopPlusApp !== 'undefined' && ShopPlusApp) {
       ShopPlusApp.requestUsagePermission('appPermissionCallBack');
+    } else {
+      alert('이동안됨');
     }
   }
 
