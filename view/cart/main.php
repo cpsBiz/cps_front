@@ -236,7 +236,7 @@
           <p>리스트에 <span>상품</span>을 추가해보세요</p>
           <button class="ico-close type1" type="button" onclick="selectBasicClose('#select-wrap', '#select-list3')">닫기</button>
         </div>
-        <div class="select-sub">
+        <div class="select-sub" id="cart-share-notice">
           <p class="sub-title">1시간마다 2번 적립 가능해요</p>
         </div>
         <ul class="select-cont">
@@ -1471,6 +1471,7 @@
   function renderCartEvent(data) {
     if (data.eventYn === 'Y') {
       let eventText = '';
+      $('#cart-share-notice').show();
       if (data.count < 2) {
         eventText = `
                 <div class="info-box type1">
@@ -1519,6 +1520,8 @@
         // 1초마다 업데이트
         countdownInterval = setInterval(updateCountdown, 1000);
       }
+    } else {
+      $('#cart-share-notice').hide();
     }
 
     selectBasicOn('#select-wrap', '#select-list3');
