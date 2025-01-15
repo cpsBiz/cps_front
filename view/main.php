@@ -23,6 +23,16 @@
     <!-- main -->
     <!-- hana class 추가 시 시그니처 컬러 변경 -->
     <div class="main <?= $checkAffliateId; ?>">
+      <? if ($checkAppYn == 'N' && $checkZoneId == 'shoplus') { ?>
+        <div class="event-banner type1">
+          <div class="logo"></div>
+          <p>
+            포인트 적립을 확실하게<br>챙기는 가장 쉬운 방법!
+            <span class="ico-arrow type2 right"></span>
+          </p>
+          <button id="select-btn1" type="button" onclick="appAgreeBottomPopup()"></button>
+        </div>
+      <? } ?>
       <div id="banner"></div>
       <div class="point-info-wrap">
         <div class="point-info">
@@ -40,6 +50,57 @@
         <div id="coupangArea" class="list list1 type1" style="display:none;"></div>
         <div id="none-campaign" class="none-campaign" style="display: none;">적립 가능한 캠페인이 없습니다.</div>
         <div class="campaign-list" id="campaign-list"></div>
+      </div>
+    </div>
+    <div id="select-wrap">
+      <!-- 정렬 방식 셀렉트 -->
+      <div
+        id="select-list1"
+        class="select-list type7"
+        ontouchstart="selectListTouchStart(event.touches[0].pageY)"
+        ontouchend="selectListTouchEnd(event.changedTouches[0].pageY, '#select-wrap', '#select-list1')"
+        ontouchmove="selectListTouchMove(event.changedTouches[0].pageY, '#select-list1')">
+        <div class="select-cont">
+          <img class="ico-close type1" style="position: absolute; right:20px; z-index:1;" onclick="selectListClose('#select-btn1', '#select-wrap', '#select-list1');">
+          <p class="title">놓치는 포인트가 없도록<br>사용정보 접근을 허용해주세요</p>
+          <p class="text">아래 쇼핑몰 APP으로 바로 접속해도<br>쇼핑적립 추가 포인트를 챙겨줄거에요!</p>
+          <div class="brand-box">
+            <div class="item-box">
+              <div class="item">
+                <div class="logo" style="background-image: url(./images/test/쿠팡-ico.png);"></div>
+                <div class="text-box">
+                  <p class="title">쿠팡</p>
+                  <p class="text">구매 금액 1만원 당 막대사탕 1개 적립</p>
+                </div>
+              </div>
+              <div class="item">
+                <div class="logo" style="background-image: url(./images/test/테무-ico.png);"></div>
+                <div class="text-box">
+                  <p class="title">테무</p>
+                  <p class="text">구매 금액의 17.50% 적립</p>
+                </div>
+              </div>
+              <div class="item">
+                <div class="logo" style="background-image: url(./images/test/11번가-ico.png);"></div>
+                <div class="text-box">
+                  <p class="title">11번가</p>
+                  <p class="text">구매 금액의 0.85% 적립</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="btn-box">
+            <div class="input-box">
+              <input type="checkbox" id="check_1" onclick="checkedCheck('#check_1', '#btn-1')">
+              <label for="check_1">
+                <i class="ico-check"></i>
+                <i class="ico-check on"></i>
+                개인 정보 처리 및 이용약관에 동의합니다
+              </label>
+            </div>
+            <button id="btn-1" class="btn gray" type="button">동의하러 가기</button>
+          </div>
+        </div>
       </div>
     </div>
     <? include_once $_SERVER['DOCUMENT_ROOT'] . "/footer.php"; ?>
@@ -465,5 +526,20 @@
   function postToUrl(item) {
     location.href = `/reward/campaign.php?object=${item}`;
     // window.open(`/reward/campaign.php?object=${item}`, '_blank');
+  }
+
+  function appAgreeBottomPopup() {
+    selectListOn('#select-btn1', '#select-wrap', '#select-list1');
+  }
+
+  function appAgreeMove() {
+    const checked = document.getElementById('check_1').checked;
+    if (checked && typeof ShopPlusApp !== 'undefined' && ShopPlusApp) {
+      ShopPlusApp.requestUsagePermission('appPermissionCallBack');
+    }
+  }
+
+  function appPermissionCallBack() {
+    console.log('콜백');
   }
 </script>

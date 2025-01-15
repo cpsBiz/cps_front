@@ -7,6 +7,7 @@ if ($isTest) {
   $checkSite = 'donsee';
   $checkZoneId =  'test';
   $checkFcmToken = 'test';
+  $checkAppYn = 'N';
 
   $appApiUrl = 'https://testapp.shoplus.io';
 } else {
@@ -18,6 +19,7 @@ if ($isTest) {
   $checkSite = $_SESSION['check_site'];
   $checkZoneId =  $_SESSION['check_zoneId'];
   $checkFcmToken = $_SESSION['check_fcmToken'];
+  $checkAppYn = $_SESSION['check_appYn'];
 
   $appApiUrl = 'https://app.shoplus.io';
 }

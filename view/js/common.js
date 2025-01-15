@@ -852,3 +852,48 @@ function calculatePriceChange(cartPrice, productPrice) {
     rate: rate === 0 ? '' : `${Math.abs(rate)}%`,
   };
 }
+
+// input checked check
+function checkedCheck(input, btn) {
+  const $input = document.querySelector(input);
+  const $btn = document.querySelector(btn);
+
+  if ($input.checked) {
+    if ($btn.classList.contains('gray')) {
+      $btn.classList.remove('gray');
+    }
+  } else if (!$input.checked) {
+    if (!$btn.classList.contains('gray')) {
+      $btn.classList.add('gray');
+    }
+  }
+}
+
+// event banner touch event
+let selectListTouchStartY;
+let selectListTouchEndY;
+
+function selectListTouchStart(pageY) {
+  selectListTouchStartY = pageY;
+}
+
+function selectListTouchEnd(pageY, selectWrap, selectList) {
+  selectListTouchEndY = pageY;
+  const touchLength = selectListTouchEndY - selectListTouchStartY;
+  if (touchLength > 280) {
+    document.body.classList.remove('scrollNone');
+    document.querySelector(selectWrap).classList.remove('on');
+    document.querySelector(selectList).classList.remove('on');
+  }
+  document.querySelector(selectList).style.bottom = '0px';
+}
+
+function selectListTouchMove(pageY, selectList) {
+  const $selectList = document.querySelector(selectList);
+  const touchLength = pageY - selectListTouchStartY;
+  if (
+    Number(getComputedStyle($selectList).bottom.replace(/([^0-9.])/g, '')) >= 0
+  ) {
+    $selectList.style.bottom = `-${touchLength}px`;
+  }
+}
