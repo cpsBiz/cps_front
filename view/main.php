@@ -408,7 +408,6 @@
   function renderCoupangArea(item) {
     const apiUrl = '<?= $appApiUrl; ?>/api/clickCoupang/campaignClick';
     const commissionPer = getCommissionPer(item);
-
     const params = {
       clickUrl: getDevice() ? item.mobileClickUrl : item.clickUrl,
       apiUrl,
@@ -540,6 +539,36 @@
   }
 
   function appPermissionCallBack(value) {
-    console.log('콜백 : ' + value);
+    if (value) {
+      try {
+        $.ajax({
+          type: 'POST',
+          url: '<?= $appApiUrl; ?>/api/common/cpsUserToken',
+          contentType: 'application/json',
+          data: JSON.stringify({
+            userId: '<?= $checkUserId; ?>',
+            affliateId: '<?= $checkAffliateId; ?>',
+            site: '<?= $checkSite; ?>',
+            adId: '<?= $checkAdId; ?>',
+            token: '<?= $checkFcmToken; ?>',
+            os: getOs(),
+            appYn: value,
+            userName: '',
+            userEmail: '',
+            userPhone: ''
+          }),
+          success: function(result) {
+            if (result.resultCode !== '0000') return alert(result.resultMessage);
+            location.href = '<?= $appApiUrl; ?>/common/appPermission.php?appYn=' + value;
+          },
+          error: function(request, status, error) {
+            console.error(`Error: ${error}`);
+          }
+
+        })
+      } catch (error) {
+        alert(error);
+      }
+    }
   }
 </script>
