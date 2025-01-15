@@ -342,13 +342,13 @@ function selectListsCheck(
     let checkOrderBy = '';
     switch (selectValue) {
       case '최신순':
-        checkOrderBy = 'modDateDesc';
+        checkOrderBy = 'regDateDesc';
         break;
       case '할인율순':
         checkOrderBy = 'discount';
         break;
       case '오래된순':
-        checkOrderBy = 'modDateAsc';
+        checkOrderBy = 'regDateAsc';
         break;
       case '이름순':
         checkOrderBy = 'productName';

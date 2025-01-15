@@ -191,7 +191,7 @@
           <button class="ico-close type1" type="button" onclick="selectListClose('#select-btn1', '#select-wrap', '#select-list1')">닫기</button>
         </div>
         <ul class="select-cont">
-          <li id="orderByModDateDesc" class="list list1 on">
+          <li id="orderByRegDateDesc" class="list list1 on">
             <p class="value">최신순</p>
             <div class="ico-check on"></div>
           </li>
@@ -199,7 +199,7 @@
             <p class="value">할인율순</p>
             <div class="ico-check on"></div>
           </li>
-          <li id="orderByModDateAsc" class="list list3">
+          <li id="orderByRegDateAsc" class="list list3">
             <p class="value">오래된순</p>
             <div class="ico-check on"></div>
           </li>
@@ -337,20 +337,20 @@
     getSettingData();
 
     if (!localStorage.getItem('checkOrderBy')) {
-      localStorage.setItem('checkOrderBy', 'modDateDesc');
+      localStorage.setItem('checkOrderBy', 'regDateDesc');
     } else {
       const orderBy = localStorage.getItem('checkOrderBy');
       if (orderBy) {
         let id = '';
         switch (orderBy) {
-          case 'modDateDesc':
-            id = 'orderByModDateDesc';
+          case 'regDateDesc':
+            id = 'orderByRegDateDesc';
             break;
           case 'discount':
             id = 'orderByDiscount';
             break;
-          case 'modDateASC':
-            id = 'orderByModDateAsc';
+          case 'regDateAsc':
+            id = 'orderByRegDateAsc';
             break;
           case 'productName':
             id = 'orderByProductName';

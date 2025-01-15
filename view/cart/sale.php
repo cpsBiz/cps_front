@@ -61,7 +61,7 @@
           </button>
         </div>
         <ul class="select-cont">
-          <li id="orderByModDateDesc" class="list list1 on">
+          <li id="orderByRegDateDesc" class="list list1 on">
             <p class="value">최신순</p>
             <div class="ico-check on"></div>
           </li>
@@ -69,7 +69,7 @@
             <p class="value">할인율순</p>
             <div class="ico-check on"></div>
           </li>
-          <li id="orderByModDateAsc" class="list list3">
+          <li id="orderByRegDateAsc" class="list list3">
             <p class="value">오래된순</p>
             <div class="ico-check on"></div>
           </li>
@@ -135,20 +135,20 @@
 <script>
   $(function() {
     if (!localStorage.getItem('checkCartSaleOrderBy')) {
-      localStorage.setItem('checkCartSaleOrderBy', 'modDateDesc');
+      localStorage.setItem('checkCartSaleOrderBy', 'regDateDesc');
     } else {
       const orderBy = localStorage.getItem('checkCartSaleOrderBy');
       if (orderBy) {
         let id = '';
         switch (orderBy) {
-          case 'modDateDesc':
-            id = 'orderByModDateDesc';
+          case 'regDateDesc':
+            id = 'orderByRegDateDesc';
             break;
           case 'discount':
             id = 'orderByDiscount';
             break;
-          case 'modDateASC':
-            id = 'orderByModDateAsc';
+          case 'regDateAsc':
+            id = 'orderByRegDateAsc';
             break;
           case 'productName':
             id = 'orderByProductName';
