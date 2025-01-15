@@ -539,7 +539,7 @@
     }
   }
 
-  function appPermissionCallBack() {
-    console.log('콜백');
+  function appPermissionCallBack(value) {
+    console.log('콜백 : ' + value);
   }
 </script>
