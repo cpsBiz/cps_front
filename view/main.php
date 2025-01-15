@@ -534,6 +534,7 @@
 
   function appAgreeMove() {
     const checked = document.getElementById('check_1').checked;
+    alert(checked);
     if (checked) {
       alert('동의하셨습니다.');
       ShopPlusApp.requestUsagePermission('appPermissionCallBack');
