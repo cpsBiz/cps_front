@@ -236,8 +236,8 @@
           <p>리스트에 <span>상품</span>을 추가해보세요</p>
           <button class="ico-close type1" type="button" onclick="selectBasicClose('#select-wrap', '#select-list3')">닫기</button>
         </div>
-        <div class="select-sub" id="cart-share-notice">
-          <p class="sub-title">1시간마다 2번 적립 가능해요</p>
+        <div class="select-sub">
+          <p id="cart-share-notice" class="sub-title">1시간마다 2번 적립 가능해요</p>
         </div>
         <ul class="select-cont">
           <div class="link">
