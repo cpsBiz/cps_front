@@ -98,7 +98,7 @@
                 개인 정보 처리 및 이용약관에 동의합니다
               </label>
             </div>
-            <button id="btn-1" class="btn gray" type="button">동의하러 가기</button>
+            <button id="btn-1" class="btn gray" type="button" onclick="appAgreeMove()">동의하러 가기</button>
           </div>
         </div>
       </div>
@@ -534,9 +534,7 @@
 
   function appAgreeMove() {
     const checked = document.getElementById('check_1').checked;
-    alert(checked);
-    if (checked) {
-      alert('동의하셨습니다.');
+    if (checked && typeof ShopPlusApp !== 'undefined' && ShopPlusApp) {
       ShopPlusApp.requestUsagePermission('appPermissionCallBack');
     }
   }
