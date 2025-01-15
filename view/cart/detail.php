@@ -104,6 +104,7 @@ if (!$productCode || !$optionCode || !$merchantId) {
               낮아질때 알림을 보내 드립니다.
             </li>
             <li>실제 구매 금액은 해당 쇼핑몰에 꼭 확인 후 구매하세요.</li>
+            <li>카트에 등록된 상품은 등록 시점으로부터 6개월간 유지되며 이후 자동으로 삭제됩니다.</li>
           </ul>
         </div>
         <a id="buttonUrl" href="javascript:getClickRewardUrl()" class="c-btn blue">구매하러 가기</a>
